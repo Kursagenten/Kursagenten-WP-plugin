@@ -26,6 +26,7 @@ $term_id          = $term->term_id;
 $taxonomy         = $term->taxonomy;
 $rich_description = get_term_meta($term_id, 'rich_description', true);
 $image_url        = get_taxonomy_image($term_id, $taxonomy);
+$has_rich_description = trim(wp_strip_all_tags((string) $rich_description)) !== '';
 
 // Sett opp hero-bakgrunn basert på innstillinger
 $has_taxonomy_image = !empty($image_url);
@@ -106,8 +107,10 @@ if ($view_type === 'all_coursedates') {
 
     $shortcode_atts[] = 'list_type="' . esc_attr($list_type) . '"';
     $shortcode_atts[] = 'bilder="' . esc_attr($show_images) . '"';
-    // Filter-visningsmodus fra Kursdesign-innstilling (venstre / topp / filter-knapp / skjul-alt)
-    $filter_attr = get_taxonomy_kursliste_filter_attr();
+    // Den smale høyrekolonnen i denne malen kan ikke huse venstre filterkolonne,
+    // så vi tvinger minimum "topp". Hvis brukeren har valgt "filter-knapp"
+    // eller "skjul-alt" i Kursdesign-innstillingene, beholdes dette.
+    $filter_attr = get_taxonomy_kursliste_filter_attr('topp');
     if ($filter_attr !== '') {
         $shortcode_atts[] = $filter_attr;
     }
@@ -206,6 +209,11 @@ do_action('ka_taxonomy_header_before', $term);
                         <?php echo wp_kses_post($term->description); ?>
                     </div>
                 <?php endif; ?>
+                <?php if ($has_rich_description) : ?>
+                    <a href="#taxonomy-rich-content" class="taxonomy-read-more-link">
+                        Les mer
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </header>
@@ -217,169 +225,177 @@ do_action('ka_taxonomy_header_before', $term);
 
     <section class="ka-section ka-main-content">
         <div class="ka-content-container">
+            <div id="taxonomy-rich-content" class="taxonomy-two-column-layout<?php echo $has_rich_description ? '' : ' taxonomy-no-rich-description'; ?>">
+                <div class="taxonomy-two-column-left">
 
-            <?php
-            // Bygg innhold til lenkeraden under beskrivelsen
-            $info_box_items = [];
+                    <?php
+                    // Bygg innhold til lenkeraden under beskrivelsen
+                    $info_box_items = [];
 
-            // 1) Underkategorier (kun for kurskategorier)
-            if ($taxonomy === 'ka_coursecategory') {
-                $child_terms = get_terms(
-                    [
-                        'taxonomy'   => $taxonomy,
-                        'hide_empty' => true,
-                        'parent'     => $term_id,
-                        'orderby'    => 'name',
-                        'order'      => 'ASC',
-                    ]
-                );
+                    // 1) Underkategorier (kun for kurskategorier)
+                    if ($taxonomy === 'ka_coursecategory') {
+                        $child_terms = get_terms(
+                            [
+                                'taxonomy'   => $taxonomy,
+                                'hide_empty' => true,
+                                'parent'     => $term_id,
+                                'orderby'    => 'name',
+                                'order'      => 'ASC',
+                            ]
+                        );
 
-                if (!empty($child_terms) && !is_wp_error($child_terms)) {
-                    $info_box_items['children'] = $child_terms;
-                }
+                        if (!empty($child_terms) && !is_wp_error($child_terms)) {
+                            $info_box_items['children'] = $child_terms;
+                        }
 
-                // 2) Kategorifilter aktivert på denne kategorien
-                $show_filter_on_archive = get_term_meta($term_id, 'show_category_filter_on_archive', true) === 'yes';
-            } else {
-                $show_filter_on_archive = false;
-            }
+                        // 2) Kategorifilter aktivert på denne kategorien
+                        $show_filter_on_archive = get_term_meta($term_id, 'show_category_filter_on_archive', true) === 'yes';
+                    } else {
+                        $show_filter_on_archive = false;
+                    }
 
-            $has_long_text = !empty($rich_description);
-            $has_info_box  = !empty($info_box_items) || $show_filter_on_archive;
+                    $has_long_text = $has_rich_description;
+                    $has_info_box  = !empty($info_box_items) || $show_filter_on_archive;
 
-            // 1) Lang beskrivelse i egen rad (maks bredde 800px) med expand-funksjonalitet
-            if ($has_long_text) :
-                ?>
-                <div class="taxonomy-hero-description-wrapper">
-                    <div class="taxonomy-rich-description expand-content" data-size="180px">
-                        <?php
-                        // Bruk apply_filters for å tillate mer HTML-innhold
-                        echo apply_filters('the_content', $rich_description);
+                    // 1) Lang beskrivelse i egen rad (maks bredde 800px) med expand-funksjonalitet
+                    if ($has_long_text) :
                         ?>
-                    </div>
-                </div>
-            <?php
-            endif;
-
-            // Hook for ekstra innhold under beskrivelse om ønskelig
-            do_action('ka_taxonomy_left_column', $term);
-
-            // 2) Lenkerad (chips) under beskrivelsen
-            if (!empty($info_box_items['children'])) :
-                ?>
-                <div class="taxonomy-hero-links">
-                    <?php if (!empty($info_box_items['children'])) : ?>
-                        <div class="taxonomy-hero-links-group">
-                            <h3>Underkategorier:</h3>
-                            <div class="taxonomy-hero-chips">
-                                <?php foreach ($info_box_items['children'] as $child) : ?>
-                                    <a href="<?php echo esc_url(get_term_link($child)); ?>" class="taxonomy-hero-chip">
-                                        <?php echo esc_html($child->name); ?>
-                                    </a>
-                                <?php endforeach; ?>
-                            </div>
-                    <?php endif; ?>
-                </div>
-            <?php
-            endif;
-            ?>
-
-            <?php
-            // Hook below main image and extended description, before course list
-            do_action('ka_taxonomy_below_description', $term);
-            ?>
-
-            <?php if ($taxonomy === 'ka_course_location' && !$hide_specific_locations) : ?>
-                <?php
-                $specific_locations = get_term_meta($term_id, 'specific_locations', true);
-                if (!empty($specific_locations) && is_array($specific_locations)) :
-                    ?>
-                    <div class="specific-locations-section">
-                        <h3>Spesifikke lokasjoner</h3>
-                        <div class="specific-locations-grid">
-                            <?php foreach ($specific_locations as $location) : ?>
+                        <div class="taxonomy-hero-description-wrapper">
+                            <div class="taxonomy-rich-description">
                                 <?php
-                                // Bygg Google Maps-lenke
-                                $maps_link = '';
-                                if (!empty($location['address'])) {
-                                    $address_parts = array_filter(
-                                        [
-                                            $location['address']['street'] ?? '',
-                                            $location['address']['number'] ?? '',
-                                            $location['address']['zipcode'] ?? '',
-                                            $location['address']['place'] ?? '',
-                                        ]
-                                    );
-                                    $full_address  = implode(' ', $address_parts);
-                                    if (!empty($full_address)) {
-                                        $maps_link = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($full_address);
-                                    }
-                                }
-
-                                // Hvis "Alle kursdatoer", gjør hele boksen til Maps-link
-                                $is_map_link = ($view_type === 'all_coursedates' && !empty($maps_link));
-                                $card_tag    = $is_map_link ? 'a' : 'div';
-                                $card_attrs  = $is_map_link
-                                    ? 'href="' . esc_url($maps_link) . '" target="_blank" rel="noopener noreferrer" title="Åpne ' . esc_attr($location['description']) . ' i Google Maps"'
-                                    : 'title="Vis kurs i ' . esc_attr($location['description']) . '" data-location="' . esc_attr($location['description']) . '"';
-                                $card_class  = $is_map_link ? 'location-card location-map-link' : 'location-card';
+                                // Bruk apply_filters for å tillate mer HTML-innhold
+                                echo apply_filters('the_content', $rich_description);
                                 ?>
-                                <<?php echo $card_tag; ?> class="<?php echo $card_class; ?>" <?php echo $card_attrs; ?>>
-                                    <div class="location-content">
-                                        <h4 class="notranslate" translate="no"><?php echo esc_html($location['description']); ?></h4>
-                                        <?php if (!empty($location['address'])) : ?>
-                                            <div class="location-address">
-                                                <?php if (!empty($location['address']['street'])) : ?>
-                                                    <p class="street">
-                                                        <?php echo esc_html($location['address']['street']); ?>
-                                                        <?php if (!empty($location['address']['number'])) : ?>
-                                                            <?php echo esc_html($location['address']['number']); ?>
-                                                        <?php endif; ?>
-                                                        <?php if (!$is_map_link && !empty($maps_link)) : ?>
-                                                            <a href="<?php echo esc_url($maps_link); ?>"
-                                                               target="_blank"
-                                                               rel="noopener noreferrer"
-                                                               class="maps-link"
-                                                               title="Åpne i Google Maps">
-                                                                <i class="ka-icon icon-map-marker"></i>
-                                                                <span class="screen-reader-text">Åpne adresse i Google Maps</span>
-                                                            </a>
-                                                        <?php endif; ?>
-                                                    </p>
-                                                <?php endif; ?>
-                                                <?php if (!empty($location['address']['zipcode']) || !empty($location['address']['place'])) : ?>
-                                                    <p class="postal">
-                                                        <?php
-                                                        if (!empty($location['address']['zipcode'])) {
-                                                            echo esc_html($location['address']['zipcode']);
-                                                        }
-                                                        if (!empty($location['address']['place'])) {
-                                                            echo ' ' . esc_html($location['address']['place']);
-                                                        }
-                                                        ?>
-                                                    </p>
-                                                <?php endif; ?>
-                                            </div>
-                                        <?php endif; ?>
-                                        <?php if ($is_map_link) : ?>
-                                            <div class="map-link-indicator">
-                                                <i class="ka-icon icon-map-marker"></i>
-                                                <span>Åpne i Google Maps</span>
-                                            </div>
-                                        <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php
+                    endif;
+                    ?>
+
+                    <?php
+                    // Hook for ekstra innhold under beskrivelse om ønskelig
+                    do_action('ka_taxonomy_left_column', $term);
+                    ?>
+
+                    <?php
+                    // 2) Lenkerad (chips) under beskrivelsen
+                    if (!empty($info_box_items['children'])) :
+                        ?>
+                        <div class="taxonomy-hero-links">
+                            <?php if (!empty($info_box_items['children'])) : ?>
+                                <div class="taxonomy-hero-links-group">
+                                    <h3>Underkategorier:</h3>
+                                    <div class="taxonomy-hero-chips">
+                                        <?php foreach ($info_box_items['children'] as $child) : ?>
+                                            <a href="<?php echo esc_url(get_term_link($child)); ?>" class="taxonomy-hero-chip">
+                                                <?php echo esc_html($child->name); ?>
+                                            </a>
+                                        <?php endforeach; ?>
                                     </div>
-                                </<?php echo $card_tag; ?>>
-                            <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
-                <?php endif; ?>
-            <?php endif; ?>
+                    <?php
+                    endif;
+                    ?>
 
+                    <?php
+                    // Hook below main image and extended description, before course list
+                    do_action('ka_taxonomy_below_description', $term);
+                    ?>
 
+                    <?php if ($taxonomy === 'ka_course_location' && !$hide_specific_locations) : ?>
+                        <?php
+                        $specific_locations = get_term_meta($term_id, 'specific_locations', true);
+                        if (!empty($specific_locations) && is_array($specific_locations)) :
+                            ?>
+                            <div class="specific-locations-section">
+                                <h3>Spesifikke lokasjoner</h3>
+                                <div class="specific-locations-grid">
+                                    <?php foreach ($specific_locations as $location) : ?>
+                                        <?php
+                                        // Bygg Google Maps-lenke
+                                        $maps_link = '';
+                                        if (!empty($location['address'])) {
+                                            $address_parts = array_filter(
+                                                [
+                                                    $location['address']['street'] ?? '',
+                                                    $location['address']['number'] ?? '',
+                                                    $location['address']['zipcode'] ?? '',
+                                                    $location['address']['place'] ?? '',
+                                                ]
+                                            );
+                                            $full_address  = implode(' ', $address_parts);
+                                            if (!empty($full_address)) {
+                                                $maps_link = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($full_address);
+                                            }
+                                        }
+
+                                        // Hvis "Alle kursdatoer", gjør hele boksen til Maps-link
+                                        $is_map_link = ($view_type === 'all_coursedates' && !empty($maps_link));
+                                        $card_tag    = $is_map_link ? 'a' : 'div';
+                                        $card_attrs  = $is_map_link
+                                            ? 'href="' . esc_url($maps_link) . '" target="_blank" rel="noopener noreferrer" title="Åpne ' . esc_attr($location['description']) . ' i Google Maps"'
+                                            : 'title="Vis kurs i ' . esc_attr($location['description']) . '" data-location="' . esc_attr($location['description']) . '"';
+                                        $card_class  = $is_map_link ? 'location-card location-map-link' : 'location-card';
+                                        ?>
+                                        <<?php echo $card_tag; ?> class="<?php echo $card_class; ?>" <?php echo $card_attrs; ?>>
+                                            <div class="location-content">
+                                                <h4 class="notranslate" translate="no"><?php echo esc_html($location['description']); ?></h4>
+                                                <?php if (!empty($location['address'])) : ?>
+                                                    <div class="location-address">
+                                                        <?php if (!empty($location['address']['street'])) : ?>
+                                                            <p class="street">
+                                                                <?php echo esc_html($location['address']['street']); ?>
+                                                                <?php if (!empty($location['address']['number'])) : ?>
+                                                                    <?php echo esc_html($location['address']['number']); ?>
+                                                                <?php endif; ?>
+                                                                <?php if (!$is_map_link && !empty($maps_link)) : ?>
+                                                                    <a href="<?php echo esc_url($maps_link); ?>"
+                                                                       target="_blank"
+                                                                       rel="noopener noreferrer"
+                                                                       class="maps-link"
+                                                                       title="Åpne i Google Maps">
+                                                                        <i class="ka-icon icon-map-marker"></i>
+                                                                        <span class="screen-reader-text">Åpne adresse i Google Maps</span>
+                                                                    </a>
+                                                                <?php endif; ?>
+                                                            </p>
+                                                        <?php endif; ?>
+                                                        <?php if (!empty($location['address']['zipcode']) || !empty($location['address']['place'])) : ?>
+                                                            <p class="postal">
+                                                                <?php
+                                                                if (!empty($location['address']['zipcode'])) {
+                                                                    echo esc_html($location['address']['zipcode']);
+                                                                }
+                                                                if (!empty($location['address']['place'])) {
+                                                                    echo ' ' . esc_html($location['address']['place']);
+                                                                }
+                                                                ?>
+                                                            </p>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                <?php endif; ?>
+                                                <?php if ($is_map_link) : ?>
+                                                    <div class="map-link-indicator">
+                                                        <i class="ka-icon icon-map-marker"></i>
+                                                        <span>Åpne i Google Maps</span>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
+                                        </<?php echo $card_tag; ?>>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+
+                <div class="taxonomy-two-column-right">
             <?php if ($view_type === 'all_coursedates') : ?>
                 <!-- Bruk [kursliste] shortcode - den håndterer alt -->
                 <div class="taxonomy-coursedates">
-                    <h2>Tilgjengelige kurs</h2>
                     <?php
                     // Hook before the course list
                     do_action('ka_courselist_before', $term);
@@ -394,7 +410,6 @@ do_action('ka_taxonomy_header_before', $term);
             <?php elseif ($query && $query->have_posts()) : ?>
                 <!-- Vis hovedkurs med enkel kategori-filter -->
                 <div class="taxonomy-coursedates">
-                    <h2>Tilgjengelige kurs</h2>
                     <?php
                     // Hook before the course list (above filters and pagination)
                     do_action('ka_courselist_before', $term);
@@ -545,6 +560,8 @@ do_action('ka_taxonomy_header_before', $term);
                     <p>Ingen kurs tilgjengelige for øyeblikket.</p>
                 </div>
             <?php endif; ?>
+                </div>
+            </div>
             <?php wp_reset_postdata(); ?>
 
             <?php
@@ -587,6 +604,16 @@ do_action('ka_taxonomy_after', $term);
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    const readMoreLink = document.querySelector('.taxonomy-read-more-link');
+    const richContentSection = document.getElementById('taxonomy-rich-content');
+
+    if (readMoreLink && richContentSection) {
+        readMoreLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            richContentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    }
+
     const locationCards = document.querySelectorAll('.location-card');
     const courseList = document.getElementById('filter-results');
     let currentLocation = null;

@@ -47,6 +47,10 @@
       "type": "boolean",
       "default": false
     },
+    "showLongDescription": {
+      "type": "boolean",
+      "default": false
+    },
     "descriptionWordLimit": {
       "type": "number",
       "default": 22
@@ -209,7 +213,7 @@
     },
     "cardBorderColor": {
       "type": "string",
-      "default": "#d0d7de"
+      "default": "#f1f1f1"
     },
     "backgroundMode": {
       "type": "string",
@@ -290,6 +294,10 @@
     "instructorExclude": {
       "type": "array",
       "default": []
+    },
+    "includeEmptyInstructors": {
+      "type": "boolean",
+      "default": true
     },
     "categoryParentSlug": {
       "type": "string",

@@ -212,7 +212,7 @@ add_filter('get_the_excerpt', function($excerpt, $post) {
 }, 10, 2);
 
 // Change link for instructors
-add_filter('the_permalink', function($permalink, $post) {
+add_filter('the_permalink', function($permalink, $post = null) {
     $post = kursagenten_normalize_filter_post($post);
     if (kursagenten_is_instructor_term_post($post)) {
         $term_id = isset($post->term_id) ? (int) $post->term_id : 0;

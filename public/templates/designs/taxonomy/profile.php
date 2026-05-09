@@ -59,7 +59,7 @@ if (!empty($back_link_url)) {
 }
 
 // Sjekk visningstype-innstilling
-$view_type = get_option('kursagenten_taxonomy_view_type', 'main_courses');
+$view_type = get_option('kursagenten_taxonomy_view_type', 'all_coursedates');
 
 // Option: hide specific locations on course locations (both view types)
 $hide_specific_locations = (
@@ -88,6 +88,11 @@ if ($view_type === 'all_coursedates') {
     
     $shortcode_atts[] = 'list_type="' . esc_attr($list_type) . '"';
     $shortcode_atts[] = 'bilder="' . esc_attr($show_images) . '"';
+    // Filter-visningsmodus fra Kursdesign-innstilling (venstre / topp / filter-knapp / skjul-alt)
+    $filter_attr = get_taxonomy_kursliste_filter_attr();
+    if ($filter_attr !== '') {
+        $shortcode_atts[] = $filter_attr;
+    }
     // Transport-parametre fra URL: st og sc
     $st = isset($_GET['st']) ? sanitize_text_field((string)$_GET['st']) : '';
     $sc = isset($_GET['sc']) ? sanitize_text_field((string)$_GET['sc']) : '';
@@ -507,6 +512,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Kategori-filter funksjonalitet
     const categoryButtons = document.querySelectorAll('.category-btn');
     let currentCategory = 'all';
+
+    // Denne JS-en er kun relevant når hovedkurslisten med #filter-results finnes.
+    if (!courseList) {
+        return;
+    }
 
     locationCards.forEach(card => {
         // Skip location-cards som er Google Maps-linker

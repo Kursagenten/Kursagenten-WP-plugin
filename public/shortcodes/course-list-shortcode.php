@@ -89,7 +89,14 @@ function kursagenten_course_list_shortcode($atts) {
         'klasse' => '',
         'list_type' => '', // standard, grid, compact
         'bilder' => '', // yes, no - overstyr bildeinnstillinger
-        'antall' => '' // Begrens antall kurs som vises
+        'antall' => '', // Begrens antall kurs som vises
+        // Filter visningsmodus:
+        //   ''              = standard (slik topp/venstre er konfigurert)
+        //   'venstre'       = vis alle filtre i venstre kolonne
+        //   'topp'          = vis alle filtre på toppen av listen
+        //   'filter-knapp'  = skjul inline-filtre, vis "Filtrer kurs"-knapp
+        //   'skjul-alt'     = skjul filtre + kursteller + sortering/per_page
+        'filter' => ''
     ), $atts, 'kursliste');
 
     // Load required dependencies
@@ -311,6 +318,36 @@ function kursagenten_course_list_shortcode($atts) {
     $has_left_filters = !empty($left_filters) && is_array($left_filters) && count(array_filter($left_filters)) > 0;
     $left_column_class = $has_left_filters ? 'col-1-4' : 'col-1 hidden-left-column';
 
+    // Filter visningsmodus (shortcode-attributt 'filter')
+    // Whitelist + normalisering. Tomt = standard.
+    $filter_mode = isset($atts['filter']) ? sanitize_html_class((string) $atts['filter']) : '';
+    if (!in_array($filter_mode, ['', 'venstre', 'topp', 'filter-knapp', 'skjul-alt'], true)) {
+        $filter_mode = '';
+    }
+
+    if ($filter_mode === 'venstre') {
+        // Flytt alle toppfiltre til venstre kolonne.
+        $left_filters = array_values(array_unique(array_merge($left_filters, $top_filters)));
+        $top_filters = [];
+    } elseif ($filter_mode === 'topp') {
+        // Flytt alle venstrefiltre opp til toppraden.
+        $top_filters = array_values(array_unique(array_merge($top_filters, $left_filters)));
+        $left_filters = [];
+    } elseif ($filter_mode === 'filter-knapp' || $filter_mode === 'skjul-alt') {
+        // Skjul inline-filtre i markup. For filter-knapp vil mobil-overlayet fortsatt
+        // hente filterinnhold via AJAX. For skjul-alt skjules også selve knappen via CSS.
+        $has_left_filters = false;
+        $left_column_class = 'col-1 hidden-left-column';
+        $left_filters = [];
+        $top_filters = [];
+    }
+
+    // Recalculate left column state after mode adjustments.
+    $has_left_filters = !empty($left_filters) && is_array($left_filters) && count(array_filter($left_filters)) > 0;
+    $left_column_class = $has_left_filters ? 'col-1-4' : 'col-1 hidden-left-column';
+    // Wrapper-klasse for CSS-targeting av filter-modus
+    $filter_mode_class = $filter_mode !== '' ? ' ka-filter-mode-' . $filter_mode : '';
+
     // Check if search is the only filter on top and set appropriate class
     $is_search_only = is_array($top_filters) && count($top_filters) === 1 && in_array('search', $top_filters);
     $search_class = $is_search_only ? 'wide-search' : '';
@@ -463,7 +500,7 @@ function kursagenten_course_list_shortcode($atts) {
     // Add custom class if provided
     $custom_class = !empty($atts['klasse']) ? ' ' . esc_attr($atts['klasse']) : '';
     ?>
-    <div id="ka" class="kursagenten-wrapper<?php echo $custom_class; ?>">
+    <div id="ka" class="kursagenten-wrapper<?php echo $custom_class; ?><?php echo esc_attr($filter_mode_class); ?>">
     <main id="ka-m" class="kursagenten-main" role="main">
         <div class="ka-container">
             <!-- Mobile Filter Overlay -->
@@ -479,6 +516,7 @@ function kursagenten_course_list_shortcode($atts) {
                     <!-- Filtre vil bli lagt til her via JavaScript -->
                 </div>
             </div>
+            <div class="filter-slidein-backdrop" aria-hidden="true"></div>
             <!-- End Mobile Filter -->
 
             <article class="ka-outer-container course-container">
@@ -979,15 +1017,6 @@ function kursagenten_course_list_shortcode($atts) {
 
                             <!-- Right Column -->
                             <div class="courselist-items-wrapper right-column">
-                                <!-- Mobile Filter Button (Sticky) -->
-                                <button class="filter-toggle-button sticky-filter-button">
-                                    <div class="ka-icon-wrapper">
-                                    <i class="ka-icon icon-filter"></i>
-                                    </div>
-                                    <span>Filtrer kurs</span>
-                                    
-                                </button>
-                                
                                 <?php if ($query instanceof WP_Query && $query->have_posts()) : ?>
                                     <div class="courselist-header">
                                         <div id="courselist-header-left">
@@ -995,6 +1024,10 @@ function kursagenten_course_list_shortcode($atts) {
                                         </div>
 
                                         <div id="courselist-header-right">
+                                            <button class="filter-toggle-button">
+                                                <i class="ka-icon icon-filter"></i>
+                                                <span>Filtrer kurs</span>
+                                            </button>
                                             <!-- Antall kurs per side dropdown -->
                                             <div class="per-page-dropdown select-dropdown">
                                                 <div class="per-page-dropdown-toggle">
@@ -1111,7 +1144,10 @@ function kursagenten_course_list_shortcode($atts) {
                                 <?php
                                     wp_reset_postdata();
                                 else :
-                                    echo '<p>Ingen kurs tilgjengelige.</p>';
+                                    echo '<div class="filter-no-results">';
+                                    echo '<p>Ingen kurs funnet. Fjern ett eller flere filtre, eller nullstill alle filtre.</p>';
+                                    echo '<p><a href="#" class="reset-empty-results-filters">Nullstill filter</a></p>';
+                                    echo '</div>';
                                 endif;
                                 ?>
                             </div>
@@ -1204,12 +1240,27 @@ function kursagenten_course_list_shortcode($atts) {
         // Sjekk om elementene eksisterer før vi legger til event listeners
         const filterToggleBtn = $('.filter-toggle-button');
         const mobileOverlay = $('.mobile-filter-overlay');
+        const filterSlideinBackdrop = $('.filter-slidein-backdrop');
         const closeFilterBtn = $('.close-filter-button');
+        // Viktig: ikke bruk globalt '#ka' her. Siden kan ha flere wrappers med samme id.
+        // Vi forankrer modusdeteksjon til den wrapperen som faktisk inneholder filteret.
+        const modeRoot = (function() {
+            if (filterToggleBtn.length) {
+                return filterToggleBtn.first().closest('#ka');
+            }
+            if (mobileOverlay.length) {
+                return mobileOverlay.first().closest('#ka');
+            }
+            return $('#ka').first();
+        })();
+        const isFilterButtonMode = modeRoot.hasClass('ka-filter-mode-filter-knapp');
+        const isHideAllMode = modeRoot.hasClass('ka-filter-mode-skjul-alt');
         
         // Hold styr på om filtrene er lastet
         let mobileFiltersLoaded = false;
         let isLoadingFilters = false;
         let mobileCaleranInstance = null;  // Ny global variabel for caleran
+        let panelOpenedQueryString = window.location.search.replace(/^\?/, '');
 
         // Funksjon for å initialisere datepicker
         function initializeDatepicker() {
@@ -1569,21 +1620,99 @@ function kursagenten_course_list_shortcode($atts) {
                     }
                 });
 
-                const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
+                const queryString = searchParams.toString();
+                const newUrl = `${window.location.pathname}${queryString ? '?' + queryString : ''}#filter-results`;
                 window.location.href = newUrl;
             });
         }
+        
+        if (filterSlideinBackdrop.length) {
+            filterSlideinBackdrop.on('click', function() {
+                hideMobileFilters();
+            });
+        }
+
+        $(document).on('click', '.reset-empty-results-filters', function(e) {
+            e.preventDefault();
+            const url = new URL(window.location.href);
+            ['k', 'sted', 'i', 'sprak', 'mnd', 'dato', 'sok', 'ledig', 'price_min', 'price_max', 'sort', 'order', 'side']
+                .forEach(function(param) { url.searchParams.delete(param); });
+            url.hash = 'filter-results';
+            window.location.href = url.toString();
+        });
+
+        // If we arrived from an apply action, keep list controls visible by
+        // offsetting the anchor scroll slightly.
+        if (window.location.hash === '#filter-results') {
+            setTimeout(function() {
+                scrollToCourseListWithOffset(60);
+            }, 40);
+        }
 
         function showMobileFilters() {
+            // Snapshot av query når panelet åpnes. Brukes for å avgjøre om "Vis resultater"
+            // faktisk representerer en endring fra brukerens perspektiv.
+            panelOpenedQueryString = window.location.search.replace(/^\?/, '');
             mobileOverlay.css('display', 'flex');
+            if (isFilterButtonMode && window.innerWidth > 768) {
+                filterSlideinBackdrop.addClass('active');
+                requestAnimationFrame(function() {
+                    mobileOverlay.addClass('desktop-slidein-active');
+                });
+            }
             $('body').css('overflow', 'hidden');
             // Gjenopprett aktive filtre når overlay vises
             restoreActiveFilters();
         }
 
         function hideMobileFilters() {
-            mobileOverlay.css('display', 'none');
+            if (isFilterButtonMode && window.innerWidth > 768) {
+                mobileOverlay.removeClass('desktop-slidein-active');
+                filterSlideinBackdrop.removeClass('active');
+                setTimeout(function() {
+                    if (!mobileOverlay.hasClass('desktop-slidein-active')) {
+                        mobileOverlay.css('display', 'none');
+                    }
+                }, 320);
+            } else {
+                mobileOverlay.css('display', 'none');
+            }
             $('body').css('overflow', 'auto');
+        }
+
+        function getVisibleCourseCount() {
+            const $items = $('#filter-results .courselist-item');
+            if (!$items.length) {
+                return 0;
+            }
+            return $items.filter(function() {
+                return !$(this).hasClass('hidden');
+            }).length;
+        }
+
+        function showPanelNoResultsMessage(message) {
+            const msg = message || 'Ingen treff med valgte filtre. Prøv et annet søk eller juster filtrene.';
+            $('.mobile-filter-content .ka-filter-panel-no-results').remove();
+            const html = `<div class="ka-filter-panel-no-results">${msg}</div>`;
+            $('.mobile-filter-content').prepend(html);
+        }
+
+        function clearPanelNoResultsMessage() {
+            $('.mobile-filter-content .ka-filter-panel-no-results').remove();
+        }
+
+        // Scroll to the visible list controls with a small fixed offset, so
+        // "Vis antall kurs" / "Sorter etter" remains visible after apply.
+        function scrollToCourseListWithOffset(offsetPx) {
+            const offset = typeof offsetPx === 'number' ? offsetPx : 60;
+            const target =
+                document.querySelector('.top-filter-section') ||
+                document.getElementById('filter-results');
+            if (!target) {
+                return;
+            }
+            const top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - offset);
+            window.scrollTo({ top: top, behavior: 'smooth' });
         }
 
         // Funksjon for å laste mobilfiltre via AJAX
@@ -1762,18 +1891,21 @@ function kursagenten_course_list_shortcode($atts) {
 
             // Event listener for søk - oppdater aktive filtre i sanntid
             $('.mobile-filter-content .filter-search').on('input', function() {
+                clearPanelNoResultsMessage();
                 // Hold URL i synk
                 updateURLFromMobileFilters();
             });
 
             // Event listener for dato-filter - oppdater aktive filtre i sanntid
             $('.mobile-filter-content .caleran').on('change', function() {
+                clearPanelNoResultsMessage();
                 // Hold URL i synk
                 updateURLFromMobileFilters();
             });
 
             // Event listener for "Vis resultater"
             $('.mobile-filter-content .apply-filters-button').on('click', function() {
+                clearPanelNoResultsMessage();
                 // Bygg URL og last siden på nytt for å unngå mellomtilstand med doble chips
                 const filters = {};
                 $('.mobile-filter-content .filter-checkbox:checked').each(function() {
@@ -1811,7 +1943,21 @@ function kursagenten_course_list_shortcode($atts) {
                     }
                 });
 
-                const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
+                const queryString = searchParams.toString();
+                const sameQuery = panelOpenedQueryString === queryString;
+
+                if (sameQuery) {
+                    const visibleCount = getVisibleCourseCount();
+                    if (visibleCount === 0) {
+                        showPanelNoResultsMessage('Ingen treff med valgte filtre. Prøv et annet søk eller juster filtrene.');
+                        return;
+                    }
+                    hideMobileFilters();
+                    scrollToCourseListWithOffset(60);
+                    return;
+                }
+
+                const newUrl = `${window.location.pathname}${queryString ? '?' + queryString : ''}#filter-results`;
                 window.location.href = newUrl;
             });
 
@@ -2094,13 +2240,16 @@ function kursagenten_course_list_shortcode($atts) {
         let isMobile = window.innerWidth <= 768;
         
         function handleResize() {
-            const wasMobile = isMobile;
             isMobile = window.innerWidth <= 768;
             
             if (isMobile) {
                 filterToggleBtn.show();
             } else {
-                filterToggleBtn.hide();
+                if (isFilterButtonMode && !isHideAllMode) {
+                    filterToggleBtn.show();
+                } else {
+                    filterToggleBtn.hide();
+                }
                 hideMobileFilters();
             }
         }

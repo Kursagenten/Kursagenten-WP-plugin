@@ -154,10 +154,71 @@ function kursagenten_dom_inner_html(DOMNode $node): string {
 }
 
 /**
+ * Allowed HTML for long taxonomy descriptions in the taxonomy grid block.
+ *
+ * Uses post-like rules and ensures common inline formatting tags exist.
+ *
+ * @return array<string, array<string, bool>>
+ */
+function kursagenten_taxonomy_grid_long_description_allowed_html(): array {
+    $allowed = wp_kses_allowed_html('post');
+
+    $format_tags = [
+        'b' => [],
+        'i' => [],
+        'u' => [],
+        's' => [],
+        'strike' => [],
+        'big' => [],
+        'small' => [],
+        'tt' => [],
+        'cite' => [],
+        'q' => ['cite' => true],
+        'abbr' => ['title' => true],
+        'mark' => [],
+        'sub' => [],
+        'sup' => [],
+        'kbd' => [],
+        'samp' => [],
+        'var' => [],
+        'dfn' => [],
+    ];
+
+    foreach ($format_tags as $tag => $attrs) {
+        if (!isset($allowed[$tag])) {
+            $allowed[$tag] = $attrs;
+        }
+    }
+
+    if (isset($allowed['a']) && is_array($allowed['a'])) {
+        $allowed['a'] = array_merge(
+            $allowed['a'],
+            [
+                'target' => true,
+                'rel' => true,
+                'download' => true,
+                'name' => true,
+            ]
+        );
+    }
+
+    /**
+     * Filters allowed HTML for Kursagenten taxonomy grid long descriptions.
+     *
+     * @param array<string, array<string, bool>> $allowed Allowed tags and attributes.
+     */
+    return apply_filters('kursagenten_taxonomy_grid_long_description_allowed_html', $allowed);
+}
+
+/**
  * Trim HTML to a word limit while preserving safe links.
  */
 function kursagenten_trim_html_words_preserve_links(string $html, int $word_limit): string {
-    $sanitized = wp_kses_post($html);
+    $allowed = kursagenten_taxonomy_grid_long_description_allowed_html();
+    $sanitized = wp_kses($html, $allowed);
+    if (function_exists('wp_force_balance_tags')) {
+        $sanitized = wp_force_balance_tags($sanitized);
+    }
     if ($word_limit <= 0) {
         return $sanitized;
     }
@@ -172,7 +233,7 @@ function kursagenten_trim_html_words_preserve_links(string $html, int $word_limi
     }
 
     if (!class_exists('DOMDocument')) {
-        return esc_html(wp_trim_words($plain, $word_limit));
+        return wp_kses(wp_trim_words($plain, $word_limit), $allowed);
     }
 
     $document = new DOMDocument('1.0', 'UTF-8');
@@ -183,12 +244,12 @@ function kursagenten_trim_html_words_preserve_links(string $html, int $word_limi
     libxml_use_internal_errors($previous_errors);
 
     if (!$loaded) {
-        return esc_html(wp_trim_words($plain, $word_limit));
+        return wp_kses(wp_trim_words($plain, $word_limit), $allowed);
     }
 
     $root = $document->getElementsByTagName('div')->item(0);
     if (!$root instanceof DOMElement) {
-        return esc_html(wp_trim_words($plain, $word_limit));
+        return wp_kses(wp_trim_words($plain, $word_limit), $allowed);
     }
 
     $words_used = 0;
@@ -248,7 +309,7 @@ function kursagenten_trim_html_words_preserve_links(string $html, int $word_limi
     };
 
     $trim_node($root);
-    return wp_kses_post(kursagenten_dom_inner_html($root));
+    return wp_kses(kursagenten_dom_inner_html($root), $allowed);
 }
 
 /**
@@ -261,7 +322,7 @@ function kursagenten_get_shadow_values(string $preset): array {
         return ['normal' => 'none', 'hover' => 'none'];
     }
     if ($preset === 'xsoft') {
-        return ['normal' => '0px 0px 7px rgba(15, 23, 42, 0.1)', 'hover' => '0px 0px 10px rgba(15, 23, 42, 0.14)'];
+        return ['normal' => '0px 0px 7px rgb(15 23 42 / 3%)', 'hover' => '0px 0px 10px rgba(15, 23, 42, 0.14)'];
     }
     if ($preset === 'soft') {
         return ['normal' => '0 2px 8px rgba(15, 23, 42, 0.12)', 'hover' => '0 4px 14px rgba(15, 23, 42, 0.18)'];
@@ -376,7 +437,11 @@ function kursagenten_get_taxonomy_terms(array $settings): array {
 
     $args = [
         'taxonomy' => $taxonomy,
-        'hide_empty' => true,
+        // Keep category/location behavior. For instructors this can be controlled
+        // by block setting to include terms without published courses.
+        'hide_empty' => $taxonomy === 'ka_instructors'
+            ? !((bool) ($settings['includeEmptyInstructors'] ?? true))
+            : true,
         'orderby' => 'name',
         'order' => 'ASC',
         'meta_query' => [
@@ -824,7 +889,7 @@ function kursagenten_render_taxonomy_grid_block(array $attributes): string {
         kursagenten_css_value((string) $settings['cardRadius'], '12px'),
         kursagenten_css_value((string) $settings['cardBorderWidth'], '1px'),
         kursagenten_css_keyword((string) $settings['cardBorderStyle'], ['none', 'solid', 'dashed', 'dotted', 'double'], 'solid'),
-        kursagenten_css_color_value((string) $settings['cardBorderColor'], '#d0d7de'),
+        kursagenten_css_color_value((string) $settings['cardBorderColor'], '#f1f1f1'),
         $overlay_opacity,
         $shadow['normal'],
         $shadow['hover'],
@@ -901,8 +966,11 @@ function kursagenten_render_taxonomy_grid_block(array $attributes): string {
             : $clean_description;
         $rich_description_meta = (string) get_term_meta($term->term_id, 'rich_description', true);
         $long_description_source = trim($rich_description_meta) !== '' ? $rich_description_meta : $raw_description;
-        $long_description = kursagenten_trim_html_words_preserve_links($long_description_source, $extended_description_word_limit);
+        // Match taxonomy single templates: `the_content` runs `wpautop`, which wraps loose text in <p>.
+        $long_description_html = wpautop($long_description_source, true);
+        $long_description = kursagenten_trim_html_words_preserve_links($long_description_html, $extended_description_word_limit);
         $is_rad_detalj = $style_preset === 'rad-detalj';
+        $show_long_description = $source_type === 'instructor' && !empty($settings['showLongDescription']);
         $has_instructor_contact_links = $source_type === 'instructor' && (!empty($settings['showInstructorPhone']) || !empty($settings['showInstructorEmail']));
         $instructor_email = '';
         $instructor_phone = '';
@@ -933,6 +1001,9 @@ function kursagenten_render_taxonomy_grid_block(array $attributes): string {
             $output .= '<' . $title_tag . ' class="k-title"><a class="k-title-link" href="' . esc_url((string) $term_link) . '"' . $link_rel . '>' . esc_html($title) . '</a></' . $title_tag . '>';
 
             if (!empty($settings['showDescription']) && trim(wp_strip_all_tags($long_description_source)) !== '') {
+                if ($show_long_description && $short_description !== '') {
+                    $output .= '<div class="k-description k-description-short">' . esc_html($short_description) . '</div>';
+                }
                 $output .= '<div class="k-description k-description-long">' . $long_description . '</div>';
             }
             if ($source_type === 'instructor' && (!empty($settings['showInstructorPhone']) || !empty($settings['showInstructorEmail']))) {
@@ -1000,7 +1071,10 @@ function kursagenten_render_taxonomy_grid_block(array $attributes): string {
         }
 
         if (!empty($settings['showDescription']) && $short_description !== '') {
-            $output .= '<div class="k-description">' . esc_html($short_description) . '</div>';
+            $output .= '<div class="k-description k-description-short">' . esc_html($short_description) . '</div>';
+            if ($show_long_description && trim(wp_strip_all_tags($long_description_source)) !== '') {
+                $output .= '<div class="k-description k-description-long">' . $long_description . '</div>';
+            }
         }
         if ($has_instructor_contact_links) {
             $output .= '<div class="k-instructor-contact">';

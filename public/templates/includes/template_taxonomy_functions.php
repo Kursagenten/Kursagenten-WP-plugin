@@ -229,6 +229,38 @@ function get_taxonomy_courses($term_id, $taxonomy) {
 }
 
 /**
+ * Returnerer riktig 'filter'-shortcode-attributt for [kursliste] basert på
+ * taksonomi-innstillingen "Filter-visning". Tom streng hvis standard.
+ *
+ * @param string $force_minimum (Valgfri) Minimum filter-modus som SKAL settes
+ *                              uavhengig av lagret innstilling. Brukes f.eks. av
+ *                              hero-two-columns-malen som har en for smal kolonne
+ *                              for venstrefiltre. Aksepterer 'topp'.
+ * @return string Klar-til-bruk attributt som 'filter="topp"' eller ''.
+ */
+function get_taxonomy_kursliste_filter_attr($force_minimum = '') {
+    $allowed = ['standard', 'venstre', 'topp', 'filter-knapp', 'skjul-alt'];
+    $value = get_option('kursagenten_taxonomy_filter_display', 'standard');
+    if (!in_array($value, $allowed, true)) {
+        $value = 'standard';
+    }
+
+    // Ved behov kan en mal tvinge et minimumsvalg.
+    // For eksempel hero-two-columns bruker "topp" som minimum siden venstrekolonne
+    // blir for smal for sidefilter.
+    if ($force_minimum === 'topp') {
+        if (in_array($value, ['standard', 'venstre'], true)) {
+            $value = 'topp';
+        }
+    }
+
+    if ($value === 'standard') {
+        return '';
+    }
+    return 'filter="' . esc_attr($value) . '"';
+}
+
+/**
  * Get taxonomy-specific setting with proper override handling
  * 
  * @param string $taxonomy The taxonomy name (ka_coursecategory, ka_course_location, ka_instructors)

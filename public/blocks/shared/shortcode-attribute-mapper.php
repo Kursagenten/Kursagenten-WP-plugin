@@ -22,6 +22,7 @@ final class Kursagenten_Block_Attribute_Mapper {
             'columnsMobile' => 1,
             'showImage' => true,
             'showDescription' => false,
+            'showLongDescription' => false,
             'descriptionWordLimit' => 22,
             'descriptionWordLimitExtended' => 0,
             'useCardDesign' => true,
@@ -62,7 +63,7 @@ final class Kursagenten_Block_Attribute_Mapper {
             'cardRadius' => '12px',
             'cardBorderWidth' => '1px',
             'cardBorderStyle' => 'solid',
-            'cardBorderColor' => '#d0d7de',
+            'cardBorderColor' => '#f1f1f1',
             'backgroundMode' => 'color',
             'overlayStrength' => 40,
             'wrapperPaddingDesktop' => '0px',
@@ -83,6 +84,7 @@ final class Kursagenten_Block_Attribute_Mapper {
             'locationInclude' => [],
             'locationShowInfo' => false,
             'instructorExclude' => [],
+            'includeEmptyInstructors' => true,
             'categoryParentSlug' => '',
             'categoryParentSlugs' => [],
             'categoryLocationFilter' => '',
@@ -141,6 +143,7 @@ final class Kursagenten_Block_Attribute_Mapper {
         }
         $mapped['showInstructorPhone'] = !empty($mapped['showInstructorPhone']);
         $mapped['showInstructorEmail'] = !empty($mapped['showInstructorEmail']);
+        $mapped['showLongDescription'] = !empty($mapped['showLongDescription']);
         $mapped['categoryParentSlug'] = sanitize_title((string) $mapped['categoryParentSlug']);
         $mapped['categoryLocationFilter'] = sanitize_title((string) $mapped['categoryLocationFilter']);
         if (!is_array($mapped['categoryParentSlugs'])) {
@@ -177,6 +180,7 @@ final class Kursagenten_Block_Attribute_Mapper {
         ))));
 
         $mapped['locationShowInfo'] = !empty($mapped['locationShowInfo']);
+        $mapped['includeEmptyInstructors'] = !empty($mapped['includeEmptyInstructors']);
         $allowed_alignments = ['left', 'center', 'right'];
         if (!in_array($mapped['textAlignDesktop'], $allowed_alignments, true)) {
             $mapped['textAlignDesktop'] = 'left';

@@ -2072,3 +2072,131 @@ box-shadow: 0 0 6px rgba(0,0,0,0.05);
         margin-left: 8px;
     }
 }
+
+/* ============================================================
+ * Filter visningsmodus (shortcode-attributt: filter="...")
+ * ============================================================
+ * Modus settes via wrapper-klasse på #ka:
+ * .ka-filter-mode-venstre, .ka-filter-mode-topp,
+ * .ka-filter-mode-filter-knapp, .ka-filter-mode-skjul-alt.
+ */
+
+/* topp/filter-knapp/skjul-alt: ingen venstre kolonne */
+#ka.ka-filter-mode-topp .left-column,
+#ka.ka-filter-mode-topp .left-filter-section,
+#ka.ka-filter-mode-filter-knapp .left-column,
+#ka.ka-filter-mode-filter-knapp .left-filter-section,
+#ka.ka-filter-mode-skjul-alt .left-column,
+#ka.ka-filter-mode-skjul-alt .left-filter-section {
+    display: none !important;
+}
+
+#ka.ka-filter-mode-topp .course-grid.col-1-4,
+#ka.ka-filter-mode-filter-knapp .course-grid.col-1-4,
+#ka.ka-filter-mode-skjul-alt .course-grid.col-1-4 {
+    grid-template-columns: 1fr;
+}
+
+/* filter-knapp: skjul inline-filtre, vis knapp også på desktop */
+#ka.ka-filter-mode-filter-knapp .filter-container.filter-top {
+    display: block !important;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+#ka.ka-filter-mode-filter-knapp .filter-container.filter-top .filter-item {
+    display: none !important;
+}
+
+#ka.ka-filter-mode-filter-knapp #active-filters-container {
+    margin-top: 8px;
+}
+
+#ka.ka-filter-mode-filter-knapp #active-filters-container.active {
+    display: block;
+}
+
+#ka.ka-filter-mode-filter-knapp .filter-toggle-button {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    color: var(--ka-color-filter, #666);
+    font-size: var(--ka-filter-font-size, 0.9rem);
+    font-weight: 500;
+    line-height: 1.3;
+    position: static;
+    cursor: pointer;
+}
+
+#ka.ka-filter-mode-filter-knapp .filter-toggle-button .ka-icon-wrapper {
+    display: none;
+}
+
+#ka.ka-filter-mode-filter-knapp .filter-toggle-button i.ka-icon {
+    width: 0.95em;
+    height: 0.95em;
+    background-color: var(--ka-color, #eb2599);
+}
+
+#ka.ka-filter-mode-filter-knapp #courselist-header-right .filter-toggle-button {
+    margin-right: 12px;
+}
+
+/* Slidein-variant for filter-knapp på desktop */
+#ka .filter-slidein-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+#ka .filter-slidein-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media screen and (min-width: 769px) {
+    #ka.ka-filter-mode-filter-knapp .mobile-filter-overlay {
+        left: auto;
+        width: 600px;
+        max-width: 90%;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+        transform: translateX(100%);
+        transition: transform 0.35s ease;
+        z-index: 1001;
+    }
+
+    #ka.ka-filter-mode-filter-knapp .mobile-filter-overlay.desktop-slidein-active {
+        transform: translateX(0);
+    }
+}
+
+/* skjul-alt: minimal liste uten filtre + headerkontroller */
+#ka.ka-filter-mode-skjul-alt .filter-container.filter-top,
+#ka.ka-filter-mode-skjul-alt .filter-toggle-button,
+#ka.ka-filter-mode-skjul-alt .courselist-header,
+#ka.ka-filter-mode-skjul-alt #active-filters-container {
+    display: none !important;
+}
+
+#ka .ka-filter-panel-no-results {
+    margin: 0 0 12px 0;
+    padding: 10px 12px;
+    border-left: 3px solid var(--ka-color, #eb2599);
+    background: #fff7fc;
+    color: #444;
+    font-size: var(--ka-font-s, 0.95rem);
+    border-radius: 4px;
+}

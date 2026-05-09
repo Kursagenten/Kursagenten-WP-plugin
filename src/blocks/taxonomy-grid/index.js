@@ -1010,6 +1010,7 @@ registerBlockType( metadata.name, {
 				locationInclude: attributes.locationInclude,
 				locationShowInfo: attributes.locationShowInfo,
 				instructorExclude: attributes.instructorExclude,
+				includeEmptyInstructors: attributes.includeEmptyInstructors,
 				categoryParentSlug: attributes.categoryParentSlug,
 				categoryParentSlugs: attributes.categoryParentSlugs,
 				categoryLocationFilter: attributes.categoryLocationFilter,
@@ -1017,6 +1018,7 @@ registerBlockType( metadata.name, {
 				instructorImageSource: attributes.instructorImageSource,
 				showInstructorPhone: attributes.showInstructorPhone,
 				showInstructorEmail: attributes.showInstructorEmail,
+				showLongDescription: attributes.showLongDescription,
 			};
 
 			setAttributes( {
@@ -1289,6 +1291,12 @@ registerBlockType( metadata.name, {
 														} }
 														emptyText="Fant ingen instruktører."
 													/>
+													<ToggleControl
+														label="Vis instruktører uten kurs"
+														help="Vis også manuelt opprettede instruktører uten publiserte kurs."
+														checked={ attributes.includeEmptyInstructors !== false }
+														onChange={ ( value ) => setAttributes( { includeEmptyInstructors: value } ) }
+													/>
 												</>
 											) }
 											<ToggleControl
@@ -1301,6 +1309,13 @@ registerBlockType( metadata.name, {
 												checked={ attributes.showDescription }
 												onChange={ ( value ) => setAttributes( { showDescription: value } ) }
 											/>
+											{ isInstructorSource && attributes.showDescription && (
+												<ToggleControl
+													label="Vis lang beskrivelse"
+													checked={ !! attributes.showLongDescription }
+													onChange={ ( value ) => setAttributes( { showLongDescription: value } ) }
+												/>
+											) }
 										</PanelBody>
 
 										<PanelBody title="Layout og stil" initialOpen={ true }>
@@ -1327,10 +1342,10 @@ registerBlockType( metadata.name, {
 													max={ 120 }
 												/>
 											) }
-											{ isRadExtendedPreset && attributes.showDescription && (
+											{ attributes.showLongDescription && (
 												<RangeControl
 													className="k-description-limit-control"
-													label="Maks ord i utvidet beskrivelse"
+													label="Maks ord i lang beskrivelse"
 													help="0 = ingen begrensning"
 													value={ attributes.descriptionWordLimitExtended }
 													onChange={ ( value ) => setAttributes( { descriptionWordLimitExtended: value ?? 0 } ) }

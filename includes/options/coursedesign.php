@@ -757,8 +757,8 @@ class Designmaler {
                         </div>
                     </details>
                     <?php endif; ?>
-                    <p class="ka-taxonomy-plugin-design-only">Velg et felles design for kurskategorier, kurssteder og instruktører. Du kan også velge å ha egne design for hver enkelt taksonomi.</br>
-                    <strong>Layout</strong> bestemmer oppsettet av elementer på siden (header, kolonner, hooks).</br>
+                    <p class="ka-taxonomy-plugin-design-only">Velg et felles design for kurskategorier, kurssteder og instruktører. Du kan også velge å ha egne design for hver enkelt taksonomi.</p>
+                    <p><strong>Layout</strong> bestemmer oppsettet av elementer på siden (header, kolonner, hooks).</br>
                      <strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, kompakt). </br>
                      <strong>Visningstype</strong> bestemmer om du vil vise hovedkurs eller alle kursdatoer.</p>
                     <p class="ka-taxonomy-plugin-design-only">&nbsp;</p>
@@ -804,7 +804,8 @@ class Designmaler {
                                     'simple'  => 'Enkel - Kun tittel og kort beskrivelse',
                                     //'default-2' => 'Standard 2 - header bilde + innholdsbilde',
                                     'profile' => 'Profil - rundt bilde og tittel',
-                                    'hero'    => 'Hero - toppseksjon med bilde'
+                                    'hero'    => 'Hero - toppseksjon med bilde',
+                                    'hero-two-columns' => 'Hero - to kolonner'
                                     //'modern' => 'Moderne (kommer senere)'
                                 ];
                                 foreach ($designs as $value => $label) {
@@ -820,7 +821,7 @@ class Designmaler {
                         </div>
                     </div>
 
-                    <!-- Bakgrunn i toppfelt – Taksonomisider (viser kun når Hero er valgt) -->
+                    <!-- Bakgrunn i toppfelt – Taksonomisider (viser kun når Hero-layout er valgt) -->
                     <?php
                     $taxonomy_design = get_option('kursagenten_taxonomy_design', 'default');
                     $taxonomy_hero_bg_mode = get_option('kursagenten_taxonomy_hero_header_bg_mode', 'image_placeholder');
@@ -828,7 +829,7 @@ class Designmaler {
                     $taxonomy_hero_font_color = get_option('kursagenten_taxonomy_hero_header_font_color', '');
                     $taxonomy_hero_bg_color = get_option('kursagenten_taxonomy_hero_header_bg_color', '');
                     ?>
-                    <div class="option-row hero-header-settings-row hero-taxonomy-settings-row ka-taxonomy-plugin-design-only" id="hero-taxonomy-settings-row" style="<?php echo ($taxonomy_design === 'hero') ? '' : 'display: none;'; ?>">
+                    <div class="option-row hero-header-settings-row hero-taxonomy-settings-row ka-taxonomy-plugin-design-only" id="hero-taxonomy-settings-row" style="<?php echo in_array($taxonomy_design, ['hero', 'hero-two-columns'], true) ? '' : 'display: none;'; ?>">
                         <label class="option-label">Bakgrunn i toppfelt:</label>
                         <div class="option-input">
                             <div class="taxonomy-override hero-header-settings-box">
@@ -884,7 +885,7 @@ class Designmaler {
                     </div>
 
                     <!-- Listevisning -->
-                    <div class="option-row">
+                    <div class="option-row ka-taxonomy-plugin-design-only">
                         <label class="option-label">Listedesign:</label>
                         <div class="option-input">
                             <select name="kursagenten_taxonomy_list_type" id="kursagenten_taxonomy_list_type">
@@ -968,28 +969,117 @@ class Designmaler {
                         </div>
                     </div>
                     
-                    <!-- Visningstype -->
-                    <div class="option-row">
+                    <!-- Visningstype + undervalg -->
+                    <div class="option-row ka-taxonomy-plugin-design-only">
                         <label class="option-label">Visningstype:</label>
                         <div class="option-input">
                             <?php
-                            $view_type = get_option('kursagenten_taxonomy_view_type', 'main_courses');
+                            $view_type = get_option('kursagenten_taxonomy_view_type', 'all_coursedates');
+                            $filter_display = get_option('kursagenten_taxonomy_filter_display', 'standard');
+                            $current_user = wp_get_current_user();
+                            $allowed_filter_button_emails = ['tone@escens.no', 'tone@kursagenten.no'];
+                            $can_view_filter_button_option = in_array(
+                                strtolower((string) $current_user->user_email),
+                                $allowed_filter_button_emails,
+                                true
+                            );
                             ?>
-                            <label class="radio-label">
-                                <input type="radio" 
-                                       name="kursagenten_taxonomy_view_type" 
-                                       value="main_courses" 
-                                       <?php checked($view_type, 'main_courses'); ?>>
-                                Vis hovedkurs (med neste tilgjengelige dato)
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" 
-                                       name="kursagenten_taxonomy_view_type" 
-                                       value="all_coursedates" 
-                                       <?php checked($view_type, 'all_coursedates'); ?>>
-                                Vis alle kursdatoer (med filtre - som [kursliste])
-                            </label>
-                            <p class="description" style="color: #666; font-style: italic;">Hovedkurs viser ett kurs per kursnavn, med neste tilgjengelige dato. <br>Alle kursdatoer viser hver enkelt kursdato som et eget element. OBS! Adopterer filtre fra <a href="/wp-admin/admin.php?page=design&ka_open=filterinnstillinger%2Ctaksonomi#section-kursliste-med-filter">Kursliste</a>.</p>
+                            <style>
+                                .ka-taxonomy-viewtype-layout {
+                                    display: grid;
+                                    grid-template-columns: minmax(260px, 330px) minmax(330px, 1fr);
+                                    gap: 20px;
+                                    align-items: start;
+                                    max-width: 980px;
+                                }
+                                .ka-taxonomy-viewtype-main .radio-label {
+                                    display: block;
+                                    margin-bottom: 14px;
+                                }
+                                .ka-taxonomy-viewtype-main .radio-label:last-child {
+                                    margin-bottom: 0;
+                                }
+                                .ka-taxonomy-viewtype-right-panel .radio-label {
+                                    display: block;
+                                    margin-bottom: 8px;
+                                }
+                                .ka-taxonomy-viewtype-right-panel .radio-label:last-child {
+                                    margin-bottom: 0;
+                                }
+                                @media (max-width: 1450px) {
+                                    .ka-taxonomy-viewtype-layout {
+                                        grid-template-columns: 1fr;
+                                    }
+                                }
+                            </style>
+                            <div class="ka-taxonomy-viewtype-layout">
+                                <div class="ka-taxonomy-viewtype-main">
+                                    <label class="radio-label">
+                                        <input type="radio" 
+                                               name="kursagenten_taxonomy_view_type" 
+                                               value="all_coursedates" 
+                                               <?php checked($view_type, 'all_coursedates'); ?>>
+                                        Vis alle kursdatoer (med filtre - som [kursliste])
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" 
+                                               name="kursagenten_taxonomy_view_type" 
+                                               value="main_courses" 
+                                               <?php checked($view_type, 'main_courses'); ?>>
+                                        Vis hovedkurs (med neste tilgjengelige dato)
+                                    </label>
+                                </div>
+                                <div id="taxonomy-viewtype-right-panel" class="ka-taxonomy-viewtype-right-panel" style="border:1px solid #e2e4e7; border-radius:6px; padding:12px; background:#fcfcfc;">
+                                    <div id="taxonomy-all-coursedates-panel">
+                                        <strong>Undervalg for "Vis alle kursdatoer"</strong>
+                                        <div style="margin-top:10px;">
+                                            <label class="radio-label">
+                                                <input type="radio"
+                                                       name="kursagenten_taxonomy_filter_display"
+                                                       value="standard"
+                                                       <?php checked($filter_display, 'standard'); ?>>
+                                                Standard (toppfilter + venstrefilter slik de er konfigurert)
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio"
+                                                       name="kursagenten_taxonomy_filter_display"
+                                                       value="venstre"
+                                                       <?php checked($filter_display, 'venstre'); ?>>
+                                                Vis filtrene i venstre kolonne
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio"
+                                                       name="kursagenten_taxonomy_filter_display"
+                                                       value="topp"
+                                                       <?php checked($filter_display, 'topp'); ?>>
+                                                Vis filtrene på toppen av listen
+                                            </label>
+                                            <?php if ($can_view_filter_button_option) : ?>
+                                                <label class="radio-label">
+                                                    <input type="radio"
+                                                           name="kursagenten_taxonomy_filter_display"
+                                                           value="filter-knapp"
+                                                           <?php checked($filter_display, 'filter-knapp'); ?>>
+                                                    <span style="text-decoration: line-through;">Vis "Filtrer kurs"-knapp (åpner filtre i sidepanel)</span> (midlertidig deaktivert)</span>
+                                                </label>
+                                            <?php endif; ?>
+                                            <label class="radio-label">
+                                                <input type="radio"
+                                                       name="kursagenten_taxonomy_filter_display"
+                                                       value="skjul-alt"
+                                                       <?php checked($filter_display, 'skjul-alt'); ?>>
+                                                Skjul alle filtre, kursteller, "vis antall kurs" og sortering
+                                            </label>
+                                        </div>
+                                        <p class="description" style="margin-top:8px;">Passer spesielt godt for sider med få kurs per sted/kategori/instruktør.</p>
+                                    </div>
+                                    <div id="taxonomy-main-courses-panel" style="display:none;">
+                                        <strong>Undervalg for "Vis hovedkurs"</strong>
+                                        <p class="description" style="margin-top:8px;">Denne visningen bruker den enklere listen med neste tilgjengelige dato og har ikke de samme filtervalgene som "Vis alle kursdatoer".</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="description" style="color: #666; font-style: italic; margin-top:8px;">"Vis alle kursdatoer" er satt som standard.</p>
                         </div>
                     </div>
 
@@ -1012,7 +1102,7 @@ class Designmaler {
                     </div>
 
                     <!-- Vis bilder -->
-                    <div class="option-row">
+                    <div class="option-row ka-taxonomy-plugin-design-only">
                         <label class="option-label">Vis bilder:</label>
                         <div class="option-input">
                             <?php
@@ -1302,8 +1392,10 @@ class Designmaler {
                         display: grid;
                         grid-template-columns: 200px 1fr;
                         gap: 20px;
-                        margin-bottom: 20px;
-                        align-items: center;
+                        margin-bottom: 16px;
+                        align-items: start;
+                        padding-top: 20px;
+                        border-top: 1px solid #eee;
                     }
                     .option-label {
                         font-weight: 500;
@@ -1516,8 +1608,25 @@ class Designmaler {
             'kursagenten_taxonomy_view_type',
             array(
                 'type' => 'string',
-                'sanitize_callback' => 'sanitize_text_field',
-                'default' => 'main_courses'
+                'sanitize_callback' => function($value) {
+                    $allowed = ['main_courses', 'all_coursedates'];
+                    return in_array($value, $allowed, true) ? $value : 'all_coursedates';
+                },
+                'default' => 'all_coursedates'
+            )
+        );
+
+        // Registrer filter-visning for taksonomi (kun relevant for view_type='all_coursedates')
+        register_setting(
+            'design_option_group',
+            'kursagenten_taxonomy_filter_display',
+            array(
+                'type' => 'string',
+                'sanitize_callback' => function($value) {
+                    $allowed = ['standard', 'venstre', 'topp', 'filter-knapp', 'skjul-alt'];
+                    return in_array($value, $allowed, true) ? $value : 'standard';
+                },
+                'default' => 'standard'
             )
         );
 
@@ -2003,6 +2112,12 @@ class Designmaler {
                             if (typeof toggleTaxonomySpecificGridColumns === "function") {
                                 toggleTaxonomySpecificGridColumns();
                             }
+                            if (typeof updateSingleDesignModeVisibility === "function") {
+                                updateSingleDesignModeVisibility();
+                            }
+                            if (typeof updateTaxonomyDesignModeVisibility === "function") {
+                                updateTaxonomyDesignModeVisibility();
+                            }
                             // Oppdater URL-state: inkluder denne i settet av åpne bokser
                             var sectionKey = $card.data('section');
                             if (sectionKey) {
@@ -2016,6 +2131,12 @@ class Designmaler {
                             $toggleContent.hide();
                             $card.attr("data-collapsed", "true");
                             $title.find('i.ka-icon').removeClass('icon-chevron-down').addClass('icon-chevron-right');
+                            if (typeof updateSingleDesignModeVisibility === "function") {
+                                updateSingleDesignModeVisibility();
+                            }
+                            if (typeof updateTaxonomyDesignModeVisibility === "function") {
+                                updateTaxonomyDesignModeVisibility();
+                            }
                             // Hvis denne boksen var i URL-state, fjern den
                             var current = getCurrentlyOpenSections();
                             var sectionKey = $card.data('section');
@@ -2185,23 +2306,39 @@ class Designmaler {
                         $taxonomySettings.hide();
                     }
                     
-                    // Handle view type for simple-cards: disable "all_coursedates" and auto-select "main_courses"
+                    // Handle view type for simple-cards: disable all_coursedates and auto-select "main_courses"
                     var $viewTypeMainCourses = $('input[name="kursagenten_taxonomy_view_type"][value="main_courses"]');
                     var $viewTypeAllCoursedates = $('input[name="kursagenten_taxonomy_view_type"][value="all_coursedates"]');
-                    
+
                     if (taxonomyListType === 'simple-cards') {
-                        // Disable "all_coursedates" option
+                        // Disable all_coursedates option
                         $viewTypeAllCoursedates.prop('disabled', true).closest('label').css('opacity', '0.5');
-                        // Auto-select "main_courses" if not already selected
+                        // Auto-select "main_courses" if a disabled option is currently checked
                         if (!$viewTypeMainCourses.is(':checked')) {
                             $viewTypeMainCourses.prop('checked', true);
                         }
                     } else {
-                        // Re-enable "all_coursedates" option
                         $viewTypeAllCoursedates.prop('disabled', false).closest('label').css('opacity', '1');
                     }
+                    if (typeof toggleTaxonomyViewTypePanels === 'function') {
+                        toggleTaxonomyViewTypePanels();
+                    }
                 }
-                
+
+                // Vis riktig forklaringspanel til høyre basert på valgt visningstype.
+                function toggleTaxonomyViewTypePanels() {
+                    var viewType = $('input[name="kursagenten_taxonomy_view_type"]:checked').val() || 'all_coursedates';
+                    if (viewType === 'all_coursedates') {
+                        $('#taxonomy-all-coursedates-panel').show();
+                        $('#taxonomy-main-courses-panel').hide();
+                    } else {
+                        $('#taxonomy-all-coursedates-panel').hide();
+                        $('#taxonomy-main-courses-panel').show();
+                    }
+                }
+                $(document).on('change', 'input[name="kursagenten_taxonomy_view_type"]', toggleTaxonomyViewTypePanels);
+                toggleTaxonomyViewTypePanels();
+
                 // Toggle taxonomy-specific grid columns settings
                 function toggleTaxonomySpecificGridColumns() {
                     $('.taxonomy-list-type-select').each(function() {
@@ -2246,14 +2383,40 @@ class Designmaler {
                 function updateSingleDesignModeVisibility() {
                     var mode = $("input[name='kursagenten_single_design_mode']:checked").val() || 'plugin';
                     var isPluginMode = (mode === 'plugin');
-                    $('.ka-single-plugin-design-only').toggle(isPluginMode);
-                    $('.ka-single-custom-design-info').toggle(!isPluginMode);
+                    $('.ka-single-plugin-design-only').each(function() {
+                        var $row = $(this);
+                        if ($row.hasClass('ka-collapsible-intro')) {
+                            return;
+                        }
+                        var $card = $row.closest('.options-card');
+                        var isCollapsed = ($card.length && $card.attr('data-collapsed') === 'true');
+                        $row.toggle(isPluginMode && !isCollapsed);
+                    });
+                    $('.ka-single-custom-design-info').each(function() {
+                        var $row = $(this);
+                        var $card = $row.closest('.options-card');
+                        var isCollapsed = ($card.length && $card.attr('data-collapsed') === 'true');
+                        $row.toggle(!isPluginMode && !isCollapsed);
+                    });
                 }
                 function updateTaxonomyDesignModeVisibility() {
                     var mode = $("input[name='kursagenten_taxonomy_design_mode']:checked").val() || 'plugin';
                     var isPluginMode = (mode === 'plugin');
-                    $('.ka-taxonomy-plugin-design-only').toggle(isPluginMode);
-                    $('.ka-taxonomy-custom-design-info').toggle(!isPluginMode);
+                    $('.ka-taxonomy-plugin-design-only').each(function() {
+                        var $row = $(this);
+                        if ($row.hasClass('ka-collapsible-intro')) {
+                            return;
+                        }
+                        var $card = $row.closest('.options-card');
+                        var isCollapsed = ($card.length && $card.attr('data-collapsed') === 'true');
+                        $row.toggle(isPluginMode && !isCollapsed);
+                    });
+                    $('.ka-taxonomy-custom-design-info').each(function() {
+                        var $row = $(this);
+                        var $card = $row.closest('.options-card');
+                        var isCollapsed = ($card.length && $card.attr('data-collapsed') === 'true');
+                        $row.toggle(!isPluginMode && !isCollapsed);
+                    });
                 }
                 $("input[name='kursagenten_single_design_mode'], input[name='kursagenten_taxonomy_design_mode']").on('change', function() {
                     updateSingleDesignModeVisibility();
@@ -2281,7 +2444,7 @@ class Designmaler {
                     var $card = $row.closest(".options-card");
                     var isCollapsed = ($card.length && $card.attr("data-collapsed") === "true");
                     var mode = $("input[name='kursagenten_taxonomy_design_mode']:checked").val() || 'plugin';
-                    var show = (mode === 'plugin' && taxonomyDesign === 'hero' && !isCollapsed);
+                    var show = (mode === 'plugin' && (taxonomyDesign === 'hero' || taxonomyDesign === 'hero-two-columns') && !isCollapsed);
                     $row.toggle(show);
                 }
                 function updateHeroHeaderRowVisibility() {

@@ -243,8 +243,17 @@
 
 /* Paginering */
 #ka .pagination-wrapper {
-    margin-top: 2rem;
     text-align: center;
+}
+
+/* Add spacing only when pagination links exist. */
+#ka .pagination-wrapper:has(.pagination .page-numbers) {
+    margin-top: 2rem;
+}
+
+/* Hide empty pagination wrappers so they do not reserve vertical space. */
+#ka .pagination-wrapper:not(:has(.pagination .page-numbers)) {
+    display: none;
 }
 
 #ka .pagination {

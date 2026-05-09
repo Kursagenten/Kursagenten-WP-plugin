@@ -769,31 +769,33 @@ function get_common_meta_fields($data, $language) {
 }
 
 function get_course_location($data) {
-    if (!empty($data['locations'][0]['municipality'])) {
-        // Get municipality name mapping from options
-        $municipality_mapping = get_option('kursagenten_location_mappings', array());
-        
-        // If no mappings exist, initialize with default values
-        if (empty($municipality_mapping)) {
-        $municipality_mapping = [
+    // Get location name mapping from options (applies to municipality and county)
+    $location_mapping = get_option('kursagenten_location_mappings', array());
+    
+    // If no mappings exist, initialize with default values
+    if (empty($location_mapping)) {
+        $location_mapping = [
             'Bærum / Sandvika' => 'Bærum',
             'Rana / Mo i Rana' => 'Mo i Rana',
             'Lenvik / Finnsnes' => 'Finnsnes',
             'Porsgrunn / Brevik' => 'Porsgrunn',
             'Vågan / Svolvær' => 'Svolvær',
         ];
-            update_option('kursagenten_location_mappings', $municipality_mapping);
-        }
-        
-        $municipality = $data['locations'][0]['municipality'];
-        if (isset($municipality_mapping[$municipality])) {
-            return $municipality_mapping[$municipality];
-        }
-        
-        return $municipality;
-    } elseif (!empty($data['locations'][0]['county'])) {
-        return $data['locations'][0]['county'];
+        update_option('kursagenten_location_mappings', $location_mapping);
     }
+
+    $raw_location_name = '';
+    if (!empty($data['locations'][0]['municipality'])) {
+        $raw_location_name = $data['locations'][0]['municipality'];
+    } elseif (!empty($data['locations'][0]['county'])) {
+        $raw_location_name = $data['locations'][0]['county'];
+    }
+
+    if ($raw_location_name !== '' && isset($location_mapping[$raw_location_name])) {
+        return $location_mapping[$raw_location_name];
+    }
+
+    return $raw_location_name;
 }
 
 function format_date($date_string) {
