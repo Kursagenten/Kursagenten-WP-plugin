@@ -162,7 +162,7 @@
     align-items: center;
     padding: 2px 8px;
     border-radius: 4px;
-    font-size: var(--ka-font-xs);
+    font-size: var(--ka-font-xxs);
     font-weight: 500;
     white-space: nowrap;
 }
@@ -178,8 +178,8 @@
 }
 
 #ka .ka-container .compact-availability.ka-on-demand {
-    background-color: #fff3e0;
-    color: #ef6c00;
+    background-color: #f7f7f7;
+    color: #808080;
 }
 
 /* Meta Information */
@@ -194,15 +194,15 @@
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: var(--ka-font-s);
+    font-size: var(--ka-font-xs);
     color: var(--text-color, #666);
     white-space: nowrap;
 }
 
 #ka .ka-container .compact-course-meta i {
-    font-size: var(--ka-font-base);
-    color: var(--ka-color, #3b82f6);
-    opacity: 0.8;
+    width: var(--ka-font-s);
+    height: var(--ka-font-s);
+    background-color: #00000070;
     margin-right: 0;
 }
 

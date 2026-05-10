@@ -222,6 +222,11 @@ if ($shortcode_show_images === 'yes' || $shortcode_show_images === 'no') {
     $show_images = get_option('kursagenten_show_images', 'yes');
 }
 
+$buttons_display_option = ($is_taxonomy_page && !$force_standard_view)
+    ? get_option('kursagenten_taxonomy_buttons_display', 'show_buttons')
+    : get_option('kursagenten_archive_buttons_display', 'show_buttons');
+$show_signup_link_only = ($buttons_display_option === 'signup_link');
+
 // Hent kurskategorier for data-category attributt
 $course_categories = get_the_terms($course_id, 'ka_coursecategory');
 $category_slugs = [];
@@ -297,11 +302,17 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
         </div>
         
         <div class="compact-course-actions">
-            <a href="<?php echo esc_url($course_link); ?>" class="compact-btn compact-btn-secondary">
-                Les mer
-            </a>
+            <?php if (!$show_signup_link_only) : ?>
+                <a href="<?php echo esc_url($course_link); ?>" class="compact-btn compact-btn-secondary">
+                    Les mer
+                </a>
+            <?php endif; ?>
 
-            <?php if (!empty($signup_url)) : ?>
+            <?php if ($show_signup_link_only) : ?>
+                <a class="pamelding signup-link pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
+                    <?php echo esc_html($button_text ?: 'Påmelding'); ?> <i class="ka-icon icon-arrow-right-short"></i>
+                </a>
+            <?php else : ?>
                 <button class="compact-btn compact-btn-primary pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
                     <?php echo esc_html($button_text ?: 'Påmelding'); ?>
                 </button>

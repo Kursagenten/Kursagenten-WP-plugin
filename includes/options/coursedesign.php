@@ -286,6 +286,28 @@ class Designmaler {
                             </select>
                         </div>
                     </div>
+
+                    <div class="option-row">
+                        <label class="option-label">Knapper:</label>
+                        <div class="option-input">
+                            <?php $archive_buttons_display = get_option('kursagenten_archive_buttons_display', 'show_buttons'); ?>
+                            <label class="radio-label">
+                                <input type="radio"
+                                       name="kursagenten_archive_buttons_display"
+                                       value="show_buttons"
+                                       <?php checked($archive_buttons_display, 'show_buttons'); ?>>
+                                Vis knapper
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio"
+                                       name="kursagenten_archive_buttons_display"
+                                       value="signup_link"
+                                       <?php checked($archive_buttons_display, 'signup_link'); ?>>
+                                Vis påmeldingslink
+                            </label>
+                            <p class="description">Gjelder listetyper med to handlingsknapper. «Enkle kort» påvirkes ikke.</p>
+                        </div>
+                    </div>
                     
                     <!-- Grid kolonner (kun når grid er valgt) -->
                     <div class="option-row grid-columns-settings" id="archive_grid_columns_settings" style="<?php echo (in_array($current_list, ['grid', 'simple-cards'])) ? '' : 'display: none;'; ?>">
@@ -908,6 +930,28 @@ class Designmaler {
                                 }
                                 ?>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="option-row ka-taxonomy-plugin-design-only">
+                        <label class="option-label">Knapper:</label>
+                        <div class="option-input">
+                            <?php $taxonomy_buttons_display = get_option('kursagenten_taxonomy_buttons_display', 'show_buttons'); ?>
+                            <label class="radio-label">
+                                <input type="radio"
+                                       name="kursagenten_taxonomy_buttons_display"
+                                       value="show_buttons"
+                                       <?php checked($taxonomy_buttons_display, 'show_buttons'); ?>>
+                                Vis knapper
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio"
+                                       name="kursagenten_taxonomy_buttons_display"
+                                       value="signup_link"
+                                       <?php checked($taxonomy_buttons_display, 'signup_link'); ?>>
+                                Vis påmeldingslink
+                            </label>
+                            <p class="description">Gjelder listetyper med to handlingsknapper. «Enkle kort» påvirkes ikke.</p>
                         </div>
                     </div>
                     
@@ -1627,6 +1671,32 @@ class Designmaler {
                     return in_array($value, $allowed, true) ? $value : 'standard';
                 },
                 'default' => 'standard'
+            )
+        );
+
+        register_setting(
+            'design_option_group',
+            'kursagenten_archive_buttons_display',
+            array(
+                'type' => 'string',
+                'sanitize_callback' => function ($value) {
+                    $allowed = ['show_buttons', 'signup_link'];
+                    return in_array($value, $allowed, true) ? $value : 'show_buttons';
+                },
+                'default' => 'show_buttons'
+            )
+        );
+
+        register_setting(
+            'design_option_group',
+            'kursagenten_taxonomy_buttons_display',
+            array(
+                'type' => 'string',
+                'sanitize_callback' => function ($value) {
+                    $allowed = ['show_buttons', 'signup_link'];
+                    return in_array($value, $allowed, true) ? $value : 'show_buttons';
+                },
+                'default' => 'show_buttons'
             )
         );
 

@@ -244,6 +244,11 @@ if ($shortcode_show_images === 'yes' || $shortcode_show_images === 'no') {
 
 $with_image_class = $show_images === 'yes' ? ' with-image' : '';
 
+$buttons_display_option = ($is_taxonomy_page && !$force_standard_view)
+    ? get_option('kursagenten_taxonomy_buttons_display', 'show_buttons')
+    : get_option('kursagenten_archive_buttons_display', 'show_buttons');
+$show_signup_link_only = ($buttons_display_option === 'signup_link');
+
 // Hent instruktører for kurset
 $instructors = get_the_terms($course_id, 'ka_instructors');
 $instructor_links = [];
@@ -606,10 +611,16 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                         <?php echo esc_html($button_text ?: 'Påmelding'); ?>  <i class="ka-icon icon-arrow-right-short"></i>
                     </a>
                 <?php else : ?>
-                    <button class="courselist-button pamelding pameldingsknapp pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
-                        <?php echo esc_html($button_text ?: 'Påmelding'); ?>
-                    </button>
-                    <a href="<?php echo esc_url($course_link); ?>" class="course-link small">Mer informasjon</a>
+                    <?php if ($show_signup_link_only) : ?>
+                        <a class="pamelding signup-link pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
+                            <?php echo esc_html($button_text ?: 'Påmelding'); ?>  <i class="ka-icon icon-arrow-right-short"></i>
+                        </a>
+                    <?php else : ?>
+                        <button class="courselist-button pamelding pameldingsknapp pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
+                            <?php echo esc_html($button_text ?: 'Påmelding'); ?>
+                        </button>
+                        <a href="<?php echo esc_url($course_link); ?>" class="course-link small">Mer informasjon</a>
+                    <?php endif; ?>
                 <?php endif; ?>
                 
             </div>

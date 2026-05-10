@@ -108,7 +108,7 @@
 
 /* Links area */
 #ka .ka-container .courselist-main .links-area {
-    padding: 2.4em 1.5em 1.6em 0;
+    padding: calc(var(--ka-space-lg) + 2px) var(--ka-space-md) var(--ka-space-lg) 0;
     width: max-content;
     display: flex;
     flex-direction: column;
@@ -120,6 +120,9 @@
 }
 #ka .ka-container .courselist-main .links-area button {
     font-size: var(--ka-font-s);
+}
+#ka .ka-container .courselist-main .links-area a {
+    margin-top: -6px;
 }
 /* View type styles */
 #ka .ka-container .view-type-maincourses .courselist-main .links-area {

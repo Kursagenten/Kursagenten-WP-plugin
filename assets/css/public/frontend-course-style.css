@@ -244,9 +244,11 @@ border-radius: 10px;
 
 #ka .signup-link {
   color: var(--ka-color);
+  color: var(--text-color, #666);
   background: transparent;
   text-decoration: none;
   font-size: var(--ka-font-s);
+  cursor: pointer;
 }
 #ka .signup-link:hover {
   color: color-mix(in hsl, var(--ka-color), black 5%);
