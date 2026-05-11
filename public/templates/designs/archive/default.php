@@ -29,23 +29,37 @@ $left_column_class = $has_left_filters ? 'col-1-4' : 'col-1 hidden-left-column';
 $is_search_only = is_array($top_filters) && count($top_filters) === 1 && in_array('search', $top_filters);
 $search_class = $is_search_only ? 'wide-search' : '';
 
+$category_terms = function_exists('get_filtered_terms_for_context')
+    ? get_filtered_terms_for_context('ka_coursecategory')
+    : (function_exists('get_filtered_terms')
+        ? get_filtered_terms('ka_coursecategory')
+        : get_terms(['taxonomy' => 'ka_coursecategory', 'hide_empty' => true]));
+$location_terms = function_exists('get_filtered_location_terms')
+    ? get_filtered_location_terms()
+    : (function_exists('get_filtered_terms')
+        ? get_filtered_terms('ka_course_location')
+        : get_terms(['taxonomy' => 'ka_course_location', 'hide_empty' => true]));
+$instructor_terms = function_exists('get_filtered_terms')
+    ? get_filtered_terms('ka_instructors')
+    : get_terms(['taxonomy' => 'ka_instructors', 'hide_empty' => true]);
+
 // Define taxonomy and meta field data structure for filters
 $taxonomy_data = [
     'categories' => [
         'taxonomy' => 'ka_coursecategory',
-        'terms' => get_terms(['taxonomy' => 'ka_coursecategory', 'hide_empty' => true]),
+        'terms' => $category_terms,
         'url_key' => 'k',
         'filter_key' => 'categories',
     ],
     'locations' => [
         'taxonomy' => 'ka_course_location',
-        'terms' => get_terms(['taxonomy' => 'ka_course_location', 'hide_empty' => true]),
+        'terms' => $location_terms,
         'url_key' => 'sted',
         'filter_key' => 'locations',
     ],
     'instructors' => [
         'taxonomy' => 'ka_instructors',
-        'terms' => get_terms(['taxonomy' => 'ka_instructors', 'hide_empty' => true]),
+        'terms' => $instructor_terms,
         'url_key' => 'i',
         'filter_key' => 'instructors',
     ],

@@ -505,6 +505,10 @@ function kursagenten_get_taxonomy_terms(array $settings): array {
     }
 
     if ($taxonomy === 'ka_coursecategory') {
+        $terms = array_filter($terms, static function ($term): bool {
+            return kursagenten_term_has_published_courses((int) $term->term_id);
+        });
+
         $filter_mode = (string) $settings['filterMode'];
         if ($filter_mode === 'hovedkategorier') {
             $terms = array_filter($terms, static function ($term): bool {
@@ -574,6 +578,30 @@ function kursagenten_get_taxonomy_terms(array $settings): array {
     }
 
     return array_values($terms);
+}
+
+/**
+ * Check if a category term has at least one published course.
+ */
+function kursagenten_term_has_published_courses(int $category_term_id): bool {
+    $query = new WP_Query([
+        'post_type' => 'ka_course',
+        'post_status' => 'publish',
+        'posts_per_page' => 1,
+        'fields' => 'ids',
+        'tax_query' => [
+            [
+                'taxonomy' => 'ka_coursecategory',
+                'field' => 'term_id',
+                'terms' => [$category_term_id],
+            ],
+        ],
+        'no_found_rows' => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+    ]);
+
+    return $query->have_posts();
 }
 
 /**

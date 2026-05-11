@@ -245,6 +245,29 @@ do_action('ka_taxonomy_header_before', $term);
                         );
 
                         if (!empty($child_terms) && !is_wp_error($child_terms)) {
+                            $child_terms = array_values(array_filter($child_terms, static function ($child_term): bool {
+                                if (function_exists('ka_term_has_published_courses')) {
+                                    return ka_term_has_published_courses((int) $child_term->term_id, 'ka_coursecategory');
+                                }
+
+                                $query = new WP_Query([
+                                    'post_type' => 'ka_course',
+                                    'post_status' => 'publish',
+                                    'posts_per_page' => 1,
+                                    'fields' => 'ids',
+                                    'tax_query' => [[
+                                        'taxonomy' => 'ka_coursecategory',
+                                        'field' => 'term_id',
+                                        'terms' => [(int) $child_term->term_id],
+                                    ]],
+                                    'no_found_rows' => true,
+                                    'update_post_meta_cache' => false,
+                                    'update_post_term_cache' => false,
+                                ]);
+
+                                return $query->have_posts();
+                            }));
+
                             $info_box_items['children'] = $child_terms;
                         }
 
