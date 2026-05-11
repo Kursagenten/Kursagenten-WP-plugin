@@ -221,6 +221,18 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
 $course_count = $course_count ?? 0;
 $item_class = $course_count === 1 ? ' single-item' : '';
 
+$resolved_taxonomy = '';
+if (isset($args['taxonomy']) && is_string($args['taxonomy'])) {
+    $resolved_taxonomy = sanitize_text_field($args['taxonomy']);
+}
+if ($resolved_taxonomy === '') {
+    $queried_object = get_queried_object();
+    if (is_object($queried_object) && isset($queried_object->taxonomy) && is_string($queried_object->taxonomy)) {
+        $resolved_taxonomy = $queried_object->taxonomy;
+    }
+}
+$is_taxonomy_context = !$force_standard_view && ($is_taxonomy_page || $resolved_taxonomy !== '');
+
 // Sjekk om bilder skal vises
 // Prioritet: shortcode attributt > taksonomi-spesifikk innstilling > global innstilling
 $shortcode_show_images = isset($args['shortcode_show_images']) ? $args['shortcode_show_images'] : null;
@@ -229,16 +241,34 @@ $shortcode_show_images = isset($args['shortcode_show_images']) ? $args['shortcod
 if ($shortcode_show_images === 'yes' || $shortcode_show_images === 'no') {
     // Bruk shortcode attributt hvis eksplisitt satt til yes eller no
     $show_images = $shortcode_show_images;
-} elseif ($is_taxonomy_page && !$force_standard_view) {
-    // Taksonomi-side: bruk taksonomi-innstillinger med proper override handling
-    $taxonomy = get_queried_object()->taxonomy;
-    $show_images = get_taxonomy_setting($taxonomy, 'show_images', 'yes');
+} elseif ($is_taxonomy_context) {
+    // Taksonomi-side: bruk taksonomi-innstillinger med proper override handling.
+    if ($resolved_taxonomy !== '') {
+        $show_images = get_taxonomy_setting($resolved_taxonomy, 'show_images', 'yes');
+    } else {
+        $show_images = get_option('kursagenten_show_images_taxonomy', 'yes');
+    }
 } else {
     // Standard: bruk global innstilling
     $show_images = get_option('kursagenten_show_images', 'yes');
 }
 
 $with_image_class = $show_images === 'yes' ? ' with-image' : '';
+
+if ($is_taxonomy_context) {
+    if ($resolved_taxonomy !== '') {
+        $buttons_display_option = get_taxonomy_setting($resolved_taxonomy, 'buttons_display', 'show_buttons');
+    } else {
+        $buttons_display_option = get_option('kursagenten_taxonomy_buttons_display', 'show_buttons');
+    }
+} else {
+    $buttons_display_option = get_option('kursagenten_archive_buttons_display', 'show_buttons');
+}
+$buttons_display_override = isset($args['buttons_display']) ? sanitize_text_field((string) $args['buttons_display']) : '';
+if (in_array($buttons_display_override, ['show_buttons', 'signup_link'], true)) {
+    $buttons_display_option = $buttons_display_override;
+}
+$show_signup_link_only = ($buttons_display_option === 'signup_link');
 
 // Hent instruktører for kurset
 $instructors = get_the_terms($course_id, 'ka_instructors');
@@ -374,9 +404,15 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                         </div>
                         <?php endif; ?>
                         
-                        <button class="courselist-button pamelding pameldingsknapp pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
-                            <?php echo esc_html($button_text ?: 'Påmelding'); ?>
-                        </button>
+                        <?php if ($show_signup_link_only) : ?>
+                            <a class="pamelding signup-link pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
+                                <?php echo esc_html($button_text ?: 'Påmelding'); ?> <i class="ka-icon icon-arrow-right-short"></i>
+                            </a>
+                        <?php else : ?>
+                            <button class="courselist-button pamelding pameldingsknapp pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
+                                <?php echo esc_html($button_text ?: 'Påmelding'); ?>
+                            </button>
+                        <?php endif; ?>
                     <?php else : ?>
                         <?php if (!empty($price)) : ?>
                         <div class="card-price">
@@ -384,9 +420,15 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                         </div>
                         <?php endif; ?>
                         
-                        <button class="courselist-button pamelding pameldingsknapp pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
-                            <?php echo esc_html($button_text ?: 'Påmelding'); ?>
-                        </button>
+                        <?php if ($show_signup_link_only) : ?>
+                            <a class="pamelding signup-link pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
+                                <?php echo esc_html($button_text ?: 'Påmelding'); ?> <i class="ka-icon icon-arrow-right-short"></i>
+                            </a>
+                        <?php else : ?>
+                            <button class="courselist-button pamelding pameldingsknapp pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
+                                <?php echo esc_html($button_text ?: 'Påmelding'); ?>
+                            </button>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
             </div>

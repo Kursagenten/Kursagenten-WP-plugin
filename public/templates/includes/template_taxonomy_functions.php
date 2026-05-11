@@ -238,9 +238,20 @@ function get_taxonomy_courses($term_id, $taxonomy) {
  *                              for venstrefiltre. Aksepterer 'topp'.
  * @return string Klar-til-bruk attributt som 'filter="topp"' eller ''.
  */
-function get_taxonomy_kursliste_filter_attr($force_minimum = '') {
-    $allowed = ['standard', 'venstre', 'topp', 'filter-knapp', 'skjul-alt'];
-    $value = get_option('kursagenten_taxonomy_filter_display', 'standard');
+function get_taxonomy_kursliste_filter_attr($force_minimum = '', $taxonomy = '') {
+    $allowed = ['standard', 'venstre', 'topp', 'filter-knapp', 'skjul'];
+    if ($taxonomy === '' && is_tax(['ka_coursecategory', 'ka_course_location', 'ka_instructors'])) {
+        $queried = get_queried_object();
+        if (is_object($queried) && isset($queried->taxonomy) && is_string($queried->taxonomy)) {
+            $taxonomy = $queried->taxonomy;
+        }
+    }
+
+    if (in_array($taxonomy, ['ka_coursecategory', 'ka_course_location', 'ka_instructors'], true)) {
+        $value = get_taxonomy_setting($taxonomy, 'filter_display', 'standard');
+    } else {
+        $value = get_option('kursagenten_taxonomy_filter_display', 'standard');
+    }
     if (!in_array($value, $allowed, true)) {
         $value = 'standard';
     }
@@ -264,13 +275,14 @@ function get_taxonomy_kursliste_filter_attr($force_minimum = '') {
  * Get taxonomy-specific setting with proper override handling
  * 
  * @param string $taxonomy The taxonomy name (ka_coursecategory, ka_course_location, ka_instructors)
- * @param string $setting The setting name (layout, design, list_type, show_images, show_footer_links, name_display)
+ * @param string $setting The setting name (layout, design, list_type, buttons_display, view_type, filter_display, show_images, show_footer_links, name_display)
  * @param string $default Default value if no setting is found
  * @return string The setting value
  */
 function get_taxonomy_setting($taxonomy, $setting, $default = '') {
     // Check if override is enabled for this taxonomy
-    $override_enabled = get_option("kursagenten_taxonomy_{$taxonomy}_override", false);
+    $override_default = ($taxonomy === 'ka_instructors');
+    $override_enabled = get_option("kursagenten_taxonomy_{$taxonomy}_override", $override_default);
     
     if ($override_enabled) {
         // Get taxonomy-specific setting

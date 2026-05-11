@@ -78,7 +78,7 @@ if (!empty($back_link_url)) {
 }
 
 // Sjekk visningstype-innstilling
-$view_type = get_option('kursagenten_taxonomy_view_type', 'all_coursedates');
+$view_type = get_taxonomy_setting($taxonomy, 'view_type', 'all_coursedates');
 
 // Option: hide specific locations on course locations (both view types)
 $hide_specific_locations = (
@@ -109,8 +109,8 @@ if ($view_type === 'all_coursedates') {
     $shortcode_atts[] = 'bilder="' . esc_attr($show_images) . '"';
     // Den smale høyrekolonnen i denne malen kan ikke huse venstre filterkolonne,
     // så vi tvinger minimum "topp". Hvis brukeren har valgt "filter-knapp"
-    // eller "skjul-alt" i Kursdesign-innstillingene, beholdes dette.
-    $filter_attr = get_taxonomy_kursliste_filter_attr('topp');
+    // eller "skjul" i Kursdesign-innstillingene, beholdes dette.
+    $filter_attr = get_taxonomy_kursliste_filter_attr('topp', $taxonomy);
     if ($filter_attr !== '') {
         $shortcode_atts[] = $filter_attr;
     }
@@ -443,7 +443,7 @@ do_action('ka_taxonomy_header_before', $term);
                     <?php endif; ?>
 
                     <!-- Kursliste - bruker valgt list-type -->
-                    <div class="courselist-items view-type-<?php echo esc_attr(str_replace('_', '', $view_type)); ?>" id="filter-results" data-list-type="<?php echo esc_attr($list_type); ?>">
+                    <div class="courselist-items view-type-<?php echo esc_attr(str_replace('_', '', $view_type)); ?>" id="filter-results" data-list-type="<?php echo esc_attr($list_type); ?>" data-is-taxonomy-page="1" data-taxonomy="<?php echo esc_attr($taxonomy); ?>">
                         <?php
                         // Map transport-parameter st -> lokasjonsnavn for filtrering av hovedkurs
                         $st_param            = isset($_GET['st']) ? sanitize_text_field((string) $_GET['st']) : '';

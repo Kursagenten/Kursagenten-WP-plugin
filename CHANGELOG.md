@@ -1,3 +1,8 @@
+## 1.1.20 - 2026-05-11
+- Lagt til: Ny designmal for taksomier *Hero - To kolonner* med toppbilde og to kolonner under, med tekst til venstre og kursliste til høyre.
+- Lagt til: Mulighet til å velge å bruke påmeldingslink+pil i stedet for påmeldingsknapp i kurslister
+- Lagt til: Mulighet til å velge hvor/om filtre vises på taksonomisider
+
 ## 1.1.19 - 2026-04-21
 - Fix: I Gutenberg-blokker er det nå mulig å velge bildekvalitet
 - Lagt til: *Vis kun ledige plasser* i kurslisten lagt til som nytt filter og ny innstilling i Kursagenten -> Kursdesign

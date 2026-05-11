@@ -2080,22 +2080,22 @@ box-shadow: 0 0 6px rgba(0,0,0,0.05);
  * ============================================================
  * Modus settes via wrapper-klasse på #ka:
  * .ka-filter-mode-venstre, .ka-filter-mode-topp,
- * .ka-filter-mode-filter-knapp, .ka-filter-mode-skjul-alt.
+ * .ka-filter-mode-filter-knapp, .ka-filter-mode-skjul.
  */
 
-/* topp/filter-knapp/skjul-alt: ingen venstre kolonne */
+/* topp/filter-knapp/skjul: ingen venstre kolonne */
 #ka.ka-filter-mode-topp .left-column,
 #ka.ka-filter-mode-topp .left-filter-section,
 #ka.ka-filter-mode-filter-knapp .left-column,
 #ka.ka-filter-mode-filter-knapp .left-filter-section,
-#ka.ka-filter-mode-skjul-alt .left-column,
-#ka.ka-filter-mode-skjul-alt .left-filter-section {
+#ka.ka-filter-mode-skjul .left-column,
+#ka.ka-filter-mode-skjul .left-filter-section {
     display: none !important;
 }
 
 #ka.ka-filter-mode-topp .course-grid.col-1-4,
 #ka.ka-filter-mode-filter-knapp .course-grid.col-1-4,
-#ka.ka-filter-mode-skjul-alt .course-grid.col-1-4 {
+#ka.ka-filter-mode-skjul .course-grid.col-1-4 {
     grid-template-columns: 1fr;
 }
 
@@ -2185,11 +2185,11 @@ box-shadow: 0 0 6px rgba(0,0,0,0.05);
     }
 }
 
-/* skjul-alt: minimal liste uten filtre + headerkontroller */
-#ka.ka-filter-mode-skjul-alt .filter-container.filter-top,
-#ka.ka-filter-mode-skjul-alt .filter-toggle-button,
-#ka.ka-filter-mode-skjul-alt .courselist-header,
-#ka.ka-filter-mode-skjul-alt #active-filters-container {
+/* skjul: minimal liste uten filtre + headerkontroller */
+#ka.ka-filter-mode-skjul .filter-container.filter-top,
+#ka.ka-filter-mode-skjul .filter-toggle-button,
+#ka.ka-filter-mode-skjul .courselist-header,
+#ka.ka-filter-mode-skjul #active-filters-container {
     display: none !important;
 }
 

@@ -17,6 +17,7 @@
  * [kursliste antall="10"] - Shows the first 10 courses
  * [kursliste bilder="yes"] - Shows images
  * [kursliste bilder="no"] - Shows no images
+ * [kursliste knapper="signup_link"] - Shows signup link style
  * [kursliste klasse="min-klasse"] - Shows class attribute
  * 
  * @package Kursagenten
@@ -89,13 +90,14 @@ function kursagenten_course_list_shortcode($atts) {
         'klasse' => '',
         'list_type' => '', // standard, grid, compact
         'bilder' => '', // yes, no - overstyr bildeinnstillinger
+        'knapper' => '', // show_buttons, signup_link - overstyr knappemodus
         'antall' => '', // Begrens antall kurs som vises
         // Filter visningsmodus:
         //   ''              = standard (slik topp/venstre er konfigurert)
         //   'venstre'       = vis alle filtre i venstre kolonne
         //   'topp'          = vis alle filtre på toppen av listen
         //   'filter-knapp'  = skjul inline-filtre, vis "Filtrer kurs"-knapp
-        //   'skjul-alt'     = skjul filtre + kursteller + sortering/per_page
+        //   'skjul'         = skjul filtre + kursteller + sortering/per_page
         'filter' => ''
     ), $atts, 'kursliste');
 
@@ -225,6 +227,11 @@ function kursagenten_course_list_shortcode($atts) {
     // Hent valgt listetype fra innstillinger eller shortcode parameter
     $list_type = !empty($atts['list_type']) ? $atts['list_type'] : get_option('kursagenten_archive_list_type', 'standard');
 
+    $buttons_display = !empty($atts['knapper']) ? sanitize_text_field((string) $atts['knapper']) : '';
+    if (!in_array($buttons_display, ['show_buttons', 'signup_link'], true)) {
+        $buttons_display = '';
+    }
+
     // Last inn riktig CSS-fil basert på listetype (dynamisk)
     wp_enqueue_style(
         'kursagenten-list-' . $list_type,
@@ -321,7 +328,7 @@ function kursagenten_course_list_shortcode($atts) {
     // Filter visningsmodus (shortcode-attributt 'filter')
     // Whitelist + normalisering. Tomt = standard.
     $filter_mode = isset($atts['filter']) ? sanitize_html_class((string) $atts['filter']) : '';
-    if (!in_array($filter_mode, ['', 'venstre', 'topp', 'filter-knapp', 'skjul-alt'], true)) {
+    if (!in_array($filter_mode, ['', 'venstre', 'topp', 'filter-knapp', 'skjul'], true)) {
         $filter_mode = '';
     }
 
@@ -333,9 +340,9 @@ function kursagenten_course_list_shortcode($atts) {
         // Flytt alle venstrefiltre opp til toppraden.
         $top_filters = array_values(array_unique(array_merge($top_filters, $left_filters)));
         $left_filters = [];
-    } elseif ($filter_mode === 'filter-knapp' || $filter_mode === 'skjul-alt') {
+    } elseif ($filter_mode === 'filter-knapp' || $filter_mode === 'skjul') {
         // Skjul inline-filtre i markup. For filter-knapp vil mobil-overlayet fortsatt
-        // hente filterinnhold via AJAX. For skjul-alt skjules også selve knappen via CSS.
+        // hente filterinnhold via AJAX. For skjul skjules også selve knappen via CSS.
         $has_left_filters = false;
         $left_column_class = 'col-1 hidden-left-column';
         $left_filters = [];
@@ -1067,7 +1074,7 @@ function kursagenten_course_list_shortcode($atts) {
                                         </div>
                                     </div>
 
-                                    <div class="courselist-items" id="filter-results" data-list-type="<?php echo esc_attr($list_type); ?>">
+                                    <div class="courselist-items" id="filter-results" data-list-type="<?php echo esc_attr($list_type); ?>" data-buttons-display="<?php echo esc_attr($buttons_display); ?>">
                                         <?php
                                         $args = [
                                             'course_count' => $query->found_posts,
@@ -1076,7 +1083,8 @@ function kursagenten_course_list_shortcode($atts) {
                                             'list_type' => $list_type,
                                             'view_type' => 'all_coursedates',
                                             'is_taxonomy_page' => false,
-                                            'shortcode_show_images' => $atts['bilder']
+                                            'shortcode_show_images' => $atts['bilder'],
+                                            'buttons_display' => $buttons_display
                                         ];
 
                                         
@@ -1254,7 +1262,7 @@ function kursagenten_course_list_shortcode($atts) {
             return $('#ka').first();
         })();
         const isFilterButtonMode = modeRoot.hasClass('ka-filter-mode-filter-knapp');
-        const isHideAllMode = modeRoot.hasClass('ka-filter-mode-skjul-alt');
+        const isHideAllMode = modeRoot.hasClass('ka-filter-mode-skjul');
         
         // Hold styr på om filtrene er lastet
         let mobileFiltersLoaded = false;

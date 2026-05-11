@@ -6,7 +6,7 @@
  * Plugin URI:        https://deltagersystem.no/wp-plugin
  * Description:       Komplett løsning for visning av kurs fra Kursagenten med automatisk henting av nye og oppdaterte kurs.
 
- * Version:           1.1.19
+ * Version:           1.1.20
  * Author:            Kursagenten Team
  * Author URI:        https://kursagenten.no
  * Text Domain:       kursagenten
@@ -17,13 +17,13 @@
  */
 
  // Husk changelog
- define('KURSAG_VERSION', '1.1.19');
+ define('KURSAG_VERSION', '1.1.20');
 // Plugin versjon
 /*
 if (defined('WP_DEBUG') && WP_DEBUG) {
     define('KURSAG_VERSION', '1.0.1-dev-' . gmdate('YmdHis'));
 } else {
-    define('KURSAG_VERSION', '1.1.19');
+    define('KURSAG_VERSION', '1.1.20');
 }
 */
 // Plugin konstanter - bruk disse overalt for konsistent informasjon
@@ -660,7 +660,8 @@ if (!is_admin()) {
         // CSS for taxonomy templates - oppdater for ø bruke nye innstillinger
         if (is_tax('ka_coursecategory') || is_tax('ka_course_location') || is_tax('ka_instructors')) {
             $taxonomy = get_queried_object()->taxonomy;
-            $override_enabled = get_option("kursagenten_taxonomy_{$taxonomy}_override", false);
+            $override_default = ($taxonomy === 'ka_instructors');
+            $override_enabled = get_option("kursagenten_taxonomy_{$taxonomy}_override", $override_default);
             
             if ($override_enabled) {
                 $design = get_option("kursagenten_taxonomy_{$taxonomy}_design", '');

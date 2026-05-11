@@ -89,7 +89,7 @@
 #ka .ka-container .compact-course-content,
 #ka .ka-container .compact-course-info-wrapper {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 1.5rem;
 }
@@ -262,6 +262,9 @@
 #ka .ka-container .compact-btn-secondary:hover {
     background: var(--ka-color, #3b82f6);
     color: #fff;
+}
+#ka .signup-link {
+    padding: 1.1rem 0;
 }
 
 /* Related Terms Section */

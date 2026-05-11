@@ -725,14 +725,41 @@ function filter_courses_handler() {
             // For AJAX-filtreringen viser vi alltid alle kursdatoer,
             // akkurat som [kursliste] gjør.
             $view_type = 'all_coursedates';
+            $incoming_is_taxonomy_page = isset($_POST['internal_is_taxonomy_page']) && in_array(
+                sanitize_text_field(wp_unslash((string) $_POST['internal_is_taxonomy_page'])),
+                ['1', 'true', 'yes', 'on'],
+                true
+            );
+            $incoming_taxonomy = isset($_POST['internal_taxonomy'])
+                ? sanitize_text_field(wp_unslash((string) $_POST['internal_taxonomy']))
+                : '';
+            $allowed_taxonomies = ['ka_coursecategory', 'ka_course_location', 'ka_instructors'];
+            if (!in_array($incoming_taxonomy, $allowed_taxonomies, true)) {
+                $incoming_taxonomy = '';
+            }
+            if ($incoming_taxonomy !== '') {
+                $incoming_is_taxonomy_page = true;
+            }
+            $incoming_buttons_display = isset($_POST['internal_buttons_display'])
+                ? sanitize_text_field(wp_unslash((string) $_POST['internal_buttons_display']))
+                : '';
+            if (!in_array($incoming_buttons_display, ['show_buttons', 'signup_link'], true)) {
+                $incoming_buttons_display = '';
+            }
 
             // Build args for list-type templates (view_type, etc.)
             $template_args = [
                 'list_type' => $style,
                 'view_type' => $view_type,
-                'is_taxonomy_page' => false,
+                'is_taxonomy_page' => $incoming_is_taxonomy_page,
                 'query' => $query,
             ];
+            if ($incoming_taxonomy !== '') {
+                $template_args['taxonomy'] = $incoming_taxonomy;
+            }
+            if ($incoming_buttons_display !== '') {
+                $template_args['buttons_display'] = $incoming_buttons_display;
+            }
             
             while ($query->have_posts()) {
                 $query->the_post();
@@ -795,6 +822,9 @@ function filter_courses_handler() {
                         'current_url' => true,
                         'list_type' => true, // View layout, not a filter - do not propagate in pagination
                         'internal_list_type' => true, // Internal layout hint, never part of URL filters
+                        'internal_buttons_display' => true, // Internal button mode hint, never part of URL filters
+                        'internal_is_taxonomy_page' => true, // Internal context hint, never part of URL filters
+                        'internal_taxonomy' => true, // Internal taxonomy context, never part of URL filters
                         'ka_coursedate' => true,
                         'ka_course' => true,
                         'coursedate' => true,

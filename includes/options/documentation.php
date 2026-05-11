@@ -236,7 +236,7 @@ class KA_Documentation_Page {
                     <h3 id="lister">Kortkoder for lister og grid</h3>
                     <p>Kortkoder kan legges inn i teksten på sider og blogginnlegg. Du kan legge inn hele kurslisten, eller lister med enten alle kurskategorier, kurs i samme kategori (brukes på kurssider), eller instruktører.<br>Det er mange ulike valg. Du finner full kortkode under, med samtlige valg, samt en liste som forklarer alle valgene.<br>Kortkoden kopieres, og limes inn der du ønsker å vise den. <br>Merk at du må fjerne eventuelle valg du ikke trenger, og deler der flere valg er listet opp (feks som stablet/rad/liste).</p>
                     <div class="kort" style="background: #fbfbfb; padding: 1em; border-radius: 10px;">
-                        <p><strong>Kursliste med filter </strong><span class="smal"><span class="copytext">[kursliste]</span></span><br><span class="copytext small">[kursliste kategori="web" sted="oslo" måned="9" språk="norsk" st=sted/st=ikke-sted klasse="min-klasse"]</span></p>
+                        <p><strong>Kursliste med filter </strong><span class="smal"><span class="copytext">[kursliste]</span></span><br><span class="copytext small">[kursliste kategori="web" sted="oslo" måned="9" språk="norsk" list_type="grid" filter="topp" knapper="signup_link" bilder="yes" st=sted/st=ikke-sted klasse="min-klasse"]</span></p>
                         <p><strong>Liste med kurskategorier </strong><span class="smal"><span class="copytext">[kurskategorier]</span></span><br><span class="copytext small" style="color:#666">[kurskategorier kilde="bilde/ikon" layout="stablet/rad/liste" grid=3 gridtablet=2 gridmobil=1  radavstand="1rem" stil="standard/kort" bildestr="100px" bildeform="avrundet/rund/firkantet/10px" bildeformat="4/3" overskrift="h3" fontmin="13" fontmaks="18" avstand="2em .5em" skygge="ja" vis="hovedkategorier/subkategorier/slug/standard" st=sted/st=ikke-sted utdrag="ja" klasse="min-klasse"]</span></p>
                         <p><strong>Liste med kurssteder </strong><span class="smal"><span class="copytext">[kurssteder]</span></span><br><span class="copytext small" style="color:#666">[kurssteder layout="stablet/rad/liste" grid=3 gridtablet=2 gridmobil=1 radavstand="1rem" stil="standard/kort" bildestr="100px" bildeform="avrundet/rund/firkantet/10px" bildeformat="4/3" overskrift="h3" fontmin="13px" fontmaks="15px" avstand="2em .5em" skygge="ja" utdrag="ja" vis="standard/alta,oslo,bergen" region="østlandet" stedinfo="ja" klasse="min-klasse"]</span></p>
                         <p><strong>Liste med instruktører </strong><span class="smal"><span class="copytext">[instruktorer]</span></span><br><span class="copytext small" style="color:#666">[instruktorer layout="stablet/rad/liste" grid=3 gridtablet=2 gridmobil=1 radavstand="1rem" stil="standard/kort" bildestr="100px" bildeform="avrundet/rund/firkantet/10px" bildeformat="4/3" overskrift="h3" fontmin="13px" fontmaks="15px" avstand="2em .5em" skygge="ja" skjul="Iris,Anna" utdrag="ja" beskrivelse="ja" klasse="min-klasse"]</span></p>
@@ -270,182 +270,210 @@ class KA_Documentation_Page {
                                     <td>Du kan velge om du vil bruke hovedbilde, eller laste opp egne ikoner for lister. Velg kilde=ikon hvis du vil bruke disse.</td>
                                     <td>bilde, ikon<br><strong>Standard:</strong> bilde</td>
                                     <td>Kurskategorier</td>
-                                    <td><span class="copytext">[kurskategorier kilde=ikon]</span></td>
+                                    <td>[kurskategorier <span class="copytext">kilde=ikon</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Kilde (i)</td>
                                     <td>Du kan velge om du vil bruke et bilde du laster opp selv, eller bruke bildet hentet fra Kursagenten. Velg kilde=ka-bilde hvis du vil bruke bilde fra Kursagenten.</td>
                                     <td>bilde, ka-bilde<br><strong>Standard:</strong> bilde</td>
                                     <td>Instruktører</td>
-                                    <td><span class="copytext">[instruktorer kilde=ka-bilde]</span></td>
+                                    <td>[instruktorer <span class="copytext">kilde=ka-bilde</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Layout</td>
                                     <td>Ulike layout. Stablet viser bilde over kurs-/kategorinavn, rad viser bilde til venstre. Liste viser alle navn under hverandre. Liste har lavere mellomrom mellom punktene, og passer bedre med små bilder/uten bilder.</td>
                                     <td>stablet, rad, liste<br><strong>Standard:</strong> stablet</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier layout=rad]</span></td>
+                                    <td>[kurskategorier <span class="copytext">layout=rad</span>]</td>
+                                </tr>
+                                <tr>
+                                    <td>List_type</td>
+                                    <td>Velg listedesign for kortkoden <span class="copytext">[kursliste]</span> uten å endre global innstilling i Kursdesign.</td>
+                                    <td>standard, grid, compact, plain, simple-cards<br><strong>Standard:</strong> hentes fra Kursdesign</td>
+                                    <td>Kursliste</td>
+                                    <td>[kursliste <span class="copytext">list_type="grid"</span>]</td>
+                                </tr>
+                                <tr>
+                                    <td>Bilder</td>
+                                    <td>Overstyr visning av bilder i <span class="copytext">[kursliste]</span>.</td>
+                                    <td>yes, no<br><strong>Standard:</strong> hentes fra Kursdesign</td>
+                                    <td>Kursliste</td>
+                                    <td>[kursliste <span class="copytext">bilder="no"</span>]</td>
+                                </tr>
+                                <tr>
+                                    <td>Filter</td>
+                                    <td>Overstyr visning av filtre for <span class="copytext">[kursliste]</span>. Nyttig når samme liste skal brukes i ulike sideoppsett.</td>
+                                    <td>venstre, topp, filter-knapp, skjul<br><strong>Standard:</strong> slik filtere er satt opp i Kursdesign</td>
+                                    <td>Kursliste</td>
+                                    <td>[kursliste <span class="copytext">filter="skjul"</span>]</td>
+                                </tr>
+                                <tr>
+                                    <td>Knapper</td>
+                                    <td>Velg om kurslisten skal vise vanlig knappestil eller kun påmeldingslink-stil.</td>
+                                    <td>show_buttons, signup_link<br><strong>Standard:</strong> hentes fra Kursdesign</td>
+                                    <td>Kursliste</td>
+                                    <td>[kursliste <span class="copytext">knapper="signup_link"</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Stil</td>
                                     <td>Vis som kort, med hvit bakgrunn og skygge bak hele kortet.</td>
                                     <td>kort<br><strong>Standard</strong>: ikke kort</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier stil=kort]</span></td>
+                                    <td>[kurskategorier <span class="copytext">stil=kort</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Grid</td>
                                     <td>Antall kolonner på desktop.</td>
                                     <td><strong>Standard:</strong> 3 kolonner</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier grid=4]</span></td>
+                                    <td>[kurskategorier <span class="copytext">grid=4</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Gridtablet</td>
                                     <td>Antall kolonner på tablet.&nbsp;</td>
                                     <td><strong>Standard:</strong> 2 kolonner</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier gridtablet=2]</span></td>
+                                    <td>[kurskategorier <span class="copytext">gridtablet=2</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Gridmobil</td>
                                     <td>Antall kolonner på mobil.&nbsp;</td>
                                     <td><strong>Standard:</strong> 1 kolonne</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier gridmobil=2]</span></td>
+                                    <td>[kurskategorier <span class="copytext">gridmobil=2</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Bildestr</td>
                                     <td>Skriv inn størrelse på bildet du ønsker, i pixler. Ønsker du ikke bilde, skriv 0. Når bildestr settes til 0, lastes ikke bildene inn i det hele tatt.</td>
                                     <td><strong>Standard:</strong> 100px</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier bildestr=80px]</span><br><span class="copytext">[kurskategorier bildestr=0]</span></td>
+                                    <td>[kurskategorier <span class="copytext">bildestr=80px</span>]<br>[kurskategorier <span class="copytext">bildestr=0</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Radavstand</td>
                                     <td>Skriv inn avstanden mellom radene, i pixler, em eller rem. Ønsker du ingen avstand, skriv 0.</td>
                                     <td><strong>Standard:</strong> 1rem</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier radavstand=10px]</span></td>
+                                    <td>[kurskategorier <span class="copytext">radavstand=10px</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Avstand</td>
                                     <td>Avstand rundt alle elementene, første verdi er topp og bunn, andre verdi er venstre og høyre.</td>
                                     <td><strong>Standard:</strong> 2em .5em</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier avstand="1em 0"]</span></td>
+                                    <td>[kurskategorier <span class="copytext">avstand="1em 0"</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Bildeform</td>
                                     <td>Velg helt firkantede bilder, litt avrundet i kantene, eller runde bilder.</td>
                                     <td>avrundet, rund, firkantet<br><strong>Standard</strong>: avrundet</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier bildeform=rund]</span></td>
+                                    <td>[kurskategorier <span class="copytext">bildeform=rund</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Bildeformat</td>
                                     <td>Hvorvidt bildet skal være liggende, stående eller kvadratisk.</td>
                                     <td>feks 4/3, 16/9, 1/1<br><strong>Standard</strong>: 4/3</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier bildeformat=16/9]</span></td>
+                                    <td>[kurskategorier <span class="copytext">bildeformat=16/9</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Skygge</td>
                                     <td>Skygge ved musepeker over kurs/kurskategori.</td>
                                     <td>ja<br><strong>Standard</strong>: uten skygge</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier skygge=ja]</span></td>
+                                    <td>[kurskategorier <span class="copytext">skygge=ja</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Overskrift</td>
                                     <td>Velg hvilken overskrift du vil bruke for navnene.</td>
                                     <td>feks h3, h4, h5, p, span, div<br><strong>Standard</strong>: h3</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier overskrift=h4]</span></td>
+                                    <td>[kurskategorier <span class="copytext">overskrift=h4</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Fontmin</td>
                                     <td>Teksten justerer seg etter skjermstørrelse. Dette er den minste fontstørrelsen du vil bruke for tekst og overskrifter.</td>
                                     <td>feks 13px, 15px, 18px<br><strong>Standard</strong>: 13px</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier fontmin=15px]</span></td>
+                                    <td>[kurskategorier <span class="copytext">fontmin=15px</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Fontmaks</td>
                                     <td>Dette er den største fontstørrelsen du vil bruke for tekst og overskrifter.</td>
                                     <td>feks 15px, 18px, 26px<br><strong>Standard</strong>: 18px</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier fontmaks=18px]</span></td>
+                                    <td>[kurskategorier <span class="copytext">fontmaks=18px</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Vis (k)</td>
                                     <td>For de kategoriene som har flere nivåer, er det mulighet til å vise kun toppnivåene, kun underkategoriene, kun underkategorier under gitt foreldreslug, eller alle.</td>
                                     <td>hovedkategorier, subkategorier, foreldreslug (feks dans eller truck)<br><strong>Standard</strong>: viser alle</td>
                                     <td>Kurskategorier</td>
-                                    <td><span class="copytext">[kurskategorier vis=hovedkategorier/subkategorier/slug]</span></td>
+                                    <td>[kurskategorier <span class="copytext">vis=hovedkategorier/subkategorier/slug</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Vis (i)</td>
                                     <td>Velg å vise fornavn, etternavn eller begge.</td>
                                     <td>fornavn, etternavn<br><strong>Standard</strong>: viser fullt navn</td>
                                     <td>Instruktører</td>
-                                    <td><span class="copytext">[instruktorer vis=fornavn]</span></td>
+                                    <td>[instruktorer <span class="copytext">vis=fornavn</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Vis (s)</td>
                                     <td>Filtrer stedslisten til kun vise spesifikke steder. Kan bruke stedsnavn eller slug (case-insensitive).</td>
                                     <td>standard, kommaseparert liste (feks alta,oslo,bergen eller "Oslo,Mo i Rana")<br><strong>Standard</strong>: viser alle steder</td>
                                     <td>Kurssteder</td>
-                                    <td><span class="copytext">[kurssteder vis=alta,oslo,bergen]</span></td>
+                                    <td>[kurssteder <span class="copytext">vis=alta,oslo,bergen</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Region</td>
                                     <td>Filtrer kurssteder basert på region (kun hvis regioner er aktivert). Kan kombineres med vis-parameteren (OR-logikk: viser steder fra regionen ELLER de spesifiserte stedene).</td>
                                     <td>sørlandet, østlandet, vestlandet, midt-norge, nord-norge<br><strong>Standard</strong>: ingen filtrering</td>
                                     <td>Kurssteder</td>
-                                    <td><span class="copytext">[kurssteder region="østlandet"]</span><br><span class="copytext">[kurssteder region="østlandet" vis="bergen"]</span></td>
+                                    <td>[kurssteder <span class="copytext">region="østlandet"</span>]<br>[kurssteder <span class="copytext">region="østlandet" vis="bergen"</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Stedinfo</td>
                                     <td>Vis liste med spesifikke lokasjoner under hvert stedsnavn. Dette kommer fra feltet "Fritekst sted" i Kursagenten. </td>
                                     <td>ja<br><strong>Standard</strong>: vises ikke</td>
                                     <td>Kurssteder</td>
-                                    <td><span class="copytext">[kurssteder stedinfo=ja]</span></td>
+                                    <td>[kurssteder <span class="copytext">stedinfo=ja</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Skjul</td>
                                     <td>Skjul instruktør ved å skrive en kommaseparert liste med fornavn til instruktør slik det er skrevet i feltet "fornavn"</td>
                                     <td>kommasepartert liste<br><strong>Standard</strong>: viser alle</td>
                                     <td>Instruktører</td>
-                                    <td><span class="copytext">[instruktor skjul=Anna,Per]</span></td>
+                                    <td>[instruktor <span class="copytext">skjul=Anna,Per</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>St</td>
                                     <td>Velg å vise/skjule kurskategorier/menypunkter som hører til spesifikke steder. Eksempel: vis alle kurs som ikke er nettkurs: st="ikke-nettbasert"</td>
                                     <td>sted, ikke-sted<br><strong>Standard</strong>: viser alle</td>
                                     <td>Kurskategorier, automenyer</td>
-                                    <td><span class="copytext">[kurskategorier st=sted]<br>[ka-meny type="kurskategorier" st=sted]</span></td>
+                                    <td>[kurskategorier <span class="copytext">st=sted</span>]<br>[ka-meny type="kurskategorier" <span class="copytext">st=sted</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Utdrag</td>
                                     <td>Vis tekst fra feltet "Kort beskrivelse".</td>
                                     <td>ja<br><strong>Standard</strong>: viser ikke</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurssted utdrag=ja]</span></td>
+                                    <td>[kurssted <span class="copytext">utdrag=ja</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Beskrivelse</td>
                                     <td>Vis tekst fra feltet "Utvidet beskrivelse". Merk at dette vil overskrive utdrag.</td>
                                     <td>ja<br><strong>Standard</strong>: viser ikke</td>
                                     <td>Instruktører</td>
-                                    <td><span class="copytext">[instruktorer beskrivelse=ja]</span></td>
+                                    <td>[instruktorer <span class="copytext">beskrivelse=ja</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Klasse</td>
                                     <td>Legg til egendefinert CSS-klasse til wrapper-elementet. Nyttig for custom styling eller tema-spesifikke behov.</td>
                                     <td>tekst<br><strong>Standard</strong>: tom (ingen klasse)</td>
                                     <td>Alle</td>
-                                    <td><span class="copytext">[kurskategorier klasse="min-egen-klasse"]</span></td>
+                                    <td>[kurskategorier <span class="copytext">klasse="min-egen-klasse"</span>]</td>
                                 </tr>
                             </tbody>
                         </table>

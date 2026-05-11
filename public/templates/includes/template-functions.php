@@ -110,7 +110,8 @@ function kursagenten_template_loader($template) {
         $current_tax = get_queried_object();
         if ($current_tax && isset($current_tax->taxonomy)) {
             $tax_name = $current_tax->taxonomy;
-            $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", false);
+            $override_default = ($tax_name === 'ka_instructors');
+            $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", $override_default);
             
             if ($override_enabled) {
                 $layout = get_option("kursagenten_taxonomy_{$tax_name}_layout", '');
@@ -190,7 +191,8 @@ function kursagenten_get_design_template() {
         $current_tax = get_queried_object();
         if ($current_tax && isset($current_tax->taxonomy)) {
             $tax_name = $current_tax->taxonomy;
-            $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", false);
+            $override_default = ($tax_name === 'ka_instructors');
+            $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", $override_default);
             
             if ($override_enabled) {
                 $design = get_option("kursagenten_taxonomy_{$tax_name}_design", '');
@@ -228,7 +230,8 @@ function kursagenten_get_list_template() {
         $current_tax = get_queried_object();
         if ($current_tax && isset($current_tax->taxonomy)) {
             $tax_name = $current_tax->taxonomy;
-            $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", false);
+            $override_default = ($tax_name === 'ka_instructors');
+            $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", $override_default);
             
             if ($override_enabled) {
                 $list_type = get_option("kursagenten_taxonomy_{$tax_name}_list_type", '');
@@ -273,7 +276,8 @@ function kursagenten_add_body_classes($classes) {
         $current_tax = get_queried_object();
         if ($current_tax && isset($current_tax->taxonomy)) {
             $tax_name = $current_tax->taxonomy;
-            $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", false);
+            $override_default = ($tax_name === 'ka_instructors');
+            $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", $override_default);
             
             if ($override_enabled) {
                 $layout = get_option("kursagenten_taxonomy_{$tax_name}_layout", '');
@@ -312,6 +316,15 @@ add_filter('body_class', 'kursagenten_add_body_classes');
  * Hjelper-funksjon for å hente template-deler
  */
 function get_course_template_part($args = []) {
+    if (
+        isset($args['taxonomy']) &&
+        is_string($args['taxonomy']) &&
+        in_array($args['taxonomy'], ['ka_coursecategory', 'ka_course_location', 'ka_instructors'], true) &&
+        !isset($args['is_taxonomy_page'])
+    ) {
+        $args['is_taxonomy_page'] = true;
+    }
+
     // Sjekk om vi skal tvinge standard visning (fra kortkode)
     $force_standard_view = isset($args['force_standard_view']) && $args['force_standard_view'] === true;
     
@@ -328,7 +341,8 @@ function get_course_template_part($args = []) {
         $current_tax = get_queried_object();
         if ($current_tax && isset($current_tax->taxonomy)) {
             $tax_name = $current_tax->taxonomy;
-            $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", false);
+            $override_default = ($tax_name === 'ka_instructors');
+            $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", $override_default);
             
             if ($override_enabled) {
                 $style = get_option("kursagenten_taxonomy_{$tax_name}_list_type", '');
@@ -460,7 +474,8 @@ function kursagenten_get_layout_class($context = '') {
             $current_tax = get_queried_object();
             if ($current_tax && isset($current_tax->taxonomy)) {
                 $tax_name = $current_tax->taxonomy;
-                $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", false);
+                $override_default = ($tax_name === 'ka_instructors');
+                $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", $override_default);
                 
                 if ($override_enabled) {
                     $layout = get_option("kursagenten_taxonomy_{$tax_name}_layout", '');
@@ -518,7 +533,8 @@ function kursagenten_show_sidebar($context = '') {
             $current_tax = get_queried_object();
             if ($current_tax && isset($current_tax->taxonomy)) {
                 $tax_name = $current_tax->taxonomy;
-                $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", false);
+                $override_default = ($tax_name === 'ka_instructors');
+                $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", $override_default);
                 
                 if ($override_enabled) {
                     $show_sidebar = get_option("kursagenten_taxonomy_{$tax_name}_sidebar", '');
@@ -556,7 +572,8 @@ function get_ajax_template_path($context = 'archive') {
             $current_tax = get_queried_object();
             if ($current_tax && isset($current_tax->taxonomy)) {
                 $tax_name = $current_tax->taxonomy;
-                $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", false);
+                $override_default = ($tax_name === 'ka_instructors');
+                $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", $override_default);
                 
                 if ($override_enabled) {
                     $style = get_option("kursagenten_taxonomy_{$tax_name}_list_type", '');

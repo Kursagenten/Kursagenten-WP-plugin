@@ -412,9 +412,36 @@
 					// Important: internal only, never used as a filter or URL param
 					data.internal_list_type = listTypeAttr;
 				}
+				const buttonsDisplayAttr = $results.data('buttons-display');
+				if (buttonsDisplayAttr) {
+					data.internal_buttons_display = buttonsDisplayAttr;
+				}
+				const taxonomyFlagAttr = $results.data('is-taxonomy-page');
+				if (taxonomyFlagAttr === 1 || taxonomyFlagAttr === '1' || taxonomyFlagAttr === true || taxonomyFlagAttr === 'true') {
+					data.internal_is_taxonomy_page = '1';
+				}
+				const taxonomyAttr = $results.data('taxonomy');
+				if (taxonomyAttr) {
+					data.internal_taxonomy = taxonomyAttr;
+				}
 			}
 		} catch (e) {
 			kaError('Error reading list_type from #filter-results:', e);
+		}
+
+		// Send internal taxonomy context so server can preserve taxonomy-specific list behavior.
+		try {
+			if (document && document.body && document.body.classList) {
+				const classes = Array.from(document.body.classList);
+				const taxonomyClasses = ['tax-ka_coursecategory', 'tax-ka_course_location', 'tax-ka_instructors'];
+				const matchedTaxClass = taxonomyClasses.find(cls => classes.includes(cls));
+				if (matchedTaxClass) {
+					data.internal_is_taxonomy_page = '1';
+					data.internal_taxonomy = matchedTaxClass.replace('tax-', '');
+				}
+			}
+		} catch (e) {
+			kaError('Error reading taxonomy context from body classes:', e);
 		}
 		kaLog('kurskalender_data.ajax_url:', typeof kurskalender_data !== 'undefined' ? kurskalender_data.ajax_url : '(undefined)');
 		// Send current URL so server can build correct pagination links (without current_url param to avoid nesting)

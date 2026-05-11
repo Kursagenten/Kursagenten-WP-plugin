@@ -25,7 +25,7 @@ $term_id = $term->term_id;
 $taxonomy = $term->taxonomy;
 
 // Sjekk visningstype-innstilling
-$view_type = get_option('kursagenten_taxonomy_view_type', 'all_coursedates');
+$view_type = get_taxonomy_setting($taxonomy, 'view_type', 'all_coursedates');
 
 // Get list_type and show_images settings with proper override handling (used by both view types)
 $list_type = get_taxonomy_setting($taxonomy, 'list_type', 'standard');
@@ -46,8 +46,8 @@ if ($view_type === 'all_coursedates') {
     
     $shortcode_atts[] = 'list_type="' . esc_attr($list_type) . '"';
     $shortcode_atts[] = 'bilder="' . esc_attr($show_images) . '"';
-    // Filter-visningsmodus fra Kursdesign-innstilling (venstre / topp / filter-knapp / skjul-alt)
-    $filter_attr = get_taxonomy_kursliste_filter_attr();
+    // Filter-visningsmodus fra Kursdesign-innstilling (venstre / topp / filter-knapp / skjul)
+    $filter_attr = get_taxonomy_kursliste_filter_attr('', $taxonomy);
     if ($filter_attr !== '') {
         $shortcode_atts[] = $filter_attr;
     }
@@ -88,7 +88,7 @@ do_action('ka_taxonomy_header_before', $term);
                 <?php echo do_shortcode($shortcode); ?>
             <?php elseif ($query && $query->have_posts()): ?>
                 <!-- Vis hovedkurs -->
-                <div class="courselist-items view-type-<?php echo esc_attr(str_replace('_', '', $view_type)); ?>" id="filter-results" data-list-type="<?php echo esc_attr($list_type); ?>">
+                <div class="courselist-items view-type-<?php echo esc_attr(str_replace('_', '', $view_type)); ?>" id="filter-results" data-list-type="<?php echo esc_attr($list_type); ?>" data-is-taxonomy-page="1" data-taxonomy="<?php echo esc_attr($taxonomy); ?>">
                     <?php
                     $args = [
                         'course_count' => $query->found_posts,

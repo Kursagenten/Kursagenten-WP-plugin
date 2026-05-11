@@ -81,7 +81,7 @@
 }
 #ka .taxonomy-hero-header.no-hero-image .header-content *,
 #ka .taxonomy-hero-header.no-hero-image .taxonomy-description {
-    color: #222 !important;
+    color: #222;
 }
 
 /* Beskrivelse under hero (maks bredde) */
@@ -192,7 +192,7 @@
 
 /* Course list - layout-tweaks for [kursliste] som vises i den smale høyrekolonnen.
    Filtervisning håndteres sentralt via shortcode-attributtet filter="topp",
-   filter="filter-knapp" eller filter="skjul-alt"
+   filter="filter-knapp" eller filter="skjul"
    (se frontend-course-style.css → .ka-filter-mode-*). */
 
 /* Tighten the top filter bar a bit since horizontal space is limited. */
