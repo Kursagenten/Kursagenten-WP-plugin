@@ -1,3 +1,6 @@
+## 1.1.21 - 2026-05-18
+- Fix: Forbedret synk. Kurs som har blitt lagt til som duplikat ved feil blir slettet ved nattlig synk, klikk på "Rydd opp i kurs", og ved webhook synk.
+
 ## 1.1.20 - 2026-05-11
 - Lagt til: Ny designmal for taksomier *Hero - To kolonner* med toppbilde og to kolonner under, med tekst til venstre og kursliste til høyre.
 - Lagt til: Mulighet til å velge å bruke påmeldingslink+pil i stedet for påmeldingsknapp i kurslister

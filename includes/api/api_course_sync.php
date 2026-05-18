@@ -118,32 +118,31 @@ function create_or_update_course_and_schedule($course_data, $is_webhook = false)
         // Hovedkurset eksisterer
         
         if ($is_main_course_location) {
-            // Oppdater hovedkurset
-            update_existing_course($main_course[0]->ID, $location_data, $main_course_id, $location_id, $language, $is_active, $is_webhook);
-            
-            // Finn og oppdater subkurs for hovedkursets lokasjon
-            $main_course_sub_course = get_existing_sub_course($location_id, $main_course_id);
-            if ($main_course_sub_course) {
-                // Oppdater eksisterende subkurs
-                update_existing_course($main_course_sub_course[0]->ID, $location_data, $main_course_id, $location_id, $language, $is_active, $is_webhook);
+            foreach ($main_course as $parent_post) {
+                update_existing_course($parent_post->ID, $location_data, $main_course_id, $location_id, $language, $is_active, $is_webhook);
+            }
+
+            $main_course_sub_courses = get_existing_sub_course($location_id, $main_course_id);
+            if ($main_course_sub_courses) {
+                foreach ($main_course_sub_courses as $sub_post) {
+                    update_existing_course($sub_post->ID, $location_data, $main_course_id, $location_id, $language, $is_active, $is_webhook);
+                }
             } else {
-                // Opprett subkurs hvis det ikke eksisterer
                 create_new_sub_course($location_data, $main_course_id, $location_id, $language, $is_active, $is_webhook);
             }
-            
+
             return $main_course[0]->ID;
         } else {
-            // Finn og oppdater/opprett subkurs
-            $existing_sub_course = get_existing_sub_course($location_id, $main_course_id);
-            
-            if ($existing_sub_course) {
-                // Oppdater eksisterende subkurs
-                update_existing_course($existing_sub_course[0]->ID, $location_data, $main_course_id, $location_id, $language, $is_active, $is_webhook);
-                return $existing_sub_course[0]->ID;
-            } else {
-                // Opprett nytt subkurs
-                return create_new_sub_course($location_data, $main_course_id, $location_id, $language, $is_active, $is_webhook);
+            $existing_sub_courses = get_existing_sub_course($location_id, $main_course_id);
+
+            if ($existing_sub_courses) {
+                foreach ($existing_sub_courses as $sub_post) {
+                    update_existing_course($sub_post->ID, $location_data, $main_course_id, $location_id, $language, $is_active, $is_webhook);
+                }
+                return $existing_sub_courses[0]->ID;
             }
+
+            return create_new_sub_course($location_data, $main_course_id, $location_id, $language, $is_active, $is_webhook);
         }
     } else {
         // Hovedkurset eksisterer ikke
@@ -208,13 +207,13 @@ function get_existing_main_course($main_course_id) {
             ]
         ],
         'post_status' => ['publish', 'draft'],
-        'posts_per_page' => 1
+        'posts_per_page' => -1,
+        'orderby' => 'ID',
+        'order' => 'ASC',
     ]);
 }
 
 function get_existing_sub_course($location_id, $main_course_id) {
-    //error_log("Søker etter subkurs med location_id: $location_id og main_course_id: $main_course_id");
-    
     return get_posts([
         'post_type' => 'ka_course',
         'meta_query' => [
@@ -236,7 +235,9 @@ function get_existing_sub_course($location_id, $main_course_id) {
             ]
         ],
         'post_status' => ['publish', 'draft'],
-        'posts_per_page' => 1
+        'posts_per_page' => -1,
+        'orderby' => 'ID',
+        'order' => 'ASC',
     ]);
 }
 
@@ -480,21 +481,7 @@ function create_or_update_course_date($data, $post_id, $main_course_id, $locatio
     //error_log("**Starting create_or_update_course_date for post_id: $post_id, location_id: $location_id");
     
     if (!$is_active) {
-        //error_log("Course is not active, deleting existing dates for location_id: $location_id");
-    $existing_dates = get_posts([
-        'post_type' => 'ka_coursedate',
-            'post_status' => ['publish', 'draft'],
-            'meta_query' => [
-                ['key' => 'ka_location_id', 'value' => $location_id],
-            ],
-            'numberposts' => -1,
-        ]);
-
-        foreach ($existing_dates as $date) {
-            // Bruk den nye remove_course_coursedate_relationship funksjonen
-            remove_course_coursedate_relationship($post_id, $date->ID);
-            wp_delete_post($date->ID, true);
-        }
+        kursagenten_delete_coursedates_by_location_id((int) $location_id, (int) $post_id);
         return;
     }
 
@@ -1795,6 +1782,187 @@ function get_locations_for_area($location_id, $municipality, $county) {
     error_log("Fant " . count($all_locations) . " lokasjoner i samme område");
     error_log("=== SLUTT: get_locations_for_area ===");
     return $all_locations;
+}
+
+/**
+ * Delete all coursedates for a location_id and clean up course relationships.
+ *
+ * @param int      $location_id       Kursagenten location ID.
+ * @param int|null $related_course_id Optional course post to detach first.
+ */
+function kursagenten_delete_coursedates_by_location_id($location_id, $related_course_id = null) {
+    $location_id = (int) $location_id;
+    if (!$location_id) {
+        return;
+    }
+
+    $existing_dates = get_posts([
+        'post_type'      => 'ka_coursedate',
+        'post_status'    => ['publish', 'draft'],
+        'posts_per_page' => -1,
+        'meta_query'     => [
+            ['key' => 'ka_location_id', 'value' => $location_id],
+        ],
+    ]);
+
+    foreach ($existing_dates as $date) {
+        if ($related_course_id && function_exists('remove_course_coursedate_relationship')) {
+            remove_course_coursedate_relationship($related_course_id, $date->ID);
+        } else {
+            $related_courses = get_post_meta($date->ID, 'ka_course_related_course', true);
+            if (!empty($related_courses) && is_array($related_courses) && function_exists('remove_course_coursedate_relationship')) {
+                foreach ($related_courses as $related_id) {
+                    remove_course_coursedate_relationship((int) $related_id, $date->ID);
+                }
+            }
+        }
+        wp_delete_post($date->ID, true);
+    }
+}
+
+/**
+ * Deactivate a course location in WordPress when it is inactive in Kursagenten but no longer in API.
+ * Sub-courses are set to draft; parent status is updated based on remaining active sub-courses.
+ *
+ * @param int $location_id Kursagenten location ID (CourseId from webhook).
+ * @return int[] Main course IDs that were affected (empty if none found).
+ */
+function kursagenten_deactivate_course_by_location_id($location_id) {
+    $location_id = (int) $location_id;
+    if (!$location_id) {
+        return false;
+    }
+
+    error_log("=== START: kursagenten_deactivate_course_by_location_id for location_id: $location_id ===");
+
+    $courses = get_posts([
+        'post_type'      => 'ka_course',
+        'posts_per_page' => -1,
+        'post_status'    => ['publish', 'draft'],
+        'meta_query'     => [
+            [
+                'key'     => 'ka_location_id',
+                'value'   => $location_id,
+                'compare' => '=',
+            ],
+        ],
+    ]);
+
+    if (empty($courses)) {
+        error_log("Ingen kurs funnet for location_id: $location_id");
+        return [];
+    }
+
+    $main_course_ids = [];
+
+    foreach ($courses as $course) {
+        $main_course_id = (int) get_post_meta($course->ID, 'ka_main_course_id', true);
+        if ($main_course_id) {
+            $main_course_ids[$main_course_id] = true;
+        }
+
+        if (get_post_meta($course->ID, 'ka_is_parent_course', true) === 'yes') {
+            continue;
+        }
+
+        if ($course->post_status !== 'draft') {
+            wp_update_post([
+                'ID'          => $course->ID,
+                'post_status' => 'draft',
+            ]);
+        }
+        update_post_meta($course->ID, 'ka_is_active', '0');
+        error_log("Satt underkurs {$course->ID} til kladd (location_id: $location_id)");
+    }
+
+    kursagenten_delete_coursedates_by_location_id($location_id);
+
+    foreach (array_keys($main_course_ids) as $main_course_id) {
+        kursagenten_update_main_course_status((int) $main_course_id);
+    }
+
+    error_log("=== SLUTT: kursagenten_deactivate_course_by_location_id ===");
+    return array_keys($main_course_ids);
+}
+
+/**
+ * Remove duplicate parent/sub course posts for the same Kursagenten IDs (keeps oldest post).
+ *
+ * @param int $location_id    Kursagenten location ID.
+ * @param int $main_course_id Kursagenten main course ID.
+ * @return int Number of duplicate posts deleted.
+ */
+function kursagenten_cleanup_duplicate_courses($location_id, $main_course_id) {
+    $location_id = (int) $location_id;
+    $main_course_id = (int) $main_course_id;
+    $deleted = 0;
+
+    if (!$location_id || !$main_course_id) {
+        return 0;
+    }
+
+    $parents = get_existing_main_course($main_course_id);
+    if (count($parents) > 1) {
+        $keep = array_shift($parents);
+        foreach ($parents as $duplicate) {
+            error_log("Sletter duplikat hovedkurs post {$duplicate->ID} (main_course_id: $main_course_id)");
+            wp_delete_post($duplicate->ID, true);
+            $deleted++;
+        }
+    }
+
+    $subs = get_existing_sub_course($location_id, $main_course_id);
+    if (count($subs) > 1) {
+        $keep = array_shift($subs);
+        foreach ($subs as $duplicate) {
+            error_log("Sletter duplikat underkurs post {$duplicate->ID} (location_id: $location_id)");
+            wp_delete_post($duplicate->ID, true);
+            $deleted++;
+        }
+    }
+
+    if ($deleted > 0) {
+        kursagenten_update_main_course_status($main_course_id);
+    }
+
+    return $deleted;
+}
+
+/**
+ * Remove duplicate ka_course posts across the site (used by manual/nightly cleanup).
+ *
+ * @return int Total number of duplicate course posts deleted.
+ */
+function kursagenten_cleanup_all_duplicate_courses() {
+    $wp_courses = get_posts([
+        'post_type'      => 'ka_course',
+        'posts_per_page' => -1,
+        'post_status'    => ['publish', 'draft'],
+        'fields'         => 'ids',
+    ]);
+
+    $pairs = [];
+    foreach ($wp_courses as $post_id) {
+        $location_id = (int) get_post_meta($post_id, 'ka_location_id', true);
+        $main_course_id = (int) get_post_meta($post_id, 'ka_main_course_id', true);
+        if ($location_id && $main_course_id) {
+            $pairs[$main_course_id . ':' . $location_id] = [
+                'location_id'    => $location_id,
+                'main_course_id' => $main_course_id,
+            ];
+        }
+    }
+
+    $deleted = 0;
+    foreach ($pairs as $pair) {
+        $deleted += kursagenten_cleanup_duplicate_courses($pair['location_id'], $pair['main_course_id']);
+    }
+
+    if ($deleted > 0) {
+        error_log("Duplikat-opprydding: slettet $deleted duplikate kurs");
+    }
+
+    return $deleted;
 }
 
 /**

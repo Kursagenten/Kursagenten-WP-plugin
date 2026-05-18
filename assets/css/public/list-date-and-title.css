@@ -32,6 +32,13 @@
 
 
 /* 1) Radoppsett */
+.courselist-item.compact-item.view-type-allcoursedates {
+  border-bottom: 1px solid #e9e9e98a;
+  padding: 4px 0;
+}
+.courselist-item.compact-item.view-type-allcoursedates:last-child {
+  border-bottom: 0;
+}
 .compact-course-content {
   display: flex;
   align-items: stretch;
@@ -39,6 +46,9 @@
   gap: 0.5rem;
   border-bottom: 1px solid #e9e9e98a;
   padding: 0.4rem 0;
+}
+.compact-course-content:last-child {
+  border-bottom: none;
 }
 .compact-course-content:hover {
     background: #00000003;
@@ -64,7 +74,7 @@
   width: 100%;              /* fyll hele tilgjengelige bredden */
   flex: 1 1 auto;           /* strekker seg */
   min-width: 0;             /* lar innholdet wraps/ellipsis */
-  align-items: center;
+  align-items: flex-start;
   text-decoration: none;
   color: inherit;
   /* Om temaet overstyrer, bruk !important på display/width/flex */
@@ -88,12 +98,6 @@
   display: flex;
   align-items: center;
 }
-
-
-
-
-
-
 
 
 
@@ -135,6 +139,8 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    row-gap: 2px;
+    margin-top: 4px;
     flex-wrap: wrap;
     color: var(--heading-color, #1a1a1a);
     text-decoration: none;
@@ -151,6 +157,7 @@
 
 /* Action Buttons */
 #ka .ka-container .compact-course-actions {
+    margin-top: 4px;
     display: flex;
     gap: 0.75rem;
     align-items: flex-start;
@@ -163,7 +170,7 @@
     gap: 0.5rem;
     padding: 0.3rem 1rem;
     border-radius: 6px;
-    font-size: var(--ka-font-s);
+    font-size: var(--ka-font-xs);
     font-weight: 500;
     text-decoration: none;
     border: none;

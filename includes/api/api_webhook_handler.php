@@ -93,21 +93,34 @@ function process_webhook_data($request) {
         $course_data = get_main_course_id_by_location_id($location_id);
         
         if (!$course_data) {
-            // error_log("DEBUG: location_id {$location_id} finnes ikke i CourseList API-et (kan være internkurs).");
-            // Even for webhooks, we should not process internal courses
-            // Check if it exists in single course API to confirm it's an internal course
             $single_course_check = kursagenten_get_course_details($location_id);
             if (!empty($single_course_check)) {
                 error_log("ADVARSEL: Webhook mottatt for internkurs (location_id: $location_id). Kurset finnes i enkeltkurs API men ikke i CourseList API. Hopper over.");
                 return new WP_REST_Response('Internal course webhook ignored (not in CourseList).', 200);
             }
+
+            // Inactive course: no longer in API, but webhook reports Enabled=false
+            if (isset($body['Enabled']) && $body['Enabled'] === false && function_exists('kursagenten_deactivate_course_by_location_id')) {
+                error_log("Webhook deaktiverer location_id $location_id (ikke i API, Enabled=false)");
+                $affected_main_course_ids = kursagenten_deactivate_course_by_location_id($location_id);
+                if (!empty($affected_main_course_ids)) {
+                    if (function_exists('kursagenten_cleanup_duplicate_courses')) {
+                        foreach ($affected_main_course_ids as $affected_main_course_id) {
+                            kursagenten_cleanup_duplicate_courses($location_id, (int) $affected_main_course_id);
+                        }
+                    }
+                    return new WP_REST_Response('Course deactivated (draft) successfully.', 200);
+                }
+                return new WP_REST_Response('Course not found in WordPress.', 200);
+            }
+
             return new WP_REST_Response('Location ID not found in API.', 404);
         }
 
         $course_data['location_id'] = $location_id;
         // If webhook includes Enabled, override is_active from API list to avoid race conditions
         if (isset($body['Enabled'])) {
-$course_data['is_active'] = (bool) $body['Enabled'];
+            $course_data['is_active'] = (bool) $body['Enabled'];
         }
         
         try {
@@ -145,10 +158,13 @@ $course_data['is_active'] = (bool) $body['Enabled'];
                     }
                 }
 
-                // Oppdater hovedkurs status etter vellykket oppdatering
                 $main_course_id = $course_data['main_course_id'] ?? null;
                 error_log("Oppdaterer hovedkurs status for main_course_id: $main_course_id");
                 kursagenten_update_main_course_status($main_course_id);
+
+                if ($main_course_id && function_exists('kursagenten_cleanup_duplicate_courses')) {
+                    kursagenten_cleanup_duplicate_courses($location_id, (int) $main_course_id);
+                }
 
                 return new WP_REST_Response('Webhook processed successfully.', 200);
             } else {

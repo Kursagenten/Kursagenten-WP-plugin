@@ -31,7 +31,7 @@ function kursagenten_sync_courses_button() {
 function kursagenten_cleanup_courses_button() {
     ob_start();
     ?>
-    <a href="#" class="button" id="cleanup-courses">Rydd opp i kurs</a><span style="font-size: 12px; color: #666; line-height: 2.5; padding-left: 1em; font-style: italic;"> Rydd vekk utløpte kursdatoer, og slettede kurs som ikke finnes i Kursagenten</span>
+    <a href="#" class="button" id="cleanup-courses">Rydd opp i kurs</a><span style="font-size: 12px; color: #666; line-height: 2.5; padding-left: 1em; font-style: italic;"> Rydd vekk utløpte kursdatoer, duplikate kurs, og slettede kurs som ikke finnes i Kursagenten</span>
     <div id="cleanup-status-message" style="margin-top: 10px;"></div>
     <?php
     return ob_get_clean();
@@ -541,6 +541,12 @@ function cleanup_courses_on_demand() {
         $exists_in_course_list = in_array($location_id_int, $valid_location_ids);
         
         if (!$exists_in_course_list) {
+            // Inactive in Kursagenten (webhook): keep as draft. Published + missing from API = deleted in Kursagenten.
+            if ($wp_course->post_status === 'draft') {
+                error_log("Beholder kladd for location_id $location_id_int (post {$wp_course->ID}) – inaktivt i Kursagenten");
+                continue;
+            }
+
             // Course is not in CourseList API - it's either deleted or an internal course
             // Verify it's an internal course by checking single course API
             $single_course_check = kursagenten_get_course_details($location_id_int);
@@ -666,14 +672,23 @@ function cleanup_courses_on_demand() {
         }
     }
     
+    $deleted_duplicates = 0;
+    if (function_exists('kursagenten_cleanup_all_duplicate_courses')) {
+        error_log("=== START: Duplikat-opprydding av kurs ===");
+        $deleted_duplicates = kursagenten_cleanup_all_duplicate_courses();
+        error_log("=== SLUTT: Duplikat-opprydding av kurs ===");
+    }
+
     error_log("=== OPPRYDDING FULLFØRT ===");
     error_log("Antall slettede kurs: $deleted_courses");
     error_log("Antall slettede kursdatoer: $deleted_dates");
+    error_log("Antall slettede duplikate kurs: $deleted_duplicates");
     error_log("=== SLUTT: Opprydding av kurs og kursdatoer ===");
     
     return [
-        'deleted_courses' => $deleted_courses,
-        'deleted_dates' => $deleted_dates
+        'deleted_courses'     => $deleted_courses,
+        'deleted_dates'       => $deleted_dates,
+        'deleted_duplicates'  => $deleted_duplicates,
     ];
 }
 
@@ -715,9 +730,10 @@ function kursagenten_ajax_cleanup_courses() {
     } else {
         wp_send_json_success([
             'message' => sprintf(
-                'Opprydding fullført. Slettet %d kurs og %d kursdatoer.',
+                'Opprydding fullført. Slettet %d kurs, %d kursdatoer og %d duplikate kurs.',
                 $result['deleted_courses'],
-                $result['deleted_dates']
+                $result['deleted_dates'],
+                $result['deleted_duplicates'] ?? 0
             )
         ]);
     }
