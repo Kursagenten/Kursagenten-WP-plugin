@@ -6,6 +6,32 @@ if (!defined('ABSPATH')) {
 // Custom fields for CPT kurs and taxonomies
 //****************************************** */
 
+/**
+ * Get the list of Kursagenten-managed taxonomies that support our
+ * visibility/quick-edit/bulk-edit features.
+ *
+ * @return array
+ */
+if (!function_exists('kursagenten_get_supported_taxonomies')) {
+    function kursagenten_get_supported_taxonomies() {
+        return array('ka_coursecategory', 'ka_course_location', 'ka_instructors');
+    }
+}
+
+/**
+ * Check if the given key matches one of Kursagenten's managed taxonomies.
+ * Used to scope quick-edit / bulk-edit boxes so they don't render on
+ * pages, posts or other plugins' taxonomies.
+ *
+ * @param string $taxonomy_or_post_type
+ * @return bool
+ */
+if (!function_exists('kursagenten_is_supported_taxonomy')) {
+    function kursagenten_is_supported_taxonomy($taxonomy_or_post_type) {
+        return in_array((string) $taxonomy_or_post_type, kursagenten_get_supported_taxonomies(), true);
+    }
+}
+
 
 // Taxonomy Rich text metabox
 // -----------------------------
@@ -181,15 +207,23 @@ function add_taxonomy_visibility_field($term) {
     <tr class="form-field">
         <th scope="row"><label for="hide_in_course_list">Kursliste</label></th>
         <td>
-            <label style="margin-right: 15px;">
+            <label style="display:block; margin-bottom: 6px;">
                 <input type="radio" name="hide_in_course_list" value="Vis" <?php checked($course_list_visibility, 'Vis'); ?>>
-                Vis
+                Vis kategorien og tilhørende kurs
             </label>
-            <label>
+            <label style="display:block; margin-bottom: 6px;">
+                <input type="radio" name="hide_in_course_list" value="Skjul_filter" <?php checked($course_list_visibility, 'Skjul_filter'); ?>>
+                Skjul kun kategorien fra filter (kursene vises fortsatt)
+            </label>
+            <label style="display:block; margin-bottom: 0;">
                 <input type="radio" name="hide_in_course_list" value="Skjul" <?php checked($course_list_visibility, 'Skjul'); ?>>
-                Skjul tilhørende kurs, og i kategorifilter
+                Skjul kategorien og alle tilhørende kurs
             </label>
-            <p class="description">Velg om denne kategorien og tilhørende kurs skal vises i kurslisten.</p>
+            <p class="description">
+                <strong>Vis:</strong> Kategorien vises i filteret, og kurs tagget med kategorien vises i kurslisten.<br>
+                <strong>Skjul kun kategorien fra filter:</strong> Kategorien skjules fra filteret, men kurs tagget med denne kategorien vises fortsatt i kurslisten (under sine øvrige kategorier).<br>
+                <strong>Skjul kategorien og alle tilhørende kurs:</strong> Verken kategorien eller kurs tagget med denne vises i kurslisten – nyttig for interne kategorier.
+            </p>
         </td>
     </tr>
     <tr class="form-field">
@@ -210,15 +244,22 @@ function add_taxonomy_visibility_field($term) {
 }
 
 // Legg til feltet i hurtigredigering
-function add_quick_edit_visibility_field($column_name, $taxonomy) {
-    // Only add the field once per taxonomy
-    static $added_fields = array();
-    
-    if (isset($added_fields[$taxonomy])) {
+function add_quick_edit_visibility_field($column_name, $taxonomy_or_post_type) {
+    // The quick_edit_custom_box hook fires for both posts and taxonomies.
+    // Scope to Kursagenten taxonomies only to avoid leaking these fields
+    // onto WordPress Pages, Posts, or other unrelated screens.
+    if (!kursagenten_is_supported_taxonomy($taxonomy_or_post_type)) {
         return;
     }
-    
-    $added_fields[$taxonomy] = true;
+
+    // Only add the field once per taxonomy
+    static $added_fields = array();
+
+    if (isset($added_fields[$taxonomy_or_post_type])) {
+        return;
+    }
+
+    $added_fields[$taxonomy_or_post_type] = true;
     ?>
     <fieldset>
         <div class="inline-edit-col">
@@ -258,14 +299,18 @@ function add_quick_edit_visibility_field($column_name, $taxonomy) {
         <div class="inline-edit-col">
             <label>
                 <span class="title">Kursliste</span>
-                <span class="input-text-wrap">
-                    <label class="alignleft" style="margin-right: 15px;">
+                <span class="input-text-wrap" style="display:block;">
+                    <label class="alignleft" style="display:block; margin-bottom:4px;">
                         <input type="radio" name="quick_edit_hide_in_course_list" value="Vis">
                         <span class="checkbox-title">Vis</span>
                     </label>
-                    <label class="alignleft">
+                    <label class="alignleft" style="display:block; margin-bottom:4px;">
+                        <input type="radio" name="quick_edit_hide_in_course_list" value="Skjul_filter">
+                        <span class="checkbox-title">Skjul kun kategorien fra filter</span>
+                    </label>
+                    <label class="alignleft" style="display:block;">
                         <input type="radio" name="quick_edit_hide_in_course_list" value="Skjul">
-                        <span class="checkbox-title">Skjul tilhørende kurs, og i kategorifilter</span>
+                        <span class="checkbox-title">Skjul kategorien og alle tilhørende kurs</span>
                     </label>
                 </span>
             </label>
@@ -309,23 +354,26 @@ function manage_taxonomy_visibility_column($content, $column_name, $term_id) {
         $visibility = get_term_meta($term_id, 'hide_in_list', true);
         $menu_visibility = get_term_meta($term_id, 'hide_in_menu', true);
         $course_list_visibility = get_term_meta($term_id, 'hide_in_course_list', true);
-        
+
         $output = '';
-        
+
         if ($visibility === 'Skjul') {
             $output .= '<span class="visibility-tag" style="color: rgb(226, 91, 102);">Skjult i lister</span>';
         }
         if ($menu_visibility === 'Skjul') {
             $output .= '<span class="visibility-tag" style="color: rgb(226, 91, 102);">Skjult i menyer</span>';
         }
+        // Distinguish soft (filter only) from hard (filter + courses) hide.
         if ($course_list_visibility === 'Skjul') {
-            $output .= '<span class="visibility-tag" style="color: rgb(226, 91, 102);">Skjult i kursliste</span>';
+            $output .= '<span class="visibility-tag" data-course-list-state="Skjul" style="color: rgb(226, 91, 102);">Skjult i kursliste</span>';
+        } elseif ($course_list_visibility === 'Skjul_filter') {
+            $output .= '<span class="visibility-tag" data-course-list-state="Skjul_filter" style="color: rgb(214, 142, 39);">Skjult fra filter</span>';
         }
         $show_filter_on_archive = get_term_meta($term_id, 'show_category_filter_on_archive', true);
         if ($show_filter_on_archive === 'yes') {
             $output .= '<span class="visibility-tag" style="color: #2271b1;">Vis kategorifilter</span>';
         }
-        
+
         return $output;
     }
     
@@ -390,9 +438,20 @@ function save_taxonomy_field($term_id) {
         'instructor_phone' => 'sanitize_text_field',
         'instructor_firstname' => 'sanitize_text_field',
         'instructor_lastname' => 'sanitize_text_field',
-        'hide_in_list' => 'sanitize_text_field',
-        'hide_in_menu' => 'sanitize_text_field',
-        'hide_in_course_list' => 'sanitize_text_field',
+        'hide_in_list' => function ($value) {
+            $value = sanitize_text_field($value);
+            return in_array($value, array('Vis', 'Skjul'), true) ? $value : 'Vis';
+        },
+        'hide_in_menu' => function ($value) {
+            $value = sanitize_text_field($value);
+            return in_array($value, array('Vis', 'Skjul'), true) ? $value : 'Vis';
+        },
+        'hide_in_course_list' => function ($value) {
+            $value = sanitize_text_field($value);
+            // 'Vis' = show, 'Skjul_filter' = soft hide (filter only),
+            // 'Skjul' = hard hide (filter + all related courses).
+            return in_array($value, array('Vis', 'Skjul_filter', 'Skjul'), true) ? $value : 'Vis';
+        },
         'location_region' => function($value) {
             // Convert to internal (ASCII) format and validate
             require_once KURSAG_PLUGIN_DIR . '/includes/helpers/location-regions.php';
@@ -586,38 +645,49 @@ function kursagenten_register_bulk_visibility_action($bulk_actions) {
 
 // JavaScript for å håndtere hurtigredigering
 function add_quick_edit_javascript() {
+    // Only inject quick-edit JS on Kursagenten taxonomy screens.
+    $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+    if (!$screen || empty($screen->taxonomy) || !kursagenten_is_supported_taxonomy($screen->taxonomy)) {
+        return;
+    }
     ?>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
+            if (typeof inlineEditTax === 'undefined') {
+                return;
+            }
             var wp_inline_edit = inlineEditTax.edit;
-            
+
             inlineEditTax.edit = function(id) {
                 wp_inline_edit.apply(this, arguments);
                 var tag_id = 0;
                 if (typeof(id) == 'object') {
                     tag_id = parseInt(this.getId(id));
                 }
-                
+
                 if (tag_id > 0) {
                     var $row = $('#tag-' + tag_id);
                     var $visibilityCell = $row.find('td.column-visibility');
-                    var visibilityText = $visibilityCell.text();
                     var $table = $row.closest('table');
                     var isCourseCategory = $table.length > 0 && $table.attr('id') && $table.attr('id').indexOf('ka_coursecategory') !== -1;
-                    
-                    // Hent verdiene fra meta-feltene
-                    var list_visibility = visibilityText.includes('Skjult i lister') ? 'Skjul' : 'Vis';
-                    var menu_visibility = visibilityText.includes('Skjult i menyer') ? 'Skjul' : 'Vis';
-                    var course_list_visibility = visibilityText.includes('Skjult i kursliste') ? 'Skjul' : 'Vis';
-                    var show_category_filter = visibilityText.includes('Vis kategorifilter');
-                    
-                    // Sett radio-knappene
+
+                    // Read structured state from data-attributes (more robust than string matching)
+                    var $courseListTag = $visibilityCell.find('.visibility-tag[data-course-list-state]');
+                    var courseListState = $courseListTag.length ? $courseListTag.data('course-list-state') : 'Vis';
+                    if (courseListState !== 'Skjul' && courseListState !== 'Skjul_filter') {
+                        courseListState = 'Vis';
+                    }
+
+                    var visibilityText = $visibilityCell.text();
+                    var list_visibility = visibilityText.indexOf('Skjult i lister') !== -1 ? 'Skjul' : 'Vis';
+                    var menu_visibility = visibilityText.indexOf('Skjult i menyer') !== -1 ? 'Skjul' : 'Vis';
+                    var show_category_filter = visibilityText.indexOf('Vis kategorifilter') !== -1;
+
                     $('input[name="quick_edit_hide_in_list"][value="' + list_visibility + '"]').prop('checked', true);
                     $('input[name="quick_edit_hide_in_menu"][value="' + menu_visibility + '"]').prop('checked', true);
-                    $('input[name="quick_edit_hide_in_course_list"][value="' + course_list_visibility + '"]').prop('checked', true);
+                    $('input[name="quick_edit_hide_in_course_list"][value="' + courseListState + '"]').prop('checked', true);
                     $('input[name="quick_edit_show_category_filter_on_archive"]').prop('checked', show_category_filter);
-                    
-                    // Vis/skjul kursliste-feltet basert på taksonomi
+
                     if (isCourseCategory) {
                         $('.course-list-visibility').show();
                         $('.category-filter-visibility').show();
@@ -670,7 +740,7 @@ function kursagenten_add_bulk_visibility_modal() {
             <input type="hidden" id="kursagenten-bulk-visibility-taxonomy" name="taxonomy" value="<?php echo esc_attr($taxonomy); ?>">
             <input type="hidden" id="kursagenten-bulk-visibility-term-ids" name="term_ids" value="">
 
-            <table class="form-table" role="presentation" style="margin-top:10px;">
+            <table class="form-table kursagenten-bulk-visibility-table" role="presentation" style="margin-top:10px;">
                 <tbody>
                 <tr>
                     <th scope="row"><label for="bulk_visibility">Synlighet lister</label></th>
@@ -709,17 +779,21 @@ function kursagenten_add_bulk_visibility_modal() {
                 <tr class="bulk-course-list-row">
                     <th scope="row"><label for="bulk_course_list_visibility">Kursliste</label></th>
                     <td>
-                        <label style="margin-right:15px;">
+                        <label style="display:block; margin-bottom:4px;">
                             <input type="radio" name="bulk_course_list_visibility" value="" checked>
                             Ikke endre
                         </label>
-                        <label style="margin-right:15px;">
+                        <label style="display:block; margin-bottom:4px;">
                             <input type="radio" name="bulk_course_list_visibility" value="Vis">
                             Vis
                         </label>
-                        <label>
+                        <label style="display:block; margin-bottom:4px;">
+                            <input type="radio" name="bulk_course_list_visibility" value="Skjul_filter">
+                            Skjul kun kategorien fra filter (kursene vises fortsatt)
+                        </label>
+                        <label style="display:block; margin-bottom:0;">
                             <input type="radio" name="bulk_course_list_visibility" value="Skjul">
-                            Skjul tilhørende kurs, og i kategorifilter
+                            Skjul kategorien og alle tilhørende kurs
                         </label>
                     </td>
                 </tr>
@@ -927,6 +1001,15 @@ add_filter('gettext', 'kursagenten_change_description_label', 10, 3);
 
 // Skjul originale felter og stil instruktørskjemaet
 function kursagenten_add_instructor_styles() {
+    // Only load these styles on Kursagenten taxonomy admin screens.
+    $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+    if (!$screen) {
+        return;
+    }
+    $is_taxonomy_screen = ($screen->base === 'edit-tags' || $screen->base === 'term') && !empty($screen->taxonomy) && kursagenten_is_supported_taxonomy($screen->taxonomy);
+    if (!$is_taxonomy_screen) {
+        return;
+    }
     ?>
     <style type="text/css">
         @media (min-width: 950px) {
@@ -1769,27 +1852,42 @@ function save_quick_edit_visibility($term_id) {
     if (!current_user_can('manage_categories')) {
         return;
     }
-    
+
     // Sjekk om hurtigredigering er aktiv
     if (!isset($_POST['action']) || $_POST['action'] !== 'inline-save-tax') {
         return;
     }
-    
-    // Hent og valider verdier
-    $hide_in_list = isset($_POST['quick_edit_hide_in_list']) ? sanitize_text_field($_POST['quick_edit_hide_in_list']) : 'Vis';
-    $hide_in_menu = isset($_POST['quick_edit_hide_in_menu']) ? sanitize_text_field($_POST['quick_edit_hide_in_menu']) : 'Vis';
-    $hide_in_course_list = isset($_POST['quick_edit_hide_in_course_list']) ? sanitize_text_field($_POST['quick_edit_hide_in_course_list']) : 'Vis';
-    
-    // Oppdater term meta
+
+    // Skip if this is not one of our taxonomies (defense-in-depth).
+    $term = get_term($term_id);
+    if (!$term || !kursagenten_is_supported_taxonomy($term->taxonomy)) {
+        return;
+    }
+
+    $allowed_visibility = array('Vis', 'Skjul');
+    $allowed_course_list = array('Vis', 'Skjul_filter', 'Skjul');
+
+    $hide_in_list = isset($_POST['quick_edit_hide_in_list']) ? sanitize_text_field(wp_unslash($_POST['quick_edit_hide_in_list'])) : 'Vis';
+    $hide_in_menu = isset($_POST['quick_edit_hide_in_menu']) ? sanitize_text_field(wp_unslash($_POST['quick_edit_hide_in_menu'])) : 'Vis';
+    $hide_in_course_list = isset($_POST['quick_edit_hide_in_course_list']) ? sanitize_text_field(wp_unslash($_POST['quick_edit_hide_in_course_list'])) : 'Vis';
+
+    if (!in_array($hide_in_list, $allowed_visibility, true)) {
+        $hide_in_list = 'Vis';
+    }
+    if (!in_array($hide_in_menu, $allowed_visibility, true)) {
+        $hide_in_menu = 'Vis';
+    }
+    if (!in_array($hide_in_course_list, $allowed_course_list, true)) {
+        $hide_in_course_list = 'Vis';
+    }
+
     update_term_meta($term_id, 'hide_in_list', $hide_in_list);
     update_term_meta($term_id, 'hide_in_menu', $hide_in_menu);
-    
-    // Sjekk om dette er en kurskategori før vi oppdaterer kursliste-visning
-    $term = get_term($term_id);
-    if ($term && $term->taxonomy === 'ka_coursecategory') {
+
+    // Course list visibility and category filter are only for course categories
+    if ($term->taxonomy === 'ka_coursecategory') {
         update_term_meta($term_id, 'hide_in_course_list', $hide_in_course_list);
-        
-        // Håndter kursfilter på kategoriside
+
         $show_filter = (isset($_POST['quick_edit_show_category_filter_on_archive']) && $_POST['quick_edit_show_category_filter_on_archive'] === 'yes') ? 'yes' : '';
         update_term_meta($term_id, 'show_category_filter_on_archive', $show_filter);
     }
@@ -1835,13 +1933,15 @@ function kursagenten_bulk_update_visibility() {
     $bulk_parent_term_id   = isset($_POST['bulk_parent_term_id']) ? (int) $_POST['bulk_parent_term_id'] : null;
 
     $allowed_visibility_values = array('', 'Vis', 'Skjul');
+    // Course list now supports tri-state: Vis, Skjul_filter (soft), Skjul (hard).
+    $allowed_course_list_values = array('', 'Vis', 'Skjul_filter', 'Skjul');
     if (!in_array($bulk_visibility, $allowed_visibility_values, true)) {
         $bulk_visibility = '';
     }
     if (!in_array($bulk_menu_visibility, $allowed_visibility_values, true)) {
         $bulk_menu_visibility = '';
     }
-    if (!in_array($bulk_course_list_vis, $allowed_visibility_values, true)) {
+    if (!in_array($bulk_course_list_vis, $allowed_course_list_values, true)) {
         $bulk_course_list_vis = '';
     }
 

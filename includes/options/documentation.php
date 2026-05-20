@@ -545,13 +545,19 @@ class KA_Documentation_Page {
                     </ul>
                     
                     <h4>Synlighet og skjuling</h4>
-                    <p>Du kan kontrollere hvor kategoriene vises med tre synlighetsinnstillinger:</p>
+                    <p>Du kan kontrollere hvor kategoriene vises med flere synlighetsinnstillinger:</p>
                     <ul>
                         <li><strong>Skjul i oversiktslister:</strong> Når aktivert, skjules kategorien i kortkoder som <code>[kurskategorier]</code> og lignende lister. Kategorien vil fortsatt være tilgjengelig direkte via URL.</li>
                         <li><strong>Skjul i automenyer:</strong> Når aktivert, skjules kategorien i autogenererte menyer som bruker kortkoden <code>[ka-meny]</code>. Dette er nyttig hvis du har kategorier som ikke skal vises i hovedmenyen.</li>
-                        <li><strong>Skjul i kursliste:</strong> (Kun for kurskategorier) Når aktivert, skjules både kategorien i kategorifilteret og alle kurs som tilhører denne kategorien i kurslisten. Dette er nyttig for interne kategorier eller kategorier som ikke skal være synlige for besøkende.</li>
+                        <li><strong>Kursliste (kun for kurskategorier):</strong> Tre alternativer styrer hvordan kategorien påvirker kurslisten:
+                            <ul>
+                                <li><em>Vis</em> – kategorien vises i filteret og kursene vises i listen (standard).</li>
+                                <li><em>Skjul kun kategorien fra filter</em> – kategorien skjules fra filtervalgene, men kurs som er tagget med kategorien vises fortsatt i kurslisten under sine andre kategorier. Nyttig for «brede» tagger som ikke gir mening som filter (f.eks. «Foredrag», «HMS og sikkerhetskurs»).</li>
+                                <li><em>Skjul kategorien og alle tilhørende kurs</em> – både kategorien og alle kurs som er tagget med kategorien skjules helt fra kurslisten. Nyttig for interne kategorier som ikke skal være synlige for besøkende.</li>
+                            </ul>
+                        </li>
                     </ul>
-                    <p>Disse innstillingene kan settes både ved redigering av kategorien og via hurtigredigering i oversikten.</p>
+                    <p>Disse innstillingene kan settes både ved redigering av kategorien, via hurtigredigering, og via masseredigering («Kursagenten: Masserediger synlighet») i oversikten.</p>
                 </div>
 
                 <div id="kurssteder-innhold" class="options-card">

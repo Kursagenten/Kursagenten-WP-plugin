@@ -64,7 +64,7 @@ input[type=textarea] {
     line-height: 2;
     padding: 10px 10px 10px 0;
 }
-.form-table td {
+.form-table:not(.kursagenten-bulk-visibility-table) td {
     padding: 5px 10px;
     max-width: 600px;
     display: block;

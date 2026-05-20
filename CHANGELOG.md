@@ -1,3 +1,10 @@
+## 1.1.22 - 2026-05-20
+- Lagt til: "Skjul i kursliste" for kurskategorier er nå et trevalg i stedet for av/på:
+  - *Vis* – kategorien vises i filteret og kursene vises i kurslisten.
+  - *Skjul kun kategorien fra filter* – kategorien skjules fra filteret, men kursene vises fortsatt i kurslisten under sine andre kategorier. Nyttig for om man kun ønsker å skjule kategorien.
+  - *Skjul kategorien og alle tilhørende kurs* – tidligere atferd; kategorien og alle kurs tagget med den skjules fra kurslisten.
+- Lagt til: Trevalget kan også settes via hurtigredigering og masseredigering ("Kursagenten: Masserediger synlighet").
+
 ## 1.1.21 - 2026-05-18
 - Fix: Forbedret synk. Kurs som har blitt lagt til som duplikat ved feil blir slettet ved nattlig synk, klikk på "Rydd opp i kurs", og ved webhook synk.
 
