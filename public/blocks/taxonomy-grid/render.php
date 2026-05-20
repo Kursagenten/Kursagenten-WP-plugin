@@ -437,11 +437,11 @@ function kursagenten_get_taxonomy_terms(array $settings): array {
 
     $args = [
         'taxonomy' => $taxonomy,
-        // Keep category/location behavior. For instructors this can be controlled
-        // by block setting to include terms without published courses.
+        // Categories/locations: hide_empty is unreliable; filter published content below.
+        // Instructors: optional includeEmptyInstructors block setting.
         'hide_empty' => $taxonomy === 'ka_instructors'
             ? !((bool) ($settings['includeEmptyInstructors'] ?? true))
-            : true,
+            : ($taxonomy === 'ka_course_location' ? false : true),
         'orderby' => 'name',
         'order' => 'ASC',
         'meta_query' => [
@@ -568,6 +568,12 @@ function kursagenten_get_taxonomy_terms(array $settings): array {
         }
     }
 
+    if ($taxonomy === 'ka_course_location') {
+        $terms = array_filter($terms, static function ($term): bool {
+            return kursagenten_location_term_has_associated_content((int) $term->term_id);
+        });
+    }
+
     if ($taxonomy === 'ka_instructors' && !empty($settings['instructorExclude']) && is_array($settings['instructorExclude'])) {
         $excluded_slugs = array_values(array_filter(array_map('sanitize_title', $settings['instructorExclude'])));
         if (!empty($excluded_slugs)) {
@@ -635,6 +641,52 @@ function kursagenten_term_has_published_courses_for_location(int $category_term_
     ]);
 
     return $query->have_posts();
+}
+
+/**
+ * Check if a location term has published courses or coursedates.
+ * Mirrors [kurssteder] shortcode filtering.
+ */
+function kursagenten_location_term_has_associated_content(int $location_term_id): bool {
+    $course_query = new WP_Query([
+        'post_type' => 'ka_course',
+        'post_status' => 'publish',
+        'posts_per_page' => 1,
+        'fields' => 'ids',
+        'tax_query' => [
+            [
+                'taxonomy' => 'ka_course_location',
+                'field' => 'term_id',
+                'terms' => [$location_term_id],
+            ],
+        ],
+        'no_found_rows' => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+    ]);
+
+    if ($course_query->have_posts()) {
+        return true;
+    }
+
+    $coursedate_ids = get_posts([
+        'post_type' => 'ka_coursedate',
+        'post_status' => 'publish',
+        'posts_per_page' => 1,
+        'fields' => 'ids',
+        'no_found_rows' => true,
+        'update_post_meta_cache' => false,
+        'update_post_term_cache' => false,
+        'meta_query' => [
+            [
+                'key' => 'ka_location_id',
+                'value' => $location_term_id,
+                'compare' => '=',
+            ],
+        ],
+    ]);
+
+    return !empty($coursedate_ids);
 }
 
 /**
