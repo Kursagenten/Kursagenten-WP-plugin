@@ -732,9 +732,14 @@ class Designmaler {
                                         <label class="option-label">Farger:</label>
                                         <div class="option-input">
                                             <div style="display: flex; flex-wrap: wrap; gap: 1em; align-items: center;">
-                                                <div>
-                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;">Velg font-farge:</label>
+                                                <?php
+                                                $show_single_hero_font_color = in_array($single_hero_bg_mode, ['image_bgcolor', 'bgcolor_only'], true);
+                                                $show_single_hero_font_override_note = ($single_hero_bg_mode === 'image_bgcolor');
+                                                ?>
+                                                <div id="hero-single-font-color-setting" style="<?php echo $show_single_hero_font_color ? '' : 'display: none;'; ?>">
+                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;">Velg font-farge (valgfritt):</label>
                                                     <input type="text" name="kursagenten_single_hero_header_font_color" value="<?php echo esc_attr($single_hero_font_color); ?>" class="ka-color-picker" data-default-color="">
+                                                    <p class="description" id="hero-single-font-color-override-note" style="margin: 4px 0 0;<?php echo $show_single_hero_font_override_note ? '' : ' display: none;'; ?>">Overstyrer tekstfargen fra overlay-valget over.</p>
                                                 </div>
                                                 <div id="hero-single-bg-color-setting" style="<?php echo in_array($single_hero_bg_mode, ['image_bgcolor', 'bgcolor_only']) ? '' : 'display: none;'; ?>">
                                                     <label style="display: block; margin-bottom: 4px; font-size: 0.9em;">Velg bakgrunnsfarge:</label>
@@ -891,9 +896,14 @@ class Designmaler {
                                         <label class="option-label">Farger:</label>
                                         <div class="option-input">
                                             <div style="display: flex; flex-wrap: wrap; gap: 1em; align-items: center;">
-                                                <div>
-                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;">Velg font-farge:</label>
+                                                <?php
+                                                $show_taxonomy_hero_font_color = in_array($taxonomy_hero_bg_mode, ['image_bgcolor', 'bgcolor_only'], true);
+                                                $show_taxonomy_hero_font_override_note = ($taxonomy_hero_bg_mode === 'image_bgcolor');
+                                                ?>
+                                                <div id="hero-taxonomy-font-color-setting" style="<?php echo $show_taxonomy_hero_font_color ? '' : 'display: none;'; ?>">
+                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;">Velg font-farge (valgfritt):</label>
                                                     <input type="text" name="kursagenten_taxonomy_hero_header_font_color" value="<?php echo esc_attr($taxonomy_hero_font_color); ?>" class="ka-color-picker" data-default-color="">
+                                                    <p class="description" id="hero-taxonomy-font-color-override-note" style="margin: 4px 0 0;<?php echo $show_taxonomy_hero_font_override_note ? '' : ' display: none;'; ?>">Overstyrer tekstfargen fra overlay-valget over.</p>
                                                 </div>
                                                 <div id="hero-taxonomy-bg-color-setting" style="<?php echo in_array($taxonomy_hero_bg_mode, ['image_bgcolor', 'bgcolor_only']) ? '' : 'display: none;'; ?>">
                                                     <label style="display: block; margin-bottom: 4px; font-size: 0.9em;">Velg bakgrunnsfarge:</label>
@@ -2906,7 +2916,11 @@ class Designmaler {
                 function updateHeroSingleColorVisibility() {
                     var bgMode = $("input[name='kursagenten_single_hero_header_bg_mode']:checked").val();
                     var showBgColor = (bgMode === 'image_bgcolor' || bgMode === 'bgcolor_only');
+                    var showFontColor = (bgMode === 'image_bgcolor' || bgMode === 'bgcolor_only');
+                    var showFontOverrideNote = (bgMode === 'image_bgcolor');
                     $("#hero-single-bg-color-setting").toggle(showBgColor);
+                    $("#hero-single-font-color-setting").toggle(showFontColor);
+                    $("#hero-single-font-color-override-note").toggle(showFontOverrideNote);
                 }
                 function updateHeroTaxonomyOverlayVisibility() {
                     var bgMode = $("input[name='kursagenten_taxonomy_hero_header_bg_mode']:checked").val();
@@ -2916,7 +2930,11 @@ class Designmaler {
                 function updateHeroTaxonomyColorVisibility() {
                     var bgMode = $("input[name='kursagenten_taxonomy_hero_header_bg_mode']:checked").val();
                     var showBgColor = (bgMode === 'image_bgcolor' || bgMode === 'bgcolor_only');
+                    var showFontColor = (bgMode === 'image_bgcolor' || bgMode === 'bgcolor_only');
+                    var showFontOverrideNote = (bgMode === 'image_bgcolor');
                     $("#hero-taxonomy-bg-color-setting").toggle(showBgColor);
+                    $("#hero-taxonomy-font-color-setting").toggle(showFontColor);
+                    $("#hero-taxonomy-font-color-override-note").toggle(showFontOverrideNote);
                 }
                 $("select[name='kursagenten_single_design']").on("change", updateHeroSingleRowVisibility);
                 $("select[name='kursagenten_taxonomy_design']").on("change", updateHeroTaxonomyRowVisibility);

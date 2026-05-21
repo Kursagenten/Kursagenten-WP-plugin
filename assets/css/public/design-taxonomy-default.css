@@ -27,6 +27,11 @@
     margin-left: -45px;/* --Page back link */
 }
 
+/* Hero layouts control their own title/overlay colors via hero-overlay-* classes */
+#ka .taxonomy-hero-header .taxonomy-header-content h1 {
+    color: inherit;
+}
+
 #ka .taxonomy-description {
     font-size: var(--ka-font-md);
     line-height: 1.6;

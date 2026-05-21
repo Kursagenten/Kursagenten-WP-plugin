@@ -41,9 +41,9 @@
     row-gap: var(--ka-space-sm);
     margin-bottom: 5vh;
 }
-#ka .taxonomy-header-content h1 {
+#ka .taxonomy-hero-header .taxonomy-header-content h1 {
     font-size: var(--ka-font-xxxxl);
-    color: white;
+    color: #fff;
 }
 #ka .page-back-link {
     background: #ffffff1f;
@@ -64,10 +64,8 @@
 #ka .taxonomy-hero-header.no-hero-image .overlay {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.08));
 }
-#ka .taxonomy-hero-header.no-hero-image .header-content *,
-#ka .taxonomy-hero-header.no-hero-image .taxonomy-description {
-    color: #222;
-}
+
+/* Text colors for no-hero-image are set in Kursagenten custom CSS (overlay/bg mode) */
 
 /* Beskrivelse under hero (maks bredde) */
 #ka .taxonomy-hero-description-wrapper {

@@ -273,10 +273,17 @@ class Kursagenten_CSS_Output {
         $single_hero_font_color = get_option('kursagenten_single_hero_header_font_color', '');
         $single_hero_bg_color = get_option('kursagenten_single_hero_header_bg_color', '');
 
+        if (!in_array($single_hero_overlay, ['light', 'dark'], true)) {
+            $single_hero_overlay = 'dark';
+        }
         if ($single_hero_overlay === 'light') {
-            $css .= '#ka .course-container .ka-header.hero-overlay-light .overlay { ';
-            $css .= 'background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.9)); } ';
-            $css .= '#ka .course-container .ka-header.hero-overlay-light .header-content * { color: #222 !important; } ';
+            $css .= '#ka .course-container .ka-header.hero-overlay-light:not(.no-hero-image) .overlay { ';
+            $css .= 'background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.9)) !important; } ';
+            $css .= '#ka .course-container .ka-header.hero-overlay-light:not(.no-hero-image) .header-content * { color: #222 !important; } ';
+        } else {
+            $css .= '#ka .course-container .ka-header.hero-overlay-dark:not(.no-hero-image) .overlay { ';
+            $css .= 'background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)) !important; } ';
+            $css .= '#ka .course-container .ka-header.hero-overlay-dark:not(.no-hero-image) .header-content * { color: #fff !important; } ';
         }
         if (!empty($single_hero_font_color)) {
             $css .= '#ka .course-container .ka-header.hero-overlay-light .header-content *, ';
@@ -291,16 +298,38 @@ class Kursagenten_CSS_Output {
             $css .= '#ka .course-container .ka-header.no-hero-image .overlay { display: none !important; } ';
         }
 
+        $single_hero_bg_mode = get_option('kursagenten_single_hero_header_bg_mode', 'image_placeholder');
+        if (empty($single_hero_font_color) && $single_hero_bg_mode === 'image_bgcolor') {
+            if ($single_hero_overlay === 'light') {
+                $css .= '#ka .course-container .ka-header.no-hero-image.hero-overlay-light .header-content * { color: #222 !important; } ';
+            } else {
+                $css .= '#ka .course-container .ka-header.no-hero-image.hero-overlay-dark .header-content * { color: #fff !important; } ';
+            }
+        } elseif (empty($single_hero_font_color) && $single_hero_bg_mode === 'bgcolor_only') {
+            $css .= '#ka .course-container .ka-header.no-hero-image .header-content * { color: #222 !important; } ';
+        }
+
         // Hero header overrides – Taksonomisider
         $taxonomy_hero_overlay = get_option('kursagenten_taxonomy_hero_header_overlay', 'dark');
+        if (!in_array($taxonomy_hero_overlay, ['light', 'dark'], true)) {
+            $taxonomy_hero_overlay = 'dark';
+        }
         $taxonomy_hero_font_color = get_option('kursagenten_taxonomy_hero_header_font_color', '');
         $taxonomy_hero_bg_color = get_option('kursagenten_taxonomy_hero_header_bg_color', '');
 
         if ($taxonomy_hero_overlay === 'light') {
-            $css .= '#ka .taxonomy-hero-header.hero-overlay-light .overlay { ';
-            $css .= 'background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.9)); } ';
-            $css .= '#ka .taxonomy-hero-header.hero-overlay-light .header-content *, ';
-            $css .= '#ka .taxonomy-hero-header.hero-overlay-light .taxonomy-description { color: #222 !important; } ';
+            $css .= '#ka .taxonomy-hero-header.hero-overlay-light:not(.no-hero-image) .overlay { ';
+            $css .= 'background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.9)) !important; } ';
+            $css .= '#ka .taxonomy-hero-header.hero-overlay-light:not(.no-hero-image) .header-content *, ';
+            $css .= '#ka .taxonomy-hero-header.hero-overlay-light:not(.no-hero-image) .taxonomy-description, ';
+            $css .= '#ka .taxonomy-hero-header.hero-overlay-light:not(.no-hero-image) .taxonomy-header-content h1 { color: #222 !important; } ';
+        } else {
+            $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) .overlay { ';
+            $css .= 'background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)) !important; } ';
+            $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) .header-content *, ';
+            $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) .taxonomy-description, ';
+            $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) .taxonomy-header-content h1, ';
+            $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) .taxonomy-read-more-link { color: #fff !important; } ';
         }
         if (!empty($taxonomy_hero_font_color)) {
             $css .= '#ka .taxonomy-hero-header .header-content *, ';
@@ -312,6 +341,26 @@ class Kursagenten_CSS_Output {
             $css .= '#ka .taxonomy-hero-header.no-hero-image .ka-content-container { ';
             $css .= 'background-color: ' . esc_attr($taxonomy_hero_bg_color) . ' !important; background-image: none !important; } ';
             $css .= '#ka  .taxonomy-hero-header.no-hero-image .overlay { display: none !important; } ';
+        }
+
+        // No taxonomy image: use overlay preset or bgcolor-only defaults unless font color is set
+        $taxonomy_hero_bg_mode = get_option('kursagenten_taxonomy_hero_header_bg_mode', 'image_placeholder');
+        if (empty($taxonomy_hero_font_color) && $taxonomy_hero_bg_mode === 'image_bgcolor') {
+            if ($taxonomy_hero_overlay === 'light') {
+                $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-light .header-content *, ';
+                $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-light .taxonomy-description, ';
+                $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-light .taxonomy-header-content h1, ';
+                $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-light .taxonomy-read-more-link { color: #222 !important; } ';
+            } else {
+                $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-dark .header-content *, ';
+                $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-dark .taxonomy-description, ';
+                $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-dark .taxonomy-header-content h1, ';
+                $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-dark .taxonomy-read-more-link { color: #fff !important; } ';
+            }
+        } elseif (empty($taxonomy_hero_font_color) && $taxonomy_hero_bg_mode === 'bgcolor_only') {
+            $css .= '#ka .taxonomy-hero-header.no-hero-image .header-content *, ';
+            $css .= '#ka .taxonomy-hero-header.no-hero-image .taxonomy-description, ';
+            $css .= '#ka .taxonomy-hero-header.no-hero-image .taxonomy-header-content h1 { color: #222 !important; } ';
         }
 
         // Output CSS
