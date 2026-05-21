@@ -66,16 +66,23 @@ function get_selected_coursedate_data($related_coursedate) {
             $selected_coursedate = $selected_full_coursedate;
         }
         // Hvis ingen gyldig dato er funnet, velg den første tilgjengelige coursedate
-        else if (!$selected_coursedate && !empty($related_coursedate)) {
+        elseif (!$selected_coursedate && !empty($related_coursedate)) {
             $selected_coursedate = reset($related_coursedate);
         }
 
         if ($selected_coursedate) {
+            $selected_first_date_raw = get_post_meta($selected_coursedate, 'ka_course_first_date', true);
+            $selected_last_date_raw = get_post_meta($selected_coursedate, 'ka_course_last_date', true);
+            $selected_registration_deadline_raw = get_post_meta($selected_coursedate, 'ka_course_registration_deadline', true);
+            $selected_is_full = get_post_meta($selected_coursedate, 'ka_course_isFull', true) || get_post_meta($selected_coursedate, 'ka_course_markedAsFull', true);
             $return_data = [
                 'id' => $selected_coursedate,
                 'title' => get_the_title($selected_coursedate),
-                'first_date' => ka_format_date(get_post_meta($selected_coursedate, 'ka_course_first_date', true)),
-                'last_date' => ka_format_date(get_post_meta($selected_coursedate, 'ka_course_last_date', true)),
+                'first_date' => ka_format_date($selected_first_date_raw),
+                'first_date_raw' => $selected_first_date_raw,
+                'last_date' => ka_format_date($selected_last_date_raw),
+                'last_date_raw' => $selected_last_date_raw,
+                'registration_deadline' => ka_format_date($selected_registration_deadline_raw),
                 'price' => get_post_meta($selected_coursedate, 'ka_course_price', true),
                 'after_price' => get_post_meta($selected_coursedate, 'ka_course_text_after_price', true),
                 'duration' => get_post_meta($selected_coursedate, 'ka_course_duration', true),
@@ -84,7 +91,7 @@ function get_selected_coursedate_data($related_coursedate) {
                 'button_text' => get_post_meta($selected_coursedate, 'ka_course_button_text', true),
                 'signup_url' => get_post_meta($selected_coursedate, 'ka_course_signup_url', true),
                 'coursedatemissing' => $coursedatemissing,
-                'is_full' => get_post_meta($selected_coursedate, 'ka_course_isFull', true) || get_post_meta($selected_coursedate, 'ka_course_markedAsFull', true),
+                'is_full' => $selected_is_full,
                 'show_registration' => get_post_meta($selected_coursedate, 'ka_course_showRegistrationForm', true),
                 'location' => get_post_meta($selected_coursedate, 'ka_course_location', true),
                 'location_freetext' => get_post_meta($selected_coursedate, 'ka_course_location_freetext', true),

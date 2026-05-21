@@ -160,6 +160,9 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     // Hent data fra første tilgjengelige kursdato
     $first_course_date = $selected_coursedate_data['first_date'] ?? '';
     $last_course_date = $selected_coursedate_data['last_date'] ?? '';
+    $first_course_date_raw = $selected_coursedate_data['first_date_raw'] ?? '';
+    $last_course_date_raw = $selected_coursedate_data['last_date_raw'] ?? '';
+    $registration_deadline = $selected_coursedate_data['registration_deadline'] ?? '';
     $price = $selected_coursedate_data['price'] ?? '';
     $after_price = $selected_coursedate_data['after_price'] ?? '';
     $duration = $selected_coursedate_data['duration'] ?? '';
@@ -173,8 +176,10 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     $course_id = get_the_ID();
 
     $course_title =             get_post_meta($course_id, 'ka_course_title', true);
-    $first_course_date =        ka_format_date(get_post_meta($course_id, 'ka_course_first_date', true));
-    $last_course_date =         ka_format_date(get_post_meta($course_id, 'ka_course_last_date', true));
+    $first_course_date_raw =    get_post_meta($course_id, 'ka_course_first_date', true);
+    $last_course_date_raw =     get_post_meta($course_id, 'ka_course_last_date', true);
+    $first_course_date =        ka_format_date($first_course_date_raw);
+    $last_course_date =         ka_format_date($last_course_date_raw);
     $registration_deadline =    ka_format_date(get_post_meta($course_id, 'ka_course_registration_deadline', true));
     $duration =                 get_post_meta($course_id, 'ka_course_duration', true);
     $coursetime =               get_post_meta($course_id, 'ka_course_time', true);
@@ -220,6 +225,7 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
 
 $course_count = $course_count ?? 0;
 $item_class = $course_count === 1 ? ' single-item' : '';
+$list_display = kursagenten_get_list_display_fields($args);
 
 $resolved_taxonomy = '';
 if (isset($args['taxonomy']) && is_string($args['taxonomy'])) {
@@ -340,9 +346,21 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                 </div>
                 
                 <!-- Location -->
-                <?php if (!empty($location)) : ?>
+                <?php if ($list_display['room'] && kursagenten_list_has_location_data($location, $location_freetext, $location_room)) : ?>
                 <div class="card-location">
-                    <strong class="notranslate" translate="no"><?php echo esc_html($location); ?></strong>
+                    <strong class="notranslate" translate="no">
+                        <?php if (!empty($location)) : ?>
+                            <?php echo esc_html($location); ?>
+                        <?php endif; ?>
+                        <?php if (!empty($location_freetext)) : ?>
+                            <?php if (!empty($location)) : ?> <?php endif; ?>
+                            (<span class="notranslate" translate="no"><?php echo esc_html($location_freetext); ?></span>)
+                        <?php endif; ?>
+                        <?php if (!empty($location_room)) : ?>
+                            <?php if (!empty($location) || !empty($location_freetext)) : ?> — <?php endif; ?>
+                            <?php echo esc_html($location_room); ?>
+                        <?php endif; ?>
+                    </strong>
                 </div>
                 <?php endif; ?>
                 
@@ -357,10 +375,19 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                 <div class="card-details">
                     <ul class="card-details-list">
                         <?php if ($view_type === 'main_courses' && !$force_standard_view) : ?>
-                            <?php if (!empty($first_course_date)) : ?>
+                            <?php
+                            $list_date_text = kursagenten_list_format_course_dates(
+                                $first_course_date,
+                                $last_course_date ?? '',
+                                !empty($list_display['last_date']),
+                                $first_course_date_raw ?? '',
+                                $last_course_date_raw ?? ''
+                            );
+                            ?>
+                            <?php if ($list_date_text !== '') : ?>
                             <li>
                                 <i class="ka-icon icon-calendar"></i>
-                                <span class="ka-main-color">Neste kurs: </span><?php echo esc_html($first_course_date); ?>
+                                <span class="ka-main-color">Neste kurs: </span><?php echo esc_html($list_date_text); ?>
                                 <?php if (count($related_coursedate_ids) > 1) : ?>
                                     <a href="#" class="show-ka-modal" data-course-id="<?php echo esc_attr($course_id); ?>" style="margin-left: 8px; font-size: 0.9em;">
                                         (+<?php echo count($related_coursedate_ids) - 1; ?> flere)
@@ -368,23 +395,38 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                 <?php endif; ?>
                             </li>
                             <?php endif; ?>
-                            <?php if (!empty($coursetime)) : ?>
+                            <?php if ($list_display['registration_deadline'] && !empty($registration_deadline)) : ?>
+                            <li><i class="ka-icon icon-alarmclock"></i><?php echo esc_html($registration_deadline); ?></li>
+                            <?php endif; ?>
+                            <?php if ($list_display['time'] && !empty($coursetime)) : ?>
                             <li>
                                 <i class="ka-icon icon-time"></i>
                                 <?php echo esc_html($coursetime); ?>
                             </li>
                             <?php endif; ?>
-                            <?php if (!empty($instructor_links)) : ?>
+                            <?php if ($list_display['instructor'] && !empty($instructor_links)) : ?>
                             <li><i class="ka-icon icon-user"></i><?php echo implode('', $instructor_links); ?></li>
                             <?php endif; ?>
                         <?php else : ?>
-                            <?php if (!empty($first_course_date)) : ?>
-                            <li><i class="ka-icon icon-calendar"></i><?php echo esc_html($first_course_date); ?></li>
+                            <?php
+                            $list_date_text = kursagenten_list_format_course_dates(
+                                $first_course_date,
+                                $last_course_date ?? '',
+                                !empty($list_display['last_date']),
+                                $first_course_date_raw ?? '',
+                                $last_course_date_raw ?? ''
+                            );
+                            ?>
+                            <?php if ($list_date_text !== '') : ?>
+                            <li><i class="ka-icon icon-calendar"></i><?php echo esc_html($list_date_text); ?></li>
                             <?php endif; ?>
-                            <?php if (!empty($coursetime)) : ?>
+                            <?php if ($list_display['registration_deadline'] && !empty($registration_deadline)) : ?>
+                            <li><i class="ka-icon icon-alarmclock"></i><?php echo esc_html($registration_deadline); ?></li>
+                            <?php endif; ?>
+                            <?php if ($list_display['time'] && !empty($coursetime)) : ?>
                             <li><i class="ka-icon icon-time"></i><?php echo esc_html($coursetime); ?></li>
                             <?php endif; ?>
-                            <?php if (!empty($instructor_links)) : ?>
+                            <?php if ($list_display['instructor'] && !empty($instructor_links)) : ?>
                             <li><i class="ka-icon icon-user"></i><?php echo implode(', ', $instructor_links); ?></li>
                             <?php endif; ?>
                         <?php endif; ?>
@@ -398,7 +440,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                 <!-- Footer area -->
                 <div class="card-footer">
                     <?php if ($view_type === 'main_courses' && !$force_standard_view) : ?>
-                        <?php if (!empty($price)) : ?>
+                        <?php if ($list_display['price'] && !empty($price)) : ?>
                         <div class="card-price">
                             <strong><?php echo esc_html($price); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></strong>
                         </div>
@@ -414,7 +456,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                             </button>
                         <?php endif; ?>
                     <?php else : ?>
-                        <?php if (!empty($price)) : ?>
+                        <?php if ($list_display['price'] && !empty($price)) : ?>
                         <div class="card-price">
                             <strong><?php echo esc_html($price); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></strong>
                         </div>

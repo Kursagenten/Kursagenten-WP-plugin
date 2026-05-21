@@ -443,6 +443,302 @@ function get_hero_header_settings($context = 'single') {
 }
 
 /**
+ * Default visible list fields per list design.
+ *
+ * @param string $list_type List type slug.
+ * @return string[] Field keys.
+ */
+function kursagenten_get_default_list_display_fields_for_list_type($list_type = '') {
+    $list_type = is_string($list_type) ? sanitize_text_field($list_type) : '';
+
+    switch ($list_type) {
+        case 'compact':
+            return [];
+        case 'simple-cards':
+            return ['duration'];
+        case 'standard':
+        case 'grid':
+        case 'plain':
+            return ['time', 'duration', 'price', 'room', 'last_date'];
+        default:
+            // Legacy fallback for other list types (e.g. date-and-title).
+            return ['time', 'duration', 'price', 'room', 'instructor'];
+    }
+}
+
+/**
+ * Read enabled list display fields from options.
+ *
+ * The option is stored as a comma-separated string (e.g. "time,room").
+ * If the option has never been saved, list-type-specific defaults are returned.
+ *
+ * @param string $context_base 'archive' or 'taxonomy'.
+ * @param string $list_type    Current list type (optional).
+ * @return string[] Enabled field keys.
+ */
+function kursagenten_get_list_display_fields_enabled_list($context_base = 'archive', $list_type = '') {
+    $field_keys = ['time', 'duration', 'price', 'room', 'instructor', 'last_date', 'registration_deadline'];
+    $context_base = ($context_base === 'taxonomy') ? 'taxonomy' : 'archive';
+    $option_key = 'kursagenten_' . $context_base . '_list_display_fields';
+    $list_type = is_string($list_type) ? sanitize_text_field($list_type) : '';
+
+    if ($list_type === '') {
+        $list_type_option_key = 'kursagenten_' . $context_base . '_list_type';
+        $saved_list_type = get_option($list_type_option_key, 'standard');
+        if (is_string($saved_list_type) && $saved_list_type !== '') {
+            $list_type = $saved_list_type;
+        } else {
+            $list_type = 'standard';
+        }
+    }
+
+    $default_fields = kursagenten_get_default_list_display_fields_for_list_type($list_type);
+    $default_fields = array_values(array_intersect($default_fields, $field_keys));
+
+    // Sentinel default makes it possible to distinguish "never saved" from "saved as empty".
+    $sentinel = '__ka_unset__';
+    $saved = get_option($option_key, $sentinel);
+
+    if ($saved === $sentinel) {
+        return $default_fields;
+    }
+
+    if (is_array($saved)) {
+        $saved = implode(',', $saved);
+    }
+
+    if (!is_string($saved)) {
+        return $default_fields;
+    }
+
+    $parts = array_filter(array_map('trim', explode(',', $saved)));
+    return array_values(array_intersect($parts, $field_keys));
+}
+
+/**
+ * Whether a list item has any location/room data to show.
+ */
+function kursagenten_list_has_location_data($location, $location_freetext = '', $location_room = '') {
+    return !empty($location) || !empty($location_freetext) || !empty($location_room);
+}
+
+/**
+ * Get effective WordPress date format with safe fallback.
+ *
+ * @return string
+ */
+function kursagenten_get_wp_date_format() {
+    $format = get_option('date_format');
+    return is_string($format) && $format !== '' ? $format : 'd.m.Y';
+}
+
+/**
+ * Parse a date string already formatted for display.
+ *
+ * @param string $formatted_date Display date from ka_format_date().
+ * @return DateTime|null
+ */
+function kursagenten_parse_formatted_display_date($formatted_date) {
+    if ($formatted_date === '' || $formatted_date === null) {
+        return null;
+    }
+
+    $formatted_date = trim((string) $formatted_date);
+    $wp_format = kursagenten_get_wp_date_format();
+
+    if ($wp_format) {
+        $dt = DateTime::createFromFormat($wp_format, $formatted_date);
+        if ($dt instanceof DateTime) {
+            return $dt;
+        }
+    }
+
+    foreach (['d.m.Y', 'j.n.Y', 'Y-m-d'] as $fallback_format) {
+        $dt = DateTime::createFromFormat($fallback_format, $formatted_date);
+        if ($dt instanceof DateTime) {
+            return $dt;
+        }
+    }
+
+    $timestamp = strtotime($formatted_date);
+    if ($timestamp !== false) {
+        $dt = new DateTime();
+        $dt->setTimestamp($timestamp);
+        return $dt;
+    }
+
+    return null;
+}
+
+/**
+ * Date format without year (derived from Settings → General → Date format).
+ *
+ * @return string PHP date format, e.g. "d.m" for "d.m.Y".
+ */
+function kursagenten_get_date_format_without_year() {
+    $format = kursagenten_get_wp_date_format();
+    $short = preg_replace('/[Yy]+/', '', $format);
+    $short = preg_replace('/[.,\s\-\/]+$/u', '', $short);
+    $short = preg_replace('/^[.,\s\-\/]+/u', '', $short);
+    $short = trim($short);
+
+    return $short !== '' ? $short : 'd.m';
+}
+
+/**
+ * Parse raw course datetime value from post meta.
+ *
+ * @param string $raw_date Raw date value from ka_course_*_date meta.
+ * @return DateTime|null
+ */
+function kursagenten_parse_raw_course_date($raw_date) {
+    if ($raw_date === '' || $raw_date === null) {
+        return null;
+    }
+
+    $raw_date = trim((string) $raw_date);
+    foreach (['Y-m-d H:i:s', 'Y-m-d', DATE_ATOM] as $format) {
+        $dt = DateTime::createFromFormat($format, $raw_date);
+        if ($dt instanceof DateTime) {
+            return $dt;
+        }
+    }
+
+    try {
+        return new DateTime($raw_date);
+    } catch (Exception $e) {
+        return null;
+    }
+}
+
+/**
+ * Format start date with optional end date in the same string.
+ * Uses en dash (–) with no surrounding spaces.
+ * Same day: "07.08.2026"
+ * Same month+year: "12.–15.12.2026"
+ * Same year, different month: "12.11–15.12.2026"
+ *
+ * @param string $first_course_date Formatted first date.
+ * @param string $last_course_date  Formatted last date.
+ * @param bool   $show_last         Whether last date may be appended.
+ * @param string $first_course_date_raw Raw first date from post meta (optional).
+ * @param string $last_course_date_raw  Raw last date from post meta (optional).
+ * @return string Empty when no first date.
+ */
+function kursagenten_list_format_course_dates($first_course_date, $last_course_date, $show_last, $first_course_date_raw = '', $last_course_date_raw = '') {
+    if ($first_course_date === '' || $first_course_date === null) {
+        return '';
+    }
+
+    $first = (string) $first_course_date;
+
+    if (!$show_last || $last_course_date === '' || $last_course_date === null) {
+        return $first;
+    }
+
+    $last = (string) $last_course_date;
+    $full_format = kursagenten_get_wp_date_format();
+    $without_year_format = kursagenten_get_date_format_without_year();
+    $dash = '–';
+
+    $first_dt = kursagenten_parse_raw_course_date($first_course_date_raw);
+    $last_dt = kursagenten_parse_raw_course_date($last_course_date_raw);
+    if (!$first_dt || !$last_dt) {
+        // Fallback for legacy callers that only pass formatted date strings.
+        $first_dt = kursagenten_parse_formatted_display_date($first);
+        $last_dt = kursagenten_parse_formatted_display_date($last);
+    }
+
+    if ($first_dt && $last_dt) {
+        $same_year = $first_dt->format('Y') === $last_dt->format('Y');
+        if ($same_year && $first_dt->format('Y-m-d') === $last_dt->format('Y-m-d')) {
+            return wp_date($full_format, $first_dt->getTimestamp());
+        }
+
+        if ($same_year) {
+            if ($first_dt->format('m') === $last_dt->format('m')) {
+                return wp_date('j.', $first_dt->getTimestamp())
+                    . $dash
+                    . wp_date($full_format, $last_dt->getTimestamp());
+            }
+
+            return wp_date($without_year_format, $first_dt->getTimestamp())
+                . $dash
+                . wp_date($full_format, $last_dt->getTimestamp());
+        }
+
+        return $first . ' ' . $dash . ' ' . $last;
+    }
+
+    return $first . $dash . $last;
+}
+
+/**
+ * Resolve which optional list item fields should be visible.
+ *
+ * @param array $args Arguments passed to list-type templates.
+ * @return array<string, bool> Keys: time, duration, price, room, instructor, last_date, registration_deadline.
+ */
+function kursagenten_get_list_display_fields($args = []) {
+    $field_keys = ['time', 'duration', 'price', 'room', 'instructor', 'last_date', 'registration_deadline'];
+
+    $is_taxonomy_flag = !empty($args['is_taxonomy_page']);
+    $resolved_taxonomy = '';
+    if (!empty($args['taxonomy']) && is_string($args['taxonomy'])) {
+        $resolved_taxonomy = sanitize_text_field($args['taxonomy']);
+    } elseif ($is_taxonomy_flag) {
+        $queried_object = get_queried_object();
+        if (is_object($queried_object) && isset($queried_object->taxonomy) && is_string($queried_object->taxonomy)) {
+            $resolved_taxonomy = $queried_object->taxonomy;
+        }
+    }
+
+    $is_taxonomy_context = $is_taxonomy_flag
+        || in_array($resolved_taxonomy, ['ka_coursecategory', 'ka_course_location', 'ka_instructors'], true);
+    $context_base = $is_taxonomy_context ? 'taxonomy' : 'archive';
+    $resolved_list_type = '';
+    if (!empty($args['list_type']) && is_string($args['list_type'])) {
+        $resolved_list_type = sanitize_text_field($args['list_type']);
+    }
+    $enabled = kursagenten_get_list_display_fields_enabled_list($context_base, $resolved_list_type);
+
+    $result = [];
+    foreach ($field_keys as $field_key) {
+        $result[$field_key] = in_array($field_key, $enabled, true);
+    }
+
+    return $result;
+}
+
+/**
+ * Build HTML links for instructors assigned to a course or coursedate post.
+ *
+ * @param int $post_id Post ID (ka_course or ka_coursedate).
+ * @return string[] List of sanitized HTML anchor elements.
+ */
+function kursagenten_get_course_instructor_links($post_id) {
+    $post_id = (int) $post_id;
+    if ($post_id <= 0) {
+        return [];
+    }
+
+    $instructors = get_the_terms($post_id, 'ka_instructors');
+    if (empty($instructors) || is_wp_error($instructors)) {
+        return [];
+    }
+
+    return array_map(function ($term) {
+        $instructor_url = get_instructor_display_url($term, 'ka_instructors');
+        $display_name = function_exists('get_instructor_display_name')
+            ? get_instructor_display_name($term)
+            : $term->name;
+
+        return '<a href="' . esc_url($instructor_url) . '"><span class="notranslate" translate="no">'
+            . esc_html($display_name) . '</span></a>';
+    }, $instructors);
+}
+
+/**
  * Henter layout-innstilling og returnerer riktig CSS-klasse
  * 
  * @param string $context Kontekst (single, archive, taxonomy)

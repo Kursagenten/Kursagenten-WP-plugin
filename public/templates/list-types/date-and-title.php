@@ -164,6 +164,9 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     
     // Hent data fra første tilgjengelige kursdato
     $first_course_date = $selected_coursedate_data['first_date'] ?? '';
+    $last_course_date = $selected_coursedate_data['last_date'] ?? '';
+    $first_course_date_raw = $selected_coursedate_data['first_date_raw'] ?? '';
+    $last_course_date_raw = $selected_coursedate_data['last_date_raw'] ?? '';
     $price = $selected_coursedate_data['price'] ?? '';
     $after_price = $selected_coursedate_data['after_price'] ?? '';
     $signup_url = $selected_coursedate_data['signup_url'] ?? '';
@@ -175,7 +178,10 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     $course_id = get_the_ID();
 
     $course_title = get_post_meta($course_id, 'ka_course_title', true);
-    $first_course_date = ka_format_date(get_post_meta($course_id, 'ka_course_first_date', true));
+    $first_course_date_raw = get_post_meta($course_id, 'ka_course_first_date', true);
+    $last_course_date_raw = get_post_meta($course_id, 'ka_course_last_date', true);
+    $first_course_date = ka_format_date($first_course_date_raw);
+    $last_course_date = ka_format_date($last_course_date_raw);
     $price = get_post_meta($course_id, 'ka_course_price', true);
     $after_price = get_post_meta($course_id, 'ka_course_text_after_price', true);
     $location = get_post_meta($course_id, 'ka_course_location', true);
@@ -204,6 +210,7 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
 
 $course_count = $course_count ?? 0;
 $item_class = $course_count === 1 ? ' single-item' : '';
+$list_display = kursagenten_get_list_display_fields($args);
 
 // Sjekk om bilder skal vises
 // Prioritet: shortcode attributt > taksonomi-spesifikk innstilling > global innstilling
@@ -258,13 +265,23 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                 <span class="course-available"></span>
                         <?php endif; ?>
 
-                        <?php if (!empty($first_course_date)) : ?>
+                        <?php
+                        $list_date_text = kursagenten_list_format_course_dates(
+                            $first_course_date,
+                            $last_course_date ?? '',
+                            !empty($list_display['last_date']),
+                            $first_course_date_raw ?? '',
+                            $last_course_date_raw ?? ''
+                        );
+                        ?>
+                        <?php if ($list_date_text !== '') : ?>
                             <span class="compact-course-date">
+                                <i class="ka-icon icon-calendar"></i>
                                 <span>
                                     <?php if ($view_type === 'main_courses' && !$force_standard_view) : ?>
                                         <strong>Neste kurs: </strong>
                                     <?php endif; ?>
-                                    <?php echo esc_html($first_course_date); ?>
+                                    <?php echo esc_html($list_date_text); ?>
                                     <?php if ($view_type === 'main_courses' && !$force_standard_view && count($related_coursedate_ids) > 1) : ?>
                                         <a href="#" class="show-ka-modal" data-course-id="<?php echo esc_attr($course_id); ?>" style="margin-left: 8px; font-size: 0.9em;">
                                             (+<?php echo count($related_coursedate_ids) - 1; ?> flere)

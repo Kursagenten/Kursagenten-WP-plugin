@@ -1074,7 +1074,17 @@ function kursagenten_course_list_shortcode($atts) {
                                         </div>
                                     </div>
 
-                                    <div class="courselist-items" id="filter-results" data-list-type="<?php echo esc_attr($list_type); ?>" data-buttons-display="<?php echo esc_attr($buttons_display); ?>">
+                                    <?php
+                                    $taxonomy_context = '';
+                                    if (is_tax(['ka_coursecategory', 'ka_course_location', 'ka_instructors'])) {
+                                        $queried_object = get_queried_object();
+                                        if ($queried_object instanceof WP_Term && is_string($queried_object->taxonomy)) {
+                                            $taxonomy_context = $queried_object->taxonomy;
+                                        }
+                                    }
+                                    $is_taxonomy_context = ($taxonomy_context !== '');
+                                    ?>
+                                    <div class="courselist-items" id="filter-results" data-list-type="<?php echo esc_attr($list_type); ?>" data-buttons-display="<?php echo esc_attr($buttons_display); ?>"<?php echo $is_taxonomy_context ? ' data-is-taxonomy-page="1"' : ''; ?><?php echo $is_taxonomy_context ? ' data-taxonomy="' . esc_attr($taxonomy_context) . '"' : ''; ?>>
                                         <?php
                                         $args = [
                                             'course_count' => $query->found_posts,
@@ -1082,10 +1092,13 @@ function kursagenten_course_list_shortcode($atts) {
                                             'force_standard_view' => $atts['force_standard_view'] === 'true',
                                             'list_type' => $list_type,
                                             'view_type' => 'all_coursedates',
-                                            'is_taxonomy_page' => false,
+                                            'is_taxonomy_page' => $is_taxonomy_context,
                                             'shortcode_show_images' => $atts['bilder'],
                                             'buttons_display' => $buttons_display
                                         ];
+                                        if ($is_taxonomy_context) {
+                                            $args['taxonomy'] = $taxonomy_context;
+                                        }
 
                                         
 

@@ -385,6 +385,8 @@ class Designmaler {
                         </div>
                     </div>
 
+                    <?php $this->render_list_display_field_checkboxes('archive'); ?>
+
                     <!-- Ledige kurs -->
                     <div class="option-row">
                         <label class="option-label" for="kursagenten_default_available_only">Ledige kurs:</label>
@@ -943,6 +945,8 @@ class Designmaler {
                             </select>
                         </div>
                     </div>
+
+                    <?php $this->render_list_display_field_checkboxes('taxonomy'); ?>
 
                     <div class="option-row ka-taxonomy-plugin-design-only">
                         <label class="option-label">Knapper:</label>
@@ -1764,6 +1768,8 @@ class Designmaler {
             )
         );
 
+        $this->register_list_display_field_settings();
+
         // Registrer innstilling for link-bokser etter kurslisten på taksonomi-sider
         register_setting(
             'design_option_group',
@@ -2173,6 +2179,126 @@ class Designmaler {
         }
         // Otherwise return true (checkbox is checked)
         return true;
+    }
+
+    /**
+     * Register list item display field toggles (archive + taxonomy).
+     *
+     * Each context stores a single option as a comma-separated string of enabled field keys.
+     * Using a string (not array) avoids WordPress saving `null` when no checkbox is checked,
+     * which otherwise would make the renderer fall back to defaults.
+     */
+    private function register_list_display_field_settings() {
+        $allowed_fields = ['time', 'duration', 'price', 'room', 'instructor', 'last_date', 'registration_deadline'];
+
+        foreach (['archive', 'taxonomy'] as $context) {
+            register_setting(
+                'design_option_group',
+                "kursagenten_{$context}_list_display_fields",
+                array(
+                    'type' => 'string',
+                    'sanitize_callback' => function ($value) use ($allowed_fields) {
+                        if (is_array($value)) {
+                            $value = implode(',', $value);
+                        }
+
+                        if (!is_string($value)) {
+                            return '';
+                        }
+
+                        $parts = array_filter(array_map('trim', explode(',', $value)));
+                        $kept = array_values(array_intersect($parts, $allowed_fields));
+
+                        return implode(',', $kept);
+                    },
+                )
+            );
+        }
+    }
+
+    /**
+     * Render horizontal checkbox row for list item display fields.
+     *
+     * Implementation notes:
+     *  - One hidden input carries the canonical option name and an empty value, ensuring the
+     *    option is always saved (even when no checkbox is checked).
+     *  - Each checkbox shares the same name and uses a JavaScript-free approach: clicking a
+     *    checkbox appends its value to a comma-separated list via a small inline handler.
+     *  - The sanitize callback splits the string and keeps only allowed field keys.
+     *
+     * @param string $context 'archive' or 'taxonomy'.
+     */
+    private function render_list_display_field_checkboxes($context = 'archive') {
+        $fields = array(
+            'time' => 'Tid',
+            'duration' => 'Varighet',
+            'price' => 'Pris',
+            'room' => 'Rom/lokale',
+            'instructor' => 'Instruktør',
+            'last_date' => 'Sluttdato',
+            'registration_deadline' => 'Påmeldingsfrist',
+        );
+
+        $context_base = ($context === 'taxonomy') ? 'taxonomy' : 'archive';
+        $context_list_type_option = ($context_base === 'taxonomy')
+            ? 'kursagenten_taxonomy_list_type'
+            : 'kursagenten_archive_list_type';
+        $context_list_type_selector = ($context_base === 'taxonomy')
+            ? '#kursagenten_taxonomy_list_type'
+            : '#kursagenten_archive_list_type';
+        $context_list_type = get_option($context_list_type_option, 'standard');
+        if (!is_string($context_list_type) || $context_list_type === '') {
+            $context_list_type = 'standard';
+        }
+        $default_fields_by_list_type = [
+            'standard' => ['time', 'duration', 'price', 'room', 'last_date'],
+            'grid' => ['time', 'duration', 'price', 'room', 'last_date'],
+            'plain' => ['time', 'duration', 'price', 'room', 'last_date'],
+            'compact' => [],
+            'simple-cards' => ['duration'],
+        ];
+        $option_key = 'kursagenten_' . $context_base . '_list_display_fields';
+        $enabled_fields = function_exists('kursagenten_get_list_display_fields_enabled_list')
+            ? kursagenten_get_list_display_fields_enabled_list($context_base, $context_list_type)
+            : array_keys($fields);
+
+        $section_label = ($context === 'taxonomy')
+            ? 'Vis på listeelement (taksonomi):'
+            : 'Vis på listeelement:';
+
+        $input_id = 'ka_list_display_' . $context_base;
+        ?>
+        <div class="option-row">
+            <label class="option-label"><?php echo esc_html($section_label); ?></label>
+            <div class="option-input">
+                <input type="hidden"
+                       id="<?php echo esc_attr($input_id); ?>"
+                       name="<?php echo esc_attr($option_key); ?>"
+                       value="<?php echo esc_attr(implode(',', $enabled_fields)); ?>">
+                <div class="ka-list-display-fields"
+                     style="display: flex; flex-wrap: wrap; gap: 20px;"
+                     data-target="#<?php echo esc_attr($input_id); ?>"
+                     data-list-type-selector="<?php echo esc_attr($context_list_type_selector); ?>"
+                     data-defaults="<?php echo esc_attr(wp_json_encode($default_fields_by_list_type)); ?>">
+                    <?php foreach ($fields as $field_key => $field_label) : ?>
+                        <label class="checkbox-label ka-list-display-field">
+                            <input type="checkbox"
+                                   class="ka-list-display-checkbox"
+                                   value="<?php echo esc_attr($field_key); ?>"
+                                   <?php checked(in_array($field_key, $enabled_fields, true)); ?>>
+                            <?php echo esc_html($field_label); ?>
+                        </label>
+                    <?php endforeach; ?>
+                </div>
+                <p style="margin-top:8px;">
+                    <button type="button" class="button button-secondary button-small ka-reset-list-display-defaults">
+                        Bruk standardvalg for valgt listedesign
+                    </button>
+                </p>
+                <p class="description">Rom/lokale styrer sted (navn, fritekst og romnummer). Sluttdato legges etter startdato i samme datolinje (med bindestrek). Påmeldingsfrist vises før tid. Pris inkluderer eventuell ettertekst (f.eks. «kr»).</p>
+            </div>
+        </div>
+        <?php
     }
 
     /**
@@ -2951,6 +3077,60 @@ class Designmaler {
                 updateHeroSingleColorVisibility();
                 updateHeroTaxonomyOverlayVisibility();
                 updateHeroTaxonomyColorVisibility();
+
+                // Sync list display field checkboxes to their hidden input.
+                // Each .ka-list-display-fields container has data-target pointing to a hidden input.
+                // We rebuild the hidden value as a comma-separated list of checked values whenever
+                // a checkbox changes, and also right before form submit (belt-and-suspenders).
+                function kaSyncListDisplayFields($container) {
+                    var targetSelector = $container.data('target');
+                    if (!targetSelector) { return; }
+                    var $target = $(targetSelector);
+                    if (!$target.length) { return; }
+                    var values = [];
+                    $container.find('input.ka-list-display-checkbox:checked').each(function() {
+                        values.push($(this).val());
+                    });
+                    $target.val(values.join(','));
+                }
+                function kaApplyListDisplayDefaults($container) {
+                    if (!$container || !$container.length) { return; }
+                    var defaultsRaw = $container.attr('data-defaults');
+                    if (!defaultsRaw) { return; }
+                    var defaultsByType = {};
+                    try {
+                        defaultsByType = JSON.parse(defaultsRaw);
+                    } catch (e) {
+                        return;
+                    }
+                    var listTypeSelector = $container.data('list-type-selector');
+                    var listType = listTypeSelector ? ($(listTypeSelector).val() || 'standard') : 'standard';
+                    var defaults = defaultsByType[listType] || defaultsByType['standard'] || [];
+                    if (!Array.isArray(defaults)) {
+                        defaults = [];
+                    }
+                    $container.find('input.ka-list-display-checkbox').each(function() {
+                        var value = $(this).val();
+                        $(this).prop('checked', defaults.indexOf(value) !== -1);
+                    });
+                    kaSyncListDisplayFields($container);
+                }
+                $(document).on('change', '.ka-list-display-fields input.ka-list-display-checkbox', function() {
+                    kaSyncListDisplayFields($(this).closest('.ka-list-display-fields'));
+                });
+                $(document).on('click', '.ka-reset-list-display-defaults', function(e) {
+                    e.preventDefault();
+                    var $container = $(this).closest('.option-input').find('.ka-list-display-fields').first();
+                    kaApplyListDisplayDefaults($container);
+                });
+                $('.ka-list-display-fields').each(function() {
+                    kaSyncListDisplayFields($(this));
+                });
+                $('form').on('submit', function() {
+                    $('.ka-list-display-fields').each(function() {
+                        kaSyncListDisplayFields($(this));
+                    });
+                });
         });
         JS    
         );

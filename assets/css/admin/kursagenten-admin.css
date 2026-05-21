@@ -370,3 +370,18 @@ h4.welcome-panel-title {
 .post-type-ka_coursedate .page-title-action {
     display: none;
 }
+
+.ka-list-display-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    align-items: center;
+}
+
+.ka-list-display-fields .ka-list-display-field {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    white-space: nowrap;
+}

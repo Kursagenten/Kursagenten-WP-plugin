@@ -119,10 +119,20 @@ $course_link = $course_id ? get_permalink($course_id) : '#';
 
 // Get data from first available coursedate
 $first_course_date = $selected_coursedate_data['first_date'] ?? '';
+$last_course_date = $selected_coursedate_data['last_date'] ?? '';
+$first_course_date_raw = $selected_coursedate_data['first_date_raw'] ?? '';
+$last_course_date_raw = $selected_coursedate_data['last_date_raw'] ?? '';
+$registration_deadline = $selected_coursedate_data['registration_deadline'] ?? '';
+$coursetime = $selected_coursedate_data['time'] ?? '';
 $duration = $selected_coursedate_data['duration'] ?? '';
+$price = $selected_coursedate_data['price'] ?? '';
+$after_price = $selected_coursedate_data['after_price'] ?? '';
+$location_room = $selected_coursedate_data['course_location_room'] ?? '';
 
 $course_count = $course_count ?? 0;
 $item_class = $course_count === 1 ? ' single-item' : '';
+$list_display = kursagenten_get_list_display_fields($args);
+$instructor_links = kursagenten_get_course_instructor_links((int) $course_id);
 
 // Check if images should be shown
 // Priority: shortcode attribute > taxonomy-specific setting > global setting
@@ -181,19 +191,63 @@ $view_type_class = ' view-type-maincourses';
                 </div>
                 <?php endif; ?>
                 
-                <!-- Meta row: Duration and Next course date -->
+                <!-- Meta row: optional fields + next course date -->
                 <div class="simple-card-meta">
-                    <?php if (!empty($duration)) : ?>
+                    <?php if ($list_display['registration_deadline'] && !empty($registration_deadline)) : ?>
+                    <span class="simple-card-registration-deadline">
+                        <i class="ka-icon icon-alarmclock"></i>
+                        <span><?php echo esc_html($registration_deadline); ?></span>
+                    </span>
+                    <?php endif; ?>
+
+                    <?php if ($list_display['time'] && !empty($coursetime)) : ?>
+                    <span class="simple-card-time">
+                        <i class="ka-icon icon-time"></i>
+                        <span><?php echo esc_html($coursetime); ?></span>
+                    </span>
+                    <?php endif; ?>
+
+                    <?php if ($list_display['duration'] && !empty($duration)) : ?>
                     <span class="simple-card-duration">
                         <i class="ka-icon icon-stopwatch"></i>
                         <span><?php echo esc_html($duration); ?></span>
                     </span>
                     <?php endif; ?>
+
+                    <?php if ($list_display['room'] && !empty($location_room)) : ?>
+                    <span class="simple-card-room notranslate" translate="no">
+                        <i class="ka-icon icon-grid"></i>
+                        <span><?php echo esc_html($location_room); ?></span>
+                    </span>
+                    <?php endif; ?>
+
+                    <?php if ($list_display['instructor'] && !empty($instructor_links)) : ?>
+                    <span class="simple-card-instructors">
+                        <i class="ka-icon icon-user"></i>
+                        <span><?php echo implode(', ', $instructor_links); ?></span>
+                    </span>
+                    <?php endif; ?>
+
+                    <?php if ($list_display['price'] && !empty($price)) : ?>
+                    <span class="simple-card-price">
+                        <i class="ka-icon icon-layers"></i>
+                        <span><?php echo esc_html($price); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></span>
+                    </span>
+                    <?php endif; ?>
                     
-                    <?php if (!empty($first_course_date)) : ?>
+                    <?php
+                    $list_date_text = kursagenten_list_format_course_dates(
+                        $first_course_date,
+                        $last_course_date ?? '',
+                        !empty($list_display['last_date']),
+                        $first_course_date_raw ?? '',
+                        $last_course_date_raw ?? ''
+                    );
+                    ?>
+                    <?php if ($list_date_text !== '') : ?>
                     <span class="simple-card-date">
                         <i class="ka-icon icon-calendar"></i>
-                        <span>Neste kurs: <?php echo esc_html($first_course_date); ?></span>
+                        <span>Neste kurs: <?php echo esc_html($list_date_text); ?></span>
                     </span>
                     <?php endif; ?>
                 </div>
