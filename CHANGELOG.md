@@ -5,7 +5,7 @@
   - *Skjul kategorien og alle tilhørende kurs* – tidligere atferd; kategorien og alle kurs tagget med den skjules fra kurslisten.
   - Lagt til: Trevalget kan også settes via hurtigredigering og masseredigering ("Kursagenten: Masserediger synlighet").
   - Fix: Forbedret synk. Kurs som har blitt lagt til som duplikat ved feil blir slettet ved nattlig synk, klikk på "Rydd opp i kurs", og ved webhook synk.
-  - Lagt til: Mulighet til å skru av og på fritekst sted, Rom/lokale, tid, sluttdato, påmeldingsfrist, instruktør, varighet osv. i kurslisten
+  - Lagt til: Mulighet til å skru av og på fritekst sted, Rom/lokale, tid, sluttdato, påmeldingsfrist, instruktør, varighet i kurslisten
 
 ## 1.1.20 - 2026-05-11
 - Lagt til: Ny designmal for taksomier *Hero - To kolonner* med toppbilde og to kolonner under, med tekst til venstre og kursliste til høyre.

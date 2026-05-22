@@ -298,16 +298,17 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                      <a href="<?php echo esc_url($course_link); ?>">
                          <?php echo esc_html($course_title); ?>
                      </a>
-                     <?php if ($is_full) : ?>
-                         <span class="compact-availability ka-full">Fullt</span>
-                     <?php elseif (!$show_registration) : ?>
-                         <span class="compact-availability ka-on-demand">På forespørsel</span>
-                     <?php else : ?>
-                         <span class="compact-availability ka-available">Ledige plasser</span>
-                     <?php endif; ?>
                  </h3>
                  
                  <div class="compact-course-meta">
+                    <?php if ($is_full) : ?>
+                        <span class="compact-availability ka-full">Fullt</span>
+                    <?php elseif (!$show_registration) : ?>
+                        <span class="compact-availability ka-on-demand">På forespørsel</span>
+                    <?php else : ?>
+                        <span class="compact-availability ka-available">Ledige plasser</span>
+                    <?php endif; ?>
+
                      <?php
                      $list_date_text = kursagenten_list_format_course_dates(
                          $first_course_date,
@@ -359,7 +360,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <?php if (!$is_location_taxonomy && $show_location_room) : ?>
-                                    <?php if ($show_location_name || $show_location_freetext) : ?>&nbsp;—&nbsp;<?php endif; ?>
+                                    <?php if ($show_location_name || $show_location_freetext) : ?>&nbsp;-&nbsp;<?php endif; ?>
                                     <span class="notranslate" translate="no"><?php echo esc_html($location_room); ?></span>
                                 <?php endif; ?>
                             </span>

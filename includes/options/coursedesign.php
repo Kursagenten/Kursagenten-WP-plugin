@@ -6,6 +6,7 @@ class Designmaler {
     public function __construct() {
         add_action('admin_menu', array($this, 'design_add_plugin_page'));
         add_action('admin_init', array($this, 'design_page_init'));
+        add_action('admin_init', array($this, 'bump_design_assets_version_on_save'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
         add_action('wp_head', array($this, 'add_custom_css'), 999);
         
@@ -47,6 +48,43 @@ class Designmaler {
 
         // The SEO Framework støtte
         add_filter('the_seo_framework_title_from_generation', array($this, 'filter_tsf_title'), 10, 2);
+    }
+
+    /**
+     * Increase design assets version when Kursdesign is saved.
+     *
+     * Keeps frontend/admin asset cache busting cheap on regular requests
+     * and only refreshes browser-cached files after explicit design saves.
+     *
+     * @return void
+     */
+    public function bump_design_assets_version_on_save() {
+        if (!is_admin()) {
+            return;
+        }
+
+        if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+            return;
+        }
+
+        $option_page = isset($_POST['option_page'])
+            ? sanitize_text_field(wp_unslash((string) $_POST['option_page']))
+            : '';
+        $action = isset($_POST['action'])
+            ? sanitize_text_field(wp_unslash((string) $_POST['action']))
+            : '';
+
+        if ($option_page !== 'design_option_group' || $action !== 'update') {
+            return;
+        }
+
+        $nonce = isset($_POST['_wpnonce']) ? wp_unslash((string) $_POST['_wpnonce']) : '';
+        if (!wp_verify_nonce($nonce, 'design_option_group-options')) {
+            return;
+        }
+
+        $current_version = (int) get_option('kursagenten_design_assets_version', 0);
+        update_option('kursagenten_design_assets_version', $current_version + 1, false);
     }
 
     public function design_add_plugin_page() {
@@ -259,7 +297,7 @@ class Designmaler {
                 <!-- Arkiv/Kurslister -->
                 <div class="options-card" data-section="kursliste">
                     <h3>Kursliste med filter</h3>
-                    <p>Tilpass visningen av kurslisten. Denne vises på systemsiden "Kurs", og alle andre steder som bruker kortkoden <span class="copytext">[kursliste]</span>. Velg mellom standard liste og rutenett. Flere design kommer.</p>
+                    <p>Tilpass visningen av kurslisten. Denne vises på systemsiden "Kurs", og alle andre steder som bruker kortkoden <span class="copytext">[kursliste]</span>.</p>
                     <!-- Listevisning -->
                     <div class="option-row">
                         <label class="option-label">Listedesign:</label>
@@ -272,6 +310,7 @@ class Designmaler {
                                     'grid' => 'Rutenett',
                                     'plain' => 'Ren og enkel liste',
                                     'compact' => 'Kompakt liste',
+                                    'date-and-title' => 'Dato og tittel',
                                     'simple-cards' => 'Enkle kort'
                                 ];
                                 foreach ($list_types as $value => $label) {
@@ -788,13 +827,13 @@ class Designmaler {
                     <?php endif; ?>
                     <p class="ka-taxonomy-plugin-design-only">Velg et felles design for kurskategorier, kurssteder og instruktører. Du kan også velge å ha egne design for hver enkelt taksonomi.</p>
                     <p><strong>Layout</strong> bestemmer oppsettet av elementer på siden (header, kolonner, hooks).</br>
-                     <strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, kompakt). </br>
+                     <strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, ren, kompakt, dato og tittel). </br>
                      <strong>Visningstype</strong> bestemmer om du vil vise hovedkurs eller alle kursdatoer.</p>
                     <p class="ka-taxonomy-plugin-design-only">&nbsp;</p>
                     <div class="ka-custom-design-info ka-taxonomy-custom-design-info" style="display: none;">
                         <p><strong>Bygg ditt eget design</strong> er aktivt. Du kan fortsatt styre kursdata-visning under.</p>
                         <p><strong>Byggeblokker kommer:</strong> vi planlegger moduler for blant annet kursliste med kurssteder/lenker og informasjon om kommende kurs.</p>
-                        <p><strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, kompakt).</p>
+                        <p><strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, ren, kompakt, dato og tittel).</p>
                         <p><strong>Visningstype</strong> bestemmer om du vil vise hovedkurs eller alle kursdatoer.</p>
                     </div>
                     
@@ -931,6 +970,7 @@ class Designmaler {
                                     'grid' => 'Rutenett',
                                     'plain' => 'Ren og enkel liste',
                                     'compact' => 'Kompakt liste',
+                                    'date-and-title' => 'Dato og tittel',
                                     'simple-cards' => 'Enkle kort'
                                 ];
                                 foreach ($list_types as $value => $label) {
@@ -2257,6 +2297,7 @@ class Designmaler {
             'grid' => ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'last_date'],
             'plain' => ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'last_date'],
             'compact' => ['location', 'location_freetext'],
+            'date-and-title' => ['last_date'],
             'simple-cards' => ['duration'],
         ];
         $option_key = 'kursagenten_' . $context_base . '_list_display_fields';
@@ -2329,6 +2370,10 @@ class Designmaler {
             return;
         }
 
+        $assets_version = function_exists('kursagenten_get_design_assets_version')
+            ? kursagenten_get_design_assets_version()
+            : (defined('KURSAG_VERSION') ? KURSAG_VERSION : '1.0.0');
+
         wp_enqueue_style('wp-color-picker');
         wp_enqueue_script('wp-color-picker');
         wp_enqueue_script('jquery-ui-sortable');
@@ -2339,7 +2384,7 @@ class Designmaler {
             'custom-admin-upload-script',
             plugins_url('/assets/js/admin/image-upload.js', dirname(dirname(__FILE__))),
             array('jquery'),
-            '1.0.3',
+            $assets_version,
             true
         );
         
@@ -2347,7 +2392,7 @@ class Designmaler {
             'ka-admin-script',
             plugins_url('/assets/js/admin-script.js', dirname(dirname(__FILE__))),
             array('jquery', 'wp-color-picker'),
-            (defined('KURSAG_VERSION') ? KURSAG_VERSION : '1.0.0'),
+            $assets_version,
             true
         );
 
@@ -2355,7 +2400,7 @@ class Designmaler {
             'ka-admin-style',
             plugins_url('/assets/css/admin/kursagenten-admin.css', dirname(dirname(__FILE__))),
             array(),
-            (defined('KURSAG_VERSION') ? KURSAG_VERSION : '1.0.0')
+            $assets_version
         );
 
         // Legg til inline JavaScript for fargevalg-toggle, seksjons-kollaps og filter-sortable

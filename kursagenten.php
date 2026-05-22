@@ -87,6 +87,25 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+/**
+ * Get cache-busting version for design-related assets.
+ *
+ * The base plugin version is combined with a lightweight counter that is
+ * incremented when Kursdesign settings are saved.
+ *
+ * @return string
+ */
+function kursagenten_get_design_assets_version() {
+    $base_version = defined('KURSAG_VERSION') ? (string) KURSAG_VERSION : '1.0.0';
+    $design_version = (int) get_option('kursagenten_design_assets_version', 0);
+
+    if ($design_version <= 0) {
+        return $base_version;
+    }
+
+    return $base_version . '.' . $design_version;
+}
+
 
 register_activation_hook(__FILE__, 'kursagenten_check_dependencies');
 
@@ -526,6 +545,9 @@ add_action('admin_init', function() {
 /* ENQUEUE JS & CSS ADMIN SCRIPTS */
     function enqueue_custom_admin_script() {
         if (is_admin()) {
+            $assets_version = function_exists('kursagenten_get_design_assets_version')
+                ? kursagenten_get_design_assets_version()
+                : KURSAG_VERSION;
             $screen = get_current_screen();
             $plugin_admin_pages = array('kursagenten', 'bedriftsinformasjon', 'kursinnstillinger', 'seo', 'avansert');
             $enqueue_plugin_pages = false;
@@ -547,9 +569,9 @@ add_action('admin_init', function() {
             // Ikke last tunge admin-scripts hvis lisensnøkkel mangler
             if ($enqueue_plugin_pages && !empty($api_key)) {
                 wp_enqueue_media();// Enqueue media scripts for file uploads
-                wp_enqueue_script( 'custom-admin-upload-script', plugin_dir_url(__FILE__) . 'assets/js/admin/image-upload.js', array('jquery'), KURSAG_VERSION,  true  );
-                wp_enqueue_script( 'custom-admin-utilities-script', plugin_dir_url(__FILE__) . 'assets/js/admin/admin-utilities.js', array('jquery'), KURSAG_VERSION,  true  );  
-                wp_enqueue_style( 'custom-admin-style', plugin_dir_url(__FILE__) . 'assets/css/admin/kursagenten-admin.css', array(), KURSAG_VERSION );
+                wp_enqueue_script( 'custom-admin-upload-script', plugin_dir_url(__FILE__) . 'assets/js/admin/image-upload.js', array('jquery'), $assets_version,  true  );
+                wp_enqueue_script( 'custom-admin-utilities-script', plugin_dir_url(__FILE__) . 'assets/js/admin/admin-utilities.js', array('jquery'), $assets_version,  true  );  
+                wp_enqueue_style( 'custom-admin-style', plugin_dir_url(__FILE__) . 'assets/css/admin/kursagenten-admin.css', array(), $assets_version );
             }
         }
     }
@@ -617,12 +639,15 @@ if (!is_admin()) {
 
     
     function kursagenten_enqueue_styles() {
+        $assets_version = function_exists('kursagenten_get_design_assets_version')
+            ? kursagenten_get_design_assets_version()
+            : KURSAG_VERSION;
         // Last inn base CSS for alle Kursagenten sider
         wp_enqueue_style(
             'kursagenten-course-style',
             KURSAG_PLUGIN_URL . '/assets/css/public/frontend-course-style.css',
             array(),
-            KURSAG_VERSION
+            $assets_version
         );
 
         // Last inn datepicker CSS for alle Kursagenten sider
@@ -630,7 +655,7 @@ if (!is_admin()) {
             'kursagenten-datepicker-style',
             KURSAG_PLUGIN_URL . '/assets/css/public/datepicker-caleran.min.css',
             array(),
-            KURSAG_VERSION
+            $assets_version
         );
 
         // Last inn archive-course spesifikk CSS
@@ -645,7 +670,7 @@ if (!is_admin()) {
                 'kursagenten-list-type-' . $list_type,
                 KURSAG_PLUGIN_URL . '/assets/css/public/list-' . $list_type . '.css',
                 array(),
-                KURSAG_VERSION
+                $assets_version
             );
 
             // Last inn design-spesifikk CSS hvis ikke default
@@ -653,7 +678,7 @@ if (!is_admin()) {
                 'kursagenten-archive-design-' . $design,
                 KURSAG_PLUGIN_URL . '/assets/css/public/design-archive-' . $design . '.css',
                 array('kursagenten-list-type-' . $list_type),
-                KURSAG_VERSION
+                $assets_version
             );
         }
 
@@ -682,7 +707,7 @@ if (!is_admin()) {
                 'kursagenten-taxonomy-base',
                 KURSAG_PLUGIN_URL . '/assets/css/public/design-taxonomy-default.css',
                 array(),
-                KURSAG_VERSION
+                $assets_version
             );
 
             // Last inn design-spesifikk CSS
@@ -691,7 +716,7 @@ if (!is_admin()) {
                     'kursagenten-taxonomy-design-' . $design,
                     KURSAG_PLUGIN_URL . '/assets/css/public/design-taxonomy-' . $design . '.css',
                     array('kursagenten-taxonomy-base'),
-                    KURSAG_VERSION
+                    $assets_version
                 );
             }
 
@@ -701,7 +726,7 @@ if (!is_admin()) {
                 'kursagenten-taxonomy-list-' . $list_type,
                 KURSAG_PLUGIN_URL . '/assets/css/public/list-' . $list_type . '.css',
                 array('kursagenten-taxonomy-base'),
-                KURSAG_VERSION
+                $assets_version
             );
         }
 
@@ -714,7 +739,7 @@ if (!is_admin()) {
                 'kursagenten-single-base',
                 KURSAG_PLUGIN_URL . '/assets/css/public/frontend-course-style.css',
                 array(),
-                KURSAG_VERSION
+                $assets_version
             );
 
             // Deretter last inn design-spesifikk CSS
@@ -722,7 +747,7 @@ if (!is_admin()) {
                 'kursagenten-single-design-' . $design,
                 KURSAG_PLUGIN_URL . '/assets/css/public/design-single-' . $design . '.css',
                 array('kursagenten-single-base'),
-                KURSAG_VERSION
+                $assets_version
             );
         }
 
@@ -731,6 +756,9 @@ if (!is_admin()) {
 
 
     function kursagenten_enqueue_scripts() {
+        $assets_version = function_exists('kursagenten_get_design_assets_version')
+            ? kursagenten_get_design_assets_version()
+            : KURSAG_VERSION;
         // Define valid post types and their contexts
         $valid_pages = [
             'post_types' => [
@@ -774,15 +802,15 @@ if (!is_admin()) {
         
         // Enqueue scripts and styles
         wp_enqueue_script('kursagenten-iframe-resizer', 'https://embed.kursagenten.no/js/iframe-resizer/iframeResizer.min.js', array(), null, true);
-        wp_enqueue_script('kursagenten-slidein-panel', plugins_url('assets/js/public/course-slidein-panel.js', __FILE__), array('jquery', 'kursagenten-iframe-resizer'), KURSAG_VERSION, true);
-        wp_enqueue_script('kursagenten-ajax-filter', plugins_url('assets/js/public/course-ajax-filter.js', __FILE__), array('jquery', 'kursagenten-slidein-panel'), KURSAG_VERSION, true);
-        wp_enqueue_script('kursagenten-expand-content', plugins_url('assets/js/public/course-expand-content.js', __FILE__), array('jquery'), KURSAG_VERSION, true);
-        wp_enqueue_script('kursagenten-dates-modal', plugins_url('assets/js/public/course-modal.js', __FILE__), array('jquery'), KURSAG_VERSION, true);
+        wp_enqueue_script('kursagenten-slidein-panel', plugins_url('assets/js/public/course-slidein-panel.js', __FILE__), array('jquery', 'kursagenten-iframe-resizer'), $assets_version, true);
+        wp_enqueue_script('kursagenten-ajax-filter', plugins_url('assets/js/public/course-ajax-filter.js', __FILE__), array('jquery', 'kursagenten-slidein-panel'), $assets_version, true);
+        wp_enqueue_script('kursagenten-expand-content', plugins_url('assets/js/public/course-expand-content.js', __FILE__), array('jquery'), $assets_version, true);
+        wp_enqueue_script('kursagenten-dates-modal', plugins_url('assets/js/public/course-modal.js', __FILE__), array('jquery'), $assets_version, true);
         wp_enqueue_script(
             'kursagenten-course-list-bg-fix',
             plugins_url('assets/js/public/course-list-bg-fix.js', __FILE__),
             array(),
-            KURSAG_VERSION,
+            $assets_version,
             true
         );
 
@@ -790,14 +818,14 @@ if (!is_admin()) {
             'kursagenten-datepicker-moment',
             KURSAG_PLUGIN_URL . '/assets/js/public/datepicker/moment.min.js',
             array(),
-            KURSAG_VERSION
+            $assets_version
         );
 
         wp_enqueue_script(
             'kursagenten-datepicker-script',
             KURSAG_PLUGIN_URL . '/assets/js/public/datepicker/caleran.min.js',
             ['kursagenten-datepicker-moment'],
-            KURSAG_VERSION
+            $assets_version
         );
 
 

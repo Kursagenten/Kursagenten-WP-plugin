@@ -454,6 +454,8 @@ function kursagenten_get_default_list_display_fields_for_list_type($list_type = 
     switch ($list_type) {
         case 'compact':
             return ['location', 'location_freetext'];
+        case 'date-and-title':
+            return ['last_date'];
         case 'simple-cards':
             return ['duration'];
         case 'standard':
@@ -613,10 +615,10 @@ function kursagenten_parse_raw_course_date($raw_date) {
 
 /**
  * Format start date with optional end date in the same string.
- * Uses en dash (–) with no surrounding spaces.
+ * Uses hyphen (-) in date ranges.
  * Same day: "07.08.2026"
- * Same month+year: "12.–15.12.2026"
- * Same year, different month: "12.11–15.12.2026"
+ * Same month+year: "12.-15.12.2026"
+ * Same year, different month: "12.11-15.12.2026"
  *
  * @param string $first_course_date Formatted first date.
  * @param string $last_course_date  Formatted last date.
@@ -639,7 +641,7 @@ function kursagenten_list_format_course_dates($first_course_date, $last_course_d
     $last = (string) $last_course_date;
     $full_format = kursagenten_get_wp_date_format();
     $without_year_format = kursagenten_get_date_format_without_year();
-    $dash = '–';
+    $dash = '-';
 
     $first_dt = kursagenten_parse_raw_course_date($first_course_date_raw);
     $last_dt = kursagenten_parse_raw_course_date($last_course_date_raw);
@@ -674,6 +676,157 @@ function kursagenten_list_format_course_dates($first_course_date, $last_course_d
 }
 
 /**
+ * Map shortcode "vis" token to canonical list display field key.
+ *
+ * @param string $token Raw token from shortcode attribute.
+ * @return string Empty string when token is unknown.
+ */
+function kursagenten_map_shortcode_visibility_field_key($token) {
+    $token = strtolower(trim((string) $token));
+    $token = str_replace([' ', '_'], '-', $token);
+    $token = trim($token, '-');
+
+    if ($token === '') {
+        return '';
+    }
+
+    $aliases = [
+        'time' => 'time',
+        'tid' => 'time',
+        'duration' => 'duration',
+        'varighet' => 'duration',
+        'price' => 'price',
+        'pris' => 'price',
+        'location' => 'location',
+        'sted' => 'location',
+        'location-freetext' => 'location_freetext',
+        'locationfreetext' => 'location_freetext',
+        'fritext-sted' => 'location_freetext',
+        'fritekst-sted' => 'location_freetext',
+        'fritextsted' => 'location_freetext',
+        'fritekststed' => 'location_freetext',
+        'room' => 'room',
+        'rom' => 'room',
+        'lokale' => 'room',
+        'rom-lokale' => 'room',
+        'instructor' => 'instructor',
+        'instruktør' => 'instructor',
+        'instruktor' => 'instructor',
+        'last-date' => 'last_date',
+        'lastdate' => 'last_date',
+        'end-date' => 'last_date',
+        'enddate' => 'last_date',
+        'sluttdato' => 'last_date',
+        'registration-deadline' => 'registration_deadline',
+        'registrationdeadline' => 'registration_deadline',
+        'pameldingsfrist' => 'registration_deadline',
+        'påmeldingsfrist' => 'registration_deadline',
+    ];
+
+    return $aliases[$token] ?? '';
+}
+
+/**
+ * Apply shortcode visibility overrides to resolved display fields.
+ *
+ * Rules:
+ * - Plain list (e.g. "tid,pris"): show only listed fields.
+ * - Prefixed list (e.g. "-sluttdato,+instruktør"): patch current settings.
+ *
+ * @param array<string,bool> $result Base visibility map.
+ * @param string             $shortcode_vis Raw shortcode "vis" value.
+ * @param string[]           $field_keys Allowed field keys.
+ * @return array<string,bool>
+ */
+function kursagenten_apply_shortcode_visibility_overrides(array $result, $shortcode_vis, array $field_keys) {
+    $shortcode_vis = trim((string) $shortcode_vis);
+    if ($shortcode_vis === '') {
+        return $result;
+    }
+
+    $tokens = preg_split('/[\s,;|]+/u', $shortcode_vis);
+    if (!is_array($tokens) || empty($tokens)) {
+        return $result;
+    }
+
+    $show_keys = [];
+    $hide_keys = [];
+    $plain_keys = [];
+
+    foreach ($tokens as $token) {
+        $token = trim((string) $token);
+        if ($token === '') {
+            continue;
+        }
+
+        $mode = 'plain';
+        $key_token = $token;
+
+        if (strpos($key_token, '+') === 0) {
+            $mode = 'show';
+            $key_token = ltrim($key_token, '+');
+        } elseif (strpos($key_token, '-') === 0 || strpos($key_token, '!') === 0) {
+            $mode = 'hide';
+            $key_token = ltrim($key_token, '-!');
+        } elseif (stripos($key_token, 'ikke-') === 0) {
+            $mode = 'hide';
+            $key_token = substr($key_token, strlen('ikke-'));
+        } elseif (stripos($key_token, 'not-') === 0) {
+            $mode = 'hide';
+            $key_token = substr($key_token, strlen('not-'));
+        }
+
+        if (preg_match('/^([^:=]+)\s*[:=]\s*(.+)$/u', $key_token, $matches)) {
+            $key_token = trim((string) $matches[1]);
+            $raw_state = strtolower(trim((string) $matches[2]));
+            if (in_array($raw_state, ['0', 'false', 'no', 'nei', 'off', 'hide', 'skjul'], true)) {
+                $mode = 'hide';
+            } elseif (in_array($raw_state, ['1', 'true', 'yes', 'ja', 'on', 'show', 'vis'], true)) {
+                $mode = 'show';
+            }
+        }
+
+        $mapped_key = kursagenten_map_shortcode_visibility_field_key($key_token);
+        if ($mapped_key === '' || !in_array($mapped_key, $field_keys, true)) {
+            continue;
+        }
+
+        if ($mode === 'hide') {
+            $hide_keys[$mapped_key] = true;
+        } elseif ($mode === 'show') {
+            $show_keys[$mapped_key] = true;
+        } else {
+            $plain_keys[$mapped_key] = true;
+        }
+    }
+
+    if (!empty($show_keys) || !empty($hide_keys)) {
+        foreach (array_keys($plain_keys) as $field_key) {
+            $show_keys[$field_key] = true;
+        }
+        foreach (array_keys($show_keys) as $field_key) {
+            $result[$field_key] = true;
+        }
+        foreach (array_keys($hide_keys) as $field_key) {
+            $result[$field_key] = false;
+        }
+
+        return $result;
+    }
+
+    if (!empty($plain_keys)) {
+        foreach ($field_keys as $field_key) {
+            $result[$field_key] = false;
+        }
+        foreach (array_keys($plain_keys) as $field_key) {
+            $result[$field_key] = true;
+        }
+    }
+
+    return $result;
+}
+
+/**
  * Resolve which optional list item fields should be visible.
  *
  * @param array $args Arguments passed to list-type templates.
@@ -701,10 +854,18 @@ function kursagenten_get_list_display_fields($args = []) {
         $resolved_list_type = sanitize_text_field($args['list_type']);
     }
     $enabled = kursagenten_get_list_display_fields_enabled_list($context_base, $resolved_list_type);
+    $shortcode_vis = '';
+    if (!empty($args['shortcode_vis']) && is_string($args['shortcode_vis'])) {
+        $shortcode_vis = sanitize_text_field($args['shortcode_vis']);
+    }
 
     $result = [];
     foreach ($field_keys as $field_key) {
         $result[$field_key] = in_array($field_key, $enabled, true);
+    }
+
+    if ($shortcode_vis !== '') {
+        $result = kursagenten_apply_shortcode_visibility_overrides($result, $shortcode_vis, $field_keys);
     }
 
     // Sted skal alltid vises i alle listedesign unntatt Enkle kort.

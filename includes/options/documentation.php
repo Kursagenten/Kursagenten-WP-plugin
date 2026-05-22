@@ -236,7 +236,7 @@ class KA_Documentation_Page {
                     <h3 id="lister">Kortkoder for lister og grid</h3>
                     <p>Kortkoder kan legges inn i teksten på sider og blogginnlegg. Du kan legge inn hele kurslisten, eller lister med enten alle kurskategorier, kurs i samme kategori (brukes på kurssider), eller instruktører.<br>Det er mange ulike valg. Du finner full kortkode under, med samtlige valg, samt en liste som forklarer alle valgene.<br>Kortkoden kopieres, og limes inn der du ønsker å vise den. <br>Merk at du må fjerne eventuelle valg du ikke trenger, og deler der flere valg er listet opp (feks som stablet/rad/liste).</p>
                     <div class="kort" style="background: #fbfbfb; padding: 1em; border-radius: 10px;">
-                        <p><strong>Kursliste med filter </strong><span class="smal"><span class="copytext">[kursliste]</span></span><br><span class="copytext small">[kursliste kategori="web" sted="oslo" måned="9" språk="norsk" list_type="grid" filter="topp" knapper="signup_link" bilder="yes" st=sted/st=ikke-sted klasse="min-klasse"]</span></p>
+                        <p><strong>Kursliste med filter </strong><span class="smal"><span class="copytext">[kursliste]</span></span><br><span class="copytext small">[kursliste kategori="web" sted="oslo" måned="9" språk="norsk" list_type="grid" filter="topp" knapper="signup_link" bilder="yes" vis="-sluttdato" st=sted/st=ikke-sted klasse="min-klasse"]</span></p>
                         <p><strong>Liste med kurskategorier </strong><span class="smal"><span class="copytext">[kurskategorier]</span></span><br><span class="copytext small" style="color:#666">[kurskategorier kilde="bilde/ikon" layout="stablet/rad/liste" grid=3 gridtablet=2 gridmobil=1  radavstand="1rem" stil="standard/kort" bildestr="100px" bildeform="avrundet/rund/firkantet/10px" bildeformat="4/3" overskrift="h3" fontmin="13" fontmaks="18" avstand="2em .5em" skygge="ja" vis="hovedkategorier/subkategorier/slug/standard" st=sted/st=ikke-sted utdrag="ja" klasse="min-klasse"]</span></p>
                         <p><strong>Liste med kurssteder </strong><span class="smal"><span class="copytext">[kurssteder]</span></span><br><span class="copytext small" style="color:#666">[kurssteder layout="stablet/rad/liste" grid=3 gridtablet=2 gridmobil=1 radavstand="1rem" stil="standard/kort" bildestr="100px" bildeform="avrundet/rund/firkantet/10px" bildeformat="4/3" overskrift="h3" fontmin="13px" fontmaks="15px" avstand="2em .5em" skygge="ja" utdrag="ja" vis="standard/alta,oslo,bergen" region="østlandet" stedinfo="ja" klasse="min-klasse"]</span></p>
                         <p><strong>Liste med instruktører </strong><span class="smal"><span class="copytext">[instruktorer]</span></span><br><span class="copytext small" style="color:#666">[instruktorer layout="stablet/rad/liste" grid=3 gridtablet=2 gridmobil=1 radavstand="1rem" stil="standard/kort" bildestr="100px" bildeform="avrundet/rund/firkantet/10px" bildeformat="4/3" overskrift="h3" fontmin="13px" fontmaks="15px" avstand="2em .5em" skygge="ja" skjul="Iris,Anna" utdrag="ja" beskrivelse="ja" klasse="min-klasse"]</span></p>
@@ -289,7 +289,7 @@ class KA_Documentation_Page {
                                 <tr>
                                     <td>List_type</td>
                                     <td>Velg listedesign for kortkoden <span class="copytext">[kursliste]</span> uten å endre global innstilling i Kursdesign.</td>
-                                    <td>standard, grid, compact, plain, simple-cards<br><strong>Standard:</strong> hentes fra Kursdesign</td>
+                                    <td>standard, grid, compact, plain, date-and-title, simple-cards<br><strong>Standard:</strong> hentes fra Kursdesign</td>
                                     <td>Kursliste</td>
                                     <td>[kursliste <span class="copytext">list_type="grid"</span>]</td>
                                 </tr>
@@ -313,6 +313,13 @@ class KA_Documentation_Page {
                                     <td>show_buttons, signup_link<br><strong>Standard:</strong> hentes fra Kursdesign</td>
                                     <td>Kursliste</td>
                                     <td>[kursliste <span class="copytext">knapper="signup_link"</span>]</td>
+                                </tr>
+                                <tr>
+                                    <td>Vis</td>
+                                    <td>Overstyr hvilke detaljer som vises i hvert kurs i <span class="copytext">[kursliste]</span>. Uten prefiks settes kun oppgitte felter til synlig. Med <span class="copytext">-</span>/<span class="copytext">!</span> skjules felt, og med <span class="copytext">+</span> vises felt uten å endre resten.</td>
+                                    <td>tid, varighet, pris, sted, fritekst-sted, rom, instruktør, sluttdato, påmeldingsfrist<br><strong>Standard:</strong> hentes fra Kursdesign</td>
+                                    <td>Kursliste</td>
+                                    <td>[kursliste <span class="copytext">vis="-sluttdato"</span>]<br>[kursliste <span class="copytext">vis="tid,pris"</span>]</td>
                                 </tr>
                                 <tr>
                                     <td>Stil</td>

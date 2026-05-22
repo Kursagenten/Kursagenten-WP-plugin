@@ -35,12 +35,6 @@ $is_taxonomy_page = isset($args['is_taxonomy_page']) && $args['is_taxonomy_page'
 // Sjekk om vi skal tvinge standard visning (fra kortkode)
 $force_standard_view = isset($args['force_standard_view']) && $args['force_standard_view'] === true;
 
-// Hent plassholderbilde fra innstillinger (brukes av begge view types)
-$options = get_option('design_option_name');
-$placeholder_image = !empty($options['ka_plassholderbilde_kurs']) 
-    ? $options['ka_plassholderbilde_kurs']
-    : rtrim(KURSAG_PLUGIN_URL, '/') . '/assets/images/placeholder-kurs.jpg';
-
 // Hvis visningstype er 'main_courses', vis hovedkurs med første tilgjengelige dato
 if ($view_type === 'main_courses' && !$force_standard_view) {
     // Når view_type er 'main_courses', returnerer queryen ka_coursedate posts
@@ -158,15 +152,8 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
         }
     }
     
-    // Hent bilde for hovedkurs
-    $featured_image_thumb = $course_id ? get_the_post_thumbnail_url($course_id, 'thumbnail') : '';
-    $featured_image_thumb = $featured_image_thumb ?: $placeholder_image;
-    
     // Hent data fra første tilgjengelige kursdato
     $first_course_date = $selected_coursedate_data['first_date'] ?? '';
-    $last_course_date = $selected_coursedate_data['last_date'] ?? '';
-    $first_course_date_raw = $selected_coursedate_data['first_date_raw'] ?? '';
-    $last_course_date_raw = $selected_coursedate_data['last_date_raw'] ?? '';
     $price = $selected_coursedate_data['price'] ?? '';
     $after_price = $selected_coursedate_data['after_price'] ?? '';
     $signup_url = $selected_coursedate_data['signup_url'] ?? '';
@@ -178,10 +165,7 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     $course_id = get_the_ID();
 
     $course_title = get_post_meta($course_id, 'ka_course_title', true);
-    $first_course_date_raw = get_post_meta($course_id, 'ka_course_first_date', true);
-    $last_course_date_raw = get_post_meta($course_id, 'ka_course_last_date', true);
-    $first_course_date = ka_format_date($first_course_date_raw);
-    $last_course_date = ka_format_date($last_course_date_raw);
+    $first_course_date = ka_format_date(get_post_meta($course_id, 'ka_course_first_date', true));
     $price = get_post_meta($course_id, 'ka_course_price', true);
     $after_price = get_post_meta($course_id, 'ka_course_text_after_price', true);
     $location = get_post_meta($course_id, 'ka_course_location', true);
@@ -200,34 +184,14 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
 
     if ($related_course_info) {
         $course_link = esc_url($related_course_info['permalink']);
-        $featured_image_thumb = $related_course_info['thumbnail'] ?: $placeholder_image;
     } else {
-        // Hvis ingen relatert kursinfo, bruk plassholderbilde og fallback-data
-        $featured_image_thumb = $placeholder_image;
+        // Hvis ingen relatert kursinfo, bruk fallback-data
         $course_link = false;
     }
 }
 
 $course_count = $course_count ?? 0;
 $item_class = $course_count === 1 ? ' single-item' : '';
-$list_display = kursagenten_get_list_display_fields($args);
-
-// Sjekk om bilder skal vises
-// Prioritet: shortcode attributt > taksonomi-spesifikk innstilling > global innstilling
-$shortcode_show_images = isset($args['shortcode_show_images']) ? $args['shortcode_show_images'] : null;
-
-// If shortcode explicitly sets bilder parameter to 'yes' or 'no', use it
-if ($shortcode_show_images === 'yes' || $shortcode_show_images === 'no') {
-    // Bruk shortcode attributt hvis eksplisitt satt til yes eller no
-    $show_images = $shortcode_show_images;
-} elseif ($is_taxonomy_page && !$force_standard_view) {
-    // Taksonomi-side: bruk taksonomi-innstillinger med proper override handling
-    $taxonomy = get_queried_object()->taxonomy;
-    $show_images = get_taxonomy_setting($taxonomy, 'show_images', 'yes');
-} else {
-    // Standard: bruk global innstilling
-    $show_images = get_option('kursagenten_show_images', 'yes');
-}
 
 // Hent kurskategorier for data-category attributt
 $course_categories = get_the_terms($course_id, 'ka_coursecategory');
@@ -246,14 +210,6 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
 <div class="courselist-item compact-item<?php echo $item_class . $view_type_class; ?>" data-location="<?php echo esc_attr($location_freetext); ?>" data-category="<?php echo esc_attr(implode(' ', $category_slugs)); ?>">
     <div class="compact-course-content">
         <div class="compact-course-info-wrapper">
-            <?php if ($show_images === 'yes') : ?>
-                <div class="compact-course-image">
-                    <a href="<?php echo esc_url($course_link); ?>">
-                        <img src="<?php echo esc_url($featured_image_thumb); ?>" alt="<?php echo esc_attr($course_title); ?>">
-                    </a>
-                </div>
-            <?php endif; ?>
-            
              <div class="compact-course-info">
                 <a href="<?php echo esc_url($course_link); ?>">
                     <div class="compact-course-first-column">
@@ -266,13 +222,8 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                         <?php endif; ?>
 
                         <?php
-                        $list_date_text = kursagenten_list_format_course_dates(
-                            $first_course_date,
-                            $last_course_date ?? '',
-                            !empty($list_display['last_date']),
-                            $first_course_date_raw ?? '',
-                            $last_course_date_raw ?? ''
-                        );
+                        // Date-and-title design skal alltid vise kun startdato.
+                        $list_date_text = (string) $first_course_date;
                         ?>
                         <?php if ($list_date_text !== '') : ?>
                             <span class="compact-course-date">

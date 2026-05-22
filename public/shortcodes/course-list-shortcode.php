@@ -91,6 +91,7 @@ function kursagenten_course_list_shortcode($atts) {
         'list_type' => '', // standard, grid, compact
         'bilder' => '', // yes, no - overstyr bildeinnstillinger
         'knapper' => '', // show_buttons, signup_link - overstyr knappemodus
+        'vis' => '', // Overstyr synlige felter i listeelement, f.eks. "-sluttdato"
         'antall' => '', // Begrens antall kurs som vises
         // Filter visningsmodus:
         //   ''              = standard (slik topp/venstre er konfigurert)
@@ -231,18 +232,23 @@ function kursagenten_course_list_shortcode($atts) {
     if (!in_array($buttons_display, ['show_buttons', 'signup_link'], true)) {
         $buttons_display = '';
     }
+    $shortcode_vis = !empty($atts['vis']) ? sanitize_text_field((string) $atts['vis']) : '';
+
+    $assets_version = function_exists('kursagenten_get_design_assets_version')
+        ? kursagenten_get_design_assets_version()
+        : KURSAG_VERSION;
 
     // Last inn riktig CSS-fil basert på listetype (dynamisk)
     wp_enqueue_style(
         'kursagenten-list-' . $list_type,
         KURSAG_PLUGIN_URL . '/assets/css/public/list-' . $list_type . '.css',
         array(),
-        KURSAG_VERSION
+        $assets_version
     );
 
     // Enqueue required styles
-    wp_enqueue_style('kursagenten-course-style', KURSAG_PLUGIN_URL . '/assets/css/public/frontend-course-style.css', array(), KURSAG_VERSION);
-    wp_enqueue_style('kursagenten-datepicker-style', KURSAG_PLUGIN_URL . '/assets/css/public/datepicker-caleran.min.css', array(), KURSAG_VERSION);
+    wp_enqueue_style('kursagenten-course-style', KURSAG_PLUGIN_URL . '/assets/css/public/frontend-course-style.css', array(), $assets_version);
+    wp_enqueue_style('kursagenten-datepicker-style', KURSAG_PLUGIN_URL . '/assets/css/public/datepicker-caleran.min.css', array(), $assets_version);
 
     // Enqueue required scripts
     //wp_enqueue_script('kursagenten-iframe-resizer', 'https://embed.kursagenten.no/js/iframe-resizer/iframeResizer.min.js', array(), null, true);
@@ -251,14 +257,14 @@ function kursagenten_course_list_shortcode($atts) {
         wp_enqueue_script('kursagenten-iframe-resizer', 'https://embed.kursagenten.no/js/iframe-resizer/iframeResizer.min.js', [], null, true);
     }
     if ( ! wp_script_is('kursagenten-slidein-panel', 'enqueued') ) {
-        wp_enqueue_script('kursagenten-slidein-panel', KURSAG_PLUGIN_URL . '/assets/js/public/course-slidein-panel.js', ['jquery', 'kursagenten-iframe-resizer'], KURSAG_VERSION, true);
+        wp_enqueue_script('kursagenten-slidein-panel', KURSAG_PLUGIN_URL . '/assets/js/public/course-slidein-panel.js', ['jquery', 'kursagenten-iframe-resizer'], $assets_version, true);
     }
     // Datepicker dependencies first
     if ( ! wp_script_is('kursagenten-datepicker-moment', 'enqueued') ) {
-        wp_enqueue_script('kursagenten-datepicker-moment', KURSAG_PLUGIN_URL . '/assets/js/public/datepicker/moment.min.js', array(), KURSAG_VERSION);
+        wp_enqueue_script('kursagenten-datepicker-moment', KURSAG_PLUGIN_URL . '/assets/js/public/datepicker/moment.min.js', array(), $assets_version);
     }
     if ( ! wp_script_is('kursagenten-datepicker-script', 'enqueued') ) {
-        wp_enqueue_script('kursagenten-datepicker-script', KURSAG_PLUGIN_URL . '/assets/js/public/datepicker/caleran.min.js', ['kursagenten-datepicker-moment'], KURSAG_VERSION);
+        wp_enqueue_script('kursagenten-datepicker-script', KURSAG_PLUGIN_URL . '/assets/js/public/datepicker/caleran.min.js', ['kursagenten-datepicker-moment'], $assets_version);
     }
     // Main AJAX filter script after deps
     wp_enqueue_script('kursagenten-ajax-filter', 
@@ -268,16 +274,16 @@ function kursagenten_course_list_shortcode($atts) {
             'kursagenten-slidein-panel',
             'kursagenten-datepicker-script'
         ), 
-        KURSAG_VERSION, 
+        $assets_version, 
         true
     );
-    wp_enqueue_script('kursagenten-expand-content', KURSAG_PLUGIN_URL . '/assets/js/public/course-expand-content.js', array(), KURSAG_VERSION);
+    wp_enqueue_script('kursagenten-expand-content', KURSAG_PLUGIN_URL . '/assets/js/public/course-expand-content.js', array(), $assets_version);
     if ( ! wp_script_is( 'kursagenten-course-list-bg-fix', 'enqueued' ) ) {
         wp_enqueue_script(
             'kursagenten-course-list-bg-fix',
             KURSAG_PLUGIN_URL . '/assets/js/public/course-list-bg-fix.js',
             array(),
-            KURSAG_VERSION,
+            $assets_version,
             true
         );
     }
@@ -1084,7 +1090,7 @@ function kursagenten_course_list_shortcode($atts) {
                                     }
                                     $is_taxonomy_context = ($taxonomy_context !== '');
                                     ?>
-                                    <div class="courselist-items" id="filter-results" data-list-type="<?php echo esc_attr($list_type); ?>" data-buttons-display="<?php echo esc_attr($buttons_display); ?>"<?php echo $is_taxonomy_context ? ' data-is-taxonomy-page="1"' : ''; ?><?php echo $is_taxonomy_context ? ' data-taxonomy="' . esc_attr($taxonomy_context) . '"' : ''; ?>>
+                                    <div class="courselist-items" id="filter-results" data-list-type="<?php echo esc_attr($list_type); ?>" data-buttons-display="<?php echo esc_attr($buttons_display); ?>"<?php echo $shortcode_vis !== '' ? ' data-shortcode-vis="' . esc_attr($shortcode_vis) . '"' : ''; ?><?php echo $is_taxonomy_context ? ' data-is-taxonomy-page="1"' : ''; ?><?php echo $is_taxonomy_context ? ' data-taxonomy="' . esc_attr($taxonomy_context) . '"' : ''; ?>>
                                         <?php
                                         $args = [
                                             'course_count' => $query->found_posts,
@@ -1094,6 +1100,7 @@ function kursagenten_course_list_shortcode($atts) {
                                             'view_type' => 'all_coursedates',
                                             'is_taxonomy_page' => $is_taxonomy_context,
                                             'shortcode_show_images' => $atts['bilder'],
+                                            'shortcode_vis' => $shortcode_vis,
                                             'buttons_display' => $buttons_display
                                         ];
                                         if ($is_taxonomy_context) {

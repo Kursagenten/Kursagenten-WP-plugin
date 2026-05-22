@@ -199,6 +199,11 @@
     white-space: nowrap;
 }
 
+#ka .ka-container .compact-course-meta > span.compact-availability {
+    gap: 0;
+    font-size: var(--ka-font-xxs);
+}
+
 #ka .ka-container .compact-course-meta i {
     width: var(--ka-font-s);
     height: var(--ka-font-s);

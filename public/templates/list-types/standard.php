@@ -385,7 +385,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                         <?php endif; ?>
                                     <?php endif; ?>
                                     <?php if (!$is_location_taxonomy && $show_location_room) : ?>
-                                        <?php if ($show_location_name || $show_location_freetext) : ?>&nbsp;—&nbsp;<?php endif; ?>
+                                        <?php if ($show_location_name || $show_location_freetext) : ?>&nbsp;-&nbsp;<?php endif; ?>
                                         <?php echo esc_html($location_room); ?>
                                     <?php endif; ?>
                                 </div>
@@ -431,7 +431,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                         <?php endif; ?>
                                     <?php endif; ?>
                                     <?php if (!$is_location_taxonomy && $show_location_room) : ?>
-                                        <?php if ($show_location_name || $show_location_freetext) : ?>&nbsp;—&nbsp;<?php endif; ?>
+                                        <?php if ($show_location_name || $show_location_freetext) : ?>&nbsp;-&nbsp;<?php endif; ?>
                                         <?php echo esc_html($location_room); ?>
                                     <?php endif; ?>
                                 </div>

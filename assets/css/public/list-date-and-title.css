@@ -153,6 +153,7 @@
 
 #ka .ka-container .compact-course-title span.compact-course-location {
     opacity: 0.7;
+    font-size: var(--ka-font-s);
 }
 
 /* Action Buttons */

@@ -746,6 +746,9 @@ function filter_courses_handler() {
             if (!in_array($incoming_buttons_display, ['show_buttons', 'signup_link'], true)) {
                 $incoming_buttons_display = '';
             }
+            $incoming_shortcode_vis = isset($_POST['internal_shortcode_vis'])
+                ? sanitize_text_field(wp_unslash((string) $_POST['internal_shortcode_vis']))
+                : '';
 
             // Build args for list-type templates (view_type, etc.)
             $template_args = [
@@ -759,6 +762,9 @@ function filter_courses_handler() {
             }
             if ($incoming_buttons_display !== '') {
                 $template_args['buttons_display'] = $incoming_buttons_display;
+            }
+            if ($incoming_shortcode_vis !== '') {
+                $template_args['shortcode_vis'] = $incoming_shortcode_vis;
             }
             
             while ($query->have_posts()) {
@@ -823,6 +829,7 @@ function filter_courses_handler() {
                         'list_type' => true, // View layout, not a filter - do not propagate in pagination
                         'internal_list_type' => true, // Internal layout hint, never part of URL filters
                         'internal_buttons_display' => true, // Internal button mode hint, never part of URL filters
+                        'internal_shortcode_vis' => true, // Internal list-item visibility override, never part of URL filters
                         'internal_is_taxonomy_page' => true, // Internal context hint, never part of URL filters
                         'internal_taxonomy' => true, // Internal taxonomy context, never part of URL filters
                         'ka_coursedate' => true,

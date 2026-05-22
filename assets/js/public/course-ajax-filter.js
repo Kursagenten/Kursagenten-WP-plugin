@@ -416,6 +416,10 @@
 				if (buttonsDisplayAttr) {
 					data.internal_buttons_display = buttonsDisplayAttr;
 				}
+				const shortcodeVisAttr = $results.data('shortcode-vis');
+				if (shortcodeVisAttr) {
+					data.internal_shortcode_vis = shortcodeVisAttr;
+				}
 				const taxonomyFlagAttr = $results.data('is-taxonomy-page');
 				if (taxonomyFlagAttr === 1 || taxonomyFlagAttr === '1' || taxonomyFlagAttr === true || taxonomyFlagAttr === 'true') {
 					data.internal_is_taxonomy_page = '1';
