@@ -205,6 +205,11 @@ $category_slugs = array_unique($category_slugs);
 
 // Generate view type class
 $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
+$list_date_text = trim((string) $first_course_date);
+$first_column_class = 'compact-course-first-column';
+if ($list_date_text === '') {
+    $first_column_class .= ' no-date';
+}
 ?>
 
 <div class="courselist-item compact-item<?php echo $item_class . $view_type_class; ?>" data-location="<?php echo esc_attr($location_freetext); ?>" data-category="<?php echo esc_attr(implode(' ', $category_slugs)); ?>">
@@ -212,7 +217,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
         <div class="compact-course-info-wrapper">
              <div class="compact-course-info">
                 <a href="<?php echo esc_url($course_link); ?>">
-                    <div class="compact-course-first-column">
+                    <div class="<?php echo esc_attr($first_column_class); ?>">
                         <?php if ($is_full) : ?>
                                 <span class="course-available ka-full"></span>
                             <?php elseif (!$show_registration) : ?>
@@ -221,10 +226,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                 <span class="course-available"></span>
                         <?php endif; ?>
 
-                        <?php
-                        // Date-and-title design skal alltid vise kun startdato.
-                        $list_date_text = (string) $first_course_date;
-                        ?>
+                        <?php // Date-and-title design skal alltid vise kun startdato. ?>
                         <?php if ($list_date_text !== '') : ?>
                             <span class="compact-course-date">
                                 <i class="ka-icon icon-calendar"></i>

@@ -85,6 +85,10 @@
   flex: 0 0 120px;          /* fast bredde for dato (juster) */
 }
 
+.compact-course-first-column.no-date {
+  flex: 0 0 20px;
+}
+
 .compact-course-second-column {
   flex: 1 1 auto;           /* tar resten av plassen */
   min-width: 0;             /* muliggjør tekst-ellipsis/linjebryting */
