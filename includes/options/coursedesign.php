@@ -920,7 +920,7 @@ class Designmaler {
                     </div>
 
                     <!-- Listevisning -->
-                    <div class="option-row ka-taxonomy-plugin-design-only">
+                    <div class="option-row ka-taxonomy-plugin-design-only ka-taxonomy-dashed-top">
                         <label class="option-label">Listedesign:</label>
                         <div class="option-input">
                             <select name="kursagenten_taxonomy_list_type" id="kursagenten_taxonomy_list_type">
@@ -948,7 +948,7 @@ class Designmaler {
 
                     <?php $this->render_list_display_field_checkboxes('taxonomy'); ?>
 
-                    <div class="option-row ka-taxonomy-plugin-design-only">
+                    <div class="option-row ka-taxonomy-plugin-design-only ka-taxonomy-list-label-indent">
                         <label class="option-label">Knapper:</label>
                         <div class="option-input">
                             <?php $taxonomy_buttons_display = get_option('kursagenten_taxonomy_buttons_display', 'show_buttons'); ?>
@@ -1029,7 +1029,7 @@ class Designmaler {
                     </div>
                     
                     <!-- Visningstype + undervalg -->
-                    <div class="option-row ka-taxonomy-plugin-design-only" id="taxonomy-viewtype-row">
+                    <div class="option-row ka-taxonomy-plugin-design-only ka-taxonomy-list-label-indent" id="taxonomy-viewtype-row">
                         <label class="option-label">Visningstype:</label>
                         <div class="option-input">
                             <?php
@@ -1143,26 +1143,8 @@ class Designmaler {
                         </div>
                     </div>
 
-                    <!-- Skjul spesifikke lokasjoner (for kurssteder) -->
-                    <div class="option-row taxonomy-specific-locations-setting ka-taxonomy-plugin-design-only" id="taxonomy_specific_locations_setting">
-                        <label class="option-label">Spesifikke lokasjoner:</label>
-                        <div class="option-input">
-                            <?php
-                            $hide_specific_locations = get_option('kursagenten_taxonomy_hide_specific_locations', '0');
-                            ?>
-                            <label class="checkbox-label-small">
-                                <input type="checkbox"
-                                       name="kursagenten_taxonomy_hide_specific_locations"
-                                       value="1"
-                                       <?php checked($hide_specific_locations, '1'); ?>>
-                                Skjul spesifikke lokasjoner på kurssteder
-                            </label>
-                            <p class="description" style="color: #666; font-style: italic;">Spesifikke lokasjoner viser adresser og link til Google maps over kurslisten.</p>
-                        </div>
-                    </div>
-
                     <!-- Vis bilder -->
-                    <div class="option-row ka-taxonomy-plugin-design-only">
+                    <div class="option-row ka-taxonomy-plugin-design-only ka-taxonomy-list-label-indent">
                         <label class="option-label">Vis bilder:</label>
                         <div class="option-input">
                             <?php
@@ -1176,6 +1158,24 @@ class Designmaler {
                                 <input type="radio" name="kursagenten_show_images_taxonomy" value="no" <?php checked($show_images_taxonomy, 'no'); ?>>
                                 Nei
                             </label>
+                        </div>
+                    </div>
+
+                    <!-- Skjul spesifikke lokasjoner (for kurssteder) -->
+                    <div class="option-row taxonomy-specific-locations-setting ka-taxonomy-plugin-design-only ka-taxonomy-dashed-top" id="taxonomy_specific_locations_setting">
+                        <label class="option-label">Spesifikke lokasjoner:</label>
+                        <div class="option-input">
+                            <?php
+                            $hide_specific_locations = get_option('kursagenten_taxonomy_hide_specific_locations', '0');
+                            ?>
+                            <label class="checkbox-label-small">
+                                <input type="checkbox"
+                                       name="kursagenten_taxonomy_hide_specific_locations"
+                                       value="1"
+                                       <?php checked($hide_specific_locations, '1'); ?>>
+                                Skjul spesifikke lokasjoner på kurssteder
+                            </label>
+                            <p class="description" style="color: #666; font-style: italic;">Spesifikke lokasjoner viser adresser og link til Google maps over kurslisten.</p>
                         </div>
                     </div>
 
@@ -2189,7 +2189,7 @@ class Designmaler {
      * which otherwise would make the renderer fall back to defaults.
      */
     private function register_list_display_field_settings() {
-        $allowed_fields = ['time', 'duration', 'price', 'room', 'instructor', 'last_date', 'registration_deadline'];
+        $allowed_fields = ['location', 'location_freetext', 'time', 'duration', 'price', 'room', 'instructor', 'last_date', 'registration_deadline'];
 
         foreach (['archive', 'taxonomy'] as $context) {
             register_setting(
@@ -2230,13 +2230,15 @@ class Designmaler {
      */
     private function render_list_display_field_checkboxes($context = 'archive') {
         $fields = array(
+            'location' => 'Sted',
+            'location_freetext' => 'Fritekst sted',
+            'room' => 'Rom/lokale',
+            'last_date' => 'Sluttdato',
+            'registration_deadline' => 'Påmeldingsfrist',
             'time' => 'Tid',
             'duration' => 'Varighet',
             'price' => 'Pris',
-            'room' => 'Rom/lokale',
             'instructor' => 'Instruktør',
-            'last_date' => 'Sluttdato',
-            'registration_deadline' => 'Påmeldingsfrist',
         );
 
         $context_base = ($context === 'taxonomy') ? 'taxonomy' : 'archive';
@@ -2251,10 +2253,10 @@ class Designmaler {
             $context_list_type = 'standard';
         }
         $default_fields_by_list_type = [
-            'standard' => ['time', 'duration', 'price', 'room', 'last_date'],
-            'grid' => ['time', 'duration', 'price', 'room', 'last_date'],
-            'plain' => ['time', 'duration', 'price', 'room', 'last_date'],
-            'compact' => [],
+            'standard' => ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'last_date'],
+            'grid' => ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'last_date'],
+            'plain' => ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'last_date'],
+            'compact' => ['location', 'location_freetext'],
             'simple-cards' => ['duration'],
         ];
         $option_key = 'kursagenten_' . $context_base . '_list_display_fields';
@@ -2263,12 +2265,15 @@ class Designmaler {
             : array_keys($fields);
 
         $section_label = ($context === 'taxonomy')
-            ? 'Vis på listeelement (taksonomi):'
-            : 'Vis på listeelement:';
+            ? 'Vis i listen (taksonomi):'
+            : 'Vis i listen:';
 
+        $row_class = ($context === 'taxonomy')
+            ? 'option-row ka-taxonomy-list-label-indent'
+            : 'option-row';
         $input_id = 'ka_list_display_' . $context_base;
         ?>
-        <div class="option-row">
+        <div class="<?php echo esc_attr($row_class); ?>">
             <label class="option-label"><?php echo esc_html($section_label); ?></label>
             <div class="option-input">
                 <input type="hidden"
@@ -2295,7 +2300,7 @@ class Designmaler {
                         Bruk standardvalg for valgt listedesign
                     </button>
                 </p>
-                <p class="description">Rom/lokale styrer sted (navn, fritekst og romnummer). Sluttdato legges etter startdato i samme datolinje (med bindestrek). Påmeldingsfrist vises før tid. Pris inkluderer eventuell ettertekst (f.eks. «kr»).</p>
+                <p class="description">I alle listedesign unntatt «Enkle kort» er Sted alltid på. På taksonomi kurssted skjules stedsnavn, og valgt fritekst vises uten parentes. Sluttdato legges etter startdato i samme datolinje (med bindestrek). Påmeldingsfrist vises før tid. Pris inkluderer eventuell ettertekst (f.eks. «kr»).</p>
             </div>
         </div>
         <?php
@@ -2623,6 +2628,7 @@ class Designmaler {
                 $('#kursagenten_default_available_only').on('change', updateAvailabilityWarning);
 
                 // Toggle grid columns settings based on list type selection
+                var previousTaxonomyListType = $('#kursagenten_taxonomy_list_type').val() || 'standard';
                 function toggleGridColumnsSettings() {
                     var archiveListType = $('#kursagenten_archive_list_type').val();
                     var taxonomyListType = $('#kursagenten_taxonomy_list_type').val();
@@ -2653,6 +2659,7 @@ class Designmaler {
                     var $viewTypeMainCourses = $('input[name="kursagenten_taxonomy_view_type"][value="main_courses"]');
                     var $viewTypeAllCoursedates = $('input[name="kursagenten_taxonomy_view_type"][value="all_coursedates"]');
 
+                    var switchedFromSimpleCards = (previousTaxonomyListType === 'simple-cards' && taxonomyListType !== 'simple-cards');
                     if (taxonomyListType === 'simple-cards') {
                         // Disable all_coursedates option
                         $viewTypeAllCoursedates.prop('disabled', true).closest('label').css('opacity', '0.5');
@@ -2662,7 +2669,12 @@ class Designmaler {
                         }
                     } else {
                         $viewTypeAllCoursedates.prop('disabled', false).closest('label').css('opacity', '1');
+                        // UX: when switching away from simple-cards, default back to all_coursedates.
+                        if (switchedFromSimpleCards && !$viewTypeAllCoursedates.is(':checked')) {
+                            $viewTypeAllCoursedates.prop('checked', true).trigger('change');
+                        }
                     }
+                    previousTaxonomyListType = taxonomyListType || 'standard';
                     if (typeof toggleTaxonomyViewTypePanels === 'function') {
                         toggleTaxonomyViewTypePanels();
                     }
@@ -2908,6 +2920,11 @@ class Designmaler {
                         var listType = $select.val();
                         var globalTaxonomyListType = $('#kursagenten_taxonomy_list_type').val() || 'standard';
                         var effectiveListType = listType || globalTaxonomyListType;
+                        var previousEffectiveListType = $select.data('kaPrevEffectiveListType');
+                        if (!previousEffectiveListType) {
+                            previousEffectiveListType = effectiveListType;
+                        }
+                        var switchedFromSimpleCards = (previousEffectiveListType === 'simple-cards' && effectiveListType !== 'simple-cards');
                         var taxonomy = $select.data('taxonomy');
                         var $settings = $('#taxonomy_' + taxonomy + '_grid_columns_settings');
                         var $card = $settings.closest('.options-card');
@@ -2930,8 +2947,12 @@ class Designmaler {
                             }
                         } else {
                             $viewTypeAllCoursedates.prop('disabled', false).closest('label').css('opacity', '1');
+                            if (switchedFromSimpleCards && $viewTypeAllCoursedates.length && !$viewTypeAllCoursedates.is(':checked')) {
+                                $viewTypeAllCoursedates.prop('checked', true).trigger('change');
+                            }
                         }
 
+                        $select.data('kaPrevEffectiveListType', effectiveListType);
                         toggleTaxonomyOverrideViewTypePanels(taxonomy);
                         updateTaxonomyOverrideViewTypeToggleAndPanel(taxonomy);
                     });
@@ -3093,6 +3114,21 @@ class Designmaler {
                     });
                     $target.val(values.join(','));
                 }
+                function kaApplyLocationFieldRules($container) {
+                    if (!$container || !$container.length) { return; }
+                    var $locationCheckbox = $container.find('input.ka-list-display-checkbox[value="location"]');
+                    if (!$locationCheckbox.length) { return; }
+
+                    var listTypeSelector = $container.data('list-type-selector');
+                    var listType = listTypeSelector ? ($(listTypeSelector).val() || 'standard') : 'standard';
+                    var lockLocation = (listType !== 'simple-cards');
+
+                    if (lockLocation) {
+                        $locationCheckbox.prop('checked', true).prop('disabled', true);
+                    } else {
+                        $locationCheckbox.prop('disabled', false);
+                    }
+                }
                 function kaApplyListDisplayDefaults($container) {
                     if (!$container || !$container.length) { return; }
                     var defaultsRaw = $container.attr('data-defaults');
@@ -3113,6 +3149,7 @@ class Designmaler {
                         var value = $(this).val();
                         $(this).prop('checked', defaults.indexOf(value) !== -1);
                     });
+                    kaApplyLocationFieldRules($container);
                     kaSyncListDisplayFields($container);
                 }
                 $(document).on('change', '.ka-list-display-fields input.ka-list-display-checkbox', function() {
@@ -3123,12 +3160,23 @@ class Designmaler {
                     var $container = $(this).closest('.option-input').find('.ka-list-display-fields').first();
                     kaApplyListDisplayDefaults($container);
                 });
+                $(document).on('change', '#kursagenten_archive_list_type, #kursagenten_taxonomy_list_type', function() {
+                    $('.ka-list-display-fields').each(function() {
+                        var $container = $(this);
+                        kaApplyLocationFieldRules($container);
+                        kaSyncListDisplayFields($container);
+                    });
+                });
                 $('.ka-list-display-fields').each(function() {
-                    kaSyncListDisplayFields($(this));
+                    var $container = $(this);
+                    kaApplyLocationFieldRules($container);
+                    kaSyncListDisplayFields($container);
                 });
                 $('form').on('submit', function() {
                     $('.ka-list-display-fields').each(function() {
-                        kaSyncListDisplayFields($(this));
+                        var $container = $(this);
+                        kaApplyLocationFieldRules($container);
+                        kaSyncListDisplayFields($container);
                     });
                 });
         });

@@ -334,19 +334,32 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                         </span>
                     <?php endif; ?>
                     
-                    <?php if ($list_display['room'] && kursagenten_list_has_location_data($location, $location_freetext, $location_room)) : ?>
+                    <?php
+                    $is_location_taxonomy = ($resolved_taxonomy === 'ka_course_location');
+                    $show_location_name = !empty($list_display['location']) && !$is_location_taxonomy && !empty($location);
+                    $show_location_freetext = !empty($list_display['location_freetext']) && !empty($location_freetext);
+                    $show_location_room = !empty($list_display['room']) && !empty($location_room);
+                    $show_location_block = $is_location_taxonomy
+                        ? $show_location_freetext
+                        : ($show_location_name || $show_location_freetext || $show_location_room);
+                    ?>
+                    <?php if ($show_location_block) : ?>
                         <span class="compact-course-location">
                             <i class="ka-icon icon-location"></i>
                             <span>
-                                <?php if (!empty($location)) : ?>
+                                <?php if ($show_location_name) : ?>
                                     <span class="notranslate" translate="no"><?php echo esc_html($location); ?></span>
                                 <?php endif; ?>
-                                <?php if (!empty($location_freetext)) : ?>
-                                    <?php if (!empty($location)) : ?>&nbsp;<?php endif; ?>
-                                    (<span class="notranslate" translate="no"><?php echo esc_html($location_freetext); ?></span>)
+                                <?php if ($show_location_freetext) : ?>
+                                    <?php if ($is_location_taxonomy) : ?>
+                                        <span class="notranslate" translate="no"><?php echo esc_html($location_freetext); ?></span>
+                                    <?php else : ?>
+                                        <?php if ($show_location_name) : ?>&nbsp;<?php endif; ?>
+                                        (<span class="notranslate" translate="no"><?php echo esc_html($location_freetext); ?></span>)
+                                    <?php endif; ?>
                                 <?php endif; ?>
-                                <?php if (!empty($location_room)) : ?>
-                                    <?php if (!empty($location) || !empty($location_freetext)) : ?>&nbsp;—&nbsp;<?php endif; ?>
+                                <?php if (!$is_location_taxonomy && $show_location_room) : ?>
+                                    <?php if ($show_location_name || $show_location_freetext) : ?>&nbsp;—&nbsp;<?php endif; ?>
                                     <span class="notranslate" translate="no"><?php echo esc_html($location_room); ?></span>
                                 <?php endif; ?>
                             </span>

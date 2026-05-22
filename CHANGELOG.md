@@ -1,10 +1,11 @@
-## 1.1.21 - 2026-05-18
+## 1.1.21 - 2026-05-21
 - Lagt til: "Skjul i kursliste" for kurskategorier er nå et trevalg i stedet for av/på:
   - *Vis* – kategorien vises i filteret og kursene vises i kurslisten.
   - *Skjul kun kategorien fra filter* – kategorien skjules fra filteret, men kursene vises fortsatt i kurslisten under sine andre kategorier. Nyttig for om man kun ønsker å skjule kategorien.
   - *Skjul kategorien og alle tilhørende kurs* – tidligere atferd; kategorien og alle kurs tagget med den skjules fra kurslisten.
   - Lagt til: Trevalget kan også settes via hurtigredigering og masseredigering ("Kursagenten: Masserediger synlighet").
   - Fix: Forbedret synk. Kurs som har blitt lagt til som duplikat ved feil blir slettet ved nattlig synk, klikk på "Rydd opp i kurs", og ved webhook synk.
+  - Lagt til: Mulighet til å skru av og på fritekst sted, Rom/lokale, tid, sluttdato, påmeldingsfrist, instruktør, varighet osv. i kurslisten
 
 ## 1.1.20 - 2026-05-11
 - Lagt til: Ny designmal for taksomier *Hero - To kolonner* med toppbilde og to kolonner under, med tekst til venstre og kursliste til høyre.

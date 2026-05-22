@@ -385,3 +385,11 @@ h4.welcome-panel-title {
     margin: 0;
     white-space: nowrap;
 }
+
+.ka-taxonomy-list-label-indent > .option-label {
+    padding-left: 30px;
+}
+
+.ka-taxonomy-dashed-top {
+    border-top: 3px dashed #eee!important;
+}

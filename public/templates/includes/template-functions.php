@@ -453,16 +453,16 @@ function kursagenten_get_default_list_display_fields_for_list_type($list_type = 
 
     switch ($list_type) {
         case 'compact':
-            return [];
+            return ['location', 'location_freetext'];
         case 'simple-cards':
             return ['duration'];
         case 'standard':
         case 'grid':
         case 'plain':
-            return ['time', 'duration', 'price', 'room', 'last_date'];
+            return ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'last_date'];
         default:
             // Legacy fallback for other list types (e.g. date-and-title).
-            return ['time', 'duration', 'price', 'room', 'instructor'];
+            return ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'instructor'];
     }
 }
 
@@ -474,10 +474,10 @@ function kursagenten_get_default_list_display_fields_for_list_type($list_type = 
  *
  * @param string $context_base 'archive' or 'taxonomy'.
  * @param string $list_type    Current list type (optional).
- * @return string[] Enabled field keys.
+ * @return string[] Enabled field keys (including location/location_freetext).
  */
 function kursagenten_get_list_display_fields_enabled_list($context_base = 'archive', $list_type = '') {
-    $field_keys = ['time', 'duration', 'price', 'room', 'instructor', 'last_date', 'registration_deadline'];
+    $field_keys = ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'instructor', 'last_date', 'registration_deadline'];
     $context_base = ($context_base === 'taxonomy') ? 'taxonomy' : 'archive';
     $option_key = 'kursagenten_' . $context_base . '_list_display_fields';
     $list_type = is_string($list_type) ? sanitize_text_field($list_type) : '';
@@ -677,10 +677,10 @@ function kursagenten_list_format_course_dates($first_course_date, $last_course_d
  * Resolve which optional list item fields should be visible.
  *
  * @param array $args Arguments passed to list-type templates.
- * @return array<string, bool> Keys: time, duration, price, room, instructor, last_date, registration_deadline.
+ * @return array<string, bool> Keys: time, duration, price, location, location_freetext, room, instructor, last_date, registration_deadline.
  */
 function kursagenten_get_list_display_fields($args = []) {
-    $field_keys = ['time', 'duration', 'price', 'room', 'instructor', 'last_date', 'registration_deadline'];
+    $field_keys = ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'instructor', 'last_date', 'registration_deadline'];
 
     $is_taxonomy_flag = !empty($args['is_taxonomy_page']);
     $resolved_taxonomy = '';
@@ -705,6 +705,11 @@ function kursagenten_get_list_display_fields($args = []) {
     $result = [];
     foreach ($field_keys as $field_key) {
         $result[$field_key] = in_array($field_key, $enabled, true);
+    }
+
+    // Sted skal alltid vises i alle listedesign unntatt Enkle kort.
+    if ($resolved_list_type !== 'simple-cards') {
+        $result['location'] = true;
     }
 
     return $result;

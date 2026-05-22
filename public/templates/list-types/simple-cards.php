@@ -193,6 +193,33 @@ $view_type_class = ' view-type-maincourses';
                 
                 <!-- Meta row: optional fields + next course date -->
                 <div class="simple-card-meta">
+                    <?php
+                    $list_date_text = kursagenten_list_format_course_dates(
+                        $first_course_date,
+                        $last_course_date ?? '',
+                        !empty($list_display['last_date']),
+                        $first_course_date_raw ?? '',
+                        $last_course_date_raw ?? ''
+                    );
+                    $is_location_taxonomy = ($taxonomy === 'ka_course_location');
+                    $show_location_name = !empty($list_display['location']) && !$is_location_taxonomy && !empty($location);
+                    $show_location_freetext = !empty($list_display['location_freetext']) && !empty($location_freetext);
+                    $show_location_in_date = $is_location_taxonomy
+                        ? $show_location_freetext
+                        : ($show_location_name || $show_location_freetext);
+                    ?>
+                    <?php if ($list_date_text !== '') : ?>
+                    <span class="simple-card-date">
+                        <i class="ka-icon icon-calendar"></i>
+                        <span>
+                            Neste kurs: <?php echo esc_html($list_date_text); ?>
+                            <?php if ($show_location_in_date) : ?>
+                                &nbsp;-&nbsp;<?php if ($show_location_name) : ?><span class="notranslate" translate="no"><?php echo esc_html($location); ?></span><?php endif; ?><?php if ($show_location_freetext) : ?><?php if ($is_location_taxonomy) : ?><span class="notranslate" translate="no"><?php echo esc_html($location_freetext); ?></span><?php else : ?><?php if ($show_location_name) : ?>&nbsp;<?php endif; ?>(<span class="notranslate" translate="no"><?php echo esc_html($location_freetext); ?></span>)<?php endif; ?><?php endif; ?>
+                            <?php endif; ?>
+                        </span>
+                    </span>
+                    <?php endif; ?>
+
                     <?php if ($list_display['registration_deadline'] && !empty($registration_deadline)) : ?>
                     <span class="simple-card-registration-deadline">
                         <i class="ka-icon icon-alarmclock"></i>
@@ -232,22 +259,6 @@ $view_type_class = ' view-type-maincourses';
                     <span class="simple-card-price">
                         <i class="ka-icon icon-layers"></i>
                         <span><?php echo esc_html($price); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></span>
-                    </span>
-                    <?php endif; ?>
-                    
-                    <?php
-                    $list_date_text = kursagenten_list_format_course_dates(
-                        $first_course_date,
-                        $last_course_date ?? '',
-                        !empty($list_display['last_date']),
-                        $first_course_date_raw ?? '',
-                        $last_course_date_raw ?? ''
-                    );
-                    ?>
-                    <?php if ($list_date_text !== '') : ?>
-                    <span class="simple-card-date">
-                        <i class="ka-icon icon-calendar"></i>
-                        <span>Neste kurs: <?php echo esc_html($list_date_text); ?></span>
                     </span>
                     <?php endif; ?>
                 </div>
