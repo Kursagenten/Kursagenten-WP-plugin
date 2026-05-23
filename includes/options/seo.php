@@ -57,7 +57,7 @@ class SEO {
                             <input class="regular-text" type="text" name="kag_seo_option_name[ka_url_rewrite_instruktor]" value="<?php echo isset($this->kag_seo_options['ka_url_rewrite_instruktor']) ? esc_attr($this->kag_seo_options['ka_url_rewrite_instruktor']) : ''; ?>">
                             <label style="margin-left: 12px;">
                                 <input type="checkbox" name="kag_seo_option_name[ka_url_hide_instruktor]" value="1" <?php checked(isset($this->kag_seo_options['ka_url_hide_instruktor']) && $this->kag_seo_options['ka_url_hide_instruktor']); ?>>
-                                Skjul i url-er <span title="Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Det kan føre til 404-feil, feil sidevisning og dårligere SEO hvis gamle url-er ikke videresendes. Brukes kun når du er sikker på at slugene er unike og redirect er håndtert." style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
+                                Skjul i url-er <span class="ka-tooltip" data-title="Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Se informasjon om fallback-mekanismen nedenfor." style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
                             </label>
                         </td>
                     </tr>
@@ -67,7 +67,7 @@ class SEO {
                             <input class="regular-text" type="text" name="kag_seo_option_name[ka_url_rewrite_kurskategori]" value="<?php echo isset($this->kag_seo_options['ka_url_rewrite_kurskategori']) ? esc_attr($this->kag_seo_options['ka_url_rewrite_kurskategori']) : ''; ?>">
                             <label style="margin-left: 12px;">
                                 <input type="checkbox" name="kag_seo_option_name[ka_url_hide_kurskategori]" value="1" <?php checked(isset($this->kag_seo_options['ka_url_hide_kurskategori']) && $this->kag_seo_options['ka_url_hide_kurskategori']); ?>>
-                                Skjul i url-er <span title="Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Det kan føre til 404-feil, feil sidevisning og dårligere SEO hvis gamle url-er ikke videresendes. Brukes kun når du er sikker på at slugene er unike og redirect er håndtert." style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
+                                Skjul i url-er <span class="ka-tooltip" data-title="Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Se informasjon om fallback-mekanismen nedenfor." style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
                             </label>
                         </td>
                     </tr>
@@ -77,7 +77,7 @@ class SEO {
                             <input class="regular-text" type="text" name="kag_seo_option_name[ka_url_rewrite_kurssted]" value="<?php echo isset($this->kag_seo_options['ka_url_rewrite_kurssted']) ? esc_attr($this->kag_seo_options['ka_url_rewrite_kurssted']) : ''; ?>">
                             <label style="margin-left: 12px;">
                                 <input type="checkbox" name="kag_seo_option_name[ka_url_hide_kurssted]" value="1" <?php checked(isset($this->kag_seo_options['ka_url_hide_kurssted']) && $this->kag_seo_options['ka_url_hide_kurssted']); ?>>
-                                Skjul i url-er <span title="Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Det kan føre til 404-feil, feil sidevisning og dårligere SEO hvis gamle url-er ikke videresendes. Brukes kun når du er sikker på at slugene er unike og redirect er håndtert." style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
+                                Skjul i url-er <span class="ka-tooltip" data-title="Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Se informasjon om fallback-mekanismen nedenfor." style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
                             </label>
                         </td>
                     </tr>

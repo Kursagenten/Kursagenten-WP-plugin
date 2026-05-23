@@ -327,7 +327,7 @@ class Designmaler {
                     </div>
 
                     <div class="option-row">
-                        <label class="option-label">Knapper:</label>
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Knapper: <span class="ka-tooltip" data-title="Gjelder listetyper med to handlingsknapper. «Enkle kort» påvirkes ikke."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                         <div class="option-input">
                             <?php $archive_buttons_display = get_option('kursagenten_archive_buttons_display', 'show_buttons'); ?>
                             <label class="radio-label">
@@ -344,13 +344,12 @@ class Designmaler {
                                        <?php checked($archive_buttons_display, 'signup_link'); ?>>
                                 Vis påmeldingslink
                             </label>
-                            <p class="description">Gjelder listetyper med to handlingsknapper. «Enkle kort» påvirkes ikke.</p>
                         </div>
                     </div>
                     
                     <!-- Grid kolonner (kun når grid er valgt) -->
                     <div class="option-row grid-columns-settings" id="archive_grid_columns_settings" style="<?php echo (in_array($current_list, ['grid', 'simple-cards'])) ? '' : 'display: none;'; ?>">
-                        <label class="option-label">Antall kolonner i rutenett:</label>
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Antall kolonner i rutenett:</label>
                         <div class="option-input">
                             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 10px;">
                                 <div>
@@ -408,7 +407,7 @@ class Designmaler {
                     
                     <!-- Vis bilder -->
                     <div class="option-row">
-                        <label class="option-label">Vis bilder:</label>
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Vis bilder:</label>
                         <div class="option-input">
                             <?php
                             $show_images = get_option('kursagenten_show_images', 'yes');
@@ -428,7 +427,7 @@ class Designmaler {
 
                     <!-- Ledige kurs -->
                     <div class="option-row">
-                        <label class="option-label" for="kursagenten_default_available_only">Ledige kurs:</label>
+                        <label class="option-label" for="kursagenten_default_available_only"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Ledige kurs: <span class="ka-tooltip" data-title="Når dette er aktivert vil kurslisten som standard skjule fulle kurs og kurs «på forespørsel». Brukeren kan slå filteret av igjen på siden."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                         <div class="option-input">
                             <?php
                             $default_available_only = get_option('kursagenten_default_available_only', 'no');
@@ -446,9 +445,6 @@ class Designmaler {
                                        <?php checked($default_available_only, 'yes'); ?>>
                                 Vis kun ledige kurs som standard
                             </label>
-                            <p class="description">
-                                Når dette er aktivert vil kurslisten som standard skjule fulle kurs og kurs «på forespørsel». Brukeren kan slå filteret av igjen på siden.
-                            </p>
                             <div id="kursagenten-availability-warning"
                                  class="notice notice-warning inline"
                                  style="margin-top:8px;padding:8px 12px;<?php echo ($default_available_only === 'yes' && !$availability_enabled) ? '' : 'display:none;'; ?>">
@@ -461,14 +457,13 @@ class Designmaler {
 
                     <!-- Antall kurs per side -->
                     <div class="option-row">
-                        <label class="option-label">Antall kurs per side:</label>
+                        <label class="option-label">Antall kurs per side: <span class="ka-tooltip" data-title="Velg standard antall kurs som skal vises per side (1-50)"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                         <div class="option-input">
                             <input type="number" 
                                    name="kursagenten_courses_per_page" 
                                    value="<?php echo esc_attr(get_option('kursagenten_courses_per_page', 5)); ?>"
                                    min="1" 
                                    max="50">
-                            <p class="description">Velg standard antall kurs som skal vises per side (1-50)</p>
                         </div>
                     </div>
                 </div>
@@ -989,7 +984,7 @@ class Designmaler {
                     <?php $this->render_list_display_field_checkboxes('taxonomy'); ?>
 
                     <div class="option-row ka-taxonomy-plugin-design-only ka-taxonomy-list-label-indent">
-                        <label class="option-label">Knapper:</label>
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Knapper: <span class="ka-tooltip" data-title="Gjelder listetyper med to handlingsknapper. «Enkle kort» påvirkes ikke."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                         <div class="option-input">
                             <?php $taxonomy_buttons_display = get_option('kursagenten_taxonomy_buttons_display', 'show_buttons'); ?>
                             <label class="radio-label">
@@ -1006,13 +1001,12 @@ class Designmaler {
                                        <?php checked($taxonomy_buttons_display, 'signup_link'); ?>>
                                 Vis påmeldingslink
                             </label>
-                            <p class="description">Gjelder listetyper med to handlingsknapper. «Enkle kort» påvirkes ikke.</p>
                         </div>
                     </div>
                     
                     <!-- Grid kolonner (kun når grid er valgt) -->
                     <div class="option-row grid-columns-settings" id="taxonomy_grid_columns_settings" style="<?php echo (in_array($current_list, ['grid', 'simple-cards'])) ? '' : 'display: none;'; ?>">
-                        <label class="option-label">Antall kolonner i rutenett:</label>
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Antall kolonner i rutenett:</label>
                         <div class="option-input">
                             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 10px;">
                                 <div>
@@ -1070,7 +1064,7 @@ class Designmaler {
                     
                     <!-- Visningstype + undervalg -->
                     <div class="option-row ka-taxonomy-plugin-design-only ka-taxonomy-list-label-indent" id="taxonomy-viewtype-row">
-                        <label class="option-label">Visningstype:</label>
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Visningstype:</label>
                         <div class="option-input">
                             <?php
                             $view_type = get_option('kursagenten_taxonomy_view_type', 'all_coursedates');
@@ -1185,7 +1179,7 @@ class Designmaler {
 
                     <!-- Vis bilder -->
                     <div class="option-row ka-taxonomy-plugin-design-only ka-taxonomy-list-label-indent">
-                        <label class="option-label">Vis bilder:</label>
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Vis bilder:</label>
                         <div class="option-input">
                             <?php
                             $show_images_taxonomy = get_option('kursagenten_show_images_taxonomy', 'yes');
@@ -1203,7 +1197,7 @@ class Designmaler {
 
                     <!-- Skjul spesifikke lokasjoner (for kurssteder) -->
                     <div class="option-row taxonomy-specific-locations-setting ka-taxonomy-plugin-design-only ka-taxonomy-dashed-top" id="taxonomy_specific_locations_setting">
-                        <label class="option-label">Spesifikke lokasjoner:</label>
+                        <label class="option-label">Spesifikke lokasjoner: <span class="ka-tooltip" data-title="Spesifikke lokasjoner viser adresser og link til Google maps over kurslisten."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                         <div class="option-input">
                             <?php
                             $hide_specific_locations = get_option('kursagenten_taxonomy_hide_specific_locations', '0');
@@ -1215,7 +1209,6 @@ class Designmaler {
                                        <?php checked($hide_specific_locations, '1'); ?>>
                                 Skjul spesifikke lokasjoner på kurssteder
                             </label>
-                            <p class="description" style="color: #666; font-style: italic;">Spesifikke lokasjoner viser adresser og link til Google maps over kurslisten.</p>
                         </div>
                     </div>
 
@@ -1246,20 +1239,28 @@ class Designmaler {
                             $override_default = ($tax_name === 'ka_instructors');
                             $override_enabled = get_option("kursagenten_taxonomy_{$tax_name}_override", $override_default);
                             ?>
-                            <div class="taxonomy-override">
-                                <label class="checkbox-label">
-                                    <!-- Hidden input ensures value is always submitted -->
-                                    <input type="hidden" 
-                                           name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_override" 
-                                           value="0">
-                                    <input type="checkbox" 
-                                           name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_override" 
-                                           value="1" 
-                                           <?php checked($override_enabled, true); ?>>
-                                    Egne innstillinger for <?php echo esc_html($tax_label); ?>
-                                </label>
+                            <div class="taxonomy-override" data-taxonomy="<?php echo esc_attr($tax_name); ?>" data-panel-open="0">
+                                <div class="taxonomy-override-header">
+                                    <label class="checkbox-label taxonomy-override-enable-label">
+                                        <!-- Hidden input ensures value is always submitted -->
+                                        <input type="hidden" 
+                                               name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_override" 
+                                               value="0">
+                                        <input type="checkbox" 
+                                               name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_override" 
+                                               value="1" 
+                                               <?php checked($override_enabled, true); ?>>
+                                        Egne innstillinger for <?php echo esc_html($tax_label); ?>
+                                    </label>
+                                    <button type="button"
+                                            class="button-link taxonomy-override-panel-toggle"
+                                            aria-expanded="false"
+                                            <?php disabled(!$override_enabled); ?>>
+                                        <i class="ka-icon icon-chevron-right" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                                 
-                                <div class="taxonomy-override-settings" <?php if (!$override_enabled) echo 'style="display: none;"'; ?>>
+                                <div class="taxonomy-override-settings" style="display: none;">
                                     <!-- Layout -->
                                     <div class="option-row">
                                         <label class="option-label">Bredde:</label>
@@ -1299,7 +1300,10 @@ class Designmaler {
                                     <div class="option-row">
                                         <label class="option-label">Listedesign:</label>
                                         <div class="option-input">
-                                            <select name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_list_type" class="taxonomy-list-type-select" data-taxonomy="<?php echo esc_attr($tax_name); ?>">
+                                            <select name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_list_type"
+                                                    id="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_list_type"
+                                                    class="taxonomy-list-type-select"
+                                                    data-taxonomy="<?php echo esc_attr($tax_name); ?>">
                                                 <?php 
                                                 $current_tax_list_type = get_option("kursagenten_taxonomy_{$tax_name}_list_type", '');
                                                 ?>
@@ -1315,7 +1319,7 @@ class Designmaler {
                                     </div>
 
                                     <div class="option-row">
-                                        <label class="option-label">Knapper:</label>
+                                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Knapper: <span class="ka-tooltip" data-title="Gjelder listetyper med to handlingsknapper. «Enkle kort» påvirkes ikke."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                                         <div class="option-input">
                                             <?php $buttons_display_specific = get_option("kursagenten_taxonomy_{$tax_name}_buttons_display", ''); ?>
                                             <label class="radio-label">
@@ -1343,7 +1347,7 @@ class Designmaler {
                                     </div>
 
                                     <div class="option-row taxonomy-override-viewtype-row" id="taxonomy-override-<?php echo esc_attr($tax_name); ?>-viewtype-row">
-                                        <label class="option-label">Visningstype:</label>
+                                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Visningstype:</label>
                                         <div class="option-input">
                                             <?php $view_type_specific = get_option("kursagenten_taxonomy_{$tax_name}_view_type", ''); ?>
                                             <?php $filter_display_specific = get_option("kursagenten_taxonomy_{$tax_name}_filter_display", ''); ?>
@@ -1432,10 +1436,25 @@ class Designmaler {
                                             </div>
                                         </div>
                                     </div>
+
+                                    <?php
+                                    $this->render_list_display_field_checkboxes(
+                                        'taxonomy',
+                                        [
+                                            'option_key' => "kursagenten_taxonomy_{$tax_name}_list_display_fields",
+                                            'input_id' => "ka_list_display_taxonomy_{$tax_name}",
+                                            'list_type_selector' => "#kursagenten_taxonomy_{$tax_name}_list_type",
+                                            'list_type' => $current_tax_list_type,
+                                            'taxonomy' => $tax_name,
+                                            'section_label' => 'Vis i listen:',
+                                            'row_class' => 'option-row',
+                                        ]
+                                    );
+                                    ?>
                                     
                                     <!-- Grid kolonner for taksonomi-spesifikke innstillinger (kun når grid er valgt) -->
                                     <div class="option-row grid-columns-settings taxonomy-grid-columns-settings" id="taxonomy_<?php echo esc_attr($tax_name); ?>_grid_columns_settings" style="<?php echo (in_array($current_tax_list_type, ['grid', 'simple-cards'])) ? '' : 'display: none;'; ?>">
-                                        <label class="option-label">Antall kolonner i rutenett:</label>
+                                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Antall kolonner i rutenett:</label>
                                         <div class="option-input">
                                             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 10px;">
                                                 <div>
@@ -1513,7 +1532,7 @@ class Designmaler {
                                     
                                     <!-- Vis bilder -->
                                     <div class="option-row">
-                                        <label class="option-label">Vis bilder:</label>
+                                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Vis bilder:</label>
                                         <div class="option-input">
                                             <?php
                                             $show_images_taxonomy_specific = get_option("kursagenten_taxonomy_{$tax_name}_show_images", '');
@@ -1681,6 +1700,47 @@ class Designmaler {
 
                         border-radius: 4px;
                         padding: 1em;
+                    }
+                    .taxonomy-override-header {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 12px;
+                        padding: 2px 4px;
+                        border-radius: 6px;
+                        cursor: pointer;
+                    }
+                    .taxonomy-override-header:hover {
+                        background: rgba(0, 0, 0, 0.03);
+                    }
+                    .taxonomy-override-enable-label {
+                        margin-bottom: 0;
+                        cursor: default;
+                    }
+                    .taxonomy-override-panel-toggle {
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 28px;
+                        height: 28px;
+                        min-width: 28px;
+                        border-radius: 999px;
+                        color: #1d2327;
+                        text-decoration: none !important;
+                    }
+                    .taxonomy-override-panel-toggle i.ka-icon {
+                        width: 14px;
+                        height: 14px;
+                        background-color: #1d2327;
+                    }
+                    .taxonomy-override-panel-toggle:hover {
+                        background: rgba(0, 0, 0, 0.08);
+                        color: #1d2327;
+                    }
+                    .taxonomy-override-panel-toggle[disabled] {
+                        opacity: 0.4;
+                        cursor: default;
+                        pointer-events: none;
                     }
                     .taxonomy-override .option-row {
                         margin-bottom: 16px;
@@ -2230,6 +2290,20 @@ class Designmaler {
      */
     private function register_list_display_field_settings() {
         $allowed_fields = ['location', 'location_freetext', 'time', 'duration', 'price', 'room', 'instructor', 'last_date', 'registration_deadline'];
+        $sanitize_fields = function ($value) use ($allowed_fields) {
+            if (is_array($value)) {
+                $value = implode(',', $value);
+            }
+
+            if (!is_string($value)) {
+                return '';
+            }
+
+            $parts = array_filter(array_map('trim', explode(',', $value)));
+            $kept = array_values(array_intersect($parts, $allowed_fields));
+
+            return implode(',', $kept);
+        };
 
         foreach (['archive', 'taxonomy'] as $context) {
             register_setting(
@@ -2237,20 +2311,18 @@ class Designmaler {
                 "kursagenten_{$context}_list_display_fields",
                 array(
                     'type' => 'string',
-                    'sanitize_callback' => function ($value) use ($allowed_fields) {
-                        if (is_array($value)) {
-                            $value = implode(',', $value);
-                        }
+                    'sanitize_callback' => $sanitize_fields,
+                )
+            );
+        }
 
-                        if (!is_string($value)) {
-                            return '';
-                        }
-
-                        $parts = array_filter(array_map('trim', explode(',', $value)));
-                        $kept = array_values(array_intersect($parts, $allowed_fields));
-
-                        return implode(',', $kept);
-                    },
+        foreach (['ka_coursecategory', 'ka_course_location', 'ka_instructors'] as $taxonomy) {
+            register_setting(
+                'design_option_group',
+                "kursagenten_taxonomy_{$taxonomy}_list_display_fields",
+                array(
+                    'type' => 'string',
+                    'sanitize_callback' => $sanitize_fields,
                 )
             );
         }
@@ -2267,8 +2339,9 @@ class Designmaler {
      *  - The sanitize callback splits the string and keeps only allowed field keys.
      *
      * @param string $context 'archive' or 'taxonomy'.
+     * @param array  $args    Optional render overrides.
      */
-    private function render_list_display_field_checkboxes($context = 'archive') {
+    private function render_list_display_field_checkboxes($context = 'archive', $args = []) {
         $fields = array(
             'location' => 'Sted',
             'location_freetext' => 'Fritekst sted',
@@ -2282,13 +2355,28 @@ class Designmaler {
         );
 
         $context_base = ($context === 'taxonomy') ? 'taxonomy' : 'archive';
+        $context_taxonomy = '';
+        if (isset($args['taxonomy']) && is_string($args['taxonomy'])) {
+            $context_taxonomy = sanitize_text_field($args['taxonomy']);
+        }
+
         $context_list_type_option = ($context_base === 'taxonomy')
             ? 'kursagenten_taxonomy_list_type'
             : 'kursagenten_archive_list_type';
         $context_list_type_selector = ($context_base === 'taxonomy')
             ? '#kursagenten_taxonomy_list_type'
             : '#kursagenten_archive_list_type';
-        $context_list_type = get_option($context_list_type_option, 'standard');
+        if (isset($args['list_type_selector']) && is_string($args['list_type_selector']) && $args['list_type_selector'] !== '') {
+            $context_list_type_selector = $args['list_type_selector'];
+        }
+
+        $context_list_type = '';
+        if (isset($args['list_type']) && is_string($args['list_type'])) {
+            $context_list_type = sanitize_text_field($args['list_type']);
+        }
+        if ($context_list_type === '') {
+            $context_list_type = get_option($context_list_type_option, 'standard');
+        }
         if (!is_string($context_list_type) || $context_list_type === '') {
             $context_list_type = 'standard';
         }
@@ -2301,21 +2389,33 @@ class Designmaler {
             'simple-cards' => ['duration'],
         ];
         $option_key = 'kursagenten_' . $context_base . '_list_display_fields';
+        if (isset($args['option_key']) && is_string($args['option_key']) && $args['option_key'] !== '') {
+            $option_key = sanitize_text_field($args['option_key']);
+        }
         $enabled_fields = function_exists('kursagenten_get_list_display_fields_enabled_list')
-            ? kursagenten_get_list_display_fields_enabled_list($context_base, $context_list_type)
+            ? kursagenten_get_list_display_fields_enabled_list($context_base, $context_list_type, $context_taxonomy)
             : array_keys($fields);
 
         $section_label = ($context === 'taxonomy')
             ? 'Vis i listen (taksonomi):'
             : 'Vis i listen:';
+        if (isset($args['section_label']) && is_string($args['section_label']) && $args['section_label'] !== '') {
+            $section_label = $args['section_label'];
+        }
 
         $row_class = ($context === 'taxonomy')
             ? 'option-row ka-taxonomy-list-label-indent'
             : 'option-row';
+        if (isset($args['row_class']) && is_string($args['row_class']) && $args['row_class'] !== '') {
+            $row_class = $args['row_class'];
+        }
         $input_id = 'ka_list_display_' . $context_base;
+        if (isset($args['input_id']) && is_string($args['input_id']) && $args['input_id'] !== '') {
+            $input_id = sanitize_key($args['input_id']);
+        }
         ?>
         <div class="<?php echo esc_attr($row_class); ?>">
-            <label class="option-label"><?php echo esc_html($section_label); ?></label>
+            <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> <?php echo esc_html($section_label); ?> <span class="ka-tooltip" data-title="I alle listedesign unntatt «Enkle kort» er Sted alltid på. På taksonomi kurssted skjules stedsnavn, og valgt fritekst vises uten parentes. Sluttdato legges etter startdato i samme datolinje (med bindestrek). Påmeldingsfrist vises før tid. Pris inkluderer eventuell ettertekst (f.eks. «kr»)."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
             <div class="option-input">
                 <input type="hidden"
                        id="<?php echo esc_attr($input_id); ?>"
@@ -2341,7 +2441,6 @@ class Designmaler {
                         Bruk standardvalg for valgt listedesign
                     </button>
                 </p>
-                <p class="description">I alle listedesign unntatt «Enkle kort» er Sted alltid på. På taksonomi kurssted skjules stedsnavn, og valgt fritekst vises uten parentes. Sluttdato legges etter startdato i samme datolinje (med bindestrek). Påmeldingsfrist vises før tid. Pris inkluderer eventuell ettertekst (f.eks. «kr»).</p>
             </div>
         </div>
         <?php
@@ -2940,6 +3039,20 @@ class Designmaler {
                     showTaxonomyOverrideMainCoursesInfoPanel(taxonomy);
                 });
 
+                function updateTaxonomyOverrideHeaderState($override) {
+                    var $checkbox = $override.find('input[type="checkbox"][name$="_override"]').first();
+                    var $toggleButton = $override.find('.taxonomy-override-panel-toggle').first();
+                    var isEnabled = $checkbox.is(':checked');
+                    var isOpen = ($override.attr('data-panel-open') === '1');
+
+                    $toggleButton.prop('disabled', !isEnabled);
+                    $toggleButton.attr('aria-expanded', isEnabled && isOpen ? 'true' : 'false');
+
+                    var $chevron = $toggleButton.find('i.ka-icon');
+                    $chevron.toggleClass('icon-chevron-down', isEnabled && isOpen);
+                    $chevron.toggleClass('icon-chevron-right', !isEnabled || !isOpen);
+                }
+
                 function refreshTaxonomyOverrideSettingsVisibility() {
                     $('.taxonomy-override').each(function() {
                         var $override = $(this);
@@ -2948,11 +3061,53 @@ class Designmaler {
                         if (!$checkbox.length || !$settings.length) {
                             return;
                         }
-                        $settings.toggle($checkbox.is(':checked'));
+                        if ($override.attr('data-panel-open') !== '0' && $override.attr('data-panel-open') !== '1') {
+                            $override.attr('data-panel-open', $checkbox.is(':checked') ? '1' : '0');
+                        }
+                        var isEnabled = $checkbox.is(':checked');
+                        var isOpen = ($override.attr('data-panel-open') === '1');
+                        $settings.toggle(isEnabled && isOpen);
+                        updateTaxonomyOverrideHeaderState($override);
                     });
                 }
 
+                function toggleTaxonomyOverridePanel($override) {
+                    if (!$override || !$override.length) {
+                        return;
+                    }
+                    var $checkbox = $override.find('input[type="checkbox"][name$="_override"]').first();
+                    if (!$checkbox.is(':checked')) {
+                        return;
+                    }
+                    var isOpen = ($override.attr('data-panel-open') === '1');
+                    $override.attr('data-panel-open', isOpen ? '0' : '1');
+                    refreshTaxonomyOverrideSettingsVisibility();
+                    toggleTaxonomySpecificGridColumns();
+                    refreshAllTaxonomyOverrideViewTypePanels();
+                }
+
+                $(document).on('click', '.taxonomy-override-header', function(e) {
+                    if ($(e.target).closest('label, input, .taxonomy-override-panel-toggle, a, select, textarea').length) {
+                        return;
+                    }
+                    var $override = $(this).closest('.taxonomy-override');
+                    toggleTaxonomyOverridePanel($override);
+                });
+
+                $(document).on('click', '.taxonomy-override-panel-toggle', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var $override = $(this).closest('.taxonomy-override');
+                    toggleTaxonomyOverridePanel($override);
+                });
+
                 $(document).on('change', '.taxonomy-override input[type="checkbox"][name$="_override"]', function() {
+                    var $override = $(this).closest('.taxonomy-override');
+                    if ($(this).is(':checked')) {
+                        $override.attr('data-panel-open', '1');
+                    } else {
+                        $override.attr('data-panel-open', '0');
+                    }
                     refreshTaxonomyOverrideSettingsVisibility();
                     toggleTaxonomySpecificGridColumns();
                     refreshAllTaxonomyOverrideViewTypePanels();
@@ -3205,7 +3360,7 @@ class Designmaler {
                     var $container = $(this).closest('.option-input').find('.ka-list-display-fields').first();
                     kaApplyListDisplayDefaults($container);
                 });
-                $(document).on('change', '#kursagenten_archive_list_type, #kursagenten_taxonomy_list_type', function() {
+                $(document).on('change', '#kursagenten_archive_list_type, #kursagenten_taxonomy_list_type, .taxonomy-list-type-select', function() {
                     $('.ka-list-display-fields').each(function() {
                         var $container = $(this);
                         kaApplyLocationFieldRules($container);

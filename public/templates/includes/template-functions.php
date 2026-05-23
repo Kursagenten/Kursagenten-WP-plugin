@@ -476,17 +476,34 @@ function kursagenten_get_default_list_display_fields_for_list_type($list_type = 
  *
  * @param string $context_base 'archive' or 'taxonomy'.
  * @param string $list_type    Current list type (optional).
+ * @param string $taxonomy     Taxonomy slug for taxonomy context (optional).
  * @return string[] Enabled field keys (including location/location_freetext).
  */
-function kursagenten_get_list_display_fields_enabled_list($context_base = 'archive', $list_type = '') {
+function kursagenten_get_list_display_fields_enabled_list($context_base = 'archive', $list_type = '', $taxonomy = '') {
     $field_keys = ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'instructor', 'last_date', 'registration_deadline'];
     $context_base = ($context_base === 'taxonomy') ? 'taxonomy' : 'archive';
-    $option_key = 'kursagenten_' . $context_base . '_list_display_fields';
     $list_type = is_string($list_type) ? sanitize_text_field($list_type) : '';
+    $taxonomy = is_string($taxonomy) ? sanitize_text_field($taxonomy) : '';
+    $valid_taxonomies = ['ka_coursecategory', 'ka_course_location', 'ka_instructors'];
+    if (!in_array($taxonomy, $valid_taxonomies, true)) {
+        $taxonomy = '';
+    }
 
     if ($list_type === '') {
-        $list_type_option_key = 'kursagenten_' . $context_base . '_list_type';
-        $saved_list_type = get_option($list_type_option_key, 'standard');
+        $saved_list_type = '';
+        if ($context_base === 'taxonomy' && $taxonomy !== '') {
+            $override_default = ($taxonomy === 'ka_instructors');
+            $override_enabled = (bool) get_option("kursagenten_taxonomy_{$taxonomy}_override", $override_default);
+            if ($override_enabled) {
+                $saved_list_type = get_option("kursagenten_taxonomy_{$taxonomy}_list_type", '');
+            }
+        }
+
+        if (!is_string($saved_list_type) || $saved_list_type === '') {
+            $list_type_option_key = 'kursagenten_' . $context_base . '_list_type';
+            $saved_list_type = get_option($list_type_option_key, 'standard');
+        }
+
         if (is_string($saved_list_type) && $saved_list_type !== '') {
             $list_type = $saved_list_type;
         } else {
@@ -499,7 +516,24 @@ function kursagenten_get_list_display_fields_enabled_list($context_base = 'archi
 
     // Sentinel default makes it possible to distinguish "never saved" from "saved as empty".
     $sentinel = '__ka_unset__';
-    $saved = get_option($option_key, $sentinel);
+    $saved = $sentinel;
+    $option_keys = [];
+    if ($context_base === 'taxonomy' && $taxonomy !== '') {
+        $override_default = ($taxonomy === 'ka_instructors');
+        $override_enabled = (bool) get_option("kursagenten_taxonomy_{$taxonomy}_override", $override_default);
+        if ($override_enabled) {
+            $option_keys[] = "kursagenten_taxonomy_{$taxonomy}_list_display_fields";
+        }
+    }
+    $option_keys[] = 'kursagenten_' . $context_base . '_list_display_fields';
+
+    foreach ($option_keys as $option_key) {
+        $candidate_saved = get_option($option_key, $sentinel);
+        if ($candidate_saved !== $sentinel) {
+            $saved = $candidate_saved;
+            break;
+        }
+    }
 
     if ($saved === $sentinel) {
         return $default_fields;
@@ -853,7 +887,7 @@ function kursagenten_get_list_display_fields($args = []) {
     if (!empty($args['list_type']) && is_string($args['list_type'])) {
         $resolved_list_type = sanitize_text_field($args['list_type']);
     }
-    $enabled = kursagenten_get_list_display_fields_enabled_list($context_base, $resolved_list_type);
+    $enabled = kursagenten_get_list_display_fields_enabled_list($context_base, $resolved_list_type, $resolved_taxonomy);
     $shortcode_vis = '';
     if (!empty($args['shortcode_vis']) && is_string($args['shortcode_vis'])) {
         $shortcode_vis = sanitize_text_field($args['shortcode_vis']);

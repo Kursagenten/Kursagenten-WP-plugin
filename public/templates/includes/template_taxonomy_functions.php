@@ -180,35 +180,19 @@ function get_instructor_display_url($term, $taxonomy) {
     if ($taxonomy !== 'ka_instructors') {
         return get_term_link($term);
     }
-    
-    // Hent URL-innstillinger
-    $url_options = get_option('kag_seo_option_name');
-    $instructor_slug = !empty($url_options['ka_url_rewrite_instruktor']) ? $url_options['ka_url_rewrite_instruktor'] : 'instruktorer';
-    
-    // Get name display setting
-    $name_display = get_instructor_name_display_setting();
-    if (empty($name_display) || $name_display === 'full') {
-        return get_term_link($term);
+
+    /*
+     * IMPORTANT:
+     * Always use get_term_link() so all active term_link filters apply in one place:
+     * - instructor name display (full/firstname/lastname)
+     * - hidden taxonomy prefix handling + conflict fallback
+     */
+    $url = get_term_link($term);
+    if (is_wp_error($url)) {
+        return home_url('/');
     }
 
-    // Get desired name based on setting
-    $display_name = '';
-    switch ($name_display) {
-        case 'firstname':
-            $display_name = get_term_meta($term->term_id, 'instructor_firstname', true);
-            break;
-        case 'lastname':
-            $display_name = get_term_meta($term->term_id, 'instructor_lastname', true);
-            break;
-    }
-
-    if (empty($display_name)) {
-        return get_term_link($term);
-    }
-
-    // Build new URL with desired name
-    $new_slug = sanitize_title($display_name);
-    return home_url('/' . $instructor_slug . '/' . $new_slug . '/');
+    return (string) $url;
 }
 
 function get_taxonomy_courses($term_id, $taxonomy) {
