@@ -26,6 +26,20 @@ function parse_taxonomy_path($path_segments) {
         }
         
         $taxonomy = map_taxonomy_slug($taxonomy_slug);
+    } elseif (count($path_segments) === 1) {
+        // Support hidden taxonomy prefix URLs, e.g. /førstehjelp/
+        $requested_slug = sanitize_title($path_segments[0]);
+        if ($requested_slug !== '' && function_exists('kursagenten_find_hidden_taxonomy_term_candidates')) {
+            $candidates = kursagenten_find_hidden_taxonomy_term_candidates($requested_slug);
+            if (count($candidates) === 1) {
+                $taxonomy = array_key_first($candidates);
+                $term = $candidates[$taxonomy];
+                if ($term instanceof WP_Term) {
+                    $term_slug = $term->slug;
+                    $taxonomy_slug = $requested_slug;
+                }
+            }
+        }
     }
     
     return [

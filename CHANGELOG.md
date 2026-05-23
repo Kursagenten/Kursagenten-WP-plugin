@@ -1,3 +1,6 @@
+## 1.1.22 - 2026-05-23
+- Lagt til: Mulighet til å fjerne taksonomi-slug under SEO innstillinger. Eksempel: webside.no/kurskategori/kurset -> webside.no/kurset
+
 ## 1.1.21 - 2026-05-21
 - Lagt til: "Skjul i kursliste" for kurskategorier er nå et trevalg i stedet for av/på:
   - *Vis* – kategorien vises i filteret og kursene vises i kurslisten.

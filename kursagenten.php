@@ -106,6 +106,343 @@ function kursagenten_get_design_assets_version() {
     return $base_version . '.' . $design_version;
 }
 
+/**
+ * Get URL settings used by taxonomy rewrites.
+ *
+ * @return array<string, array{slug:string, hide:bool}>
+ */
+function kursagenten_get_taxonomy_url_settings() {
+    $url_options = get_option('kag_seo_option_name', array());
+
+    return array(
+        'ka_coursecategory' => array(
+            'slug' => !empty($url_options['ka_url_rewrite_kurskategori']) ? (string) $url_options['ka_url_rewrite_kurskategori'] : 'kurskategori',
+            'hide' => isset($url_options['ka_url_hide_kurskategori']) && (string) $url_options['ka_url_hide_kurskategori'] === '1',
+        ),
+        'ka_course_location' => array(
+            'slug' => !empty($url_options['ka_url_rewrite_kurssted']) ? (string) $url_options['ka_url_rewrite_kurssted'] : 'kurssted',
+            'hide' => isset($url_options['ka_url_hide_kurssted']) && (string) $url_options['ka_url_hide_kurssted'] === '1',
+        ),
+        'ka_instructors' => array(
+            'slug' => !empty($url_options['ka_url_rewrite_instruktor']) ? (string) $url_options['ka_url_rewrite_instruktor'] : 'instruktorer',
+            'hide' => isset($url_options['ka_url_hide_instruktor']) && (string) $url_options['ka_url_hide_instruktor'] === '1',
+        ),
+    );
+}
+
+/**
+ * Get taxonomies configured to hide URL prefix.
+ *
+ * @return array<string, array{slug:string, hide:bool}>
+ */
+function kursagenten_get_hidden_taxonomy_map() {
+    $settings = kursagenten_get_taxonomy_url_settings();
+
+    return array_filter(
+        $settings,
+        static function ($config) {
+            return is_array($config) && !empty($config['hide']);
+        }
+    );
+}
+
+/**
+ * Get instructor name display setting.
+ *
+ * @return string
+ */
+function kursagenten_get_instructor_name_display_setting() {
+    $name_display = get_option('kursagenten_taxonomy_ka_instructors_name_display', '');
+    if ($name_display === '' || $name_display === false) {
+        $name_display = get_option('kursagenten_taxonomy_instructors_name_display', '');
+    }
+
+    return is_string($name_display) ? $name_display : '';
+}
+
+/**
+ * Resolve taxonomy term from incoming URL slug.
+ *
+ * @param string $taxonomy
+ * @param string $requested_slug
+ * @return WP_Term|null
+ */
+function kursagenten_resolve_taxonomy_term_from_slug($taxonomy, $requested_slug) {
+    if (!is_string($taxonomy) || !is_string($requested_slug) || $requested_slug === '') {
+        return null;
+    }
+
+    $term = get_term_by('slug', $requested_slug, $taxonomy);
+    if ($term instanceof WP_Term) {
+        return $term;
+    }
+
+    if ($taxonomy !== 'ka_instructors') {
+        return null;
+    }
+
+    $name_display = kursagenten_get_instructor_name_display_setting();
+    if ($name_display !== 'firstname' && $name_display !== 'lastname') {
+        return null;
+    }
+
+    $meta_key = $name_display === 'firstname' ? 'instructor_firstname' : 'instructor_lastname';
+    $terms = get_terms(array(
+        'taxonomy' => 'ka_instructors',
+        'hide_empty' => false,
+    ));
+
+    if (is_wp_error($terms) || empty($terms)) {
+        return null;
+    }
+
+    foreach ($terms as $candidate) {
+        if (!($candidate instanceof WP_Term)) {
+            continue;
+        }
+
+        $candidate_name = get_term_meta($candidate->term_id, $meta_key, true);
+        if (!empty($candidate_name) && sanitize_title((string) $candidate_name) === $requested_slug) {
+            return $candidate;
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Find matching hidden-taxonomy term candidates for a slug.
+ *
+ * @param string $requested_slug
+ * @return array<string, WP_Term>
+ */
+function kursagenten_find_hidden_taxonomy_term_candidates($requested_slug) {
+    $candidates = array();
+    $hidden_taxonomies = kursagenten_get_hidden_taxonomy_map();
+
+    foreach ($hidden_taxonomies as $taxonomy => $config) {
+        $term = kursagenten_resolve_taxonomy_term_from_slug($taxonomy, $requested_slug);
+        if ($term instanceof WP_Term) {
+            $candidates[$taxonomy] = $term;
+        }
+    }
+
+    return $candidates;
+}
+
+/**
+ * Find public post/page that matches a single path slug.
+ *
+ * @param string $slug_value
+ * @return WP_Post|null
+ */
+function kursagenten_get_public_post_by_slug($slug_value) {
+    if (!is_string($slug_value) || $slug_value === '') {
+        return null;
+    }
+
+    $public_post_types = get_post_types(array('public' => true), 'names');
+    if (!is_array($public_post_types) || empty($public_post_types)) {
+        return null;
+    }
+
+    $matched_post = get_page_by_path($slug_value, OBJECT, array_values($public_post_types));
+    return ($matched_post instanceof WP_Post) ? $matched_post : null;
+}
+
+/**
+ * Check whether a hidden taxonomy slug has routing conflicts.
+ *
+ * @param string $slug_value
+ * @return bool
+ */
+function kursagenten_hidden_slug_has_conflicts($slug_value) {
+    if (!is_string($slug_value) || $slug_value === '') {
+        return true;
+    }
+
+    // Conflict if same slug exists in multiple hidden taxonomies.
+    $candidates = kursagenten_find_hidden_taxonomy_term_candidates($slug_value);
+    if (count($candidates) > 1) {
+        return true;
+    }
+
+    // Conflict if slug matches an existing public post/page/attachment path.
+    if (kursagenten_get_public_post_by_slug($slug_value) instanceof WP_Post) {
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * Register fallback rewrite for hidden taxonomy prefixes.
+ *
+ * @return void
+ */
+function kursagenten_register_hidden_taxonomy_rewrite_rule() {
+    if (empty(kursagenten_get_hidden_taxonomy_map())) {
+        return;
+    }
+
+    // Keep this as bottom priority so regular pages/permastructs win first.
+    add_rewrite_rule('^([^/]+)/?$', 'index.php?ka_hidden_term=$matches[1]', 'bottom');
+}
+add_action('init', 'kursagenten_register_hidden_taxonomy_rewrite_rule', 20);
+
+/**
+ * Register query var for hidden taxonomy fallback.
+ *
+ * @param array $vars
+ * @return array
+ */
+function kursagenten_add_hidden_taxonomy_query_var($vars) {
+    $vars[] = 'ka_hidden_term';
+    return $vars;
+}
+add_filter('query_vars', 'kursagenten_add_hidden_taxonomy_query_var');
+
+/**
+ * Resolve fallback taxonomy requests where prefix is hidden.
+ *
+ * @param array $query_vars
+ * @return array
+ */
+function kursagenten_resolve_hidden_taxonomy_request($query_vars) {
+    if (is_admin() || !is_array($query_vars)) {
+        return $query_vars;
+    }
+
+    if (isset($query_vars['ka_coursecategory']) || isset($query_vars['ka_course_location']) || isset($query_vars['ka_instructors'])) {
+        return $query_vars;
+    }
+
+    $requested_slug = '';
+    if (!empty($query_vars['ka_hidden_term']) && is_string($query_vars['ka_hidden_term'])) {
+        $requested_slug = sanitize_title($query_vars['ka_hidden_term']);
+    } else {
+        // Core page rewrite can capture one-segment URLs as pagename/name first.
+        $fallback_slug = '';
+        if (!empty($query_vars['pagename']) && is_string($query_vars['pagename'])) {
+            $fallback_slug = $query_vars['pagename'];
+        } elseif (!empty($query_vars['name']) && is_string($query_vars['name'])) {
+            $fallback_slug = $query_vars['name'];
+        }
+
+        // Only handle single-segment slugs for hidden taxonomy routes.
+        if ($fallback_slug !== '' && strpos($fallback_slug, '/') === false) {
+            $requested_slug = sanitize_title($fallback_slug);
+        }
+    }
+
+    if ($requested_slug === '') {
+        return $query_vars;
+    }
+
+    // If a real public page/post exists for this slug, let it win.
+    $matched_post = kursagenten_get_public_post_by_slug($requested_slug);
+    if ($matched_post instanceof WP_Post) {
+        unset($query_vars['ka_hidden_term'], $query_vars['error']);
+
+        if ($matched_post->post_type === 'page') {
+            unset($query_vars['name'], $query_vars['post_type']);
+            $query_vars['pagename'] = $requested_slug;
+        } else {
+            unset($query_vars['pagename']);
+            $query_vars['name'] = $requested_slug;
+            $query_vars['post_type'] = $matched_post->post_type;
+        }
+
+        return $query_vars;
+    }
+
+    $candidates = kursagenten_find_hidden_taxonomy_term_candidates($requested_slug);
+    if (count($candidates) !== 1) {
+        return $query_vars;
+    }
+
+    $taxonomy = array_key_first($candidates);
+    $term = $candidates[$taxonomy];
+    if (!($term instanceof WP_Term)) {
+        return $query_vars;
+    }
+
+    unset($query_vars['ka_hidden_term'], $query_vars['pagename'], $query_vars['name'], $query_vars['attachment'], $query_vars['error']);
+    $query_vars[$taxonomy] = $term->slug;
+
+    return $query_vars;
+}
+add_filter('request', 'kursagenten_resolve_hidden_taxonomy_request', 9);
+
+/**
+ * Remove taxonomy prefix from term links when configured.
+ *
+ * @param string       $termlink
+ * @param WP_Term      $term
+ * @param string       $taxonomy
+ * @return string
+ */
+function kursagenten_filter_hidden_taxonomy_term_link($termlink, $term, $taxonomy) {
+    if (!($term instanceof WP_Term) || !is_string($taxonomy) || !is_string($termlink)) {
+        return $termlink;
+    }
+
+    $settings = kursagenten_get_taxonomy_url_settings();
+    if (empty($settings[$taxonomy]['hide']) || empty($settings[$taxonomy]['slug'])) {
+        return $termlink;
+    }
+
+    $taxonomy_slug = trim((string) $settings[$taxonomy]['slug'], '/');
+    if ($taxonomy_slug === '') {
+        return $termlink;
+    }
+
+    $path = wp_parse_url($termlink, PHP_URL_PATH);
+    if (!is_string($path) || $path === '') {
+        return $termlink;
+    }
+
+    $home_path = wp_parse_url(home_url('/'), PHP_URL_PATH);
+    $home_path = is_string($home_path) ? trim($home_path, '/') : '';
+
+    $relative_path = trim($path, '/');
+    if ($home_path !== '' && strpos($relative_path, $home_path . '/') === 0) {
+        $relative_path = (string) substr($relative_path, strlen($home_path) + 1);
+    } elseif ($relative_path === $home_path) {
+        $relative_path = '';
+    }
+
+    $segments = array_values(array_filter(explode('/', $relative_path)));
+    if (count($segments) < 2 || $segments[0] !== $taxonomy_slug) {
+        return $termlink;
+    }
+
+    $target_slug = sanitize_title((string) $segments[1]);
+    if ($target_slug === '' || kursagenten_hidden_slug_has_conflicts($target_slug)) {
+        // Fallback to prefixed URL if slug conflicts with existing routes.
+        return $termlink;
+    }
+
+    array_shift($segments);
+    if (empty($segments)) {
+        return $termlink;
+    }
+
+    $new_url = home_url('/' . implode('/', $segments) . '/');
+    $query = wp_parse_url($termlink, PHP_URL_QUERY);
+    $fragment = wp_parse_url($termlink, PHP_URL_FRAGMENT);
+
+    if (is_string($query) && $query !== '') {
+        $new_url .= '?' . $query;
+    }
+    if (is_string($fragment) && $fragment !== '') {
+        $new_url .= '#' . $fragment;
+    }
+
+    return $new_url;
+}
+add_filter('term_link', 'kursagenten_filter_hidden_taxonomy_term_link', 20, 3);
+
 
 register_activation_hook(__FILE__, 'kursagenten_check_dependencies');
 

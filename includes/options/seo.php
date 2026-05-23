@@ -26,6 +26,7 @@ class SEO {
 
     public function kag_seo_create_admin_page() {
         $this->kag_seo_options = get_option('kag_seo_option_name'); 
+        $hidden_url_conflicts = $this->get_hidden_url_conflicts();
         
         ?>
         <div class="wrap options-form ka-wrap" id="toppen">
@@ -54,22 +55,55 @@ class SEO {
                         <th scope="row">Instruktør</th>
                         <td>
                             <input class="regular-text" type="text" name="kag_seo_option_name[ka_url_rewrite_instruktor]" value="<?php echo isset($this->kag_seo_options['ka_url_rewrite_instruktor']) ? esc_attr($this->kag_seo_options['ka_url_rewrite_instruktor']) : ''; ?>">
+                            <label style="margin-left: 12px;">
+                                <input type="checkbox" name="kag_seo_option_name[ka_url_hide_instruktor]" value="1" <?php checked(isset($this->kag_seo_options['ka_url_hide_instruktor']) && $this->kag_seo_options['ka_url_hide_instruktor']); ?>>
+                                Skjul i url-er <span title="Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Det kan føre til 404-feil, feil sidevisning og dårligere SEO hvis gamle url-er ikke videresendes. Brukes kun når du er sikker på at slugene er unike og redirect er håndtert." style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
+                            </label>
                         </td>
                     </tr>
                     <tr valign="top">
                         <th scope="row">Kurskategori</th>
                         <td>
                             <input class="regular-text" type="text" name="kag_seo_option_name[ka_url_rewrite_kurskategori]" value="<?php echo isset($this->kag_seo_options['ka_url_rewrite_kurskategori']) ? esc_attr($this->kag_seo_options['ka_url_rewrite_kurskategori']) : ''; ?>">
+                            <label style="margin-left: 12px;">
+                                <input type="checkbox" name="kag_seo_option_name[ka_url_hide_kurskategori]" value="1" <?php checked(isset($this->kag_seo_options['ka_url_hide_kurskategori']) && $this->kag_seo_options['ka_url_hide_kurskategori']); ?>>
+                                Skjul i url-er <span title="Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Det kan føre til 404-feil, feil sidevisning og dårligere SEO hvis gamle url-er ikke videresendes. Brukes kun når du er sikker på at slugene er unike og redirect er håndtert." style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
+                            </label>
                         </td>
                     </tr>
                     <tr valign="top">
                         <th scope="row">Kurssted</th>
                         <td>
                             <input class="regular-text" type="text" name="kag_seo_option_name[ka_url_rewrite_kurssted]" value="<?php echo isset($this->kag_seo_options['ka_url_rewrite_kurssted']) ? esc_attr($this->kag_seo_options['ka_url_rewrite_kurssted']) : ''; ?>">
+                            <label style="margin-left: 12px;">
+                                <input type="checkbox" name="kag_seo_option_name[ka_url_hide_kurssted]" value="1" <?php checked(isset($this->kag_seo_options['ka_url_hide_kurssted']) && $this->kag_seo_options['ka_url_hide_kurssted']); ?>>
+                                Skjul i url-er <span title="Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Det kan føre til 404-feil, feil sidevisning og dårligere SEO hvis gamle url-er ikke videresendes. Brukes kun når du er sikker på at slugene er unike og redirect er håndtert." style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
+                            </label>
                         </td>
                     </tr>
 
                 </table>
+
+                <p class="description" style="max-width:900px;margin-top:10px;">
+                    <strong>Hvordan fallback fungerer:</strong> Når "Skjul i url-er" er aktivert, forsøker vi først kort URL uten prefix.
+                    Hvis slugen er i konflikt med en side/innlegg eller en annen skjult taksonomi, brukes automatisk prefiks-URL
+                    (f.eks. <code>/kurskategori/slug/</code> eller din tilpassede verdi som <code>/kat/slug/</code>).
+                    Vanlige WordPress-sider og innlegg får alltid prioritet ved konflikt.
+                </p>
+
+                <?php if (!empty($hidden_url_conflicts)) : ?>
+                    <div class="notice notice-warning inline" style="margin-top:14px;">
+                        <p><strong>Konflikter funnet for skjulte URL-er:</strong> Disse slugene bruker fallback med prefix.</p>
+                        <ul style="margin: 0 0 8px 18px; list-style: disc;">
+                            <?php foreach ($hidden_url_conflicts as $conflict) : ?>
+                                <li>
+                                    <code><?php echo esc_html($conflict['slug']); ?></code>
+                                    – <?php echo esc_html($conflict['context']); ?>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
                 </div>
 
                 <!-- SEO på/av og dokumentasjon -->
@@ -157,9 +191,12 @@ class SEO {
         try {
             // Checkbox: when unchecked it's not in POST, so default to 0
             $sanitary_values['ka_seo_disable'] = isset($input['ka_seo_disable']) && $input['ka_seo_disable'] ? '1' : '0';
+            $sanitary_values['ka_url_hide_instruktor'] = isset($input['ka_url_hide_instruktor']) && $input['ka_url_hide_instruktor'] ? '1' : '0';
+            $sanitary_values['ka_url_hide_kurskategori'] = isset($input['ka_url_hide_kurskategori']) && $input['ka_url_hide_kurskategori'] ? '1' : '0';
+            $sanitary_values['ka_url_hide_kurssted'] = isset($input['ka_url_hide_kurssted']) && $input['ka_url_hide_kurssted'] ? '1' : '0';
 
             foreach ($input as $key => $value) {
-                if ($key === 'ka_seo_disable') {
+                if (in_array($key, array('ka_seo_disable', 'ka_url_hide_instruktor', 'ka_url_hide_kurskategori', 'ka_url_hide_kurssted'), true)) {
                     continue; // Already handled
                 }
                 $sanitary_values[$key] = sanitize_text_field($value);
@@ -175,11 +212,21 @@ class SEO {
     
     public function flush_rewrite_rules_on_update($old_value, $new_value) {
         // Sjekk om noen av URL-innstillingene har endret seg
-        $url_fields = array('ka_url_rewrite_kurs', 'ka_url_rewrite_instruktor', 'ka_url_rewrite_kurskategori', 'ka_url_rewrite_kurssted');
+        $url_fields = array(
+            'ka_url_rewrite_kurs',
+            'ka_url_rewrite_instruktor',
+            'ka_url_rewrite_kurskategori',
+            'ka_url_rewrite_kurssted',
+            'ka_url_hide_instruktor',
+            'ka_url_hide_kurskategori',
+            'ka_url_hide_kurssted'
+        );
         $has_changes = false;
         
         foreach ($url_fields as $field) {
-            if (isset($old_value[$field]) && isset($new_value[$field]) && $old_value[$field] !== $new_value[$field]) {
+            $old_field_value = isset($old_value[$field]) ? (string) $old_value[$field] : '';
+            $new_field_value = isset($new_value[$field]) ? (string) $new_value[$field] : '';
+            if ($old_field_value !== $new_field_value) {
                 $has_changes = true;
                 break;
             }
@@ -192,6 +239,147 @@ class SEO {
                 kursagenten_clear_all_menu_caches();
             }
         }
+    }
+
+    /**
+     * Build config for taxonomies that can hide URL prefix.
+     *
+     * @return array<string, array<string, string>>
+     */
+    private function get_hide_url_taxonomy_config() {
+        return array(
+            'ka_coursecategory' => array(
+                'label' => 'Kurskategori',
+                'option' => 'ka_url_hide_kurskategori',
+            ),
+            'ka_course_location' => array(
+                'label' => 'Kurssted',
+                'option' => 'ka_url_hide_kurssted',
+            ),
+            'ka_instructors' => array(
+                'label' => 'Instruktør',
+                'option' => 'ka_url_hide_instruktor',
+            ),
+        );
+    }
+
+    /**
+     * Resolve the slug used in hidden URL mode for a term.
+     *
+     * @param string  $taxonomy Taxonomy name.
+     * @param WP_Term $term     Taxonomy term.
+     * @return string
+     */
+    private function get_hidden_url_term_slug($taxonomy, $term) {
+        if ($taxonomy !== 'ka_instructors' || !($term instanceof WP_Term)) {
+            return $term instanceof WP_Term ? (string) $term->slug : '';
+        }
+
+        $name_display = get_option('kursagenten_taxonomy_ka_instructors_name_display', '');
+        if ($name_display === '' || $name_display === false) {
+            $name_display = get_option('kursagenten_taxonomy_instructors_name_display', '');
+        }
+
+        if ($name_display === 'firstname' || $name_display === 'lastname') {
+            $meta_key = $name_display === 'firstname' ? 'instructor_firstname' : 'instructor_lastname';
+            $display_name = get_term_meta($term->term_id, $meta_key, true);
+            if (!empty($display_name)) {
+                return sanitize_title((string) $display_name);
+            }
+        }
+
+        return (string) $term->slug;
+    }
+
+    /**
+     * Get all detected hidden URL conflicts for enabled taxonomies.
+     *
+     * @return array<int, array<string, string>>
+     */
+    private function get_hidden_url_conflicts() {
+        $options = is_array($this->kag_seo_options) ? $this->kag_seo_options : array();
+        $taxonomy_config = $this->get_hide_url_taxonomy_config();
+        $slug_map = array();
+        $conflicts = array();
+
+        foreach ($taxonomy_config as $taxonomy => $config) {
+            $is_hidden = isset($options[$config['option']]) && (string) $options[$config['option']] === '1';
+            if (!$is_hidden) {
+                continue;
+            }
+
+            $terms = get_terms(array(
+                'taxonomy' => $taxonomy,
+                'hide_empty' => false,
+            ));
+            if (is_wp_error($terms) || empty($terms)) {
+                continue;
+            }
+
+            foreach ($terms as $term) {
+                if (!($term instanceof WP_Term)) {
+                    continue;
+                }
+
+                $slug = $this->get_hidden_url_term_slug($taxonomy, $term);
+                if ($slug === '') {
+                    continue;
+                }
+
+                if (!isset($slug_map[$slug])) {
+                    $slug_map[$slug] = array();
+                }
+
+                $slug_map[$slug][] = $config['label'] . ': ' . $term->name;
+            }
+        }
+
+        // Conflict with pages/posts
+        foreach ($slug_map as $slug => $entries) {
+            if (function_exists('kursagenten_get_public_post_by_slug')) {
+                $matched_post = kursagenten_get_public_post_by_slug($slug);
+            } else {
+                $matched_post = null;
+            }
+
+            if ($matched_post instanceof WP_Post) {
+                $post_type_object = get_post_type_object($matched_post->post_type);
+                $post_type_label = $post_type_object ? $post_type_object->labels->singular_name : $matched_post->post_type;
+
+                $conflicts[] = array(
+                    'slug' => $slug,
+                    'context' => sprintf('%s har samme slug som %s "%s"', implode(', ', $entries), $post_type_label, get_the_title($matched_post)),
+                );
+            }
+        }
+
+        // Conflict across hidden taxonomies/terms
+        foreach ($slug_map as $slug => $entries) {
+            if (count($entries) > 1) {
+                $conflicts[] = array(
+                    'slug' => $slug,
+                    'context' => 'Samme slug brukes flere steder: ' . implode(', ', $entries),
+                );
+            }
+        }
+
+        // Ensure stable order and no duplicates.
+        usort($conflicts, static function ($a, $b) {
+            return strcmp($a['slug'], $b['slug']);
+        });
+
+        $unique = array();
+        $seen = array();
+        foreach ($conflicts as $conflict) {
+            $key = $conflict['slug'] . '|' . $conflict['context'];
+            if (isset($seen[$key])) {
+                continue;
+            }
+            $seen[$key] = true;
+            $unique[] = $conflict;
+        }
+
+        return $unique;
     }
 }
 
