@@ -58,11 +58,15 @@
 #ka .taxonomy-read-more-link {
     display: none;
     width: fit-content;
+    margin: 0 auto;
     margin-top: var(--ka-space-xs);
     color: #fff;
     font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 0.18em;
+    border: 1px solid #ffffff7d;
+    padding: 5px 12px 7px;
+    border-radius: 5px;
 }
 
 #ka .taxonomy-read-more-link:hover {
@@ -101,6 +105,10 @@
 
 #ka .taxonomy-two-column-right {
     min-width: 0;
+}
+#ka .taxonomy-two-column-right h2 {
+    padding-left: 2rem;
+    padding-top: 1rem;
 }
 
 #ka .taxonomy-two-column-layout.taxonomy-no-rich-description {
@@ -212,7 +220,7 @@
 @media (max-width: 1024px) {
     #ka .taxonomy-two-column-layout {
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         gap: var(--ka-space-lg);
     }
 

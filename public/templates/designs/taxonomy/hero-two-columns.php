@@ -210,8 +210,8 @@ do_action('ka_taxonomy_header_before', $term);
                     </div>
                 <?php endif; ?>
                 <?php if ($has_rich_description) : ?>
-                    <a href="#taxonomy-rich-content" class="taxonomy-read-more-link">
-                        Les mer
+                    <a href="#kurs" class="taxonomy-read-more-link">
+                        Se kurs
                     </a>
                 <?php endif; ?>
             </div>
@@ -284,7 +284,7 @@ do_action('ka_taxonomy_header_before', $term);
                     if ($has_long_text) :
                         ?>
                         <div class="taxonomy-hero-description-wrapper">
-                            <div class="taxonomy-rich-description">
+                            <div class="taxonomy-rich-description" id="innhold">
                                 <?php
                                 // Bruk apply_filters for å tillate mer HTML-innhold
                                 echo apply_filters('the_content', $rich_description);
@@ -415,7 +415,8 @@ do_action('ka_taxonomy_header_before', $term);
                     <?php endif; ?>
                 </div>
 
-                <div class="taxonomy-two-column-right">
+                <div class="taxonomy-two-column-right" id="kurs">
+                    <h2>Tilgjengelige kurs</h2>
             <?php if ($view_type === 'all_coursedates') : ?>
                 <!-- Bruk [kursliste] shortcode - den håndterer alt -->
                 <div class="taxonomy-coursedates">
