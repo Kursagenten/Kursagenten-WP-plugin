@@ -53,7 +53,7 @@ class GridStyles {
                 height: auto;
                 min-height: 0;
             }
-            .kursagenten-grid.stablet.kort .k-wrapper { justify-items: center; max-width: calc(({$a['bildestr']} * {$a['grid']}) + (clamp(1vw, 2vw, 2rem) * ({$a['grid']} - 1 )));}
+            .kursagenten-grid.stablet.kort .k-wrapper { justify-items: center; align-items: stretch; max-width: calc(({$a['bildestr']} * {$a['grid']}) + (clamp(1vw, 2vw, 2rem) * ({$a['grid']} - 1 )));}
             .kursagenten-grid.kort.rund .k-wrapper { max-width: calc((calc({$a['bildestr']} * 5.5) * {$a['grid']}) + (clamp(1vw, 2vw, 2rem) * ({$a['grid']} - 1 )));}
             {$class_id}.liste .k-wrapper { grid-template-columns: repeat(1, 1fr); row-gap: " . (!empty($a['_radavstand_provided']) ? $a['radavstand'] : '0.6em') . "; width: auto; }
             .kursagenten-grid.rad.utdrag .k-wrapper { row-gap: 3rem; }
@@ -65,7 +65,7 @@ class GridStyles {
             .kursagenten-grid.stablet .k-wrapper .k-box { align-self: start; height: auto; }
             .kursagenten-grid.kort .k-box:has(picture) { max-width: {$a['bildestr']}; }
             .kursagenten-grid.kort.rund .k-box { max-width: calc({$a['bildestr']} * 5.5)!important; }
-            .kursagenten-grid.stablet.kort .k-box { width: 100%; max-width: 100%;  margin: 0 auto; box-sizing: border-box;}
+            .kursagenten-grid.stablet.kort .k-box { width: 100%; max-width: 100%;  margin: 0 auto; box-sizing: border-box; height: 100%; display: flex; flex-direction: column;}
             .kursagenten-grid.stablet.kort .k-box:has(picture) { max-width: {$a['bildestr']};}
             .kursagenten-grid.skygge.kort .k-box:hover { -webkit-box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.3); -moz-box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.3); box-shadow: 0px 2px 8px 0px rgba(53, 53, 53, 0.3); transition: transform ease 0.3s, box-shadow ease 0.3s; }
             .kursagenten-grid.rad.beskrivelse .k-box,
@@ -93,7 +93,7 @@ class GridStyles {
             .kursagenten-grid:not(.utdrag) .k-text a { width: 100%; height: 100%; }
             .kursagenten-grid.stablet .k-text { flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; padding-left: 0; }
             .kursagenten-grid.stablet .k-text a { padding-top: .5em; }
-            .kursagenten-grid.stablet.kort .k-text { padding: 0.9em .8em 0.9em .8em; }
+            .kursagenten-grid.stablet.kort .k-text { padding: 0.9em .8em 0.9em .8em; flex: 1 1 auto; }
             .kursagenten-grid.stablet.kort .k-text:has(picture) { padding: 0.5em .8em 1.3em .8em; }
             .kursagenten-grid.rad .k-text { flex-direction: column; align-items: flex-start; justify-content: center;}
             .kursagenten-grid.rad.kort .k-text { padding: 1em 1em 1em 0;}
@@ -204,7 +204,7 @@ class GridStyles {
                 height: auto;
                 min-height: 0;
             }
-            {$class_id}.stablet.kort .k-wrapper { justify-items: center; max-width: calc(({$a['bildestr']} * {$a['grid']}) + (clamp(1vw, 2vw, 2rem) * ({$a['grid']} - 1 )));}
+            {$class_id}.stablet.kort .k-wrapper { justify-items: center; align-items: stretch; max-width: calc(({$a['bildestr']} * {$a['grid']}) + (clamp(1vw, 2vw, 2rem) * ({$a['grid']} - 1 )));}
             {$class_id}.kort.rund .k-wrapper { max-width: calc((calc({$a['bildestr']} * 5.5) * {$a['grid']}) + (clamp(1vw, 2vw, 2rem) * ({$a['grid']} - 1 )));}
             {$class_id}.liste .k-wrapper { grid-template-columns: repeat(1, 1fr); row-gap: " . (!empty($a['_radavstand_provided']) ? $a['radavstand'] : '0.6em') . "; width: auto; }
             {$class_id}.rad.utdrag .k-wrapper { row-gap: 3rem; }
@@ -220,7 +220,7 @@ class GridStyles {
             {$class_id}.stablet .k-wrapper .k-box { align-self: start; height: auto; }
             {$class_id}.kort.rund .k-box { max-width: calc({$a['bildestr']} * 5.5)!important; }
             /*{$class_id}.rad.kort .k-box { max-width: calc({$a['bildestr']} * 4); }*/
-            {$class_id}.stablet.kort .k-box { width: 100%; max-width: 100%;  margin: 0 auto; box-sizing: border-box;}
+            {$class_id}.stablet.kort .k-box { width: 100%; max-width: 100%;  margin: 0 auto; box-sizing: border-box; height: 100%; display: flex; flex-direction: column;}
             {$class_id}.stablet.kort .k-box:has(picture) { max-width: {$a['bildestr']};}
             {$class_id}.skygge.kort .k-box:hover { -webkit-box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.3); -moz-box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.3); box-shadow: 0px 2px 8px 0px rgba(53, 53, 53, 0.3); transition: transform ease 0.3s, box-shadow ease 0.3s; }
             {$class_id}.rad.beskrivelse .k-box,
@@ -257,7 +257,7 @@ class GridStyles {
             {$class_id}:not(.utdrag) .k-text a { width: 100%; height: 100%; }
             {$class_id}.stablet .k-text { flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; padding-left: 0; }
             {$class_id}.stablet .k-text a { padding-top: .5em; }
-            {$class_id}.stablet.kort .k-text { padding: 0.9em .8em 0.9em .8em; }
+            {$class_id}.stablet.kort .k-text { padding: 0.9em .8em 0.9em .8em; flex: 1 1 auto; }
             {$class_id}.stablet.kort .k-text:has(picture) { padding: 0.5em .8em 1.3em .8em; }
             {$class_id}.rad .k-text { flex-direction: column; align-items: flex-start; justify-content: center;}
             {$class_id}.rad.kort .k-text { padding: 1em 1em 1em 0;}
