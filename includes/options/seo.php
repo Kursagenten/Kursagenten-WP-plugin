@@ -124,28 +124,35 @@ class SEO {
                 </table>
 
                 <h4 style="margin-top: 1.5em;">Støttede SEO-utvidelser</h4>
-                <p class="description">Når disse er aktive, slår vi av våre meta-tagger og overlater til utvidelsen. Course-schema leveres av oss for de som ikke har det innebygd.</p>
-                <table class="widefat striped" style="max-width: 900px; margin-top: 0.5em;">
+                <p class="description">Når disse er aktive, slår vi av våre meta-tagger og overlater til utvidelsen. Course-schema leveres normalt av Kursagenten, med unntak av Rank Math Pro der vi lar Rank Math håndtere Course-schema.</p>
+                <table class="widefat striped" style="max-width: 1000px; margin-top: 0.5em;">
                     <thead>
                         <tr>
                             <th>Utvidelse</th>
+                            <th>Nivå</th>
                             <th>Vår SEO av (meta-tagger)</th>
                             <th>Vår Course-schema</th>
                             <th>Våre tilpasninger (tittel/beskrivelse)</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Yoast SEO</td><td>✓</td><td>✓</td><td>Instruktør-tittel</td></tr>
-                        <tr><td>Rank Math</td><td>✓</td><td>Av (har egen)</td><td>Instruktør-tittel</td></tr>
-                        <tr><td>All in One SEO</td><td>✓</td><td>✓</td><td>–</td></tr>
-                        <tr><td>Slim SEO</td><td>✓</td><td>✓</td><td>Instruktør-tittel, kurs tittel/beskrivelse</td></tr>
-                        <tr><td>SEOPress</td><td>✓</td><td>✓</td><td>Instruktør-tittel, kurs tittel/beskrivelse</td></tr>
-                        <tr><td>The SEO Framework</td><td>✓</td><td>✓</td><td>Instruktør-tittel, kurs tittel/beskrivelse</td></tr>
+                        <tr><td>Yoast SEO</td><td>Free + Premium</td><td>✓</td><td>✓</td><td>Instruktør-tittel</td></tr>
+                        <tr><td>Rank Math</td><td>Free</td><td>✓</td><td>✓</td><td>Instruktør-tittel</td></tr>
+                        <tr><td>Rank Math</td><td>Pro</td><td>✓</td><td>Av (håndteres av Rank Math Pro)</td><td>Instruktør-tittel</td></tr>
+                        <tr><td>All in One SEO</td><td>Lite</td><td>✓</td><td>✓</td><td>–</td></tr>
+                        <tr><td>All in One SEO</td><td>Pro</td><td>✓</td><td>✓ (kan overstyres i AIOSEO Pro)</td><td>–</td></tr>
+                        <tr><td>Slim SEO</td><td>Free</td><td>✓</td><td>✓</td><td>Instruktør-tittel, kurs tittel/beskrivelse</td></tr>
+                        <tr><td>SEOPress</td><td>Free</td><td>✓</td><td>✓</td><td>Instruktør-tittel, kurs tittel/beskrivelse</td></tr>
+                        <tr><td>SEOPress</td><td>Pro</td><td>✓</td><td>✓ (kan overstyres i SEOPress Pro)</td><td>Instruktør-tittel, kurs tittel/beskrivelse</td></tr>
+                        <tr><td>The SEO Framework</td><td>Free + Extensions</td><td>✓</td><td>✓</td><td>Instruktør-tittel, kurs tittel/beskrivelse</td></tr>
                     </tbody>
                 </table>
+                <p class="description" style="margin-top:8px;">
+                    Merk: AIOSEO (Pro), SEOPress (Pro) og Slim SEO Schema (egen utvidelse) kan også sette opp eget Course-schema. Hvis du aktiverer dette i disse utvidelsene, anbefaler vi å skru av Kursagenten SEO for å unngå duplikater. For Rank Math Free anbefaler vi fortsatt Kursagenten sitt Course-schema som standard.
+                </p>
 
                 <h4 style="margin-top: 1.5em;">Hva Kursagenten legger til (når ingen SEO-utvidelse er aktiv)</h4>
-                <table class="widefat striped" style="max-width: 900px; margin-top: 0.5em;">
+                <table class="widefat striped" style="max-width: 1000px; margin-top: 0.5em;">
                     <thead>
                         <tr>
                             <th>Element</th>

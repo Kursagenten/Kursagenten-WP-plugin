@@ -1,5 +1,6 @@
-## 1.1.22 - 2026-05-23
+## 1.1.22 - 2026-05-26
 - Lagt til: Mulighet til å fjerne taksonomi-slug under SEO innstillinger. Eksempel: webside.no/kurskategori/kurset -> webside.no/kurset
+- Fix: SEO Rich Descriptions fungerte ikke korrekt på kurs hvis RankMath Free var installert. Nå vises Rich Descriptions korrekt.
 
 ## 1.1.21 - 2026-05-21
 - Lagt til: "Skjul i kursliste" for kurskategorier er nå et trevalg i stedet for av/på:

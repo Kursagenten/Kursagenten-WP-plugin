@@ -128,6 +128,20 @@ function kursagenten_add_meta_tags() {
 }
 
 /**
+ * Check if Rank Math Pro is available and should handle Course schema.
+ *
+ * @return bool
+ */
+function kursagenten_rank_math_pro_handles_course_schema() {
+    if (!class_exists('RankMath')) {
+        return false;
+    }
+
+    // Rank Math Free does not reliably output Course schema for this CPT setup.
+    return defined('RANK_MATH_PRO_VERSION') || defined('RANK_MATH_PRO_FILE') || class_exists('RankMathPro');
+}
+
+/**
  * Add Course Schema.org structured data
  * 
  * Outputs JSON-LD structured data for Course type according to Schema.org specification.
@@ -138,20 +152,27 @@ function kursagenten_add_meta_tags() {
  */
 function kursagenten_add_course_schema() {
     global $post;
+    static $schema_output_done = false;
     
     if (kursagenten_seo_disabled()) {
+        return;
+    }
+
+    // Guard against duplicate output if multiple hooks/templates trigger this.
+    if ($schema_output_done) {
         return;
     }
     
     if (!isset($post->ID)) {
         echo '<!-- Kursagenten Schema: No post ID -->' . PHP_EOL;
+        $schema_output_done = true;
         return;
     }
     
-    // Rank Math Pro has built-in Course schema – skip ours to avoid duplicates.
-    // Slim SEO free does NOT have Course schema for custom post types, so we output ours.
-    if (class_exists('RankMath')) {
-        echo '<!-- Kursagenten Schema: Rank Math active, Course schema handled by Rank Math -->' . PHP_EOL;
+    // Only skip Kursagenten schema when Rank Math Pro is present.
+    if (kursagenten_rank_math_pro_handles_course_schema()) {
+        echo '<!-- Kursagenten Schema: Rank Math Pro active, Course schema handled by Rank Math -->' . PHP_EOL;
+        $schema_output_done = true;
         return;
     }
     
@@ -249,6 +270,7 @@ function kursagenten_add_course_schema() {
     echo '<script type="application/ld+json">' . PHP_EOL;
     echo wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL;
     echo '</script>' . PHP_EOL;
+    $schema_output_done = true;
 }
 
 /**
@@ -260,20 +282,20 @@ function kursagenten_add_course_schema() {
  */
 function kursagenten_get_next_course_data($post_id) {
     // Get related coursedates (same logic as in template)
-    $course_id = get_post_meta($post_id, 'location_id', true);
-    $is_parent_course = get_post_meta($post_id, 'is_parent_course', true);
+    $course_id = get_post_meta($post_id, 'ka_location_id', true);
+    $is_parent_course = get_post_meta($post_id, 'ka_is_parent_course', true);
     
     if ($is_parent_course === 'yes') {
         $related_coursedate = get_posts([
             'post_type' => 'ka_coursedate',
             'posts_per_page' => -1,
             'meta_query' => [
-                ['key' => 'main_course_id', 'value' => $course_id],
+                ['key' => 'ka_main_course_id', 'value' => $course_id],
             ],
             'fields' => 'ids'
         ]);
     } else {
-        $main_course_id = get_post_meta($post_id, 'main_course_id', true);
+        $main_course_id = get_post_meta($post_id, 'ka_main_course_id', true);
         $course_location_terms = wp_get_post_terms($post_id, 'ka_course_location');
         
         if (!empty($course_location_terms) && !is_wp_error($course_location_terms) && !empty($main_course_id)) {
@@ -288,10 +310,10 @@ function kursagenten_get_next_course_data($post_id) {
                     'relation' => 'AND',
                     [
                         'relation' => 'OR',
-                        ['key' => 'course_location', 'value' => $location_names, 'compare' => 'IN'],
-                        ['key' => 'course_location_freetext', 'value' => $location_names, 'compare' => 'IN']
+                        ['key' => 'ka_course_location', 'value' => $location_names, 'compare' => 'IN'],
+                        ['key' => 'ka_course_location_freetext', 'value' => $location_names, 'compare' => 'IN']
                     ],
-                    ['key' => 'main_course_id', 'value' => $main_course_id, 'compare' => '=']
+                    ['key' => 'ka_main_course_id', 'value' => $main_course_id, 'compare' => '=']
                 ],
                 'fields' => 'ids'
             ]);
@@ -615,6 +637,8 @@ function kursagenten_init_seo() {
     // Add meta tags for single course pages
     if (is_singular('ka_course')) {
         add_action('wp_head', 'kursagenten_add_meta_tags', 1);
+        // Fallback in case wp_head flow is altered by theme/plugins/cache.
+        add_action('wp_footer', 'kursagenten_add_course_schema', 1);
         // Remove WordPress core canonical to avoid duplicate (we output our own)
         add_action('wp_head', 'kursagenten_remove_wp_canonical', 0);
     }
