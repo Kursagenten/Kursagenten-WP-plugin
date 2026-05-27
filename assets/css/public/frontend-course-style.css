@@ -328,6 +328,7 @@ opacity: .5;
 #ka .accordion {
 border: 1px solid #eee;
 border-radius: 8px;
+overflow: hidden;
 margin: 0 auto;
 font-size: 15px;
 line-height: 20px;
@@ -544,7 +545,6 @@ border-radius: 8px;
 /*************************************************************/
 #ka .expand-content {
     position: relative;
-    overflow: visible;
     transition: max-height 0.3s ease-out;
 }
 
@@ -1973,7 +1973,9 @@ box-shadow: 0 0 6px rgba(0,0,0,0.05);
     font-weight: 600;
 }
 
-.ka-modal-close {
+.ka-modal-close,
+.ka-modal-close:focus-visible,
+.ka-modal-close:focus {
     background: transparent;
     border: none;
     font-size: 32px;
@@ -1991,6 +1993,7 @@ box-shadow: 0 0 6px rgba(0,0,0,0.05);
 
 .ka-modal-close:hover {
     opacity: 0.7;
+    background: transparent;
 }
 
 .ka-modal-body {
@@ -2073,6 +2076,168 @@ box-shadow: 0 0 6px rgba(0,0,0,0.05);
     .ka-dates-list {
         margin-left: 8px;
     }
+}
+
+
+/* COURSE DAY SCHEDULES MODAL (per-day list inside a single coursedate) */
+/************************************************************************/
+.ka-day-schedules-modal .ka-modal-content {
+    max-width: 720px;
+}
+
+.ka-day-schedules-status {
+    margin-bottom: 12px;
+    font-size: var(--ka-font-sm, 0.9em);
+    color: #555;
+    min-height: 1em;
+}
+
+.ka-day-schedules-status.is-loading::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+    border: 2px solid #ddd;
+    border-top-color: var(--ka-primary-color, var(--ka-color, #2271b1));
+    border-radius: 50%;
+    vertical-align: -2px;
+    animation: ka-day-schedules-spin 0.8s linear infinite;
+}
+
+.ka-day-schedules-status.is-error {
+    color: #b32d2e;
+}
+
+@keyframes ka-day-schedules-spin {
+    to { transform: rotate(360deg); }
+}
+
+.ka-day-schedules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ka-day-schedules-row {
+    display: grid;
+    grid-template-columns: 110px 110px 130px 1fr 1fr;
+    gap: 12px;
+    align-items: start;
+    padding: 10px 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.ka-day-schedules-row:last-child {
+    border-bottom: none;
+}
+
+.ka-day-schedules-header {
+    font-weight: 600;
+    font-size: var(--ka-font-sm, 0.85em);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #555;
+    border-bottom: 1px solid #dad9d9;
+    background: transparent;
+}
+
+.ka-day-schedules-item:nth-child(even) {
+    background: #fafafa;
+}
+
+.ka-day-col {
+    font-size: var(--ka-font-base, 0.95em);
+    line-height: 1.4;
+    color: #333;
+    word-break: break-word;
+}
+
+.ka-day-col-date {
+    font-weight: 600;
+}
+
+@media screen and (min-width: 601px) {
+    .ka-day-schedules-item .ka-day-col[data-label]::before {
+        content: none;
+    }
+}
+
+.ka-day-schedules-empty {
+    margin: 0;
+    color: #666;
+    font-style: italic;
+}
+
+/* Mobile: each card becomes a stack with label prefixes per row */
+@media screen and (max-width: 600px) {
+    .ka-day-schedules-modal .ka-modal-content {
+        max-width: 95%;
+    }
+
+    .ka-day-schedules-header {
+        display: none;
+    }
+
+    .ka-day-schedules-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding: 12px 10px;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        margin-bottom: 6px;
+        background: #fff;
+    }
+
+    .ka-day-schedules-item:nth-child(even) {
+        background: #fafafa;
+    }
+
+    .ka-day-col {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: 8px;
+        align-items: baseline;
+    }
+
+    .ka-day-schedules-item .ka-day-col[data-label]::before {
+        content: attr(data-label);
+        font-size: var(--ka-font-sm, 0.8em);
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        color: #666;
+        font-weight: 600;
+    }
+}
+
+/* Trigger link/button styling */
+.show-ka-day-schedules {
+    color: var(--ka-primary-color, var(--ka-color, #2271b1));
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.show-ka-day-schedules:hover {
+    text-decoration: underline;
+    opacity: 0.85;
+}
+
+/* When rendered as <button> (e.g. nested inside a wrapping <a>) reset the
+   default UA button look so it visually matches the <a> variant. */
+button.show-ka-day-schedules {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    line-height: inherit;
+    text-align: left;
+}
+
+button.show-ka-day-schedules:focus-visible {
+    outline: 2px solid var(--ka-primary-color, var(--ka-color, #2271b1));
+    outline-offset: 2px;
 }
 
 /* ============================================================
@@ -2201,4 +2366,36 @@ box-shadow: 0 0 6px rgba(0,0,0,0.05);
     color: #444;
     font-size: var(--ka-font-s, 0.95rem);
     border-radius: 4px;
+}
+
+/* Instructor box on single course pages */
+#ka .instructor-info-box .instructor-profile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 1em 0 1em;
+}
+
+#ka .instructor-info-box .instructor-profile-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+}
+
+#ka .instructor-info-box .instructor-profile-image {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+#ka .instructor-info-box .instructor-profile-name {
+    color: var(--ka-color-filter);
+    font-size: var(--ka-font-md);
+    font-weight: 500;
+}
+#ka .instructor-info-box .instructor-profile-name:hover {
+    color: var(--ka-color);
 }

@@ -171,6 +171,8 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     $signup_url = $selected_coursedate_data['signup_url'] ?? '';
     $is_full = kursagenten_normalize_bool($selected_coursedate_data['is_full'] ?? false);
     $show_registration = kursagenten_normalize_bool($selected_coursedate_data['show_registration'] ?? false);
+    $day_schedules_count = (int) ($selected_coursedate_data['day_schedules_count'] ?? 0);
+    $day_schedules_coursedate_id = (int) ($selected_coursedate_data['id'] ?? 0);
 } else {
     // Original kode for coursedates
     $course_id = get_the_ID();
@@ -199,6 +201,8 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
 
     $related_course_id =        get_post_meta($course_id, 'ka_location_id', true);
     $main_course_id =           get_post_meta($course_id, 'ka_main_course_id', true);
+    $day_schedules_count =      (int) get_post_meta($course_id, 'ka_course_day_schedules_count', true);
+    $day_schedules_coursedate_id = (int) $course_id;
 
     $related_course_info = get_course_info_by_location($related_course_id, $main_course_id);
 
@@ -417,6 +421,16 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                 <?php echo esc_html($coursetime); ?>
                             </li>
                             <?php endif; ?>
+                            <?php if (!empty($list_display['day_schedules']) && $day_schedules_count >= 2 && $day_schedules_coursedate_id > 0) : ?>
+                            <li class="day-schedules"><?php
+                                echo kursagenten_render_day_schedules_link(
+                                    $day_schedules_coursedate_id,
+                                    $day_schedules_count,
+                                    $course_title,
+                                    ['icon' => 'icon-calendar']
+                                );
+                            ?></li>
+                            <?php endif; ?>
                             <?php if ($list_display['instructor'] && !empty($instructor_links)) : ?>
                             <li><i class="ka-icon icon-user"></i><?php echo implode('', $instructor_links); ?></li>
                             <?php endif; ?>
@@ -438,6 +452,16 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                             <?php endif; ?>
                             <?php if ($list_display['time'] && !empty($coursetime)) : ?>
                             <li><i class="ka-icon icon-time"></i><?php echo esc_html($coursetime); ?></li>
+                            <?php endif; ?>
+                            <?php if (!empty($list_display['day_schedules']) && $day_schedules_count >= 2 && $day_schedules_coursedate_id > 0) : ?>
+                            <li class="day-schedules"><?php
+                                echo kursagenten_render_day_schedules_link(
+                                    $day_schedules_coursedate_id,
+                                    $day_schedules_count,
+                                    $course_title,
+                                    ['icon' => 'icon-calendar']
+                                );
+                            ?></li>
                             <?php endif; ?>
                             <?php if ($list_display['instructor'] && !empty($instructor_links)) : ?>
                             <li><i class="ka-icon icon-user"></i><?php echo implode(', ', $instructor_links); ?></li>

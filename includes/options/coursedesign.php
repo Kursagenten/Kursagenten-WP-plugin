@@ -718,6 +718,7 @@ class Designmaler {
                                 }
                                 ?>
                             </select>
+                            <button type="button" class="button-link ka-inline-settings-toggle ka-inline-meta-link" id="toggle-single-hero-settings" style="display:none; margin-left:8px;">Flere valg</button>
                         </div>
                     </div>
 
@@ -729,7 +730,7 @@ class Designmaler {
                     $single_hero_font_color = get_option('kursagenten_single_hero_header_font_color', '');
                     $single_hero_bg_color = get_option('kursagenten_single_hero_header_bg_color', '');
                     ?>
-                    <div class="option-row hero-header-settings-row hero-single-settings-row ka-single-plugin-design-only" id="hero-single-settings-row" style="<?php echo ($single_design === 'default') ? '' : 'display: none;'; ?>">
+                    <div class="option-row hero-header-settings-row hero-single-settings-row ka-single-plugin-design-only" id="hero-single-settings-row" style="display: none;">
                         <label class="option-label">Bakgrunn i toppfelt:</label>
                         <div class="option-input">
                             <div class="taxonomy-override hero-header-settings-box">
@@ -786,6 +787,32 @@ class Designmaler {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <?php
+                    $show_single_contact_person = (bool) get_option('kursagenten_single_show_contact_person', true);
+                    $show_single_instructors = (bool) get_option('kursagenten_single_show_instructors', false);
+                    ?>
+                    <div class="option-row ka-single-plugin-design-only">
+                        <label class="option-label">Vis kontaktperson:</label>
+                        <div class="option-input">
+                            <input type="hidden" name="kursagenten_single_show_contact_person" value="0">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="kursagenten_single_show_contact_person" value="1" <?php checked($show_single_contact_person, true); ?>>
+                                Vis kontaktperson i enkeltkurs
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="option-row ka-single-plugin-design-only">
+                        <label class="option-label">Vis instruktører:</label>
+                        <div class="option-input">
+                            <input type="hidden" name="kursagenten_single_show_instructors" value="0">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="kursagenten_single_show_instructors" value="1" <?php checked($show_single_instructors, true); ?>>
+                                Vis instruktører i enkeltkurs
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -2146,6 +2173,24 @@ class Designmaler {
         register_setting('design_option_group', 'kursagenten_single_hero_header_overlay', array('type' => 'string', 'sanitize_callback' => 'sanitize_text_field', 'default' => 'dark'));
         register_setting('design_option_group', 'kursagenten_single_hero_header_font_color', array('type' => 'string', 'sanitize_callback' => array($this, 'sanitize_color_value'), 'default' => ''));
         register_setting('design_option_group', 'kursagenten_single_hero_header_bg_color', array('type' => 'string', 'sanitize_callback' => array($this, 'sanitize_color_value'), 'default' => ''));
+        register_setting(
+            'design_option_group',
+            'kursagenten_single_show_contact_person',
+            array(
+                'type' => 'boolean',
+                'sanitize_callback' => array($this, 'sanitize_checkbox_boolean'),
+                'default' => true,
+            )
+        );
+        register_setting(
+            'design_option_group',
+            'kursagenten_single_show_instructors',
+            array(
+                'type' => 'boolean',
+                'sanitize_callback' => array($this, 'sanitize_checkbox_boolean'),
+                'default' => false,
+            )
+        );
 
         // Hero header background settings – Taksonomisider
         register_setting('design_option_group', 'kursagenten_taxonomy_hero_header_bg_mode', array('type' => 'string', 'sanitize_callback' => 'sanitize_text_field', 'default' => 'image_placeholder'));
@@ -2289,7 +2334,7 @@ class Designmaler {
      * which otherwise would make the renderer fall back to defaults.
      */
     private function register_list_display_field_settings() {
-        $allowed_fields = ['location', 'location_freetext', 'time', 'duration', 'price', 'room', 'instructor', 'last_date', 'registration_deadline'];
+        $allowed_fields = ['location', 'location_freetext', 'time', 'duration', 'price', 'room', 'instructor', 'last_date', 'registration_deadline', 'day_schedules'];
         $sanitize_fields = function ($value) use ($allowed_fields) {
             if (is_array($value)) {
                 $value = implode(',', $value);
@@ -2350,6 +2395,7 @@ class Designmaler {
             'registration_deadline' => 'Påmeldingsfrist',
             'time' => 'Tid',
             'duration' => 'Varighet',
+            'day_schedules' => 'Antall kursdager',
             'price' => 'Pris',
             'instructor' => 'Instruktør',
         );
@@ -2381,12 +2427,12 @@ class Designmaler {
             $context_list_type = 'standard';
         }
         $default_fields_by_list_type = [
-            'standard' => ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'last_date'],
-            'grid' => ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'last_date'],
-            'plain' => ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'last_date'],
-            'compact' => ['location', 'location_freetext'],
-            'date-and-title' => ['last_date'],
-            'simple-cards' => ['duration'],
+            'standard' => ['time', 'duration', 'day_schedules', 'price', 'location', 'location_freetext', 'room', 'last_date'],
+            'grid' => ['time', 'duration', 'day_schedules', 'price', 'location', 'location_freetext', 'room', 'last_date'],
+            'plain' => ['time', 'duration', 'day_schedules', 'price', 'location', 'location_freetext', 'room', 'last_date'],
+            'compact' => ['location', 'location_freetext', 'day_schedules'],
+            'date-and-title' => ['last_date', 'day_schedules'],
+            'simple-cards' => ['duration', 'day_schedules'],
         ];
         $option_key = 'kursagenten_' . $context_base . '_list_display_fields';
         if (isset($args['option_key']) && is_string($args['option_key']) && $args['option_key'] !== '') {
@@ -2415,7 +2461,7 @@ class Designmaler {
         }
         ?>
         <div class="<?php echo esc_attr($row_class); ?>">
-            <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> <?php echo esc_html($section_label); ?> <span class="ka-tooltip" data-title="I alle listedesign unntatt «Enkle kort» er Sted alltid på. På taksonomi kurssted skjules stedsnavn, og valgt fritekst vises uten parentes. Sluttdato legges etter startdato i samme datolinje (med bindestrek). Påmeldingsfrist vises før tid. Pris inkluderer eventuell ettertekst (f.eks. «kr»)."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
+            <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> <?php echo esc_html($section_label); ?> <span class="ka-tooltip" data-title="I alle listedesign unntatt «Enkle kort» er Sted alltid på. På taksonomi kurssted skjules stedsnavn, og valgt fritekst vises uten parentes. Sluttdato legges etter startdato i samme datolinje (med bindestrek). Påmeldingsfrist vises før tid. Pris inkluderer eventuell ettertekst (f.eks. «kr»). Antall kursdager viser en klikkbar lenke når detaljerte kursdager finnes – åpner popup med oversikt over dato, klokkeslett, instruktør og lokale per dag."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
             <div class="option-input">
                 <input type="hidden"
                        id="<?php echo esc_attr($input_id); ?>"
@@ -2839,8 +2885,36 @@ class Designmaler {
                 $(document).on('change', 'input[name="kursagenten_taxonomy_view_type"]', toggleTaxonomyViewTypePanels);
                 toggleTaxonomyViewTypePanels();
 
+                var isSingleHeroSettingsOpen = false;
                 var isTaxonomyHeroSettingsOpen = false;
                 var isTaxonomyViewTypeSettingsOpen = false;
+
+                function getSingleCardIsCollapsed() {
+                    var $row = $('#hero-single-settings-row');
+                    var $card = $row.closest('.options-card');
+                    return ($card.length && $card.attr('data-collapsed') === 'true');
+                }
+
+                function canShowSingleHeroSettings() {
+                    var singleDesign = $("select[name='kursagenten_single_design']").val();
+                    var mode = $("input[name='kursagenten_single_design_mode']:checked").val() || 'plugin';
+                    return mode === 'plugin' && singleDesign === 'default' && !getSingleCardIsCollapsed();
+                }
+
+                function updateSingleHeroToggleAndRow() {
+                    var canShow = canShowSingleHeroSettings();
+                    var $toggle = $('#toggle-single-hero-settings');
+                    var $row = $('#hero-single-settings-row');
+
+                    if (!canShow) {
+                        isSingleHeroSettingsOpen = false;
+                    }
+
+                    $toggle.toggle(canShow);
+                    $toggle.text(isSingleHeroSettingsOpen ? 'Skjul flere valg' : 'Flere valg');
+                    $toggle.attr('aria-expanded', isSingleHeroSettingsOpen ? 'true' : 'false');
+                    $row.toggle(canShow && isSingleHeroSettingsOpen);
+                }
 
                 function getTaxonomyCardIsCollapsed() {
                     var $row = $('#taxonomy-viewtype-row');
@@ -2916,6 +2990,12 @@ class Designmaler {
                     e.preventDefault();
                     isTaxonomyHeroSettingsOpen = !isTaxonomyHeroSettingsOpen;
                     updateTaxonomyHeroToggleAndRow();
+                });
+
+                $(document).on('click', '#toggle-single-hero-settings', function(e) {
+                    e.preventDefault();
+                    isSingleHeroSettingsOpen = !isSingleHeroSettingsOpen;
+                    updateSingleHeroToggleAndRow();
                 });
 
                 $(document).on('click', '#toggle-taxonomy-viewtype-settings', function(e) {
@@ -3240,13 +3320,7 @@ class Designmaler {
 
                 // Hero header settings: separate for Single and Taxonomy, show only when Hero is selected AND section is expanded
                 function updateHeroSingleRowVisibility() {
-                    var singleDesign = $("select[name='kursagenten_single_design']").val();
-                    var $row = $("#hero-single-settings-row");
-                    var $card = $row.closest(".options-card");
-                    var isCollapsed = ($card.length && $card.attr("data-collapsed") === "true");
-                    var mode = $("input[name='kursagenten_single_design_mode']:checked").val() || 'plugin';
-                    var show = (mode === 'plugin' && singleDesign === 'default' && !isCollapsed);
-                    $row.toggle(show);
+                    updateSingleHeroToggleAndRow();
                 }
                 function updateHeroTaxonomyRowVisibility() {
                     updateTaxonomyHeroToggleAndRow();

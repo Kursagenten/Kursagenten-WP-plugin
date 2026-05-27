@@ -128,6 +128,8 @@ $duration = $selected_coursedate_data['duration'] ?? '';
 $price = $selected_coursedate_data['price'] ?? '';
 $after_price = $selected_coursedate_data['after_price'] ?? '';
 $location_room = $selected_coursedate_data['course_location_room'] ?? '';
+$day_schedules_count = (int) ($selected_coursedate_data['day_schedules_count'] ?? 0);
+$day_schedules_coursedate_id = (int) ($selected_coursedate_data['id'] ?? 0);
 
 $course_count = $course_count ?? 0;
 $item_class = $course_count === 1 ? ' single-item' : '';
@@ -239,6 +241,18 @@ $view_type_class = ' view-type-maincourses';
                         <i class="ka-icon icon-stopwatch"></i>
                         <span><?php echo esc_html($duration); ?></span>
                     </span>
+                    <?php endif; ?>
+
+                    <?php if (!empty($list_display['day_schedules']) && $day_schedules_count >= 2 && $day_schedules_coursedate_id > 0) : ?>
+                    <span class="simple-card-day-schedules"><?php
+                        // Nested inside the wrapping <a class="simple-card-link">.
+                        echo kursagenten_render_day_schedules_link(
+                            $day_schedules_coursedate_id,
+                            $day_schedules_count,
+                            $course_title,
+                            ['icon' => 'icon-calendar', 'tag' => 'button']
+                        );
+                    ?></span>
                     <?php endif; ?>
 
                     <?php if ($list_display['room'] && !empty($location_room)) : ?>

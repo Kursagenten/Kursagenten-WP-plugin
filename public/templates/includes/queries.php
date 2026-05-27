@@ -96,6 +96,7 @@ function get_selected_coursedate_data($related_coursedate) {
                 'location' => get_post_meta($selected_coursedate, 'ka_course_location', true),
                 'location_freetext' => get_post_meta($selected_coursedate, 'ka_course_location_freetext', true),
                 'course_location_room' => get_post_meta($selected_coursedate, 'ka_course_location_room', true),
+                'day_schedules_count' => (int) get_post_meta($selected_coursedate, 'ka_course_day_schedules_count', true),
             ];
             return $return_data;
         }
@@ -187,6 +188,7 @@ function get_all_sorted_coursedates($related_coursedate) {
                 'city' => get_post_meta($coursedate_id, 'ka_course_address_place', true),
                 'language' => get_post_meta($coursedate_id, 'ka_course_language', true),
                 'course_location_room' => get_post_meta($coursedate_id, 'ka_course_location_room', true),
+                'day_schedules_count' => (int) get_post_meta($coursedate_id, 'ka_course_day_schedules_count', true),
             ];
 
             // Legg til alle kursdatoer i hovedarrayen

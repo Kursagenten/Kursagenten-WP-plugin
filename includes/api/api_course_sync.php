@@ -543,22 +543,77 @@ function create_or_update_course_date($data, $post_id, $main_course_id, $locatio
         if (isset($schedule_id)) {      $meta_input['ka_schedule_id'] = $schedule_id;}
         if (!empty($data['name'])) {    $meta_input['ka_course_title'] = $data['name'];}
 
+        // firstCourseDate: kept as a fail-safe – never overwrite with empty since
+        // a missing first date would render the coursedate unusable in lists.
         if (!empty($schedule['firstCourseDate'])) {     $meta_input['ka_course_first_date'] = format_date_for_db($schedule['firstCourseDate']);}
         if (!empty($schedule['firstCourseDate'])) {     $meta_input['ka_course_month'] = format_date_get_month($schedule['firstCourseDate']);}
-        if (!empty($schedule['lastCourseDate'])) {      $meta_input['ka_course_last_date'] = format_date_for_db($schedule['lastCourseDate']);}
-        if (!empty($schedule['registrationDeadline'])) {$meta_input['ka_course_registration_deadline'] = format_date_for_db($schedule['registrationDeadline']);}
-        if (!empty($schedule['duration'])) {            $meta_input['ka_course_duration'] = $schedule['duration'];}
-        if (!empty($schedule['coursetime'])) {          $meta_input['ka_course_time'] = format_coursetime($schedule['coursetime']);}
-        if (!empty($schedule['coursetimeType'])) {      $meta_input['ka_course_time_type'] = $schedule['coursetimeType'];}
+
+        // Tømbare string-felter: når Kursagenten har feltet i payload, reflekter
+        // verdien (også tom) på posten. Bruker array_key_exists for å skille mellom
+        // "API leverer ikke feltet" (gammel versjon) og "admin har tømt feltet".
+        // Dette fikser bug-en hvor admin tømte duration i Kursagenten, men gammel
+        // verdi ble stående i WP fordi !empty() filtrerte bort tomme strings.
+        if (array_key_exists('lastCourseDate', $schedule)) {
+            $meta_input['ka_course_last_date'] = !empty($schedule['lastCourseDate'])
+                ? format_date_for_db($schedule['lastCourseDate'])
+                : '';
+        }
+        if (array_key_exists('registrationDeadline', $schedule)) {
+            $meta_input['ka_course_registration_deadline'] = !empty($schedule['registrationDeadline'])
+                ? format_date_for_db($schedule['registrationDeadline'])
+                : '';
+        }
+        if (array_key_exists('duration', $schedule)) {
+            $meta_input['ka_course_duration'] = (string) $schedule['duration'];
+        }
+
+        // Day schedules: store count only. The full data is fetched on demand via
+        // the day-schedules AJAX endpoint to avoid bloating the wp_postmeta table
+        // (some courses have 15+ daily entries with instructors and rooms).
+        // The count is used to:
+        //   1. Decide whether to show the "X dager" link in lists (count >= 1)
+        //   2. Skip unnecessary API calls when the link is never displayed
+        //   3. Render the correct count label without fetching detail data
+        $day_schedules_count = 0;
+        if (!empty($schedule['daySchedules']) && is_array($schedule['daySchedules'])) {
+            $day_schedules_count = count($schedule['daySchedules']);
+        }
+        $meta_input['ka_course_day_schedules_count'] = $day_schedules_count;
+
+        // Invalidate the day-schedules transient so the popup reflects this sync's
+        // data on next view. Safe to call even if the function is not yet loaded
+        // (e.g. during initial install before all includes are registered).
+        if (function_exists('kursagenten_invalidate_day_schedules_cache')) {
+            kursagenten_invalidate_day_schedules_cache($location_id, $schedule_id);
+        }
+
+        if (array_key_exists('coursetime', $schedule)) {
+            $meta_input['ka_course_time'] = !empty($schedule['coursetime'])
+                ? format_coursetime($schedule['coursetime'])
+                : '';
+        }
+        if (array_key_exists('coursetimeType', $schedule)) {
+            $meta_input['ka_course_time_type'] = (string) $schedule['coursetimeType'];
+        }
         
                 if (!empty($schedule['startTime'])) {           $meta_input['ka_course_start_time'] = $schedule['startTime'];}
         if (!empty($schedule['endTime'])) {             $meta_input['ka_course_end_time'] = $schedule['endTime'];}
         if (!empty($schedule['price'])) {               $meta_input['ka_course_price'] = (int) $schedule['price'];}
-        if (!empty($schedule['textBeforeAmount'])) {    $meta_input['ka_course_text_before_price'] = sanitize_text_field($schedule['textBeforeAmount']);}
-        if (!empty($schedule['textAfterAmount'])) {     $meta_input['ka_course_text_after_price'] = sanitize_text_field($schedule['textAfterAmount']);}
-        if (!empty($schedule['courseCode'])) {          $meta_input['ka_course_code'] = $schedule['courseCode'];}
-        if (!empty($schedule['formButtonText'])) {      $meta_input['ka_course_button_text'] = $schedule['formButtonText'];}
-        if (!empty($schedule['language'])) {            $meta_input['ka_course_language'] = $schedule['language'];}
+        if (array_key_exists('textBeforeAmount', $schedule)) {
+            $meta_input['ka_course_text_before_price'] = sanitize_text_field((string) $schedule['textBeforeAmount']);
+        }
+        if (array_key_exists('textAfterAmount', $schedule)) {
+            $meta_input['ka_course_text_after_price'] = sanitize_text_field((string) $schedule['textAfterAmount']);
+        }
+        if (array_key_exists('courseCode', $schedule)) {
+            $meta_input['ka_course_code'] = (string) $schedule['courseCode'];
+        }
+        if (array_key_exists('formButtonText', $schedule)) {
+            $meta_input['ka_course_button_text'] = (string) $schedule['formButtonText'];
+        }
+        if (array_key_exists('language', $schedule)) {
+            $meta_input['ka_course_language'] = (string) $schedule['language'];
+        }
         
         if (!empty($schedule['maxParticipants'])) {     $meta_input['ka_course_maxParticipants'] = $schedule['maxParticipants'];}
         if (isset($schedule['showRegistrationForm'])) { $meta_input['ka_course_showRegistrationForm'] = $schedule['showRegistrationForm'];}

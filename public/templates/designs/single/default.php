@@ -127,6 +127,8 @@ if (current_user_can('editor') || current_user_can('administrator')) {
     $contact_name = get_post_meta(get_the_ID(), 'ka_course_contactperson_name', true);
     $contact_phone = get_post_meta(get_the_ID(), 'ka_course_contactperson_phone', true);
     $contact_email = get_post_meta(get_the_ID(), 'ka_course_contactperson_email', true);
+    $show_contact_person = (bool) get_option('kursagenten_single_show_contact_person', true);
+    $show_instructors = (bool) get_option('kursagenten_single_show_instructors', false);
 
     // Get placeholder image from settings
     $kursinnst_options = get_option('design_option_name');
@@ -179,6 +181,24 @@ if (current_user_can('editor') || current_user_can('administrator')) {
             $display_name = function_exists('get_instructor_display_name') ? get_instructor_display_name($term) : $term->name;
             return '<a href="' . esc_url($instructor_url) . '"><span class="notranslate" translate="no">' . esc_html($display_name) . '</span></a>';
         }, $instructors);
+    }
+    $instructor_profiles = [];
+    if ($show_instructors && !empty($instructors) && !is_wp_error($instructors)) {
+        foreach ($instructors as $term) {
+            $instructor_url = get_instructor_display_url($term, 'ka_instructors');
+            $display_name = function_exists('get_instructor_display_name') ? get_instructor_display_name($term) : $term->name;
+            $image_url = function_exists('get_instructor_image')
+                ? get_instructor_image((int) $term->term_id)
+                : '';
+            if (empty($image_url)) {
+                $image_url = KURSAG_PLUGIN_URL . 'assets/images/placeholder-instruktor.jpg';
+            }
+            $instructor_profiles[] = [
+                'url' => $instructor_url,
+                'name' => $display_name,
+                'image' => $image_url,
+            ];
+        }
     }
 
     // Sjekk selected_coursedate_data - finner første ledige kursdato
@@ -364,7 +384,7 @@ do_action('ka_singel_header_before');
                                                     <?php endif; ?>
 
                                                     <?php if (!empty($coursedate['course_location_room'])): ?>
-                                                        <span style="font-weight: bold;">Kurslokale:</span>
+                                                        <span style="font-weight: bold;">Kurslokale:&nbsp;</span>
                                                         <span class="notranslate" translate="no"><?php echo esc_html($coursedate['course_location_room']) ?></span><br>
                                                     <?php endif; ?>
                                                     
@@ -372,7 +392,29 @@ do_action('ka_singel_header_before');
                                                         <span style="font-weight: bold;">Varighet:</span>
                                                         <span><?php echo esc_html($coursedate['duration']) ?></span><br>
                                                     <?php endif; ?>
-                                                    
+
+                                                    <?php if (!empty($coursedate['day_schedules_count']) && (int) $coursedate['day_schedules_count'] >= 2): ?>
+                                                        <span style="font-weight: bold;">Kursdager:&nbsp;</span>
+                                                        <span><?php
+                                                            echo kursagenten_render_day_schedules_link(
+                                                                (int) $coursedate['id'],
+                                                                (int) $coursedate['day_schedules_count'],
+                                                                $coursedate['course_title'] ?? $coursedate['title'] ?? '',
+                                                                ['icon' => '']
+                                                            );
+                                                        ?></span><br>
+                                                    <?php endif; ?>
+
+                                                    <?php
+                                                    $coursedate_instructor_links = $show_instructors && !empty($coursedate['id']) && function_exists('kursagenten_get_course_instructor_links')
+                                                        ? kursagenten_get_course_instructor_links((int) $coursedate['id'])
+                                                        : [];
+                                                    ?>
+                                                    <?php if ($show_instructors && !empty($coursedate_instructor_links)): ?>
+                                                        <span style="font-weight: bold;"><?php echo count($coursedate_instructor_links) === 1 ? 'Instruktør:' : 'Instruktører:'; ?></span>
+                                                        <span><?php echo implode(', ', $coursedate_instructor_links); ?></span><br>
+                                                    <?php endif; ?>
+
                                                     <?php if (!empty($coursedate['language'])): ?>
                                                         <span style="font-weight: bold;">Språk:</span>
                                                         <span><?php echo esc_html($coursedate['language']) ?></span>
@@ -428,6 +470,16 @@ do_action('ka_singel_header_before');
                         <?php if (!empty($selected_coursedate_data['last_date'])) : ?>
                             <div><i class="ka-icon icon-calendar"></i>Slutter: <?php echo esc_html($selected_coursedate_data['last_date']) ;?></div>
                         <?php endif; ?>
+                        <?php if (!empty($selected_coursedate_data['day_schedules_count']) && (int) $selected_coursedate_data['day_schedules_count'] >= 2) : ?>
+                            <div><i class="ka-icon icon-calendar"></i>Kursdager:&nbsp;<?php
+                                echo kursagenten_render_day_schedules_link(
+                                    (int) ($selected_coursedate_data['id'] ?? 0),
+                                    (int) $selected_coursedate_data['day_schedules_count'],
+                                    $selected_coursedate_data['title'] ?? get_the_title(),
+                                    ['icon' => '']
+                                );
+                            ?></div>
+                        <?php endif; ?>
                         <?php if (!empty($selected_coursedate_data['time'])) : ?>
                             <div><i class="ka-icon icon-time"></i>Kurstider: <?php echo esc_html($selected_coursedate_data['time']) ;?></div>
                         <?php endif; ?>
@@ -441,7 +493,7 @@ do_action('ka_singel_header_before');
                             <div><i class="ka-icon icon-bag"></i>Pris: <?php echo esc_html($selected_coursedate_data['price']) ;?> <?php echo esc_html($price_posttext) ;?></div>
                         <?php endif; ?>
                         <?php if (!empty($selected_coursedate_data['course_location_room'])) : ?>
-                            <div><i class="ka-icon icon-bag"></i>Kurslokale: <span class="notranslate" translate="no"><?php echo esc_html($selected_coursedate_data['course_location_room']) ;?></span></div>
+                            <div><i class="ka-icon icon-bag"></i>Kurslokale:&nbsp;<span class="notranslate" translate="no"><?php echo esc_html($selected_coursedate_data['course_location_room']) ;?></span></div>
                         <?php endif; ?>
                         <?php if (!empty($selected_coursedate_data) && isset($selected_coursedate_data['signup_url'])) : ?>
                             <div>
@@ -508,8 +560,13 @@ do_action('ka_singel_header_before');
                 <!-- Sidebar -->
                 <div class="aside">
                     <?php do_action('ka_singel_aside_before'); ?>
-                    <?php if (!empty($contact_name)) : ?>
-                        <div class="contact-info ka-box ka-highlight-background ka-box-background">
+                    <?php
+                    $show_contact_box = $show_contact_person && (!empty($contact_name) || !empty($contact_phone) || !empty($contact_email));
+                    $show_instructor_box = $show_instructors && !empty($instructor_profiles);
+                    ?>
+                    <?php if ($show_contact_box || $show_instructor_box) : ?>
+                        <?php if ($show_contact_box) : ?>
+                        <div class="contact-info ka-box ka-highlight-background ka-box-background contact-info-box">
                             <h3>Kontaktinformasjon</h3>
                             <p>
                             <?php if (!empty($contact_name)) : ?><?php echo esc_html($contact_name); ?><br><?php endif; ?>
@@ -517,6 +574,20 @@ do_action('ka_singel_header_before');
                             <?php if (!empty($contact_email)) : ?><?php echo esc_html($contact_email); ?><?php endif; ?>
                             </p>
                         </div>
+                        <?php endif; ?>
+                        <?php if ($show_instructor_box) : ?>
+                        <div class="instructor-info ka-box ka-highlight-background ka-box-background instructor-info-box">
+                            <h3>Instruktører</h3>
+                            <div class="instructor-profile-list">
+                                <?php foreach ($instructor_profiles as $profile) : ?>
+                                    <a class="instructor-profile-item" href="<?php echo esc_url($profile['url']); ?>">
+                                        <img class="instructor-profile-image" src="<?php echo esc_url($profile['image']); ?>" alt="<?php echo esc_attr(sprintf('Bilde av %s', $profile['name'])); ?>" loading="lazy" decoding="async">
+                                        <span class="instructor-profile-name notranslate" translate="no"><?php echo esc_html($profile['name']); ?></span>
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <?php endif; ?>
                         <div class="similar-courses"></div>
                     <?php endif; ?>
                     <?php do_action('ka_singel_aside_after'); ?>

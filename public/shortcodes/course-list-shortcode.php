@@ -288,6 +288,12 @@ function kursagenten_course_list_shortcode($atts) {
         );
     }
 
+    // Day schedules popup (uses the same AJAX endpoint regardless of which page
+    // the shortcode is rendered on). Helper guards against duplicate enqueue.
+    if ( function_exists( 'kursagenten_enqueue_day_schedules_assets' ) ) {
+        kursagenten_enqueue_day_schedules_assets();
+    }
+
     // Localize script with necessary data
     wp_localize_script(
         'kursagenten-ajax-filter',

@@ -160,12 +160,16 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     $show_registration = kursagenten_normalize_bool($selected_coursedate_data['show_registration'] ?? false);
     $button_text = $selected_coursedate_data['button_text'] ?? '';
     $is_full = kursagenten_normalize_bool($selected_coursedate_data['is_full'] ?? false);
+    $day_schedules_count = (int) ($selected_coursedate_data['day_schedules_count'] ?? 0);
+    $day_schedules_coursedate_id = (int) ($selected_coursedate_data['id'] ?? 0);
 } else {
     // Original kode for coursedates
     $course_id = get_the_ID();
 
     $course_title = get_post_meta($course_id, 'ka_course_title', true);
     $first_course_date = ka_format_date(get_post_meta($course_id, 'ka_course_first_date', true));
+    $day_schedules_count = (int) get_post_meta($course_id, 'ka_course_day_schedules_count', true);
+    $day_schedules_coursedate_id = (int) $course_id;
     $price = get_post_meta($course_id, 'ka_course_price', true);
     $after_price = get_post_meta($course_id, 'ka_course_text_after_price', true);
     $location = get_post_meta($course_id, 'ka_course_location', true);
@@ -192,6 +196,7 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
 
 $course_count = $course_count ?? 0;
 $item_class = $course_count === 1 ? ' single-item' : '';
+$list_display = kursagenten_get_list_display_fields($args);
 
 // Hent kurskategorier for data-category attributt
 $course_categories = get_the_terms($course_id, 'ka_coursecategory');
@@ -242,6 +247,18 @@ if ($list_date_text === '') {
                                     <?php endif; ?>
                                 </span>
                             </span>
+                        <?php endif; ?>
+                        <?php if (!empty($list_display['day_schedules']) && $day_schedules_count >= 2 && $day_schedules_coursedate_id > 0) : ?>
+                            <span class="compact-course-day-schedules"><?php
+                                // Use <button> here because the entire row is wrapped in <a>;
+                                // nested <a> elements would be invalid HTML.
+                                echo kursagenten_render_day_schedules_link(
+                                    $day_schedules_coursedate_id,
+                                    $day_schedules_count,
+                                    $course_title,
+                                    ['icon' => '', 'tag' => 'button']
+                                );
+                            ?></span>
                         <?php endif; ?>
                     </div>
 

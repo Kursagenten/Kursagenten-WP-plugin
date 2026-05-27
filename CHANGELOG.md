@@ -1,6 +1,9 @@
 ## 1.1.22 - 2026-05-26
 - Lagt til: Mulighet til å fjerne taksonomi-slug under SEO innstillinger. Eksempel: webside.no/kurskategori/kurset -> webside.no/kurset
 - Fix: SEO Rich Descriptions fungerte ikke korrekt på kurs hvis RankMath Free var installert. Nå vises Rich Descriptions korrekt.
+- Fix: Tomme felter i Kursagenten ble ikke synkronisert til WordPress. Tidligere ble gammel verdi stående hvis admin tømte feltet i Kursagenten (f.eks. fjernet *Varighet*, *Påmeldingsfrist*, *Sluttdato*, *Kurstid*, *Kurskode*, *Knappetekst*, *Språk*, *Pristekst*). Nå reflekteres tomme verdier korrekt ved neste synk eller webhook. Startdato beholder fortsatt sikring mot tømming (uten startdato blir kursdatoen ubrukelig).
+- Lagt til: **Antall kursdager** i kurslister og enkeltkurs. Når Kursagenten har detaljerte dagsplaner (`daySchedules`) på mer enn én dag for en kursdato, vises en klikkbar lenke som "15 dager" / "4 dager". Klikk åpner en popup med tabell over dato, dag, klokkeslett, instruktør og lokale per dag. (Endagskurs vises ikke, da dagen er identisk med kursdatoen.) Tabellen collapser pent på mobil til en kortliste med ledetekster. Data hentes dynamisk fra Kursagenten ved klikk og caches i 1 time (transient), så listevisningen påvirkes ikke av ekstra API-kall. Antall kursdager kan skrus av/på i Kursdesign → "Vis i listen", og er på som standard i alle listedesign. Støttes i listedesignene Standard, Grid, Plain, Compact, Date-and-title, Enkle kort, og i enkeltkurs-designene Standard og Bokser.
+- Forbedring: Instruktørnavn i popup for kursdager følger nå samme *Navnevisning* som i Kursdesign → Taksonomisider → Instruktører (fullt navn / fornavn / etternavn), med fallback hvis term ikke finnes.
 
 ## 1.1.21 - 2026-05-21
 - Lagt til: "Skjul i kursliste" for kurskategorier er nå et trevalg i stedet for av/på:

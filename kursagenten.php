@@ -657,6 +657,7 @@ require_once KURSAG_PLUGIN_DIR . '/includes/api/api_connection.php';
 require_once KURSAG_PLUGIN_DIR . '/includes/api/api_webhook_handler.php';
 require_once KURSAG_PLUGIN_DIR . '/includes/api/api_course_sync.php';
 require_once KURSAG_PLUGIN_DIR . '/includes/api/api_sync_on_demand.php';
+require_once KURSAG_PLUGIN_DIR . '/includes/api/api_day_schedules.php';
 require_once KURSAG_PLUGIN_DIR . '/includes/search/search_instructors.php';
 require_once KURSAG_PLUGIN_DIR . '/includes/helpers/helpers.php';
 require_once KURSAG_PLUGIN_DIR . '/includes/helpers/location-regions.php';
@@ -1143,6 +1144,7 @@ if (!is_admin()) {
         wp_enqueue_script('kursagenten-ajax-filter', plugins_url('assets/js/public/course-ajax-filter.js', __FILE__), array('jquery', 'kursagenten-slidein-panel'), $assets_version, true);
         wp_enqueue_script('kursagenten-expand-content', plugins_url('assets/js/public/course-expand-content.js', __FILE__), array('jquery'), $assets_version, true);
         wp_enqueue_script('kursagenten-dates-modal', plugins_url('assets/js/public/course-modal.js', __FILE__), array('jquery'), $assets_version, true);
+        kursagenten_enqueue_day_schedules_assets();
         wp_enqueue_script(
             'kursagenten-course-list-bg-fix',
             plugins_url('assets/js/public/course-list-bg-fix.js', __FILE__),

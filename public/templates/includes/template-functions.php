@@ -453,18 +453,18 @@ function kursagenten_get_default_list_display_fields_for_list_type($list_type = 
 
     switch ($list_type) {
         case 'compact':
-            return ['location', 'location_freetext'];
+            return ['location', 'location_freetext', 'day_schedules'];
         case 'date-and-title':
-            return ['last_date'];
+            return ['last_date', 'day_schedules'];
         case 'simple-cards':
-            return ['duration'];
+            return ['duration', 'day_schedules'];
         case 'standard':
         case 'grid':
         case 'plain':
-            return ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'last_date'];
+            return ['time', 'duration', 'day_schedules', 'price', 'location', 'location_freetext', 'room', 'last_date'];
         default:
             // Legacy fallback for other list types (e.g. date-and-title).
-            return ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'instructor'];
+            return ['time', 'duration', 'day_schedules', 'price', 'location', 'location_freetext', 'room', 'instructor'];
     }
 }
 
@@ -480,7 +480,7 @@ function kursagenten_get_default_list_display_fields_for_list_type($list_type = 
  * @return string[] Enabled field keys (including location/location_freetext).
  */
 function kursagenten_get_list_display_fields_enabled_list($context_base = 'archive', $list_type = '', $taxonomy = '') {
-    $field_keys = ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'instructor', 'last_date', 'registration_deadline'];
+    $field_keys = ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'instructor', 'last_date', 'registration_deadline', 'day_schedules'];
     $context_base = ($context_base === 'taxonomy') ? 'taxonomy' : 'archive';
     $list_type = is_string($list_type) ? sanitize_text_field($list_type) : '';
     $taxonomy = is_string($taxonomy) ? sanitize_text_field($taxonomy) : '';
@@ -867,7 +867,7 @@ function kursagenten_apply_shortcode_visibility_overrides(array $result, $shortc
  * @return array<string, bool> Keys: time, duration, price, location, location_freetext, room, instructor, last_date, registration_deadline.
  */
 function kursagenten_get_list_display_fields($args = []) {
-    $field_keys = ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'instructor', 'last_date', 'registration_deadline'];
+    $field_keys = ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'instructor', 'last_date', 'registration_deadline', 'day_schedules'];
 
     $is_taxonomy_flag = !empty($args['is_taxonomy_page']);
     $resolved_taxonomy = '';
@@ -908,6 +908,87 @@ function kursagenten_get_list_display_fields($args = []) {
     }
 
     return $result;
+}
+
+/**
+ * Render a clickable "X dager" link that opens the day-schedules popup.
+ *
+ * The popup itself is rendered client-side by course-day-schedules.js – it lives
+ * outside the list item DOM so we can reuse a single modal for all triggers.
+ *
+ * Returns an empty string when there are fewer than 2 day schedules. A single day
+ * is intentionally hidden because it duplicates the existing coursedate (same
+ * date, same time, same location) and adds no new information for the user.
+ *
+ * @param int    $coursedate_id WP post ID of the ka_coursedate to query.
+ * @param int    $count         Pre-fetched count from ka_course_day_schedules_count.
+ *                              When 0 or less, the function returns an empty string.
+ * @param string $course_title  Optional title used as a fallback for the modal header.
+ * @param array  $args          Optional overrides:
+ *                                - 'icon'    string  Icon CSS class (default 'icon-calendar', '' to omit)
+ *                                - 'class'   string  Extra CSS class on the trigger element
+ *                                - 'wrapper' string  Wrap output in '<div class="...">...</div>' if set
+ *                                - 'tag'     string  Trigger tag: 'a' (default) or 'button'.
+ *                                                    Use 'button' when nested inside another <a>.
+ * @return string Rendered HTML or empty string.
+ */
+function kursagenten_render_day_schedules_link($coursedate_id, $count, $course_title = '', $args = []) {
+    $coursedate_id = (int) $coursedate_id;
+    $count = (int) $count;
+
+    // Threshold is centralized here. A single day schedule equals the coursedate
+    // itself, so we only show the popup link when there are >= 2 days to display.
+    if ($coursedate_id <= 0 || $count < 2) {
+        return '';
+    }
+
+    $defaults = [
+        'icon'    => 'icon-calendar',
+        'class'   => '',
+        'wrapper' => '',
+        'tag'     => 'a',
+    ];
+    $args = array_merge($defaults, is_array($args) ? $args : []);
+    $tag = in_array($args['tag'], ['a', 'button'], true) ? $args['tag'] : 'a';
+
+    $label = sprintf(
+        // translators: %d is the number of course days.
+        _n('%d dag', '%d dager', $count, 'kursagenten'),
+        $count
+    );
+
+    $classes = trim('show-ka-day-schedules ka-day-schedules-link ' . (string) $args['class']);
+    $icon_html = $args['icon'] !== ''
+        ? '<i class="ka-icon ' . esc_attr($args['icon']) . '" aria-hidden="true"></i> '
+        : '';
+
+    if ($tag === 'button') {
+        // Use type="button" so the trigger never submits a parent form, and add an
+        // inline reset so the link still looks like a link rather than a button.
+        $link = sprintf(
+            '<button type="button" class="%1$s" data-coursedate-id="%2$d" data-course-title="%3$s">%4$s%5$s</button>',
+            esc_attr($classes),
+            $coursedate_id,
+            esc_attr($course_title),
+            $icon_html,
+            esc_html($label)
+        );
+    } else {
+        $link = sprintf(
+            '<a href="#" class="%1$s" data-coursedate-id="%2$d" data-course-title="%3$s" role="button">%4$s%5$s</a>',
+            esc_attr($classes),
+            $coursedate_id,
+            esc_attr($course_title),
+            $icon_html,
+            esc_html($label)
+        );
+    }
+
+    if (!empty($args['wrapper'])) {
+        $link = '<div class="' . esc_attr($args['wrapper']) . '">' . $link . '</div>';
+    }
+
+    return $link;
 }
 
 /**
