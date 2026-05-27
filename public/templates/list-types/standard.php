@@ -339,6 +339,33 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                     
                 </div>
                 <!-- Details area - date and location -->
+                <?php
+                $is_location_taxonomy = ($resolved_taxonomy === 'ka_course_location');
+                $show_location_name = !empty($list_display['location']) && !$is_location_taxonomy && !empty($location);
+                $show_location_freetext = !empty($list_display['location_freetext']) && !empty($location_freetext);
+                $show_location_block = $is_location_taxonomy
+                    ? $show_location_freetext
+                    : ($show_location_name || $show_location_freetext);
+
+                $show_meta_registration_deadline = ($view_type !== 'main_courses' || $force_standard_view)
+                    && !empty($list_display['registration_deadline'])
+                    && !empty($registration_deadline);
+                $show_meta_time = !empty($list_display['time']) && !empty($coursetime);
+                $show_meta_duration = !empty($list_display['duration']) && !empty($duration);
+                $show_meta_day_schedules = !empty($list_display['day_schedules']) && $day_schedules_count >= 2 && $day_schedules_coursedate_id > 0;
+                $show_meta_price = !empty($list_display['price']) && !empty($price);
+                $show_meta_instructor = !empty($list_display['instructor']) && !empty($instructor_links);
+                $show_meta_room = !empty($list_display['room']) && !$is_location_taxonomy && !empty($location_room);
+
+                $has_meta_items = $show_meta_registration_deadline
+                    || $show_meta_time
+                    || $show_meta_duration
+                    || $show_meta_day_schedules
+                    || $show_meta_price
+                    || $show_meta_instructor
+                    || $show_meta_room;
+                $show_details_toggle = !$has_meta_items && $show_location_block;
+                ?>
                 <div class="details-area iconlist horizontal">
                     <?php if ($view_type === 'main_courses' && !$force_standard_view) : ?>
                         <?php
@@ -364,15 +391,6 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                             <div class="registration-deadline"><i class="ka-icon icon-alarmclock"></i> <?php echo esc_html($registration_deadline); ?></div>
                         <?php endif; ?>
                         <?php if ($list_display['time'] && !empty($coursetime)) : ?><div class="coursetime"><i class="ka-icon icon-time"></i> <?php echo esc_html($coursetime); ?></div><?php endif; ?>
-                        <?php
-                        $is_location_taxonomy = ($resolved_taxonomy === 'ka_course_location');
-                        $show_location_name = !empty($list_display['location']) && !$is_location_taxonomy && !empty($location);
-                        $show_location_freetext = !empty($list_display['location_freetext']) && !empty($location_freetext);
-                        $show_location_room = !empty($list_display['room']) && !empty($location_room);
-                        $show_location_block = $is_location_taxonomy
-                            ? $show_location_freetext
-                            : ($show_location_name || $show_location_freetext || $show_location_room);
-                        ?>
                         <?php if ($show_location_block) : ?>
                             <div class="location">
                                 <div class="location-text notranslate" translate="no">
@@ -388,9 +406,8 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                             (<span class="notranslate" translate="no"><?php echo esc_html($location_freetext); ?></span>)
                                         <?php endif; ?>
                                     <?php endif; ?>
-                                    <?php if (!$is_location_taxonomy && $show_location_room) : ?>
-                                        <?php if ($show_location_name || $show_location_freetext) : ?>&nbsp;-&nbsp;<?php endif; ?>
-                                        <?php echo esc_html($location_room); ?>
+                                    <?php if ($show_details_toggle) : ?>
+                                        <span class="accordion-icon accordion-icon-inline clickopen ka-tooltip" data-title="Se detaljer">+</span>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -410,15 +427,6 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                             <div class="startdate"><i class="ka-icon icon-calendar"></i><?php echo esc_html($list_date_text); ?></div>
                         <?php endif; ?>
                     
-                        <?php
-                        $is_location_taxonomy = ($resolved_taxonomy === 'ka_course_location');
-                        $show_location_name = !empty($list_display['location']) && !$is_location_taxonomy && !empty($location);
-                        $show_location_freetext = !empty($list_display['location_freetext']) && !empty($location_freetext);
-                        $show_location_room = !empty($list_display['room']) && !empty($location_room);
-                        $show_location_block = $is_location_taxonomy
-                            ? $show_location_freetext
-                            : ($show_location_name || $show_location_freetext || $show_location_room);
-                        ?>
                         <?php if ($show_location_block) : ?>
                             <div class="location">
                                 <div class="location-text notranslate" translate="no">
@@ -434,9 +442,8 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                             (<span class="notranslate" translate="no"><?php echo esc_html($location_freetext); ?></span>)
                                         <?php endif; ?>
                                     <?php endif; ?>
-                                    <?php if (!$is_location_taxonomy && $show_location_room) : ?>
-                                        <?php if ($show_location_name || $show_location_freetext) : ?>&nbsp;-&nbsp;<?php endif; ?>
-                                        <?php echo esc_html($location_room); ?>
+                                    <?php if ($show_details_toggle) : ?>
+                                        <span class="accordion-icon accordion-icon-inline clickopen ka-tooltip" data-title="Se detaljer">+</span>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -444,22 +451,20 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                     <?php endif; ?>
                 </div>
                 <!-- Meta area -->
-                <div class="meta-area iconlist horizontal">
-                    <?php if ($view_type !== 'main_courses' || $force_standard_view) : ?>
-                        <?php if ($list_display['registration_deadline'] && !empty($registration_deadline)) : ?>
-                            <div class="registration-deadline"><i class="ka-icon icon-alarmclock"></i><?php echo esc_html($registration_deadline); ?></div>
-                        <?php endif; ?>
+                <div class="meta-area iconlist horizontal<?php echo (!$has_meta_items && $show_details_toggle) ? ' meta-empty' : ''; ?>">
+                    <?php if ($show_meta_registration_deadline) : ?>
+                        <div class="registration-deadline"><i class="ka-icon icon-alarmclock"></i><?php echo esc_html($registration_deadline); ?></div>
                     <?php endif; ?>
-                    <?php if ($list_display['time'] && !empty($coursetime)) : ?>
+                    <?php if ($show_meta_time) : ?>
                         <div class="coursetime">
                             <i class="ka-icon icon-time"></i>
                             <?php echo esc_html($coursetime); ?>
                         </div>
                     <?php endif; ?>
-                    <?php if ($list_display['duration'] && !empty($duration)) : ?>
+                    <?php if ($show_meta_duration) : ?>
                         <div class="duration"><i class="ka-icon icon-timer-light"></i><?php echo esc_html($duration); ?></div>
                     <?php endif; ?>
-                    <?php if (!empty($list_display['day_schedules']) && $day_schedules_count >= 2 && $day_schedules_coursedate_id > 0) : ?>
+                    <?php if ($show_meta_day_schedules) : ?>
                         <div class="day-schedules"><?php
                             echo kursagenten_render_day_schedules_link(
                                 $day_schedules_coursedate_id,
@@ -469,14 +474,22 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                             );
                         ?></div>
                     <?php endif; ?>
-                    <?php if ($list_display['price'] && !empty($price)) : ?>
+                    <?php if ($show_meta_price) : ?>
                         <div class="price"><i class="ka-icon icon-layers"></i><?php echo esc_html($price); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></div>
                     <?php endif; ?>
-                    <?php if ($list_display['instructor'] && !empty($instructor_links)) : ?>
+                    <?php if ($show_meta_instructor) : ?>
                         <div class="instructors"><i class="ka-icon icon-user"></i><?php echo implode(' ,&nbsp;', $instructor_links); ?></div>
                     <?php endif; ?>
-                    
-                    <span class="accordion-icon clickopen ka-tooltip" data-title="Se detaljer">+</span>
+                    <?php if ($show_meta_room) : ?>
+                        <div class="location-room notranslate" translate="no">
+                            <i class="ka-icon icon-home"></i>
+                            <?php echo esc_html($location_room); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (!$show_details_toggle) : ?>
+                        <span class="accordion-icon clickopen ka-tooltip" data-title="Se detaljer">+</span>
+                    <?php endif; ?>
                 </div>
                 <!-- Accordion content -->
                 <div class="courselist-content accordion-content">

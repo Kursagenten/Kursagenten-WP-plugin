@@ -134,7 +134,10 @@
 #ka .ka-container .courselist-main .meta-area {
     margin-top: var(--ka-space-md);
 }
-#ka .ka-container .courselist-main .meta-area .accordion-icon {
+#ka .ka-container .courselist-main .meta-area.meta-empty {
+    margin-top: 0;
+}
+#ka .ka-container .courselist-main .accordion-icon {
     display: flex;
     align-content: flex-start;
     align-items: center;
@@ -149,6 +152,11 @@
     color: var(--ka-color);
     font-weight: bold;
 }
+#ka .ka-container .courselist-main .details-area .accordion-icon {
+    display: inline-flex;
+    padding-left: .8em;
+}
+
 
 /* Courselist Content Panel */
 #ka .ka-container .courselist-content {
