@@ -2427,12 +2427,12 @@ class Designmaler {
             $context_list_type = 'standard';
         }
         $default_fields_by_list_type = [
-            'standard' => ['time', 'duration', 'day_schedules', 'price', 'location', 'location_freetext', 'room', 'last_date'],
-            'grid' => ['time', 'duration', 'day_schedules', 'price', 'location', 'location_freetext', 'room', 'last_date'],
-            'plain' => ['time', 'duration', 'day_schedules', 'price', 'location', 'location_freetext', 'room', 'last_date'],
-            'compact' => ['location', 'location_freetext', 'day_schedules'],
-            'date-and-title' => ['last_date', 'day_schedules'],
-            'simple-cards' => ['duration', 'day_schedules'],
+            'standard' => ['time', 'duration', 'price', 'location', 'location_freetext', 'room'],
+            'grid' => ['time', 'duration', 'price', 'location', 'location_freetext', 'room'],
+            'plain' => ['time', 'duration', 'price', 'location', 'location_freetext', 'room'],
+            'compact' => ['location', 'location_freetext'],
+            'date-and-title' => [],
+            'simple-cards' => ['duration'],
         ];
         $option_key = 'kursagenten_' . $context_base . '_list_display_fields';
         if (isset($args['option_key']) && is_string($args['option_key']) && $args['option_key'] !== '') {
@@ -3390,11 +3390,24 @@ class Designmaler {
                 }
                 function kaApplyLocationFieldRules($container) {
                     if (!$container || !$container.length) { return; }
-                    var $locationCheckbox = $container.find('input.ka-list-display-checkbox[value="location"]');
-                    if (!$locationCheckbox.length) { return; }
+                    var $allCheckboxes = $container.find('input.ka-list-display-checkbox');
+                    if (!$allCheckboxes.length) { return; }
 
                     var listTypeSelector = $container.data('list-type-selector');
                     var listType = listTypeSelector ? ($(listTypeSelector).val() || 'standard') : 'standard';
+
+                    // Date-and-title has no "Vis i listen" controls: keep all empty + disabled
+                    // to avoid confusing settings that do not affect this design.
+                    if (listType === 'date-and-title') {
+                        $allCheckboxes.prop('checked', false).prop('disabled', true);
+                        return;
+                    }
+
+                    // Re-enable fields when switching away from date-and-title.
+                    $allCheckboxes.prop('disabled', false);
+
+                    var $locationCheckbox = $container.find('input.ka-list-display-checkbox[value="location"]');
+                    if (!$locationCheckbox.length) { return; }
                     var lockLocation = (listType !== 'simple-cards');
 
                     if (lockLocation) {

@@ -248,18 +248,6 @@ if ($list_date_text === '') {
                                 </span>
                             </span>
                         <?php endif; ?>
-                        <?php if (!empty($list_display['day_schedules']) && $day_schedules_count >= 2 && $day_schedules_coursedate_id > 0) : ?>
-                            <span class="compact-course-day-schedules"><?php
-                                // Use <button> here because the entire row is wrapped in <a>;
-                                // nested <a> elements would be invalid HTML.
-                                echo kursagenten_render_day_schedules_link(
-                                    $day_schedules_coursedate_id,
-                                    $day_schedules_count,
-                                    $course_title,
-                                    ['icon' => '', 'tag' => 'button']
-                                );
-                            ?></span>
-                        <?php endif; ?>
                     </div>
 
                     <div class="compact-course-second-column">

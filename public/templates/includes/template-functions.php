@@ -453,18 +453,18 @@ function kursagenten_get_default_list_display_fields_for_list_type($list_type = 
 
     switch ($list_type) {
         case 'compact':
-            return ['location', 'location_freetext', 'day_schedules'];
+            return ['location', 'location_freetext'];
         case 'date-and-title':
-            return ['last_date', 'day_schedules'];
+            return [];
         case 'simple-cards':
-            return ['duration', 'day_schedules'];
+            return ['duration'];
         case 'standard':
         case 'grid':
         case 'plain':
-            return ['time', 'duration', 'day_schedules', 'price', 'location', 'location_freetext', 'room', 'last_date'];
+            return ['time', 'duration', 'price', 'location', 'location_freetext', 'room'];
         default:
             // Legacy fallback for other list types (e.g. date-and-title).
-            return ['time', 'duration', 'day_schedules', 'price', 'location', 'location_freetext', 'room', 'instructor'];
+            return ['time', 'duration', 'price', 'location', 'location_freetext', 'room', 'instructor'];
     }
 }
 

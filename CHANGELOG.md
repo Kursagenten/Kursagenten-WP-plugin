@@ -2,16 +2,17 @@
 - Lagt til: Mulighet til å fjerne taksonomi-slug under SEO innstillinger. Eksempel: webside.no/kurskategori/kurset -> webside.no/kurset
 - Fix: SEO Rich Descriptions fungerte ikke korrekt på kurs hvis RankMath Free var installert. Nå vises Rich Descriptions korrekt.
 - Fix: Tomme felter i Kursagenten ble ikke synkronisert til WordPress. Tidligere ble gammel verdi stående hvis admin tømte feltet i Kursagenten (f.eks. fjernet *Varighet*, *Påmeldingsfrist*, *Sluttdato*, *Kurstid*, *Kurskode*, *Knappetekst*, *Språk*, *Pristekst*). Nå reflekteres tomme verdier korrekt ved neste synk eller webhook. Startdato beholder fortsatt sikring mot tømming (uten startdato blir kursdatoen ubrukelig).
-- Lagt til: **Antall kursdager** i kurslister og enkeltkurs. Når Kursagenten har detaljerte dagsplaner (`daySchedules`) på mer enn én dag for en kursdato, vises en klikkbar lenke som "15 dager" / "4 dager". Klikk åpner en popup med tabell over dato, dag, klokkeslett, instruktør og lokale per dag. (Endagskurs vises ikke, da dagen er identisk med kursdatoen.) Tabellen collapser pent på mobil til en kortliste med ledetekster. Data hentes dynamisk fra Kursagenten ved klikk og caches i 1 time (transient), så listevisningen påvirkes ikke av ekstra API-kall. Antall kursdager kan skrus av/på i Kursdesign → "Vis i listen", og er på som standard i alle listedesign. Støttes i listedesignene Standard, Grid, Plain, Compact, Date-and-title, Enkle kort, og i enkeltkurs-designene Standard og Bokser.
+- Lagt til: **Antall kursdager** i kurslister og enkeltkurs. Når Kursagenten har detaljerte dagsplaner (`daySchedules`) på mer enn én dag for en kursdato, vises en klikkbar lenke som *15 dager* / *4 dager*. Klikk åpner en popup med tabell over dato, dag, klokkeslett, instruktør og lokale per dag. (Endagskurs vises ikke, da dagen er identisk med kursdatoen.) Tabellen collapser pent på mobil til en kortliste med ledetekster. Data hentes dynamisk fra Kursagenten ved klikk og caches i 1 time (transient), så listevisningen påvirkes ikke av ekstra API-kall. Antall kursdager kan skrus av/på i Kursdesign → *Vis i listen*, og er på som standard i alle listedesign. Støttes i listedesignene Standard, Grid, Plain, Compact, Date-and-title, Enkle kort, og i enkeltkurs-designene Standard og Bokser.
 - Forbedring: Instruktørnavn i popup for kursdager følger nå samme *Navnevisning* som i Kursdesign → Taksonomisider → Instruktører (fullt navn / fornavn / etternavn), med fallback hvis term ikke finnes.
+- Forbedring: I listedesign **Date-and-title** er "Vis i listen"-feltene nå automatisk tømt og deaktivert i admin, slik at innstillinger som ikke brukes av designet ikke skaper forvirring.
 
 ## 1.1.21 - 2026-05-21
-- Lagt til: "Skjul i kursliste" for kurskategorier er nå et trevalg i stedet for av/på:
+- Lagt til: *Skjul i kursliste* for kurskategorier er nå et trevalg i stedet for av/på:
   - *Vis* – kategorien vises i filteret og kursene vises i kurslisten.
   - *Skjul kun kategorien fra filter* – kategorien skjules fra filteret, men kursene vises fortsatt i kurslisten under sine andre kategorier. Nyttig for om man kun ønsker å skjule kategorien.
   - *Skjul kategorien og alle tilhørende kurs* – tidligere atferd; kategorien og alle kurs tagget med den skjules fra kurslisten.
-  - Lagt til: Trevalget kan også settes via hurtigredigering og masseredigering ("Kursagenten: Masserediger synlighet").
-  - Fix: Forbedret synk. Kurs som har blitt lagt til som duplikat ved feil blir slettet ved nattlig synk, klikk på "Rydd opp i kurs", og ved webhook synk.
+  - Lagt til: Trevalget kan også settes via hurtigredigering og masseredigering (*Kursagenten: Masserediger synlighet*).
+  - Fix: Forbedret synk. Kurs som har blitt lagt til som duplikat ved feil blir slettet ved nattlig synk, klikk på *Rydd opp i kurs*, og ved webhook synk.
   - Lagt til: Mulighet til å skru av og på fritekst sted, Rom/lokale, tid, sluttdato, påmeldingsfrist, instruktør, varighet i kurslisten
 
 ## 1.1.20 - 2026-05-11
@@ -75,7 +76,7 @@
 ## 1.1.07 - 2025-12-12
 - Lagt til: Widget i kontrollpanel så du får se de nyeste endringene vi har gjort 🎉
 - Lagt til: Mulighet til å endre navn på kurssted fra Kursagenten -> Synkronisering. Navn blir endret ved henting/synkronisering av kurs.
-- Lagt til: Regioner. Kan aktiveres ved behov, og brukes i kortkode [kurssteder] med region="sørlandet/østlandet/vestlandet/midt-norge/nord-norge". Det er også mulig å legge til ekstra steder: [kurssteder region="østlandet" vis="bergen"]
+- Lagt til: Regioner. Kan aktiveres ved behov, og brukes i kortkode [kurssteder] med region=*sørlandet/østlandet/vestlandet/midt-norge/nord-norge*. Det er også mulig å legge til ekstra steder: [kurssteder region=*østlandet* vis=*bergen*]
 - Endret: Forbedret dokumentasjon
 - Intert: lagt inn performance-debug.php og dokumentasjon for feilsøking hvis utvidelsen blir treg
 - Internt: gjort endringer til secure updater, gjorde siden treg igjen
@@ -87,15 +88,15 @@
 - Fix: Feil i kode på [kurssteder], nå rettet. Viste steder som ikke lenger skulle være synlige.
 
 ## 1.1.05 - 2025-12-01
-- Forbedring: Under "Kursdesign" kan du nå velge eksisterende sider for kurs, kurskategorier, kurssteder og instruktører i stedet for å måtte opprette nye. Du kan også bruke samme side for flere funksjoner (f.eks. én side som viser både kurs og kurskategorier). Lenker i malene oppdateres automatisk basert på hva du velger. Kun Betaling-siden opprettes automatisk ved installering.
-- Fix: Gitt korrekt navn til "Lisensnøkkel", omdøpt fra "API-nøkkel"
+- Forbedring: Under *Kursdesign* kan du nå velge eksisterende sider for kurs, kurskategorier, kurssteder og instruktører i stedet for å måtte opprette nye. Du kan også bruke samme side for flere funksjoner (f.eks. én side som viser både kurs og kurskategorier). Lenker i malene oppdateres automatisk basert på hva du velger. Kun Betaling-siden opprettes automatisk ved installering.
+- Fix: Gitt korrekt navn til *Lisensnøkkel*, omdøpt fra *API-nøkkel*
 
 ## 1.1.04 - 2025-11-28
 - Fix: Internkurs blir nå hoppet over i synken. Webhook er også fjernet i Kursagenten, så disse kursene ikke blir overført ved opprettelse/lagring. For å fjerne internkurs: Gå til Synkronisering og klikk på *Rydd opp i kurs*
 
 ## 1.1.03 - 2025-11-27
 - Endret: Navn på følgende steder blir endret - Rana / Mo i Rana → Mo i Rana, Lenvik / Finnsnes → Finnsnes, Porsgrunn / Brevik → Porsgrunn og Vågan / Svolvær → Svolvær
-- Fix: På taksonomisider har sted som aktivt filter på kurssteder, og kategori på kurskategorier, blitt fjernet. Dette gjelder for visningstypen "Vis alle kursdatoer".
+- Fix: På taksonomisider har sted som aktivt filter på kurssteder, og kategori på kurskategorier, blitt fjernet. Dette gjelder for visningstypen *Vis alle kursdatoer*.
 
 ## 1.1.02 - 2025-11-26
 - Lagt til: Støtte for CPT tema-maler: single-ka_course.php, taxonomy-ka_course_location.php, taxonomy-ka_coursecategory.php og taxonomy-ka_instructors.php. Bruk støttefunksjon kursagenten_get_content(); mellom get_header og get_footer for å generere innholdet.
@@ -115,12 +116,12 @@
 - Fix: Kurstatus vistes med ledige plasser uavhengig av status i kursliste. Rettet så det nå også viser fullt/på forspørsel.
 - Lagt til: Ny designmal for taksonomi: *Profil*. Rundt hovedbilde, tittel under. Kolonne under med kort og lang beskrivelse.
 - Lagt til: Mulighet for å begrense antall kurs i kortkode for kursliste: [kursliste antall=10]
-- Lagt til: Ny kursliste-mal med kun status, dato, kurstittel og påmeldingsknapp. Foreløpig kun til bruk i kursliste kortkode: [kursliste list_type="date-and-title"]
+- Lagt til: Ny kursliste-mal med kun status, dato, kurstittel og påmeldingsknapp. Foreløpig kun til bruk i kursliste kortkode: [kursliste list_type=*date-and-title*]
 
 ## 1.0.7 - 2025-11-07
 - Justering på strukturelle endringer
 - Endring av admin meny. Nå er alle Kursagenten sider samlet.
-- Oppdatering av innstillings-siden "Oversikt"
+- Oppdatering av innstillings-siden *Oversikt*
 
 ## 1.0.6 - 2025-11-02
 - Strukturelle endringer for unngå konflikt med andre kurs-utvidelser
@@ -129,8 +130,8 @@
 - Endret: Lagt inn mulighet for å legge inn egen klasse på kortkoder (lister) for custom styling
 - Endret: I kortkoder for lister vil ikke bilder lenger lastes inn om attributt bildestr blir satt til 0
 - Fix: Feil i taksonomi-maler. I malene var det ikke mulig å velge listetype (grid/standard). Nå er det mulig å velge listetype, samt å velge å vise kun hovedkurs i listen (med Neste kursdato) eller alle kursdatoer
-- Lagt til: Ny kursliste-mal - "Kompakt". Enkelt og kompakt, med mulighet for å vise kursbilde
-- Lagt til: Ny kursliste-mal - "Enkel". Enkelt og ren, med mulighet for å vise kursbilde
+- Lagt til: Ny kursliste-mal - *Kompakt*. Enkelt og kompakt, med mulighet for å vise kursbilde
+- Lagt til: Ny kursliste-mal - *Enkel*. Enkelt og ren, med mulighet for å vise kursbilde
 - Lagt til: Attributter i [kursliste]. Nå kan det manuelt legges inn bilder=yes/no og list_type=grid/plain/compact/standard
 
 ## 1.0.4 - 2025-10-16
