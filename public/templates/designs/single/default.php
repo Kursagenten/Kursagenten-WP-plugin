@@ -310,7 +310,7 @@ do_action('ka_singel_header_before');
                                 }
                             ?>
                                 <div class="<?php echo $item_class; ?>">
-                                    <div class="courselist-main" onclick="toggleAccordion(this)">
+                                    <div class="courselist-main ka-cursor-tooltip" data-title="Vis detaljer" onclick="toggleAccordion(this)">
                                         <div class="text-area">
                                             <div class="title-area">
                                                 

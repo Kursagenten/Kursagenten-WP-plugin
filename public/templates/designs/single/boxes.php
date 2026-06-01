@@ -229,7 +229,7 @@ $render_courselist = static function ($extra_class = '') use ($all_coursedates, 
                     }
                     ?>
                     <div class="<?php echo esc_attr($item_class); ?>">
-                        <div class="courselist-main" onclick="toggleAccordion(this)">
+                        <div class="courselist-main ka-cursor-tooltip" data-title="Vis detaljer" onclick="toggleAccordion(this)">
                             <div class="text-area">
                                 <div class="title-area">
                                     

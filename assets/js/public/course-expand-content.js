@@ -177,9 +177,107 @@ function initLocationTabsToggle() {
     });
 }
 
+/**
+ * Cursor-following tooltip for elements with the .ka-cursor-tooltip class and a
+ * data-title attribute. A single bubble is appended to <body> and positioned at
+ * the mouse pointer, so it never gets clipped by overflow:hidden containers
+ * (e.g. the accordion) and always reads the current data-title (which may change
+ * when a row is opened/closed).
+ */
+function initCursorTooltip() {
+    let bubble = null;
+
+    const getBubble = () => {
+        if (!bubble) {
+            bubble = document.createElement('div');
+            bubble.className = 'ka-cursor-tooltip-bubble';
+            document.body.appendChild(bubble);
+        }
+        return bubble;
+    };
+
+    // Hide the tooltip when hovering interactive children (e.g. the signup
+    // button or links) so it doesn't linger over the actual click target.
+    const isOverInteractive = (event, target) => {
+        const interactive = event.target.closest('a, button');
+        return interactive && target.contains(interactive);
+    };
+
+    const positionBubble = (event) => {
+        if (!bubble) {
+            return;
+        }
+        const offset = 14;
+        const rect = bubble.getBoundingClientRect();
+        let x = event.clientX + offset;
+        let y = event.clientY + offset;
+
+        // Flip to the left/top if the bubble would overflow the viewport
+        if (x + rect.width > window.innerWidth - 8) {
+            x = event.clientX - offset - rect.width;
+        }
+        if (y + rect.height > window.innerHeight - 8) {
+            y = event.clientY - offset - rect.height;
+        }
+
+        bubble.style.left = Math.max(8, x) + 'px';
+        bubble.style.top = Math.max(8, y) + 'px';
+    };
+
+    document.addEventListener('mouseover', (event) => {
+        const target = event.target.closest('.ka-cursor-tooltip[data-title]');
+        if (!target) {
+            return;
+        }
+        if (isOverInteractive(event, target)) {
+            if (bubble) {
+                bubble.classList.remove('visible');
+            }
+            return;
+        }
+        const el = getBubble();
+        el.textContent = target.getAttribute('data-title') || '';
+        el.classList.add('visible');
+        positionBubble(event);
+    });
+
+    document.addEventListener('mousemove', (event) => {
+        if (!bubble || !bubble.classList.contains('visible')) {
+            return;
+        }
+        const target = event.target.closest('.ka-cursor-tooltip[data-title]');
+        if (!target || isOverInteractive(event, target)) {
+            bubble.classList.remove('visible');
+            return;
+        }
+        // Keep text in sync in case data-title changed while hovering
+        const title = target.getAttribute('data-title') || '';
+        if (bubble.textContent !== title) {
+            bubble.textContent = title;
+        }
+        positionBubble(event);
+    });
+
+    document.addEventListener('mouseout', (event) => {
+        if (!bubble) {
+            return;
+        }
+        const target = event.target.closest('.ka-cursor-tooltip');
+        if (!target) {
+            return;
+        }
+        // Only hide when the pointer actually leaves the tooltip element
+        const related = event.relatedTarget;
+        if (!related || !target.contains(related)) {
+            bubble.classList.remove('visible');
+        }
+    });
+}
+
 // Kjør når DOM er lastet
 document.addEventListener('DOMContentLoaded', function() {
     initExpandableContent();
     initAccordion();
     initLocationTabsToggle();
+    initCursorTooltip();
 });
