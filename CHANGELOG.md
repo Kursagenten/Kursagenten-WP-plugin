@@ -1,3 +1,8 @@
+## 1.1.23 - 2026-06-01
+- Lagt til: **Gruppering i Enkle kort**. Ny innstilling i Kursdesign > 'Kursliste med filter' og 'Taksonomisider' for å velge *Ett kort per kurs (neste dato)* eller *Ett kort per kurs og lokasjon (neste dato per lokasjon)*. 
+- Forbedring: Når *kurs og lokasjon* velges i admin, krysses *Sted* automatisk av i *Vis i listen*, siden lokasjon er nødvendig for å skille kortene.
+- Lagt til: Ved gruppering *kurs og lokasjon* vises nå lokasjonen (med stedsikon) i «Neste kurs»-feltet når en kursdato mangler, forutsatt at *Sted* er aktivert i *Vis i listen*. Slik beholder kortet stedskonteksten selv uten en kommende dato.
+
 ## 1.1.22 - 2026-05-26
 - Lagt til: Mulighet til å fjerne taksonomi-slug under SEO innstillinger. Eksempel: webside.no/kurskategori/kurset -> webside.no/kurset
 - Fix: SEO Rich Descriptions fungerte ikke korrekt på kurs hvis RankMath Free var installert. Nå vises Rich Descriptions korrekt.

@@ -672,6 +672,117 @@ function get_course_dates_query($per_page = 10, $current_page = 1) {
 }
 
 /**
+ * Build the deduplication group key for a coursedate used by the "Enkle kort" list.
+ *
+ * Mirrors the key used when rendering, so counting, pagination and rendering all
+ * collapse the same set of coursedates into the same groups.
+ *
+ * @param int    $coursedate_id Coursedate post ID.
+ * @param string $grouping      Either 'course' or 'course_location'.
+ * @return string
+ */
+function kursagenten_simple_cards_group_key($coursedate_id, $grouping) {
+    $coursedate_id = (int) $coursedate_id;
+    $main_id = (string) get_post_meta($coursedate_id, 'ka_main_course_id', true);
+    $key = $main_id !== '' ? $main_id : ('cd-' . $coursedate_id);
+
+    if ($grouping === 'course_location') {
+        $location_id = (string) get_post_meta($coursedate_id, 'ka_location_id', true);
+        if ($location_id !== '' && $location_id !== '0') {
+            $key .= '|loc:' . $location_id;
+        } else {
+            $location_name = (string) get_post_meta($coursedate_id, 'ka_course_location', true);
+            $location_freetext = (string) get_post_meta($coursedate_id, 'ka_course_location_freetext', true);
+            $key .= '|loc:' . sanitize_title($location_name !== '' ? $location_name : $location_freetext);
+        }
+    }
+
+    return $key;
+}
+
+/**
+ * Build a grouped, paginated query for the "Enkle kort" list type.
+ *
+ * The standard list query paginates ka_coursedate posts, but simple cards collapse
+ * those into one card per course (or per course + location). To make the course
+ * count and pagination match what is actually rendered, we resolve the full set of
+ * matching coursedates (using the exact same filters), pick one representative
+ * coursedate per group (nearest date), and paginate the representatives.
+ *
+ * @param string $grouping Either 'course' or 'course_location'.
+ * @return WP_Query
+ */
+function kursagenten_get_simple_cards_grouped_query($grouping) {
+    if (function_exists('kursagenten_normalize_simple_cards_grouping')) {
+        $grouping = kursagenten_normalize_simple_cards_grouping($grouping);
+    } else {
+        $grouping = ($grouping === 'course_location') ? 'course_location' : 'course';
+    }
+
+    $per_page = isset($_REQUEST['per_page']) ? intval($_REQUEST['per_page']) : (int) get_option('kursagenten_courses_per_page', 10);
+    if ($per_page <= 0) {
+        $per_page = 10;
+    }
+    $paged = isset($_REQUEST['side']) ? max(1, intval($_REQUEST['side'])) : 1;
+
+    // Fetch every matching coursedate (date ascending), ignoring pagination, by
+    // temporarily forcing per_page/side and reusing the standard filter logic.
+    $had_per_page = array_key_exists('per_page', $_REQUEST);
+    $had_side = array_key_exists('side', $_REQUEST);
+    $prev_per_page = $had_per_page ? $_REQUEST['per_page'] : null;
+    $prev_side = $had_side ? $_REQUEST['side'] : null;
+
+    $_REQUEST['per_page'] = -1;
+    $_REQUEST['side'] = 1;
+    $all_query = get_course_dates_query();
+    if ($had_per_page) { $_REQUEST['per_page'] = $prev_per_page; } else { unset($_REQUEST['per_page']); }
+    if ($had_side) { $_REQUEST['side'] = $prev_side; } else { unset($_REQUEST['side']); }
+
+    // Reduce to one representative coursedate per group, preserving date order.
+    $representative_ids = [];
+    $seen_groups = [];
+    if ($all_query instanceof WP_Query && !empty($all_query->posts)) {
+        foreach ($all_query->posts as $post) {
+            $coursedate_id = is_object($post) ? (int) $post->ID : (int) $post;
+            if ($coursedate_id <= 0) {
+                continue;
+            }
+            $group_key = kursagenten_simple_cards_group_key($coursedate_id, $grouping);
+            if (isset($seen_groups[$group_key])) {
+                continue;
+            }
+            $seen_groups[$group_key] = true;
+            $representative_ids[] = $coursedate_id;
+        }
+    }
+
+    $total_groups = count($representative_ids);
+    $max_pages = ($per_page > 0) ? (int) ceil($total_groups / $per_page) : 1;
+    if ($max_pages < 1) {
+        $max_pages = 1;
+    }
+
+    $offset = ($paged - 1) * $per_page;
+    $page_ids = array_slice($representative_ids, $offset, $per_page);
+
+    $query = new WP_Query([
+        'post_type' => 'ka_coursedate',
+        'post_status' => 'publish',
+        'posts_per_page' => $per_page,
+        'post__in' => !empty($page_ids) ? $page_ids : [0],
+        'orderby' => 'post__in',
+        'ignore_sticky_posts' => true,
+    ]);
+
+    // Override the count properties so the UI reflects the grouped totals.
+    $query->found_posts = $total_groups;
+    $query->max_num_pages = $max_pages;
+    $query->set('paged', $paged);
+
+    return $query;
+}
+
+/**
  * Finn URL for et course med samme location_id som coursedate.
  * Prioriterer underkurs (subcourse) over hovedkurs.
  *

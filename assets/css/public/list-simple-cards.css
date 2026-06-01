@@ -18,16 +18,35 @@
     min-width: 0;
 }
 
-/* Simple Card Link - makes entire card clickable */
+/* Simple Card Link - stretched overlay that makes the entire card clickable.
+   It is an empty, absolutely positioned anchor (not a wrapper), so nested
+   interactive elements like instructor links and the day-schedules button stay
+   valid and clickable. Wrapping the card in an <a> nests <a>/<button> inside an
+   <a> (invalid HTML), which browsers repair by splitting the anchor - that broke
+   the layout (empty anchor box + collapsed content). */
 #ka .ka-container .courselist-items .simple-card-link {
-    display: flex;
-    width: 100%;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
     text-decoration: none;
     color: inherit;
+    border-radius: 12px;
+}
+
+/* Lift interactive children above the stretched link so they remain clickable */
+#ka .ka-container .courselist-items .simple-card-instructors a,
+#ka .ka-container .courselist-items .simple-card-day-schedules a,
+#ka .ka-container .courselist-items .simple-card-day-schedules button {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hover lift on the whole card */
+#ka .ka-container .courselist-items .simple-card-item {
     transition: transform 0.2s ease;
 }
 
-#ka .ka-container .courselist-items .simple-card-link:hover {
+#ka .ka-container .courselist-items .simple-card-item:hover {
     transform: translateY(-2px);
 }
 
@@ -36,6 +55,8 @@
     display: flex;
     align-items: center;
     width: 100%;
+    flex: 1 1 auto;
+    min-width: 0;
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -105,31 +126,73 @@
     overflow: hidden;
 }
 
-/* Simple Card Meta Row */
+/* Simple Card Meta - vertical list of metadata rows.
+   With many fields enabled, a wrapping flex row looked uneven; a clean vertical
+   stack with an aligned icon column reads much better and scales to any number
+   of fields. */
 #ka .ka-container .courselist-items .simple-card-meta {
     display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 7px;
     font-size: var(--ka-font-s);
+    line-height: 1.4;
     color: #555;
 }
 
-#ka .ka-container .courselist-items .simple-card-duration,
-#ka .ka-container .courselist-items .simple-card-date {
+/* Each meta row: aligned icon column + value */
+#ka .ka-container .courselist-items .simple-card-meta > * {
     display: flex;
     align-items: flex-start;
+    gap: 5px;
+    margin: 0;
+    min-width: 0;
 }
 
-#ka .ka-container .courselist-items .simple-card-duration i,
-#ka .ka-container .courselist-items .simple-card-date i {
+/* Let the value text wrap instead of overflowing/clipping in narrow cards */
+#ka .ka-container .courselist-items .simple-card-meta > * > span {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+/* Consistent, fixed-width icon column so all values line up vertically */
+#ka .ka-container .courselist-items .simple-card-meta > * > i.ka-icon,
+#ka .ka-container .courselist-items .simple-card-meta .simple-card-day-schedules i.ka-icon {
+    flex: 0 0 16px;
+    width: 16px;
     font-size: var(--ka-font-base);
-    color: #777;
+    line-height: inherit;
+    text-align: center;
 }
 
-#ka .ka-container .courselist-items .simple-card-duration span,
-#ka .ka-container .courselist-items .simple-card-date span {
-    white-space: nowrap;
+/* Icon colors: every meta icon uses the filter color, except the "Neste dato"
+   (date) icon which keeps the accent/theme color so the primary date stands out.
+   The location fallback row reuses .simple-card-date, so it is excluded too. */
+#ka .ka-container .courselist-items .simple-card-meta > *:not(.simple-card-date) i.ka-icon {
+    background-color: var(--ka-color-filter);
+    font-size: var(--ka-font-s);
+    height: 13px;
+}
+#ka .ka-container .courselist-items .simple-card-meta > *:not(.simple-card-date) > span{
+    font-size: var(--ka-font-xs);
+}
+
+/* The day-schedules trigger is a button/link - align it like the other rows */
+#ka .ka-container .courselist-items .simple-card-day-schedules > button,
+#ka .ka-container .courselist-items .simple-card-day-schedules > a {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: var(--ka-font-xs);
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
 }
 
 /* Simple Card Arrow - right side */

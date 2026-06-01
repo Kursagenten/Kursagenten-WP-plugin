@@ -363,6 +363,79 @@ function get_course_template_part($args = []) {
     // Bygg filnavn og path
     $template_file = "{$style}.php";
     $template_path = KURSAG_PLUGIN_DIR . "public/templates/list-types/{$template_file}";
+
+    if ($style === 'simple-cards') {
+        $taxonomy_for_grouping = '';
+        if (isset($args['taxonomy']) && is_string($args['taxonomy']) && in_array($args['taxonomy'], ['ka_coursecategory', 'ka_course_location', 'ka_instructors'], true)) {
+            $taxonomy_for_grouping = $args['taxonomy'];
+        } elseif (is_tax(['ka_coursecategory', 'ka_course_location', 'ka_instructors'])) {
+            $queried = get_queried_object();
+            if (is_object($queried) && isset($queried->taxonomy) && is_string($queried->taxonomy)) {
+                $taxonomy_for_grouping = $queried->taxonomy;
+            }
+        }
+
+        if (!isset($args['simple_cards_grouping']) || !is_string($args['simple_cards_grouping']) || $args['simple_cards_grouping'] === '') {
+            if ($taxonomy_for_grouping !== '') {
+                $raw_grouping = function_exists('get_taxonomy_setting')
+                    ? get_taxonomy_setting($taxonomy_for_grouping, 'simple_cards_grouping', 'course')
+                    : get_option('kursagenten_taxonomy_simple_cards_grouping', 'course');
+            } else {
+                $raw_grouping = get_option('kursagenten_archive_simple_cards_grouping', 'course');
+            }
+            $args['simple_cards_grouping'] = kursagenten_normalize_simple_cards_grouping($raw_grouping);
+        } else {
+            $args['simple_cards_grouping'] = kursagenten_normalize_simple_cards_grouping($args['simple_cards_grouping']);
+        }
+
+        if (
+            !isset($args['simple_cards_dedupe_scope']) ||
+            !is_string($args['simple_cards_dedupe_scope']) ||
+            $args['simple_cards_dedupe_scope'] === ''
+        ) {
+            if (isset($args['query']) && is_object($args['query'])) {
+                $args['simple_cards_dedupe_scope'] = 'simple_cards_query_' . spl_object_id($args['query']);
+            } elseif (isset($GLOBALS['wp_query']) && is_object($GLOBALS['wp_query'])) {
+                $args['simple_cards_dedupe_scope'] = 'simple_cards_query_' . spl_object_id($GLOBALS['wp_query']);
+            } else {
+                $args['simple_cards_dedupe_scope'] = 'simple_cards_default_scope';
+            }
+        }
+
+        // Deduplicate here in the function scope. A static variable inside an
+        // included template file does NOT persist across separate function
+        // calls, so the dedup must live in the function itself.
+        $grouping = $args['simple_cards_grouping'];
+        $scope = $args['simple_cards_dedupe_scope'];
+        $current_post_id = get_the_ID();
+        // Use the shared group-key helper so dedup matches the grouped count/pagination.
+        if (function_exists('kursagenten_simple_cards_group_key')) {
+            $group_key = kursagenten_simple_cards_group_key($current_post_id, $grouping);
+        } else {
+            $group_main_course_id = (string) get_post_meta($current_post_id, 'ka_main_course_id', true);
+            $group_key = $group_main_course_id !== '' ? $group_main_course_id : ('cd-' . (string) $current_post_id);
+            if ($grouping === 'course_location') {
+                $group_location_id = (string) get_post_meta($current_post_id, 'ka_location_id', true);
+                if ($group_location_id !== '' && $group_location_id !== '0') {
+                    $group_key .= '|loc:' . $group_location_id;
+                } else {
+                    $group_location_name = (string) get_post_meta($current_post_id, 'ka_course_location', true);
+                    $group_location_freetext = (string) get_post_meta($current_post_id, 'ka_course_location_freetext', true);
+                    $group_key .= '|loc:' . sanitize_title($group_location_name !== '' ? $group_location_name : $group_location_freetext);
+                }
+            }
+        }
+
+        static $ka_simple_cards_rendered = [];
+        if (!isset($ka_simple_cards_rendered[$scope])) {
+            $ka_simple_cards_rendered[$scope] = [];
+        }
+        if (isset($ka_simple_cards_rendered[$scope][$group_key])) {
+            // Already rendered a card for this group in this list; skip duplicates.
+            return;
+        }
+        $ka_simple_cards_rendered[$scope][$group_key] = true;
+    }
     
     // Sjekk om template eksisterer
     if (file_exists($template_path)) {
@@ -440,6 +513,21 @@ function get_hero_header_settings($context = 'single') {
         'use_image' => $use_image,
         'header_classes' => implode(' ', $header_classes),
     ];
+}
+
+/**
+ * Normalize supported grouping modes for simple cards.
+ *
+ * @param mixed $value Raw grouping value.
+ * @return string Supported grouping key.
+ */
+function kursagenten_normalize_simple_cards_grouping($value): string {
+    if (!is_string($value) || $value === '') {
+        return 'course';
+    }
+
+    $grouping = sanitize_key($value);
+    return in_array($grouping, ['course', 'course_location'], true) ? $grouping : 'course';
 }
 
 /**

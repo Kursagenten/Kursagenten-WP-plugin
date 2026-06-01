@@ -273,7 +273,7 @@ function get_taxonomy_kursliste_filter_attr($force_minimum = '', $taxonomy = '')
  * Get taxonomy-specific setting with proper override handling
  * 
  * @param string $taxonomy The taxonomy name (ka_coursecategory, ka_course_location, ka_instructors)
- * @param string $setting The setting name (layout, design, list_type, buttons_display, view_type, filter_display, show_images, show_footer_links, name_display)
+ * @param string $setting The setting name (layout, design, list_type, buttons_display, view_type, filter_display, show_images, show_footer_links, name_display, simple_cards_grouping)
  * @param string $default Default value if no setting is found
  * @return string The setting value
  */

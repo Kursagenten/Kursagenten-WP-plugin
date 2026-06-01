@@ -420,6 +420,10 @@
 				if (shortcodeVisAttr) {
 					data.internal_shortcode_vis = shortcodeVisAttr;
 				}
+				const simpleCardsGroupingAttr = $results.data('simple-cards-grouping');
+				if (simpleCardsGroupingAttr) {
+					data.internal_simple_cards_grouping = simpleCardsGroupingAttr;
+				}
 				const taxonomyFlagAttr = $results.data('is-taxonomy-page');
 				if (taxonomyFlagAttr === 1 || taxonomyFlagAttr === '1' || taxonomyFlagAttr === true || taxonomyFlagAttr === 'true') {
 					data.internal_is_taxonomy_page = '1';
@@ -668,7 +672,7 @@
 		// Process all URL parameters
 		for (const [key, value] of url.searchParams.entries()) {
 			// Skip transport/technical parameters
-			if (key === 'current_url' || key === 'st' || key === 'sc' || key === 'ka_course_location' || key === 'ka_coursecategory' || key === 'internal_list_type') {
+			if (key === 'current_url' || key === 'st' || key === 'sc' || key === 'ka_course_location' || key === 'ka_coursecategory' || key === 'internal_list_type' || key === 'internal_simple_cards_grouping') {
 				continue;
 			}
 			// Spesiell håndtering for dato-parameter
@@ -776,7 +780,7 @@
 		// when the site-wide default is OFF (otherwise the chip cannot be meaningfully
 		// removed without toggling the default, and the reset behaviour takes care of it).
 		const cleaned = { ...filters };
-		['st', 'sc', 'ka_course_location', 'ka_coursecategory', 'internal_list_type', 'ledig'].forEach(k => { if (cleaned[k] !== undefined) delete cleaned[k]; });
+		['st', 'sc', 'ka_course_location', 'ka_coursecategory', 'internal_list_type', 'internal_simple_cards_grouping', 'ledig'].forEach(k => { if (cleaned[k] !== undefined) delete cleaned[k]; });
 
 		// Render a dedicated chip for "Ledige plasser" when the filter is actively on
 		// and the default is OFF. Clicking the X turns the filter off (ledig=null).
@@ -966,7 +970,7 @@
 		const $resetButton = $('#reset-filters');
         const $activeFiltersContainer = $('#active-filters-container');
 		const hasActiveFilters = Object.keys(filters).some(key =>
-			key !== 'nonce' && key !== 'action' && key !== 'sort' && key !== 'order' && key !== 'per_page' && key !== 'side' && key !== 'current_url' && key !== 'st' && key !== 'sc' && key !== 'internal_list_type' &&
+			key !== 'nonce' && key !== 'action' && key !== 'sort' && key !== 'order' && key !== 'per_page' && key !== 'side' && key !== 'current_url' && key !== 'st' && key !== 'sc' && key !== 'internal_list_type' && key !== 'internal_simple_cards_grouping' &&
 			filters[key] && filters[key].length > 0 &&
 			// Ekskluder kortkode-parametere fra aktive filtre
 			!(typeof kurskalender_data !== 'undefined' && kurskalender_data.has_shortcode_filters && 

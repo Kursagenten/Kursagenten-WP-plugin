@@ -92,6 +92,7 @@ function kursagenten_course_list_shortcode($atts) {
         'bilder' => '', // yes, no - overstyr bildeinnstillinger
         'knapper' => '', // show_buttons, signup_link - overstyr knappemodus
         'vis' => '', // Overstyr synlige felter i listeelement, f.eks. "-sluttdato"
+        'simple_cards_grouping' => '', // course, course_location (only for list_type="simple-cards")
         'antall' => '', // Begrens antall kurs som vises
         // Filter visningsmodus:
         //   ''              = standard (slik topp/venstre er konfigurert)
@@ -227,6 +228,34 @@ function kursagenten_course_list_shortcode($atts) {
 
     // Hent valgt listetype fra innstillinger eller shortcode parameter
     $list_type = !empty($atts['list_type']) ? $atts['list_type'] : get_option('kursagenten_archive_list_type', 'standard');
+    $simple_cards_grouping_attr = is_string($atts['simple_cards_grouping'] ?? null)
+        ? trim((string) $atts['simple_cards_grouping'])
+        : '';
+    $simple_cards_dedupe_scope = wp_unique_id('simple-cards-');
+
+    // Resolve "Enkle kort" grouping early so the query, course count and pagination
+    // can be grouped consistently with what is actually rendered.
+    $simple_cards_grouping = 'course';
+    if ($list_type === 'simple-cards') {
+        if ($simple_cards_grouping_attr !== '') {
+            $raw_grouping_value = $simple_cards_grouping_attr;
+        } elseif (is_tax(['ka_coursecategory', 'ka_course_location', 'ka_instructors'])) {
+            $queried_object_for_grouping = get_queried_object();
+            $taxonomy_for_grouping = ($queried_object_for_grouping instanceof WP_Term && is_string($queried_object_for_grouping->taxonomy))
+                ? $queried_object_for_grouping->taxonomy
+                : '';
+            $raw_grouping_value = ($taxonomy_for_grouping !== '' && function_exists('get_taxonomy_setting'))
+                ? get_taxonomy_setting($taxonomy_for_grouping, 'simple_cards_grouping', 'course')
+                : get_option('kursagenten_archive_simple_cards_grouping', 'course');
+        } else {
+            $raw_grouping_value = get_option('kursagenten_archive_simple_cards_grouping', 'course');
+        }
+        if (function_exists('kursagenten_normalize_simple_cards_grouping')) {
+            $simple_cards_grouping = kursagenten_normalize_simple_cards_grouping($raw_grouping_value);
+        } else {
+            $simple_cards_grouping = sanitize_key((string) $raw_grouping_value) === 'course_location' ? 'course_location' : 'course';
+        }
+    }
 
     $buttons_display = !empty($atts['knapper']) ? sanitize_text_field((string) $atts['knapper']) : '';
     if (!in_array($buttons_display, ['show_buttons', 'signup_link'], true)) {
@@ -310,14 +339,25 @@ function kursagenten_course_list_shortcode($atts) {
         )
     );
 
-    // Initialize main course query and filter settings
-    $query = get_course_dates_query();
+    // Initialize main course query and filter settings. Simple cards use a grouped
+    // query so the count and pagination reflect one card per course (+ location).
+    if ($list_type === 'simple-cards' && function_exists('kursagenten_get_simple_cards_grouped_query')) {
+        $query = kursagenten_get_simple_cards_grouped_query($simple_cards_grouping);
+    } else {
+        $query = get_course_dates_query();
+    }
     $displayed_course_count = ($limit_mode && $query instanceof WP_Query)
         ? $query->post_count
         : ($query instanceof WP_Query ? $query->found_posts : 0);
 
-    // Håndter side-parameter
-    $paged = (get_query_var('side')) ? get_query_var('side') : 1;
+    // Håndter side-parameter. Pagineringen bruker query-stringen ?side=N, og
+    // innholdsspørringen leser $_REQUEST['side']. Bruk samme kilde her slik at
+    // sidetallet i etiketten matcher innholdet som faktisk vises.
+    if (isset($_REQUEST['side'])) {
+        $paged = max(1, intval($_REQUEST['side']));
+    } else {
+        $paged = (get_query_var('side')) ? max(1, intval(get_query_var('side'))) : 1;
+    }
     $query->set('paged', $paged);
 
     $top_filters = get_option('kursagenten_top_filters', []);
@@ -1095,8 +1135,10 @@ function kursagenten_course_list_shortcode($atts) {
                                         }
                                     }
                                     $is_taxonomy_context = ($taxonomy_context !== '');
+                                    // $simple_cards_grouping is resolved earlier (before the query) so the
+                                    // grouped count and pagination stay in sync with what is rendered.
                                     ?>
-                                    <div class="courselist-items" id="filter-results" data-list-type="<?php echo esc_attr($list_type); ?>" data-buttons-display="<?php echo esc_attr($buttons_display); ?>"<?php echo $shortcode_vis !== '' ? ' data-shortcode-vis="' . esc_attr($shortcode_vis) . '"' : ''; ?><?php echo $is_taxonomy_context ? ' data-is-taxonomy-page="1"' : ''; ?><?php echo $is_taxonomy_context ? ' data-taxonomy="' . esc_attr($taxonomy_context) . '"' : ''; ?>>
+                                    <div class="courselist-items" id="filter-results" data-list-type="<?php echo esc_attr($list_type); ?>" data-buttons-display="<?php echo esc_attr($buttons_display); ?>" data-simple-cards-grouping="<?php echo esc_attr($simple_cards_grouping); ?>"<?php echo $shortcode_vis !== '' ? ' data-shortcode-vis="' . esc_attr($shortcode_vis) . '"' : ''; ?><?php echo $is_taxonomy_context ? ' data-is-taxonomy-page="1"' : ''; ?><?php echo $is_taxonomy_context ? ' data-taxonomy="' . esc_attr($taxonomy_context) . '"' : ''; ?>>
                                         <?php
                                         $args = [
                                             'course_count' => $query->found_posts,
@@ -1107,7 +1149,9 @@ function kursagenten_course_list_shortcode($atts) {
                                             'is_taxonomy_page' => $is_taxonomy_context,
                                             'shortcode_show_images' => $atts['bilder'],
                                             'shortcode_vis' => $shortcode_vis,
-                                            'buttons_display' => $buttons_display
+                                            'buttons_display' => $buttons_display,
+                                            'simple_cards_grouping' => $simple_cards_grouping,
+                                            'simple_cards_dedupe_scope' => $simple_cards_dedupe_scope,
                                         ];
                                         if ($is_taxonomy_context) {
                                             $args['taxonomy'] = $taxonomy_context;
@@ -1125,17 +1169,32 @@ function kursagenten_course_list_shortcode($atts) {
                                     <div class="pagination-wrapper">
                                         <div class="pagination">
                                         <?php
-                                        // Hent gjeldende side URL som base for paginering
+                                        // Hent gjeldende side-URL som base for paginering.
+                                        // NB: ka_coursedate er en ikke-offentlig CPT (public/rewrite/
+                                        // publicly_queryable = false). Etter the_post()-loopen peker
+                                        // global $post på en kursdato, og get_permalink() på en slik
+                                        // post returnerer hjemmesiden (?p=ID). Derfor bygges base-URL-en
+                                        // fra selve forespørselen i stedet for global $post.
                                         $current_url = '';
                                         if (is_tax()) {
                                             // På taksonomisider, bruk term link
                                             $term = get_queried_object();
                                             if ($term instanceof WP_Term) {
-                                                $current_url = get_term_link($term);
+                                                $term_link = get_term_link($term);
+                                                if (!is_wp_error($term_link)) {
+                                                    $current_url = $term_link;
+                                                }
                                             }
                                         }
                                         if (!$current_url) {
-                                            $current_url = get_permalink();
+                                            global $wp;
+                                            if (isset($wp->request) && $wp->request !== '') {
+                                                $current_url = home_url(user_trailingslashit($wp->request));
+                                            }
+                                        }
+                                        if (!$current_url && is_singular()) {
+                                            // Use the queried page directly, not the polluted global $post.
+                                            $current_url = get_permalink(get_queried_object_id());
                                         }
                                         if (!$current_url) {
                                             $current_url = home_url('/');

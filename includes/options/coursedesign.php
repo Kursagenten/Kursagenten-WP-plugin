@@ -326,6 +326,18 @@ class Designmaler {
                         </div>
                     </div>
 
+                    <div class="option-row simple-cards-grouping-settings" id="archive_simple_cards_grouping_settings" style="<?php echo ($current_list === 'simple-cards') ? '' : 'display: none;'; ?>">
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Gruppering i Enkle kort:</label>
+                        <div class="option-input">
+                            <?php $archive_simple_cards_grouping = get_option('kursagenten_archive_simple_cards_grouping', 'course'); ?>
+                            <select name="kursagenten_archive_simple_cards_grouping">
+                                <option value="course" <?php selected($archive_simple_cards_grouping, 'course'); ?>>Ett kort per kurs (neste dato)</option>
+                                <option value="course_location" <?php selected($archive_simple_cards_grouping, 'course_location'); ?>>Ett kort per kurs og lokasjon (neste dato per lokasjon)</option>
+                            </select>
+                            <p class="description">Eksempel: 3 datoer i Oslo og 2 i Trondheim vises som to kort når du velger kurs og lokasjon.</p>
+                        </div>
+                    </div>
+
                     <div class="option-row">
                         <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Knapper: <span class="ka-tooltip" data-title="Gjelder listetyper med to handlingsknapper. «Enkle kort» påvirkes ikke."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                         <div class="option-input">
@@ -1008,6 +1020,17 @@ class Designmaler {
                         </div>
                     </div>
 
+                    <div class="option-row ka-taxonomy-plugin-design-only ka-taxonomy-list-label-indent simple-cards-grouping-settings" id="taxonomy_simple_cards_grouping_settings" style="<?php echo ($current_list === 'simple-cards') ? '' : 'display: none;'; ?>">
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Gruppering i Enkle kort:</label>
+                        <div class="option-input">
+                            <?php $taxonomy_simple_cards_grouping = get_option('kursagenten_taxonomy_simple_cards_grouping', 'course'); ?>
+                            <select name="kursagenten_taxonomy_simple_cards_grouping">
+                                <option value="course" <?php selected($taxonomy_simple_cards_grouping, 'course'); ?>>Ett kort per kurs (neste dato)</option>
+                                <option value="course_location" <?php selected($taxonomy_simple_cards_grouping, 'course_location'); ?>>Ett kort per kurs og lokasjon (neste dato per lokasjon)</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <?php $this->render_list_display_field_checkboxes('taxonomy'); ?>
 
                     <div class="option-row ka-taxonomy-plugin-design-only ka-taxonomy-list-label-indent">
@@ -1341,6 +1364,18 @@ class Designmaler {
                                                         <?php echo esc_html($label); ?>
                                                     </option>
                                                 <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="option-row taxonomy-simple-cards-grouping-settings" id="taxonomy_<?php echo esc_attr($tax_name); ?>_simple_cards_grouping_settings" style="<?php echo ($current_tax_list_type === 'simple-cards') ? '' : 'display: none;'; ?>">
+                                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Gruppering i Enkle kort:</label>
+                                        <div class="option-input">
+                                            <?php $tax_simple_cards_grouping = get_option("kursagenten_taxonomy_{$tax_name}_simple_cards_grouping", ''); ?>
+                                            <select name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_simple_cards_grouping">
+                                                <option value="" <?php selected($tax_simple_cards_grouping, ''); ?>>Bruk standard innstilling</option>
+                                                <option value="course" <?php selected($tax_simple_cards_grouping, 'course'); ?>>Ett kort per kurs (neste dato)</option>
+                                                <option value="course_location" <?php selected($tax_simple_cards_grouping, 'course_location'); ?>>Ett kort per kurs og lokasjon (neste dato per lokasjon)</option>
                                             </select>
                                         </div>
                                     </div>
@@ -1965,6 +2000,16 @@ class Designmaler {
 
         register_setting(
             'design_option_group',
+            'kursagenten_archive_simple_cards_grouping',
+            array(
+                'type' => 'string',
+                'sanitize_callback' => array($this, 'sanitize_simple_cards_grouping'),
+                'default' => 'course'
+            )
+        );
+
+        register_setting(
+            'design_option_group',
             'kursagenten_taxonomy_buttons_display',
             array(
                 'type' => 'string',
@@ -1973,6 +2018,16 @@ class Designmaler {
                     return in_array($value, $allowed, true) ? $value : 'show_buttons';
                 },
                 'default' => 'show_buttons'
+            )
+        );
+
+        register_setting(
+            'design_option_group',
+            'kursagenten_taxonomy_simple_cards_grouping',
+            array(
+                'type' => 'string',
+                'sanitize_callback' => array($this, 'sanitize_simple_cards_grouping'),
+                'default' => 'course'
             )
         );
 
@@ -2063,17 +2118,21 @@ class Designmaler {
             );
 
             // Registrer spesifikke innstillinger for hver taksonomi
-            foreach (['layout', 'design', 'list_type', 'buttons_display', 'view_type', 'filter_display', 'show_images', 'show_footer_links'] as $setting) {
+            foreach (['layout', 'design', 'list_type', 'buttons_display', 'view_type', 'filter_display', 'show_images', 'show_footer_links', 'simple_cards_grouping'] as $setting) {
                 $setting_default = '';
                 if ($tax_name === 'ka_instructors' && $setting === 'design') {
                     $setting_default = 'profile';
+                }
+                $sanitize_callback = 'sanitize_text_field';
+                if ($setting === 'simple_cards_grouping') {
+                    $sanitize_callback = array($this, 'sanitize_simple_cards_grouping_with_empty');
                 }
                 register_setting(
                     'design_option_group',
                     "kursagenten_taxonomy_{$tax_name}_{$setting}",
                     array(
                         'type' => 'string',
-                        'sanitize_callback' => 'sanitize_text_field',
+                        'sanitize_callback' => $sanitize_callback,
                         'default' => $setting_default
                     )
                 );
@@ -2324,6 +2383,31 @@ class Designmaler {
         }
         // Otherwise return true (checkbox is checked)
         return true;
+    }
+
+    /**
+     * Sanitize simple cards grouping option.
+     *
+     * @param mixed $value Grouping mode.
+     * @return string
+     */
+    public function sanitize_simple_cards_grouping($value) {
+        $normalized = sanitize_key((string) $value);
+        return in_array($normalized, ['course', 'course_location'], true) ? $normalized : 'course';
+    }
+
+    /**
+     * Sanitize simple cards grouping option with empty (inherit) support.
+     *
+     * @param mixed $value Grouping mode.
+     * @return string
+     */
+    public function sanitize_simple_cards_grouping_with_empty($value) {
+        if ($value === '' || $value === null) {
+            return '';
+        }
+
+        return $this->sanitize_simple_cards_grouping($value);
     }
 
     /**
@@ -2833,6 +2917,13 @@ class Designmaler {
                     } else {
                         $archiveSettings.hide();
                     }
+
+                    var $archiveGroupingSettings = $('#archive_simple_cards_grouping_settings');
+                    if (archiveListType === 'simple-cards' && !archiveIsCollapsed) {
+                        $archiveGroupingSettings.show();
+                    } else {
+                        $archiveGroupingSettings.hide();
+                    }
                     
                     // Toggle taxonomy grid columns settings
                     var $taxonomySettings = $('#taxonomy_grid_columns_settings');
@@ -2844,26 +2935,20 @@ class Designmaler {
                     } else {
                         $taxonomySettings.hide();
                     }
-                    
-                    // Handle view type for simple-cards: disable all_coursedates and auto-select "main_courses"
-                    var $viewTypeMainCourses = $('input[name="kursagenten_taxonomy_view_type"][value="main_courses"]');
-                    var $viewTypeAllCoursedates = $('input[name="kursagenten_taxonomy_view_type"][value="all_coursedates"]');
 
-                    var switchedFromSimpleCards = (previousTaxonomyListType === 'simple-cards' && taxonomyListType !== 'simple-cards');
-                    if (taxonomyListType === 'simple-cards') {
-                        // Disable all_coursedates option
-                        $viewTypeAllCoursedates.prop('disabled', true).closest('label').css('opacity', '0.5');
-                        // Auto-select "main_courses" if a disabled option is currently checked
-                        if (!$viewTypeMainCourses.is(':checked')) {
-                            $viewTypeMainCourses.prop('checked', true);
-                        }
+                    var $taxonomyGroupingSettings = $('#taxonomy_simple_cards_grouping_settings');
+                    if (taxonomyListType === 'simple-cards' && !taxonomyIsCollapsed) {
+                        $taxonomyGroupingSettings.show();
                     } else {
-                        $viewTypeAllCoursedates.prop('disabled', false).closest('label').css('opacity', '1');
-                        // UX: when switching away from simple-cards, default back to all_coursedates.
-                        if (switchedFromSimpleCards && !$viewTypeAllCoursedates.is(':checked')) {
-                            $viewTypeAllCoursedates.prop('checked', true).trigger('change');
-                        }
+                        $taxonomyGroupingSettings.hide();
                     }
+                    
+                    // View type is fully selectable for every list type, including
+                    // simple-cards. Simple cards still de-duplicate via the grouping
+                    // setting, so "Vis alle kursdatoer" is safe here - make sure the
+                    // option is never left disabled from earlier (now removed) logic.
+                    var $viewTypeAllCoursedates = $('input[name="kursagenten_taxonomy_view_type"][value="all_coursedates"]');
+                    $viewTypeAllCoursedates.prop('disabled', false).closest('label').css('opacity', '1');
                     previousTaxonomyListType = taxonomyListType || 'standard';
                     if (typeof toggleTaxonomyViewTypePanels === 'function') {
                         toggleTaxonomyViewTypePanels();
@@ -3200,11 +3285,6 @@ class Designmaler {
                         var listType = $select.val();
                         var globalTaxonomyListType = $('#kursagenten_taxonomy_list_type').val() || 'standard';
                         var effectiveListType = listType || globalTaxonomyListType;
-                        var previousEffectiveListType = $select.data('kaPrevEffectiveListType');
-                        if (!previousEffectiveListType) {
-                            previousEffectiveListType = effectiveListType;
-                        }
-                        var switchedFromSimpleCards = (previousEffectiveListType === 'simple-cards' && effectiveListType !== 'simple-cards');
                         var taxonomy = $select.data('taxonomy');
                         var $settings = $('#taxonomy_' + taxonomy + '_grid_columns_settings');
                         var $card = $settings.closest('.options-card');
@@ -3217,20 +3297,18 @@ class Designmaler {
                             $settings.hide();
                         }
 
-                        // Handle view type for simple-cards in taxonomy-specific overrides
-                        var $viewTypeMainCourses = $('input[name="kursagenten_taxonomy_' + taxonomy + '_view_type"][value="main_courses"]');
-                        var $viewTypeAllCoursedates = $('input[name="kursagenten_taxonomy_' + taxonomy + '_view_type"][value="all_coursedates"]');
-                        if (effectiveListType === 'simple-cards') {
-                            $viewTypeAllCoursedates.prop('disabled', true).closest('label').css('opacity', '0.5');
-                            if ($viewTypeAllCoursedates.is(':checked') && $viewTypeMainCourses.length) {
-                                $viewTypeMainCourses.prop('checked', true).trigger('change');
-                            }
+                        var $groupingSettings = $('#taxonomy_' + taxonomy + '_simple_cards_grouping_settings');
+                        if (effectiveListType === 'simple-cards' && !isCollapsed) {
+                            $groupingSettings.show();
                         } else {
-                            $viewTypeAllCoursedates.prop('disabled', false).closest('label').css('opacity', '1');
-                            if (switchedFromSimpleCards && $viewTypeAllCoursedates.length && !$viewTypeAllCoursedates.is(':checked')) {
-                                $viewTypeAllCoursedates.prop('checked', true).trigger('change');
-                            }
+                            $groupingSettings.hide();
                         }
+
+                        // View type is selectable for simple-cards too (the grouping
+                        // setting handles de-duplication), so never leave the
+                        // "Vis alle kursdatoer" option disabled.
+                        var $viewTypeAllCoursedates = $('input[name="kursagenten_taxonomy_' + taxonomy + '_view_type"][value="all_coursedates"]');
+                        $viewTypeAllCoursedates.prop('disabled', false).closest('label').css('opacity', '1');
 
                         $select.data('kaPrevEffectiveListType', effectiveListType);
                         toggleTaxonomyOverrideViewTypePanels(taxonomy);
@@ -3465,6 +3543,39 @@ class Designmaler {
                         kaApplyLocationFieldRules($container);
                         kaSyncListDisplayFields($container);
                     });
+                });
+
+                // When "Enkle kort" grouping is set to course + location, the location
+                // field is required to tell the cards apart, so auto-check "Sted".
+                function kaGroupingListDisplayContainer($select) {
+                    var name = $select.attr('name') || '';
+                    var targetId = '';
+                    if (name === 'kursagenten_archive_simple_cards_grouping') {
+                        targetId = '#ka_list_display_archive';
+                    } else if (name === 'kursagenten_taxonomy_simple_cards_grouping') {
+                        targetId = '#ka_list_display_taxonomy';
+                    } else {
+                        var m = name.match(/^kursagenten_taxonomy_(.+)_simple_cards_grouping$/);
+                        if (m) { targetId = '#ka_list_display_taxonomy_' + m[1]; }
+                    }
+                    if (!targetId) { return $(); }
+                    return $('.ka-list-display-fields[data-target="' + targetId + '"]');
+                }
+                function kaApplyGroupingLocationRule($select) {
+                    if ($select.val() !== 'course_location') { return; }
+                    var $container = kaGroupingListDisplayContainer($select);
+                    if (!$container.length) { return; }
+                    var $location = $container.find('input.ka-list-display-checkbox[value="location"]');
+                    if ($location.length && !$location.prop('disabled') && !$location.prop('checked')) {
+                        $location.prop('checked', true);
+                        kaSyncListDisplayFields($container);
+                    }
+                }
+                $(document).on('change', 'select[name$="simple_cards_grouping"]', function() {
+                    kaApplyGroupingLocationRule($(this));
+                });
+                $('select[name$="simple_cards_grouping"]').each(function() {
+                    kaApplyGroupingLocationRule($(this));
                 });
         });
         JS    

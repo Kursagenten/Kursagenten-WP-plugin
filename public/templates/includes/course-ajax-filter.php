@@ -696,50 +696,71 @@ function filter_courses_handler() {
         $sort = $_POST['sort'] ?? $_REQUEST['sort'] ?? null;
         $order = $_POST['order'] ?? $_REQUEST['order'] ?? null;
 
-        // if (defined('WP_DEBUG') && WP_DEBUG) {
-        //     error_log('AJAX DEBUG: About to call get_course_dates_query()');
-        // }
-        $query = get_course_dates_query();
-        // if (defined('WP_DEBUG') && WP_DEBUG) {
-        //     error_log('AJAX DEBUG: Query completed, found_posts: ' . $query->found_posts);
-        // }
-        
+        // Resolve list type, taxonomy context and grouping BEFORE building the query.
+        // Simple cards need a grouped query so the count and pagination match the
+        // number of rendered cards (one per course, or per course + location).
+        $incoming_list_type = isset($_POST['internal_list_type'])
+            ? sanitize_text_field(wp_unslash($_POST['internal_list_type']))
+            : '';
+        $style = $incoming_list_type !== ''
+            ? $incoming_list_type
+            : (string) get_option('kursagenten_archive_list_type', 'standard');
+        if ($style === '') {
+            $style = 'standard';
+        }
+
+        // For AJAX-filtreringen viser vi alltid alle kursdatoer, akkurat som [kursliste] gjør.
+        $view_type = 'all_coursedates';
+        $incoming_is_taxonomy_page = isset($_POST['internal_is_taxonomy_page']) && in_array(
+            sanitize_text_field(wp_unslash((string) $_POST['internal_is_taxonomy_page'])),
+            ['1', 'true', 'yes', 'on'],
+            true
+        );
+        $incoming_taxonomy = isset($_POST['internal_taxonomy'])
+            ? sanitize_text_field(wp_unslash((string) $_POST['internal_taxonomy']))
+            : '';
+        $allowed_taxonomies = ['ka_coursecategory', 'ka_course_location', 'ka_instructors'];
+        if (!in_array($incoming_taxonomy, $allowed_taxonomies, true)) {
+            $incoming_taxonomy = '';
+        }
+        if ($incoming_taxonomy !== '') {
+            $incoming_is_taxonomy_page = true;
+        }
+
+        // Grouping explicitly sent from the client (internal, not a filter param).
+        $incoming_simple_cards_grouping = '';
+        if (isset($_POST['internal_simple_cards_grouping'])) {
+            $incoming_grouping_raw = wp_unslash((string) $_POST['internal_simple_cards_grouping']);
+            if (function_exists('kursagenten_normalize_simple_cards_grouping')) {
+                $incoming_simple_cards_grouping = kursagenten_normalize_simple_cards_grouping($incoming_grouping_raw);
+            } else {
+                $normalized_grouping = sanitize_key($incoming_grouping_raw);
+                $incoming_simple_cards_grouping = in_array($normalized_grouping, ['course', 'course_location'], true) ? $normalized_grouping : '';
+            }
+        }
+
+        // Effective grouping (fall back to taxonomy/archive admin setting when not sent).
+        $effective_simple_cards_grouping = $incoming_simple_cards_grouping;
+        if ($style === 'simple-cards' && $effective_simple_cards_grouping === '') {
+            $raw_effective_grouping = ($incoming_taxonomy !== '' && function_exists('get_taxonomy_setting'))
+                ? get_taxonomy_setting($incoming_taxonomy, 'simple_cards_grouping', 'course')
+                : get_option('kursagenten_archive_simple_cards_grouping', 'course');
+            if (function_exists('kursagenten_normalize_simple_cards_grouping')) {
+                $effective_simple_cards_grouping = kursagenten_normalize_simple_cards_grouping($raw_effective_grouping);
+            } else {
+                $effective_simple_cards_grouping = (sanitize_key((string) $raw_effective_grouping) === 'course_location') ? 'course_location' : 'course';
+            }
+        }
+
+        if ($style === 'simple-cards' && function_exists('kursagenten_get_simple_cards_grouped_query')) {
+            $query = kursagenten_get_simple_cards_grouped_query($effective_simple_cards_grouping);
+        } else {
+            $query = get_course_dates_query();
+        }
+
         if ($query->have_posts()) {
             ob_start();
 
-            // Try to respect the list type that was used on initial render (internal only, not a filter param).
-            $incoming_list_type = isset($_POST['internal_list_type'])
-                ? sanitize_text_field(wp_unslash($_POST['internal_list_type']))
-                : '';
-
-            if ($incoming_list_type !== '') {
-                $style = $incoming_list_type;
-            } else {
-                // Fallback to global archive list type (legacy behaviour).
-                $style = (string) get_option('kursagenten_archive_list_type', 'standard');
-            }
-            if ($style === '') {
-                $style = 'standard';
-            }
-
-            // For AJAX-filtreringen viser vi alltid alle kursdatoer,
-            // akkurat som [kursliste] gjør.
-            $view_type = 'all_coursedates';
-            $incoming_is_taxonomy_page = isset($_POST['internal_is_taxonomy_page']) && in_array(
-                sanitize_text_field(wp_unslash((string) $_POST['internal_is_taxonomy_page'])),
-                ['1', 'true', 'yes', 'on'],
-                true
-            );
-            $incoming_taxonomy = isset($_POST['internal_taxonomy'])
-                ? sanitize_text_field(wp_unslash((string) $_POST['internal_taxonomy']))
-                : '';
-            $allowed_taxonomies = ['ka_coursecategory', 'ka_course_location', 'ka_instructors'];
-            if (!in_array($incoming_taxonomy, $allowed_taxonomies, true)) {
-                $incoming_taxonomy = '';
-            }
-            if ($incoming_taxonomy !== '') {
-                $incoming_is_taxonomy_page = true;
-            }
             $incoming_buttons_display = isset($_POST['internal_buttons_display'])
                 ? sanitize_text_field(wp_unslash((string) $_POST['internal_buttons_display']))
                 : '';
@@ -749,6 +770,7 @@ function filter_courses_handler() {
             $incoming_shortcode_vis = isset($_POST['internal_shortcode_vis'])
                 ? sanitize_text_field(wp_unslash((string) $_POST['internal_shortcode_vis']))
                 : '';
+            $simple_cards_dedupe_scope = wp_unique_id('simple-cards-ajax-');
 
             // Build args for list-type templates (view_type, etc.)
             $template_args = [
@@ -756,6 +778,8 @@ function filter_courses_handler() {
                 'view_type' => $view_type,
                 'is_taxonomy_page' => $incoming_is_taxonomy_page,
                 'query' => $query,
+                'simple_cards_grouping' => $effective_simple_cards_grouping,
+                'simple_cards_dedupe_scope' => $simple_cards_dedupe_scope,
             ];
             if ($incoming_taxonomy !== '') {
                 $template_args['taxonomy'] = $incoming_taxonomy;
@@ -832,6 +856,7 @@ function filter_courses_handler() {
                         'internal_shortcode_vis' => true, // Internal list-item visibility override, never part of URL filters
                         'internal_is_taxonomy_page' => true, // Internal context hint, never part of URL filters
                         'internal_taxonomy' => true, // Internal taxonomy context, never part of URL filters
+                        'internal_simple_cards_grouping' => true, // Internal grouping mode hint, never part of URL filters
                         'ka_coursedate' => true,
                         'ka_course' => true,
                         'coursedate' => true,
