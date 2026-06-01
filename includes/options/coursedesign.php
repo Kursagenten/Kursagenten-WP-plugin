@@ -327,14 +327,13 @@ class Designmaler {
                     </div>
 
                     <div class="option-row simple-cards-grouping-settings" id="archive_simple_cards_grouping_settings" style="<?php echo ($current_list === 'simple-cards') ? '' : 'display: none;'; ?>">
-                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Gruppering i Enkle kort:</label>
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Gruppering i Enkle kort: <span class="ka-tooltip" data-title="Eksempel: 3 datoer i Oslo og 2 i Trondheim vises som to kort når du velger «Ett kort per kurs og lokasjon». «Ett kort per kurs» viser ett kort med neste tilgjengelige dato."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                         <div class="option-input">
                             <?php $archive_simple_cards_grouping = get_option('kursagenten_archive_simple_cards_grouping', 'course'); ?>
                             <select name="kursagenten_archive_simple_cards_grouping">
                                 <option value="course" <?php selected($archive_simple_cards_grouping, 'course'); ?>>Ett kort per kurs (neste dato)</option>
                                 <option value="course_location" <?php selected($archive_simple_cards_grouping, 'course_location'); ?>>Ett kort per kurs og lokasjon (neste dato per lokasjon)</option>
                             </select>
-                            <p class="description">Eksempel: 3 datoer i Oslo og 2 i Trondheim vises som to kort når du velger kurs og lokasjon.</p>
                         </div>
                     </div>
 
@@ -1021,7 +1020,7 @@ class Designmaler {
                     </div>
 
                     <div class="option-row ka-taxonomy-plugin-design-only ka-taxonomy-list-label-indent simple-cards-grouping-settings" id="taxonomy_simple_cards_grouping_settings" style="<?php echo ($current_list === 'simple-cards') ? '' : 'display: none;'; ?>">
-                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Gruppering i Enkle kort:</label>
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Gruppering i Enkle kort: <span class="ka-tooltip" data-title="Eksempel: 3 datoer i Oslo og 2 i Trondheim vises som to kort når du velger «Ett kort per kurs og lokasjon». «Ett kort per kurs» viser ett kort med neste tilgjengelige dato."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                         <div class="option-input">
                             <?php $taxonomy_simple_cards_grouping = get_option('kursagenten_taxonomy_simple_cards_grouping', 'course'); ?>
                             <select name="kursagenten_taxonomy_simple_cards_grouping">
@@ -1369,7 +1368,7 @@ class Designmaler {
                                     </div>
 
                                     <div class="option-row taxonomy-simple-cards-grouping-settings" id="taxonomy_<?php echo esc_attr($tax_name); ?>_simple_cards_grouping_settings" style="<?php echo ($current_tax_list_type === 'simple-cards') ? '' : 'display: none;'; ?>">
-                                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Gruppering i Enkle kort:</label>
+                                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Gruppering i Enkle kort: <span class="ka-tooltip" data-title="Eksempel: 3 datoer i Oslo og 2 i Trondheim vises som to kort når du velger «Ett kort per kurs og lokasjon». «Ett kort per kurs» viser ett kort med neste tilgjengelige dato."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                                         <div class="option-input">
                                             <?php $tax_simple_cards_grouping = get_option("kursagenten_taxonomy_{$tax_name}_simple_cards_grouping", ''); ?>
                                             <select name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_simple_cards_grouping">
@@ -3565,9 +3564,18 @@ class Designmaler {
                     if ($select.val() !== 'course_location') { return; }
                     var $container = kaGroupingListDisplayContainer($select);
                     if (!$container.length) { return; }
-                    var $location = $container.find('input.ka-list-display-checkbox[value="location"]');
-                    if ($location.length && !$location.prop('disabled') && !$location.prop('checked')) {
-                        $location.prop('checked', true);
+                    // Auto-enable both "Sted" and "Fritekst sted" so the location-based
+                    // grouping has the fields it needs to distinguish cards (e.g. two
+                    // cards for the same place but different freetext venue).
+                    var changed = false;
+                    $container.find('input.ka-list-display-checkbox[value="location"], input.ka-list-display-checkbox[value="location_freetext"]').each(function() {
+                        var $cb = $(this);
+                        if (!$cb.prop('disabled') && !$cb.prop('checked')) {
+                            $cb.prop('checked', true);
+                            changed = true;
+                        }
+                    });
+                    if (changed) {
                         kaSyncListDisplayFields($container);
                     }
                 }

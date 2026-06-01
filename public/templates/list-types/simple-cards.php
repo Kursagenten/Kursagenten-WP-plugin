@@ -270,18 +270,21 @@ $view_type_class = ' view-type-maincourses';
                         </span>
                     </span>
                     <?php else :
-                        // No course date available. When grouping by course + location
-                        // and "Sted" is enabled, show the location in the slot where
-                        // "Neste kurs" normally appears, so the card still carries the
-                        // location context. Reuses .simple-card-date for layout/color.
-                        $fallback_location = '';
-                        if ($simple_cards_grouping === 'course_location' && !empty($list_display['location'])) {
-                            $fallback_location = $location !== '' ? $location : $location_freetext;
-                        }
-                        if ($fallback_location !== '') : ?>
+                        // No course date available. When grouping by course + location,
+                        // show the location in the slot where "Neste kurs" normally
+                        // appears, so the card still carries its location context.
+                        // Mirror the date-row logic so freetext location is included
+                        // too (otherwise two cards for the same place but different
+                        // freetext would look identical). Reuses .simple-card-date for
+                        // layout/color.
+                        $show_fallback_location = ($simple_cards_grouping === 'course_location')
+                            && ($show_location_name || $show_location_freetext);
+                        if ($show_fallback_location) : ?>
                     <span class="simple-card-date simple-card-location-fallback">
                         <i class="ka-icon icon-location"></i>
-                        <span class="notranslate" translate="no"><?php echo esc_html($fallback_location); ?></span>
+                        <span>
+                            <?php if ($show_location_name) : ?><span class="notranslate" translate="no"><?php echo esc_html($location); ?></span><?php endif; ?><?php if ($show_location_freetext) : ?><?php if ($is_location_taxonomy) : ?><span class="notranslate" translate="no"><?php echo esc_html($location_freetext); ?></span><?php else : ?><?php if ($show_location_name) : ?>&nbsp;<?php endif; ?>(<span class="notranslate" translate="no"><?php echo esc_html($location_freetext); ?></span>)<?php endif; ?><?php endif; ?>
+                        </span>
                     </span>
                     <?php endif; ?>
                     <?php endif; ?>
