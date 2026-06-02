@@ -844,6 +844,67 @@ function kursagenten_load_admin_options() {
 }
 add_action('plugins_loaded', 'kursagenten_load_admin_options');
 
+/**
+ * Optimize option autoloading.
+ *
+ * Large or context-specific options are loaded into WordPress' autoload cache
+ * on every single request by default, even on pages that never use them. This
+ * one-time migration moves a curated set of such options out of autoload so
+ * they are only fetched when actually needed (Kursagenten pages, admin, cron).
+ *
+ * Frequently read, small options (colors, fonts, list type, design, layout,
+ * grid columns, hero settings) intentionally stay autoloaded: they are read by
+ * the CSS generator on every Kursagenten page, so individual queries would be
+ * slower than keeping them in the shared autoload cache.
+ *
+ * Runs only in admin and self-heals on the first admin visit after upgrade.
+ *
+ * @return void
+ */
+function kursagenten_optimize_option_autoload() {
+    // Bump this when the list below changes to re-run the migration.
+    $migration_version = '1';
+
+    if (get_option('kursagenten_autoload_optimized') === $migration_version) {
+        return;
+    }
+
+    // Options that are large and/or only read in a specific context, never on
+    // every frontend page. Safe to exclude from the global autoload cache.
+    $no_autoload_options = array(
+        'kursagenten_custom_css',          // Potentially large CSS, Kursagenten context only.
+        'design_option_name',              // Main design settings array, Kursagenten context only.
+        'kursagenten_location_mappings',   // Location mapping array, sync/region feature only.
+        'kursagenten_region_mapping',      // Region mapping array, region feature only.
+        'kursagenten_site_registered',     // Updater/admin only.
+        'kursagenten_last_register',       // Updater/admin/cron only.
+    );
+
+    if (function_exists('wp_set_option_autoload_values')) {
+        // WordPress 6.4+: handles DB update and cache invalidation correctly.
+        $values = array();
+        foreach ($no_autoload_options as $option_name) {
+            $values[$option_name] = false;
+        }
+        wp_set_option_autoload_values($values);
+    } else {
+        // Fallback for older WordPress versions.
+        global $wpdb;
+        foreach ($no_autoload_options as $option_name) {
+            $wpdb->update(
+                $wpdb->options,
+                array('autoload' => 'no'),
+                array('option_name' => $option_name)
+            );
+        }
+        wp_cache_delete('alloptions', 'options');
+    }
+
+    // Keep this small flag autoloaded so the check above stays free.
+    update_option('kursagenten_autoload_optimized', $migration_version);
+}
+add_action('admin_init', 'kursagenten_optimize_option_autoload');
+
 // Global guard: redirect alle Kursagenten-undersider til Oversikt dersom Lisensnøkkel mangler
 add_action('admin_init', function() {
     if (!is_admin()) {

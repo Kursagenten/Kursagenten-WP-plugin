@@ -131,7 +131,11 @@ $options_to_delete = array(
     // License-related options
     'kursagenten_api_key',
     'kursagenten_site_registered',
-    'kursagenten_last_register'
+    'kursagenten_last_register',
+
+    // Internal migration flags
+    'kursagenten_autoload_optimized',
+    'kursagenten_design_assets_version'
 );
 
 foreach ($options_to_delete as $option) {

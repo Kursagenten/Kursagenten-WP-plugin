@@ -111,6 +111,51 @@ class Designmaler {
                 ?>
                 <?php kursagenten_sticky_admin_menu(); ?>
                 <h1>Kursdesign</h1>
+                <script id="ka-card-toggle-early">
+                (function () {
+                    // Lightweight, dependency-free open/close for the option cards so the
+                    // headings are interactive immediately, without waiting for jQuery, the
+                    // color picker or the media bundle to load. Visibility is driven purely
+                    // by the data-collapsed attribute + CSS. The heavy jQuery script later
+                    // listens for the "ka:card-toggled" event to refresh conditional fields.
+                    function toggleCard(card) {
+                        var collapsed = card.getAttribute('data-collapsed') !== 'false';
+                        card.setAttribute('data-collapsed', collapsed ? 'false' : 'true');
+                        var icon = card.querySelector(':scope > h3 i.ka-icon');
+                        if (icon) {
+                            icon.classList.toggle('icon-chevron-down', collapsed);
+                            icon.classList.toggle('icon-chevron-right', !collapsed);
+                        }
+                        card.dispatchEvent(new CustomEvent('ka:card-toggled', { bubbles: true }));
+                    }
+
+                    document.addEventListener('click', function (e) {
+                        var target = e.target;
+                        if (!target || !target.closest) { return; }
+                        var h3 = target.closest('.options-card > h3');
+                        if (!h3) { return; }
+                        var card = h3.parentNode;
+                        if (card && card.classList && card.classList.contains('options-card')) {
+                            toggleCard(card);
+                        }
+                    });
+
+                    // Open the sections referenced by the ka_open URL parameter right away.
+                    try {
+                        var params = new URLSearchParams(window.location.search);
+                        var open = (params.get('ka_open') || '').split(',').filter(Boolean);
+                        if (open.length) {
+                            document.addEventListener('DOMContentLoaded', function () {
+                                open.forEach(function (key) {
+                                    var safe = (window.CSS && CSS.escape) ? CSS.escape(key) : key;
+                                    var card = document.querySelector('.options-card[data-section="' + safe + '"]');
+                                    if (card) { card.setAttribute('data-collapsed', 'false'); }
+                                });
+                            });
+                        }
+                    } catch (err) {}
+                }());
+                </script>
                 <!-- System-sider -->
                 <div class="options-card" id="section-systemsider" data-section="systemsider">
                     <h3>Wordpress sider</h3>
@@ -2639,7 +2684,7 @@ class Designmaler {
             'plain' => ['time', 'duration', 'price', 'location', 'location_freetext', 'room'],
             'compact' => ['location', 'location_freetext'],
             'date-and-title' => [],
-            'simple-cards' => ['duration'],
+            'simple-cards' => ['location', 'location_freetext'],
         ];
         $option_key = 'kursagenten_' . $context_base . '_list_display_fields';
         if (isset($args['option_key']) && is_string($args['option_key']) && $args['option_key'] !== '') {
@@ -2819,100 +2864,57 @@ class Designmaler {
                     return val.split(',').filter(Boolean);
                 }
 
-                // Kollaps/utvid seksjoner: h3 fungerer som toggle
+                // Kollaps/utvid seksjoner.
+                // Visning styres nå av data-collapsed + CSS, og selve klikk-
+                // togglingen håndteres av et lite, avhengighetsfritt skript
+                // tidlig på siden (#ka-card-toggle-early) slik at boksene blir
+                // klikkbare umiddelbart. Her gjør vi kun oppsett (ikon, klasser).
                 $(".options-card").each(function() {
                     var $card = $(this);
                     var $title = $card.children("h3").first();
-                    // Sett inn ikonbeholder i tittelen
+                    // Sett inn ikonbeholder i tittelen, med retning ut fra tilstand.
                     if ($title.find('i.ka-icon').length === 0) {
-                        $title.append(' <i class="ka-icon icon-chevron-right" aria-hidden="true"></i>');
+                        var isOpenNow = $card.attr("data-collapsed") === "false";
+                        $title.append(' <i class="ka-icon ' + (isOpenNow ? 'icon-chevron-down' : 'icon-chevron-right') + '" aria-hidden="true"></i>');
                     }
-                    var $children = $card.children().not($title);
-                    var $firstParagraph = $children.filter("p").first();
-                    // Innhold som skal toggles (ekskluder <style> og <script>)
-                    var $toggleContent = $children.not($firstParagraph).not("style, script");
+                    var $firstParagraph = $card.children().not($title).filter("p").first();
 
-                    // Marker og vis kun tittel + første p, skjul resten
+                    // Marker kortet og sett default-tilstand (kollapset) hvis ikke satt.
                     $card.addClass("ka-collapsible");
-                    $toggleContent.hide();
-                    $card.attr("data-collapsed", "true");
+                    if (!$card.attr("data-collapsed")) {
+                        $card.attr("data-collapsed", "true");
+                    }
 
                     // Legg til liten forklarings-klasse på første p
                     if ($firstParagraph.length) {
                         $firstParagraph.addClass("ka-collapsible-intro");
                     }
-
-                    // Klikk på tittel toggler resten
-                    $title.css("cursor", "pointer").on("click", function(e) {
-                        var isCollapsed = $card.attr("data-collapsed") === "true";
-                        if (isCollapsed) {
-                            $toggleContent.show();
-                            $card.attr("data-collapsed", "false");
-                            $title.find('i.ka-icon').removeClass('icon-chevron-right').addClass('icon-chevron-down');
-                            // Re-evaluer visning av avanserte farger når seksjonen åpnes
-                            if (typeof toggleAdvancedColors === "function") {
-                                toggleAdvancedColors();
-                            }
-                            // Re-evaluer visning av grid kolonne-innstillinger når seksjonen åpnes
-                            if (typeof toggleGridColumnsSettings === "function") {
-                                toggleGridColumnsSettings();
-                            }
-                            if (typeof toggleTaxonomySpecificGridColumns === "function") {
-                                toggleTaxonomySpecificGridColumns();
-                            }
-                            if (typeof updateSingleDesignModeVisibility === "function") {
-                                updateSingleDesignModeVisibility();
-                            }
-                            if (typeof updateTaxonomyDesignModeVisibility === "function") {
-                                updateTaxonomyDesignModeVisibility();
-                            }
-                            // Oppdater URL-state: inkluder denne i settet av åpne bokser
-                            var sectionKey = $card.data('section');
-                            if (sectionKey) {
-                                var currentOpen = getCurrentlyOpenSections();
-                                if (currentOpen.indexOf(String(sectionKey)) === -1) {
-                                    currentOpen.push(String(sectionKey));
-                                }
-                                setUrlParam('ka_open', currentOpen);
-                            }
-                        } else {
-                            $toggleContent.hide();
-                            $card.attr("data-collapsed", "true");
-                            $title.find('i.ka-icon').removeClass('icon-chevron-down').addClass('icon-chevron-right');
-                            if (typeof updateSingleDesignModeVisibility === "function") {
-                                updateSingleDesignModeVisibility();
-                            }
-                            if (typeof updateTaxonomyDesignModeVisibility === "function") {
-                                updateTaxonomyDesignModeVisibility();
-                            }
-                            // Hvis denne boksen var i URL-state, fjern den
-                            var current = getCurrentlyOpenSections();
-                            var sectionKey = $card.data('section');
-                            if (sectionKey) {
-                                current = current.filter(function(k){ return k !== sectionKey; });
-                                setUrlParam('ka_open', current);
-                            }
-                        }
-                    });
                 });
 
-                // Åpne boks(er) fra URL ved innlasting
+                // Når et kort åpnes/lukkes (av det tidlige skriptet), re-evaluer
+                // betingede delfelter og oppdater URL-state.
+                $(document).on("ka:card-toggled", ".options-card", function() {
+                    if (typeof toggleAdvancedColors === "function") { toggleAdvancedColors(); }
+                    if (typeof toggleGridColumnsSettings === "function") { toggleGridColumnsSettings(); }
+                    if (typeof toggleTaxonomySpecificGridColumns === "function") { toggleTaxonomySpecificGridColumns(); }
+                    if (typeof updateSingleDesignModeVisibility === "function") { updateSingleDesignModeVisibility(); }
+                    if (typeof updateTaxonomyDesignModeVisibility === "function") { updateTaxonomyDesignModeVisibility(); }
+                    // Oppdater URL-state til å reflektere settet av åpne bokser.
+                    setUrlParam('ka_open', getCurrentlyOpenSections());
+                });
+
+                // Sørg for at referer bærer åpne seksjoner ved lagring, og at
+                // ikon/tilstand er korrekt for URL-åpnede bokser (det tidlige
+                // skriptet har allerede satt data-collapsed for disse).
                 (function openFromUrl(){
                     var openKeys = getOpenSectionsFromUrl();
                     if (!openKeys.length) return;
-                    // Vi støtter både én (prioritert) og flere nøkler
                     $(".options-card").each(function(){
                         var $card = $(this);
                         var key = $card.data('section');
                         if (key && openKeys.indexOf(String(key)) !== -1) {
-                            var $title = $card.children("h3").first();
-                            // Simuler åpen tilstand
-                            var $children = $card.children().not($title);
-                            var $firstParagraph = $children.filter("p").first();
-                            var $toggleContent = $children.not($firstParagraph).not("style, script");
-                            $toggleContent.show();
                             $card.attr("data-collapsed", "false");
-                            $title.find('i.ka-icon').removeClass('icon-chevron-right').addClass('icon-chevron-down');
+                            $card.children("h3").first().find('i.ka-icon').removeClass('icon-chevron-right').addClass('icon-chevron-down');
                         }
                     });
                     // Sørg for at referer også bærer åpen seksjon ved lagring
@@ -3781,6 +3783,20 @@ class Designmaler {
                 grid-template-columns: 1fr 2fr;
                 gap: 1em;
             }
+            /* Single source of truth for card collapse: the data-collapsed
+               attribute. A card is collapsed unless it is explicitly marked
+               data-collapsed="false". This applies from the very first paint
+               (cards have no attribute yet, so they render collapsed -> no
+               open-then-collapse flash) and continues to drive visibility after
+               the JS toggle runs. !important keeps a collapsed card fully closed
+               regardless of any inline display left by sub-field toggles; it is
+               harmless because the rule never matches an expanded card. */
+            .options-card:not([data-collapsed="false"]) > :not(h3):not(p:first-of-type):not(style):not(script) {
+                display: none !important;
+            }
+            .options-card > h3 {
+                cursor: pointer;
+            }
             /* Kollaps/utvid indikator */
             .ka-collapsible > h3 {
                 position: relative;
@@ -4241,7 +4257,14 @@ if (queryString) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($required_pages as $key => $page): 
+                    <?php
+                    // Fetch all pages once for the dropdown instead of querying per row.
+                    $all_pages = get_pages([
+                        'post_status' => ['publish', 'draft'],
+                        'sort_column' => 'post_title',
+                        'sort_order' => 'ASC'
+                    ]);
+                    foreach ($required_pages as $key => $page): 
                         $page_id = get_option('ka_page_' . $key);
                         $exists = $page_id && get_post($page_id);
                         $post_status = $exists ? get_post_status($page_id) : '';
@@ -4277,14 +4300,6 @@ if (queryString) {
                                 ?>
                             </td>
                             <td>
-                                <?php
-                                // Hent alle sider for dropdown
-                                $all_pages = get_pages([
-                                    'post_status' => ['publish', 'draft'],
-                                    'sort_column' => 'post_title',
-                                    'sort_order' => 'ASC'
-                                ]);
-                                ?>
                                 <select class="ka-page-selector" 
                                         name="ka_page_<?php echo esc_attr($key); ?>" 
                                         data-key="<?php echo esc_attr($key); ?>"
