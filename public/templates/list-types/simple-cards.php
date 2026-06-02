@@ -245,6 +245,7 @@ $view_type_class = ' view-type-maincourses';
                 <!-- Meta row: optional fields + next course date -->
                 <div class="simple-card-meta">
                     <?php
+                    $list_meta_tooltips = kursagenten_get_list_meta_tooltips();
                     $list_date_text = kursagenten_list_format_course_dates(
                         $first_course_date,
                         $last_course_date ?? '',
@@ -290,7 +291,7 @@ $view_type_class = ' view-type-maincourses';
                     <?php endif; ?>
 
                     <?php if ($list_display['registration_deadline'] && !empty($registration_deadline)) : ?>
-                    <span class="simple-card-registration-deadline">
+                    <span class="simple-card-registration-deadline ka-cursor-tooltip ka-cursor-tooltip--help" data-title="<?php echo esc_attr($list_meta_tooltips['registration_deadline']); ?>">
                         <i class="ka-icon icon-alarmclock"></i>
                         <span><?php echo esc_html($registration_deadline); ?></span>
                     </span>
@@ -317,13 +318,17 @@ $view_type_class = ' view-type-maincourses';
                             $day_schedules_coursedate_id,
                             $day_schedules_count,
                             $course_title,
-                            ['icon' => 'icon-calendar', 'tag' => 'button']
+                            [
+                                'icon'           => 'icon-calendar',
+                                'tag'            => 'button',
+                                'cursor_tooltip' => $list_meta_tooltips['day_schedules'],
+                            ]
                         );
                     ?></span>
                     <?php endif; ?>
 
                     <?php if ($list_display['room'] && !empty($location_room)) : ?>
-                    <span class="simple-card-room notranslate" translate="no">
+                    <span class="simple-card-room notranslate ka-cursor-tooltip ka-cursor-tooltip--help" translate="no" data-title="<?php echo esc_attr($list_meta_tooltips['room']); ?>">
                         <i class="ka-icon icon-grid"></i>
                         <span><?php echo esc_html($location_room); ?></span>
                     </span>

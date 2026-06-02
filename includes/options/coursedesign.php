@@ -647,6 +647,90 @@ class Designmaler {
                         </div>
                         <div class="description" style="display: inline-block;"> (100-1000px)</div>
                     </div>
+
+                    <?php
+                    // Default to enabled so the UX (search pill + filter box) matches the intended design.
+                    $filter_search_pill   = get_option('kursagenten_filter_search_pill', 'yes');
+                    $filter_sidebar_box   = get_option('kursagenten_filter_sidebar_box', 'yes');
+                    $filter_sidebar_bg    = get_option('kursagenten_filter_sidebar_bg_color', '');
+                    $filter_sidebar_text  = get_option('kursagenten_filter_sidebar_text_color', '');
+                    ?>
+                    <div class="filter-sidebar-design-options" style="margin-top: 1.5em; padding-top: 1em; border-top: 1px solid #ddd;">
+                        <h4>Utseende venstre filterkolonne <span class="ka-tooltip" data-title="Gjelder filter som er plassert i venstre kolonne på kurslisten."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></h4>
+
+                        <div class="option-row">
+                            <label class="option-label" for="kursagenten_filter_search_pill">Søkefelt: <span class="ka-tooltip" data-title="Søkefeltet får pill-form, tydelig kant og forstørrelsesglass til høyre. Gjelder kun når søk ligger i venstre kolonne."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
+                            <div class="option-input">
+                                <input type="hidden" name="kursagenten_filter_search_pill" value="no">
+                                <label class="checkbox-label">
+                                    <input type="checkbox"
+                                           id="kursagenten_filter_search_pill"
+                                           name="kursagenten_filter_search_pill"
+                                           value="yes"
+                                           <?php checked($filter_search_pill, 'yes'); ?>>
+                                    Avrundet søkefelt med ikon
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="option-row">
+                            <label class="option-label" for="kursagenten_filter_sidebar_box">Filterboks: <span class="ka-tooltip" data-title="Hele filterområdet i venstre kolonne legges i en avrundet boks. Standard bakgrunn følger temafargen (--ka-box-background)."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
+                            <div class="option-input">
+                                <input type="hidden" name="kursagenten_filter_sidebar_box" value="no">
+                                <label class="checkbox-label">
+                                    <input type="checkbox"
+                                           id="kursagenten_filter_sidebar_box"
+                                           name="kursagenten_filter_sidebar_box"
+                                           value="yes"
+                                           class="ka-filter-sidebar-box-toggle"
+                                           <?php checked($filter_sidebar_box, 'yes'); ?>>
+                                    Vis filter i boks med bakgrunn
+                                </label>
+                                <button type="button"
+                                        class="button-link ka-inline-settings-toggle ka-inline-meta-link"
+                                        id="toggle-filter-sidebar-colors"
+                                        style="<?php echo ($filter_sidebar_box === 'yes') ? '' : 'display:none;'; ?> margin-left:8px;">Velg farger</button>
+                            </div>
+                        </div>
+
+                        <div class="option-row filter-sidebar-colors-row" id="filter-sidebar-colors-row" style="display: none;">
+                            <label class="option-label">Farger:</label>
+                            <div class="option-input">
+                                <div style="display: flex; flex-wrap: wrap; gap: 1.5em; align-items: flex-end;">
+                                    <div>
+                                        <label style="display: block; margin-bottom: 4px; font-size: 0.9em;">
+                                            Bakgrunnsfarge
+                                            <span class="ka-tooltip" data-title="La stå tom for standard temafarge. Du kan også lime inn f.eks. var(--ka-box-background)."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:4px; vertical-align: middle;"></i></span>
+                                        </label>
+                                        <input type="text"
+                                               name="kursagenten_filter_sidebar_bg_color"
+                                               value="<?php echo esc_attr($filter_sidebar_bg); ?>"
+                                               class="ka-color-picker"
+                                               data-default-color=""
+                                               placeholder="Standard">
+                                    </div>
+                                    <div>
+                                        <label style="display: block; margin-bottom: 4px; font-size: 0.9em;">
+                                            Tekstfarge
+                                            <span class="ka-tooltip" data-title="Påvirker overskrifter, avkrysningslister og øvrig filtertekst. Velg lys tekst på mørk bakgrunn. Aktive filterknapper beholder temafarge."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:4px; vertical-align: middle;"></i></span>
+                                        </label>
+                                        <input type="text"
+                                               name="kursagenten_filter_sidebar_text_color"
+                                               value="<?php echo esc_attr($filter_sidebar_text); ?>"
+                                               class="ka-color-picker"
+                                               data-default-color=""
+                                               placeholder="Standard">
+                                    </div>
+                                    <div class="filter-sidebar-clear-colors-wrap" style="align-self: center;">
+                                        <button type="button"
+                                                class="button-link ka-inline-meta-link"
+                                                id="clear-filter-sidebar-colors"
+                                                style="<?php echo ($filter_sidebar_bg !== '' || $filter_sidebar_text !== '') ? '' : 'display:none;'; ?>">Tøm farger</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Single kurs -->
@@ -2189,6 +2273,46 @@ class Designmaler {
         register_setting('design_option_group', 'kursagenten_filter_no_collapse');
         register_setting(
             'design_option_group',
+            'kursagenten_filter_search_pill',
+            [
+                'type'              => 'string',
+                'sanitize_callback' => function ($value) {
+                    return ($value === 'yes') ? 'yes' : 'no';
+                },
+                'default'           => 'no',
+            ]
+        );
+        register_setting(
+            'design_option_group',
+            'kursagenten_filter_sidebar_box',
+            [
+                'type'              => 'string',
+                'sanitize_callback' => function ($value) {
+                    return ($value === 'yes') ? 'yes' : 'no';
+                },
+                'default'           => 'no',
+            ]
+        );
+        register_setting(
+            'design_option_group',
+            'kursagenten_filter_sidebar_bg_color',
+            [
+                'type'              => 'string',
+                'sanitize_callback' => array($this, 'sanitize_color_value'),
+                'default'           => '',
+            ]
+        );
+        register_setting(
+            'design_option_group',
+            'kursagenten_filter_sidebar_text_color',
+            [
+                'type'              => 'string',
+                'sanitize_callback' => array($this, 'sanitize_color_value'),
+                'default'           => '',
+            ]
+        );
+        register_setting(
+            'design_option_group',
             'kursagenten_default_available_only',
             [
                 'type'              => 'string',
@@ -2590,6 +2714,9 @@ class Designmaler {
         if (preg_match('/^(#[0-9a-fA-F]{3,8}|rgb\([^)]+\)|rgba\([^)]+\)|hsl\([^)]+\)|hsla\([^)]+\))$/', $value)) {
             return $value;
         }
+        if (preg_match('/^var\(--[a-zA-Z0-9\-_]+\)$/', $value)) {
+            return $value;
+        }
         return sanitize_text_field($value);
     }
 
@@ -2899,6 +3026,64 @@ class Designmaler {
                 }
 
                 $('#kursagenten_default_available_only').on('change', updateAvailabilityWarning);
+
+                function hasFilterSidebarColors() {
+                    return !!(
+                        $.trim($('input[name="kursagenten_filter_sidebar_bg_color"]').val()) ||
+                        $.trim($('input[name="kursagenten_filter_sidebar_text_color"]').val())
+                    );
+                }
+
+                var isFilterSidebarColorsOpen = hasFilterSidebarColors();
+
+                function clearFilterSidebarColorPicker($input) {
+                    $input.val('');
+                    if ($input.hasClass('wp-color-picker') && $.fn.wpColorPicker) {
+                        $input.wpColorPicker('color', '');
+                    }
+                    $input.trigger('change');
+                }
+
+                function updateFilterSidebarClearLink() {
+                    var show = hasFilterSidebarColors() && $('#filter-sidebar-colors-row').is(':visible');
+                    $('#clear-filter-sidebar-colors').toggle(show);
+                }
+
+                function updateFilterSidebarColorsToggleAndRow() {
+                    var boxEnabled = $('.ka-filter-sidebar-box-toggle').is(':checked');
+                    var $toggle = $('#toggle-filter-sidebar-colors');
+                    var $row = $('#filter-sidebar-colors-row');
+
+                    if (!boxEnabled) {
+                        isFilterSidebarColorsOpen = false;
+                    }
+
+                    $toggle.toggle(boxEnabled);
+                    $toggle.text(isFilterSidebarColorsOpen ? 'Skjul farger' : 'Velg farger');
+                    $toggle.attr('aria-expanded', isFilterSidebarColorsOpen ? 'true' : 'false');
+                    $row.toggle(boxEnabled && isFilterSidebarColorsOpen);
+                    updateFilterSidebarClearLink();
+                }
+
+                updateFilterSidebarColorsToggleAndRow();
+                $('.ka-filter-sidebar-box-toggle').on('change', updateFilterSidebarColorsToggleAndRow);
+
+                $(document).on('click', '#toggle-filter-sidebar-colors', function(e) {
+                    e.preventDefault();
+                    isFilterSidebarColorsOpen = !isFilterSidebarColorsOpen;
+                    updateFilterSidebarColorsToggleAndRow();
+                });
+
+                $(document).on('click', '#clear-filter-sidebar-colors', function(e) {
+                    e.preventDefault();
+                    clearFilterSidebarColorPicker($('input[name="kursagenten_filter_sidebar_bg_color"]'));
+                    clearFilterSidebarColorPicker($('input[name="kursagenten_filter_sidebar_text_color"]'));
+                    updateFilterSidebarClearLink();
+                });
+
+                $(document).on('change', 'input[name="kursagenten_filter_sidebar_bg_color"], input[name="kursagenten_filter_sidebar_text_color"]', function() {
+                    updateFilterSidebarClearLink();
+                });
 
                 // Toggle grid columns settings based on list type selection
                 var previousTaxonomyListType = $('#kursagenten_taxonomy_list_type').val() || 'standard';

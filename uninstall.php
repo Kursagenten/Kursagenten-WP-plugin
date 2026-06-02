@@ -59,6 +59,10 @@ $options_to_delete = array(
     'kursagenten_available_filters',
     'kursagenten_filter_default_height',
     'kursagenten_filter_no_collapse',
+    'kursagenten_filter_search_pill',
+    'kursagenten_filter_sidebar_box',
+    'kursagenten_filter_sidebar_bg_color',
+    'kursagenten_filter_sidebar_text_color',
     
     // Color and styling options
     'kursagenten_max_width',

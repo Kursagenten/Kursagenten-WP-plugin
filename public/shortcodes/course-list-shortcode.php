@@ -406,6 +406,7 @@ function kursagenten_course_list_shortcode($atts) {
     $left_column_class = $has_left_filters ? 'col-1-4' : 'col-1 hidden-left-column';
     // Wrapper-klasse for CSS-targeting av filter-modus
     $filter_mode_class = $filter_mode !== '' ? ' ka-filter-mode-' . $filter_mode : '';
+    $filter_sidebar_box_wrapper_class = ka_get_filter_sidebar_box_wrapper_class();
 
     // Check if search is the only filter on top and set appropriate class
     $is_search_only = is_array($top_filters) && count($top_filters) === 1 && in_array('search', $top_filters);
@@ -559,7 +560,7 @@ function kursagenten_course_list_shortcode($atts) {
     // Add custom class if provided
     $custom_class = !empty($atts['klasse']) ? ' ' . esc_attr($atts['klasse']) : '';
     ?>
-    <div id="ka" class="kursagenten-wrapper<?php echo $custom_class; ?><?php echo esc_attr($filter_mode_class); ?>">
+    <div id="ka" class="kursagenten-wrapper<?php echo $custom_class; ?><?php echo esc_attr($filter_mode_class); ?><?php echo esc_attr($filter_sidebar_box_wrapper_class); ?>">
     <main id="ka-m" class="kursagenten-main" role="main">
         <div class="ka-container">
             <!-- Mobile Filter Overlay -->
@@ -567,8 +568,8 @@ function kursagenten_course_list_shortcode($atts) {
             <div class="mobile-filter-overlay">
                 <div class="mobile-filter-header">
                     <h3>Filter</h3>
-                    <button class="close-filter-button">
-                        <i class="ka-icon icon-close"></i>
+                    <button type="button" class="close-filter-button" aria-label="Lukk filter">
+                        <i class="ka-icon icon-close" aria-hidden="true"></i>
                     </button>
                 </div>
                 <div class="mobile-filter-content">
@@ -872,7 +873,8 @@ function kursagenten_course_list_shortcode($atts) {
                             <!-- Left Column left filters-->
                             <div class="left-column">
                                 <?php if ($has_left_filters) : ?>
-                                    <div class="filter-container left-filter-section">
+                                    <?php $left_filter_section = ka_get_left_filter_section_attrs(); ?>
+                                    <div class="<?php echo esc_attr($left_filter_section['class']); ?>"<?php echo $left_filter_section['style'] !== '' ? ' style="' . esc_attr($left_filter_section['style']) . '"' : ''; ?>>
                                         <?php foreach ($left_filters as $filter) : ?>
                                             <?php 
                                             // Skip filters that are active in shortcode
@@ -896,7 +898,12 @@ function kursagenten_course_list_shortcode($atts) {
                                                     <h5><?php echo $filter_label; ?></h5>
                                                 <?php endif; ?>
                                                 <?php if ($filter === 'search') : ?>
-                                                    <input type="text" id="search" name="search" class="filter-search <?php echo esc_attr($search_class); ?>" placeholder="Søk etter kurs...">
+                                                    <?php
+                                                    ka_render_filter_search_input([
+                                                        'extra_class' => $search_class,
+                                                        'use_pill'    => true,
+                                                    ]);
+                                                    ?>
                                                 <?php elseif ($filter === 'availability') : ?>
                                                     <?php
                                                     $availability_type           = $filter_types[$filter] ?? 'list';
@@ -1077,6 +1084,12 @@ function kursagenten_course_list_shortcode($atts) {
                             <!-- Right Column -->
                             <div class="courselist-items-wrapper right-column">
                                 <?php if ($query instanceof WP_Query && $query->have_posts()) : ?>
+                                    <button type="button" class="filter-toggle-button sticky-filter-button">
+                                        <div class="ka-icon-wrapper">
+                                            <i class="ka-icon icon-filter"></i>
+                                        </div>
+                                        <span>Filtrer kurs</span>
+                                    </button>
                                     <div class="courselist-header">
                                         <div id="courselist-header-left">
                                             <div id="course-count"><?php echo intval($displayed_course_count); ?> kurs <?php echo (!$limit_mode && $query->max_num_pages > 1) ? sprintf("- side %d av %d", $query->get('paged'), $query->max_num_pages) : ''; ?></div>
@@ -1674,48 +1687,13 @@ function kursagenten_course_list_shortcode($atts) {
         }
 
         if (closeFilterBtn.length) {
-            closeFilterBtn.on('click', function() {
-                // log('Lukk-knapp klikket');
-                // Bygg URL fra aktive filtre og last siden på nytt (samme som "Vis resultater")
-                const filters = {};
-                $('.mobile-filter-content .filter-checkbox:checked').each(function() {
-                    const key = $(this).data('url-key');
-                    const val = $(this).val();
-                    // Skip availability here; handled explicitly below via applyMobileAvailabilityState.
-                    if (key === 'ledig') { return; }
-                    if (!filters[key]) { filters[key] = []; }
-                    if (!filters[key].includes(val)) { filters[key].push(val); }
-                });
-                applyMobileAvailabilityState(filters);
-                const dateRange = $('.mobile-filter-content .caleran').val();
-                if (dateRange) { filters['dato'] = dateRange; }
-                const searchTerm = $('.mobile-filter-content .filter-search').val();
-                if (searchTerm) { filters['sok'] = searchTerm; }
-
-                // Behold eksisterende sortering/per_page hvis de finnes
-                const urlParams = new URLSearchParams(window.location.search);
-                const sort = urlParams.get('sort');
-                const order = urlParams.get('order');
-                const perPage = urlParams.get('per_page');
-                if (sort) { filters['sort'] = sort; }
-                if (order) { filters['order'] = order; }
-                if (perPage) { filters['per_page'] = perPage; }
-
-                const searchParams = new URLSearchParams();
-                Object.entries(filters).forEach(([key, value]) => {
-                    if (Array.isArray(value)) {
-                        // Bare legg til hvis arrayen ikke er tom
-                        if (value.length > 0) {
-                            searchParams.set(key, value.join(','));
-                        }
-                    } else if (value !== null && value !== undefined && value !== '') {
-                        searchParams.set(key, value);
-                    }
-                });
-
-                const queryString = searchParams.toString();
-                const newUrl = `${window.location.pathname}${queryString ? '?' + queryString : ''}#filter-results`;
-                window.location.href = newUrl;
+            closeFilterBtn.on('click', function(e) {
+                e.preventDefault();
+                // Discard in-panel changes (URL may have been updated via pushState while editing).
+                const reopenQuery = panelOpenedQueryString ? '?' + panelOpenedQueryString : '';
+                window.history.pushState({}, '', window.location.pathname + reopenQuery + window.location.hash);
+                restoreActiveFilters();
+                hideMobileFilters();
             });
         }
         
@@ -2702,12 +2680,7 @@ function kursagenten_course_list_shortcode($atts) {
 
 
 
-        /* Hide on desktop */
-        @media (min-width: 769px) {
-            .sticky-filter-button {
-                display: none;
-            }
-        }
+        /* Hide sticky pill on desktop (handled in frontend-course-style.css) */
     </style>
     <?php
 

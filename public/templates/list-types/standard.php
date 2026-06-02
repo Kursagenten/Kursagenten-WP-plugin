@@ -365,6 +365,8 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                     || $show_meta_instructor
                     || $show_meta_room;
                 $show_details_toggle = !$has_meta_items && $show_location_block;
+
+                $list_meta_tooltips = kursagenten_get_list_meta_tooltips();
                 ?>
                 <div class="details-area iconlist horizontal">
                     <?php if ($view_type === 'main_courses' && !$force_standard_view) : ?>
@@ -388,7 +390,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                             </div>
                         <?php endif; ?>
                         <?php if ($list_display['registration_deadline'] && !empty($registration_deadline)) : ?>
-                            <div class="registration-deadline"><i class="ka-icon icon-alarmclock"></i> <?php echo esc_html($registration_deadline); ?></div>
+                            <div class="registration-deadline ka-cursor-tooltip ka-cursor-tooltip--help" data-title="<?php echo esc_attr($list_meta_tooltips['registration_deadline']); ?>"><i class="ka-icon icon-alarmclock"></i> <?php echo esc_html($registration_deadline); ?></div>
                         <?php endif; ?>
                         <?php if ($list_display['time'] && !empty($coursetime)) : ?><div class="coursetime"><i class="ka-icon icon-time"></i> <?php echo esc_html($coursetime); ?></div><?php endif; ?>
                         <?php if ($show_location_block) : ?>
@@ -453,7 +455,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                 <!-- Meta area -->
                 <div class="meta-area iconlist horizontal<?php echo (!$has_meta_items && $show_details_toggle) ? ' meta-empty' : ''; ?>">
                     <?php if ($show_meta_registration_deadline) : ?>
-                        <div class="registration-deadline"><i class="ka-icon icon-alarmclock"></i><?php echo esc_html($registration_deadline); ?></div>
+                        <div class="registration-deadline ka-cursor-tooltip ka-cursor-tooltip--help" data-title="<?php echo esc_attr($list_meta_tooltips['registration_deadline']); ?>"><i class="ka-icon icon-alarmclock"></i><?php echo esc_html($registration_deadline); ?></div>
                     <?php endif; ?>
                     <?php if ($show_meta_time) : ?>
                         <div class="coursetime">
@@ -470,7 +472,10 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                 $day_schedules_coursedate_id,
                                 $day_schedules_count,
                                 $course_title,
-                                ['icon' => 'icon-calendar']
+                                [
+                                    'icon'            => 'icon-calendar',
+                                    'cursor_tooltip'  => $list_meta_tooltips['day_schedules'],
+                                ]
                             );
                         ?></div>
                     <?php endif; ?>
@@ -481,7 +486,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                         <div class="instructors"><i class="ka-icon icon-user"></i><?php echo implode(' ,&nbsp;', $instructor_links); ?></div>
                     <?php endif; ?>
                     <?php if ($show_meta_room) : ?>
-                        <div class="location-room notranslate" translate="no">
+                        <div class="location-room notranslate ka-cursor-tooltip ka-cursor-tooltip--help" translate="no" data-title="<?php echo esc_attr($list_meta_tooltips['room']); ?>">
                             <i class="ka-icon icon-home"></i>
                             <?php echo esc_html($location_room); ?>
                         </div>

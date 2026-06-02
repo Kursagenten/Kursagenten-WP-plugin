@@ -200,7 +200,14 @@ function initCursorTooltip() {
     // button or links) so it doesn't linger over the actual click target.
     const isOverInteractive = (event, target) => {
         const interactive = event.target.closest('a, button');
-        return interactive && target.contains(interactive);
+        if (!interactive || !target.contains(interactive)) {
+            return false;
+        }
+        // Allow cursor tooltip on links/buttons that are the tooltip host (e.g. day-schedules trigger).
+        if (interactive.classList.contains('ka-cursor-tooltip')) {
+            return false;
+        }
+        return true;
     };
 
     const positionBubble = (event) => {

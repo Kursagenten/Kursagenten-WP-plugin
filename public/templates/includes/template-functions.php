@@ -157,7 +157,7 @@ function kursagenten_get_content() {
            $has_left_filters, $left_column_class, $is_search_only, $search_class, 
            $taxonomy_data, $filter_display_info;
     ?>
-    <div id="ka" class="kursagenten-wrapper ka-default-width">
+    <div id="ka" class="kursagenten-wrapper ka-default-width<?php echo esc_attr(ka_get_filter_sidebar_box_wrapper_class()); ?>">
         <main id="ka-main" class="kursagenten-main" role="main">
             <div class="ka-container">
                 <?php
@@ -999,6 +999,19 @@ function kursagenten_get_list_display_fields($args = []) {
 }
 
 /**
+ * Cursor-tooltip copy for list meta fields (used with ka-cursor-tooltip in list templates).
+ *
+ * @return array{registration_deadline: string, room: string, day_schedules: string}
+ */
+function kursagenten_get_list_meta_tooltips(): array {
+    return [
+        'registration_deadline' => __('Siste frist for å melde deg på dette kurset.', 'kursagenten'),
+        'room'                  => __('Rom eller lokale der kurset holdes.', 'kursagenten'),
+        'day_schedules'         => __('Klikk for å se de enkelte kursdagene med dato, klokkeslett, instruktør og lokale.', 'kursagenten'),
+    ];
+}
+
+/**
  * Render a clickable "X dager" link that opens the day-schedules popup.
  *
  * The popup itself is rendered client-side by course-day-schedules.js – it lives
@@ -1018,6 +1031,7 @@ function kursagenten_get_list_display_fields($args = []) {
  *                                - 'wrapper' string  Wrap output in '<div class="...">...</div>' if set
  *                                - 'tag'     string  Trigger tag: 'a' (default) or 'button'.
  *                                                    Use 'button' when nested inside another <a>.
+ *                                - 'cursor_tooltip' string  If set, adds ka-cursor-tooltip and data-title on the trigger.
  * @return string Rendered HTML or empty string.
  */
 function kursagenten_render_day_schedules_link($coursedate_id, $count, $course_title = '', $args = []) {
@@ -1046,6 +1060,12 @@ function kursagenten_render_day_schedules_link($coursedate_id, $count, $course_t
     );
 
     $classes = trim('show-ka-day-schedules ka-day-schedules-link ' . (string) $args['class']);
+    $cursor_tooltip = isset($args['cursor_tooltip']) ? trim((string) $args['cursor_tooltip']) : '';
+    $tooltip_attr = '';
+    if ($cursor_tooltip !== '') {
+        $classes = trim($classes . ' ka-cursor-tooltip ka-cursor-tooltip--help');
+        $tooltip_attr = sprintf(' data-title="%s"', esc_attr($cursor_tooltip));
+    }
     $icon_html = $args['icon'] !== ''
         ? '<i class="ka-icon ' . esc_attr($args['icon']) . '" aria-hidden="true"></i> '
         : '';
@@ -1054,19 +1074,21 @@ function kursagenten_render_day_schedules_link($coursedate_id, $count, $course_t
         // Use type="button" so the trigger never submits a parent form, and add an
         // inline reset so the link still looks like a link rather than a button.
         $link = sprintf(
-            '<button type="button" class="%1$s" data-coursedate-id="%2$d" data-course-title="%3$s">%4$s%5$s</button>',
+            '<button type="button" class="%1$s" data-coursedate-id="%2$d" data-course-title="%3$s"%4$s>%5$s%6$s</button>',
             esc_attr($classes),
             $coursedate_id,
             esc_attr($course_title),
+            $tooltip_attr,
             $icon_html,
             esc_html($label)
         );
     } else {
         $link = sprintf(
-            '<a href="#" class="%1$s" data-coursedate-id="%2$d" data-course-title="%3$s" role="button">%4$s%5$s</a>',
+            '<a href="#" class="%1$s" data-coursedate-id="%2$d" data-course-title="%3$s" role="button"%4$s>%5$s%6$s</a>',
             esc_attr($classes),
             $coursedate_id,
             esc_attr($course_title),
+            $tooltip_attr,
             $icon_html,
             esc_html($label)
         );
@@ -1256,4 +1278,104 @@ function get_ajax_template_path($context = 'archive') {
     
     $template_path = KURSAG_PLUGIN_DIR . "public/templates/list-types/{$style}.php";
     return file_exists($template_path) ? $template_path : KURSAG_PLUGIN_DIR . "public/templates/list-types/standard.php";
+}
+
+/**
+ * Whether the pill-style search field is enabled for the left filter column.
+ */
+function ka_is_filter_search_pill_enabled(): bool {
+    // Default to enabled when option is not set.
+    return get_option('kursagenten_filter_search_pill', 'yes') === 'yes';
+}
+
+/**
+ * Whether the left filter column should be wrapped in a styled box.
+ */
+function ka_is_filter_sidebar_box_enabled(): bool {
+    // Default to enabled when option is not set.
+    return get_option('kursagenten_filter_sidebar_box', 'yes') === 'yes';
+}
+
+/**
+ * Wrapper class for #ka when the left filter sidebar box is enabled.
+ */
+function ka_get_filter_sidebar_box_wrapper_class(): string {
+    return ka_is_filter_sidebar_box_enabled() ? ' ka-has-filter-sidebar-box' : '';
+}
+
+/**
+ * CSS class and optional inline style for the left filter section container.
+ *
+ * @return array{class: string, style: string}
+ */
+function ka_get_left_filter_section_attrs(): array {
+    $classes = ['filter-container', 'left-filter-section'];
+
+    if (ka_is_filter_sidebar_box_enabled()) {
+        $classes[] = 'filter-sidebar-box';
+    }
+
+    $style_parts = [];
+    if (ka_is_filter_sidebar_box_enabled()) {
+        $bg_color = get_option('kursagenten_filter_sidebar_bg_color', '');
+        $text_color = get_option('kursagenten_filter_sidebar_text_color', '');
+        if (is_string($bg_color) && $bg_color !== '') {
+            $style_parts[] = 'background-color:' . $bg_color;
+        }
+        if (is_string($text_color) && $text_color !== '') {
+            $classes[] = 'filter-sidebar-box--custom-text';
+            $style_parts[] = '--ka-filter-sidebar-text:' . $text_color;
+            $style_parts[] = 'color:' . $text_color;
+        }
+    }
+
+    return [
+        'class' => implode(' ', $classes),
+        'style' => implode(';', $style_parts),
+    ];
+}
+
+/**
+ * Render the course list search input (plain or pill with icon).
+ *
+ * @param array<string, mixed> $args {
+ *     @type string $extra_class   Additional classes on the input.
+ *     @type bool   $use_pill      Use pill layout when global setting is on.
+ *     @type string $placeholder   Placeholder text.
+ *     @type string $id            Input id attribute.
+ *     @type string $name          Input name attribute.
+ * }
+ */
+function ka_render_filter_search_input(array $args = []): void {
+    $args = wp_parse_args(
+        $args,
+        [
+            'extra_class' => '',
+            'use_pill'      => false,
+            'placeholder'   => 'Søk etter kurs...',
+            'id'            => 'search',
+            'name'          => 'search',
+        ]
+    );
+
+    $input_classes = trim('filter-search ' . $args['extra_class']);
+    $use_pill      = !empty($args['use_pill']) && ka_is_filter_search_pill_enabled();
+
+    if ($use_pill) {
+        echo '<div class="filter-search-wrapper filter-search-pill">';
+    }
+
+    printf(
+        '<input type="text" id="%1$s" name="%2$s" class="%3$s%4$s" placeholder="%5$s" autocomplete="off">',
+        esc_attr((string) $args['id']),
+        esc_attr((string) $args['name']),
+        esc_attr($input_classes),
+        $use_pill ? ' filter-search-pill-input' : '',
+        esc_attr((string) $args['placeholder'])
+    );
+
+    if ($use_pill) {
+        echo '<span class="filter-search-icon" aria-hidden="true"><i class="ka-icon icon-search"></i></span>';
+        echo '</div>';
+    }
 }

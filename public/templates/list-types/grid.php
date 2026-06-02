@@ -351,6 +351,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                 
                 <!-- Location -->
                 <?php
+                $list_meta_tooltips = kursagenten_get_list_meta_tooltips();
                 $is_location_taxonomy = ($resolved_taxonomy === 'ka_course_location');
                 $show_location_name = !empty($list_display['location']) && !$is_location_taxonomy && !empty($location);
                 $show_location_freetext = !empty($list_display['location_freetext']) && !empty($location_freetext);
@@ -375,7 +376,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                         <?php endif; ?>
                         <?php if (!$is_location_taxonomy && $show_location_room) : ?>
                             <?php if ($show_location_name || $show_location_freetext) : ?> - <?php endif; ?>
-                            <?php echo esc_html($location_room); ?>
+                            <span class="notranslate ka-cursor-tooltip ka-cursor-tooltip--help" translate="no" data-title="<?php echo esc_attr($list_meta_tooltips['room']); ?>"><?php echo esc_html($location_room); ?></span>
                         <?php endif; ?>
                     </strong>
                 </div>
@@ -413,7 +414,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                             </li>
                             <?php endif; ?>
                             <?php if ($list_display['registration_deadline'] && !empty($registration_deadline)) : ?>
-                            <li><i class="ka-icon icon-alarmclock"></i><?php echo esc_html($registration_deadline); ?></li>
+                            <li class="ka-cursor-tooltip ka-cursor-tooltip--help" data-title="<?php echo esc_attr($list_meta_tooltips['registration_deadline']); ?>"><i class="ka-icon icon-alarmclock"></i><?php echo esc_html($registration_deadline); ?></li>
                             <?php endif; ?>
                             <?php if ($list_display['time'] && !empty($coursetime)) : ?>
                             <li>
@@ -427,7 +428,10 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                     $day_schedules_coursedate_id,
                                     $day_schedules_count,
                                     $course_title,
-                                    ['icon' => 'icon-calendar']
+                                    [
+                                        'icon'           => 'icon-calendar',
+                                        'cursor_tooltip' => $list_meta_tooltips['day_schedules'],
+                                    ]
                                 );
                             ?></li>
                             <?php endif; ?>
@@ -448,7 +452,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                             <li><i class="ka-icon icon-calendar"></i><?php echo esc_html($list_date_text); ?></li>
                             <?php endif; ?>
                             <?php if ($list_display['registration_deadline'] && !empty($registration_deadline)) : ?>
-                            <li><i class="ka-icon icon-alarmclock"></i><?php echo esc_html($registration_deadline); ?></li>
+                            <li class="ka-cursor-tooltip ka-cursor-tooltip--help" data-title="<?php echo esc_attr($list_meta_tooltips['registration_deadline']); ?>"><i class="ka-icon icon-alarmclock"></i><?php echo esc_html($registration_deadline); ?></li>
                             <?php endif; ?>
                             <?php if ($list_display['time'] && !empty($coursetime)) : ?>
                             <li><i class="ka-icon icon-time"></i><?php echo esc_html($coursetime); ?></li>
@@ -459,7 +463,10 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                     $day_schedules_coursedate_id,
                                     $day_schedules_count,
                                     $course_title,
-                                    ['icon' => 'icon-calendar']
+                                    [
+                                        'icon'           => 'icon-calendar',
+                                        'cursor_tooltip' => $list_meta_tooltips['day_schedules'],
+                                    ]
                                 );
                             ?></li>
                             <?php endif; ?>

@@ -275,7 +275,8 @@ foreach ($available_filters as $filter_key => $filter_info) {
                 <div class="left-column">
                     <?php if ($has_left_filters) : ?>
                     
-                        <div class="filter-container left-filter-section">
+                        <?php $left_filter_section = ka_get_left_filter_section_attrs(); ?>
+                        <div class="<?php echo esc_attr($left_filter_section['class']); ?>"<?php echo $left_filter_section['style'] !== '' ? ' style="' . esc_attr($left_filter_section['style']) . '"' : ''; ?>>
                             <?php foreach ($left_filters as $filter) : ?>
                                 <div class="filter-item">
                                     <?php
@@ -285,7 +286,12 @@ foreach ($available_filters as $filter_key => $filter_info) {
                                     ?>
                                     <h5><?php echo $filter_label; ?></h5>
                                     <?php if ($filter === 'search') : ?>
-                                        <input type="text" id="search" name="search" class="filter-search <?php echo esc_attr($search_class); ?>" placeholder="Søk etter kurs...">
+                                        <?php
+                                        ka_render_filter_search_input([
+                                            'extra_class' => $search_class,
+                                            'use_pill'    => true,
+                                        ]);
+                                        ?>
                                     <?php elseif ($filter === 'date') : ?>
                                         <?php
                                         $date = "";

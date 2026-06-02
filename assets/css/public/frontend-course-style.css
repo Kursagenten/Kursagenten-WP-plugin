@@ -545,14 +545,18 @@ border-radius: 8px;
 /* The bubble is appended to <body>, so it must NOT be scoped under #ka */
 .ka-cursor-tooltip { cursor: pointer; }
 
+.ka-cursor-tooltip--help { cursor: help; }
+
 .ka-cursor-tooltip-bubble {
   position: fixed;
   z-index: 9999;
   background-color: #333;
   color: #eee;
-  padding: 2px 10px;
+  padding: 4px 10px;
   border-radius: 5px;
-  white-space: nowrap;
+  max-width: min(280px, calc(100vw - 16px));
+  white-space: normal;
+  line-height: 1.35;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
   font-size: 12.5px;
   pointer-events: none; /* Never let the bubble capture the mouse */
@@ -725,6 +729,7 @@ z-index: 10000;
   flex-wrap: wrap;
   min-width: 0;
   max-width: 100%;
+  align-items: center;
   justify-content: flex-end;
 }
 #ka .ka-container #course-count {
@@ -764,7 +769,7 @@ z-index: 10000;
   }
   #ka .ka-container div#courselist-header-right {
     justify-content: flex-start;
-    gap: 5px;
+    gap: 1rem;
     margin-top: 10px;
   }
 
@@ -1186,6 +1191,138 @@ text-align: center;
     color: var(--ka-color-filter);
   }
 
+/* Filter: refined chips in left sidebar */
+#ka .left-filter-section .filter-chip-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.45rem;
+  margin: 0.15rem 0 0.35rem;
+}
+#ka .left-filter-section .filter-chip-wrapper .chip {
+  width: 100%;
+  margin: 0;
+  border-radius: 5px;
+  padding: 0.38em 0.95em;
+  line-height: 1.35;
+  text-align: left;
+  font-weight: 500;
+  border: 1px solid color-mix(in srgb, var(--ka-color) 10%, #fbfbfb);
+  background: #fff;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+#ka .left-filter-section .filter-chip-wrapper .chip:hover:not(.filter-empty):not(.active) {
+  /*background: color-mix(in srgb, var(--ka-color) 7%, #fff);*/
+  border-color: color-mix(in srgb, var(--ka-color) 65%, #d8d8d8);
+}
+#ka .left-filter-section .filter-chip-wrapper .chip.active {
+  background: var(--ka-color);
+  border-color: var(--ka-color);
+  color: #fff;
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--ka-color) 28%, transparent);
+}
+#ka .left-filter-section .filter-chip-wrapper .chip.filter-empty:hover {
+  background: #fff;
+}
+
+/* Filter: pill search in left sidebar */
+#ka .left-filter-section .filter-item:has(.filter-search-pill) {
+  overflow: visible;
+}
+#ka .left-filter-section .filter-search-wrapper.filter-search-pill {
+  position: relative;
+  display: block;
+  margin: 0 0 0.35rem;
+  /* Pull 0.5rem left; right edge stays flush with column content */
+  margin-left: -0.5rem;
+  width: calc(100% + 0.5rem);
+  max-width: none;
+  box-sizing: border-box;
+}
+#ka .left-filter-section .filter-search-pill .filter-search,
+#ka .left-filter-section .filter-search-pill .filter-search-pill-input {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.55rem 2.6rem 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--ka-color) 38%, #d0d0d0);
+  background: #fff;
+  font-size: var(--ka-filter-font-size);
+  box-sizing: border-box;
+}
+#ka .left-filter-section .filter-search-pill .filter-search:focus,
+#ka .left-filter-section .filter-search-pill .filter-search-pill-input:focus {
+  outline: none;
+  border-color: var(--ka-color);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ka-color) 18%, transparent);
+}
+#ka .left-filter-section .filter-search-icon {
+  position: absolute;
+  right: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  line-height: 1;
+  color: color-mix(in srgb, var(--ka-color-filter, var(--ka-color)) 80%, #666);
+  opacity: 0.85;
+}
+#ka .left-filter-section .filter-search-icon .ka-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Filter: boxed left sidebar */
+@media screen and (min-width: 769px) {
+  #ka.ka-has-filter-sidebar-box .course-grid.col-1-4 {
+    grid-template-columns: 1fr 3fr;
+  }
+}
+#ka .left-filter-section.filter-sidebar-box {
+  background-color: var(--ka-box-background, var(--ka-highlight-background, var(--ka-alt-background)));
+  border-radius: 12px;
+  padding: 1.7rem;
+}
+/* Let pill search bleed slightly past box padding without clipping siblings */
+#ka .left-filter-section.filter-sidebar-box:has(.filter-search-pill) {
+  overflow: visible;
+}
+#ka .left-filter-section.filter-sidebar-box .filter-item h5 {
+  color: inherit;
+}
+#ka .left-filter-section.filter-sidebar-box .filter-item:first-child h5,
+#ka .left-filter-section.filter-sidebar-box .filter-item:has(#search) + .filter-item h5,
+#ka .left-filter-section.filter-sidebar-box > .filter-item:first-of-type h5 {
+  padding-top: 0;
+}
+#ka .left-filter-section.filter-sidebar-box .availability-filter-item-wrapper {
+  margin-top: 0.5em;
+}
+
+/* Custom text color in filter box (e.g. light text on dark background) */
+#ka .left-filter-section.filter-sidebar-box.filter-sidebar-box--custom-text .filter-list-item {
+  --color-default: color-mix(in srgb, currentColor 55%, transparent);
+}
+#ka .left-filter-section.filter-sidebar-box.filter-sidebar-box--custom-text .filter-list-item .checkbox-label,
+#ka .left-filter-section.filter-sidebar-box.filter-sidebar-box--custom-text .filter-category .checkbox-label,
+#ka .left-filter-section.filter-sidebar-box.filter-sidebar-box--custom-text .expand-toggle,
+#ka .left-filter-section.filter-sidebar-box.filter-sidebar-box--custom-text .reset-date-filter,
+#ka .left-filter-section.filter-sidebar-box.filter-sidebar-box--custom-text .ka-toggle {
+  color: inherit;
+}
+#ka .left-filter-section.filter-sidebar-box.filter-sidebar-box--custom-text .filter-chip-wrapper .chip:not(.active):not(.filter-empty) {
+  color: var(--ka-color-filter, var(--ka-color));
+}
+#ka .left-filter-section.filter-sidebar-box.filter-sidebar-box--custom-text .filter-chip-wrapper .chip.filter-empty {
+  color: color-mix(in srgb, currentColor 65%, #888);
+  border-color: color-mix(in srgb, currentColor 35%, transparent);
+  background: color-mix(in srgb, currentColor 8%, #fff);
+}
+#ka .left-filter-section.filter-sidebar-box.filter-sidebar-box--custom-text .date-range-wrapper input,
+#ka .left-filter-section.filter-sidebar-box.filter-sidebar-box--custom-text .filter-search,
+#ka .left-filter-section.filter-sidebar-box.filter-sidebar-box--custom-text .filter-search-pill-input {
+  color: #333;
+}
 
 
 /* Filter: filter list - dropdown wrapper for list. More caleran styling below*/
@@ -1721,12 +1858,12 @@ box-shadow: 0 0 6px rgba(0,0,0,0.05);
 #ka .filter-toggle-button i.ka-icon {
     display: block;
     margin: 0 auto;
-    background-color: white;
     width: 1.2em;
     height: 1.2em;
+    background-color: white;
 }
-/* Sticky Mobile Filter Button */
-.sticky-filter-button {
+/* Sticky Mobile Filter Button (standalone pill above course list) */
+#ka .sticky-filter-button {
     position: sticky;
     top: 20px;
     z-index: 1000;
@@ -1734,12 +1871,12 @@ box-shadow: 0 0 6px rgba(0,0,0,0.05);
     margin: 0 auto 20px auto;
 }
 
-.sticky-filter-button:hover {
+#ka .sticky-filter-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 124, 186, 0.4);
 }
 
-.sticky-filter-button i {
+#ka .sticky-filter-button i {
     font-size: 18px;
 }
 
@@ -1783,6 +1920,14 @@ box-shadow: 0 0 6px rgba(0,0,0,0.05);
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 3;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#ka .close-filter-button .ka-icon {
+    pointer-events: none;
 }
 
 #ka .close-filter-button i.ka-icon {
@@ -1905,6 +2050,21 @@ box-shadow: 0 0 6px rgba(0,0,0,0.05);
     
     #ka .filter-toggle-button {
         display: flex;
+    }
+
+    /* Sticky pill above list; header copy hidden unless filter-knapp mode */
+    #ka:not(.ka-filter-mode-filter-knapp) .courselist-header .filter-toggle-button {
+        display: none !important;
+    }
+
+    #ka.ka-filter-mode-filter-knapp .sticky-filter-button {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    #ka .sticky-filter-button {
+        display: none !important;
     }
 }
 
@@ -2316,7 +2476,7 @@ button.show-ka-day-schedules:focus-visible {
     display: block;
 }
 
-#ka.ka-filter-mode-filter-knapp .filter-toggle-button {
+#ka.ka-filter-mode-filter-knapp .filter-toggle-button:not(.sticky-filter-button) {
     display: inline-flex !important;
     align-items: center;
     gap: 6px;
@@ -2335,11 +2495,11 @@ button.show-ka-day-schedules:focus-visible {
     cursor: pointer;
 }
 
-#ka.ka-filter-mode-filter-knapp .filter-toggle-button .ka-icon-wrapper {
+#ka.ka-filter-mode-filter-knapp .filter-toggle-button:not(.sticky-filter-button) .ka-icon-wrapper {
     display: none;
 }
 
-#ka.ka-filter-mode-filter-knapp .filter-toggle-button i.ka-icon {
+#ka.ka-filter-mode-filter-knapp .filter-toggle-button:not(.sticky-filter-button) i.ka-icon {
     width: 0.95em;
     height: 0.95em;
     background-color: var(--ka-color, #eb2599);

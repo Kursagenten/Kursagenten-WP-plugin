@@ -1,7 +1,10 @@
-## 1.1.23 - 2026-06-01
+## 1.1.23 - 2026-06-02
+- Lagt til: **Utseende venstre filterkolonne** under Kursdesign → Filterinnstillinger: avrundet søkefelt med ikon, og valgfri filterboks med «Velg farger» for bakgrunn/tekstfarge (tekstfarge gjelder hele filterinnholdet, f.eks. lys tekst på mørk bakgrunn). Wrapper-klassen `ka-has-filter-sidebar-box` på `#ka` for enkel CSS uten `:has()`.
+- Forbedring: Finere tagger/knapper (pill-form, bedre hover og aktiv tilstand) for filter i venstre kolonne når visning er «Knapper».
 - Lagt til: **Gruppering i Enkle kort**. Ny innstilling i Kursdesign > 'Kursliste med filter' og 'Taksonomisider' for å velge *Ett kort per kurs (neste dato)* eller *Ett kort per kurs og lokasjon (neste dato per lokasjon)*. 
 - Forbedring: Når *kurs og lokasjon* velges i admin, krysses både *Sted* og *Fritekst sted* automatisk av i *Vis i listen*, siden lokasjon er nødvendig for å skille kortene (inkl. ulike fritekst-steder på samme sted).
 - Lagt til: Ved gruppering *kurs og lokasjon* vises nå lokasjonen (med stedsikon) i «Neste kurs»-feltet når en kursdato mangler, forutsatt at *Sted* er aktivert i *Vis i listen*. Fritekst-sted vises nå også på disse kortene (f.eks. «Nittedal (Flammen)»), på samme måte som på kort med dato – slik at to kort for samme sted men ulik fritekst ikke lenger ser identiske ut.
+- Lagt til: Tooltip på meta-feltene påmeldingsfrist, rom/lokale og kursdager for å gi forklaring der det ikke er intuitivt hva feltet betyr.
 
 ## 1.1.22 - 2026-05-26
 - Lagt til: Mulighet til å fjerne taksonomi-slug under SEO innstillinger. Eksempel: webside.no/kurskategori/kurset -> webside.no/kurset
