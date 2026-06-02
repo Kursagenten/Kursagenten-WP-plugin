@@ -12,6 +12,226 @@ if (!function_exists('ka_map_legacy_taxonomy')) {
     }
 }
 
+if (!function_exists('ka_use_external_link_for_signup')) {
+    function ka_use_external_link_for_signup(): bool {
+        return get_option('kursagenten_external_link_signup', 'yes') === 'yes';
+    }
+}
+
+if (!function_exists('ka_use_external_link_for_course_card')) {
+    function ka_use_external_link_for_course_card(): bool {
+        return get_option('kursagenten_external_link_course_card', 'no') === 'yes';
+    }
+}
+
+if (!function_exists('ka_get_course_external_sign_on_url')) {
+    function ka_get_course_external_sign_on_url($course_id): string {
+        $course_id = (int) $course_id;
+        if ($course_id <= 0) {
+            return '';
+        }
+
+        return trim((string) get_post_meta($course_id, 'ka_course_external_sign_on', true));
+    }
+}
+
+if (!function_exists('ka_is_external_url')) {
+    function ka_is_external_url($url): bool {
+        $url = trim((string) $url);
+        if ($url === '') {
+            return false;
+        }
+
+        $parts = wp_parse_url($url);
+        if (!$parts || empty($parts['host'])) {
+            return false;
+        }
+
+        $home_host = wp_parse_url(home_url(), PHP_URL_HOST);
+        if (!is_string($home_host) || $home_host === '') {
+            return true;
+        }
+
+        return strtolower((string) $parts['host']) !== strtolower($home_host);
+    }
+}
+
+if (!function_exists('ka_get_external_link_target_attributes')) {
+    function ka_get_external_link_target_attributes($url): string {
+        return ka_is_external_url($url) ? ' target="_blank" rel="noopener noreferrer"' : '';
+    }
+}
+
+if (!function_exists('ka_get_related_course_id_for_coursedate')) {
+    function ka_get_related_course_id_for_coursedate($coursedate_id): int {
+        $coursedate_id = (int) $coursedate_id;
+        if ($coursedate_id <= 0) {
+            return 0;
+        }
+
+        $related_course_id = (int) get_post_meta($coursedate_id, 'ka_course_related_course', true);
+        if ($related_course_id > 0) {
+            return $related_course_id;
+        }
+
+        $main_course_id = (string) get_post_meta($coursedate_id, 'ka_main_course_id', true);
+        $location_id = (string) get_post_meta($coursedate_id, 'ka_location_id', true);
+        if ($main_course_id === '' || $location_id === '') {
+            return 0;
+        }
+
+        $course_posts = get_posts([
+            'post_type' => 'ka_course',
+            'post_status' => 'publish',
+            'posts_per_page' => -1,
+            'fields' => 'ids',
+            'meta_query' => [
+                'relation' => 'AND',
+                [
+                    'key' => 'ka_main_course_id',
+                    'value' => $main_course_id,
+                    'compare' => '=',
+                ],
+                [
+                    'key' => 'ka_location_id',
+                    'value' => $location_id,
+                    'compare' => '=',
+                ],
+            ],
+        ]);
+
+        if (empty($course_posts)) {
+            return 0;
+        }
+
+        foreach ($course_posts as $candidate_id) {
+            $is_parent = get_post_meta((int) $candidate_id, 'ka_is_parent_course', true);
+            if ($is_parent !== 'yes') {
+                return (int) $candidate_id;
+            }
+        }
+
+        return (int) $course_posts[0];
+    }
+}
+
+if (!function_exists('ka_get_external_sign_on_url_for_coursedate')) {
+    function ka_get_external_sign_on_url_for_coursedate($coursedate_id, $course_id = 0): string {
+        $coursedate_id = (int) $coursedate_id;
+        $course_id = (int) $course_id;
+
+        $candidate_course_ids = [];
+        if ($course_id > 0) {
+            $candidate_course_ids[] = $course_id;
+        }
+        if ($coursedate_id > 0) {
+            $related_course_id = ka_get_related_course_id_for_coursedate($coursedate_id);
+            if ($related_course_id > 0) {
+                $candidate_course_ids[] = $related_course_id;
+            }
+        }
+
+        $candidate_course_ids = array_values(array_unique(array_filter($candidate_course_ids)));
+        foreach ($candidate_course_ids as $candidate_course_id) {
+            $external_url = ka_get_course_external_sign_on_url($candidate_course_id);
+            if ($external_url !== '') {
+                return $external_url;
+            }
+        }
+
+        return '';
+    }
+}
+
+if (!function_exists('ka_get_coursedate_signup_url')) {
+    /**
+     * Resolve signup URL for a coursedate according to global external-link behavior.
+     *
+     * @param int $coursedate_id Coursedate post ID.
+     * @param int $course_id     Optional related course post ID.
+     * @return string
+     */
+    function ka_get_coursedate_signup_url($coursedate_id, $course_id = 0): string {
+        $coursedate_id = (int) $coursedate_id;
+        $course_id = (int) $course_id;
+
+        if ($coursedate_id <= 0 && $course_id <= 0) {
+            return '';
+        }
+
+        if (ka_use_external_link_for_signup()) {
+            $external_signup_url = ka_get_external_sign_on_url_for_coursedate($coursedate_id, $course_id);
+            if ($external_signup_url !== '') {
+                return $external_signup_url;
+            }
+        }
+
+        if ($coursedate_id > 0) {
+            return trim((string) get_post_meta($coursedate_id, 'ka_course_signup_url', true));
+        }
+
+        return '';
+    }
+}
+
+if (!function_exists('ka_resolve_course_list_links')) {
+    /**
+     * Resolve course card and signup URLs for list item templates.
+     *
+     * @param string $default_course_link Internal course URL already resolved in template.
+     * @param int    $coursedate_id       Coursedate post ID for context.
+     * @param int    $course_id           Related ka_course post ID for context.
+     * @param string $fallback_signup_url Existing signup URL from template logic.
+     * @return array{course_link:string,signup_url:string}
+     */
+    function ka_resolve_course_list_links($default_course_link, $coursedate_id = 0, $course_id = 0, $fallback_signup_url = ''): array {
+        $default_course_link = (string) $default_course_link;
+        $coursedate_id = (int) $coursedate_id;
+        $course_id = (int) $course_id;
+        $fallback_signup_url = trim((string) $fallback_signup_url);
+
+        $course_link = ka_get_course_list_course_link($default_course_link, $coursedate_id, $course_id);
+
+        $signup_url = '';
+        if ($coursedate_id > 0 || $course_id > 0) {
+            $signup_url = ka_get_coursedate_signup_url($coursedate_id, $course_id);
+        }
+        if ($signup_url === '' && $fallback_signup_url !== '') {
+            $signup_url = $fallback_signup_url;
+        }
+
+        return [
+            'course_link' => $course_link,
+            'signup_url' => $signup_url,
+        ];
+    }
+}
+
+if (!function_exists('ka_get_course_list_course_link')) {
+    /**
+     * Resolve course card URL for list views.
+     *
+     * @param string $default_course_link Current internal course URL.
+     * @param int    $coursedate_id       Optional coursedate context.
+     * @param int    $course_id           Optional course context.
+     * @return string
+     */
+    function ka_get_course_list_course_link($default_course_link, $coursedate_id = 0, $course_id = 0): string {
+        $default_course_link = (string) $default_course_link;
+
+        if (!ka_use_external_link_for_course_card()) {
+            return $default_course_link;
+        }
+
+        $external_url = ka_get_external_sign_on_url_for_coursedate((int) $coursedate_id, (int) $course_id);
+        if ($external_url !== '') {
+            return $external_url;
+        }
+
+        return $default_course_link;
+    }
+}
+
 /**
  * Retrieve data for the first available coursedate.
  * For use in single-course.php.
@@ -89,7 +309,7 @@ function get_selected_coursedate_data($related_coursedate) {
                 'time' => get_post_meta($selected_coursedate, 'ka_course_time', true),
                 'language' => get_post_meta($selected_coursedate, 'ka_course_language', true),
                 'button_text' => get_post_meta($selected_coursedate, 'ka_course_button_text', true),
-                'signup_url' => get_post_meta($selected_coursedate, 'ka_course_signup_url', true),
+                'signup_url' => ka_get_coursedate_signup_url($selected_coursedate),
                 'coursedatemissing' => $coursedatemissing,
                 'is_full' => $selected_is_full,
                 'show_registration' => get_post_meta($selected_coursedate, 'ka_course_showRegistrationForm', true),
@@ -178,7 +398,7 @@ function get_all_sorted_coursedates($related_coursedate) {
                 'duration' => get_post_meta($coursedate_id, 'ka_course_duration', true),
                 'time' => get_post_meta($coursedate_id, 'ka_course_time', true),
                 'button_text' => get_post_meta($coursedate_id, 'ka_course_button_text', true),
-                'signup_url' => get_post_meta($coursedate_id, 'ka_course_signup_url', true),
+                'signup_url' => ka_get_coursedate_signup_url($coursedate_id),
                 'missing_first_date' => empty($course_first_date),
                 'course_isFull' => $is_full, // Normalized boolean value
                 'course_location_freetext' => get_post_meta($coursedate_id, 'ka_course_location_freetext', true),
@@ -837,6 +1057,7 @@ function get_course_info_by_location($related_course_id, $main_course_id = null)
             : rtrim(KURSAG_PLUGIN_URL, '/') . '/assets/images/placeholder-kurs.jpg';
 
         $course_info = [
+            'id'         => $course_id,
             'title'      => get_the_title($course_id),
             'permalink'  => get_permalink($course_id),
             'thumbnail'  => get_the_post_thumbnail_url($course_id, 'thumbnail') ?: $placeholder_image,
@@ -883,6 +1104,7 @@ function get_course_info_by_location($related_course_id, $main_course_id = null)
             : rtrim(KURSAG_PLUGIN_URL, '/') . '/assets/images/placeholder-kurs.jpg';
 
         $course_info = [
+            'id'         => $course_id,
             'title'      => get_the_title($course_id),
             'permalink'  => get_permalink($course_id),
             'thumbnail'  => get_the_post_thumbnail_url($course_id, 'thumbnail') ?: $placeholder_image,

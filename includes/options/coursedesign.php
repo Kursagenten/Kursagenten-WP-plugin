@@ -402,7 +402,7 @@ class Designmaler {
                             </label>
                         </div>
                     </div>
-                    
+
                     <!-- Grid kolonner (kun når grid er valgt) -->
                     <div class="option-row grid-columns-settings" id="archive_grid_columns_settings" style="<?php echo (in_array($current_list, ['grid', 'simple-cards'])) ? '' : 'display: none;'; ?>">
                         <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Antall kolonner i rutenett:</label>
@@ -520,6 +520,39 @@ class Designmaler {
                                    value="<?php echo esc_attr(get_option('kursagenten_courses_per_page', 5)); ?>"
                                    min="1" 
                                    max="50">
+                        </div>
+                    </div>
+
+                    <div class="option-row">
+                        <label class="option-label">
+                            Oppførsel eksterne lenker:
+                            <span class="ka-tooltip" data-title="Ekstern lenke kan legges inn på kurset i feltet &quot;Link til påmeldingskjema:&quot; i Kursagenten. Dette vil åpne en valgfri side.">
+                                <i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i>
+                            </span>
+                        </label>
+                        <div class="option-input">
+                            <?php
+                            $external_link_course_card = get_option('kursagenten_external_link_course_card', 'yes');
+                            $external_link_signup = get_option('kursagenten_external_link_signup', 'yes');
+                            ?>
+                            <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start;">
+                                <label class="radio-label" style="margin:0;">
+                                    <input type="hidden" name="kursagenten_external_link_course_card" value="no">
+                                    <input type="checkbox"
+                                           name="kursagenten_external_link_course_card"
+                                           value="yes"
+                                           <?php checked($external_link_course_card, 'yes'); ?>>
+                                    Bruk ekstern lenke på kurstittel
+                                </label>
+                                <label class="radio-label" style="margin:0;">
+                                    <input type="hidden" name="kursagenten_external_link_signup" value="no">
+                                    <input type="checkbox"
+                                           name="kursagenten_external_link_signup"
+                                           value="yes"
+                                           <?php checked($external_link_signup, 'yes'); ?>>
+                                    Bruk ekstern lenke på påmeldingsknapp
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2365,6 +2398,28 @@ class Designmaler {
                     return ($value === 'yes') ? 'yes' : 'no';
                 },
                 'default'           => 'no',
+            ]
+        );
+        register_setting(
+            'design_option_group',
+            'kursagenten_external_link_course_card',
+            [
+                'type'              => 'string',
+                'sanitize_callback' => function ($value) {
+                    return ($value === 'yes') ? 'yes' : 'no';
+                },
+                'default'           => 'yes',
+            ]
+        );
+        register_setting(
+            'design_option_group',
+            'kursagenten_external_link_signup',
+            [
+                'type'              => 'string',
+                'sanitize_callback' => function ($value) {
+                    return ($value === 'yes') ? 'yes' : 'no';
+                },
+                'default'           => 'yes',
             ]
         );
         register_setting(

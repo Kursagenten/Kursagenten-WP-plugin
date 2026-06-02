@@ -117,6 +117,9 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     $location = $selected_coursedate_data['location'] ?? '';
     $location_freetext = $selected_coursedate_data['location_freetext'] ?? '';
     
+    $course_link_context_coursedate_id = (int) ($selected_coursedate_data['id'] ?? 0);
+    $course_link_context_course_id = (int) $course_id;
+
     // Sett opp link til kurset - finn lokasjonsundersiden basert på valgt kursdato
     $course_link = $course_id ? get_permalink($course_id) : '#'; // Fallback til hovedkurset
     
@@ -154,6 +157,7 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
             // Bruk lokasjonsundersiden hvis den finnes, ellers fallback til hovedkurset
             if (!empty($sub_course)) {
                 $course_link = get_permalink($sub_course[0]->ID);
+                $course_link_context_course_id = (int) $sub_course[0]->ID;
             }
         }
     }
@@ -196,7 +200,7 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     $location = get_post_meta($course_id, 'ka_course_location', true);
     $location_freetext = get_post_meta($course_id, 'ka_course_location_freetext', true);
     $location_room = get_post_meta($course_id, 'ka_course_location_room', true);
-    $signup_url = get_post_meta($course_id, 'ka_course_signup_url', true);
+    $signup_url = ka_get_coursedate_signup_url($course_id);
     $show_registration_meta = get_post_meta($course_id, 'ka_course_showRegistrationForm', true);
     $button_text = get_post_meta($course_id, 'ka_course_button_text', true);
     $is_full_meta = get_post_meta($course_id, 'ka_course_isFull', true);
@@ -208,10 +212,13 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     $main_course_id = get_post_meta($course_id, 'ka_main_course_id', true);
     $day_schedules_count = (int) get_post_meta($course_id, 'ka_course_day_schedules_count', true);
     $day_schedules_coursedate_id = (int) $course_id;
+    $course_link_context_coursedate_id = (int) $course_id;
+    $course_link_context_course_id = 0;
     $related_course_info = get_course_info_by_location($related_course_id, $main_course_id);
 
     if ($related_course_info) {
         $course_link = esc_url($related_course_info['permalink']);
+        $course_link_context_course_id = (int) ($related_course_info['id'] ?? 0);
         $featured_image_thumb = $related_course_info['thumbnail'] ?: $placeholder_image;
     } else {
         // Hvis ingen relatert kursinfo, bruk plassholderbilde og fallback-data
@@ -224,6 +231,15 @@ $course_count = $course_count ?? 0;
 $item_class = $course_count === 1 ? ' single-item' : '';
 $list_display = kursagenten_get_list_display_fields($args);
 $instructor_links = kursagenten_get_course_instructor_links((int) $course_id);
+$list_item_links = ka_resolve_course_list_links(
+    (string) $course_link,
+    (int) ($course_link_context_coursedate_id ?? 0),
+    (int) ($course_link_context_course_id ?? 0),
+    (string) ($signup_url ?? '')
+);
+$course_link = $list_item_links['course_link'];
+$signup_url = $list_item_links['signup_url'];
+$course_link_target_attrs = ka_get_external_link_target_attributes($course_link);
 
 $resolved_taxonomy = '';
 if (isset($args['taxonomy']) && is_string($args['taxonomy'])) {
@@ -291,7 +307,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
         <div class="compact-course-info-wrapper">
             <?php if ($show_images === 'yes') : ?>
                 <div class="compact-course-image">
-                    <a href="<?php echo esc_url($course_link); ?>">
+                    <a href="<?php echo esc_url($course_link); ?>"<?php echo $course_link_target_attrs; ?>>
                         <img src="<?php echo esc_url($featured_image_thumb); ?>" alt="<?php echo esc_attr($course_title); ?>">
                     </a>
                 </div>
@@ -299,7 +315,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
             
              <div class="compact-course-info">
                  <h3 class="compact-course-title">
-                     <a href="<?php echo esc_url($course_link); ?>">
+                     <a href="<?php echo esc_url($course_link); ?>"<?php echo $course_link_target_attrs; ?>>
                          <?php echo esc_html($course_title); ?>
                      </a>
                  </h3>
@@ -426,7 +442,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
         
         <div class="compact-course-actions">
             <?php if (!$show_signup_link_only) : ?>
-                <a href="<?php echo esc_url($course_link); ?>" class="compact-btn compact-btn-secondary">
+                <a href="<?php echo esc_url($course_link); ?>"<?php echo $course_link_target_attrs; ?> class="compact-btn compact-btn-secondary">
                     Les mer
                 </a>
             <?php endif; ?>
@@ -490,7 +506,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                 $cd_location = get_post_meta($coursedate->ID, 'ka_course_location', true);
                 $cd_freetext = get_post_meta($coursedate->ID, 'ka_course_location_freetext', true);
                 $cd_first_date = get_post_meta($coursedate->ID, 'ka_course_first_date', true);
-                $cd_signup_url = get_post_meta($coursedate->ID, 'ka_course_signup_url', true);
+                $cd_signup_url = ka_get_coursedate_signup_url($coursedate->ID);
                 
                 if (!empty($cd_location) && !empty($cd_first_date)) {
                     $key = $cd_location;

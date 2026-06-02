@@ -1,5 +1,5 @@
 ## 1.1.23 - 2026-06-02
-- Lagt til: **Utseende venstre filterkolonne** under Kursdesign → Filterinnstillinger: avrundet søkefelt med ikon, og valgfri filterboks med «Velg farger» for bakgrunn/tekstfarge (tekstfarge gjelder hele filterinnholdet, f.eks. lys tekst på mørk bakgrunn). Wrapper-klassen `ka-has-filter-sidebar-box` på `#ka` for enkel CSS uten `:has()`.
+- Lagt til: **Utseende venstre filterkolonne** under Kursdesign → Filterinnstillinger: avrundet søkefelt med ikon, og valgfri filterboks med «Velg farger» for bakgrunn/tekstfarge (tekstfarge gjelder hele filterinnholdet, f.eks. lys tekst på mørk bakgrunn).
 - Forbedring: Finere tagger/knapper (pill-form, bedre hover og aktiv tilstand) for filter i venstre kolonne når visning er «Knapper».
 - Lagt til: **Gruppering i Enkle kort**. Ny innstilling i Kursdesign > 'Kursliste med filter' og 'Taksonomisider' for å velge *Ett kort per kurs (neste dato)* eller *Ett kort per kurs og lokasjon (neste dato per lokasjon)*. 
 - Forbedring: Når *kurs og lokasjon* velges i admin, krysses både *Sted* og *Fritekst sted* automatisk av i *Vis i listen*, siden lokasjon er nødvendig for å skille kortene (inkl. ulike fritekst-steder på samme sted).

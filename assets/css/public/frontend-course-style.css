@@ -1167,6 +1167,7 @@ text-align: center;
   margin: 0.2em;
   background: white;
   border: 1px solid var(--ka-color-lighter);
+  border-color: color-mix(in srgb, var(--ka-color) 10%, #fbfbfb);
   color: var(--ka-color-filter);
     border-radius: 5px;
     font-size: var(--ka-filter-font-size);
@@ -1231,7 +1232,7 @@ text-align: center;
 #ka .left-filter-section .filter-search-wrapper.filter-search-pill {
   position: relative;
   display: block;
-  margin: 0 0 0.35rem;
+  margin: 0 0 1rem;
   /* Pull 0.5rem left; right edge stays flush with column content */
   margin-left: -0.5rem;
   width: calc(100% + 0.5rem);

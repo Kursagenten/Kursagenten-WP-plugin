@@ -159,6 +159,14 @@ $featured_image_thumb = $featured_image_thumb ?: $placeholder_image;
 // Set up link to course. Course grouping links to the parent course; course+location
 // grouping links to the subcourse for that location (resolved in $course_id above).
 $course_link = $course_id ? get_permalink($course_id) : '#';
+$list_item_links = ka_resolve_course_list_links(
+    (string) $course_link,
+    (int) ($selected_coursedate_data['id'] ?? 0),
+    (int) $course_id,
+    ''
+);
+$course_link = $list_item_links['course_link'];
+$course_link_target_attrs = ka_get_external_link_target_attributes($course_link);
 
 // Get data from first available coursedate
 $first_course_date = $selected_coursedate_data['first_date'] ?? '';
@@ -218,7 +226,7 @@ $view_type_class = ' view-type-maincourses';
                   // whole card in an <a> would nest <a>/<button> inside <a> (invalid
                   // HTML), which browsers "repair" by splitting the anchor and breaking
                   // the layout. ?>
-            <a href="<?php echo esc_url($course_link); ?>" class="simple-card-link" title="<?php echo esc_attr($course_title); ?>" aria-label="Se kurs: <?php echo esc_attr($course_title); ?>"></a>
+            <a href="<?php echo esc_url($course_link); ?>"<?php echo $course_link_target_attrs; ?> class="simple-card-link" title="<?php echo esc_attr($course_title); ?>" aria-label="Se kurs: <?php echo esc_attr($course_title); ?>"></a>
             <?php if ($show_images === 'yes') : ?>
             <!-- Image area - left side with same border-radius -->
             <div class="simple-card-image">

@@ -17,10 +17,42 @@ window.initSlideInPanel = function() {
         element.addEventListener('click', handleSlideInClick);
     });
 
+    function decodeHtmlEntities(value) {
+        const textarea = document.createElement('textarea');
+        textarea.innerHTML = value;
+        return textarea.value;
+    }
+
+    function shouldOpenInSlideIn(url) {
+        if (!url) {
+            return true;
+        }
+
+        try {
+            const parsedUrl = new URL(url, window.location.origin);
+            const host = parsedUrl.hostname.toLowerCase();
+
+            // Keep legacy slide-in behavior only for embed URLs.
+            return host === 'embed.kursagenten.no' || host.endsWith('.embed.kursagenten.no');
+        } catch (error) {
+            // If URL parsing fails, keep existing behavior.
+            return true;
+        }
+    }
+
     function handleSlideInClick(e) {
         e.preventDefault();
         e.stopPropagation(); // Prevent bubbling, especially important for buttons in accordion
-        const url = this.dataset.url || defaultIframeURL;
+
+        const rawUrl = (this.dataset.url || '').trim();
+        const decodedUrl = decodeHtmlEntities(rawUrl);
+        const url = decodedUrl || defaultIframeURL;
+
+        if (decodedUrl && !shouldOpenInSlideIn(decodedUrl)) {
+            window.open(decodedUrl, '_blank', 'noopener');
+            return;
+        }
+
         iframe.src = url;
         panel.classList.add('active');
         overlay.classList.add('active');
