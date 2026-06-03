@@ -279,7 +279,10 @@
 		
 		kaLog('calling fetchCourses with:', JSON.stringify(updatedFilters));
 		updateURLParams(updatedFilters);
-		fetchCourses(updatedFilters);
+		// Pass a copy to fetchCourses: it mutates its argument with internal transport
+		// params (internal_taxonomy, internal_is_taxonomy_page, ...) that must never leak
+		// into the chip/reset rendering below.
+		fetchCourses({ ...updatedFilters });
 		updateActiveFiltersList(updatedFilters);
 		toggleResetFiltersButton(updatedFilters);
 
@@ -780,7 +783,12 @@
 		// when the site-wide default is OFF (otherwise the chip cannot be meaningfully
 		// removed without toggling the default, and the reset behaviour takes care of it).
 		const cleaned = { ...filters };
-		['st', 'sc', 'ka_course_location', 'ka_coursecategory', 'internal_list_type', 'internal_simple_cards_grouping', 'ledig'].forEach(k => { if (cleaned[k] !== undefined) delete cleaned[k]; });
+		['st', 'sc', 'ka_course_location', 'ka_coursecategory', 'ledig'].forEach(k => { if (cleaned[k] !== undefined) delete cleaned[k]; });
+		// Strip all internal transport params (internal_list_type, internal_taxonomy,
+		// internal_is_taxonomy_page, internal_buttons_display, internal_shortcode_vis, ...).
+		// On taxonomy pages these are injected into the filter object by fetchCourses and
+		// must never render as active-filter chips.
+		Object.keys(cleaned).forEach(k => { if (k.indexOf('internal_') === 0) delete cleaned[k]; });
 
 		// Render a dedicated chip for "Ledige plasser" when the filter is actively on
 		// and the default is OFF. Clicking the X turns the filter off (ledig=null).
@@ -970,7 +978,7 @@
 		const $resetButton = $('#reset-filters');
         const $activeFiltersContainer = $('#active-filters-container');
 		const hasActiveFilters = Object.keys(filters).some(key =>
-			key !== 'nonce' && key !== 'action' && key !== 'sort' && key !== 'order' && key !== 'per_page' && key !== 'side' && key !== 'current_url' && key !== 'st' && key !== 'sc' && key !== 'internal_list_type' && key !== 'internal_simple_cards_grouping' &&
+			key !== 'nonce' && key !== 'action' && key !== 'sort' && key !== 'order' && key !== 'per_page' && key !== 'side' && key !== 'current_url' && key !== 'st' && key !== 'sc' && key.indexOf('internal_') !== 0 &&
 			filters[key] && filters[key].length > 0 &&
 			// Ekskluder kortkode-parametere fra aktive filtre
 			!(typeof kurskalender_data !== 'undefined' && kurskalender_data.has_shortcode_filters && 

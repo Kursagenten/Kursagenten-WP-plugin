@@ -259,7 +259,7 @@ border-radius: 10px;
 
 /* --Icons */
 /**********/
-.kag i.ka-icon {
+#ka i.ka-icon {
 display: inline-block;
 width: var(--ka-font-base);
     height: var(--ka-font-base);
@@ -1277,6 +1277,7 @@ text-align: center;
 @media screen and (min-width: 769px) {
   #ka.ka-has-filter-sidebar-box .course-grid.col-1-4 {
     grid-template-columns: 1fr 3fr;
+    column-gap: 2vw;
   }
 }
 #ka .left-filter-section.filter-sidebar-box {

@@ -640,6 +640,58 @@ function kursagenten_get_list_display_fields_enabled_list($context_base = 'archi
 }
 
 /**
+ * Canonical list of toggleable meta fields shown in the single course
+ * "Neste kurs" (iconlist medium) area.
+ *
+ * @return string[]
+ */
+function kursagenten_get_single_display_field_keys() {
+    return ['first_date', 'last_date', 'day_schedules', 'time', 'duration', 'language', 'price', 'room'];
+}
+
+/**
+ * Read enabled meta fields for the single course "Neste kurs" area.
+ *
+ * Stored as a comma-separated string in `kursagenten_single_list_display_fields`.
+ * When never saved, defaults to all fields except `day_schedules`, which is
+ * inherited from the archive "Vis i listen" setting (the strongest indicator
+ * for whether course days should be shown). Once saved explicitly, the saved
+ * value overrides the inherited default.
+ *
+ * @return string[] Enabled field keys in canonical order.
+ */
+function kursagenten_get_single_display_fields_enabled_list() {
+    $field_keys = kursagenten_get_single_display_field_keys();
+
+    // Sentinel default distinguishes "never saved" from "saved as empty".
+    $sentinel = '__ka_unset__';
+    $saved = get_option('kursagenten_single_list_display_fields', $sentinel);
+
+    if ($saved === $sentinel) {
+        // Default: everything on except course days, which mirrors the archive
+        // "Vis i listen" setting so single pages follow the list configuration.
+        $defaults = ['first_date', 'last_date', 'time', 'duration', 'language', 'price', 'room'];
+        if (function_exists('kursagenten_get_list_display_fields_enabled_list')) {
+            $archive_enabled = kursagenten_get_list_display_fields_enabled_list('archive');
+            if (in_array('day_schedules', $archive_enabled, true)) {
+                $defaults[] = 'day_schedules';
+            }
+        }
+        return array_values(array_intersect($field_keys, $defaults));
+    }
+
+    if (is_array($saved)) {
+        $saved = implode(',', $saved);
+    }
+    if (!is_string($saved)) {
+        return [];
+    }
+
+    $parts = array_filter(array_map('trim', explode(',', $saved)));
+    return array_values(array_intersect($field_keys, $parts));
+}
+
+/**
  * Whether a list item has any location/room data to show.
  */
 function kursagenten_list_has_location_data($location, $location_freetext = '', $location_room = '') {

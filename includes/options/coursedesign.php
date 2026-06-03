@@ -532,8 +532,8 @@ class Designmaler {
                         </label>
                         <div class="option-input">
                             <?php
-                            $external_link_course_card = get_option('kursagenten_external_link_course_card', 'yes');
-                            $external_link_signup = get_option('kursagenten_external_link_signup', 'yes');
+                            $external_link_course_card = get_option('kursagenten_external_link_course_card', 'no');
+                            $external_link_signup = get_option('kursagenten_external_link_signup', 'no');
                             ?>
                             <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start;">
                                 <label class="radio-label" style="margin:0;">
@@ -988,6 +988,8 @@ class Designmaler {
                             </label>
                         </div>
                     </div>
+
+                    <?php $this->render_single_display_field_checkboxes(); ?>
                 </div>
 
                 <!-- Taxonomi -->
@@ -2408,7 +2410,7 @@ class Designmaler {
                 'sanitize_callback' => function ($value) {
                     return ($value === 'yes') ? 'yes' : 'no';
                 },
-                'default'           => 'yes',
+                'default'           => 'no',
             ]
         );
         register_setting(
@@ -2419,7 +2421,7 @@ class Designmaler {
                 'sanitize_callback' => function ($value) {
                     return ($value === 'yes') ? 'yes' : 'no';
                 },
-                'default'           => 'yes',
+                'default'           => 'no',
             ]
         );
         register_setting(
@@ -2678,6 +2680,34 @@ class Designmaler {
                 )
             );
         }
+
+        // Single course "Neste kurs" meta fields use a different field set than
+        // the list/taxonomy cards, so they get their own allowed list + setting.
+        $single_allowed_fields = function_exists('kursagenten_get_single_display_field_keys')
+            ? kursagenten_get_single_display_field_keys()
+            : ['first_date', 'last_date', 'day_schedules', 'time', 'duration', 'language', 'price', 'room'];
+        $sanitize_single_fields = function ($value) use ($single_allowed_fields) {
+            if (is_array($value)) {
+                $value = implode(',', $value);
+            }
+
+            if (!is_string($value)) {
+                return '';
+            }
+
+            $parts = array_filter(array_map('trim', explode(',', $value)));
+            $kept = array_values(array_intersect($parts, $single_allowed_fields));
+
+            return implode(',', $kept);
+        };
+        register_setting(
+            'design_option_group',
+            'kursagenten_single_list_display_fields',
+            array(
+                'type' => 'string',
+                'sanitize_callback' => $sanitize_single_fields,
+            )
+        );
     }
 
     /**
@@ -2792,6 +2822,74 @@ class Designmaler {
                 <p style="margin-top:8px;">
                     <button type="button" class="button button-secondary button-small ka-reset-list-display-defaults">
                         Bruk standardvalg for valgt listedesign
+                    </button>
+                </p>
+            </div>
+        </div>
+        <?php
+    }
+
+    /**
+     * Render the "Vis i Neste kurs"-checkbox row for single course pages.
+     *
+     * Mirrors the list/taxonomy "Vis i listen" markup (and reuses the same JS that
+     * syncs checkboxes into a hidden input), but uses the single-specific field set
+     * shown in the "Neste kurs" (iconlist medium) area of the single templates.
+     */
+    private function render_single_display_field_checkboxes() {
+        $fields = array(
+            'first_date'    => 'Startdato',
+            'last_date'     => 'Sluttdato',
+            'day_schedules' => 'Antall kursdager',
+            'time'          => 'Tid',
+            'duration'      => 'Varighet',
+            'language'      => 'Språk',
+            'price'         => 'Pris',
+            'room'          => 'Kurslokale',
+        );
+
+        $enabled_fields = function_exists('kursagenten_get_single_display_fields_enabled_list')
+            ? kursagenten_get_single_display_fields_enabled_list()
+            : array_keys($fields);
+
+        // Defaults for the "Bruk standardvalg"-button: all fields except course days,
+        // plus course days when it is enabled in the archive "Vis i listen" setting.
+        $default_fields = ['first_date', 'last_date', 'time', 'duration', 'language', 'price', 'room'];
+        if (function_exists('kursagenten_get_list_display_fields_enabled_list')) {
+            $archive_enabled = kursagenten_get_list_display_fields_enabled_list('archive');
+            if (in_array('day_schedules', $archive_enabled, true)) {
+                $default_fields[] = 'day_schedules';
+            }
+        }
+        $default_fields = array_values(array_intersect(array_keys($fields), $default_fields));
+
+        $option_key = 'kursagenten_single_list_display_fields';
+        $input_id = 'ka_list_display_single';
+        ?>
+        <div class="option-row ka-single-plugin-design-only">
+            <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Vis i «Neste kurs»: <span class="ka-tooltip" data-title="Velg hvilke metafelt som vises i «Neste kurs»-feltet på enkeltkurssider. «Antall kursdager» følger som standard innstillingen i Kursdesign → Vis i listen, men kan overstyres her. Avskrudd «Antall kursdager» skjuler også kursdager-lenken i detaljvisningen («Mer info»)."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
+            <div class="option-input">
+                <input type="hidden"
+                       id="<?php echo esc_attr($input_id); ?>"
+                       name="<?php echo esc_attr($option_key); ?>"
+                       value="<?php echo esc_attr(implode(',', $enabled_fields)); ?>">
+                <div class="ka-list-display-fields"
+                     style="display: flex; flex-wrap: wrap; gap: 20px;"
+                     data-target="#<?php echo esc_attr($input_id); ?>"
+                     data-defaults="<?php echo esc_attr(wp_json_encode(['standard' => $default_fields])); ?>">
+                    <?php foreach ($fields as $field_key => $field_label) : ?>
+                        <label class="checkbox-label ka-list-display-field">
+                            <input type="checkbox"
+                                   class="ka-list-display-checkbox"
+                                   value="<?php echo esc_attr($field_key); ?>"
+                                   <?php checked(in_array($field_key, $enabled_fields, true)); ?>>
+                            <?php echo esc_html($field_label); ?>
+                        </label>
+                    <?php endforeach; ?>
+                </div>
+                <p style="margin-top:8px;">
+                    <button type="button" class="button button-secondary button-small ka-reset-list-display-defaults">
+                        Bruk standardvalg
                     </button>
                 </p>
             </div>

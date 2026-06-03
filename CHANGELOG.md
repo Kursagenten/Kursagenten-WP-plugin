@@ -5,6 +5,7 @@
 - Forbedring: Når *kurs og lokasjon* velges i admin, krysses både *Sted* og *Fritekst sted* automatisk av i *Vis i listen*, siden lokasjon er nødvendig for å skille kortene (inkl. ulike fritekst-steder på samme sted).
 - Lagt til: Ved gruppering *kurs og lokasjon* vises nå lokasjonen (med stedsikon) i «Neste kurs»-feltet når en kursdato mangler, forutsatt at *Sted* er aktivert i *Vis i listen*. Fritekst-sted vises nå også på disse kortene (f.eks. «Nittedal (Flammen)»), på samme måte som på kort med dato – slik at to kort for samme sted men ulik fritekst ikke lenger ser identiske ut.
 - Lagt til: Tooltip på meta-feltene påmeldingsfrist, rom/lokale og kursdager for å gi forklaring der det ikke er intuitivt hva feltet betyr.
+- Lagt til: **Vis i «Neste kurs»** under Kursdesign → Enkeltkurs – en avkrysningsliste (tilsvarende *Vis i listen* for kurslister) som styrer hvilke metafelt (startdato, sluttdato, antall kursdager, tid, varighet, språk, pris, kurslokale) som vises i «Neste kurs»-feltet på enkeltkurssider. *Antall kursdager* følger som standard innstillingen i *Vis i listen* (archive), men kan overstyres her. Skrus *Antall kursdager* av, skjules kursdager-lenken både i «Neste kurs» og i detaljvisningen («Mer info»). Gjelder enkeltkurs-designene Standard og Bokser.
 
 ## 1.1.22 - 2026-05-26
 - Lagt til: Mulighet til å fjerne taksonomi-slug under SEO innstillinger. Eksempel: webside.no/kurskategori/kurset -> webside.no/kurset
