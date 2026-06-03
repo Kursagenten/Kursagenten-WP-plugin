@@ -117,7 +117,7 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     $location = $selected_coursedate_data['location'] ?? '';
     $location_freetext = $selected_coursedate_data['location_freetext'] ?? '';
     
-    $course_link_context_coursedate_id = (int) ($selected_coursedate_data['id'] ?? 0);
+    $course_link_context_coursedate_id = (int) ($selected_coursedate_data['id'] ?? $coursedate_id);
     $course_link_context_course_id = (int) $course_id;
 
     // Sett opp link til kurset - finn lokasjonsundersiden basert på valgt kursdato

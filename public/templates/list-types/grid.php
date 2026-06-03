@@ -116,7 +116,7 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     $featured_image_card = $course_id ? get_the_post_thumbnail_url($course_id, 'medium') : '';
     $featured_image_card = $featured_image_card ?: $placeholder_image;
     
-    $course_link_context_coursedate_id = (int) ($selected_coursedate_data['id'] ?? 0);
+    $course_link_context_coursedate_id = (int) ($selected_coursedate_data['id'] ?? $coursedate_id);
     $course_link_context_course_id = (int) $course_id;
 
     // Sett opp link til kurset - finn lokasjonsundersiden basert på valgt kursdato

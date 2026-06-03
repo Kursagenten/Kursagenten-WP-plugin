@@ -20,9 +20,116 @@ if (!function_exists('ka_use_external_link_for_signup')) {
 
 if (!function_exists('ka_use_external_link_for_course_card')) {
     function ka_use_external_link_for_course_card(): bool {
-        return get_option('kursagenten_external_link_course_card', 'no') === 'yes';
+        return get_option('kursagenten_external_link_course_card', 'yes') === 'yes';
     }
 }
+
+if (!function_exists('ka_course_list_links_debug_enabled')) {
+    function ka_course_list_links_debug_enabled(): bool {
+        if (!isset($_GET['ka_debug_links']) || (string) $_GET['ka_debug_links'] !== '1') {
+            return false;
+        }
+
+        return current_user_can('manage_options');
+    }
+}
+
+if (!function_exists('ka_collect_course_list_links_debug')) {
+    /**
+     * Collect per-row link resolution data when ?ka_debug_links=1 (admins only).
+     */
+    function ka_collect_course_list_links_debug(
+        string $default_course_link,
+        int $coursedate_id,
+        int $course_id,
+        string $fallback_signup_url,
+        array $resolved_links
+    ): void {
+        if (!ka_course_list_links_debug_enabled()) {
+            return;
+        }
+
+        $candidate_course_ids = [];
+        if ($course_id > 0) {
+            $candidate_course_ids[] = $course_id;
+        }
+        if ($coursedate_id > 0) {
+            $related_course_id = ka_get_related_course_id_for_coursedate($coursedate_id);
+            if ($related_course_id > 0) {
+                $candidate_course_ids[] = $related_course_id;
+            }
+            $main_course_id = (string) get_post_meta($coursedate_id, 'ka_main_course_id', true);
+            if ($main_course_id !== '') {
+                $sibling_ids = get_posts([
+                    'post_type' => 'ka_course',
+                    'post_status' => 'any',
+                    'posts_per_page' => -1,
+                    'fields' => 'ids',
+                    'meta_query' => [
+                        [
+                            'key' => 'ka_main_course_id',
+                            'value' => $main_course_id,
+                            'compare' => '=',
+                        ],
+                    ],
+                ]);
+                foreach ($sibling_ids as $sibling_id) {
+                    $candidate_course_ids[] = (int) $sibling_id;
+                }
+            }
+        }
+
+        $candidate_course_ids = array_values(array_unique(array_filter($candidate_course_ids)));
+        $external_by_course = [];
+        foreach ($candidate_course_ids as $candidate_id) {
+            $external_by_course[$candidate_id] = ka_get_course_external_sign_on_url($candidate_id);
+        }
+
+        if (!isset($GLOBALS['ka_course_list_links_debug'])) {
+            $GLOBALS['ka_course_list_links_debug'] = [];
+        }
+
+        $GLOBALS['ka_course_list_links_debug'][] = [
+            'coursedate_id' => $coursedate_id,
+            'course_id' => $course_id,
+            'option_course_card' => get_option('kursagenten_external_link_course_card', '__not_set__'),
+            'option_signup' => get_option('kursagenten_external_link_signup', '__not_set__'),
+            'use_external_course_card' => ka_use_external_link_for_course_card(),
+            'use_external_signup' => ka_use_external_link_for_signup(),
+            'default_course_link' => $default_course_link,
+            'resolved_course_link' => $resolved_links['course_link'] ?? '',
+            'resolved_signup_url' => $resolved_links['signup_url'] ?? '',
+            'fallback_signup_url' => $fallback_signup_url,
+            'candidate_course_ids' => $candidate_course_ids,
+            'external_by_course' => $external_by_course,
+            'external_used' => ka_get_external_sign_on_url_for_coursedate($coursedate_id, $course_id),
+        ];
+    }
+}
+
+if (!function_exists('ka_render_course_list_links_debug_footer')) {
+    function ka_render_course_list_links_debug_footer(): void {
+        if (!ka_course_list_links_debug_enabled()) {
+            return;
+        }
+
+        $entries = $GLOBALS['ka_course_list_links_debug'] ?? [];
+        if (!is_array($entries) || $entries === []) {
+            return;
+        }
+
+        echo '<div class="ka-debug-links" style="margin:1rem;padding:1rem;background:#fff3cd;border:1px solid #856404;font:12px/1.4 monospace;max-width:100%;overflow:auto;">';
+        echo '<p style="margin:0 0 .5rem;font-family:inherit;font-weight:bold;">Kursagenten – lenkedebug (?ka_debug_links=1)</p>';
+        foreach ($entries as $index => $entry) {
+            echo '<pre style="margin:0 0 1rem;white-space:pre-wrap;">';
+            echo esc_html(wp_json_encode($entry, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+            echo '</pre>';
+        }
+        echo '</div>';
+    }
+}
+
+add_action('wp_footer', 'ka_render_course_list_links_debug_footer', 999);
 
 if (!function_exists('ka_get_course_external_sign_on_url')) {
     function ka_get_course_external_sign_on_url($course_id): string {
@@ -131,6 +238,28 @@ if (!function_exists('ka_get_external_sign_on_url_for_coursedate')) {
             }
         }
 
+        if ($coursedate_id > 0) {
+            $main_course_id = (string) get_post_meta($coursedate_id, 'ka_main_course_id', true);
+            if ($main_course_id !== '') {
+                $sibling_ids = get_posts([
+                    'post_type' => 'ka_course',
+                    'post_status' => 'any',
+                    'posts_per_page' => -1,
+                    'fields' => 'ids',
+                    'meta_query' => [
+                        [
+                            'key' => 'ka_main_course_id',
+                            'value' => $main_course_id,
+                            'compare' => '=',
+                        ],
+                    ],
+                ]);
+                foreach ($sibling_ids as $sibling_id) {
+                    $candidate_course_ids[] = (int) $sibling_id;
+                }
+            }
+        }
+
         $candidate_course_ids = array_values(array_unique(array_filter($candidate_course_ids)));
         foreach ($candidate_course_ids as $candidate_course_id) {
             $external_url = ka_get_course_external_sign_on_url($candidate_course_id);
@@ -200,10 +329,20 @@ if (!function_exists('ka_resolve_course_list_links')) {
             $signup_url = $fallback_signup_url;
         }
 
-        return [
+        $resolved = [
             'course_link' => $course_link,
             'signup_url' => $signup_url,
         ];
+
+        ka_collect_course_list_links_debug(
+            $default_course_link,
+            $coursedate_id,
+            $course_id,
+            $fallback_signup_url,
+            $resolved
+        );
+
+        return $resolved;
     }
 }
 
