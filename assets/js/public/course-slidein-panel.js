@@ -4,7 +4,7 @@ window.initSlideInPanel = function() {
     const overlay = document.getElementById('slidein-overlay');
     const iframe = document.getElementById('kursagenten-iframe');
 
-    const defaultIframeURL = '<?php echo esc_js(get_post_meta(get_the_ID(), "course_signup_url", true) ?: get_post_meta(get_the_ID(), "kursliste", true)); ?>' + '&gtmevent=add_to_cart';
+    const defaultIframeURL = '<?php echo esc_js(get_post_meta(get_the_ID(), "course_signup_url", true) ?: get_post_meta(get_the_ID(), "kursliste", true)); ?>';
 
     if (!panel || !overlay || !iframe) {
         console.log('Required slidein panel elements not found');

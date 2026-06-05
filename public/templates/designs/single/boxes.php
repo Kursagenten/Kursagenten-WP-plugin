@@ -200,7 +200,7 @@ $single_display_fields = function_exists('kursagenten_get_single_display_fields_
  *
  * @param string $extra_class Ekstra klassenavn på wrapperen.
  */
-$render_courselist = static function ($extra_class = '') use ($all_coursedates, $price_posttext, $show_instructors) {
+$render_courselist = static function ($extra_class = '') use ($all_coursedates, $price_posttext, $show_instructors, $single_display_fields) {
     if (empty($all_coursedates)) {
         return;
     }

@@ -533,7 +533,7 @@ function create_or_update_course_date($data, $post_id, $main_course_id, $locatio
         $courseprovider = get_option('kag_kursinnst_option_name');
         $provider_id = !empty($courseprovider['ka_tilbyderID']) ? $courseprovider['ka_tilbyderID'] : '';
         $provider_theme = !empty($courseprovider['ka_temaKurs']) ? $courseprovider['ka_temaKurs'] : 'standard';
-        $course_signup_url = "https://embed.kursagenten.no/$provider_id/skjema/$location_id/$schedule_id?theme=$provider_theme&gtmevent=add_to_cart";
+        $course_signup_url = "https://embed.kursagenten.no/$provider_id/skjema/$location_id/$schedule_id?theme=$provider_theme";
 
         // Set up meta fields for course date
         $meta_input = [];
