@@ -74,7 +74,7 @@
   width: 100%;              /* fyll hele tilgjengelige bredden */
   flex: 1 1 auto;           /* strekker seg */
   min-width: 0;             /* lar innholdet wraps/ellipsis */
-  align-items: flex-start;
+  align-items: center;
   text-decoration: none;
   color: inherit;
   /* Om temaet overstyrer, bruk !important på display/width/flex */
@@ -144,7 +144,6 @@
     align-items: center;
     gap: 0.5rem;
     row-gap: 2px;
-    margin-top: 4px;
     flex-wrap: wrap;
     color: var(--heading-color, #1a1a1a);
     text-decoration: none;

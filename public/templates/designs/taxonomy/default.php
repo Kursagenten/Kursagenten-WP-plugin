@@ -310,7 +310,7 @@ do_action('ka_taxonomy_header_before', $term);
             <?php if ($view_type === 'all_coursedates'): ?>
                 <!-- Bruk [kursliste] shortcode - den håndterer alt -->
                 <div class="taxonomy-coursedates">
-                    <h2>Tilgjengelige kurs</h2>
+                    <h2>Kursoversikt</h2>
                     <?php
                     // Hook before the course list
                     do_action('ka_courselist_before', $term);
@@ -325,7 +325,7 @@ do_action('ka_taxonomy_header_before', $term);
             <?php elseif ($query && $query->have_posts()): ?>
                 <!-- Vis hovedkurs med enkel kategori-filter -->
                 <div class="taxonomy-coursedates">
-                    <h2>Tilgjengelige kurs</h2>
+                    <h2>Kursoversikt</h2>
                     <?php
                     // Hook before the course list (above filters and pagination)
                     do_action('ka_courselist_before', $term);

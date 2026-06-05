@@ -692,6 +692,78 @@ function kursagenten_get_single_display_fields_enabled_list() {
 }
 
 /**
+ * Whether the single course "Neste kurs" area has any visible meta-field items.
+ *
+ * Respects Kursdesign → Enkeltkurs → «Vis i Neste kurs» and actual meta values
+ * on the selected coursedate. The signup link is not counted; the whole block
+ * (heading + link) is hidden when no enabled fields have data.
+ *
+ * @param array<string,mixed> $selected_coursedate_data From get_selected_coursedate_data().
+ * @param string[]            $single_display_fields      Enabled field keys.
+ * @return bool
+ */
+function kursagenten_single_has_next_course_display_items(
+    array $selected_coursedate_data,
+    array $single_display_fields
+): bool {
+    if (empty($selected_coursedate_data)) {
+        return false;
+    }
+
+    if (
+        in_array('first_date', $single_display_fields, true)
+        && !empty($selected_coursedate_data['first_date'])
+    ) {
+        return true;
+    }
+    if (
+        in_array('last_date', $single_display_fields, true)
+        && !empty($selected_coursedate_data['last_date'])
+    ) {
+        return true;
+    }
+    if (
+        in_array('day_schedules', $single_display_fields, true)
+        && !empty($selected_coursedate_data['day_schedules_count'])
+        && (int) $selected_coursedate_data['day_schedules_count'] >= 2
+    ) {
+        return true;
+    }
+    if (
+        in_array('time', $single_display_fields, true)
+        && !empty($selected_coursedate_data['time'])
+    ) {
+        return true;
+    }
+    if (
+        in_array('duration', $single_display_fields, true)
+        && !empty($selected_coursedate_data['duration'])
+    ) {
+        return true;
+    }
+    if (
+        in_array('language', $single_display_fields, true)
+        && !empty($selected_coursedate_data['language'])
+    ) {
+        return true;
+    }
+    if (
+        in_array('price', $single_display_fields, true)
+        && !empty($selected_coursedate_data['price'])
+    ) {
+        return true;
+    }
+    if (
+        in_array('room', $single_display_fields, true)
+        && !empty($selected_coursedate_data['course_location_room'])
+    ) {
+        return true;
+    }
+
+    return false;
+}
+
+/**
  * Whether a list item has any location/room data to show.
  */
 function kursagenten_list_has_location_data($location, $location_freetext = '', $location_room = '') {

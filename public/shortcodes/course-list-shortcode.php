@@ -1028,6 +1028,7 @@ function kursagenten_course_list_shortcode($atts) {
                                                                     $term_name = $term['name'];
                                                                     $parent_class = '';
                                                                     $parent_id_attr = '';
+                                                                    $hierarchy_classes = '';
                                                                 } else {
                                                                     // For locations i venstre liste: bruk term-navn (med diakritikk) som verdi
                                                                     if ($taxonomy_data[$filter]['filter_key'] === 'locations' && is_object($term)) {

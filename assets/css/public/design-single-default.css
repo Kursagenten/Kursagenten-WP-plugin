@@ -285,6 +285,9 @@
     #ka .course-information .excerpt {
         font-size: var(--ka-font-md);
     }
+    #ka .course-information .content-buttons {
+        margin-top: var(--ka-space-2xl);
+    }
 
     #ka picture.course-image { aspect-ratio: 4/3; display: block; max-width: 100%; overflow: hidden; }
     #ka picture.course-image img{ width: 100%; height: 100%; max-width: 100%; object-fit: cover; object-position: center; border-radius: 10px; }

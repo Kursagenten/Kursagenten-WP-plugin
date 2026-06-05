@@ -416,7 +416,7 @@ do_action('ka_taxonomy_header_before', $term);
                 </div>
 
                 <div class="taxonomy-two-column-right" id="kurs">
-                    <h2>Tilgjengelige kurs</h2>
+                    <h2>Kursoversikt</h2>
             <?php if ($view_type === 'all_coursedates') : ?>
                 <!-- Bruk [kursliste] shortcode - den håndterer alt -->
                 <div class="taxonomy-coursedates">

@@ -17,7 +17,7 @@
 #ka .ka-container .courselist-main.with-image {
     display: flex;
     align-items: stretch;
-    min-height: 130px;
+    min-height: 90px;
 }
 #ka .ka-container .courselist-items {
     display: flex;

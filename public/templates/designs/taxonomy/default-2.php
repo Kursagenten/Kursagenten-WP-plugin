@@ -194,7 +194,7 @@ $taxonomy_header_media_title = ($taxonomy === 'ka_instructors' && function_exist
             <?php if ($view_type === 'all_coursedates'): ?>
                 <!-- Bruk [kursliste] shortcode -->
                 <div class="taxonomy-coursedates">
-                    <h2>Tilgjengelige kurs</h2>
+                    <h2>Kursoversikt</h2>
                     <?php
                     do_action('ka_courselist_before', $term);
                     echo do_shortcode($shortcode);
@@ -204,7 +204,7 @@ $taxonomy_header_media_title = ($taxonomy === 'ka_instructors' && function_exist
             <?php elseif ($query && $query->have_posts()): ?>
                 <!-- Vis hovedkurs -->
                 <div class="taxonomy-coursedates">
-                    <h2>Tilgjengelige kurs</h2>
+                    <h2>Kursoversikt</h2>
                     <?php
                     do_action('ka_courselist_before', $term);
                     ?>

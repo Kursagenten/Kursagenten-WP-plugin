@@ -487,9 +487,18 @@ class Designmaler {
                         <div class="option-input">
                             <?php
                             $default_available_only = get_option('kursagenten_default_available_only', 'no');
+
+                            // Ensure we have filter settings available when checking for the availability filter.
+                            $top_filters  = get_option('kursagenten_top_filters', []);
+                            $left_filters = get_option('kursagenten_left_filters', []);
+
+                            // Normalize to arrays in case options are stored as comma separated strings.
+                            $top_filters  = is_array($top_filters)  ? $top_filters  : explode(',', (string) $top_filters);
+                            $left_filters = is_array($left_filters) ? $left_filters : explode(',', (string) $left_filters);
+
                             // Determine whether the "availability" filter is enabled in top or left filters.
-                            $availability_in_top  = is_array($top_filters)  && in_array('availability', $top_filters,  true);
-                            $availability_in_left = is_array($left_filters) && in_array('availability', $left_filters, true);
+                            $availability_in_top  = in_array('availability', $top_filters,  true);
+                            $availability_in_left = in_array('availability', $left_filters, true);
                             $availability_enabled = $availability_in_top || $availability_in_left;
                             ?>
                             <input type="hidden" name="kursagenten_default_available_only" value="no">

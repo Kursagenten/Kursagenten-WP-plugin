@@ -211,6 +211,9 @@ if (current_user_can('editor') || current_user_can('administrator')) {
     $single_display_fields = function_exists('kursagenten_get_single_display_fields_enabled_list')
         ? kursagenten_get_single_display_fields_enabled_list()
         : ['first_date', 'last_date', 'day_schedules', 'time', 'duration', 'language', 'price', 'room'];
+    $show_next_course_section = function_exists('kursagenten_single_has_next_course_display_items')
+        ? kursagenten_single_has_next_course_display_items($selected_coursedate_data, $single_display_fields)
+        : false;
  ?>
 
 <?php if ($use_bg_image && !empty($featured_image_full)) : ?>
@@ -248,7 +251,7 @@ do_action('ka_singel_header_before');
                     <h1><?php the_title(); ?></h1>
                 <?php else : ?>
                     <h1><?php echo esc_html($main_course_title); ?>
-                    <span style="margin-top: .2em; display: block; font-size: var(--ka-font-lg); font-weight: 300;">- <span class="notranslate" translate="no"><?php echo esc_html($sub_course_location); ?></span></span>
+                    <span style="margin-top: .2em; display: block; font-size: var(--ka-font-lg); font-weight: 300;"><span class="notranslate" translate="no">- <?php echo esc_html($sub_course_location); ?></span></span>
                 </h1>
                     
                 <?php endif; ?>
@@ -283,7 +286,7 @@ do_action('ka_singel_header_before');
     <!-- DETAILS -->
     <section class="ka-section details ka-highlight-background">
         <div class="ka-content-container">
-            <div class="course-grid col-3-1">
+            <div class="course-grid col-3-1<?php echo $show_next_course_section ? '' : ' col-1'; ?>">
                 <!-- Course list -->
                 <div class="courselist">                          
                     <?php if (!empty($all_coursedates)) : ?>
@@ -462,6 +465,7 @@ do_action('ka_singel_header_before');
                 </div>
 
                 <!-- Next course information -->
+                <?php if ($show_next_course_section) : ?>
                 <div class="nextcourse">
                     <?php if (!empty($selected_coursedate_data['coursedatemissing'])) : ?>
                         <h2 class="small">Informasjon</h2>
@@ -500,17 +504,17 @@ do_action('ka_singel_header_before');
                         <?php if (in_array('room', $single_display_fields, true) && !empty($selected_coursedate_data['course_location_room'])) : ?>
                             <div><i class="ka-icon icon-bag"></i>Kurslokale:&nbsp;<span class="notranslate" translate="no"><?php echo esc_html($selected_coursedate_data['course_location_room']) ;?></span></div>
                         <?php endif; ?>
-                        <?php if (!empty($selected_coursedate_data) && isset($selected_coursedate_data['signup_url'])) : ?>
+                        <?php if ($show_next_course_section && !empty($selected_coursedate_data['signup_url'])) : ?>
                             <div>
                                 <a href="#" class="pameldingskjema signup-link clickelement" data-url="<?php echo esc_url($selected_coursedate_data['signup_url']); ?>">
                                 <?php echo esc_html($selected_coursedate_data['button_text'] ?? 'Påmelding'); ?> <i class="ka-icon icon-arrow-right-short"></i> 
                                 </a>
                             </div>
-                    <?php endif; ?>
+                        <?php endif; ?>
                     </div>
                     <?php do_action('ka_singel_nextcourse_after'); ?>
                 </div>
-                
+                <?php endif; ?>
 
             </div>
         </div>
@@ -541,6 +545,13 @@ do_action('ka_singel_header_before');
                         <div class="content-text<?php echo $admin_view_class; ?>"></div>
                     <?php endif; ?>
                     <p><?php echo wpautop(wp_kses_post($content)); ?></p>
+                    <?php if (!empty($selected_coursedate_data) && isset($selected_coursedate_data['signup_url'])) : ?>
+                        <div class="content-buttons">
+                            <button href="#" class="button pameldingskjema clickelement" data-url="<?php echo esc_url($selected_coursedate_data['signup_url']); ?>">
+                                <?php echo esc_html($selected_coursedate_data['button_text'] ?? 'Påmelding'); ?>
+                            </button>
+                        </div>
+                    <?php endif; ?>
                     <?php do_action('ka_singel_content_after'); ?>
                 </div>
                 <!-- Course image -->

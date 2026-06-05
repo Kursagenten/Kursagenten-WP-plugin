@@ -194,6 +194,9 @@ $all_coursedates          = get_all_sorted_coursedates($related_coursedate);
 $single_display_fields = function_exists('kursagenten_get_single_display_fields_enabled_list')
     ? kursagenten_get_single_display_fields_enabled_list()
     : ['first_date', 'last_date', 'day_schedules', 'time', 'duration', 'language', 'price', 'room'];
+$show_next_course_section = function_exists('kursagenten_single_has_next_course_display_items')
+    ? kursagenten_single_has_next_course_display_items($selected_coursedate_data, $single_display_fields)
+    : false;
 
 /**
  * Renderer kurslisten slik at den kan brukes flere steder i layouten.
@@ -461,6 +464,7 @@ do_action('ka_singel_header_before');
                 <!-- Kolonne 2: Neste kurs / Kursliste på tablet (unntatt fra ka-highlight-background) -->
                 
                 <div class="aside ka-box ka-box-background nextcourse-box">
+                    <?php if ($show_next_course_section) : ?>
                     <div class="nextcourse">
                         <?php if (!empty($selected_coursedate_data['coursedatemissing'])) : ?>
                             <h2>Informasjon</h2>
@@ -501,7 +505,7 @@ do_action('ka_singel_header_before');
                                 <div>Kurslokale:&nbsp;<span class="notranslate" translate="no"><?php echo esc_html($selected_coursedate_data['course_location_room']); ?></span></div>
                             <?php endif; ?>
 
-                            <?php if (!empty($selected_coursedate_data) && isset($selected_coursedate_data['signup_url'])) : ?>
+                            <?php if ($show_next_course_section && !empty($selected_coursedate_data['signup_url'])) : ?>
                                 <div class="nextcourse-button-wrapper">
                                     <button class="button pameldingskjema clickelement" data-url="<?php echo esc_url($selected_coursedate_data['signup_url']); ?>">
                                         <?php echo esc_html($selected_coursedate_data['button_text'] ?? 'Meld deg på'); ?>
@@ -511,6 +515,7 @@ do_action('ka_singel_header_before');
                         </div>
                         <?php do_action('ka_singel_nextcourse_after'); ?>
                     </div>
+                    <?php endif; ?>
 
                     <?php
                     // Kurslisten brukes som erstatning i headeren på tablet
