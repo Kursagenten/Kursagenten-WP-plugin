@@ -1,11 +1,17 @@
-## 1.1.23 - 2026-06-02
+## 1.1.23 - 2026-06-04
 - Lagt til: **Utseende venstre filterkolonne** under Kursdesign → Filterinnstillinger: avrundet søkefelt med ikon, og valgfri filterboks med «Velg farger» for bakgrunn/tekstfarge (tekstfarge gjelder hele filterinnholdet, f.eks. lys tekst på mørk bakgrunn).
 - Forbedring: Finere tagger/knapper (pill-form, bedre hover og aktiv tilstand) for filter i venstre kolonne når visning er «Knapper».
 - Lagt til: **Gruppering i Enkle kort**. Ny innstilling i Kursdesign > 'Kursliste med filter' og 'Taksonomisider' for å velge *Ett kort per kurs (neste dato)* eller *Ett kort per kurs og lokasjon (neste dato per lokasjon)*. 
 - Forbedring: Når *kurs og lokasjon* velges i admin, krysses både *Sted* og *Fritekst sted* automatisk av i *Vis i listen*, siden lokasjon er nødvendig for å skille kortene (inkl. ulike fritekst-steder på samme sted).
 - Lagt til: Ved gruppering *kurs og lokasjon* vises nå lokasjonen (med stedsikon) i «Neste kurs»-feltet når en kursdato mangler, forutsatt at *Sted* er aktivert i *Vis i listen*. Fritekst-sted vises nå også på disse kortene (f.eks. «Nittedal (Flammen)»), på samme måte som på kort med dato – slik at to kort for samme sted men ulik fritekst ikke lenger ser identiske ut.
+- Endring: «Vis alle kursdatoer» er nå valgbart også når listetypen er *Enkle kort* på taksonomisider (tidligere låst til «Vis hovedkurs»).
+- Fix: Kursteller og paginering for *Enkle kort* teller nå antall kort (grupper), ikke antall kursdatoer.
+- Fix: Lagt inn flere, valgfrie metafelt i *Enkle kort*.
+- Forbedring: Metadata i Enkle kort vises som ryddig vertikal liste med jevn linjeavstand og bedre linjebryting på smale skjermer.
+- Lagt til: **Oppførsel eksterne lenker** under Kursdesign: velg om ekstern påmeldingslenke fra Kursagenten-feltet «Link til påmeldingskjema» skal brukes på kurstittel og/eller påmeldingsknapp i kurslister.
 - Lagt til: Tooltip på meta-feltene påmeldingsfrist, rom/lokale og kursdager for å gi forklaring der det ikke er intuitivt hva feltet betyr.
 - Lagt til: **Vis i «Neste kurs»** under Kursdesign → Enkeltkurs – en avkrysningsliste (tilsvarende *Vis i listen* for kurslister) som styrer hvilke metafelt (startdato, sluttdato, antall kursdager, tid, varighet, språk, pris, kurslokale) som vises i «Neste kurs»-feltet på enkeltkurssider. *Antall kursdager* følger som standard innstillingen i *Vis i listen* (archive), men kan overstyres her. Skrus *Antall kursdager* av, skjules kursdager-lenken både i «Neste kurs» og i detaljvisningen («Mer info»). Gjelder enkeltkurs-designene Standard og Bokser.
+- Endring: Overskriften over kurslisten på taksonomisider er endret fra «Tilgjengelige kurs» til «Kursoversikt».
 
 ## 1.1.22 - 2026-05-26
 - Lagt til: Mulighet til å fjerne taksonomi-slug under SEO innstillinger. Eksempel: webside.no/kurskategori/kurset -> webside.no/kurset
