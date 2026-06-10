@@ -8,17 +8,15 @@ function kursagenten_sync_courses_button() {
     ob_start();
     ?>
     <div style="margin-bottom: 15px;">
-        <a href="#" class="button sync-api-to-posts" id="sync-all-courses">Hent alle kurs fra Kursagenten</a>
+        <a href="#" class="button sync-api-to-posts" id="sync-all-courses"><?php esc_html_e('Hent alle kurs fra Kursagenten', 'kursagenten'); ?></a>
         
         <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-left: 4px solid #2271b1; max-width: 650px;">
             <label style="display: flex; align-items: center; cursor: pointer;">
                 <input type="checkbox" id="run-cleanup-checkbox" style="margin-right: 8px;">
-                <span style="font-weight: 500;">Rydd opp i kurs etter synkronisering</span>
+                <span style="font-weight: 500;"><?php esc_html_e('Rydd opp i kurs etter synkronisering', 'kursagenten'); ?></span>
             </label>
             <p style="margin: 8px 0 0 24px; font-size: 12px; color: #666; line-height: 1.5;">
-                Kryss av på "Rydd opp i kurs" om det er mange utløpte kursdatoer som vises på websiden. 
-                Det blir kjørt en nattlig opprydning, så det kan være unødvendig å gjøre dette nå. 
-                <strong>NB:</strong> Opprydding tar 3-5 minutter ekstra.
+                <?php echo wp_kses_post(__('Kryss av på "Rydd opp i kurs" om det er mange utløpte kursdatoer som vises på websiden. Det blir kjørt en nattlig opprydning, så det kan være unødvendig å gjøre dette nå. <strong>NB:</strong> Opprydding tar 3-5 minutter ekstra.', 'kursagenten')); ?>
             </p>
         </div>
     </div>
@@ -31,7 +29,7 @@ function kursagenten_sync_courses_button() {
 function kursagenten_cleanup_courses_button() {
     ob_start();
     ?>
-    <a href="#" class="button" id="cleanup-courses">Rydd opp i kurs</a><span style="font-size: 12px; color: #666; line-height: 2.5; padding-left: 1em; font-style: italic;"> Rydd vekk utløpte kursdatoer, duplikate kurs, og slettede kurs som ikke finnes i Kursagenten</span>
+    <a href="#" class="button" id="cleanup-courses"><?php esc_html_e('Rydd opp i kurs', 'kursagenten'); ?></a><span style="font-size: 12px; color: #666; line-height: 2.5; padding-left: 1em; font-style: italic;"> <?php esc_html_e('Rydd vekk utløpte kursdatoer, duplikate kurs, og slettede kurs som ikke finnes i Kursagenten', 'kursagenten'); ?></span>
     <div id="cleanup-status-message" style="margin-top: 10px;"></div>
     <?php
     return ob_get_clean();

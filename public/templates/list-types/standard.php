@@ -42,6 +42,8 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     $main_courses = get_posts([
         'post_type' => 'ka_course',
         'posts_per_page' => 1,
+        // Bypass Polylang language filtering for API-synced courses.
+        'lang' => '',
         'meta_query' => [
             'relation' => 'AND',
             [
@@ -123,7 +125,9 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     $course_link_context_course_id = (int) $course_id;
 
     // Sett opp link til kurset - finn lokasjonsundersiden basert på valgt kursdato
-    $course_link = $course_id ? get_permalink($course_id) : '#'; // Fallback til hovedkurset
+    $course_link = $course_id
+        ? (function_exists('kursagenten_get_localized_permalink') ? kursagenten_get_localized_permalink((int) $course_id) : get_permalink($course_id))
+        : '#'; // Fallback til hovedkurset
     
     // Hvis vi har en valgt kursdato, prøv å finne lokasjonsundersiden
     if (!empty($selected_coursedate_data['id'])) {
@@ -136,6 +140,8 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
             $sub_course = get_posts([
                 'post_type' => 'ka_course',
                 'posts_per_page' => 1,
+                // Bypass Polylang language filtering for API-synced courses.
+                'lang' => '',
                 'meta_query' => [
                     'relation' => 'AND',
                     [
@@ -158,7 +164,9 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
             
             // Bruk lokasjonsundersiden hvis den finnes, ellers fallback til hovedkurset
             if (!empty($sub_course)) {
-                $course_link = get_permalink($sub_course[0]->ID);
+                $course_link = function_exists('kursagenten_get_localized_permalink')
+                    ? kursagenten_get_localized_permalink((int) $sub_course[0]->ID)
+                    : get_permalink($sub_course[0]->ID);
                 $course_link_context_course_id = (int) $sub_course[0]->ID;
             }
         }
@@ -233,7 +241,10 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
         // Hvis ingen relatert kursinfo, bruk plassholderbilde og fallback-data
         $featured_image_thumb = $placeholder_image;
         $featured_image_list_mobile = $placeholder_image;
-        $course_link = false;
+        $course_link = ka_get_course_permalink_for_coursedate((int) get_the_ID());
+        if ($course_link === '') {
+            $course_link = '#';
+        }
         $excerpt = '';
     }
 }
@@ -332,8 +343,8 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
         <?php if ($show_images === 'yes') : ?>
         <!-- Image area -->
         <div class="image column ka-course-list-bg" data-ka-bg-url="<?php echo esc_attr( esc_url( $featured_image_thumb ) ); ?>" data-ka-bg-url-mobile="<?php echo esc_attr( esc_url( $featured_image_list_mobile ) ); ?>" data-bg="<?php echo esc_attr( esc_url( $featured_image_thumb ) ); ?>" style="--ka-bg-wide: url('<?php echo esc_url( $featured_image_thumb ); ?>'); --ka-bg-narrow: url('<?php echo esc_url( $featured_image_list_mobile ); ?>'); background-image: var(--ka-bg-wide);">
-            <a class="image-inner" href="<?php echo esc_url($course_link); ?>"<?php echo $course_link_target_attrs; ?> title="<?php echo esc_attr($course_title); ?>" aria-label="Se kurs: <?php echo esc_attr($course_title); ?>">
-                <span class="sr-only">Se kurs: <?php echo esc_html($course_title); ?></span>
+            <a class="image-inner" href="<?php echo esc_url($course_link); ?>"<?php echo $course_link_target_attrs; ?> title="<?php echo esc_attr($course_title); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: course title */ __( 'Se kurs: %s', 'kursagenten' ), $course_title ) ); ?>">
+                <span class="sr-only"><?php echo esc_html( sprintf( /* translators: %s: course title */ __( 'Se kurs: %s', 'kursagenten' ), $course_title ) ); ?></span>
             </a>
         </div>
         <?php endif; ?>
@@ -345,11 +356,11 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                     <h3 class="course-title">
                         <a href="<?php echo esc_url($course_link); ?>"<?php echo $course_link_target_attrs; ?> class="course-link"><?php echo esc_html($course_title); ?></a>
                         <?php if ($is_full) : ?>
-                            <span class="course-available ka-full">Fullt</span>
+                            <span class="course-available ka-full"><?php echo esc_html__( 'Fullt', 'kursagenten' ); ?></span>
                         <?php elseif (!$show_registration) : ?>
-                            <span class="course-available ka-on-demand">På forespørsel</span>
+                            <span class="course-available ka-on-demand"><?php echo esc_html__( 'På forespørsel', 'kursagenten' ); ?></span>
                         <?php else : ?>
-                            <span class="course-available">Ledige plasser</span>
+                            <span class="course-available"><?php echo esc_html__( 'Ledige plasser', 'kursagenten' ); ?></span>
                         <?php endif; ?>
                     </h3>
                                     
@@ -397,10 +408,10 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                         ?>
                         <?php if ($list_date_text !== '') : ?>
                             <div class="startdate">
-                                <i class="ka-icon icon-calendar"></i> <span class="ka-next-course">Neste kurs: &nbsp;</span> <?php echo esc_html($list_date_text); ?>
+                                <i class="ka-icon icon-calendar"></i> <span class="ka-next-course"><?php echo esc_html__( 'Neste kurs:', 'kursagenten' ); ?>&nbsp;</span> <?php echo esc_html($list_date_text); ?>
                                 <?php if (count($related_coursedate_ids) > 1) : ?>
                                     <a href="#" class="show-ka-modal" data-course-id="<?php echo esc_attr($course_id); ?>" style="margin-left: 8px; font-size: 0.9em;">
-                                        (+<?php echo count($related_coursedate_ids) - 1; ?> flere)
+                                        (<?php echo esc_html( sprintf( /* translators: %d: number of additional course dates */ __( '+%d flere', 'kursagenten' ), count( $related_coursedate_ids ) - 1 ) ); ?>)
                                     </a>
                                 <?php endif; ?>
                             </div>
@@ -425,7 +436,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                         <?php endif; ?>
                                     <?php endif; ?>
                                     <?php if ($show_details_toggle) : ?>
-                                        <span class="accordion-icon accordion-icon-inline clickopen ka-tooltip" data-title="Se detaljer">+</span>
+                                        <span class="accordion-icon accordion-icon-inline clickopen ka-tooltip" data-title="<?php echo esc_attr__( 'Se detaljer', 'kursagenten' ); ?>">+</span>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -461,7 +472,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                         <?php endif; ?>
                                     <?php endif; ?>
                                     <?php if ($show_details_toggle) : ?>
-                                        <span class="accordion-icon accordion-icon-inline clickopen ka-tooltip" data-title="Se detaljer">+</span>
+                                        <span class="accordion-icon accordion-icon-inline clickopen ka-tooltip" data-title="<?php echo esc_attr__( 'Se detaljer', 'kursagenten' ); ?>">+</span>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -509,13 +520,13 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                     <?php endif; ?>
 
                     <?php if (!$show_details_toggle) : ?>
-                        <span class="accordion-icon clickopen ka-tooltip" data-title="Se detaljer">+</span>
+                        <span class="accordion-icon clickopen ka-tooltip" data-title="<?php echo esc_attr__( 'Se detaljer', 'kursagenten' ); ?>">+</span>
                     <?php endif; ?>
                 </div>
                 <!-- Accordion content -->
                 <div class="courselist-content accordion-content">
                     <?php if (!empty($excerpt)) : ?>
-                        <p><strong>Kort beskrivelse: </strong><br><?php echo wp_kses_post($excerpt); ?></p>
+                        <p><strong><?php echo esc_html__( 'Kort beskrivelse:', 'kursagenten' ); ?> </strong><br><?php echo wp_kses_post($excerpt); ?></p>
                     <?php endif; ?>
                     <?php if ($view_type === 'main_courses' && !$force_standard_view) : ?>
                         
@@ -559,6 +570,8 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                         $sub_course = get_posts([
                                             'post_type' => 'ka_course',
                                             'posts_per_page' => 1,
+                                            // Bypass Polylang language filtering for API-synced courses.
+                                            'lang' => '',
                                             'meta_query' => [
                                                 'relation' => 'AND',
                                                 [
@@ -656,6 +669,8 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                                                 $sub_course = get_posts([
                                                     'post_type' => 'ka_course',
                                                     'posts_per_page' => 1,
+                                                    // Bypass Polylang language filtering for API-synced courses.
+                                                    'lang' => '',
                                                     'meta_query' => [
                                                         'relation' => 'AND',
                                                         [
@@ -732,38 +747,53 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                     <?php else : ?>
                     
                         <?php if (!empty($first_course_date)) : ?>
-                            <p>Kurset varer fra <?php echo esc_html($first_course_date); ?><?php if (!empty($last_course_date)) : ?> til <?php echo esc_html($last_course_date); ?><?php endif; ?></p>
+                            <p><?php
+                            if ( ! empty( $last_course_date ) ) {
+                                echo esc_html( sprintf(
+                                    /* translators: 1: start date, 2: end date */
+                                    __( 'Kurset varer fra %1$s til %2$s', 'kursagenten' ),
+                                    $first_course_date,
+                                    $last_course_date
+                                ) );
+                            } else {
+                                echo esc_html( sprintf(
+                                    /* translators: %s: start date */
+                                    __( 'Kurset varer fra %s', 'kursagenten' ),
+                                    $first_course_date
+                                ) );
+                            }
+                            ?></p>
                         <?php else : ?>
                             <?php 
                             $is_online = has_term('nettbasert', 'ka_course_location', $course_id);
                             if ($is_online) : ?>
-                                <p>Etter påmelding vil du få en e-post med mer informasjon om kurset, og hvordan det skal gjennomføres.</p>
+                                <p><?php echo esc_html__( 'Etter påmelding vil du få en e-post med mer informasjon om kurset, og hvordan det skal gjennomføres.', 'kursagenten' ); ?></p>
                             <?php elseif ($show_registration) : ?>
-                                <p>Du kan melde deg på kurset nå. Etter påmelding vil du få mer informasjon.</p>
+                                <p><?php echo esc_html__( 'Du kan melde deg på kurset nå. Etter påmelding vil du få mer informasjon.', 'kursagenten' ); ?></p>
                             <?php else : ?>
-                                <p>Det er ikke satt opp dato for nye kurs. Meld din interesse for å få mer informasjon eller å sette deg på venteliste.</p>
+                                <p><?php echo esc_html__( 'Det er ikke satt opp dato for nye kurs. Meld din interesse for å få mer informasjon eller å sette deg på venteliste.', 'kursagenten' ); ?></p>
                             <?php endif; ?>
                         <?php endif; ?>
                     <?php endif; ?>
-                    <p><a href="<?php echo esc_url($course_link); ?>"<?php echo $course_link_target_attrs; ?> class="course-link">Se kursdetaljer</a></p>
+                    <p><a href="<?php echo esc_url($course_link); ?>"<?php echo $course_link_target_attrs; ?> class="course-link"><?php echo esc_html__( 'Se kursdetaljer', 'kursagenten' ); ?></a></p>
                 </div>
             </div>
             
             <div class="links-area column">
                 <?php if ($view_type === 'main_courses' && !$force_standard_view) : ?>
                     <a class="pamelding signup-link pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
-                        <?php echo esc_html($button_text ?: 'Påmelding'); ?>  <i class="ka-icon icon-arrow-right-short"></i>
+                        <?php echo esc_html( kursagenten_get_course_button_label( (string) $button_text, $show_registration ) ); ?>  <i class="ka-icon icon-arrow-right-short"></i>
                     </a>
                 <?php else : ?>
                     <?php if ($show_signup_link_only) : ?>
                         <a class="pamelding signup-link pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
-                            <?php echo esc_html($button_text ?: 'Påmelding'); ?>  <i class="ka-icon icon-arrow-right-short"></i>
+                            <?php echo esc_html( kursagenten_get_course_button_label( (string) $button_text, $show_registration ) ); ?>  <i class="ka-icon icon-arrow-right-short"></i>
                         </a>
                     <?php else : ?>
                         <button class="courselist-button pamelding pameldingsknapp pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
-                            <?php echo esc_html($button_text ?: 'Påmelding'); ?>
+                            <?php echo esc_html( kursagenten_get_course_button_label( (string) $button_text, $show_registration ) ); ?>
                         </button>
-                        <a href="<?php echo esc_url($course_link); ?>"<?php echo $course_link_target_attrs; ?> class="course-link small">Mer informasjon</a>
+                        <a href="<?php echo esc_url($course_link); ?>"<?php echo $course_link_target_attrs; ?> class="course-link small"><?php echo esc_html__( 'Mer informasjon', 'kursagenten' ); ?></a>
                     <?php endif; ?>
                 <?php endif; ?>
 
@@ -778,10 +808,10 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
         <div class="ka-modal-content">
             <div class="ka-modal-header">
                 <h3><?php echo esc_html($course_title); ?></h3>
-                <button class="ka-modal-close" aria-label="Lukk">&times;</button>
+                <button class="ka-modal-close" aria-label="<?php echo esc_attr__( 'Lukk', 'kursagenten' ); ?>">&times;</button>
             </div>
             <div class="ka-modal-body">
-                <h4>Alle tilgjengelige kurssteder og datoer</h4>
+                <h4><?php echo esc_html__( 'Alle tilgjengelige kurssteder og datoer', 'kursagenten' ); ?></h4>
                 <?php
                 // Use the filtered coursedates if on a location taxonomy page
                 $modal_meta_query = [
@@ -854,7 +884,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                         </div>
                     <?php endforeach;
                 else : ?>
-                    <p>Ingen kursdatoer tilgjengelig for øyeblikket.</p>
+                    <p><?php echo esc_html__( 'Ingen kursdatoer tilgjengelig for øyeblikket.', 'kursagenten' ); ?></p>
                 <?php endif; ?>
             </div>
         </div>

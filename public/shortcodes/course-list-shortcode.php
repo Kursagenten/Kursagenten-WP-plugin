@@ -30,6 +30,8 @@ if (!defined('ABSPATH')) exit;
  * Register the [kursliste] shortcode
  */
 function kursagenten_course_list_shortcode($atts) {
+    kursagenten_ensure_frontend_translations();
+
     // Hvis $atts er en string, prøv å parse den manuelt
     if (is_string($atts)) {
         $raw_atts = $atts;
@@ -327,15 +329,12 @@ function kursagenten_course_list_shortcode($atts) {
     wp_localize_script(
         'kursagenten-ajax-filter',
         'kurskalender_data',
-        array(
-            'ajax_url' => admin_url('admin-ajax.php'),
-            'filter_nonce' => wp_create_nonce('filter_nonce'),
-            'shortcode_params' => $shortcode_params,
-            'has_shortcode_filters' => $has_shortcode_filters,
-            'active_shortcode_filters' => $active_shortcode_filters,
-            // Expose default availability flag so the JS can reflect the correct state of the
-            // "Kurs med ledige plasser" chip/checkbox when the `ledig` URL param is absent.
-            'default_available_only' => (get_option('kursagenten_default_available_only', 'no') === 'yes')
+        kursagenten_get_kurskalender_localize_data(
+            array(
+                'shortcode_params' => $shortcode_params,
+                'has_shortcode_filters' => $has_shortcode_filters,
+                'active_shortcode_filters' => $active_shortcode_filters,
+            )
         )
     );
 
@@ -440,8 +439,6 @@ function kursagenten_course_list_shortcode($atts) {
         }
     }
 
-    // Debug output (admin only): helps identify why filters are hidden on specific pages.
-
     // Hent aktive filtre fra URL for å beregne counts
     $active_filters = [];
     // Include `ledig` so count calculations match the list's availability filter.
@@ -527,16 +524,8 @@ function kursagenten_course_list_shortcode($atts) {
     }
 
 
-    // Prepare filter-information
-    $filter_display_info = [];
-    foreach ($available_filters as $filter_key => $filter_info) {
-        $filter_display_info[$filter_key] = [
-            'label' => $filter_info['label'] ?? '',
-            'placeholder' => $filter_info['placeholder'] ?? 'Velg',
-            'filter_key' => $taxonomy_data[$filter_key]['filter_key'] ?? '',
-            'url_key' => $taxonomy_data[$filter_key]['url_key'] ?? ''
-        ];
-    }
+    // Prepare filter-information (labels translated for the active frontend locale).
+    $filter_display_info = kursagenten_build_filter_display_info($available_filters, $taxonomy_data);
 
     // Ensure the availability (Ledige plasser) filter has the metadata needed by the template.
     if (isset($filter_display_info['availability'])) {
@@ -556,7 +545,7 @@ function kursagenten_course_list_shortcode($atts) {
 
     // Start output buffering
     ob_start();
-    
+
     // Add custom class if provided
     $custom_class = !empty($atts['klasse']) ? ' ' . esc_attr($atts['klasse']) : '';
     ?>
@@ -567,8 +556,8 @@ function kursagenten_course_list_shortcode($atts) {
 
             <div class="mobile-filter-overlay">
                 <div class="mobile-filter-header">
-                    <h3>Filter</h3>
-                    <button type="button" class="close-filter-button" aria-label="Lukk filter">
+                    <h3><?php esc_html_e('Filter', 'kursagenten'); ?></h3>
+                    <button type="button" class="close-filter-button" aria-label="<?php echo esc_attr__('Lukk filter', 'kursagenten'); ?>">
                         <i class="ka-icon icon-close" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -599,15 +588,15 @@ function kursagenten_course_list_shortcode($atts) {
                                     <div class="filter-item <?php echo esc_attr($filter_types[$filter] ?? ''); ?> <?php echo esc_attr($search_class); ?>">
                                         <?php 
                                         if ($filter === 'search') : ?>
-                                            <input type="text" id="search" name="search" class="filter-search <?php echo esc_attr($search_class); ?>" placeholder="Søk etter kurs...">
+                                            <input type="text" id="search" name="search" class="filter-search <?php echo esc_attr($search_class); ?>" placeholder="<?php echo esc_attr__('Søk etter kurs...', 'kursagenten'); ?>">
                                         <?php elseif ($filter === 'availability') : ?>
                                             <?php
                                             // Single-toggle availability filter. Value is '1' when active.
                                             $availability_type = $filter_types[$filter] ?? 'chips';
                                             // Placeholder shown in the dropdown toggle when the filter is in its neutral state.
-                                            $availability_placeholder     = 'Ledige plasser';
-                                            $availability_only_label      = 'Vis kun ledige plasser';
-                                            $availability_all_label       = 'Vis alle kurs';
+                                            $availability_placeholder     = __('Ledige plasser', 'kursagenten');
+                                            $availability_only_label      = __('Vis kun ledige plasser', 'kursagenten');
+                                            $availability_all_label       = __('Vis alle kurs', 'kursagenten');
                                             $show_all_option_top          = $availability_default_on;
                                             $show_all_checked_top         = $show_all_option_top && !$is_available_active;
                                             ?>
@@ -690,11 +679,11 @@ function kursagenten_course_list_shortcode($atts) {
                                                         data-filter-key="date"
                                                         data-url-key="dato"
                                                         name="calendar-input"
-                                                        placeholder="Velg fra-til dato"
+                                                        placeholder="<?php echo esc_attr__('Velg fra-til dato', 'kursagenten'); ?>"
                                                         value="<?php echo esc_attr($date); ?>"
-                                                        aria-label="Velg datoer">
+                                                        aria-label="<?php echo esc_attr__('Velg datoer', 'kursagenten'); ?>">
                                                 <i class="ka-icon icon-chevron-down"></i>
-                                                <a href="#" class="reset-date-filter" style="display: <?php echo $date ? 'block' : 'none'; ?>; font-size: var(--ka-font-xs); color: rgb(235, 121, 121); margin-top: 5px; text-decoration: none;">Nullstill dato</a>
+                                                <a href="#" class="reset-date-filter" style="display: <?php echo $date ? 'block' : 'none'; ?>; font-size: var(--ka-font-xs); color: rgb(235, 121, 121); margin-top: 5px; text-decoration: none;"><?php esc_html_e('Nullstill dato', 'kursagenten'); ?></a>
                                             </div>
                                         <?php elseif (!empty($taxonomy_data[$filter]['terms'])) : ?>
                                             <?php 
@@ -739,7 +728,7 @@ function kursagenten_course_list_shortcode($atts) {
                                                         <?php
                                                         $current_filter_info = $filter_display_info[$filter] ?? [];
                                                         $filter_label = $current_filter_info['label'] ?? '';
-                                                        $filter_placeholder = $current_filter_info['placeholder'] ?? 'Velg';
+                                                        $filter_placeholder = $current_filter_info['placeholder'] ?? __('Velg', 'kursagenten');
 
                                                         $url_key = $taxonomy_data[$filter]['url_key'];
                                                         $active_filters = isset($_GET[$url_key]) ? explode(',', $_GET[$url_key]) : [];
@@ -760,7 +749,12 @@ function kursagenten_course_list_shortcode($atts) {
 
                                                             $display_text = count($active_names) <= 2 ?
                                                                 implode(', ', $active_names) :
-                                                                sprintf('%d %s valgt', count($active_names), strtolower($filter_label));
+                                                                sprintf(
+                                                                    /* translators: 1: number of selected filter values, 2: filter label in lowercase */
+                                                                    __('%1$d %2$s valgt', 'kursagenten'),
+                                                                    count($active_names),
+                                                                    strtolower($filter_label)
+                                                                );
                                                         }
 
                                                         $has_active_filters = !empty($active_filters) ? 'has-active-filters' : '';
@@ -859,7 +853,7 @@ function kursagenten_course_list_shortcode($atts) {
 
                                 <div id="active-filters-container">
                                     <div id="active-filters" class="active-filters"></div>
-                                    <a href="#" id="reset-filters" class="reset-filters reset-filters-btn">Nullstill filter</a>
+                                    <a href="#" id="reset-filters" class="reset-filters reset-filters-btn"><?php esc_html_e('Nullstill filter', 'kursagenten'); ?></a>
                                 </div>
                             </div>
                         </div>
@@ -902,13 +896,14 @@ function kursagenten_course_list_shortcode($atts) {
                                                     ka_render_filter_search_input([
                                                         'extra_class' => $search_class,
                                                         'use_pill'    => true,
+                                                        'placeholder' => __('Søk etter kurs...', 'kursagenten'),
                                                     ]);
                                                     ?>
                                                 <?php elseif ($filter === 'availability') : ?>
                                                     <?php
                                                     $availability_type           = $filter_types[$filter] ?? 'list';
-                                                    $availability_only_label     = 'Vis kun ledige plasser';
-                                                    $availability_all_label      = 'Vis alle kurs';
+                                                    $availability_only_label     = __('Vis kun ledige plasser', 'kursagenten');
+                                                    $availability_all_label      = __('Vis alle kurs', 'kursagenten');
                                                     $show_all_option_left        = $availability_default_on;
                                                     $show_all_checked_left       = $show_all_option_left && !$is_available_active;
                                                     ?>
@@ -968,11 +963,11 @@ function kursagenten_course_list_shortcode($atts) {
                                                                 data-filter-key="date"
                                                                 data-url-key="dato"
                                                                 name="calendar-input"
-                                                                placeholder="Velg fra-til dato"
+                                                                placeholder="<?php echo esc_attr__('Velg fra-til dato', 'kursagenten'); ?>"
                                                                 value="<?php echo esc_attr($date); ?>"
-                                                                aria-label="Velg datoer">
+                                                                aria-label="<?php echo esc_attr__('Velg datoer', 'kursagenten'); ?>">
                                                         <i class="ka-icon icon-chevron-down"></i>
-                                                        <a href="#" class="reset-date-filter" style="display: <?php echo $date ? 'block' : 'none'; ?>; font-size: var(--ka-font-xs); color: rgb(235, 121, 121); margin-top: 5px; text-decoration: none;">Nullstill dato</a>
+                                                        <a href="#" class="reset-date-filter" style="display: <?php echo $date ? 'block' : 'none'; ?>; font-size: var(--ka-font-xs); color: rgb(235, 121, 121); margin-top: 5px; text-decoration: none;"><?php esc_html_e('Nullstill dato', 'kursagenten'); ?></a>
                                                     </div>
                                                 <?php elseif (!empty($taxonomy_data[$filter]['terms'])) : ?>
                                                     <?php 
@@ -1089,22 +1084,30 @@ function kursagenten_course_list_shortcode($atts) {
                                         <div class="ka-icon-wrapper">
                                             <i class="ka-icon icon-filter"></i>
                                         </div>
-                                        <span>Filtrer kurs</span>
+                                        <span><?php esc_html_e('Filtrer kurs', 'kursagenten'); ?></span>
                                     </button>
                                     <div class="courselist-header">
                                         <div id="courselist-header-left">
-                                            <div id="course-count"><?php echo intval($displayed_course_count); ?> kurs <?php echo (!$limit_mode && $query->max_num_pages > 1) ? sprintf("- side %d av %d", $query->get('paged'), $query->max_num_pages) : ''; ?></div>
+                                            <div id="course-count"><?php
+                                                echo esc_html(
+                                                    kursagenten_format_course_count_label(
+                                                        (int) $displayed_course_count,
+                                                        $limit_mode ? 0 : (int) max(1, $query->get('paged')),
+                                                        $limit_mode ? 0 : (int) $query->max_num_pages
+                                                    )
+                                                );
+                                            ?></div>
                                         </div>
 
                                         <div id="courselist-header-right">
                                             <button class="filter-toggle-button">
                                                 <i class="ka-icon icon-filter"></i>
-                                                <span>Filtrer kurs</span>
+                                                <span><?php esc_html_e('Filtrer kurs', 'kursagenten'); ?></span>
                                             </button>
                                             <!-- Antall kurs per side dropdown -->
                                             <div class="per-page-dropdown select-dropdown">
                                                 <div class="per-page-dropdown-toggle">
-                                                    <span class="selected-text">Vis antall kurs</span>
+                                                    <span class="selected-text"><?php esc_html_e('Vis antall kurs', 'kursagenten'); ?></span>
                                                     <span class="dropdown-icon"><i class="ka-icon icon-chevron-down"></i></span>
                                                 </div>
                                                 <div class="per-page-dropdown-content select-dropdown-content">
@@ -1116,7 +1119,15 @@ function kursagenten_course_list_shortcode($atts) {
                                                     ?>
                                                         <button class="per-page-option select-option <?php echo $selected; ?>" 
                                                                 data-per-page="<?php echo $option; ?>">
-                                                            <?php echo $option; ?> kurs
+                                                            <?php
+                                                            echo esc_html(
+                                                                sprintf(
+                                                                    /* translators: %d: number of courses per page */
+                                                                    __('%d kurs', 'kursagenten'),
+                                                                    $option
+                                                                )
+                                                            );
+                                                            ?>
                                                         </button>
                                                     <?php endforeach; ?>
                                                 </div>
@@ -1124,17 +1135,17 @@ function kursagenten_course_list_shortcode($atts) {
 
                                             <div class="sort-dropdown select-dropdown">
                                                 <div class="sort-dropdown-toggle">
-                                                    <span class="selected-text">Sorter etter</span>
+                                                    <span class="selected-text"><?php esc_html_e('Sorter etter', 'kursagenten'); ?></span>
                                                     <span class="dropdown-icon"><i class="ka-icon icon-chevron-down"></i></span>
                                                 </div>
                                                 <div class="sort-dropdown-content select-dropdown-content">
-                                                    <button class="sort-option select-option" data-sort="standard" data-order="">Standard</button>
-                                                    <button class="sort-option select-option" data-sort="title" data-order="asc">Fra A til Å</button>
-                                                    <button class="sort-option select-option" data-sort="title" data-order="desc">Fra Å til A</button>
-                                                    <button class="sort-option select-option" data-sort="price" data-order="asc">Pris lav til høy</button>
-                                                    <button class="sort-option select-option" data-sort="price" data-order="desc">Pris høy til lav</button>
-                                                    <button class="sort-option select-option" data-sort="date" data-order="asc">Tidligste dato</button>
-                                                    <button class="sort-option select-option" data-sort="date" data-order="desc">Seneste dato</button>
+                                                    <button class="sort-option select-option" data-sort="standard" data-order=""><?php esc_html_e('Standard', 'kursagenten'); ?></button>
+                                                    <button class="sort-option select-option" data-sort="title" data-order="asc"><?php esc_html_e('Fra A til Å', 'kursagenten'); ?></button>
+                                                    <button class="sort-option select-option" data-sort="title" data-order="desc"><?php esc_html_e('Fra Å til A', 'kursagenten'); ?></button>
+                                                    <button class="sort-option select-option" data-sort="price" data-order="asc"><?php esc_html_e('Pris lav til høy', 'kursagenten'); ?></button>
+                                                    <button class="sort-option select-option" data-sort="price" data-order="desc"><?php esc_html_e('Pris høy til lav', 'kursagenten'); ?></button>
+                                                    <button class="sort-option select-option" data-sort="date" data-order="asc"><?php esc_html_e('Tidligste dato', 'kursagenten'); ?></button>
+                                                    <button class="sort-option select-option" data-sort="date" data-order="desc"><?php esc_html_e('Seneste dato', 'kursagenten'); ?></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1231,13 +1242,15 @@ function kursagenten_course_list_shortcode($atts) {
                                             }
                                         }
 
+                                        $pagination_texts = kursagenten_get_course_list_pagination_texts();
+
                                         echo paginate_links([
                                             'base' => $current_url . '%_%',
                                             'current' => max(1, $query->get('paged')),
                                             'format' => '?side=%#%',
                                             'total' => $query->max_num_pages,
-                                            'prev_text' => '<i class="ka-icon icon-chevron-left"></i> <span>Forrige</span>',
-                                            'next_text' => '<span>Neste</span> <i class="ka-icon icon-chevron-right"></i>',
+                                            'prev_text' => $pagination_texts['prev_text'],
+                                            'next_text' => $pagination_texts['next_text'],
                                             'add_args' => $add_args
                                         ]);
                                         ?>
@@ -1252,8 +1265,8 @@ function kursagenten_course_list_shortcode($atts) {
                                     wp_reset_postdata();
                                 else :
                                     echo '<div class="filter-no-results">';
-                                    echo '<p>Ingen kurs funnet. Fjern ett eller flere filtre, eller nullstill alle filtre.</p>';
-                                    echo '<p><a href="#" class="reset-empty-results-filters">Nullstill filter</a></p>';
+                                    echo '<p>' . esc_html__('Ingen kurs funnet. Fjern ett eller flere filtre, eller nullstill alle filtre.', 'kursagenten') . '</p>';
+                                    echo '<p><a href="#" class="reset-empty-results-filters">' . esc_html__('Nullstill filter', 'kursagenten') . '</a></p>';
                                     echo '</div>';
                                 endif;
                                 ?>
@@ -1274,7 +1287,9 @@ function kursagenten_course_list_shortcode($atts) {
             'top_filters'   => get_option('kursagenten_top_filters', []),
             'left_filters'  => get_option('kursagenten_left_filters', []),
             'filter_types'  => get_option('kursagenten_filter_types', []),
-            'available_filters' => get_option('kursagenten_available_filters', []),
+            'available_filters' => kursagenten_localize_available_filters(
+                get_option('kursagenten_available_filters', [])
+            ),
         ];
 
         // Ekstra flagg: enkelvalg for kategorier på kurskategorisider
@@ -1295,6 +1310,56 @@ function kursagenten_course_list_shortcode($atts) {
     </script>
     <!-- Mobile Filter Handling -->
     <script type="text/javascript">
+
+    function kaI18n(key, fallback) {
+        if (typeof kurskalender_data !== 'undefined' && kurskalender_data.i18n && kurskalender_data.i18n[key]) {
+            return kurskalender_data.i18n[key];
+        }
+        return fallback || key;
+    }
+
+    function kaBuildCaleranRanges() {
+        const dp = (typeof kurskalender_data !== 'undefined' && kurskalender_data.datepicker)
+            ? kurskalender_data.datepicker
+            : null;
+        if (!dp || !Array.isArray(dp.ranges)) {
+            return [
+                { title: kaI18n('datepickerNextWeek', 'Neste uke'), startDate: moment(), endDate: moment().add(1, 'week') },
+                { title: kaI18n('datepickerNext3Months', 'Neste 3 måneder'), startDate: moment(), endDate: moment().add(3, 'month') },
+                { title: kaI18n('datepickerNext6Months', 'Neste 6 måneder'), startDate: moment(), endDate: moment().add(6, 'month') },
+                { title: kaI18n('datepickerRestOfYear', 'Resten av året'), startDate: moment(), endDate: moment().endOf('year') },
+                { title: kaI18n('datepickerNextYear', 'Neste år'), startDate: moment().add(1, 'year').startOf('year'), endDate: moment().add(1, 'year').endOf('year') }
+            ];
+        }
+        return dp.ranges.map(function (r) {
+            let start = moment();
+            let end;
+            if (r.weeks) {
+                end = moment().add(r.weeks, 'week');
+            } else if (r.months) {
+                end = moment().add(r.months, 'month');
+            } else if (r.endOfYear) {
+                end = moment().endOf('year');
+            } else if (r.nextYear) {
+                start = moment().add(1, 'year').startOf('year');
+                end = moment().add(1, 'year').endOf('year');
+            } else {
+                end = moment();
+            }
+            return { title: r.title, startDate: start, endDate: end };
+        });
+    }
+
+    function kaCaleranLabels() {
+        const dp = (typeof kurskalender_data !== 'undefined' && kurskalender_data.datepicker)
+            ? kurskalender_data.datepicker
+            : {};
+        return {
+            applyLabel: dp.applyLabel || kaI18n('datepickerApply', 'Bruk'),
+            cancelLabel: dp.cancelLabel || kaI18n('datepickerCancel', 'Avbryt'),
+            rangeLabel: dp.rangeLabel || kaI18n('datepickerRangeLabel', 'Velg periode')
+        };
+    }
     
     jQuery(document).ready(function($) {
         // Håndter per-page dropdown
@@ -1377,6 +1442,7 @@ function kursagenten_course_list_shortcode($atts) {
             const dateInputMobile = document.getElementById('date-range-mobile');
             
             if (mobileDatepicker && dateWrapper) {
+                const caleranLabels = kaCaleranLabels();
                 // Initialiser Caleran for mobil
                 mobileCaleranInstance = caleran(dateInputMobile, {
                     showOnClick: true,
@@ -1387,8 +1453,8 @@ function kursagenten_course_list_shortcode($atts) {
                     showHeader: true,
                     showFooter: true,
                     showButtons: true,
-                    applyLabel: "Bruk",
-                    cancelLabel: "Avbryt",
+                    applyLabel: caleranLabels.applyLabel,
+                    cancelLabel: caleranLabels.cancelLabel,
                     showOn: "bottom",
                     arrowOn: "center",
                     autoAlign: true,
@@ -1400,34 +1466,8 @@ function kursagenten_course_list_shortcode($atts) {
                     prevMonthIcon: '<i class="ka-icon icon-chevron-left"></i>',
                     rangeIcon: '<i class="ka-icon icon-calendar"></i>',
                     headerSeparator: '<i class="ka-icon icon-chevron-right calendar-header-separator"></i>',
-                    rangeLabel: "Velg periode",
-                    ranges: [
-                        {
-                            title: "Neste uke",
-                            startDate: moment(),
-                            endDate: moment().add(1, 'week')
-                        },
-                        {
-                            title: "Neste 3 måneder",
-                            startDate: moment(),
-                            endDate: moment().add(3, 'month')
-                        },
-                        {
-                            title: "Neste 6 måneder",
-                            startDate: moment(),
-                            endDate: moment().add(6, 'month')
-                        },
-                        {
-                            title: "Resten av året",
-                            startDate: moment(),
-                            endDate: moment().endOf('year')
-                        },
-                        {
-                            title: "Neste år",
-                            startDate: moment().add(1, 'year').startOf('year'),
-                            endDate: moment().add(1, 'year').endOf('year')
-                        }
-                    ],
+                    rangeLabel: caleranLabels.rangeLabel,
+                    ranges: kaBuildCaleranRanges(),
                     verticalOffset: 10,
                     locale: 'nb',
                     onafterselect: function(caleran, startDate, endDate) {
@@ -1763,7 +1803,7 @@ function kursagenten_course_list_shortcode($atts) {
         }
 
         function showPanelNoResultsMessage(message) {
-            const msg = message || 'Ingen treff med valgte filtre. Prøv et annet søk eller juster filtrene.';
+            const msg = message || kaI18n('filterPanelNoResults', 'Ingen treff med valgte filtre. Prøv et annet søk eller juster filtrene.');
             $('.mobile-filter-content .ka-filter-panel-no-results').remove();
             const html = `<div class="ka-filter-panel-no-results">${msg}</div>`;
             $('.mobile-filter-content').prepend(html);
@@ -1827,12 +1867,12 @@ function kursagenten_course_list_shortcode($atts) {
                         setTimeout(updateFilterCounts, 500);
                     } else {
                         log('Feil i AJAX-respons:', response);
-                        showError('Kunne ikke laste filtrene. Vennligst prøv igjen.');
+                        showError(kaI18n('loadFiltersError', 'Kunne ikke laste filtrene. Vennligst prøv igjen.'));
                     }
                 },
                 error: function(xhr, status, error) {
                     log('Feil ved lasting av mobilfiltre:', error);
-                    showError('Kunne ikke laste filtrene. Vennligst prøv igjen.');
+                    showError(kaI18n('loadFiltersError', 'Kunne ikke laste filtrene. Vennligst prøv igjen.'));
                 },
                 complete: function() {
                     isLoadingFilters = false;
@@ -1845,7 +1885,7 @@ function kursagenten_course_list_shortcode($atts) {
             const errorHtml = `
                 <div class="mobile-filter-error">
                     <p>${message}</p>
-                    <button class="retry-button">Prøv igjen</button>
+                    <button class="retry-button">${kaI18n('retry', 'Prøv igjen')}</button>
                 </div>
             `;
             mobileOverlay.append(errorHtml);
@@ -2021,7 +2061,7 @@ function kursagenten_course_list_shortcode($atts) {
                 if (sameQuery) {
                     const visibleCount = getVisibleCourseCount();
                     if (visibleCount === 0) {
-                        showPanelNoResultsMessage('Ingen treff med valgte filtre. Prøv et annet søk eller juster filtrene.');
+                        showPanelNoResultsMessage(kaI18n('filterPanelNoResults', 'Ingen treff med valgte filtre. Prøv et annet søk eller juster filtrene.'));
                         return;
                     }
                     hideMobileFilters();
@@ -2654,7 +2694,7 @@ function kursagenten_course_list_shortcode($atts) {
 
         /* Tooltip for tomme filtervalg i mobilfilteret */
         .mobile-filter-content .filter-empty::after {
-            content: "Ingen kurs tilgjengelige med valgte filtre. Nullstill filtre hvis du står fast.";
+            content: <?php echo wp_json_encode(__('Ingen kurs tilgjengelige med valgte filtre. Nullstill filtre hvis du står fast.', 'kursagenten')); ?>;
             position: absolute;
             left: 0px;
             top: 50%;

@@ -43,7 +43,7 @@ function custom_taxonomy_rich_text_editor($term) {
     $rich_description = get_term_meta($term->term_id, 'rich_description', true);
     ?>
     <tr class="form-field">
-        <th scope="row" valign="top"><label for="rich_description">Utvidet beskrivelse</label></th>
+        <th scope="row" valign="top"><label for="rich_description"><?php esc_html_e('Utvidet beskrivelse', 'kursagenten'); ?></label></th>
         <td>
             <?php
             wp_editor($rich_description, 'rich_description', array(
@@ -73,9 +73,10 @@ function add_taxonomy_image_field($term, $taxonomy, $field_name, $label_text, $b
         <td>
             <div class="image-upload-container">
             <img id="<?php echo esc_attr($field_name); ?>_preview" src="<?php echo esc_url($image_url); ?>" style="max-height:250px; margin-top:10px; display:<?php echo $image_url ? 'block' : 'none'; ?>" />
-            <input type="button" class="button button-secondary upload_image_button_<?php echo esc_attr($field_name); ?>" value="Last opp <?php echo esc_attr($button_type_label); ?>" />
-            <input type="button" class="button button-secondary remove_image_button_<?php echo esc_attr($field_name); ?>" value="Fjern <?php echo esc_attr($button_type_label); ?>" style="<?php echo $image_url ? 'display:inline-block;' : 'display:none;'; ?>" />
+            <input type="button" class="button button-secondary upload_image_button_<?php echo esc_attr($field_name); ?>" value="<?php echo esc_attr(sprintf(__('Last opp %s', 'kursagenten'), $button_type_label)); ?>" />
+            <input type="button" class="button button-secondary remove_image_button_<?php echo esc_attr($field_name); ?>" value="<?php echo esc_attr(sprintf(__('Fjern %s', 'kursagenten'), $button_type_label)); ?>" style="<?php echo $image_url ? 'display:inline-block;' : 'display:none;'; ?>" />
             <input type="hidden" id="<?php echo esc_attr($field_name); ?>" name="<?php echo esc_attr($field_name); ?>" value="<?php echo esc_attr($image_url); ?>" />
+
             <?php if ($description): ?><p class="description" style="margin-top:.9em"><?php echo esc_html($description); ?></p><?php endif; ?>
             </div>
         </td>
@@ -102,10 +103,10 @@ function add_location_region_field($term) {
     $regions = kursagenten_get_region_mapping();
     ?>
     <tr class="form-field">
-        <th scope="row"><label for="location_region">Region</label></th>
+        <th scope="row"><label for="location_region"><?php esc_html_e('Region', 'kursagenten'); ?></label></th>
         <td>
             <select name="location_region" id="location_region">
-                <option value="">Ingen region</option>
+                <option value=""><?php esc_html_e('Ingen region', 'kursagenten'); ?></option>
                 <?php foreach ($regions as $region_key => $region_data) : 
                     $region_label = kursagenten_get_region_display_name($region_key);
                 ?>
@@ -114,7 +115,7 @@ function add_location_region_field($term) {
                     </option>
                 <?php endforeach; ?>
             </select>
-            <p class="description">Velg hvilken region denne lokasjonen tilhører.</p>
+            <p class="description"><?php esc_html_e('Velg hvilken region denne lokasjonen tilhører.', 'kursagenten'); ?></p>
         </td>
     </tr>
     <?php
@@ -123,31 +124,31 @@ add_action('ka_course_location_edit_form_fields', 'add_location_region_field');
 
 // Callback functions for each taxonomy, passing the correct parameters
 function add_coursecategory_image_field($term) {
-    add_taxonomy_image_field($term, 'ka_coursecategory', 'image_coursecategory', 'Hovedbilde', 'bilde', 'Hovedbilde som brukes på kategorisiden og i kategorioversikter');
+    add_taxonomy_image_field($term, 'ka_coursecategory', 'image_coursecategory', __('Hovedbilde', 'kursagenten'), __('bilde', 'kursagenten'), __('Hovedbilde som brukes på kategorisiden og i kategorioversikter', 'kursagenten'));
 }
 add_action('ka_coursecategory_edit_form_fields', 'add_coursecategory_image_field');
 
 function add_coursecategory_icon_field($term) {
-    add_taxonomy_image_field($term, 'ka_coursecategory', 'icon_coursecategory', 'Profilbilde', 'profilbilde', 'Kan brukes i lister med kurskategorier om du ønsker et annet bilde enn hovedbilde. Profilbilde tilsvarer ikon-bilde i eldre oppsett. Bruk en .png eller .svg bildefil. Du kan laste ned ikoner på feks. https://thenounproject.com/');
+    add_taxonomy_image_field($term, 'ka_coursecategory', 'icon_coursecategory', __('Profilbilde', 'kursagenten'), __('profilbilde', 'kursagenten'), __('Kan brukes i lister med kurskategorier om du ønsker et annet bilde enn hovedbilde. Profilbilde tilsvarer ikon-bilde i eldre oppsett. Bruk en .png eller .svg bildefil. Du kan laste ned ikoner på feks. https://thenounproject.com/', 'kursagenten'));
 }
 add_action('ka_coursecategory_edit_form_fields', 'add_coursecategory_icon_field');
 
 function add_course_location_image_field($term) {
-    add_taxonomy_image_field($term, 'ka_course_location', 'image_course_location', 'Bilde av kurssted', 'bilde');
+    add_taxonomy_image_field($term, 'ka_course_location', 'image_course_location', __('Bilde av kurssted', 'kursagenten'), __('bilde', 'kursagenten'));
 }
 add_action('ka_course_location_edit_form_fields', 'add_course_location_image_field');
 
 // Legg til instruktør-felt
 function add_instructor_image_field($term) {
-    add_taxonomy_image_field($term, 'ka_instructors', 'image_instructor', 'Alternativt bilde', 'bilde', 
-        'Dette bildet kan brukes som et alternativt bilde på instruktørprofilen.');
+    add_taxonomy_image_field($term, 'ka_instructors', 'image_instructor', __('Alternativt bilde', 'kursagenten'), __('bilde', 'kursagenten'),
+        __('Dette bildet kan brukes som et alternativt bilde på instruktørprofilen.', 'kursagenten'));
 }
 add_action('ka_instructors_edit_form_fields', 'add_instructor_image_field');
 
 // Legg til instruktør-felt
 function add_instructor_profile_image_field($term) {
-    add_taxonomy_image_field($term, 'ka_instructors', 'image_instructor_ka', 'Profilbilde', 'bilde', 
-        'Dette bildet brukes som hovedbilde på instruktørprofilen.');
+    add_taxonomy_image_field($term, 'ka_instructors', 'image_instructor_ka', __('Profilbilde', 'kursagenten'), __('bilde', 'kursagenten'),
+        __('Dette bildet brukes som hovedbilde på instruktørprofilen.', 'kursagenten'));
 }
 add_action('ka_instructors_edit_form_fields', 'add_instructor_profile_image_field');
 
@@ -176,67 +177,71 @@ function add_taxonomy_visibility_field($term) {
     }
     ?>
     <tr class="form-field">
-        <th scope="row"><label for="hide_in_list">Synlighet lister</label></th>
+        <th scope="row"><label for="hide_in_list"><?php esc_html_e('Synlighet lister', 'kursagenten'); ?></label></th>
         <td>
             <label style="margin-right: 15px;">
                 <input type="radio" name="hide_in_list" value="Vis" <?php checked($visibility, 'Vis'); ?>>
-                Vis
+                <?php esc_html_e('Vis', 'kursagenten'); ?>
             </label>
             <label>
                 <input type="radio" name="hide_in_list" value="Skjul" <?php checked($visibility, 'Skjul'); ?>>
-                Skjul i oversiktslister
+                <?php esc_html_e('Skjul i oversiktslister', 'kursagenten'); ?>
             </label>
-            <p class="description">Velg om denne skal vises i kategorilister og oversikter.</p>
+            <p class="description"><?php
+            if ($taxonomy === 'ka_instructors') {
+                esc_html_e('Velg om denne skal vises i kursagentens egne oversikter.', 'kursagenten');
+            } else {
+                esc_html_e('Velg om denne skal vises i kategorilister og oversikter.', 'kursagenten');
+            }
+            ?></p>
         </td>
     </tr>
     <tr class="form-field">
-        <th scope="row"><label for="hide_in_menu">Menyer</label></th>
+        <th scope="row"><label for="hide_in_menu"><?php esc_html_e('Menyer', 'kursagenten'); ?></label></th>
         <td>
             <label style="margin-right: 15px;">
                 <input type="radio" name="hide_in_menu" value="Vis" <?php checked($menu_visibility, 'Vis'); ?>>
-                Vis
+                <?php esc_html_e('Vis', 'kursagenten'); ?>
             </label>
             <label>
                 <input type="radio" name="hide_in_menu" value="Skjul" <?php checked($menu_visibility, 'Skjul'); ?>>
-                Skjul i automenyer
+                <?php esc_html_e('Skjul i automenyer', 'kursagenten'); ?>
             </label>
-            <p class="description">Velg om denne skal vises i autogenererte menyer.</p>
+            <p class="description"><?php esc_html_e('Velg om denne skal vises i autogenererte menyer.', 'kursagenten'); ?></p>
         </td>
     </tr>
     <?php if ($taxonomy === 'ka_coursecategory'): ?>
     <tr class="form-field">
-        <th scope="row"><label for="hide_in_course_list">Kursliste</label></th>
+        <th scope="row"><label for="hide_in_course_list"><?php esc_html_e('Kursliste', 'kursagenten'); ?></label></th>
         <td>
             <label style="display:block; margin-bottom: 6px;">
                 <input type="radio" name="hide_in_course_list" value="Vis" <?php checked($course_list_visibility, 'Vis'); ?>>
-                Vis kategorien og tilhørende kurs
+                <?php esc_html_e('Vis kategorien og tilhørende kurs', 'kursagenten'); ?>
             </label>
             <label style="display:block; margin-bottom: 6px;">
                 <input type="radio" name="hide_in_course_list" value="Skjul_filter" <?php checked($course_list_visibility, 'Skjul_filter'); ?>>
-                Skjul kun kategorien fra filter (kursene vises fortsatt)
+                <?php esc_html_e('Skjul kun kategorien fra filter (kursene vises fortsatt)', 'kursagenten'); ?>
             </label>
             <label style="display:block; margin-bottom: 0;">
                 <input type="radio" name="hide_in_course_list" value="Skjul" <?php checked($course_list_visibility, 'Skjul'); ?>>
-                Skjul kategorien og alle tilhørende kurs
+                <?php esc_html_e('Skjul kategorien og alle tilhørende kurs', 'kursagenten'); ?>
             </label>
             <p class="description">
-                <strong>Vis:</strong> Kategorien vises i filteret, og kurs tagget med kategorien vises i kurslisten.<br>
-                <strong>Skjul kun kategorien fra filter:</strong> Kategorien skjules fra filteret, men kurs tagget med denne kategorien vises fortsatt i kurslisten (under sine øvrige kategorier).<br>
-                <strong>Skjul kategorien og alle tilhørende kurs:</strong> Verken kategorien eller kurs tagget med denne vises i kurslisten – nyttig for interne kategorier.
+                <?php echo wp_kses_post(__('<strong>Vis:</strong> Kategorien vises i filteret, og kurs tagget med kategorien vises i kurslisten.<br><strong>Skjul kun kategorien fra filter:</strong> Kategorien skjules fra filteret, men kurs tagget med denne kategorien vises fortsatt i kurslisten (under sine øvrige kategorier).<br><strong>Skjul kategorien og alle tilhørende kurs:</strong> Verken kategorien eller kurs tagget med denne vises i kurslisten – nyttig for interne kategorier.', 'kursagenten')); ?>
             </p>
         </td>
     </tr>
     <tr class="form-field">
-        <th scope="row"><label for="show_category_filter_on_archive">Kategorifilter på kategorisiden</label></th>
+        <th scope="row"><label for="show_category_filter_on_archive"><?php esc_html_e('Kategorifilter på kategorisiden', 'kursagenten'); ?></label></th>
         <td>
             <?php
             $show_filter_on_archive = get_term_meta($term->term_id, 'show_category_filter_on_archive', true);
             ?>
             <label>
                 <input type="checkbox" name="show_category_filter_on_archive" value="yes" <?php checked($show_filter_on_archive, 'yes'); ?>>
-                Vis kategorifilter (visningstype Alle kursdatoer)
+                <?php esc_html_e('Vis kategorifilter (visningstype Alle kursdatoer)', 'kursagenten'); ?>
             </label>
-            <p class="description">Vis filter med kategorier som også er brukt på kurs med denne kategorien, i tillegg til underkategoriene. Nyttig om du ikke kan lage en hovedkategori med underkategorier, men vil ha mulighet til å filtrere litkevel.</p>
+            <p class="description"><?php esc_html_e('Vis filter med kategorier som også er brukt på kurs med denne kategorien, i tillegg til underkategoriene. Nyttig om du ikke kan lage en hovedkategori med underkategorier, men vil ha mulighet til å filtrere likevel.', 'kursagenten'); ?></p>
         </td>
     </tr>
     <?php endif; ?>
@@ -264,15 +269,15 @@ function add_quick_edit_visibility_field($column_name, $taxonomy_or_post_type) {
     <fieldset>
         <div class="inline-edit-col">
             <label>
-                <span class="title">Synlighet lister</span>
+                <span class="title"><?php esc_html_e('Synlighet lister', 'kursagenten'); ?></span>
                 <span class="input-text-wrap">
                     <label class="alignleft" style="margin-right: 15px;">
                         <input type="radio" name="quick_edit_hide_in_list" value="Vis">
-                        <span class="checkbox-title">Vis</span>
+                        <span class="checkbox-title"><?php esc_html_e('Vis', 'kursagenten'); ?></span>
                     </label>
                     <label class="alignleft">
                         <input type="radio" name="quick_edit_hide_in_list" value="Skjul">
-                        <span class="checkbox-title">Skjul i oversiktslister</span>
+                        <span class="checkbox-title"><?php esc_html_e('Skjul i oversiktslister', 'kursagenten'); ?></span>
                     </label>
                 </span>
             </label>
@@ -281,15 +286,15 @@ function add_quick_edit_visibility_field($column_name, $taxonomy_or_post_type) {
     <fieldset>
         <div class="inline-edit-col">
             <label>
-                <span class="title">Menyer</span>
+                <span class="title"><?php esc_html_e('Menyer', 'kursagenten'); ?></span>
                 <span class="input-text-wrap">
                     <label class="alignleft" style="margin-right: 15px;">
                         <input type="radio" name="quick_edit_hide_in_menu" value="Vis">
-                        <span class="checkbox-title">Vis</span>
+                        <span class="checkbox-title"><?php esc_html_e('Vis', 'kursagenten'); ?></span>
                     </label>
                     <label class="alignleft">
                         <input type="radio" name="quick_edit_hide_in_menu" value="Skjul">
-                        <span class="checkbox-title">Skjul i automenyer</span>
+                        <span class="checkbox-title"><?php esc_html_e('Skjul i automenyer', 'kursagenten'); ?></span>
                     </label>
                 </span>
             </label>
@@ -298,19 +303,19 @@ function add_quick_edit_visibility_field($column_name, $taxonomy_or_post_type) {
     <fieldset class="course-list-visibility" style="display:none">
         <div class="inline-edit-col">
             <label>
-                <span class="title">Kursliste</span>
+                <span class="title"><?php esc_html_e('Kursliste', 'kursagenten'); ?></span>
                 <span class="input-text-wrap" style="display:block;">
                     <label class="alignleft" style="display:block; margin-bottom:4px;">
                         <input type="radio" name="quick_edit_hide_in_course_list" value="Vis">
-                        <span class="checkbox-title">Vis</span>
+                        <span class="checkbox-title"><?php esc_html_e('Vis', 'kursagenten'); ?></span>
                     </label>
                     <label class="alignleft" style="display:block; margin-bottom:4px;">
                         <input type="radio" name="quick_edit_hide_in_course_list" value="Skjul_filter">
-                        <span class="checkbox-title">Skjul kun kategorien fra filter</span>
+                        <span class="checkbox-title"><?php esc_html_e('Skjul kun kategorien fra filter', 'kursagenten'); ?></span>
                     </label>
                     <label class="alignleft" style="display:block;">
                         <input type="radio" name="quick_edit_hide_in_course_list" value="Skjul">
-                        <span class="checkbox-title">Skjul kategorien og alle tilhørende kurs</span>
+                        <span class="checkbox-title"><?php esc_html_e('Skjul kategorien og alle tilhørende kurs', 'kursagenten'); ?></span>
                     </label>
                 </span>
             </label>
@@ -319,11 +324,11 @@ function add_quick_edit_visibility_field($column_name, $taxonomy_or_post_type) {
     <fieldset class="category-filter-visibility" style="display:none">
         <div class="inline-edit-col">
             <label>
-                <span class="title">Kursfilter</span>
+                <span class="title"><?php esc_html_e('Kursfilter', 'kursagenten'); ?></span>
                 <span class="input-text-wrap">
                     <label class="alignleft">
                         <input type="checkbox" name="quick_edit_show_category_filter_on_archive" value="yes">
-                        <span class="checkbox-title">Vis kursfilter på kategoriside</span>
+                        <span class="checkbox-title"><?php esc_html_e('Vis kursfilter på kategoriside', 'kursagenten'); ?></span>
                     </label>
                 </span>
             </label>
@@ -334,7 +339,7 @@ function add_quick_edit_visibility_field($column_name, $taxonomy_or_post_type) {
 
 // Legg til kolonne i taksonomi-tabellen
 function add_taxonomy_visibility_column($columns) {
-    $columns['visibility'] = 'Synlighet lister';
+    $columns['visibility'] = __('Synlighet lister', 'kursagenten');
     
     // Add region column for location taxonomy if regions are enabled
     global $current_screen;
@@ -358,20 +363,20 @@ function manage_taxonomy_visibility_column($content, $column_name, $term_id) {
         $output = '';
 
         if ($visibility === 'Skjul') {
-            $output .= '<span class="visibility-tag" style="color: rgb(226, 91, 102);">Skjult i lister</span>';
+            $output .= '<span class="visibility-tag" data-list-state="Skjul" style="color: rgb(226, 91, 102);">' . esc_html__('Skjult i lister', 'kursagenten') . '</span>';
         }
         if ($menu_visibility === 'Skjul') {
-            $output .= '<span class="visibility-tag" style="color: rgb(226, 91, 102);">Skjult i menyer</span>';
+            $output .= '<span class="visibility-tag" data-menu-state="Skjul" style="color: rgb(226, 91, 102);">' . esc_html__('Skjult i menyer', 'kursagenten') . '</span>';
         }
         // Distinguish soft (filter only) from hard (filter + courses) hide.
         if ($course_list_visibility === 'Skjul') {
-            $output .= '<span class="visibility-tag" data-course-list-state="Skjul" style="color: rgb(226, 91, 102);">Skjult i kursliste</span>';
+            $output .= '<span class="visibility-tag" data-course-list-state="Skjul" style="color: rgb(226, 91, 102);">' . esc_html__('Skjult i kursliste', 'kursagenten') . '</span>';
         } elseif ($course_list_visibility === 'Skjul_filter') {
-            $output .= '<span class="visibility-tag" data-course-list-state="Skjul_filter" style="color: rgb(214, 142, 39);">Skjult fra filter</span>';
+            $output .= '<span class="visibility-tag" data-course-list-state="Skjul_filter" style="color: rgb(214, 142, 39);">' . esc_html__('Skjult fra filter', 'kursagenten') . '</span>';
         }
         $show_filter_on_archive = get_term_meta($term_id, 'show_category_filter_on_archive', true);
         if ($show_filter_on_archive === 'yes') {
-            $output .= '<span class="visibility-tag" style="color: #2271b1;">Vis kategorifilter</span>';
+            $output .= '<span class="visibility-tag" data-category-filter="yes" style="color: #2271b1;">' . esc_html__('Vis kategorifilter', 'kursagenten') . '</span>';
         }
 
         return $output;
@@ -387,7 +392,7 @@ function manage_taxonomy_visibility_column($content, $column_name, $term_id) {
             return '<span style="padding: 3px 8px; background: #f0f0f0; border-radius: 3px; font-size: 12px;">' . esc_html($region_label) . '</span>';
         }
         
-        return '<span style="color: #999; font-style: italic;">Ingen region</span>';
+        return '<span style="color: #999; font-style: italic;">' . esc_html__('Ingen region', 'kursagenten') . '</span>';
     }
     
     return $content;
@@ -678,10 +683,11 @@ function add_quick_edit_javascript() {
                         courseListState = 'Vis';
                     }
 
-                    var visibilityText = $visibilityCell.text();
-                    var list_visibility = visibilityText.indexOf('Skjult i lister') !== -1 ? 'Skjul' : 'Vis';
-                    var menu_visibility = visibilityText.indexOf('Skjult i menyer') !== -1 ? 'Skjul' : 'Vis';
-                    var show_category_filter = visibilityText.indexOf('Vis kategorifilter') !== -1;
+                    var $listTag = $visibilityCell.find('[data-list-state]');
+                    var $menuTag = $visibilityCell.find('[data-menu-state]');
+                    var list_visibility = $listTag.length ? $listTag.data('list-state') : 'Vis';
+                    var menu_visibility = $menuTag.length ? $menuTag.data('menu-state') : 'Vis';
+                    var show_category_filter = $visibilityCell.find('[data-category-filter]').length > 0;
 
                     $('input[name="quick_edit_hide_in_list"][value="' + list_visibility + '"]').prop('checked', true);
                     $('input[name="quick_edit_hide_in_menu"][value="' + menu_visibility + '"]').prop('checked', true);
@@ -733,8 +739,8 @@ function kursagenten_add_bulk_visibility_modal() {
     ?>
     <div id="kursagenten-bulk-visibility-backdrop" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:100000;"></div>
     <div id="kursagenten-bulk-visibility-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; padding:24px 28px; max-width:640px; width:95%; box-shadow:0 12px 40px rgba(0,0,0,.25); border-radius:8px; z-index:100001;">
-        <h2 style="margin-top:0; margin-bottom:12px;">Masseredigering av synlighet</h2>
-        <p style="margin-top:0; color:#555;">Endringene under gjelder for alle valgte termer. Felter satt til «Ikke endre» blir hoppet over.</p>
+        <h2 style="margin-top:0; margin-bottom:12px;"><?php esc_html_e('Masseredigering av synlighet', 'kursagenten'); ?></h2>
+        <p style="margin-top:0; color:#555;"><?php esc_html_e('Endringene under gjelder for alle valgte termer. Felter satt til «Ikke endre» blir hoppet over.', 'kursagenten'); ?></p>
 
         <form id="kursagenten-bulk-visibility-form">
             <input type="hidden" id="kursagenten-bulk-visibility-taxonomy" name="taxonomy" value="<?php echo esc_attr($taxonomy); ?>">
@@ -743,88 +749,88 @@ function kursagenten_add_bulk_visibility_modal() {
             <table class="form-table kursagenten-bulk-visibility-table" role="presentation" style="margin-top:10px;">
                 <tbody>
                 <tr>
-                    <th scope="row"><label for="bulk_visibility">Synlighet lister</label></th>
+                    <th scope="row"><label for="bulk_visibility"><?php esc_html_e('Synlighet lister', 'kursagenten'); ?></label></th>
                     <td>
                         <label style="margin-right:15px;">
                             <input type="radio" name="bulk_visibility" value="" checked>
-                            Ikke endre
+                            <?php esc_html_e('Ikke endre', 'kursagenten'); ?>
                         </label>
                         <label style="margin-right:15px;">
                             <input type="radio" name="bulk_visibility" value="Vis">
-                            Vis
+                            <?php esc_html_e('Vis', 'kursagenten'); ?>
                         </label>
                         <label>
                             <input type="radio" name="bulk_visibility" value="Skjul">
-                            Skjul i oversiktslister
+                            <?php esc_html_e('Skjul i oversiktslister', 'kursagenten'); ?>
                         </label>
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><label for="bulk_menu_visibility">Menyer</label></th>
+                    <th scope="row"><label for="bulk_menu_visibility"><?php esc_html_e('Menyer', 'kursagenten'); ?></label></th>
                     <td>
                         <label style="margin-right:15px;">
                             <input type="radio" name="bulk_menu_visibility" value="" checked>
-                            Ikke endre
+                            <?php esc_html_e('Ikke endre', 'kursagenten'); ?>
                         </label>
                         <label style="margin-right:15px;">
                             <input type="radio" name="bulk_menu_visibility" value="Vis">
-                            Vis
+                            <?php esc_html_e('Vis', 'kursagenten'); ?>
                         </label>
                         <label>
                             <input type="radio" name="bulk_menu_visibility" value="Skjul">
-                            Skjul i automenyer
+                            <?php esc_html_e('Skjul i automenyer', 'kursagenten'); ?>
                         </label>
                     </td>
                 </tr>
                 <tr class="bulk-course-list-row">
-                    <th scope="row"><label for="bulk_course_list_visibility">Kursliste</label></th>
+                    <th scope="row"><label for="bulk_course_list_visibility"><?php esc_html_e('Kursliste', 'kursagenten'); ?></label></th>
                     <td>
                         <label style="display:block; margin-bottom:4px;">
                             <input type="radio" name="bulk_course_list_visibility" value="" checked>
-                            Ikke endre
+                            <?php esc_html_e('Ikke endre', 'kursagenten'); ?>
                         </label>
                         <label style="display:block; margin-bottom:4px;">
                             <input type="radio" name="bulk_course_list_visibility" value="Vis">
-                            Vis
+                            <?php esc_html_e('Vis', 'kursagenten'); ?>
                         </label>
                         <label style="display:block; margin-bottom:4px;">
                             <input type="radio" name="bulk_course_list_visibility" value="Skjul_filter">
-                            Skjul kun kategorien fra filter (kursene vises fortsatt)
+                            <?php esc_html_e('Skjul kun kategorien fra filter (kursene vises fortsatt)', 'kursagenten'); ?>
                         </label>
                         <label style="display:block; margin-bottom:0;">
                             <input type="radio" name="bulk_course_list_visibility" value="Skjul">
-                            Skjul kategorien og alle tilhørende kurs
+                            <?php esc_html_e('Skjul kategorien og alle tilhørende kurs', 'kursagenten'); ?>
                         </label>
                     </td>
                 </tr>
                 <tr class="bulk-category-filter-row">
-                    <th scope="row"><label for="bulk_category_filter">Kursfilter på kategoriside</label></th>
+                    <th scope="row"><label for="bulk_category_filter"><?php esc_html_e('Kursfilter på kategoriside', 'kursagenten'); ?></label></th>
                     <td>
                         <label style="margin-right:15px;">
                             <input type="radio" name="bulk_category_filter" value="" checked>
-                            Ikke endre
+                            <?php esc_html_e('Ikke endre', 'kursagenten'); ?>
                         </label>
                         <label style="margin-right:15px;">
                             <input type="radio" name="bulk_category_filter" value="on">
-                            Slå på
+                            <?php esc_html_e('Slå på', 'kursagenten'); ?>
                         </label>
                         <label>
                             <input type="radio" name="bulk_category_filter" value="off">
-                            Slå av
+                            <?php esc_html_e('Slå av', 'kursagenten'); ?>
                         </label>
                     </td>
                 </tr>
                 <tr class="bulk-parent-row">
-                    <th scope="row"><label for="bulk_parent_action">Foreldrekategori</label></th>
+                    <th scope="row"><label for="bulk_parent_action"><?php esc_html_e('Foreldrekategori', 'kursagenten'); ?></label></th>
                     <td>
-                        <p style="margin-top:0; margin-bottom:6px;">Gjelder foreldrekategori for alle valgte kurskategorier.</p>
+                        <p style="margin-top:0; margin-bottom:6px;"><?php esc_html_e('Gjelder foreldrekategori for alle valgte kurskategorier.', 'kursagenten'); ?></p>
                         <label style="display:block; margin-bottom:4px;">
                             <input type="radio" name="bulk_parent_action" value="" checked>
-                            Ikke endre foreldrekategori
+                            <?php esc_html_e('Ikke endre foreldrekategori', 'kursagenten'); ?>
                         </label>
                         <label style="display:block; margin-bottom:4px;">
                             <input type="radio" name="bulk_parent_action" value="set">
-                            Sett foreldrekategori til:
+                            <?php esc_html_e('Sett foreldrekategori til:', 'kursagenten'); ?>
                         </label>
                         <select name="bulk_parent_term_id" id="bulk_parent_term_id" class="widefat" style="max-width:280px; margin:4px 0 8px 22px;" disabled>
                             <option value=""><?php echo esc_html__('Velg foreldrekategori', 'kursagenten'); ?></option>
@@ -843,7 +849,7 @@ function kursagenten_add_bulk_visibility_modal() {
                         </select>
                         <label style="display:block; margin-bottom:0;">
                             <input type="radio" name="bulk_parent_action" value="unset">
-                            Fjern foreldrekategori (flytt til toppnivå)
+                            <?php esc_html_e('Fjern foreldrekategori (flytt til toppnivå)', 'kursagenten'); ?>
                         </label>
                     </td>
                 </tr>
@@ -851,8 +857,8 @@ function kursagenten_add_bulk_visibility_modal() {
             </table>
 
             <p class="submit" style="margin-top:18px; display:flex; gap:8px; justify-content:flex-end;">
-                <button type="button" class="button button-secondary" id="kursagenten-bulk-visibility-cancel">Avbryt</button>
-                <button type="submit" class="button button-primary" id="kursagenten-bulk-visibility-save">Lagre</button>
+                <button type="button" class="button button-secondary" id="kursagenten-bulk-visibility-cancel"><?php esc_html_e('Avbryt', 'kursagenten'); ?></button>
+                <button type="submit" class="button button-primary" id="kursagenten-bulk-visibility-save"><?php esc_html_e('Lagre', 'kursagenten'); ?></button>
             </p>
         </form>
     </div>
@@ -904,7 +910,7 @@ function kursagenten_add_bulk_visibility_modal() {
 
                 var termIds = getSelectedTermIds();
                 if (!termIds.length) {
-                    alert('Velg minst én rad før du bruker masseredigering.');
+                    alert(<?php echo wp_json_encode(__('Velg minst én rad før du bruker masseredigering.', 'kursagenten')); ?>);
                     return;
                 }
 
@@ -973,11 +979,11 @@ function kursagenten_add_bulk_visibility_modal() {
                             // Reload to reflect changes
                             window.location.reload();
                         } else {
-                            alert(response && response.data ? response.data : 'Noe gikk galt ved masseredigering.');
+                            alert(response && response.data ? response.data : <?php echo wp_json_encode(__('Noe gikk galt ved masseredigering.', 'kursagenten')); ?>);
                         }
                     })
                     .fail(function() {
-                        alert('Noe gikk galt ved kommunikasjon med serveren.');
+                        alert(<?php echo wp_json_encode(__('Noe gikk galt ved kommunikasjon med serveren.', 'kursagenten')); ?>);
                     })
                     .always(function() {
                         $('#kursagenten-bulk-visibility-save').prop('disabled', false);
@@ -993,7 +999,7 @@ add_action('admin_footer-edit-tags.php', 'kursagenten_add_bulk_visibility_modal'
 // Endre "Beskrivelse" til "Kort beskrivelse" for alle taksonomier
 function kursagenten_change_description_label($translated_text, $text, $domain) {
     if ($domain === 'default' && $text === 'Description') {
-        return 'Kort beskrivelse';
+        return __('Kort beskrivelse', 'kursagenten');
     }
     return $translated_text;
 }
@@ -1216,48 +1222,51 @@ function kursagenten_make_fields_readonly($term) {
             $descriptionField.remove();
             $richDescriptionField.remove();
             
+            <?php
+            $overridden_field_msg = esc_html__('Dette feltet er overskrevet fra Kursagenten', 'kursagenten');
+            ?>
             // Opprett HTML for redigerbare felter
             var editableFieldsHtml = `
                 <tr class="form-field instructor-override-fields" style="display:none;">
-                    <th scope="row"><label for="instructor_name">Navn</label></th>
+                    <th scope="row"><label for="instructor_name"><?php echo esc_js(__('Navn', 'kursagenten')); ?></label></th>
                     <td>
                         <input type="text" name="instructor_name" id="instructor_name" value="<?php echo esc_attr($term->name); ?>" class="regular-text" />
-                        <p class="description">Endre navnet på instruktøren</p>
+                        <p class="description"><?php echo esc_js(__('Endre navnet på instruktøren', 'kursagenten')); ?></p>
                     </td>
                 </tr>
                 <tr class="form-field instructor-override-fields" style="display:none;">
-                    <th scope="row"><label for="instructor_phone">Telefon</label></th>
+                    <th scope="row"><label for="instructor_phone"><?php echo esc_js(__('Telefon', 'kursagenten')); ?></label></th>
                     <td>
                         <input type="text" name="instructor_phone" id="instructor_phone" value="<?php echo esc_attr($phone); ?>" class="regular-text" />
                         <?php if (!$is_manual_instructor): ?>
-                        <p class="description"><?php echo $phone_edited ? '<span style="color:#d63638;">Dette feltet er overskrevet fra Kursagenten</span>' : ''; ?></p>
+                        <p class="description"><?php echo $phone_edited ? '<span style="color:#d63638;">' . esc_html($overridden_field_msg) . '</span>' : ''; ?></p>
                         <?php endif; ?>
                     </td>
                 </tr>
                 <tr class="form-field instructor-override-fields" style="display:none;">
-                    <th scope="row"><label for="instructor_email">E-post</label></th>
+                    <th scope="row"><label for="instructor_email"><?php echo esc_js(__('E-post', 'kursagenten')); ?></label></th>
                     <td>
                         <input type="email" name="instructor_email" id="instructor_email" value="<?php echo esc_attr($email); ?>" class="regular-text" />
                         <?php if (!$is_manual_instructor): ?>
-                        <p class="description"><?php echo $email_edited ? '<span style="color:#d63638;">Dette feltet er overskrevet fra Kursagenten</span>' : ''; ?></p>
+                        <p class="description"><?php echo $email_edited ? '<span style="color:#d63638;">' . esc_html($overridden_field_msg) . '</span>' : ''; ?></p>
                         <?php endif; ?>
                     </td>
                 </tr>
                 <tr class="form-field instructor-override-fields" style="display:none;">
-                    <th scope="row"><label for="instructor_firstname">Fornavn</label></th>
+                    <th scope="row"><label for="instructor_firstname"><?php echo esc_js(__('Fornavn', 'kursagenten')); ?></label></th>
                     <td>
                         <input type="text" name="instructor_firstname" id="instructor_firstname" value="<?php echo esc_attr($firstname); ?>" class="regular-text" />
                         <?php if (!$is_manual_instructor): ?>
-                        <p class="description"><?php echo $firstname_edited ? '<span style="color:#d63638;">Dette feltet er overskrevet fra Kursagenten</span>' : ''; ?></p>
+                        <p class="description"><?php echo $firstname_edited ? '<span style="color:#d63638;">' . esc_html($overridden_field_msg) . '</span>' : ''; ?></p>
                         <?php endif; ?>
                     </td>
                 </tr>
                 <tr class="form-field instructor-override-fields" style="display:none;">
-                    <th scope="row"><label for="instructor_lastname">Etternavn</label></th>
+                    <th scope="row"><label for="instructor_lastname"><?php echo esc_js(__('Etternavn', 'kursagenten')); ?></label></th>
                     <td>
                         <input type="text" name="instructor_lastname" id="instructor_lastname" value="<?php echo esc_attr($lastname); ?>" class="regular-text" />
                         <?php if (!$is_manual_instructor): ?>
-                        <p class="description"><?php echo $lastname_edited ? '<span style="color:#d63638;">Dette feltet er overskrevet fra Kursagenten</span>' : ''; ?></p>
+                        <p class="description"><?php echo $lastname_edited ? '<span style="color:#d63638;">' . esc_html($overridden_field_msg) . '</span>' : ''; ?></p>
                         <?php endif; ?>
                     </td>
                 </tr>
@@ -1269,20 +1278,9 @@ function kursagenten_make_fields_readonly($term) {
                     <td colspan="2">
                         <div class="revert-to-ka-data">
                             <?php if ($is_manual_instructor): ?>
-                            <p><strong>Bruk Kursagenten instruktørprofil i stedet:</strong></p>
-                            <ol>
-                                <li>Slett denne instruktøren</li>
-                                <li>Lagre et kurs i Kursagenten hvor instruktøren er lagt inn</li>
-                            </ol>
+                            <?php echo wp_kses_post(__('<p><strong>Bruk Kursagenten instruktørprofil i stedet:</strong></p><ol><li>Slett denne instruktøren</li><li>Lagre et kurs i Kursagenten hvor instruktøren er lagt inn</li></ol>', 'kursagenten')); ?>
                             <?php else: ?>
-                            <p><strong>Gå tilbake til Kursagenten-data:</strong></p>
-                            <ol>
-                                <li>Deaktiver "Overstyr profil fra Kursagenten" knappen</li>
-                                <li>Oppdater instruktørprofilen i Kursagenten</li>
-                                <li>Profilen oppdateres her. Merk: instruktøren må være knyttet til et kurs for at dataene skal bli hentet over.</li>
-                            </ol>
-                            <p>- Bruker du data fra Kursagenten, slipper du å holde dem oppdatert to steder.<br>
-                            - En instruktør som er opprettet i Kursagenten med det samme navnet, vil automatisk bli slått sammen med denne instruktøren.</p>
+                            <?php echo wp_kses_post(__('<p><strong>Gå tilbake til Kursagenten-data:</strong></p><ol><li>Deaktiver "Overstyr profil fra Kursagenten" knappen</li><li>Oppdater instruktørprofilen i Kursagenten</li><li>Profilen oppdateres her. Merk: instruktøren må være knyttet til et kurs for at dataene skal bli hentet over.</li></ol><p>- Bruker du data fra Kursagenten, slipper du å holde dem oppdatert to steder.<br>- En instruktør som er opprettet i Kursagenten med det samme navnet, vil automatisk bli slått sammen med denne instruktøren.</p>', 'kursagenten')); ?>
                             <?php endif; ?>
                         </div>
                     </td>
@@ -1301,23 +1299,22 @@ function kursagenten_make_fields_readonly($term) {
                         '<div class="instructor-name"><?php echo esc_js(esc_html($term->name)); ?></div>' +
                         '<div class="instructor-details">' +
                             '<p><strong>Slug:</strong> /<?php echo esc_js(esc_attr($term->slug)); ?></p>' +
-                            '<p class="instructor-phone"><strong>Telefon:</strong> <span class="instructor-value"><?php echo esc_js(esc_html($phone)); ?></span></p>' +
-                            '<p class="instructor-email"><strong>E-post:</strong> <span class="instructor-value"><?php echo esc_js(esc_html($email)); ?></span></p>' +
-                            '<p class="instructor-firstname"><strong>Fornavn:</strong> <span class="instructor-value"><?php echo esc_js(esc_html($firstname)); ?></span></p>' +
-                            '<p class="instructor-lastname"><strong>Etternavn:</strong> <span class="instructor-value"><?php echo esc_js(esc_html($lastname)); ?></span></p>' +
-                            //'<p class="instructor-image-url"><strong>Bildeurl:</strong> <span class="instructor-value"><?php echo esc_js(esc_html($image_ka)); ?></span></p>' +
+                            '<p class="instructor-phone"><strong><?php echo esc_js(__('Telefon', 'kursagenten')); ?>:</strong> <span class="instructor-value"><?php echo esc_js(esc_html($phone)); ?></span></p>' +
+                            '<p class="instructor-email"><strong><?php echo esc_js(__('E-post', 'kursagenten')); ?>:</strong> <span class="instructor-value"><?php echo esc_js(esc_html($email)); ?></span></p>' +
+                            '<p class="instructor-firstname"><strong><?php echo esc_js(__('Fornavn', 'kursagenten')); ?>:</strong> <span class="instructor-value"><?php echo esc_js(esc_html($firstname)); ?></span></p>' +
+                            '<p class="instructor-lastname"><strong><?php echo esc_js(__('Etternavn', 'kursagenten')); ?>:</strong> <span class="instructor-value"><?php echo esc_js(esc_html($lastname)); ?></span></p>' +
                             <?php if (!$is_manual_instructor): ?>
                             '<a href="https://kursadmin.kursagenten.no/Profile/<?php echo esc_js(esc_html($id)); ?>" target="_blank">' +
-                                'Rediger i Kursadmin' +
+                                '<?php echo esc_js(__('Rediger i Kursadmin', 'kursagenten')); ?>' +
                             '</a>' +
-                            '<br><span class="instructor-ka-note" style="font-size:12px; color:#888; font-style:italic;"> Merk: instruktøren må være knyttet til et kurs for at dataene skal bli hentet over.</span>' +
+                            '<br><span class="instructor-ka-note" style="font-size:12px; color:#888; font-style:italic;"> <?php echo esc_js(__('Merk: instruktøren må være knyttet til et kurs for at dataene skal bli hentet over.', 'kursagenten')); ?></span>' +
                             <?php endif; ?>
                         '</div>' +
                     '</div>' +
                 '</div></td></tr>'),
 
                 // Profilbilde seksjon
-                $('<tr><td colspan="2"><div class="content-section"><h3>Profilbilde</h3></div></td></tr>'),
+                $('<tr><td colspan="2"><div class="content-section"><h3><?php echo esc_js(__('Profilbilde', 'kursagenten')); ?></h3></div></td></tr>'),
                 
                 // Toggle-knapp for profilbilde
                 $('<tr><td colspan="2"><div class="instructor-override-toggle">' +
@@ -1327,14 +1324,14 @@ function kursagenten_make_fields_readonly($term) {
                         '<?php echo $is_manual_instructor ? "disabled" : ""; ?> />' +
                         '<span class="slider round"></span>' +
                     '</label>' +
-                    '<span class="toggle-label"><?php echo $is_manual_instructor ? "Profilbilde" : "Overstyr profilbilde"; ?></span>' +
+                    '<span class="toggle-label"><?php echo esc_js($is_manual_instructor ? __('Profilbilde', 'kursagenten') : __('Overstyr profilbilde', 'kursagenten')); ?></span>' +
                 '</div></td></tr>'),
                 
                 // Profilbilde felt
                 $profileImageField,
                 
                 // Innhold seksjon
-                $('<tr><td colspan="2"><div class="content-section"><h3>Innhold</h3></div></td></tr>'),
+                $('<tr><td colspan="2"><div class="content-section"><h3><?php echo esc_js(__('Innhold', 'kursagenten')); ?></h3></div></td></tr>'),
                 
                 // Toggle-knapp for andre felter
                 $('<tr><td colspan="2"><div class="instructor-override-toggle">' +
@@ -1344,7 +1341,7 @@ function kursagenten_make_fields_readonly($term) {
                         '<?php echo $is_manual_instructor ? "disabled" : ""; ?> />' +
                         '<span class="slider round"></span>' +
                     '</label>' +
-                    '<span class="toggle-label"><?php echo $is_manual_instructor ? "Lagt inn direkte via WordPress" : "Overstyr profil fra Kursagenten"; ?></span>' +
+                    '<span class="toggle-label"><?php echo esc_js($is_manual_instructor ? __('Lagt inn direkte via WordPress', 'kursagenten') : __('Overstyr profil fra Kursagenten', 'kursagenten')); ?></span>' +
                 '</div></td></tr>'),
                 
                 // Redigerbare felter

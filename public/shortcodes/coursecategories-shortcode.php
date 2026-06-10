@@ -346,7 +346,7 @@ class CourseCategories {
                         <img src='{$thumbnail}' 
                              width='" . esc_attr($width) . "' 
                              height='" . esc_attr($height) . "' 
-                             alt='Bilde av kurs i {$term->name}' 
+                             alt='" . esc_attr(sprintf(/* translators: %s: category name */ __('Bilde av kurs i %s', 'kursagenten'), $term->name)) . "'
                              class='wp-image-{$term->term_id}' 
                              decoding='async'>
                     </picture>

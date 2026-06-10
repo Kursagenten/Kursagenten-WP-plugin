@@ -15,6 +15,67 @@
 		}
 	}
 
+	function kaI18n(key, fallback) {
+		if (typeof kurskalender_data !== 'undefined' && kurskalender_data.i18n && kurskalender_data.i18n[key]) {
+			return kurskalender_data.i18n[key];
+		}
+		return fallback || key;
+	}
+
+	function kaBuildCaleranRanges() {
+		const dp = (typeof kurskalender_data !== 'undefined' && kurskalender_data.datepicker)
+			? kurskalender_data.datepicker
+			: null;
+		if (!dp || !Array.isArray(dp.ranges)) {
+			return [
+				{ title: kaI18n('datepickerNextWeek', 'Neste uke'), startDate: moment(), endDate: moment().add(1, 'week') },
+				{ title: kaI18n('datepickerNext3Months', 'Neste 3 måneder'), startDate: moment(), endDate: moment().add(3, 'month') },
+				{ title: kaI18n('datepickerNext6Months', 'Neste 6 måneder'), startDate: moment(), endDate: moment().add(6, 'month') },
+				{ title: kaI18n('datepickerRestOfYear', 'Resten av året'), startDate: moment(), endDate: moment().endOf('year') },
+				{ title: kaI18n('datepickerNextYear', 'Neste år'), startDate: moment().add(1, 'year').startOf('year'), endDate: moment().add(1, 'year').endOf('year') }
+			];
+		}
+		return dp.ranges.map(function (r) {
+			let start = moment();
+			let end;
+			if (r.weeks) {
+				end = moment().add(r.weeks, 'week');
+			} else if (r.months) {
+				end = moment().add(r.months, 'month');
+			} else if (r.endOfYear) {
+				end = moment().endOf('year');
+			} else if (r.nextYear) {
+				start = moment().add(1, 'year').startOf('year');
+				end = moment().add(1, 'year').endOf('year');
+			} else {
+				end = moment();
+			}
+			return { title: r.title, startDate: start, endDate: end };
+		});
+	}
+
+	function kaFormatFilterSelected(count, label) {
+		const template = kaI18n('filterSelected', '%1$d %2$s valgt');
+		const safeLabel = String(label || '').toLowerCase();
+		return template
+			.replace('%1$d', String(count))
+			.replace('%2$s', safeLabel)
+			.replace('%1$s', safeLabel)
+			.replace('%d', String(count))
+			.replace('%s', safeLabel);
+	}
+
+	function kaCaleranLabels() {
+		const dp = (typeof kurskalender_data !== 'undefined' && kurskalender_data.datepicker)
+			? kurskalender_data.datepicker
+			: {};
+		return {
+			applyLabel: dp.applyLabel || kaI18n('datepickerApply', 'Bruk'),
+			cancelLabel: dp.cancelLabel || kaI18n('datepickerCancel', 'Avbryt'),
+			rangeLabel: dp.rangeLabel || kaI18n('datepickerRangeLabel', 'Velg periode')
+		};
+	}
+
 	// Store a reference to $ in the outer scope
 	let previousData = {};
 
@@ -52,9 +113,9 @@
 		// Update the list-style dropdown toggle (top filter, type=list).
 		$('#filter-list-availability .filter-dropdown-toggle').each(function () {
 			const $toggle = $(this);
-			const placeholder = $toggle.data('placeholder') || 'Ledige plasser';
-			const onlyLabel   = 'Vis kun ledige plasser';
-			const allLabel    = 'Vis alle kurs';
+			const placeholder = $toggle.data('placeholder') || kaI18n('availablePlaces', 'Ledige plasser');
+			const onlyLabel   = kaI18n('showOnlyAvailable', 'Vis kun ledige plasser');
+			const allLabel    = kaI18n('showAllCourses', 'Vis alle kurs');
 			// If the dropdown contains the "Vis alle kurs" sibling, we are in radio
 			// mode and always display the currently-checked option.
 			const hasAllOption = $toggle.closest('.filter-dropdown').find('.availability-checkbox-all').length > 0;
@@ -304,7 +365,7 @@
 			return;
 		}
 
-		const placeholder = $dropdown.data('placeholder') || 'Velg';
+		const placeholder = $dropdown.data('placeholder') || kaI18n('select', 'Velg');
 
 		// If no active filters, show only placeholder
 		if (!activeFilters || activeFilters.length === 0) {
@@ -329,7 +390,10 @@
 		}
 
 		// Display text format: show all if 2 or fewer, otherwise show count
-		let displayText = activeNames.length <= 2 ? activeNames.join(', ') : `${activeNames.length} valgt`;
+		const filterLabel = $dropdown.data('label') || filterKey;
+		let displayText = activeNames.length <= 2
+			? activeNames.join(', ')
+			: kaFormatFilterSelected(activeNames.length, filterLabel);
 		const finalHtml = `<span class="selected-text">${displayText}</span><span class="dropdown-icon"><i class="ka-icon icon-chevron-down"></i></span>`;
 
 		$dropdown.html(finalHtml);
@@ -345,7 +409,7 @@
 		// Reset all dropdowns to their placeholder state
 		$('.filter-dropdown-toggle').each(function() {
 			const $dropdown = $(this);
-			const placeholder = $dropdown.data('placeholder') || 'Velg';
+			const placeholder = $dropdown.data('placeholder') || kaI18n('select', 'Velg');
 			const html = `<span class="selected-text">${placeholder}</span><span class="dropdown-icon"><i class="ka-icon icon-chevron-down"></i></span>`;
 			$dropdown.html(html);
 			$dropdown.removeClass('has-active-filters');
@@ -610,7 +674,7 @@
 					kaError('response.data.message:', response && response.data && response.data.message ? response.data.message : 'N/A');
 					const errorMsg = (response.data && typeof response.data === 'object' && response.data.message)
 						? response.data.message
-						: (typeof response.data === 'string' ? response.data : 'En ukjent feil oppstod under filtreringen.');
+						: (typeof response.data === 'string' ? response.data : kaI18n('filterErrorUnknown', 'En ukjent feil oppstod under filtreringen.'));
 					kaError('Using error message:', errorMsg);
 					const escapedMsg = $('<div>').text(errorMsg).html();
 					$('#filter-results').html('<div class="filter-no-results"><p>' + escapedMsg + '</p></div>');
@@ -800,8 +864,8 @@
 			const ledigOn = ledigLower !== '' && !['0', 'false', 'no', 'off'].includes(ledigLower);
 			if (ledigOn) {
 				const availabilityChip = $('<span class="active-filter-chip button-filter" data-filter-key="availability" data-url-key="ledig" data-filter-value="1">' +
-					'Vis kun ledige plasser ' +
-					'<span class="remove-filter ka-tooltip" data-title="Fjern filter">\u00D7</span>' +
+					kaI18n('showOnlyAvailable', 'Vis kun ledige plasser') + ' ' +
+					'<span class="remove-filter ka-tooltip" data-title="' + kaI18n('removeFilter', 'Fjern filter') + '">\u00D7</span>' +
 					'</span>');
 				availabilityChip.find('.remove-filter').on('click', function () {
 					kaHandleAvailabilityToggle(false);
@@ -826,7 +890,7 @@
 					const [fromDate, toDate] = filters['dato'].split('-');
 					
 					const filterChip = $(`<span class="active-filter-chip button-filter" data-filter-key="date" data-filter-value="date">
-						${fromDate} - ${toDate} <span class="remove-filter ka-tooltip" data-title="Fjern filter">×</span>
+						${fromDate} - ${toDate} <span class="remove-filter ka-tooltip" data-title="${kaI18n('removeFilter', 'Fjern filter')}">×</span>
 					</span>`);
 
 					filterChip.find('.remove-filter').on('click', function() {
@@ -902,7 +966,7 @@
 					} 
 
 					const filterChip = $(`<span class="active-filter-chip button-filter" data-filter-key="${key}" data-url-key="${filterKey}" data-filter-value="${value}">
-						${displayText} <span class="remove-filter ka-tooltip" data-title="Fjern filter">×</span>
+						${displayText} <span class="remove-filter ka-tooltip" data-title="${kaI18n('removeFilter', 'Fjern filter')}">×</span>
 					</span>`);
 
 					// Handle filter removal
@@ -1152,6 +1216,7 @@
 		// Sjekk om datepickeren er i venstre kolonne
 		const isLeftFilter = dateInput.classList.contains('caleran-left');
 		
+		const caleranLabels = kaCaleranLabels();
 		const caleranInstance = caleran(dateInput, {
 			showOnClick: true,
 			autoCloseOnSelect: false,
@@ -1161,8 +1226,8 @@
 			showHeader: true,
 			showFooter: true,
 			showButtons: true,
-			applyLabel: "Bruk",
-			cancelLabel: "Avbryt",
+			applyLabel: caleranLabels.applyLabel,
+			cancelLabel: caleranLabels.cancelLabel,
 			showOn: isLeftFilter ? "right" : "bottom", // Dynamisk posisjonering
 			arrowOn: isLeftFilter ? "top" : "center",
 			autoAlign: true,
@@ -1173,34 +1238,8 @@
 			prevMonthIcon: '<i class="ka-icon icon-chevron-left"></i>',
 			rangeIcon: '<i class="ka-icon icon-calendar"></i>',
 			headerSeparator: '<i class="ka-icon icon-chevron-right calendar-header-separator"></i>',
-			rangeLabel: "Velg periode",
-			ranges: [
-				{
-					title: "Neste uke",
-					startDate: moment(),
-					endDate: moment().add(1, 'week')
-				},
-				{
-					title: "Neste 3 måneder",
-					startDate: moment(),
-					endDate: moment().add(3, 'month')
-				},
-				{
-					title: "Neste 6 måneder",
-					startDate: moment(),
-					endDate: moment().add(6, 'month')
-				},
-				{
-					title: "Resten av året",
-					startDate: moment(),
-					endDate: moment().endOf('year')
-				},
-				{
-					title: "Neste år",
-					startDate: moment().add(1, 'year').startOf('year'),
-					endDate: moment().add(1, 'year').endOf('year')
-				}
-			],
+			rangeLabel: caleranLabels.rangeLabel,
+			ranges: kaBuildCaleranRanges(),
 			verticalOffset: 10,
 			locale: 'nb',
 			onafterselect: function(caleran, startDate, endDate) {

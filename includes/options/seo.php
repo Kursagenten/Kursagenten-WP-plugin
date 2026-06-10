@@ -12,9 +12,9 @@ class SEO {
 
     public function kag_seo_add_plugin_page() {
         add_submenu_page(
-            'kursagenten',         // Parent slug
-            'Url-er', // page_title
-            'URL-er og SEO', // menu_title
+            'kursagenten',
+            __('URL-er', 'kursagenten'),
+            __('URL-er og SEO', 'kursagenten'),
             'manage_options',      // capability
             'seo', // menu_slug
             array($this, 'kag_seo_create_admin_page')
@@ -32,7 +32,7 @@ class SEO {
         <div class="wrap options-form ka-wrap" id="toppen">
         <form method="post" action="options.php">
             <?php kursagenten_sticky_admin_menu(); ?>
-            <h1>SEO innstillinger</h1><br><br>
+            <h1><?php esc_html_e('SEO innstillinger', 'kursagenten'); ?></h1><br><br>
 
                 <?php
                 settings_fields('kag_seo_option_group');
@@ -41,43 +41,43 @@ class SEO {
 
                 <!-- Fyll ut feltene under -->
                 <div class="options-card">
-                <h3 id="url">Endre url prefix</h3>
-                <p><strong>Viktig info om url-er</strong><br>Her kan du endre url for kurs, instruktør, kurskategori og kurssted. <span style="color:#b74444;font-weight:bold;">OBS! Ikke rør med mindre du vet hva du gjør.</span> Det kan ødelegge nettstedet, og gjøre disse sidene utilgjengelige. Husk å lagre <a href="/wp-admin/options-permalink.php" target="_blank">permalenkeinnstillingene</a> etter du har gjort en endring.</p>
+                <h3 id="url"><?php esc_html_e('Endre url prefix', 'kursagenten'); ?></h3>
+                <p><?php echo wp_kses_post(__('Viktig info om url-er<br>Her kan du endre url for kurs, instruktør, kurskategori og kurssted. <span style="color:#b74444;font-weight:bold;">OBS! Ikke rør med mindre du vet hva du gjør.</span> Det kan ødelegge nettstedet, og gjøre disse sidene utilgjengelige. Husk å lagre <a href="/wp-admin/options-permalink.php" target="_blank">permalenkeinnstillingene</a> etter du har gjort en endring.', 'kursagenten')); ?></p>
 
                 <table class="form-table">
                     <tr valign="top">
-                        <th scope="row">Kurs</th>
+                        <th scope="row"><?php esc_html_e('Kurs', 'kursagenten'); ?></th>
                         <td>
                             <input class="regular-text" type="text" name="kag_seo_option_name[ka_url_rewrite_kurs]" value="<?php echo isset($this->kag_seo_options['ka_url_rewrite_kurs']) ? esc_attr($this->kag_seo_options['ka_url_rewrite_kurs']) : ''; ?>">
                         </td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row">Instruktør</th>
+                        <th scope="row"><?php esc_html_e('Instruktør', 'kursagenten'); ?></th>
                         <td>
                             <input class="regular-text" type="text" name="kag_seo_option_name[ka_url_rewrite_instruktor]" value="<?php echo isset($this->kag_seo_options['ka_url_rewrite_instruktor']) ? esc_attr($this->kag_seo_options['ka_url_rewrite_instruktor']) : ''; ?>">
                             <label style="margin-left: 12px;">
                                 <input type="checkbox" name="kag_seo_option_name[ka_url_hide_instruktor]" value="1" <?php checked(isset($this->kag_seo_options['ka_url_hide_instruktor']) && $this->kag_seo_options['ka_url_hide_instruktor']); ?>>
-                                Skjul i url-er <span class="ka-tooltip" data-title="Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Se informasjon om fallback-mekanismen nedenfor." style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
+                                <?php esc_html_e('Skjul i url-er', 'kursagenten'); ?> <span class="ka-tooltip" data-title="<?php echo esc_attr__('Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Se informasjon om fallback-mekanismen nedenfor.', 'kursagenten'); ?>" style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
                             </label>
                         </td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row">Kurskategori</th>
+                        <th scope="row"><?php esc_html_e('Kurskategori', 'kursagenten'); ?></th>
                         <td>
                             <input class="regular-text" type="text" name="kag_seo_option_name[ka_url_rewrite_kurskategori]" value="<?php echo isset($this->kag_seo_options['ka_url_rewrite_kurskategori']) ? esc_attr($this->kag_seo_options['ka_url_rewrite_kurskategori']) : ''; ?>">
                             <label style="margin-left: 12px;">
                                 <input type="checkbox" name="kag_seo_option_name[ka_url_hide_kurskategori]" value="1" <?php checked(isset($this->kag_seo_options['ka_url_hide_kurskategori']) && $this->kag_seo_options['ka_url_hide_kurskategori']); ?>>
-                                Skjul i url-er <span class="ka-tooltip" data-title="Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Se informasjon om fallback-mekanismen nedenfor." style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
+                                <?php esc_html_e('Skjul i url-er', 'kursagenten'); ?> <span class="ka-tooltip" data-title="<?php echo esc_attr__('Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Se informasjon om fallback-mekanismen nedenfor.', 'kursagenten'); ?>" style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
                             </label>
                         </td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row">Kurssted</th>
+                        <th scope="row"><?php esc_html_e('Kurssted', 'kursagenten'); ?></th>
                         <td>
                             <input class="regular-text" type="text" name="kag_seo_option_name[ka_url_rewrite_kurssted]" value="<?php echo isset($this->kag_seo_options['ka_url_rewrite_kurssted']) ? esc_attr($this->kag_seo_options['ka_url_rewrite_kurssted']) : ''; ?>">
                             <label style="margin-left: 12px;">
                                 <input type="checkbox" name="kag_seo_option_name[ka_url_hide_kurssted]" value="1" <?php checked(isset($this->kag_seo_options['ka_url_hide_kurssted']) && $this->kag_seo_options['ka_url_hide_kurssted']); ?>>
-                                Skjul i url-er <span class="ka-tooltip" data-title="Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Se informasjon om fallback-mekanismen nedenfor." style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
+                                <?php esc_html_e('Skjul i url-er', 'kursagenten'); ?> <span class="ka-tooltip" data-title="<?php echo esc_attr__('Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Se informasjon om fallback-mekanismen nedenfor.', 'kursagenten'); ?>" style="display:inline-flex;vertical-align:middle;cursor:help;"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px;"></i></span>
                             </label>
                         </td>
                     </tr>
@@ -85,15 +85,12 @@ class SEO {
                 </table>
 
                 <p class="description" style="max-width:900px;margin-top:10px;">
-                    <strong>Hvordan fallback fungerer:</strong> Når "Skjul i url-er" er aktivert, forsøker vi først kort URL uten prefix.
-                    Hvis slugen er i konflikt med en side/innlegg eller en annen skjult taksonomi, brukes automatisk prefiks-URL
-                    (f.eks. <code>/kurskategori/slug/</code> eller din tilpassede verdi som <code>/kat/slug/</code>).
-                    Vanlige WordPress-sider og innlegg får alltid prioritet ved konflikt.
+                    <?php echo wp_kses_post(__('Hvordan fallback fungerer: Når "Skjul i url-er" er aktivert, forsøker vi først kort URL uten prefix. Hvis slugen er i konflikt med en side/innlegg eller en annen skjult taksonomi, brukes automatisk prefiks-URL (f.eks. <code>/kurskategori/slug/</code> eller din tilpassede verdi som <code>/kat/slug/</code>). Vanlige WordPress-sider og innlegg får alltid prioritet ved konflikt.', 'kursagenten')); ?>
                 </p>
 
                 <?php if (!empty($hidden_url_conflicts)) : ?>
                     <div class="notice notice-warning inline" style="margin-top:14px;">
-                        <p><strong>Konflikter funnet for skjulte URL-er:</strong> Disse slugene bruker fallback med prefix.</p>
+                        <p><strong><?php esc_html_e('Konflikter funnet for skjulte URL-er:', 'kursagenten'); ?></strong> <?php esc_html_e('Disse slugene bruker fallback med prefix.', 'kursagenten'); ?></p>
                         <ul style="margin: 0 0 8px 18px; list-style: disc;">
                             <?php foreach ($hidden_url_conflicts as $conflict) : ?>
                                 <li>
@@ -108,56 +105,56 @@ class SEO {
 
                 <!-- SEO på/av og dokumentasjon -->
                 <div class="options-card">
-                <h3 id="seo">SEO på kurs og taksonomisider</h3>
-                <p>Kursagenten legger til meta-tagger, Open Graph, Twitter Cards og Course-schema på kurs- og taksonomisider. Når du har en SEO-utvidelse installert, tilpasser vi oss automatisk for å unngå duplikater. <br>Du kan også skru av vår SEO helt hvis du bruker andre løsninger.</p>
+                <h3 id="seo"><?php esc_html_e('SEO på kurs og taksonomisider', 'kursagenten'); ?></h3>
+                <p><?php echo wp_kses_post(__('Kursagenten legger til meta-tagger, Open Graph, Twitter Cards og Course-schema på kurs- og taksonomisider. Når du har en SEO-utvidelse installert, tilpasser vi oss automatisk for å unngå duplikater. <br>Du kan også skru av vår SEO helt hvis du bruker andre løsninger.', 'kursagenten')); ?></p>
                 <table class="form-table">
                     <tr valign="top">
-                        <th scope="row">Skru av SEO</th>
+                        <th scope="row"><?php esc_html_e('Skru av SEO', 'kursagenten'); ?></th>
                         <td>
                             <label>
                                 <input type="checkbox" name="kag_seo_option_name[ka_seo_disable]" value="1" <?php checked(isset($this->kag_seo_options['ka_seo_disable']) && $this->kag_seo_options['ka_seo_disable']); ?>>
-                                Skru av SEO på kurs og taksonomisider
+                                <?php esc_html_e('Skru av SEO på kurs og taksonomisider', 'kursagenten'); ?>
                             </label>
-                            <p class="description">Aktiver dette hvis du bruker andre SEO-utvidelser som ikke er listet under, eller ønsker å håndtere SEO helt selv.</p>
+                            <p class="description"><?php esc_html_e('Aktiver dette hvis du bruker andre SEO-utvidelser som ikke er listet under, eller ønsker å håndtere SEO helt selv.', 'kursagenten'); ?></p>
                         </td>
                     </tr>
                 </table>
 
-                <h4 style="margin-top: 1.5em;">Støttede SEO-utvidelser</h4>
-                <p class="description">Når disse er aktive, slår vi av våre meta-tagger og overlater til utvidelsen. Course-schema leveres normalt av Kursagenten, med unntak av Rank Math Pro der vi lar Rank Math håndtere Course-schema.</p>
+                <h4 style="margin-top: 1.5em;"><?php esc_html_e('Støttede SEO-utvidelser', 'kursagenten'); ?></h4>
+                <p class="description"><?php esc_html_e('Når disse er aktive, slår vi av våre meta-tagger og overlater til utvidelsen. Course-schema leveres normalt av Kursagenten, med unntak av Rank Math Pro der vi lar Rank Math håndtere Course-schema.', 'kursagenten'); ?></p>
                 <table class="widefat striped" style="max-width: 1000px; margin-top: 0.5em;">
                     <thead>
                         <tr>
-                            <th>Utvidelse</th>
-                            <th>Nivå</th>
-                            <th>Vår SEO av (meta-tagger)</th>
-                            <th>Vår Course-schema</th>
-                            <th>Våre tilpasninger (tittel/beskrivelse)</th>
+                            <th><?php esc_html_e('Utvidelse', 'kursagenten'); ?></th>
+                            <th><?php esc_html_e('Nivå', 'kursagenten'); ?></th>
+                            <th><?php esc_html_e('Vår SEO av (meta-tagger)', 'kursagenten'); ?></th>
+                            <th><?php esc_html_e('Vår Course-schema', 'kursagenten'); ?></th>
+                            <th><?php esc_html_e('Våre tilpasninger (tittel/beskrivelse)', 'kursagenten'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Yoast SEO</td><td>Free + Premium</td><td>✓</td><td>✓</td><td>Instruktør-tittel</td></tr>
-                        <tr><td>Rank Math</td><td>Free</td><td>✓</td><td>✓</td><td>Instruktør-tittel</td></tr>
-                        <tr><td>Rank Math</td><td>Pro</td><td>✓</td><td>Av (håndteres av Rank Math Pro)</td><td>Instruktør-tittel</td></tr>
+                        <tr><td>Yoast SEO</td><td>Free + Premium</td><td>✓</td><td>✓</td><td><?php esc_html_e('Instruktør-tittel', 'kursagenten'); ?></td></tr>
+                        <tr><td>Rank Math</td><td>Free</td><td>✓</td><td>✓</td><td><?php esc_html_e('Instruktør-tittel', 'kursagenten'); ?></td></tr>
+                        <tr><td>Rank Math</td><td>Pro</td><td>✓</td><td><?php esc_html_e('Av (håndteres av Rank Math Pro)', 'kursagenten'); ?></td><td><?php esc_html_e('Instruktør-tittel', 'kursagenten'); ?></td></tr>
                         <tr><td>All in One SEO</td><td>Lite</td><td>✓</td><td>✓</td><td>–</td></tr>
-                        <tr><td>All in One SEO</td><td>Pro</td><td>✓</td><td>✓ (kan overstyres i AIOSEO Pro)</td><td>–</td></tr>
-                        <tr><td>Slim SEO</td><td>Free</td><td>✓</td><td>✓</td><td>Instruktør-tittel, kurs tittel/beskrivelse</td></tr>
-                        <tr><td>SEOPress</td><td>Free</td><td>✓</td><td>✓</td><td>Instruktør-tittel, kurs tittel/beskrivelse</td></tr>
-                        <tr><td>SEOPress</td><td>Pro</td><td>✓</td><td>✓ (kan overstyres i SEOPress Pro)</td><td>Instruktør-tittel, kurs tittel/beskrivelse</td></tr>
-                        <tr><td>The SEO Framework</td><td>Free + Extensions</td><td>✓</td><td>✓</td><td>Instruktør-tittel, kurs tittel/beskrivelse</td></tr>
+                        <tr><td>All in One SEO</td><td>Pro</td><td>✓</td><td><?php esc_html_e('✓ (kan overstyres i AIOSEO Pro)', 'kursagenten'); ?></td><td>–</td></tr>
+                        <tr><td>Slim SEO</td><td>Free</td><td>✓</td><td>✓</td><td><?php esc_html_e('Instruktør-tittel, kurs tittel/beskrivelse', 'kursagenten'); ?></td></tr>
+                        <tr><td>SEOPress</td><td>Free</td><td>✓</td><td>✓</td><td><?php esc_html_e('Instruktør-tittel, kurs tittel/beskrivelse', 'kursagenten'); ?></td></tr>
+                        <tr><td>SEOPress</td><td>Pro</td><td>✓</td><td><?php esc_html_e('✓ (kan overstyres i SEOPress Pro)', 'kursagenten'); ?></td><td><?php esc_html_e('Instruktør-tittel, kurs tittel/beskrivelse', 'kursagenten'); ?></td></tr>
+                        <tr><td>The SEO Framework</td><td>Free + Extensions</td><td>✓</td><td>✓</td><td><?php esc_html_e('Instruktør-tittel, kurs tittel/beskrivelse', 'kursagenten'); ?></td></tr>
                     </tbody>
                 </table>
                 <p class="description" style="margin-top:8px;">
-                    Merk: AIOSEO (Pro), SEOPress (Pro) og Slim SEO Schema (egen utvidelse) kan også sette opp eget Course-schema. Hvis du aktiverer dette i disse utvidelsene, anbefaler vi å skru av Kursagenten SEO for å unngå duplikater. For Rank Math Free anbefaler vi fortsatt Kursagenten sitt Course-schema som standard.
+                    <?php esc_html_e('Merk: AIOSEO (Pro), SEOPress (Pro) og Slim SEO Schema (egen utvidelse) kan også sette opp eget Course-schema. Hvis du aktiverer dette i disse utvidelsene, anbefaler vi å skru av Kursagenten SEO for å unngå duplikater. For Rank Math Free anbefaler vi fortsatt Kursagenten sitt Course-schema som standard.', 'kursagenten'); ?>
                 </p>
 
-                <h4 style="margin-top: 1.5em;">Hva Kursagenten legger til (når ingen SEO-utvidelse er aktiv)</h4>
+                <h4 style="margin-top: 1.5em;"><?php esc_html_e('Hva Kursagenten legger til (når ingen SEO-utvidelse er aktiv)', 'kursagenten'); ?></h4>
                 <table class="widefat striped" style="max-width: 1000px; margin-top: 0.5em;">
                     <thead>
                         <tr>
-                            <th>Element</th>
-                            <th>Kurs</th>
-                            <th>Taksonomier (kategori, sted, instruktør)</th>
+                            <th><?php esc_html_e('Element', 'kursagenten'); ?></th>
+                            <th><?php esc_html_e('Kurs', 'kursagenten'); ?></th>
+                            <th><?php esc_html_e('Taksonomier (kategori, sted, instruktør)', 'kursagenten'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -256,15 +253,15 @@ class SEO {
     private function get_hide_url_taxonomy_config() {
         return array(
             'ka_coursecategory' => array(
-                'label' => 'Kurskategori',
+                'label' => __('Kurskategori', 'kursagenten'),
                 'option' => 'ka_url_hide_kurskategori',
             ),
             'ka_course_location' => array(
-                'label' => 'Kurssted',
+                'label' => __('Kurssted', 'kursagenten'),
                 'option' => 'ka_url_hide_kurssted',
             ),
             'ka_instructors' => array(
-                'label' => 'Instruktør',
+                'label' => __('Instruktør', 'kursagenten'),
                 'option' => 'ka_url_hide_instruktor',
             ),
         );
@@ -355,7 +352,13 @@ class SEO {
 
                 $conflicts[] = array(
                     'slug' => $slug,
-                    'context' => sprintf('%s har samme slug som %s "%s"', implode(', ', $entries), $post_type_label, get_the_title($matched_post)),
+                    'context' => sprintf(
+                        /* translators: 1: taxonomy entries, 2: post type label, 3: post title */
+                        __('%1$s har samme slug som %2$s "%3$s"', 'kursagenten'),
+                        implode(', ', $entries),
+                        $post_type_label,
+                        get_the_title($matched_post)
+                    ),
                 );
             }
         }
@@ -365,7 +368,11 @@ class SEO {
             if (count($entries) > 1) {
                 $conflicts[] = array(
                     'slug' => $slug,
-                    'context' => 'Samme slug brukes flere steder: ' . implode(', ', $entries),
+                    'context' => sprintf(
+                        /* translators: %s: list of conflicting entries */
+                        __('Samme slug brukes flere steder: %s', 'kursagenten'),
+                        implode(', ', $entries)
+                    ),
                 );
             }
         }

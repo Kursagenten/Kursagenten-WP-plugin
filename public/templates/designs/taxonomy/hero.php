@@ -64,7 +64,7 @@ $system_page_key   = isset($back_link_mapping[$taxonomy]) ? $back_link_mapping[$
 $back_link_url     = Designmaler::get_system_page_url($system_page_key, true); // Sjekk publiseringsstatus
 
 // Hent sidetittel for tilbake-lenken (kun hvis siden er publisert)
-$back_link_title = 'oversikten';
+$back_link_title = __('oversikten', 'kursagenten');
 if (!empty($back_link_url)) {
     $page_id = get_option('ka_page_' . $system_page_key);
     if (
@@ -180,9 +180,9 @@ do_action('ka_taxonomy_header_before', $term);
 
                 <h1>
                     <?php if (!empty($back_link_url)) : ?>
-                        <a href="<?php echo esc_url($back_link_url); ?>" class="back-link" title="Tilbake til <?php echo esc_attr($back_link_title); ?>">
+                        <a href="<?php echo esc_url($back_link_url); ?>" class="back-link" title="<?php echo esc_attr(sprintf(__('Tilbake til %s', 'kursagenten'), $back_link_title)); ?>">
                             <i class="ka-icon icon-circle-left-regular page-back-link"></i>
-                            <span class="sr-only">Tilbake til <?php echo esc_html($back_link_title); ?></span>
+                            <span class="sr-only"><?php echo esc_html(sprintf(__('Tilbake til %s', 'kursagenten'), $back_link_title)); ?></span>
                         </a>
                     <?php endif; ?>
                     <?php
@@ -293,7 +293,7 @@ do_action('ka_taxonomy_header_before', $term);
                 <div class="taxonomy-hero-links">
                     <?php if (!empty($info_box_items['children'])) : ?>
                         <div class="taxonomy-hero-links-group">
-                            <h3>Underkategorier:</h3>
+                            <h3><?php esc_html_e('Underkategorier:', 'kursagenten'); ?></h3>
                             <div class="taxonomy-hero-chips">
                                 <?php foreach ($info_box_items['children'] as $child) : ?>
                                     <a href="<?php echo esc_url(get_term_link($child)); ?>" class="taxonomy-hero-chip">
@@ -318,7 +318,7 @@ do_action('ka_taxonomy_header_before', $term);
                 if (!empty($specific_locations) && is_array($specific_locations)) :
                     ?>
                     <div class="specific-locations-section">
-                        <h3>Spesifikke lokasjoner</h3>
+                        <h3><?php esc_html_e('Spesifikke lokasjoner', 'kursagenten'); ?></h3>
                         <div class="specific-locations-grid">
                             <?php foreach ($specific_locations as $location) : ?>
                                 <?php
@@ -343,8 +343,8 @@ do_action('ka_taxonomy_header_before', $term);
                                 $is_map_link = ($view_type === 'all_coursedates' && !empty($maps_link));
                                 $card_tag    = $is_map_link ? 'a' : 'div';
                                 $card_attrs  = $is_map_link
-                                    ? 'href="' . esc_url($maps_link) . '" target="_blank" rel="noopener noreferrer" title="Åpne ' . esc_attr($location['description']) . ' i Google Maps"'
-                                    : 'title="Vis kurs i ' . esc_attr($location['description']) . '" data-location="' . esc_attr($location['description']) . '"';
+                                    ? 'href="' . esc_url($maps_link) . '" target="_blank" rel="noopener noreferrer" title="' . esc_attr(sprintf(__('Åpne %s i Google Maps', 'kursagenten'), $location['description'])) . '"'
+                                    : 'title="' . esc_attr(sprintf(__('Vis kurs i %s', 'kursagenten'), $location['description'])) . '" data-location="' . esc_attr($location['description']) . '"';
                                 $card_class  = $is_map_link ? 'location-card location-map-link' : 'location-card';
                                 ?>
                                 <<?php echo $card_tag; ?> class="<?php echo $card_class; ?>" <?php echo $card_attrs; ?>>
@@ -363,9 +363,9 @@ do_action('ka_taxonomy_header_before', $term);
                                                                target="_blank"
                                                                rel="noopener noreferrer"
                                                                class="maps-link"
-                                                               title="Åpne i Google Maps">
+                                                               title="<?php echo esc_attr__('Åpne i Google Maps', 'kursagenten'); ?>">
                                                                 <i class="ka-icon icon-map-marker"></i>
-                                                                <span class="screen-reader-text">Åpne adresse i Google Maps</span>
+                                                                <span class="screen-reader-text"><?php echo esc_html__('Åpne adresse i Google Maps', 'kursagenten'); ?></span>
                                                             </a>
                                                         <?php endif; ?>
                                                     </p>
@@ -387,7 +387,7 @@ do_action('ka_taxonomy_header_before', $term);
                                         <?php if ($is_map_link) : ?>
                                             <div class="map-link-indicator">
                                                 <i class="ka-icon icon-map-marker"></i>
-                                                <span>Åpne i Google Maps</span>
+                                                <span><?php esc_html_e('Åpne i Google Maps', 'kursagenten'); ?></span>
                                             </div>
                                         <?php endif; ?>
                                     </div>
@@ -402,7 +402,7 @@ do_action('ka_taxonomy_header_before', $term);
             <?php if ($view_type === 'all_coursedates') : ?>
                 <!-- Bruk [kursliste] shortcode - den håndterer alt -->
                 <div class="taxonomy-coursedates">
-                    <h2>Kursoversikt</h2>
+                    <h2><?php esc_html_e('Kursoversikt', 'kursagenten'); ?></h2>
                     <?php
                     // Hook before the course list
                     do_action('ka_courselist_before', $term);
@@ -417,7 +417,7 @@ do_action('ka_taxonomy_header_before', $term);
             <?php elseif ($query && $query->have_posts()) : ?>
                 <!-- Vis hovedkurs med enkel kategori-filter -->
                 <div class="taxonomy-coursedates">
-                    <h2>Kursoversikt</h2>
+                    <h2><?php esc_html_e('Kursoversikt', 'kursagenten'); ?></h2>
                     <?php
                     // Hook before the course list (above filters and pagination)
                     do_action('ka_courselist_before', $term);
@@ -438,7 +438,7 @@ do_action('ka_taxonomy_header_before', $term);
                             <div class="category-filter">
                                 <div class="category-buttons">
                                     <button class="category-btn button-filter active" data-category="all">
-                                        Alle (<?php echo $query->found_posts; ?>)
+                                        <?php echo esc_html(sprintf(__('Alle (%d)', 'kursagenten'), $query->found_posts)); ?>
                                     </button>
                                     <?php foreach ($top_categories as $category) : ?>
                                         <button class="category-btn button-filter" data-category="<?php echo esc_attr($category['slug']); ?>">
@@ -518,11 +518,11 @@ do_action('ka_taxonomy_header_before', $term);
                     <div class="no-courses-filtered-message" id="no-courses-filtered" style="display: none;">
                         <div class="message-content">
                             <i class="ka-icon icon-info"></i>
-                            <h3>Ingen kurs tilgjengelige for dette filteret</h3>
-                            <p>Prøv å endre dine filtervalg eller nullstill alle filtre for å se alle tilgjengelige kurs.</p>
+                            <h3><?php esc_html_e('Ingen kurs tilgjengelige for dette filteret', 'kursagenten'); ?></h3>
+                            <p><?php esc_html_e('Prøv å endre dine filtervalg eller nullstill alle filtre for å se alle tilgjengelige kurs.', 'kursagenten'); ?></p>
                             <button class="ka-button button-filter reset-filters-btn" id="reset-filters-btn">
                                 <i class="ka-icon icon-sync"></i>
-                                Nullstill alle filtre
+                                <?php esc_html_e('Nullstill alle filtre', 'kursagenten'); ?>
                             </button>
                         </div>
                     </div>
@@ -548,8 +548,8 @@ do_action('ka_taxonomy_header_before', $term);
                                         'current'   => max(1, $query->get('paged')),
                                         'format'    => 'side=%#%',
                                         'total'     => $query->max_num_pages,
-                                        'prev_text' => '<i class="ka-icon icon-chevron-left"></i> <span>Forrige</span>',
-                                        'next_text' => '<span>Neste</span> <i class="ka-icon icon-chevron-right"></i>',
+                                        'prev_text' => '<i class="ka-icon icon-chevron-left"></i> <span>' . esc_html__('Forrige', 'kursagenten') . '</span>',
+                                        'next_text' => '<span>' . esc_html__('Neste', 'kursagenten') . '</span> <i class="ka-icon icon-chevron-right"></i>',
                                         'add_args'  => $transport_args,
                                     ]
                                 );
@@ -565,7 +565,7 @@ do_action('ka_taxonomy_header_before', $term);
                 </div>
             <?php else : ?>
                 <div class="no-courses-message">
-                    <p>Ingen kurs tilgjengelige for øyeblikket.</p>
+                    <p><?php esc_html_e('Ingen kurs tilgjengelige for øyeblikket.', 'kursagenten'); ?></p>
                 </div>
             <?php endif; ?>
             <?php wp_reset_postdata(); ?>
@@ -581,7 +581,7 @@ do_action('ka_taxonomy_header_before', $term);
     <section class="ka-section ka-footer">
         <div class="ka-content-container">
             <?php if ($taxonomy === 'ka_coursecategory') : ?>
-                <h2>Flere kurskategorier</h2>
+                <h2><?php esc_html_e('Flere kurskategorier', 'kursagenten'); ?></h2>
                 <?php 
                 // Viderefør transport-parametere st og sc til kurskategorier-shortcoden
                 $st = isset($_GET['st']) ? sanitize_text_field((string)$_GET['st']) : '';
@@ -591,10 +591,10 @@ do_action('ka_taxonomy_header_before', $term);
                 echo do_shortcode('[kurskategorier layout="rad" stil="kort" grid=3 gridtablet=2 gridmobil=1 radavstand="1rem" bildestr="' . esc_attr($footer_bildestr) . '" overskrift="h4" fontmin="13px" fontmaks="16px" avstand="2em .5em" klasse="kurskategorier-footer"' . $st_attr . $skjul_chip . ']'); 
                 ?>
             <?php elseif ($taxonomy === 'ka_instructors') : ?>
-                <h2>Flere instruktører</h2>
+                <h2><?php esc_html_e('Flere instruktører', 'kursagenten'); ?></h2>
                 <?php echo do_shortcode('[instruktorer layout="rad" stil="kort" grid=3 gridtablet=2 gridmobil=1 radavstand="1rem" bildestr="' . esc_attr($footer_bildestr) . '" overskrift="h4" fontmin="13px" fontmaks="16px" avstand="2em .5em" klasse="instruktorer-footer"]'); ?>
             <?php elseif ($taxonomy === 'ka_course_location') : ?>
-                <h2>Flere kurssteder</h2>
+                <h2><?php esc_html_e('Flere kurssteder', 'kursagenten'); ?></h2>
                 <?php echo do_shortcode('[kurssteder layout="rad" stil="kort" grid=5 gridtablet=2 gridmobil=1 radavstand="1rem" bildestr="' . esc_attr($footer_bildestr) . '" overskrift="h4" fontmin="13px" fontmaks="16px" avstand="2em .5em" klasse="kurssteder-footer"]'); ?>
             <?php endif; ?>
         </div>
@@ -609,6 +609,11 @@ do_action('ka_taxonomy_after', $term);
 ?>
 
 <script>
+const kaTaxonomyI18n = <?php echo wp_json_encode(kursagenten_get_taxonomy_inline_i18n()); ?>;
+function kaTaxAllCount(count) {
+    const template = (kaTaxonomyI18n && kaTaxonomyI18n.allCount) ? kaTaxonomyI18n.allCount : 'Alle (%d)';
+    return template.replace('%d', String(count));
+}
 document.addEventListener('DOMContentLoaded', function() {
     const locationCards = document.querySelectorAll('.location-card');
     const courseList = document.getElementById('filter-results');
@@ -826,7 +831,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Oppdater "Alle" knappen med totalt antall synlige kurs
         const allButton = document.querySelector('.category-btn[data-category="all"]');
         if (allButton) {
-            allButton.textContent = `Alle (${totalVisibleCount})`;
+            allButton.textContent = kaTaxAllCount(totalVisibleCount);
         }
     }
 

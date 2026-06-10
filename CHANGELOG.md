@@ -1,3 +1,6 @@
+## 1.1.24 - 2026-06-10
+- Lagt til: Grunnleggende flerspråklig støtte (i18n) for engelsk, tysk, fransk, spansk og polsk. Fungerer med WPML, Polylang og Translatepress, samt Nettstedsspråk i WP Innstillinger.
+
 ## 1.1.23 - 2026-06-04
 - Lagt til: **Utseende venstre filterkolonne** under Kursdesign → Filterinnstillinger: avrundet søkefelt med ikon, og valgfri filterboks med «Velg farger» for bakgrunn/tekstfarge (tekstfarge gjelder hele filterinnholdet, f.eks. lys tekst på mørk bakgrunn).
 - Forbedring: Finere tagger/knapper (pill-form, bedre hover og aktiv tilstand) for filter i venstre kolonne når visning er «Knapper».

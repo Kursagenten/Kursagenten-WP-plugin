@@ -9,10 +9,21 @@
     "build:single-elements": "wp-scripts build \"src/blocks/single-elements/index.js\" --output-path=build --output-filename=single-elements.js",
     "start:single-elements": "wp-scripts start \"src/blocks/single-elements/index.js\" --output-path=build --output-filename=single-elements.js",
     "build": "npm run build:blocks",
+    "make-pot": "node scripts/extract-pot.js",
+    "merge-en-us": "node scripts/merge-en-us.js",
+    "merge-locales": "node scripts/merge-locale.js en_US && node scripts/merge-locale.js de_DE && node scripts/merge-locale.js pl_PL && node scripts/merge-locale.js fr_FR && node scripts/merge-locale.js es_ES",
+    "compile-mo": "node scripts/compile-all-mo.js",
+    "generate-locale-seeds": "node scripts/generate-locale-seeds.js all",
+    "retry-locale-seeds": "node scripts/retry-locale-seeds.js all",
+    "i18n": "npm run make-pot && npm run merge-locales && npm run compile-mo",
+    "make-pot:wp-cli": "node-wp-i18n makepot . lang/kursagenten.pot --domain=kursagenten --exclude=node_modules,build,.git,slettes",
     "test:e2e": "playwright test"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
-    "@wordpress/scripts": "^31.6.0"
+    "@wordpress/scripts": "^31.6.0",
+    "gettext-parser": "^8.0.0",
+    "google-translate-api-x": "^10.7.3",
+    "node-wp-i18n": "^1.2.8"
   }
 }

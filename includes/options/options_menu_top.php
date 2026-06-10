@@ -10,7 +10,7 @@ function kursagenten_admin_header($title) {
                 <div class="section-nav">
                     <ul>
                         <li><a href="#toppen"><img src="https://login.kursagenten.no/kursagenten-nettstedsikon.png" alt="Kursagenten logo" style="width: 30px; height: 30px;"></a></li> 
-                        <li><a href="#toppen">Til toppen</a></li>
+                        <li><a href="#toppen"><?php esc_html_e('Til toppen', 'kursagenten'); ?></a></li>
                     </ul>
                 </div>
                 <div class="sticky-save">
@@ -18,7 +18,7 @@ function kursagenten_admin_header($title) {
                 </div>
             </div>
             <div class="ka-admin-container">
-                <nav class="ka-sidebar" aria-label="Seksjonsmeny">
+                <nav class="ka-sidebar" aria-label="<?php esc_attr_e('Seksjonsmeny', 'kursagenten'); ?>">
                     <ul class="ka-section-nav"></ul>
                 </nav>
                 <div class="ka-content">
@@ -34,7 +34,7 @@ function kursagenten_sticky_admin_menu($show_save = true) {
                 <div class="section-nav">
                     <ul>
                         <li><a href="#toppen"><img src="https://login.kursagenten.no/kursagenten-nettstedsikon.png" alt="Kursagenten logo" style="width: 30px; height: 30px;"></a></li> 
-                        <li><a href="#toppen">Til toppen</a></li>
+                        <li><a href="#toppen"><?php esc_html_e('Til toppen', 'kursagenten'); ?></a></li>
                     </ul>
                 </div>
                 <div class="sticky-save">
@@ -42,8 +42,8 @@ function kursagenten_sticky_admin_menu($show_save = true) {
                 </div>
             </div>
             <div class="ka-admin-container">
-                <nav class="ka-sidebar" aria-label="Seksjonsmeny">
-                    <div class="ka-section-nav-title">På denne siden:</div>
+                <nav class="ka-sidebar" aria-label="<?php esc_attr_e('Seksjonsmeny', 'kursagenten'); ?>">
+                    <div class="ka-section-nav-title"><?php esc_html_e('På denne siden:', 'kursagenten'); ?></div>
                     <ul class="ka-section-nav"></ul>
                 </nav>
                 <div class="ka-content">

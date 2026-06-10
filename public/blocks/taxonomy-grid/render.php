@@ -869,7 +869,7 @@ function kursagenten_render_taxonomy_grid_block(array $attributes): string {
     $terms = kursagenten_get_taxonomy_terms($settings);
 
     if (empty($terms)) {
-        return '<div class="k-taxonomy-grid-empty">Ingen elementer funnet.</div>';
+        return '<div class="k-taxonomy-grid-empty">' . esc_html__('Ingen elementer funnet.', 'kursagenten') . '</div>';
     }
 
     $source_type = (string) $settings['sourceType'];

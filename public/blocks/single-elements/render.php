@@ -217,7 +217,7 @@ function kursagenten_single_resolve_context_post_id(): int {
  */
 function kursagenten_single_preview_empty_message(): string {
     if (kursagenten_single_is_preview_context()) {
-        return kursagenten_single_block_message('Forhåndsvisning: fant ingen publiserte enkeltkurs å bruke som eksempel.');
+        return kursagenten_single_block_message(__('Forhåndsvisning: fant ingen publiserte enkeltkurs å bruke som eksempel.', 'kursagenten'));
     }
     return '';
 }
@@ -338,7 +338,7 @@ function kursagenten_render_single_course_link_block(array $attributes): string 
 
     $label = trim((string) ($attributes['label'] ?? ''));
     if ($label === '') {
-        $label = 'Alle kurs';
+        $label = __('Alle kurs', 'kursagenten');
     }
 
     $url = '';
@@ -348,7 +348,7 @@ function kursagenten_render_single_course_link_block(array $attributes): string 
 
     if ($url === '') {
         return kursagenten_single_is_preview_context()
-            ? kursagenten_single_block_message('Forhåndsvisning: ingen kursoversiktsside er konfigurert ennå.')
+            ? kursagenten_single_block_message(__('Forhåndsvisning: ingen kursoversiktsside er konfigurert ennå.', 'kursagenten'))
             : '';
     }
 
@@ -376,15 +376,19 @@ function kursagenten_render_single_signup_button_block(array $attributes): strin
 
         if ($signup_url === '') {
             return kursagenten_single_is_preview_context()
-                ? kursagenten_single_block_message('Forhåndsvisning: ingen påmeldingslenke for valgt kurs.')
+                ? kursagenten_single_block_message(__('Forhåndsvisning: ingen påmeldingslenke for valgt kurs.', 'kursagenten'))
                 : '';
         }
 
         $button_text = !empty($selected['button_text']) ? (string) $selected['button_text'] : '';
+        $show_registration = !empty($selected['show_registration'])
+            && $selected['show_registration'] !== 'false'
+            && $selected['show_registration'] !== '0';
         $fallback_text = trim((string) ($attributes['fallbackText'] ?? ''));
-        if ($button_text === '') {
-            $button_text = $fallback_text !== '' ? $fallback_text : 'Påmelding';
+        if ($button_text === '' && $fallback_text !== '') {
+            $button_text = $fallback_text;
         }
+        $button_text = kursagenten_get_course_button_label($button_text, $show_registration);
 
         $variant = (string) ($attributes['styleVariant'] ?? 'primary');
         if (!in_array($variant, ['primary', 'secondary', 'link'], true)) {
@@ -432,7 +436,7 @@ function kursagenten_render_single_schedule_list_block(array $attributes): strin
 
         if (empty($coursedates)) {
             return kursagenten_single_is_preview_context()
-                ? kursagenten_single_block_message('Forhåndsvisning: ingen kurstider registrert for valgt kurs.')
+                ? kursagenten_single_block_message(__('Forhåndsvisning: ingen kurstider registrert for valgt kurs.', 'kursagenten'))
                 : '';
         }
 
@@ -446,7 +450,7 @@ function kursagenten_render_single_schedule_list_block(array $attributes): strin
         $html = '<div class="ka-single-block ka-single-schedule-list"' . ($style !== '' ? ' style="' . esc_attr($style) . '"' : '') . '>';
 
         if ($heading_tag !== 'none') {
-            $html .= '<' . $heading_tag . ' class="ka-coursedate-heading">Kurstider og steder</' . $heading_tag . '>';
+            $html .= '<' . $heading_tag . ' class="ka-coursedate-heading">' . esc_html__('Kurstider og steder', 'kursagenten') . '</' . $heading_tag . '>';
         }
 
         $html .= '<div class="ka-coursedate-list">';
@@ -488,7 +492,7 @@ function kursagenten_render_single_schedule_list_block(array $attributes): strin
             $html .= '</div>';
 
             if ($signup_url !== '') {
-                $link_label = $is_full ? 'Fullt' : 'Påmelding';
+                $link_label = $is_full ? __('Fullt', 'kursagenten') : __('Påmelding', 'kursagenten');
                 $html .= '<div class="ka-coursedate-cta">';
                 $html .= '<a href="#" class="ka-coursedate-signup-link clickelement" data-url="' . esc_attr($signup_url) . '">' . esc_html($link_label) . '</a>';
                 $html .= '</div>';
@@ -511,7 +515,7 @@ function kursagenten_render_single_next_course_info_block(array $attributes): st
 
         if (empty($selected) || (!empty($selected['coursedatemissing']) && empty($selected['id']))) {
             return kursagenten_single_is_preview_context()
-                ? kursagenten_single_block_message('Forhåndsvisning: ingen kommende kurs funnet.')
+                ? kursagenten_single_block_message(__('Forhåndsvisning: ingen kommende kurs funnet.', 'kursagenten'))
                 : '';
         }
 
@@ -534,7 +538,7 @@ function kursagenten_render_single_next_course_info_block(array $attributes): st
         $location = (string) ($selected['location'] ?? '');
         $location_freetext = (string) ($selected['location_freetext'] ?? '');
 
-        $heading = $is_full ? 'Neste kurs (fullt)' : 'Neste kurs';
+        $heading = $is_full ? __('Neste kurs (fullt)', 'kursagenten') : __('Neste kurs', 'kursagenten');
         $style = kursagenten_single_build_style_vars($attributes);
 
         $html = '<div class="ka-single-block ka-single-next-course-info"' . ($style !== '' ? ' style="' . esc_attr($style) . '"' : '') . '>';
@@ -601,7 +605,7 @@ function kursagenten_render_single_next_course_info_block(array $attributes): st
         $html .= '</ul>';
 
         if ($show_signup_link && $signup_url !== '') {
-            $label = $is_full ? 'Se neste dato' : 'Påmelding';
+            $label = $is_full ? __('Se neste dato', 'kursagenten') : __('Påmelding', 'kursagenten');
             $html .= '<div class="ka-next-course-cta">';
             $html .= '<a href="#" class="ka-next-course-signup-link clickelement" data-url="' . esc_attr($signup_url) . '">' . esc_html($label) . '</a>';
             $html .= '</div>';
@@ -621,7 +625,7 @@ function kursagenten_render_single_ka_content_block(array $attributes): string {
         $content = trim($content);
         if ($content === '') {
             return kursagenten_single_is_preview_context()
-                ? kursagenten_single_block_message('Forhåndsvisning: kurset har ingen beskrivelse fra Kursagenten.')
+                ? kursagenten_single_block_message(__('Forhåndsvisning: kurset har ingen beskrivelse fra Kursagenten.', 'kursagenten'))
                 : '';
         }
 
@@ -643,7 +647,7 @@ function kursagenten_render_single_contact_block(array $attributes): string {
         $hide_if_empty = !isset($attributes['hideIfEmpty']) || !empty($attributes['hideIfEmpty']);
         if (!$has_any && $hide_if_empty) {
             return kursagenten_single_is_preview_context()
-                ? kursagenten_single_block_message('Forhåndsvisning: ingen kontaktinformasjon registrert for valgt kurs.')
+                ? kursagenten_single_block_message(__('Forhåndsvisning: ingen kontaktinformasjon registrert for valgt kurs.', 'kursagenten'))
                 : '';
         }
 
@@ -653,7 +657,7 @@ function kursagenten_render_single_contact_block(array $attributes): string {
 
         $inner = '<div class="ka-contact-info">';
         if ($show_title) {
-            $inner .= '<h3 class="ka-contact-heading">Kontakt</h3>';
+            $inner .= '<h3 class="ka-contact-heading">' . esc_html__('Kontakt', 'kursagenten') . '</h3>';
         }
         $inner .= '<ul class="ka-contact-list">';
         if ($contact_name !== '') {

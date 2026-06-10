@@ -59,9 +59,9 @@ class Kursinnstillinger {
 
     public function kag_kursinnst_add_plugin_page() {
         add_submenu_page(
-            'kursagenten',         // Parent slug
-            'Synkronisering', // page_title
-            'Synkronisering', // menu_title
+            'kursagenten',
+            __('Synkronisering', 'kursagenten'),
+            __('Synkronisering', 'kursagenten'),
             'manage_options',      // capability 
             'kursinnstillinger', // menu_slug
             array($this, 'kag_kursinnst_create_admin_page')
@@ -91,12 +91,9 @@ class Kursinnstillinger {
         do_settings_sections('kursinnstillinger-admin');
         ?>
         <?php kursagenten_sticky_admin_menu(); ?>
-        <h1>Kursinnstillinger</h1>
-        <h2>Synkronisering</h2>
-        <p>Her finner du innstillinger for synkronisering av kurs fra Kursagenten. <br>
-        - Ved å klikke på "Hent alle kurs fra Kursagenten" overfører du alle kursene dine. Merk at det kun er enveis-synkronisering.<br>
-        - Vi anbefaler å <strong>synkronisere kursene automatisk</strong>. Legg inn <a href="https://kursadmin.kursagenten.no/IntegrationSettings" target="_blank">Webhooks</a> i Kursagenten, så blir kurset overført når det blir lagret/opprettet. Se url under.<br>
-        - Du kan også rydde opp i kursene hvis det er utdaterte datoer eller lignende.<br><br></p>
+        <h1><?php esc_html_e('Kursinnstillinger', 'kursagenten'); ?></h1>
+        <h2><?php esc_html_e('Synkronisering', 'kursagenten'); ?></h2>
+        <p><?php echo wp_kses_post(__('Her finner du innstillinger for synkronisering av kurs fra Kursagenten. <br>- Ved å klikke på "Hent alle kurs fra Kursagenten" overfører du alle kursene dine. Merk at det kun er enveis-synkronisering.<br>- Vi anbefaler å <strong>synkronisere kursene automatisk</strong>. Legg inn <a href="https://kursadmin.kursagenten.no/IntegrationSettings" target="_blank">Webhooks</a> i Kursagenten, så blir kurset overført når det blir lagret/opprettet. Se url under.<br>- Du kan også rydde opp i kursene hvis det er utdaterte datoer eller lignende.<br><br>', 'kursagenten')); ?></p>
         <?php 
         
         // Sjekk om nødvendige innstillinger er fylt ut
@@ -108,36 +105,48 @@ class Kursinnstillinger {
 
         if (empty($tilbyder_id) || empty($tilbyder_guid)) : ?>
             <div class="" style="margin: 10px 0;padding: 1px 10px; background: #d63638; border-radius: 5px; color:white; width: fit-content;">
-                <p><strong>OBS!</strong> Fyll inn <a href="#kursagenten-innstillinger" style="color:white; text-decoration: underline;">innstillinger fra Kursagenten</a> før du henter alle kursene dine (synkroniser alle kurs).</p>
+                <p><?php echo wp_kses_post(__('<strong>OBS!</strong> Fyll inn <a href="#kursagenten-innstillinger" style="color:white; text-decoration: underline;">innstillinger fra Kursagenten</a> før du henter alle kursene dine (synkroniser alle kurs).', 'kursagenten')); ?></p>
             </div>
         <?php endif; ?>
 
         <!-- Kursagenten Settings Section -->
         <div class="options-card">
-            <h3 id="kursagenten-innstillinger">Innstillinger fra Kursagenten</h3>
-            <p>Du finner innstillingene for <strong><a href="https://kursadmin.kursagenten.no/ProviderInformation" target="_blank">Tilbyder ID og Tilbyder Guid</a></strong> i Kursagenten under <em>Bedriftsinsformasjon-> Innstillinger</em>, og <strong><a href="https://kursadmin.kursagenten.no/IframeSetting" target="_blank">Tema for kurslister</a></strong> under <em>Embedded / iframe</em><br><br>
-            I Integrasjonsinnstillinger, under fanen <strong><a href="https://kursadmin.kursagenten.no/IntegrationSettings" target="_blank">Webhooks</a></strong>, skal du legge inn <span class="copytext" title="Klikk for å kopiere"><?php echo esc_url(site_url('/wp-json/kursagenten-api/v1/process-webhook')); ?></span> i feltene CourseCreated og CourseUpdated for å automatisk oppdatere kurs når det blir opprettet eller endret på Kursagenten.</p>
+            <h3 id="kursagenten-innstillinger"><?php esc_html_e('Innstillinger fra Kursagenten', 'kursagenten'); ?></h3>
+            <p><?php
+                $webhook_markup = sprintf(
+                    '<span class="copytext" title="%1$s">%2$s</span>',
+                    esc_attr__('Klikk for å kopiere', 'kursagenten'),
+                    esc_url(site_url('/wp-json/kursagenten-api/v1/process-webhook'))
+                );
+                echo wp_kses_post(
+                    sprintf(
+                        /* translators: %s: clickable webhook URL */
+                        __('Du finner innstillingene for <strong><a href="https://kursadmin.kursagenten.no/ProviderInformation" target="_blank">Tilbyder ID og Tilbyder Guid</a></strong> i Kursagenten under <em>Bedriftsinsformasjon-> Innstillinger</em>, og <strong><a href="https://kursadmin.kursagenten.no/IframeSetting" target="_blank">Tema for kurslister</a></strong> under <em>Embedded / iframe</em><br><br>I Integrasjonsinnstillinger, under fanen <strong><a href="https://kursadmin.kursagenten.no/IntegrationSettings" target="_blank">Webhooks</a></strong>, skal du legge inn %s i feltene CourseCreated og CourseUpdated for å automatisk oppdatere kurs når det blir opprettet eller endret på Kursagenten.', 'kursagenten'),
+                        $webhook_markup
+                    )
+                );
+            ?></p>
             <table class="form-table">
                 <tr valign="top">
-                    <th scope="row">Tilbyder ID:</th>
+                    <th scope="row"><?php esc_html_e('Tilbyder ID:', 'kursagenten'); ?></th>
                     <td>
                         <input class="regular-text" type="text" name="kag_kursinnst_option_name[ka_tilbyderID]" value="<?php echo isset($this->kag_kursinnst_options['ka_tilbyderID']) ? esc_attr($this->kag_kursinnst_options['ka_tilbyderID']) : ''; ?>">
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row">Tilbyder guid:</th>
+                    <th scope="row"><?php esc_html_e('Tilbyder guid:', 'kursagenten'); ?></th>
                     <td>
                         <input class="regular-text" type="text" name="kag_kursinnst_option_name[ka_tilbyderGuid]" value="<?php echo isset($this->kag_kursinnst_options['ka_tilbyderGuid']) ? esc_attr($this->kag_kursinnst_options['ka_tilbyderGuid']) : ''; ?>">
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row">Tema for kurslister</th>
+                    <th scope="row"><?php esc_html_e('Tema for kurslister', 'kursagenten'); ?></th>
                     <td>
                         <input class="regular-text" type="text" name="kag_kursinnst_option_name[ka_temaKursliste]" value="<?php echo isset($this->kag_kursinnst_options['ka_temaKursliste']) ? esc_attr($this->kag_kursinnst_options['ka_temaKursliste']) : ''; ?>">
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row">Tema for enkeltkurs</th>
+                    <th scope="row"><?php esc_html_e('Tema for enkeltkurs', 'kursagenten'); ?></th>
                     <td>
                         <input class="regular-text" type="text" name="kag_kursinnst_option_name[ka_temaKurs]" value="<?php echo isset($this->kag_kursinnst_options['ka_temaKurs']) ? esc_attr($this->kag_kursinnst_options['ka_temaKurs']) : ''; ?>">
                     </td>
@@ -147,16 +156,10 @@ class Kursinnstillinger {
 
         <?php submit_button(); ?>
 
-        <h2 id="places">Kurssteder og regioner</h2>
-        <!-- Location Name Mapping Section -->
+        <h2 id="places"><?php esc_html_e('Kurssteder og regioner', 'kursagenten'); ?></h2>
         <div class="options-card" style="margin-top: 20px;">
-            <h3 id="location-name-mapping">Navnendring på kurssteder</h3>
-            <p>Her kan du endre navn på kurssteder som kommer fra Kursagenten. Når du endrer navn på et sted, blir også slugs (nettadressen) på kursene som har dette stedet oppdatert.<br><br>
-            1. Nytt sted blir lagret når du klikker på "Lagre".<br>
-            2. Stedet blir "oversatt" til det nye navnet når kurs blir hentet fra Kursagenten.<br>
-            3. Slugs/nettadresser på kursene som har dette stedet oppdateres umiddelbart.<br>
-            4. Det gamle stedet blir ikke slettet, men blir ikke lenger synlig på nettsiden.<br><br>
-            5. <span style="color: #d63638;"><strong>Viktig:</strong></span> For å ta i bruk navnendringene, kjør en full synk fra Kursagenten ved å klikke på "Hent alle kurs fra Kursagenten". Husk også å markere "Rydd opp i kurs" før du kjører synken.<br><br></p>
+            <h3 id="location-name-mapping"><?php esc_html_e('Navnendring på kurssteder', 'kursagenten'); ?></h3>
+            <p><?php echo wp_kses_post(__('Her kan du endre navn på kurssteder som kommer fra Kursagenten. Når du endrer navn på et sted, blir også slugs (nettadressen) på kursene som har dette stedet oppdatert.<br><br>1. Nytt sted blir lagret når du klikker på "Lagre".<br>2. Stedet blir "oversatt" til det nye navnet når kurs blir hentet fra Kursagenten.<br>3. Slugs/nettadresser på kursene som har dette stedet oppdateres umiddelbart.<br>4. Det gamle stedet blir ikke slettet, men blir ikke lenger synlig på nettsiden.<br><br>5. <span style="color: #d63638;"><strong>Viktig:</strong></span> For å ta i bruk navnendringene, kjør en full synk fra Kursagenten ved å klikke på "Hent alle kurs fra Kursagenten". Husk også å markere "Rydd opp i kurs" før du kjører synken.<br><br>', 'kursagenten')); ?></p>
             
 
             <?php
@@ -178,9 +181,9 @@ class Kursinnstillinger {
             <table class="wp-list-table widefat fixed striped" style="margin-top: 15px;">
                 <thead>
                     <tr>
-                        <th style="width: 40%;">Navn på sted</th>
-                        <th style="width: 40%;">Nytt navn på sted</th>
-                        <th style="width: 20%;">Handling</th>
+                        <th style="width: 40%;"><?php esc_html_e('Navn på sted', 'kursagenten'); ?></th>
+                        <th style="width: 40%;"><?php esc_html_e('Nytt navn på sted', 'kursagenten'); ?></th>
+                        <th style="width: 20%;"><?php esc_html_e('Handling', 'kursagenten'); ?></th>
                     </tr>
                 </thead>
                 <tbody id="location-mapping-tbody">
@@ -193,7 +196,7 @@ class Kursinnstillinger {
                                 <input type="text" class="regular-text location-new-name" value="<?php echo esc_attr($new_name); ?>" data-old-name="<?php echo esc_attr($old_name); ?>">
                             </td>
                             <td>
-                                <button type="button" class="button button-small remove-location-mapping" data-old-name="<?php echo esc_attr($old_name); ?>">Fjern</button>
+                                <button type="button" class="button button-small remove-location-mapping" data-old-name="<?php echo esc_attr($old_name); ?>"><?php esc_html_e('Fjern', 'kursagenten'); ?></button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -201,8 +204,8 @@ class Kursinnstillinger {
             </table>
 
             <div style="margin-top: 15px;">
-                <button type="button" class="button" id="add-location-mapping-btn">Endre navn på nytt sted</button>
-                <span style="font-size: 12px; color: #666; line-height: 30px; padding-left: 1em;">NB! Kjør full synk fra Kursagenten umiddelbart etter å ha lagt til/endret navn på et sted(er)!</span>
+                <button type="button" class="button" id="add-location-mapping-btn"><?php esc_html_e('Endre navn på nytt sted', 'kursagenten'); ?></button>
+                <span style="font-size: 12px; color: #666; line-height: 30px; padding-left: 1em;"><?php esc_html_e('NB! Kjør full synk fra Kursagenten umiddelbart etter å ha lagt til/endret navn på et sted(er)!', 'kursagenten'); ?></span>
             </div>
 
             <div id="new-location-mapping-row" style="display: none; margin-top: 15px;">
@@ -210,17 +213,17 @@ class Kursinnstillinger {
                     <tr>
                         <td style="width: 40%;">
                             <select id="new-location-select" class="regular-text">
-                                <option value="">Velg sted...</option>
+                                <option value=""><?php esc_html_e('Velg sted...', 'kursagenten'); ?></option>
                             </select>
-                            <p style="margin: 5px 0 0 0; font-size: 12px; color: #666;">eller</p>
-                            <input type="text" id="new-location-manual" class="regular-text" style="margin-top: 5px;" placeholder="Skriv inn stedsnavn manuelt">
+                            <p style="margin: 5px 0 0 0; font-size: 12px; color: #666;"><?php esc_html_e('eller', 'kursagenten'); ?></p>
+                            <input type="text" id="new-location-manual" class="regular-text" style="margin-top: 5px;" placeholder="<?php echo esc_attr__('Skriv inn stedsnavn manuelt', 'kursagenten'); ?>">
                         </td>
                         <td style="width: 40%;">
-                            <input type="text" id="new-location-name" class="regular-text" placeholder="Skriv inn nytt navn">
+                            <input type="text" id="new-location-name" class="regular-text" placeholder="<?php echo esc_attr__('Skriv inn nytt navn', 'kursagenten'); ?>">
                         </td>
                         <td style="width: 20%;">
-                            <button type="button" class="button button-primary" id="save-new-location-mapping">Lagre</button>
-                            <button type="button" class="button" id="cancel-new-location-mapping">Avbryt</button>
+                            <button type="button" class="button button-primary" id="save-new-location-mapping"><?php esc_html_e('Lagre', 'kursagenten'); ?></button>
+                            <button type="button" class="button" id="cancel-new-location-mapping"><?php esc_html_e('Avbryt', 'kursagenten'); ?></button>
                         </td>
                     </tr>
                 </table>
@@ -229,22 +232,22 @@ class Kursinnstillinger {
 
         <!-- Regions Section -->
         <div class="options-card" style="margin-top: 20px;">
-            <h3 id="regions">Regioner</h3>
+            <h3 id="regions"><?php esc_html_e('Regioner', 'kursagenten'); ?></h3>
             <?php
             $use_regions = get_option('kursagenten_use_regions', false);
             ?>
             <p>
                 <label>
                     <input type="checkbox" id="use-regions-checkbox" name="kursagenten_use_regions" value="1" <?php checked($use_regions, true); ?>>
-                    Aktiver regioninndeling (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge)
+                    <?php esc_html_e('Aktiver regioninndeling (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge)', 'kursagenten'); ?>
                 </label>
             </p>
-            <p class="description">Når aktivert, kan lokasjoner organiseres i regioner. Dette påvirker ikke synkronisering, men kan brukes for filtrering og organisering.</p>
+            <p class="description"><?php esc_html_e('Når aktivert, kan lokasjoner organiseres i regioner. Dette påvirker ikke synkronisering, men kan brukes for filtrering og organisering.', 'kursagenten'); ?></p>
             
             <div id="regions-settings" style="display: <?php echo $use_regions ? 'block' : 'none'; ?>; margin-top: 20px;">
-                <h4>Regioninndeling</h4>
-                <p>Dra fylker mellom regioner for å organisere dem. Merk at en del fylker er utdaterte, men er inkludert for bakover-kompatibilitet. Bruk "Resett til standard" for å tilbakestille regioninndelingen til standardverdiene.</p>
-                <button type="button" class="button" id="reset-region-mapping">Resett til standard</button>
+                <h4><?php esc_html_e('Regioninndeling', 'kursagenten'); ?></h4>
+                <p><?php esc_html_e('Dra fylker mellom regioner for å organisere dem. Merk at en del fylker er utdaterte, men er inkludert for bakover-kompatibilitet. Bruk "Resett til standard" for å tilbakestille regioninndelingen til standardverdiene.', 'kursagenten'); ?></p>
+                <button type="button" class="button" id="reset-region-mapping"><?php esc_html_e('Resett til standard', 'kursagenten'); ?></button>
                 
                 <div id="region-mapping-container" style="margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap;">
                     <?php
@@ -313,7 +316,7 @@ class Kursinnstillinger {
         check_ajax_referer('kursagenten_location_mapping_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Ikke tilgang'));
+            wp_send_json_error(array('message' => __('Ikke tilgang', 'kursagenten')));
             return;
         }
 
@@ -321,7 +324,7 @@ class Kursinnstillinger {
         $new_name = isset($_POST['new_name']) ? sanitize_text_field($_POST['new_name']) : '';
 
         if (empty($old_name) || empty($new_name)) {
-            wp_send_json_error(array('message' => 'Begge feltene må fylles ut'));
+            wp_send_json_error(array('message' => __('Begge feltene må fylles ut', 'kursagenten')));
             return;
         }
 
@@ -333,7 +336,7 @@ class Kursinnstillinger {
         // This prevents 404 errors if user forgets to sync right away
 
         wp_send_json_success(array(
-            'message' => 'Navnendring lagret. Slug-oppdateringer vil skje ved neste synkronisering.',
+            'message' => __('Navnendring lagret. Slug-oppdateringer vil skje ved neste synkronisering.', 'kursagenten'),
             'old_name' => $old_name,
             'new_name' => $new_name
         ));
@@ -346,14 +349,14 @@ class Kursinnstillinger {
         check_ajax_referer('kursagenten_location_mapping_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Ikke tilgang'));
+            wp_send_json_error(array('message' => __('Ikke tilgang', 'kursagenten')));
             return;
         }
 
         $old_name = isset($_POST['old_name']) ? sanitize_text_field($_POST['old_name']) : '';
 
         if (empty($old_name)) {
-            wp_send_json_error(array('message' => 'Stedsnavn mangler'));
+            wp_send_json_error(array('message' => __('Stedsnavn mangler', 'kursagenten')));
             return;
         }
 
@@ -361,7 +364,7 @@ class Kursinnstillinger {
         unset($mappings[$old_name]);
         update_option('kursagenten_location_mappings', $mappings);
 
-        wp_send_json_success(array('message' => 'Navnendring fjernet'));
+        wp_send_json_success(array('message' => __('Navnendring fjernet', 'kursagenten')));
     }
 
     /**
@@ -371,7 +374,7 @@ class Kursinnstillinger {
         check_ajax_referer('kursagenten_location_mapping_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Ikke tilgang'));
+            wp_send_json_error(array('message' => __('Ikke tilgang', 'kursagenten')));
             return;
         }
 
@@ -379,7 +382,7 @@ class Kursinnstillinger {
         $new_name = isset($_POST['new_name']) ? sanitize_text_field($_POST['new_name']) : '';
 
         if (empty($old_name) || empty($new_name)) {
-            wp_send_json_error(array('message' => 'Begge feltene må fylles ut'));
+            wp_send_json_error(array('message' => __('Begge feltene må fylles ut', 'kursagenten')));
             return;
         }
 
@@ -392,10 +395,10 @@ class Kursinnstillinger {
             // This prevents 404 errors if user forgets to sync right away
             
             wp_send_json_success(array(
-                'message' => 'Navnendring oppdatert. Slug-oppdateringer vil skje ved neste synkronisering.'
+                'message' => __('Navnendring oppdatert. Slug-oppdateringer vil skje ved neste synkronisering.', 'kursagenten')
             ));
         } else {
-            wp_send_json_error(array('message' => 'Navnendring ikke funnet'));
+            wp_send_json_error(array('message' => __('Navnendring ikke funnet', 'kursagenten')));
         }
     }
 
@@ -406,7 +409,7 @@ class Kursinnstillinger {
         check_ajax_referer('kursagenten_location_mapping_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Ikke tilgang'));
+            wp_send_json_error(array('message' => __('Ikke tilgang', 'kursagenten')));
             return;
         }
 
@@ -439,7 +442,7 @@ class Kursinnstillinger {
         check_ajax_referer('kursagenten_regions_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Ikke tilgang'));
+            wp_send_json_error(array('message' => __('Ikke tilgang', 'kursagenten')));
             return;
         }
 
@@ -451,7 +454,10 @@ class Kursinnstillinger {
             require_once KURSAG_PLUGIN_DIR . '/includes/helpers/location-regions.php';
             $updated_count = kursagenten_assign_regions_to_existing_terms();
             wp_send_json_success(array(
-                'message' => 'Regioner aktivert' . ($updated_count > 0 ? " ($updated_count lokasjoner oppdatert)" : ''),
+                'message' => sprintf(
+                    __('Regioner aktivert%s', 'kursagenten'),
+                    $updated_count > 0 ? sprintf(' (%d %s)', $updated_count, __('lokasjoner oppdatert', 'kursagenten')) : ''
+                ),
                 'updated_count' => $updated_count
             ));
         } else {
@@ -471,7 +477,10 @@ class Kursinnstillinger {
             }
             
             wp_send_json_success(array(
-                'message' => 'Regioner deaktivert' . ($removed_count > 0 ? " ($removed_count lokasjoner oppdatert)" : ''),
+                'message' => sprintf(
+                    __('Regioner deaktivert%s', 'kursagenten'),
+                    $removed_count > 0 ? sprintf(' (%d %s)', $removed_count, __('lokasjoner oppdatert', 'kursagenten')) : ''
+                ),
                 'removed_count' => $removed_count
             ));
         }
@@ -484,7 +493,7 @@ class Kursinnstillinger {
         check_ajax_referer('kursagenten_regions_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Ikke tilgang'));
+            wp_send_json_error(array('message' => __('Ikke tilgang', 'kursagenten')));
             return;
         }
 
@@ -504,7 +513,7 @@ class Kursinnstillinger {
 
         if (empty($mapping) || !is_array($mapping)) {
             wp_send_json_error(array(
-                'message' => 'Ingen mapping mottatt eller ugyldig format',
+                'message' => __('Ingen mapping mottatt eller ugyldig format', 'kursagenten'),
                 'debug' => array(
                     'json_error' => json_last_error_msg(),
                     'received' => substr($mapping_json, 0, 200)
@@ -535,7 +544,7 @@ class Kursinnstillinger {
         }
 
         if (empty($sanitized_mapping)) {
-            wp_send_json_error(array('message' => 'Ingen gyldig mapping data'));
+            wp_send_json_error(array('message' => __('Ingen gyldig mapping data', 'kursagenten')));
             return;
         }
 
@@ -550,7 +559,10 @@ class Kursinnstillinger {
         $updated_count = kursagenten_update_all_terms_with_region_mapping();
 
         wp_send_json_success(array(
-            'message' => 'Regioninndeling lagret' . ($updated_count > 0 ? " ($updated_count lokasjoner oppdatert)" : ''),
+            'message' => sprintf(
+                __('Regioninndeling lagret%s', 'kursagenten'),
+                $updated_count > 0 ? sprintf(' (%d %s)', $updated_count, __('lokasjoner oppdatert', 'kursagenten')) : ''
+            ),
             'updated_count' => $updated_count,
             'saved_mapping' => $sanitized_mapping,
             'mapping_saved' => $mapping_saved,
@@ -565,7 +577,7 @@ class Kursinnstillinger {
         check_ajax_referer('kursagenten_regions_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => 'Ikke tilgang'));
+            wp_send_json_error(array('message' => __('Ikke tilgang', 'kursagenten')));
             return;
         }
 
@@ -577,7 +589,10 @@ class Kursinnstillinger {
         $updated_count = kursagenten_update_all_terms_with_region_mapping();
 
         wp_send_json_success(array(
-            'message' => 'Regioninndeling tilbakestilt til standard' . ($updated_count > 0 ? " ($updated_count lokasjoner oppdatert)" : ''),
+            'message' => sprintf(
+                __('Regioninndeling tilbakestilt til standard%s', 'kursagenten'),
+                $updated_count > 0 ? sprintf(' (%d %s)', $updated_count, __('lokasjoner oppdatert', 'kursagenten')) : ''
+            ),
             'mapping' => $default_mapping,
             'updated_count' => $updated_count
         ));

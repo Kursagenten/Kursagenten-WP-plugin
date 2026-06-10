@@ -10,11 +10,11 @@ class Avansert {
 
     public function kag_avansert_add_plugin_page() {
         add_submenu_page(
-            'kursagenten',         // Parent slug
-            'Avanserte innstillinger', // page_title
-            'Avanserte innstillinger', // menu_title
-            'manage_options',      // capability
-            'avansert', // menu_slug
+            'kursagenten',
+            __('Avanserte innstillinger', 'kursagenten'),
+            __('Avanserte innstillinger', 'kursagenten'),
+            'manage_options',
+            'avansert',
             array($this, 'kag_avansert_create_admin_page')
         );
     }
@@ -26,8 +26,8 @@ class Avansert {
         <div class="wrap options-form ka-wrap" id="toppen">
         <form method="post" action="options.php">
         <?php kursagenten_sticky_admin_menu(); ?>
-        <h1>Avanserte innstillinger</h1>
-        <p>Skru på de innstillingene du ønsker å bruke:</p>
+        <h1><?php esc_html_e('Avanserte innstillinger', 'kursagenten'); ?></h1>
+        <p><?php esc_html_e('Skru på de innstillingene du ønsker å bruke:', 'kursagenten'); ?></p>
 
         <?php
         settings_fields('kag_avansert_option_group');
@@ -36,59 +36,54 @@ class Avansert {
 
         <!-- Innlegg til artikler -->
         <div class="options-card">
-            <h3 id="innstillinger">Ulike tilleggsfunksjoner</h3>
+            <h3 id="innstillinger"><?php esc_html_e('Ulike tilleggsfunksjoner', 'kursagenten'); ?></h3>
             <table class="form-table">
                 <tr valign="top">
                     <td>
                         <label for="ka_rename_posts">
                         <?php $this->ka_rename_posts_callback(); ?>
-                        Omdøp innlegg til Artikler</label>
-                        <p class="description">I Wordpress finnes to typer sider: Sider og innlegg. Innlegg tilsvarer blogginnlegg eller annet som har kategorier og tagger. Aktiver for å omdøpe innlegg til "Artikler".<br><br></p>
+                        <?php esc_html_e('Omdøp innlegg til Artikler', 'kursagenten'); ?></label>
+                        <p class="description"><?php echo wp_kses_post(__('I Wordpress finnes to typer sider: Sider og innlegg. Innlegg tilsvarer blogginnlegg eller annet som har kategorier og tagger. Aktiver for å omdøpe innlegg til "Artikler".<br><br>', 'kursagenten')); ?></p>
                     </td>
                 </tr>
                 <tr valign="top">
                     <td>
                         <label for="ka_jquery_support">
                         <?php $this->ka_jquery_support_callback(); ?>
-                        Aktiver støtte for jQuery</label>
-                        <p class="description">Wordpress har stort sett støtte for javascript biblioteket Jquery. Hvis det ikke er støtte for dette, kan du velge å aktivere det her.<br><br></p>
+                        <?php esc_html_e('Aktiver støtte for jQuery', 'kursagenten'); ?></label>
+                        <p class="description"><?php echo wp_kses_post(__('Wordpress har stort sett støtte for javascript biblioteket Jquery. Hvis det ikke er støtte for dette, kan du velge å aktivere det her.<br><br>', 'kursagenten')); ?></p>
                     </td>
                 </tr>
                 <tr valign="top">
                     <td>
                         <label for="ka_sitereviews">
                         <?php $this->ka_sitereviews_callback(); ?>
-                        Støtte for "Site Reviews"-plugin, anmeldelser</label>
-                        <p class="description">Dette legger inn rating i Course schema på kurssidene. Det legger også inn redirect basert på querystrings i eposter fra Kursagenten, til rating-skjema på korrekt kursside.<br><br></p>
+                        <?php esc_html_e('Støtte for "Site Reviews"-plugin, anmeldelser', 'kursagenten'); ?></label>
+                        <p class="description"><?php echo wp_kses_post(__('Dette legger inn rating i Course schema på kurssidene. Det legger også inn redirect basert på querystrings i eposter fra Kursagenten, til rating-skjema på korrekt kursside.<br><br>', 'kursagenten')); ?></p>
                     </td>
                 </tr>
                 <tr valign="top">
                     <td>
                         <label for="ka_security">
                         <?php $this->ka_security_callback(); ?>
-                        Aktiver ekstra sikkerhetsfunksjoner</label>
-                        <p class="description">Dette valget legger til:<br>
-                        1) Clickjacking Protection (X-Frame-Options) i WordPress, styrker security headers.<br>
-                        2) Deaktiverer tema- og plugin redigering<br>
-                        3) Fjerner WP versjonsnummer<br>
-                        4) Deaktiverer XML-RPC i WordPress
-                        <br><br></p>
+                        <?php esc_html_e('Aktiver ekstra sikkerhetsfunksjoner', 'kursagenten'); ?></label>
+                        <p class="description"><?php echo wp_kses_post(__('Dette valget legger til:<br>1) Clickjacking Protection (X-Frame-Options) i WordPress, styrker security headers.<br>2) Deaktiverer tema- og plugin redigering<br>3) Fjerner WP versjonsnummer<br>4) Deaktiverer XML-RPC i WordPress<br><br>', 'kursagenten')); ?></p>
                     </td>
                 </tr>
                 <tr valign="top">
                     <td>
                         <label for="ka_xmlrpc_htaccess">
                         <?php $this->ka_xmlrpc_htaccess_callback(); ?>
-                        Blokker XML-RPC i .htaccess (Apache)</label>
-                        <p class="description">Legger automatisk inn og fjerner en blokkering av xmlrpc.php i .htaccess når valget skrus av/på. Krever Apache og skrivetilgang til .htaccess.<br><br></p>
+                        <?php esc_html_e('Blokker XML-RPC i .htaccess (Apache)', 'kursagenten'); ?></label>
+                        <p class="description"><?php echo wp_kses_post(__('Legger automatisk inn og fjerner en blokkering av xmlrpc.php i .htaccess når valget skrus av/på. Krever Apache og skrivetilgang til .htaccess.<br><br>', 'kursagenten')); ?></p>
                     </td>
                 </tr>
                 <tr valign="top">
                     <td>
                         <label for="ka_disable_gravatar">
                         <?php $this->ka_disable_gravatar_callback(); ?>
-                        Deaktiver Gravatar på frontend</label>
-                        <p class="description">Dette valget deaktiverer Gravatar på frontend og bruker et lokalt standardbilde i stedet. Dette kan løse problemer med tracking prevention i enkelte nettlesere.<br><br></p>
+                        <?php esc_html_e('Deaktiver Gravatar på frontend', 'kursagenten'); ?></label>
+                        <p class="description"><?php echo wp_kses_post(__('Dette valget deaktiverer Gravatar på frontend og bruker et lokalt standardbilde i stedet. Dette kan løse problemer med tracking prevention i enkelte nettlesere.<br><br>', 'kursagenten')); ?></p>
                     </td>
                 </tr>
             </table>
@@ -138,9 +133,9 @@ class Avansert {
 
     public function kag_avansert_page_init() {
         register_setting(
-            'kag_avansert_option_group', // option_group
-            'kag_avansert_option_name',  // option_name
-            array($this, 'kag_avansert_sanitize') // sanitize_callback
+            'kag_avansert_option_group',
+            'kag_avansert_option_name',
+            array($this, 'kag_avansert_sanitize')
         );
     }
 
@@ -149,7 +144,6 @@ class Avansert {
         $sanitary_values = array();
         $checkbox_keys = array('ka_security', 'ka_sitereviews', 'ka_jquery_support', 'ka_rename_posts', 'ka_disable_gravatar', 'ka_xmlrpc_htaccess');
 
-        // Defensiv sjekk for å unngå fatale feil ved uventede typer
         if (!is_array($input)) {
             error_log('Kursagenten: kag_avansert_sanitize expected array, got ' . gettype($input));
             $existing = get_option('kag_avansert_option_name', array());
@@ -157,14 +151,12 @@ class Avansert {
         }
 
         try {
-            // Normalize checkbox values so unchecked boxes are saved as 0.
             foreach ($checkbox_keys as $checkbox_key) {
                 $sanitary_values[$checkbox_key] = !empty($input[$checkbox_key]) ? 1 : 0;
             }
 
             foreach ($input as $key => $value) {
                 if (!in_array($key, $checkbox_keys, true)) {
-                    // Standard sanitering for andre felter
                     $sanitary_values[$key] = sanitize_text_field($value);
                 }
             }
@@ -210,7 +202,11 @@ class Avansert {
             $success = insert_with_markers($htaccess_file, $marker, $rules);
             if (!$success) {
                 $manual_block = implode(PHP_EOL, $rules);
-                $message = 'Kunne ikke skrive XML-RPC-regel til .htaccess automatisk. Sjekk filrettigheter. Filen ligger vanligvis i WordPress-roten (samme nivå som wp-config.php). Kopier inn dette manuelt:<br><pre style="margin-top:8px;white-space:pre-wrap;">' . esc_html($manual_block) . '</pre>';
+                $message = sprintf(
+                    /* translators: %s: .htaccess rules block */
+                    __('Kunne ikke skrive XML-RPC-regel til .htaccess automatisk. Sjekk filrettigheter. Filen ligger vanligvis i WordPress-roten (samme nivå som wp-config.php). Kopier inn dette manuelt:<br><pre style="margin-top:8px;white-space:pre-wrap;">%s</pre>', 'kursagenten'),
+                    esc_html($manual_block)
+                );
                 add_settings_error('kag_avansert_option_name', 'ka_xmlrpc_htaccess_write_failed', $message);
             }
 

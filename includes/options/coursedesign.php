@@ -90,8 +90,8 @@ class Designmaler {
     public function design_add_plugin_page() {
         add_submenu_page(
             'kursagenten',
-            'Kursdesign',
-            'Kursdesign',
+            __('Kursdesign', 'kursagenten'),
+            __('Kursdesign', 'kursagenten'),
             'manage_options',
             'design',
             array($this, 'design_create_admin_page')
@@ -110,7 +110,7 @@ class Designmaler {
                 do_settings_sections('design-admin');
                 ?>
                 <?php kursagenten_sticky_admin_menu(); ?>
-                <h1>Kursdesign</h1>
+                <h1><?php esc_html_e('Kursdesign', 'kursagenten'); ?></h1>
                 <script id="ka-card-toggle-early">
                 (function () {
                     // Lightweight, dependency-free open/close for the option cards so the
@@ -158,36 +158,35 @@ class Designmaler {
                 </script>
                 <!-- System-sider -->
                 <div class="options-card" id="section-systemsider" data-section="systemsider">
-                    <h3>Wordpress sider</h3>
-                    <p>Velg sider som tilegnes til ulike deler av Kursagenten. Du kan velge fra eksisterende sider, eller opprette nye sider.</p>
-                    <p>Hvis du oppretter sider for kurs, kurskategorier, kurssteder og/eller instruktører, vil sidene opprettes som vanlige WordPress-sider. Du kan fritt endre tittel og innhold. En <a href="/wp-admin/admin.php?page=ka_documentation#kortkoder">kortkode</a> legges inn automatisk.</br>
-                    <strong>Blokker:</strong> Taksonomiene Kurskategorier, Kurssteder og Instruktører er tilgjengelige som egne Gutenberg-blokker i blokkeditoren. Du kan velge å bruke blokkene i stedet for kortkoder hvis du bygger sidene med Gutenberg.</p>
+                    <h3><?php esc_html_e('Wordpress sider', 'kursagenten'); ?></h3>
+                    <p><?php echo wp_kses_post(__('Velg sider som tilegnes til ulike deler av Kursagenten. Du kan velge fra eksisterende sider, eller opprette nye sider.', 'kursagenten')); ?></p>
+                    <p><?php echo wp_kses_post(__('Hvis du oppretter sider for kurs, kurskategorier, kurssteder og/eller instruktører, vil sidene opprettes som vanlige WordPress-sider. Du kan fritt endre tittel og innhold. En <a href="/wp-admin/admin.php?page=ka_documentation#kortkoder">kortkode</a> legges inn automatisk.</br><strong>Blokker:</strong> Taksonomiene Kurskategorier, Kurssteder og Instruktører er tilgjengelige som egne Gutenberg-blokker i blokkeditoren. Du kan velge å bruke blokkene i stedet for kortkoder hvis du bygger sidene med Gutenberg.', 'kursagenten')); ?></p>
 
-                    <p>Sidene blir merket med "Kursagenten" i sideoversikten. Ved å klikke på <i class="ka-icon icon-code-simple-solid-full"></i> kopierer du kortkoden til utklippstavlen, og kan lime den inn der du ønsker å vise den på en eksisterende side.</p>
+                    <p><?php echo wp_kses_post(__('Sidene blir merket med "Kursagenten" i sideoversikten. Ved å klikke på <i class="ka-icon icon-code-simple-solid-full"></i> kopierer du kortkoden til utklippstavlen, og kan lime den inn der du ønsker å vise den på en eksisterende side.', 'kursagenten')); ?></p>
                     
                     <?php $this->render_system_pages_section(); ?>
                 </div>
 
                 <!-- Design Variabler -->
                 <div class="options-card" data-section="designvariabler">
-                    <h3>Designvariabler</h3>
-                    <p>Tilpass grunnleggende designvariabler som farger, skriftstørrelser, og maksbredde på plugin-sider.</p>
+                    <h3><?php esc_html_e('Designvariabler', 'kursagenten'); ?></h3>
+                    <p><?php esc_html_e('Tilpass grunnleggende designvariabler som farger, skriftstørrelser, og maksbredde på plugin-sider.', 'kursagenten'); ?></p>
                     
                     <!-- Maksbredde -->
                     <div class="option-row">
-                        <label class="option-label">Maksbredde:</label>
+                        <label class="option-label"><?php esc_html_e('Maksbredde:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <input type="text" 
                                    name="kursagenten_max_width" 
                                    value="<?php echo esc_attr(get_option('kursagenten_max_width', '1300px')); ?>"
                                    placeholder="1300px">
-                            <p class="description">Standard: 1300px</p>
+                            <p class="description"><?php esc_html_e('Standard: 1300px', 'kursagenten'); ?></p>
                         </div>
                     </div>
 
                     <!-- Hovedfarge -->
                     <div class="option-row">
-                        <label class="option-label">Hovedfarge:</label>
+                        <label class="option-label"><?php esc_html_e('Hovedfarge:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <input type="text" 
                                    name="kursagenten_main_color" 
@@ -199,7 +198,7 @@ class Designmaler {
 
                     <!-- Finjuster farger toggle -->
                     <div class="option-row">
-                        <label class="option-label">Finjuster farger:</label>
+                        <label class="option-label"><?php esc_html_e('Finjuster farger:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <label class="checkbox-label">
                                 <input type="checkbox" 
@@ -207,7 +206,7 @@ class Designmaler {
                                        value="1" 
                                        <?php checked(get_option('kursagenten_advanced_colors'), 1); ?>
                                        class="ka-advanced-colors-toggle">
-                                Vis flere fargevalg
+                                <?php esc_html_e('Vis flere fargevalg', 'kursagenten'); ?>
                             </label>
                         </div>
                     </div>
@@ -215,9 +214,9 @@ class Designmaler {
                     <!-- Avanserte fargevalg -->
                     <div class="advanced-colors-section" style="display: none;">
                         <!-- Knappefarge -->
-                         <div style="color: #e72323; margin-bottom: 2em; font-style: italic;">* Merk: Denne delen er fortsatt under utvikling.</div>
+                         <div style="color: #e72323; margin-bottom: 2em; font-style: italic;"><?php esc_html_e('* Merk: Denne delen er fortsatt under utvikling.', 'kursagenten'); ?></div>
                         <div class="option-row">
-                            <label class="option-label">Knappefarge:</label>
+                            <label class="option-label"><?php esc_html_e('Knappefarge:', 'kursagenten'); ?></label>
                             <div class="option-input">
                                 <input type="text" 
                                        name="kursagenten_button_background" 
@@ -229,7 +228,7 @@ class Designmaler {
 
                         <!-- Knappefarge tekst -->
                         <div class="option-row">
-                            <label class="option-label">Knappefarge tekst:</label>
+                            <label class="option-label"><?php esc_html_e('Knappefarge tekst:', 'kursagenten'); ?></label>
                             <div class="option-input">
                                 <input type="text" 
                                        name="kursagenten_button_color" 
@@ -241,7 +240,7 @@ class Designmaler {
 
                         <!-- Linker -->
                         <div class="option-row">
-                            <label class="option-label">Linker:</label>
+                            <label class="option-label"><?php esc_html_e('Linker:', 'kursagenten'); ?></label>
                             <div class="option-input">
                                 <input type="text" 
                                        name="kursagenten_link_color" 
@@ -253,7 +252,7 @@ class Designmaler {
 
                         <!-- Ikoner -->
                         <div class="option-row">
-                            <label class="option-label">Ikoner:</label>
+                            <label class="option-label"><?php esc_html_e('Ikoner:', 'kursagenten'); ?></label>
                             <div class="option-input">
                                 <input type="text" 
                                        name="kursagenten_icon_color" 
@@ -265,7 +264,7 @@ class Designmaler {
 
                         <!-- Sidebakgrunn -->
                         <div class="option-row">
-                            <label class="option-label">Sidebakgrunn:</label>
+                            <label class="option-label"><?php esc_html_e('Sidebakgrunn:', 'kursagenten'); ?></label>
                             <div class="option-input">
                                 <input type="text" 
                                        name="kursagenten_background_color" 
@@ -277,86 +276,86 @@ class Designmaler {
 
                         <!-- Bakgrunn fremhevede områder -->
                         <div class="option-row">
-                            <label class="option-label">Bakgrunn fremhevede områder:</label>
+                            <label class="option-label"><?php esc_html_e('Bakgrunn fremhevede områder:', 'kursagenten'); ?></label>
                             <div class="option-input">
                                 <input type="text" 
                                        name="kursagenten_highlight_background" 
                                        value="<?php echo esc_attr(get_option('kursagenten_highlight_background', '')); ?>"
                                        class="ka-color-picker"
                                        data-default-color="">
-                                <p class="description">Normalt sett er disse områdene litt mørkere enn bakgrunnen. Brukes også som hovedfarge på bokser i "Bokser"-design.</p>
+                                <p class="description"><?php esc_html_e('Normalt sett er disse områdene litt mørkere enn bakgrunnen. Brukes også som hovedfarge på bokser i "Bokser"-design.', 'kursagenten'); ?></p>
                             </div>
                         </div>
 
                         <!-- Alternativ farge for bokser -->
                         <div class="option-row">
-                            <label class="option-label">Alternativ farge for bokser:</label>
+                            <label class="option-label"><?php esc_html_e('Alternativ farge for bokser:', 'kursagenten'); ?></label>
                             <div class="option-input">
                                 <input type="text" 
                                        name="kursagenten_box_background" 
                                        value="<?php echo esc_attr(get_option('kursagenten_box_background', '')); ?>"
                                        class="ka-color-picker"
                                        data-default-color="">
-                                <p class="description">Brukes for å fremheve enkelte bokser i "Bokser"-design. Hvis kun «Bakgrunn fremhevede områder» er satt, får begge samme farge.</p>
+                                <p class="description"><?php esc_html_e('Brukes for å fremheve enkelte bokser i "Bokser"-design. Hvis kun «Bakgrunn fremhevede områder» er satt, får begge samme farge.', 'kursagenten'); ?></p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Base skriftstørrelse -->
                     <div class="option-row">
-                        <label class="option-label">Base skriftstørrelse:</label>
+                        <label class="option-label"><?php esc_html_e('Base skriftstørrelse:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <input type="text" 
                                    name="kursagenten_base_font" 
                                    value="<?php echo esc_attr(get_option('kursagenten_base_font', '16px')); ?>"
                                    placeholder="16px">
-                            <p class="description">Standard: 16px</p>
+                            <p class="description"><?php esc_html_e('Standard: 16px', 'kursagenten'); ?></p>
                         </div>
                     </div>
 
                     <!-- Hovedoverskrift font -->
                     <div class="option-row">
-                        <label class="option-label">Font for hovedoverskrifter:</label>
+                        <label class="option-label"><?php esc_html_e('Font for hovedoverskrifter:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <input type="text" 
                                    name="kursagenten_heading_font" 
                                    value="<?php echo esc_attr(get_option('kursagenten_heading_font', 'inherit')); ?>"
                                    placeholder="inherit">
-                            <p class="description">Standard: inherit</p>
+                            <p class="description"><?php esc_html_e('Standard: inherit', 'kursagenten'); ?></p>
                         </div>
                     </div>
 
                     <!-- Hovedfont -->
                     <div class="option-row">
-                        <label class="option-label">Hovedfont:</label>
+                        <label class="option-label"><?php esc_html_e('Hovedfont:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <input type="text" 
                                    name="kursagenten_main_font" 
                                    value="<?php echo esc_attr(get_option('kursagenten_main_font', 'inherit')); ?>"
                                    placeholder="inherit">
-                            <p class="description">Standard: inherit</p>
+                            <p class="description"><?php esc_html_e('Standard: inherit', 'kursagenten'); ?></p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Arkiv/Kurslister -->
                 <div class="options-card" data-section="kursliste">
-                    <h3>Kursliste med filter</h3>
-                    <p>Tilpass visningen av kurslisten. Denne vises på systemsiden "Kurs", og alle andre steder som bruker kortkoden <span class="copytext">[kursliste]</span>.</p>
+                    <h3><?php esc_html_e('Kursliste med filter', 'kursagenten'); ?></h3>
+                    <p><?php echo wp_kses_post(__('Tilpass visningen av kurslisten. Denne vises på systemsiden "Kurs", og alle andre steder som bruker kortkoden <span class="copytext">[kursliste]</span>.', 'kursagenten')); ?></p>
                     <!-- Listevisning -->
                     <div class="option-row">
-                        <label class="option-label">Listedesign:</label>
+                        <label class="option-label"><?php esc_html_e('Listedesign:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <select name="kursagenten_archive_list_type" id="kursagenten_archive_list_type">
                                 <?php
                                 $current_list = get_option('kursagenten_archive_list_type', 'standard');
                                 $list_types = [
-                                    'standard' => 'Standard liste',
-                                    'grid' => 'Rutenett',
-                                    'plain' => 'Ren og enkel liste',
-                                    'compact' => 'Kompakt liste',
-                                    'date-and-title' => 'Dato og tittel',
-                                    'simple-cards' => 'Enkle kort'
+                                    'standard' => __('Standard liste', 'kursagenten'),
+                                    'grid' => __('Rutenett', 'kursagenten'),
+                                    'plain' => __('Ren og enkel liste', 'kursagenten'),
+                                    'compact' => __('Kompakt liste', 'kursagenten'),
+                                    'date-and-title' => __('Dato og tittel', 'kursagenten'),
+                                    'simple-cards' => __('Enkle kort', 'kursagenten'),
                                 ];
                                 foreach ($list_types as $value => $label) {
                                     printf(
@@ -376,8 +375,8 @@ class Designmaler {
                         <div class="option-input">
                             <?php $archive_simple_cards_grouping = get_option('kursagenten_archive_simple_cards_grouping', 'course'); ?>
                             <select name="kursagenten_archive_simple_cards_grouping">
-                                <option value="course" <?php selected($archive_simple_cards_grouping, 'course'); ?>>Ett kort per kurs (neste dato)</option>
-                                <option value="course_location" <?php selected($archive_simple_cards_grouping, 'course_location'); ?>>Ett kort per kurs og lokasjon (neste dato per lokasjon)</option>
+                                <option value="course" <?php selected($archive_simple_cards_grouping, 'course'); ?>><?php esc_html_e('Ett kort per kurs (neste dato)', 'kursagenten'); ?></option>
+                                <option value="course_location" <?php selected($archive_simple_cards_grouping, 'course_location'); ?>><?php esc_html_e('Ett kort per kurs og lokasjon (neste dato per lokasjon)', 'kursagenten'); ?></option>
                             </select>
                         </div>
                     </div>
@@ -391,25 +390,25 @@ class Designmaler {
                                        name="kursagenten_archive_buttons_display"
                                        value="show_buttons"
                                        <?php checked($archive_buttons_display, 'show_buttons'); ?>>
-                                Vis knapper
+                                <?php esc_html_e('Vis knapper', 'kursagenten'); ?>
                             </label>
                             <label class="radio-label">
                                 <input type="radio"
                                        name="kursagenten_archive_buttons_display"
                                        value="signup_link"
                                        <?php checked($archive_buttons_display, 'signup_link'); ?>>
-                                Vis påmeldingslink
+                                <?php esc_html_e('Vis påmeldingslink', 'kursagenten'); ?>
                             </label>
                         </div>
                     </div>
 
                     <!-- Grid kolonner (kun når grid er valgt) -->
                     <div class="option-row grid-columns-settings" id="archive_grid_columns_settings" style="<?php echo (in_array($current_list, ['grid', 'simple-cards'])) ? '' : 'display: none;'; ?>">
-                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Antall kolonner i rutenett:</label>
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> <?php esc_html_e('Antall kolonner i rutenett:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 10px;">
                                 <div>
-                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Desktop:</label>
+                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;"><?php esc_html_e('Desktop:', 'kursagenten'); ?></label>
                                     <select name="kursagenten_archive_grid_columns_desktop">
                                         <?php
                                         $archive_grid_defs = $this->get_grid_column_defaults_for_list_type($current_list === 'simple-cards' ? 'simple-cards' : 'grid');
@@ -426,7 +425,7 @@ class Designmaler {
                                     </select>
                                 </div>
                                 <div>
-                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Tablet:</label>
+                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;"><?php esc_html_e('Tablet:', 'kursagenten'); ?></label>
                                     <select name="kursagenten_archive_grid_columns_tablet">
                                         <?php
                                         $current_tablet = get_option('kursagenten_archive_grid_columns_tablet', $archive_grid_defs['tablet']);
@@ -442,7 +441,7 @@ class Designmaler {
                                     </select>
                                 </div>
                                 <div>
-                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Mobil:</label>
+                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;"><?php esc_html_e('Mobil:', 'kursagenten'); ?></label>
                                     <select name="kursagenten_archive_grid_columns_mobile">
                                         <?php
                                         $current_mobile = get_option('kursagenten_archive_grid_columns_mobile', $archive_grid_defs['mobile']);
@@ -463,18 +462,18 @@ class Designmaler {
                     
                     <!-- Vis bilder -->
                     <div class="option-row">
-                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Vis bilder:</label>
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> <?php esc_html_e('Vis bilder:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <?php
                             $show_images = get_option('kursagenten_show_images', 'yes');
                             ?>
                             <label class="radio-label">
                                 <input type="radio" name="kursagenten_show_images" value="yes" <?php checked($show_images, 'yes'); ?>>
-                                Ja
+                                <?php esc_html_e('Ja', 'kursagenten'); ?>
                             </label>
                             <label class="radio-label">
                                 <input type="radio" name="kursagenten_show_images" value="no" <?php checked($show_images, 'no'); ?>>
-                                Nei
+                                <?php esc_html_e('Nei', 'kursagenten'); ?>
                             </label>
                         </div>
                     </div>
@@ -483,7 +482,7 @@ class Designmaler {
 
                     <!-- Ledige kurs -->
                     <div class="option-row">
-                        <label class="option-label" for="kursagenten_default_available_only"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Ledige kurs: <span class="ka-tooltip" data-title="Når dette er aktivert vil kurslisten som standard skjule fulle kurs og kurs «på forespørsel». Brukeren kan slå filteret av igjen på siden."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
+                        <label class="option-label" for="kursagenten_default_available_only"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> <?php esc_html_e('Ledige kurs:', 'kursagenten'); ?> <span class="ka-tooltip" data-title="<?php echo esc_attr__('Når dette er aktivert vil kurslisten som standard skjule fulle kurs og kurs «på forespørsel». Brukeren kan slå filteret av igjen på siden.', 'kursagenten'); ?>"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                         <div class="option-input">
                             <?php
                             $default_available_only = get_option('kursagenten_default_available_only', 'no');
@@ -508,13 +507,13 @@ class Designmaler {
                                        name="kursagenten_default_available_only"
                                        value="yes"
                                        <?php checked($default_available_only, 'yes'); ?>>
-                                Vis kun ledige kurs som standard
+                                <?php esc_html_e('Vis kun ledige kurs som standard', 'kursagenten'); ?>
                             </label>
                             <div id="kursagenten-availability-warning"
                                  class="notice notice-warning inline"
                                  style="margin-top:8px;padding:8px 12px;<?php echo ($default_available_only === 'yes' && !$availability_enabled) ? '' : 'display:none;'; ?>">
                                 <p style="margin:0;">
-                                    <strong>Obs:</strong> For at brukerne skal kunne slå filteret av og på, må du dra <em>«Ledige kurs»</em> inn i «Filtre i venstre kolonne» eller «Filtre over kurslisten» under Filterinnstillinger.
+                                    <?php echo wp_kses_post(__('<strong>Obs:</strong> For at brukerne skal kunne slå filteret av og på, må du dra <em>«Ledige kurs»</em> inn i «Filtre i venstre kolonne» eller «Filtre over kurslisten» under Filterinnstillinger.', 'kursagenten')); ?>
                                 </p>
                             </div>
                         </div>
@@ -522,7 +521,7 @@ class Designmaler {
 
                     <!-- Antall kurs per side -->
                     <div class="option-row">
-                        <label class="option-label">Antall kurs per side: <span class="ka-tooltip" data-title="Velg standard antall kurs som skal vises per side (1-50)"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
+                        <label class="option-label"><?php esc_html_e('Antall kurs per side:', 'kursagenten'); ?> <span class="ka-tooltip" data-title="<?php echo esc_attr__('Velg standard antall kurs som skal vises per side (1-50)', 'kursagenten'); ?>"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                         <div class="option-input">
                             <input type="number" 
                                    name="kursagenten_courses_per_page" 
@@ -534,8 +533,8 @@ class Designmaler {
 
                     <div class="option-row">
                         <label class="option-label">
-                            Oppførsel eksterne lenker:
-                            <span class="ka-tooltip" data-title="Ekstern lenke kan legges inn på kurset i feltet &quot;Link til påmeldingskjema:&quot; i Kursagenten. Dette vil åpne en valgfri side.">
+                            <?php esc_html_e('Oppførsel eksterne lenker:', 'kursagenten'); ?>
+                            <span class="ka-tooltip" data-title="<?php echo esc_attr__('Ekstern lenke kan legges inn på kurset i feltet "Link til påmeldingskjema:" i Kursagenten. Dette vil åpne en valgfri side.', 'kursagenten'); ?>">
                                 <i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i>
                             </span>
                         </label>
@@ -551,7 +550,7 @@ class Designmaler {
                                            name="kursagenten_external_link_course_card"
                                            value="yes"
                                            <?php checked($external_link_course_card, 'yes'); ?>>
-                                    Bruk ekstern lenke på kurstittel
+                                    <?php esc_html_e('Bruk ekstern lenke på kurstittel', 'kursagenten'); ?>
                                 </label>
                                 <label class="radio-label" style="margin:0;">
                                     <input type="hidden" name="kursagenten_external_link_signup" value="no">
@@ -559,7 +558,7 @@ class Designmaler {
                                            name="kursagenten_external_link_signup"
                                            value="yes"
                                            <?php checked($external_link_signup, 'yes'); ?>>
-                                    Bruk ekstern lenke på påmeldingsknapp
+                                    <?php esc_html_e('Bruk ekstern lenke på påmeldingsknapp', 'kursagenten'); ?>
                                 </label>
                             </div>
                         </div>
@@ -568,55 +567,12 @@ class Designmaler {
 
                 <!-- Filter Settings -->
                 <div class="options-card" data-section="filterinnstillinger">
-                    <h3 id="filterinnstillinger">Filterinnstillinger</h3>
-                    <p>Velg hvilke filtre som skal vises på kurslisten. Du kan dra filteret til enten venstre kolonne eller over kursliste. Velg om filteret skal vises som tagger eller avkrysningsliste.</p>
-                    <p>Ta tak i filteret du ønsker å bruke, og dra til enten venstre kolonne eller over kursliste. Velg om filteret skal vises som tagger eller avkrysningsliste.<br>
-                    For å fjerne et filter, dra det tilbake til tilgjengelige filtre. Husk å <strong>lagre</strong> endringene dine.
-                    </p>
+                    <h3 id="filterinnstillinger"><?php esc_html_e('Filterinnstillinger', 'kursagenten'); ?></h3>
+                    <p><?php esc_html_e('Velg hvilke filtre som skal vises på kurslisten. Du kan dra filteret til enten venstre kolonne eller over kursliste. Velg om filteret skal vises som tagger eller avkrysningsliste.', 'kursagenten'); ?></p>
+                    <p><?php echo wp_kses_post(__('Ta tak i filteret du ønsker å bruke, og dra til enten venstre kolonne eller over kursliste. Velg om filteret skal vises som tagger eller avkrysningsliste.<br>For å fjerne et filter, dra det tilbake til tilgjengelige filtre. Husk å <strong>lagre</strong> endringene dine.', 'kursagenten')); ?></p>
                     <?php
                     // Add filter settings
-                    $available_filters = [
-                        'search' => [
-                            'label' => 'Søk',
-                            'placeholder' => 'Søk etter kurs'
-                        ],
-                        'categories' => [
-                            'label' => 'Kategorier',
-                            'placeholder' => 'Velg kategori'
-                        ],
-                        'locations' => [
-                            'label' => 'Kurssteder',
-                            'placeholder' => 'Velg kurssted'
-                        ],
-                        'instructors' => [
-                            'label' => 'Instruktører',
-                            'placeholder' => 'Velg instruktør'
-                        ],
-                        'language' => [
-                            'label' => 'Språk',
-                            'placeholder' => 'Velg språk'
-                        ],
-                        'time_of_day' => [
-                            'label' => 'Dag-/kveldskurs',
-                            'placeholder' => 'Velg tidspunkt'
-                        ],
-                        'price' => [
-                            'label' => 'Pris',
-                            'placeholder' => 'Velg pris'
-                        ],
-                        'date' => [
-                            'label' => 'Startdato',
-                            'placeholder' => 'Velg dato'
-                        ],
-                        'months' => [
-                            'label' => 'Startmåned',
-                            'placeholder' => 'Velg måned'
-                        ],
-                        'availability' => [
-                            'label' => 'Ledige kurs',
-                            'placeholder' => 'Vis kun ledige'
-                        ]
-                    ];
+                    $available_filters = kursagenten_get_available_filter_definitions();
                     $inactive_filters = ['time_of_day', 'price'];
                     $top_filters = get_option('kursagenten_top_filters', []);
                     $left_filters = get_option('kursagenten_left_filters', []);
@@ -630,7 +586,7 @@ class Designmaler {
                     update_option('kursagenten_available_filters', $available_filters);
                     ?>
                     <div class="filter-selection">
-                        <h4>Tilgjengelige filtre:</h4>
+                        <h4><?php esc_html_e('Tilgjengelige filtre:', 'kursagenten'); ?></h4>
                         <ul id="available-filters" class="sortable-list">
                             <?php foreach ($available_filters as $key => $filter) : 
                                 $disabled_class = in_array($key, $inactive_filters) ? 'disabled-filter' : '';
@@ -639,8 +595,8 @@ class Designmaler {
                                     <i class="ka-icon icon-grip-dots"></i> <?php echo esc_html($filter['label']); ?>
                                         <?php if (in_array($key, ['categories', 'locations', 'instructors', 'language', 'months', 'availability'])) : ?>
                                             <span class="filter-type-options">
-                                                <label><input type="radio" name="kursagenten_filter_types[<?php echo esc_attr($key); ?>]" value="chips" <?php echo (isset($filter_types[$key]) && $filter_types[$key] === 'chips') ? 'checked' : ''; ?>> Knapper</label>
-                                                <label><input type="radio" name="kursagenten_filter_types[<?php echo esc_attr($key); ?>]" value="list" <?php echo (!isset($filter_types[$key]) || $filter_types[$key] === 'list') ? 'checked' : ''; ?>> Liste</label>
+                                                <label><input type="radio" name="kursagenten_filter_types[<?php echo esc_attr($key); ?>]" value="chips" <?php echo (isset($filter_types[$key]) && $filter_types[$key] === 'chips') ? 'checked' : ''; ?>> <?php esc_html_e('Knapper', 'kursagenten'); ?></label>
+                                                <label><input type="radio" name="kursagenten_filter_types[<?php echo esc_attr($key); ?>]" value="list" <?php echo (!isset($filter_types[$key]) || $filter_types[$key] === 'list') ? 'checked' : ''; ?>> <?php esc_html_e('Liste', 'kursagenten'); ?></label>
                                             </span>
                                         <?php endif; ?>
                                     </li>
@@ -651,7 +607,7 @@ class Designmaler {
                    
                     <div class="filter-containers">
                         <div class="filter-container">
-                            <h4>Filtre i venstre kolonne</h4>
+                            <h4><?php esc_html_e('Filtre i venstre kolonne', 'kursagenten'); ?></h4>
                             <ul id="left-filters" class="sortable-list">
                                 <?php foreach ($left_filters as $filter) : ?>
                                     <?php if (!empty($filter)) : ?>
@@ -661,11 +617,11 @@ class Designmaler {
                                             <span class="filter-type-options">
                                                 <label>
                                                     <input type="radio" name="kursagenten_filter_types[<?php echo esc_attr($filter); ?>]" value="chips"
-                                                        <?php echo (isset($filter_types[$filter]) && $filter_types[$filter] === 'chips') ? 'checked' : ''; ?>> Knapper
+                                                        <?php echo (isset($filter_types[$filter]) && $filter_types[$filter] === 'chips') ? 'checked' : ''; ?>> <?php esc_html_e('Knapper', 'kursagenten'); ?>
                                                 </label>
                                                 <label>
                                                     <input type="radio" name="kursagenten_filter_types[<?php echo esc_attr($filter); ?>]" value="list"
-                                                        <?php echo (!isset($filter_types[$filter]) || $filter_types[$filter] === 'list') ? 'checked' : ''; ?>> Liste
+                                                        <?php echo (!isset($filter_types[$filter]) || $filter_types[$filter] === 'list') ? 'checked' : ''; ?>> <?php esc_html_e('Liste', 'kursagenten'); ?>
                                                 </label>
                                                 <?php if ($filter !== 'availability' && (!isset($filter_types[$filter]) || $filter_types[$filter] === 'list')) : ?>
                                                     <label class="checkbox-label-small filter-list-options size-limit-checkbox">
@@ -677,7 +633,7 @@ class Designmaler {
                                                                name="kursagenten_filter_no_collapse[<?php echo esc_attr($filter); ?>]" 
                                                                value="1" 
                                                                <?php checked($is_checked, true); ?>>
-                                                        Ikke begrens høyde
+                                                        <?php esc_html_e('Ikke begrens høyde', 'kursagenten'); ?>
                                                     </label>
                                                 <?php endif; ?>
                                             </span>
@@ -690,7 +646,7 @@ class Designmaler {
                         </div>
 
                         <div class="filter-container">
-                            <h4>Filtre over kurslisten</h4>
+                            <h4><?php esc_html_e('Filtre over kurslisten', 'kursagenten'); ?></h4>
                             <ul id="top-filters" class="sortable-list">
                                 <?php foreach ($top_filters as $filter) : ?>
                                     <?php if (!empty($filter)) : ?>
@@ -700,11 +656,11 @@ class Designmaler {
                                             <span class="filter-type-options">
                                                 <label>
                                                     <input type="radio" name="kursagenten_filter_types[<?php echo esc_attr($filter); ?>]" value="chips"
-                                                        <?php echo (isset($filter_types[$filter]) && $filter_types[$filter] === 'chips') ? 'checked' : ''; ?>> Knapper
+                                                        <?php echo (isset($filter_types[$filter]) && $filter_types[$filter] === 'chips') ? 'checked' : ''; ?>> <?php esc_html_e('Knapper', 'kursagenten'); ?>
                                                 </label>
                                                 <label>
                                                     <input type="radio" name="kursagenten_filter_types[<?php echo esc_attr($filter); ?>]" value="list"
-                                                        <?php echo (!isset($filter_types[$filter]) || $filter_types[$filter] === 'list') ? 'checked' : ''; ?>> Liste
+                                                        <?php echo (!isset($filter_types[$filter]) || $filter_types[$filter] === 'list') ? 'checked' : ''; ?>> <?php esc_html_e('Liste', 'kursagenten'); ?>
                                                 </label>
                                             </span>
                                         <?php endif; ?>
@@ -718,10 +674,10 @@ class Designmaler {
 
                     <!-- Standard høyde for filterlister -->
                     <div class="list-height-container">
-                        <h4>Standard høyde for filterlister:</h4>
-                        <p>Listene med filtre i venstre kolonne kan bli lange. De begrenses til en standard høyde, med "Vis mer"-link. Standard høyde er 250px. Du kan velge en annen høyde for filterlister under.</p>
+                        <h4><?php esc_html_e('Standard høyde for filterlister:', 'kursagenten'); ?></h4>
+                        <p><?php esc_html_e('Listene med filtre i venstre kolonne kan bli lange. De begrenses til en standard høyde, med "Vis mer"-link. Standard høyde er 250px. Du kan velge en annen høyde for filterlister under.', 'kursagenten'); ?></p>
                         
-                        <div style="display: inline-block;">Høyde: </div>
+                        <div style="display: inline-block;"><?php esc_html_e('Høyde:', 'kursagenten'); ?> </div>
                         <div class="option-input" style="display: inline-block;">
                             <input type="number" 
                                    name="kursagenten_filter_default_height" 
@@ -732,7 +688,7 @@ class Designmaler {
                                 
                             
                         </div>
-                        <div class="description" style="display: inline-block;"> (100-1000px)</div>
+                        <div class="description" style="display: inline-block;"> <?php esc_html_e('(100-1000px)', 'kursagenten'); ?></div>
                     </div>
 
                     <?php
@@ -743,10 +699,10 @@ class Designmaler {
                     $filter_sidebar_text  = get_option('kursagenten_filter_sidebar_text_color', '');
                     ?>
                     <div class="filter-sidebar-design-options" style="margin-top: 1.5em; padding-top: 1em; border-top: 1px solid #ddd;">
-                        <h4>Utseende venstre filterkolonne <span class="ka-tooltip" data-title="Gjelder filter som er plassert i venstre kolonne på kurslisten."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></h4>
+                        <h4><?php esc_html_e('Utseende venstre filterkolonne', 'kursagenten'); ?> <span class="ka-tooltip" data-title="<?php echo esc_attr__('Gjelder filter som er plassert i venstre kolonne på kurslisten.', 'kursagenten'); ?>"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></h4>
 
                         <div class="option-row">
-                            <label class="option-label" for="kursagenten_filter_search_pill">Søkefelt: <span class="ka-tooltip" data-title="Søkefeltet får pill-form, tydelig kant og forstørrelsesglass til høyre. Gjelder kun når søk ligger i venstre kolonne."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
+                            <label class="option-label" for="kursagenten_filter_search_pill"><?php esc_html_e('Søkefelt:', 'kursagenten'); ?> <span class="ka-tooltip" data-title="<?php echo esc_attr__('Søkefeltet får pill-form, tydelig kant og forstørrelsesglass til høyre. Gjelder kun når søk ligger i venstre kolonne.', 'kursagenten'); ?>"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                             <div class="option-input">
                                 <input type="hidden" name="kursagenten_filter_search_pill" value="no">
                                 <label class="checkbox-label">
@@ -755,13 +711,13 @@ class Designmaler {
                                            name="kursagenten_filter_search_pill"
                                            value="yes"
                                            <?php checked($filter_search_pill, 'yes'); ?>>
-                                    Avrundet søkefelt med ikon
+                                    <?php esc_html_e('Avrundet søkefelt med ikon', 'kursagenten'); ?>
                                 </label>
                             </div>
                         </div>
 
                         <div class="option-row">
-                            <label class="option-label" for="kursagenten_filter_sidebar_box">Filterboks: <span class="ka-tooltip" data-title="Hele filterområdet i venstre kolonne legges i en avrundet boks. Standard bakgrunn følger temafargen (--ka-box-background)."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
+                            <label class="option-label" for="kursagenten_filter_sidebar_box"><?php esc_html_e('Filterboks:', 'kursagenten'); ?> <span class="ka-tooltip" data-title="<?php echo esc_attr__('Hele filterområdet i venstre kolonne legges i en avrundet boks. Standard bakgrunn følger temafargen (--ka-box-background).', 'kursagenten'); ?>"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                             <div class="option-input">
                                 <input type="hidden" name="kursagenten_filter_sidebar_box" value="no">
                                 <label class="checkbox-label">
@@ -771,22 +727,22 @@ class Designmaler {
                                            value="yes"
                                            class="ka-filter-sidebar-box-toggle"
                                            <?php checked($filter_sidebar_box, 'yes'); ?>>
-                                    Vis filter i boks med bakgrunn
+                                    <?php esc_html_e('Vis filter i boks med bakgrunn', 'kursagenten'); ?>
                                 </label>
                                 <button type="button"
                                         class="button-link ka-inline-settings-toggle ka-inline-meta-link"
                                         id="toggle-filter-sidebar-colors"
-                                        style="<?php echo ($filter_sidebar_box === 'yes') ? '' : 'display:none;'; ?> margin-left:8px;">Velg farger</button>
+                                        style="<?php echo ($filter_sidebar_box === 'yes') ? '' : 'display:none;'; ?> margin-left:8px;"><?php esc_html_e('Velg farger', 'kursagenten'); ?></button>
                             </div>
                         </div>
 
                         <div class="option-row filter-sidebar-colors-row" id="filter-sidebar-colors-row" style="display: none;">
-                            <label class="option-label">Farger:</label>
+                            <label class="option-label"><?php esc_html_e('Farger:', 'kursagenten'); ?></label>
                             <div class="option-input">
                                 <div style="display: flex; flex-wrap: wrap; gap: 1.5em; align-items: flex-end;">
                                     <div>
                                         <label style="display: block; margin-bottom: 4px; font-size: 0.9em;">
-                                            Bakgrunnsfarge
+                                            <?php esc_html_e('Bakgrunnsfarge', 'kursagenten'); ?>
                                             <span class="ka-tooltip" data-title="La stå tom for standard temafarge. Du kan også lime inn f.eks. var(--ka-box-background)."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:4px; vertical-align: middle;"></i></span>
                                         </label>
                                         <input type="text"
@@ -794,11 +750,11 @@ class Designmaler {
                                                value="<?php echo esc_attr($filter_sidebar_bg); ?>"
                                                class="ka-color-picker"
                                                data-default-color=""
-                                               placeholder="Standard">
+                                               placeholder="<?php echo esc_attr__('Standard', 'kursagenten'); ?>">
                                     </div>
                                     <div>
                                         <label style="display: block; margin-bottom: 4px; font-size: 0.9em;">
-                                            Tekstfarge
+                                            <?php esc_html_e('Tekstfarge', 'kursagenten'); ?>
                                             <span class="ka-tooltip" data-title="Påvirker overskrifter, avkrysningslister og øvrig filtertekst. Velg lys tekst på mørk bakgrunn. Aktive filterknapper beholder temafarge."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:4px; vertical-align: middle;"></i></span>
                                         </label>
                                         <input type="text"
@@ -806,13 +762,13 @@ class Designmaler {
                                                value="<?php echo esc_attr($filter_sidebar_text); ?>"
                                                class="ka-color-picker"
                                                data-default-color=""
-                                               placeholder="Standard">
+                                               placeholder="<?php echo esc_attr__('Standard', 'kursagenten'); ?>">
                                     </div>
                                     <div class="filter-sidebar-clear-colors-wrap" style="align-self: center;">
                                         <button type="button"
                                                 class="button-link ka-inline-meta-link"
                                                 id="clear-filter-sidebar-colors"
-                                                style="<?php echo ($filter_sidebar_bg !== '' || $filter_sidebar_text !== '') ? '' : 'display:none;'; ?>">Tøm farger</button>
+                                                style="<?php echo ($filter_sidebar_bg !== '' || $filter_sidebar_text !== '') ? '' : 'display:none;'; ?>"><?php esc_html_e('Tøm farger', 'kursagenten'); ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -823,7 +779,7 @@ class Designmaler {
                 <!-- Single kurs -->
                 
                 <div class="options-card" data-section="enkeltkurs">
-                    <h3>Enkeltkurs</h3>
+                    <h3><?php esc_html_e('Enkeltkurs', 'kursagenten'); ?></h3>
                     <?php $single_design_mode = get_option('kursagenten_single_design_mode', 'plugin'); ?>
                     <?php // "Avansert malvalg" for Enkeltkurs – PAUSED (2026-04-16). Skjult i admin mens byggeblokkene er på hold. Fjern if(false) for å aktivere igjen. ?>
                     <?php if (false) : ?>
@@ -851,44 +807,44 @@ class Designmaler {
                         </div>
                     </details>
                     <?php endif; ?>
-                    <p class="ka-single-plugin-design-only">Velg design på sider som viser kursdetaljer, både for alle lokasjoner og enkeltlokasjoner.</p>
+                    <p class="ka-single-plugin-design-only"><?php esc_html_e('Velg design på sider som viser kursdetaljer, både for alle lokasjoner og enkeltlokasjoner.', 'kursagenten'); ?></p>
                     <div class="ka-custom-design-info ka-single-custom-design-info" style="display: none;">
-                        <p><strong>Bygg ditt eget design</strong> er aktivt. Kursagenten bruker WordPress sitt malhierarki, slik at tema/page builder kan styre oppsett.</p>
-                        <p>Byggeblokker for enkeltkurs kommer i en senere oppdatering. Foreløpig kan du bygge innhold med tema/page builder og eksisterende hooks/kortkoder.</p>
+                        <p><?php echo wp_kses_post(__('<strong>Bygg ditt eget design</strong> er aktivt. Kursagenten bruker WordPress sitt malhierarki, slik at tema/page builder kan styre oppsett.', 'kursagenten')); ?></p>
+                        <p><?php esc_html_e('Byggeblokker for enkeltkurs kommer i en senere oppdatering. Foreløpig kan du bygge innhold med tema/page builder og eksisterende hooks/kortkoder.', 'kursagenten'); ?></p>
                     </div>
                     <!-- Layoutbredde -->
                     <div class="option-row ka-single-plugin-design-only">
-                        <label class="option-label">Bredde:</label>
+                        <label class="option-label"><?php esc_html_e('Bredde:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <label class="radio-label">
                                 <input type="radio" 
                                        name="kursagenten_single_layout" 
                                        value="default" 
                                        <?php checked(get_option('kursagenten_single_layout'), 'default'); ?>>
-                                Tema-standard
+                                <?php esc_html_e('Tema-standard', 'kursagenten'); ?>
                             </label>
                             <label class="radio-label">
                                 <input type="radio" 
                                        name="kursagenten_single_layout" 
                                        value="full-width" 
                                        <?php checked(get_option('kursagenten_single_layout'), 'full-width'); ?>>
-                                Full bredde
+                                <?php esc_html_e('Full bredde', 'kursagenten'); ?>
                             </label>
                         </div>
                     </div>
 
                     <!-- Design -->
                     <div class="option-row ka-single-plugin-design-only">
-                        <label class="option-label">Design:</label>
+                        <label class="option-label"><?php esc_html_e('Design:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <select name="kursagenten_single_design">
                                 <?php
                                 $current_design = get_option('kursagenten_single_design', 'default');
                                 $designs = [
-                                    'default' => 'Hero - toppseksjon med bilde',
+                                    'default' => __('Hero - toppseksjon med bilde', 'kursagenten'),
                                     //'modern'  => 'Moderne',
                                     //'minimal' => 'Minimal',
-                                    'boxes'   => 'Bokser',
+                                    'boxes'   => __('Bokser', 'kursagenten'),
                                 ];
                                 foreach ($designs as $value => $label) {
                                     printf(
@@ -900,7 +856,7 @@ class Designmaler {
                                 }
                                 ?>
                             </select>
-                            <button type="button" class="button-link ka-inline-settings-toggle ka-inline-meta-link" id="toggle-single-hero-settings" style="display:none; margin-left:8px;">Flere valg</button>
+                            <button type="button" class="button-link ka-inline-settings-toggle ka-inline-meta-link" id="toggle-single-hero-settings" style="display:none; margin-left:8px;"><?php esc_html_e('Flere valg', 'kursagenten'); ?></button>
                         </div>
                     </div>
 
@@ -913,42 +869,42 @@ class Designmaler {
                     $single_hero_bg_color = get_option('kursagenten_single_hero_header_bg_color', '');
                     ?>
                     <div class="option-row hero-header-settings-row hero-single-settings-row ka-single-plugin-design-only" id="hero-single-settings-row" style="display: none;">
-                        <label class="option-label">Bakgrunn i toppfelt:</label>
+                        <label class="option-label"><?php esc_html_e('Bakgrunn i toppfelt:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <div class="taxonomy-override hero-header-settings-box">
                                 <div class="taxonomy-override-settings">
                                     <div class="option-row">
-                                        <label class="option-label">Bakgrunnstype:</label>
+                                        <label class="option-label"><?php esc_html_e('Bakgrunnstype:', 'kursagenten'); ?></label>
                                         <div class="option-input">
                                             <label class="radio-label">
                                                 <input type="radio" name="kursagenten_single_hero_header_bg_mode" value="image_placeholder" <?php checked($single_hero_bg_mode, 'image_placeholder'); ?>>
-                                                Bruk kursbilde, og <a href="/wp-admin/admin.php?page=design&ka_open=valg-for-bilder%2Cenkeltkurs#valg-for-bilder">plassholderbilde for kurs</a> om kursbilde mangler
+                                                <?php echo wp_kses_post(__('Bruk kursbilde, og <a href="/wp-admin/admin.php?page=design&ka_open=valg-for-bilder%2Cenkeltkurs#valg-for-bilder">plassholderbilde for kurs</a> om kursbilde mangler', 'kursagenten')); ?>
                                             </label><br>
                                             <label class="radio-label">
                                                 <input type="radio" name="kursagenten_single_hero_header_bg_mode" value="image_bgcolor" <?php checked($single_hero_bg_mode, 'image_bgcolor'); ?>>
-                                                Bruk kursbilde, og bakgrunnsfarge om kursbilde mangler
+                                                <?php esc_html_e('Bruk kursbilde, og bakgrunnsfarge om kursbilde mangler', 'kursagenten'); ?>
                                             </label><br>
                                             <label class="radio-label">
                                                 <input type="radio" name="kursagenten_single_hero_header_bg_mode" value="bgcolor_only" <?php checked($single_hero_bg_mode, 'bgcolor_only'); ?>>
-                                                Bruk kun bakgrunnsfarge
+                                                <?php esc_html_e('Bruk kun bakgrunnsfarge', 'kursagenten'); ?>
                                             </label>
                                         </div>
                                     </div>
                                     <div class="option-row hero-overlay-settings" id="hero-single-overlay-settings" style="<?php echo in_array($single_hero_bg_mode, ['image_placeholder', 'image_bgcolor']) ? '' : 'display: none;'; ?>">
-                                        <label class="option-label">Bakgrunnsbilde og overlay:</label>
+                                        <label class="option-label"><?php esc_html_e('Bakgrunnsbilde og overlay:', 'kursagenten'); ?></label>
                                         <div class="option-input">
                                             <label class="radio-label">
                                                 <input type="radio" name="kursagenten_single_hero_header_overlay" value="dark" <?php checked($single_hero_overlay, 'dark'); ?>>
-                                                Lys tekst og mørkt overlay (standard)
+                                                <?php esc_html_e('Lys tekst og mørkt overlay (standard)', 'kursagenten'); ?>
                                             </label>
                                             <label class="radio-label">
                                                 <input type="radio" name="kursagenten_single_hero_header_overlay" value="light" <?php checked($single_hero_overlay, 'light'); ?>>
-                                                Mørk tekst og lyst overlay
+                                                <?php esc_html_e('Mørk tekst og lyst overlay', 'kursagenten'); ?>
                                             </label>
                                         </div>
                                     </div>
                                     <div class="option-row hero-color-settings" id="hero-single-color-settings">
-                                        <label class="option-label">Farger:</label>
+                                        <label class="option-label"><?php esc_html_e('Farger:', 'kursagenten'); ?></label>
                                         <div class="option-input">
                                             <div style="display: flex; flex-wrap: wrap; gap: 1em; align-items: center;">
                                                 <?php
@@ -956,12 +912,12 @@ class Designmaler {
                                                 $show_single_hero_font_override_note = ($single_hero_bg_mode === 'image_bgcolor');
                                                 ?>
                                                 <div id="hero-single-font-color-setting" style="<?php echo $show_single_hero_font_color ? '' : 'display: none;'; ?>">
-                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;">Velg font-farge (valgfritt):</label>
+                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;"><?php esc_html_e('Velg font-farge (valgfritt):', 'kursagenten'); ?></label>
                                                     <input type="text" name="kursagenten_single_hero_header_font_color" value="<?php echo esc_attr($single_hero_font_color); ?>" class="ka-color-picker" data-default-color="">
-                                                    <p class="description" id="hero-single-font-color-override-note" style="margin: 4px 0 0;<?php echo $show_single_hero_font_override_note ? '' : ' display: none;'; ?>">Overstyrer tekstfargen fra overlay-valget over.</p>
+                                                    <p class="description" id="hero-single-font-color-override-note" style="margin: 4px 0 0;<?php echo $show_single_hero_font_override_note ? '' : ' display: none;'; ?>"><?php esc_html_e('Overstyrer tekstfargen fra overlay-valget over.', 'kursagenten'); ?></p>
                                                 </div>
                                                 <div id="hero-single-bg-color-setting" style="<?php echo in_array($single_hero_bg_mode, ['image_bgcolor', 'bgcolor_only']) ? '' : 'display: none;'; ?>">
-                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;">Velg bakgrunnsfarge:</label>
+                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;"><?php esc_html_e('Velg bakgrunnsfarge:', 'kursagenten'); ?></label>
                                                     <input type="text" name="kursagenten_single_hero_header_bg_color" value="<?php echo esc_attr($single_hero_bg_color); ?>" class="ka-color-picker" data-default-color="">
                                                 </div>
                                             </div>
@@ -977,23 +933,23 @@ class Designmaler {
                     $show_single_instructors = (bool) get_option('kursagenten_single_show_instructors', false);
                     ?>
                     <div class="option-row ka-single-plugin-design-only">
-                        <label class="option-label">Vis kontaktperson:</label>
+                        <label class="option-label"><?php esc_html_e('Vis kontaktperson:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <input type="hidden" name="kursagenten_single_show_contact_person" value="0">
                             <label class="checkbox-label">
                                 <input type="checkbox" name="kursagenten_single_show_contact_person" value="1" <?php checked($show_single_contact_person, true); ?>>
-                                Vis kontaktperson i enkeltkurs
+                                <?php esc_html_e('Vis kontaktperson i enkeltkurs', 'kursagenten'); ?>
                             </label>
                         </div>
                     </div>
 
                     <div class="option-row ka-single-plugin-design-only">
-                        <label class="option-label">Vis instruktører:</label>
+                        <label class="option-label"><?php esc_html_e('Vis instruktører:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <input type="hidden" name="kursagenten_single_show_instructors" value="0">
                             <label class="checkbox-label">
                                 <input type="checkbox" name="kursagenten_single_show_instructors" value="1" <?php checked($show_single_instructors, true); ?>>
-                                Vis instruktører i enkeltkurs
+                                <?php esc_html_e('Vis instruktører i enkeltkurs', 'kursagenten'); ?>
                             </label>
                         </div>
                     </div>
@@ -1003,7 +959,7 @@ class Designmaler {
 
                 <!-- Taxonomi -->
                 <div class="options-card" data-section="taksonomi" id="design-taksonomi">
-                    <h3>Taksonomisider</h3>
+                    <h3><?php esc_html_e('Taksonomisider', 'kursagenten'); ?></h3>
                     <?php $taxonomy_design_mode = get_option('kursagenten_taxonomy_design_mode', 'plugin'); ?>
                     <?php // "Avansert malvalg" for Taksonomisider – PAUSED (2026-04-16). Skjult i admin mens byggeblokkene er på hold. Fjern if(false) for å aktivere igjen. ?>
                     <?php if (false) : ?>
@@ -1031,55 +987,53 @@ class Designmaler {
                         </div>
                     </details>
                     <?php endif; ?>
-                    <p class="ka-taxonomy-plugin-design-only">Velg et felles design for kurskategorier, kurssteder og instruktører. Du kan også velge å ha egne design for hver enkelt taksonomi.</p>
-                    <p><strong>Layout</strong> bestemmer oppsettet av elementer på siden (header, kolonner, hooks).</br>
-                     <strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, ren, kompakt, dato og tittel). </br>
-                     <strong>Visningstype</strong> bestemmer om du vil vise hovedkurs eller alle kursdatoer.</p>
+                    <p class="ka-taxonomy-plugin-design-only"><?php esc_html_e('Velg et felles design for kurskategorier, kurssteder og instruktører. Du kan også velge å ha egne design for hver enkelt taksonomi.', 'kursagenten'); ?></p>
+                    <p><?php echo wp_kses_post(__('<strong>Layout</strong> bestemmer oppsettet av elementer på siden (header, kolonner, hooks).</br><strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, ren, kompakt, dato og tittel). </br><strong>Visningstype</strong> bestemmer om du vil vise hovedkurs eller alle kursdatoer.', 'kursagenten')); ?></p>
                     <p class="ka-taxonomy-plugin-design-only">&nbsp;</p>
                     <div class="ka-custom-design-info ka-taxonomy-custom-design-info" style="display: none;">
-                        <p><strong>Bygg ditt eget design</strong> er aktivt. Du kan fortsatt styre kursdata-visning under.</p>
-                        <p><strong>Byggeblokker kommer:</strong> vi planlegger moduler for blant annet kursliste med kurssteder/lenker og informasjon om kommende kurs.</p>
-                        <p><strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, ren, kompakt, dato og tittel).</p>
-                        <p><strong>Visningstype</strong> bestemmer om du vil vise hovedkurs eller alle kursdatoer.</p>
+                        <p><?php echo wp_kses_post(__('<strong>Bygg ditt eget design</strong> er aktivt. Du kan fortsatt styre kursdata-visning under.', 'kursagenten')); ?></p>
+                        <p><?php echo wp_kses_post(__('<strong>Byggeblokker kommer:</strong> vi planlegger moduler for blant annet kursliste med kurssteder/lenker og informasjon om kommende kurs.', 'kursagenten')); ?></p>
+                        <p><?php echo wp_kses_post(__('<strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, ren, kompakt, dato og tittel).', 'kursagenten')); ?></p>
+                        <p><?php echo wp_kses_post(__('<strong>Visningstype</strong> bestemmer om du vil vise hovedkurs eller alle kursdatoer.', 'kursagenten')); ?></p>
                     </div>
                     
                     
                     <!-- Layoutbredde -->
                     <div class="option-row ka-taxonomy-plugin-design-only">
-                        <label class="option-label">Bredde:</label>
+                        <label class="option-label"><?php esc_html_e('Bredde:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <label class="radio-label">
                                 <input type="radio" 
                                        name="kursagenten_taxonomy_layout" 
                                        value="default" 
                                        <?php checked(get_option('kursagenten_taxonomy_layout'), 'default'); ?>>
-                                Tema-standard
+                                <?php esc_html_e('Tema-standard', 'kursagenten'); ?>
                             </label>
                             <label class="radio-label">
                                 <input type="radio" 
                                        name="kursagenten_taxonomy_layout" 
                                        value="full-width" 
                                        <?php checked(get_option('kursagenten_taxonomy_layout'), 'full-width'); ?>>
-                                Full bredde
+                                <?php esc_html_e('Full bredde', 'kursagenten'); ?>
                             </label>
-                            <span style="color: #666; font-style: italic;">Endrer sidebredde. Gå til <a href="/wp-admin/admin.php?page=design#section-designvariabler">Designvariabler</a> for å endre maks innholdbredde.</span>
+                            <span style="color: #666; font-style: italic;"><?php echo wp_kses_post(__('Endrer sidebredde. Gå til <a href="/wp-admin/admin.php?page=design#section-designvariabler">Designvariabler</a> for å endre maks innholdbredde.', 'kursagenten')); ?></span>
                         </div>
                     </div>
 
                     <!-- Design -->
                     <div class="option-row ka-taxonomy-plugin-design-only">
-                        <label class="option-label">Layout:</label>
+                        <label class="option-label"><?php esc_html_e('Layout:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <select name="kursagenten_taxonomy_design">
                                 <?php
                                 $current_design = get_option('kursagenten_taxonomy_design', 'default');
                                 $designs = [
-                                    'default' => 'Standard - med bilde og beskrivelse',
-                                    'simple'  => 'Enkel - Kun tittel og kort beskrivelse',
+                                    'default' => __('Standard - med bilde og beskrivelse', 'kursagenten'),
+                                    'simple'  => __('Enkel - Kun tittel og kort beskrivelse', 'kursagenten'),
                                     //'default-2' => 'Standard 2 - header bilde + innholdsbilde',
-                                    'profile' => 'Profil - rundt bilde og tittel',
-                                    'hero'    => 'Hero - toppseksjon med bilde',
-                                    'hero-two-columns' => 'Hero - to kolonner'
+                                    'profile' => __('Profil - rundt bilde og tittel', 'kursagenten'),
+                                    'hero'    => __('Hero - toppseksjon med bilde', 'kursagenten'),
+                                    'hero-two-columns' => __('Hero - to kolonner', 'kursagenten'),
                                     //'modern' => 'Moderne (kommer senere)'
                                 ];
                                 foreach ($designs as $value => $label) {
@@ -1092,7 +1046,7 @@ class Designmaler {
                                 }
                                 ?>
                             </select>
-                            <button type="button" class="button-link ka-inline-settings-toggle ka-inline-meta-link" id="toggle-taxonomy-hero-settings" style="display:none; margin-left:8px;">Flere valg</button>
+                            <button type="button" class="button-link ka-inline-settings-toggle ka-inline-meta-link" id="toggle-taxonomy-hero-settings" style="display:none; margin-left:8px;"><?php esc_html_e('Flere valg', 'kursagenten'); ?></button>
                         </div>
                     </div>
 
@@ -1105,42 +1059,42 @@ class Designmaler {
                     $taxonomy_hero_bg_color = get_option('kursagenten_taxonomy_hero_header_bg_color', '');
                     ?>
                     <div class="option-row hero-header-settings-row hero-taxonomy-settings-row ka-taxonomy-plugin-design-only" id="hero-taxonomy-settings-row" style="display: none;">
-                        <label class="option-label">Bakgrunn i toppfelt:</label>
+                        <label class="option-label"><?php esc_html_e('Bakgrunn i toppfelt:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <div class="taxonomy-override hero-header-settings-box">
                                 <div class="taxonomy-override-settings">
                                     <div class="option-row">
-                                        <label class="option-label">Bakgrunnstype:</label>
+                                        <label class="option-label"><?php esc_html_e('Bakgrunnstype:', 'kursagenten'); ?></label>
                                         <div class="option-input">
                                             <label class="radio-label">
                                                 <input type="radio" name="kursagenten_taxonomy_hero_header_bg_mode" value="image_placeholder" <?php checked($taxonomy_hero_bg_mode, 'image_placeholder'); ?>>
-                                                Bruk taksonomibilde, og <a href="/wp-admin/admin.php?page=design&ka_open=valg-for-bilder%2Ctaksonomi#valg-for-bilder">generelt plassholderbilde</a> om bilde mangler
+                                                <?php echo wp_kses_post(__('Bruk taksonomibilde, og <a href="/wp-admin/admin.php?page=design&ka_open=valg-for-bilder%2Ctaksonomi#valg-for-bilder">generelt plassholderbilde</a> om bilde mangler', 'kursagenten')); ?>
                                             </label><br>
                                             <label class="radio-label">
                                                 <input type="radio" name="kursagenten_taxonomy_hero_header_bg_mode" value="image_bgcolor" <?php checked($taxonomy_hero_bg_mode, 'image_bgcolor'); ?>>
-                                                Bruk taksonomibilde, og bakgrunnsfarge om bilde mangler
+                                                <?php esc_html_e('Bruk taksonomibilde, og bakgrunnsfarge om bilde mangler', 'kursagenten'); ?>
                                             </label><br>
                                             <label class="radio-label">
                                                 <input type="radio" name="kursagenten_taxonomy_hero_header_bg_mode" value="bgcolor_only" <?php checked($taxonomy_hero_bg_mode, 'bgcolor_only'); ?>>
-                                                Bruk kun bakgrunnsfarge
+                                                <?php esc_html_e('Bruk kun bakgrunnsfarge', 'kursagenten'); ?>
                                             </label>
                                         </div>
                                     </div>
                                     <div class="option-row hero-overlay-settings" id="hero-taxonomy-overlay-settings" style="<?php echo in_array($taxonomy_hero_bg_mode, ['image_placeholder', 'image_bgcolor']) ? '' : 'display: none;'; ?>">
-                                        <label class="option-label">Bakgrunnsbilde og overlay:</label>
+                                        <label class="option-label"><?php esc_html_e('Bakgrunnsbilde og overlay:', 'kursagenten'); ?></label>
                                         <div class="option-input">
                                             <label class="radio-label">
                                                 <input type="radio" name="kursagenten_taxonomy_hero_header_overlay" value="dark" <?php checked($taxonomy_hero_overlay, 'dark'); ?>>
-                                                Lys tekst og mørkt overlay (standard)
+                                                <?php esc_html_e('Lys tekst og mørkt overlay (standard)', 'kursagenten'); ?>
                                             </label>
                                             <label class="radio-label">
                                                 <input type="radio" name="kursagenten_taxonomy_hero_header_overlay" value="light" <?php checked($taxonomy_hero_overlay, 'light'); ?>>
-                                                Mørk tekst og lyst overlay
+                                                <?php esc_html_e('Mørk tekst og lyst overlay', 'kursagenten'); ?>
                                             </label>
                                         </div>
                                     </div>
                                     <div class="option-row hero-color-settings" id="hero-taxonomy-color-settings">
-                                        <label class="option-label">Farger:</label>
+                                        <label class="option-label"><?php esc_html_e('Farger:', 'kursagenten'); ?></label>
                                         <div class="option-input">
                                             <div style="display: flex; flex-wrap: wrap; gap: 1em; align-items: center;">
                                                 <?php
@@ -1148,12 +1102,12 @@ class Designmaler {
                                                 $show_taxonomy_hero_font_override_note = ($taxonomy_hero_bg_mode === 'image_bgcolor');
                                                 ?>
                                                 <div id="hero-taxonomy-font-color-setting" style="<?php echo $show_taxonomy_hero_font_color ? '' : 'display: none;'; ?>">
-                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;">Velg font-farge (valgfritt):</label>
+                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;"><?php esc_html_e('Velg font-farge (valgfritt):', 'kursagenten'); ?></label>
                                                     <input type="text" name="kursagenten_taxonomy_hero_header_font_color" value="<?php echo esc_attr($taxonomy_hero_font_color); ?>" class="ka-color-picker" data-default-color="">
-                                                    <p class="description" id="hero-taxonomy-font-color-override-note" style="margin: 4px 0 0;<?php echo $show_taxonomy_hero_font_override_note ? '' : ' display: none;'; ?>">Overstyrer tekstfargen fra overlay-valget over.</p>
+                                                    <p class="description" id="hero-taxonomy-font-color-override-note" style="margin: 4px 0 0;<?php echo $show_taxonomy_hero_font_override_note ? '' : ' display: none;'; ?>"><?php esc_html_e('Overstyrer tekstfargen fra overlay-valget over.', 'kursagenten'); ?></p>
                                                 </div>
                                                 <div id="hero-taxonomy-bg-color-setting" style="<?php echo in_array($taxonomy_hero_bg_mode, ['image_bgcolor', 'bgcolor_only']) ? '' : 'display: none;'; ?>">
-                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;">Velg bakgrunnsfarge:</label>
+                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;"><?php esc_html_e('Velg bakgrunnsfarge:', 'kursagenten'); ?></label>
                                                     <input type="text" name="kursagenten_taxonomy_hero_header_bg_color" value="<?php echo esc_attr($taxonomy_hero_bg_color); ?>" class="ka-color-picker" data-default-color="">
                                                 </div>
                                             </div>
@@ -1166,18 +1120,18 @@ class Designmaler {
 
                     <!-- Listevisning -->
                     <div class="option-row ka-taxonomy-plugin-design-only ka-taxonomy-dashed-top">
-                        <label class="option-label">Listedesign:</label>
+                        <label class="option-label"><?php esc_html_e('Listedesign:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <select name="kursagenten_taxonomy_list_type" id="kursagenten_taxonomy_list_type">
                                 <?php
                                 $current_list = get_option('kursagenten_taxonomy_list_type', 'standard');
                                 $list_types = [
-                                    'standard' => 'Standard liste',
-                                    'grid' => 'Rutenett',
-                                    'plain' => 'Ren og enkel liste',
-                                    'compact' => 'Kompakt liste',
-                                    'date-and-title' => 'Dato og tittel',
-                                    'simple-cards' => 'Enkle kort'
+                                    'standard' => __('Standard liste', 'kursagenten'),
+                                    'grid' => __('Rutenett', 'kursagenten'),
+                                    'plain' => __('Ren og enkel liste', 'kursagenten'),
+                                    'compact' => __('Kompakt liste', 'kursagenten'),
+                                    'date-and-title' => __('Dato og tittel', 'kursagenten'),
+                                    'simple-cards' => __('Enkle kort', 'kursagenten'),
                                 ];
                                 foreach ($list_types as $value => $label) {
                                     printf(
@@ -1214,25 +1168,25 @@ class Designmaler {
                                        name="kursagenten_taxonomy_buttons_display"
                                        value="show_buttons"
                                        <?php checked($taxonomy_buttons_display, 'show_buttons'); ?>>
-                                Vis knapper
+                                <?php esc_html_e('Vis knapper', 'kursagenten'); ?>
                             </label>
                             <label class="radio-label">
                                 <input type="radio"
                                        name="kursagenten_taxonomy_buttons_display"
                                        value="signup_link"
                                        <?php checked($taxonomy_buttons_display, 'signup_link'); ?>>
-                                Vis påmeldingslink
+                                <?php esc_html_e('Vis påmeldingslink', 'kursagenten'); ?>
                             </label>
                         </div>
                     </div>
                     
                     <!-- Grid kolonner (kun når grid er valgt) -->
                     <div class="option-row grid-columns-settings" id="taxonomy_grid_columns_settings" style="<?php echo (in_array($current_list, ['grid', 'simple-cards'])) ? '' : 'display: none;'; ?>">
-                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Antall kolonner i rutenett:</label>
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> <?php esc_html_e('Antall kolonner i rutenett:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 10px;">
                                 <div>
-                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Desktop:</label>
+                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;"><?php esc_html_e('Desktop:', 'kursagenten'); ?></label>
                                     <select name="kursagenten_taxonomy_grid_columns_desktop">
                                         <?php
                                         $taxonomy_grid_defs = $this->get_grid_column_defaults_for_list_type($current_list === 'simple-cards' ? 'simple-cards' : 'grid');
@@ -1249,7 +1203,7 @@ class Designmaler {
                                     </select>
                                 </div>
                                 <div>
-                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Tablet:</label>
+                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;"><?php esc_html_e('Tablet:', 'kursagenten'); ?></label>
                                     <select name="kursagenten_taxonomy_grid_columns_tablet">
                                         <?php
                                         $current_tablet = get_option('kursagenten_taxonomy_grid_columns_tablet', $taxonomy_grid_defs['tablet']);
@@ -1265,7 +1219,7 @@ class Designmaler {
                                     </select>
                                 </div>
                                 <div>
-                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Mobil:</label>
+                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;"><?php esc_html_e('Mobil:', 'kursagenten'); ?></label>
                                     <select name="kursagenten_taxonomy_grid_columns_mobile">
                                         <?php
                                         $current_mobile = get_option('kursagenten_taxonomy_grid_columns_mobile', $taxonomy_grid_defs['mobile']);
@@ -1286,7 +1240,7 @@ class Designmaler {
                     
                     <!-- Visningstype + undervalg -->
                     <div class="option-row ka-taxonomy-plugin-design-only ka-taxonomy-list-label-indent" id="taxonomy-viewtype-row">
-                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Visningstype:</label>
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> <?php esc_html_e('Visningstype:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <?php
                             $view_type = get_option('kursagenten_taxonomy_view_type', 'all_coursedates');
@@ -1334,42 +1288,42 @@ class Designmaler {
                                                name="kursagenten_taxonomy_view_type" 
                                                value="all_coursedates" 
                                                <?php checked($view_type, 'all_coursedates'); ?>>
-                                        Vis alle kursdatoer (med filtre)
-                                        <button type="button" class="button-link ka-inline-settings-toggle ka-inline-meta-link" id="toggle-taxonomy-viewtype-settings" style="margin-left:8px;">Flere valg</button>
+                                        <?php esc_html_e('Vis alle kursdatoer (med filtre)', 'kursagenten'); ?>
+                                        <button type="button" class="button-link ka-inline-settings-toggle ka-inline-meta-link" id="toggle-taxonomy-viewtype-settings" style="margin-left:8px;"><?php esc_html_e('Flere valg', 'kursagenten'); ?></button>
                                     </label>
                                     <label class="radio-label">
                                         <input type="radio" 
                                                name="kursagenten_taxonomy_view_type" 
                                                value="main_courses" 
                                                <?php checked($view_type, 'main_courses'); ?>>
-                                        Vis hovedkurs (med neste tilgjengelige dato)
-                                        <button type="button" class="button-link ka-inline-meta-link" id="taxonomy-main-courses-info-link">Informasjon</button>
+                                        <?php esc_html_e('Vis hovedkurs (med neste tilgjengelige dato)', 'kursagenten'); ?>
+                                        <button type="button" class="button-link ka-inline-meta-link" id="taxonomy-main-courses-info-link"><?php esc_html_e('Informasjon', 'kursagenten'); ?></button>
                                     </label>
                                 </div>
                                 <div id="taxonomy-viewtype-right-panel" class="ka-taxonomy-viewtype-right-panel" style="display:none; border:1px solid #e2e4e7; border-radius:6px; padding:12px; background:#fcfcfc;">
                                     <div id="taxonomy-all-coursedates-panel">
-                                        <strong>Undervalg for "Vis alle kursdatoer"</strong>
+                                        <strong><?php esc_html_e('Undervalg for "Vis alle kursdatoer"', 'kursagenten'); ?></strong>
                                         <div style="margin-top:10px;">
                                             <label class="radio-label">
                                                 <input type="radio"
                                                        name="kursagenten_taxonomy_filter_display"
                                                        value="standard"
                                                        <?php checked($filter_display, 'standard'); ?>>
-                                                Standard (toppfilter + venstrefilter slik de er konfigurert)
+                                                <?php esc_html_e('Standard (toppfilter + venstrefilter slik de er konfigurert)', 'kursagenten'); ?>
                                             </label>
                                             <label class="radio-label">
                                                 <input type="radio"
                                                        name="kursagenten_taxonomy_filter_display"
                                                        value="venstre"
                                                        <?php checked($filter_display, 'venstre'); ?>>
-                                                Vis filtrene i venstre kolonne
+                                                <?php esc_html_e('Vis filtrene i venstre kolonne', 'kursagenten'); ?>
                                             </label>
                                             <label class="radio-label">
                                                 <input type="radio"
                                                        name="kursagenten_taxonomy_filter_display"
                                                        value="topp"
                                                        <?php checked($filter_display, 'topp'); ?>>
-                                                Vis filtrene på toppen av listen
+                                                <?php esc_html_e('Vis filtrene på toppen av listen', 'kursagenten'); ?>
                                             </label>
                                             <?php if ($can_view_filter_button_option) : ?>
                                                 <label class="radio-label">
@@ -1385,14 +1339,14 @@ class Designmaler {
                                                        name="kursagenten_taxonomy_filter_display"
                                                        value="skjul"
                                                        <?php checked($filter_display, 'skjul'); ?>>
-                                                Skjul alle filtre, kursteller, "vis antall kurs" og sortering
+                                                <?php esc_html_e('Skjul alle filtre, kursteller, "vis antall kurs" og sortering', 'kursagenten'); ?>
                                             </label>
                                         </div>
-                                        <p class="description" style="margin-top:8px;">Passer spesielt godt for sider med få kurs per sted/kategori/instruktør.</p>
+                                        <p class="description" style="margin-top:8px;"><?php esc_html_e('Passer spesielt godt for sider med få kurs per sted/kategori/instruktør.', 'kursagenten'); ?></p>
                                     </div>
                                     <div id="taxonomy-main-courses-panel" style="display:none;">
-                                        <strong>Undervalg for "Vis hovedkurs"</strong>
-                                        <p class="description" style="margin-top:8px;">Denne visningen bruker den enklere listen med neste tilgjengelige dato og har ikke de samme filtervalgene som "Vis alle kursdatoer".</p>
+                                        <strong><?php esc_html_e('Undervalg for "Vis hovedkurs"', 'kursagenten'); ?></strong>
+                                        <p class="description" style="margin-top:8px;"><?php esc_html_e('Denne visningen bruker den enklere listen med neste tilgjengelige dato og har ikke de samme filtervalgene som "Vis alle kursdatoer".', 'kursagenten'); ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -1401,25 +1355,25 @@ class Designmaler {
 
                     <!-- Vis bilder -->
                     <div class="option-row ka-taxonomy-plugin-design-only ka-taxonomy-list-label-indent">
-                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Vis bilder:</label>
+                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> <?php esc_html_e('Vis bilder:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <?php
                             $show_images_taxonomy = get_option('kursagenten_show_images_taxonomy', 'yes');
                             ?>
                             <label class="radio-label">
                                 <input type="radio" name="kursagenten_show_images_taxonomy" value="yes" <?php checked($show_images_taxonomy, 'yes'); ?>>
-                                Ja
+                                <?php esc_html_e('Ja', 'kursagenten'); ?>
                             </label>
                             <label class="radio-label">
                                 <input type="radio" name="kursagenten_show_images_taxonomy" value="no" <?php checked($show_images_taxonomy, 'no'); ?>>
-                                Nei
+                                <?php esc_html_e('Nei', 'kursagenten'); ?>
                             </label>
                         </div>
                     </div>
 
                     <!-- Skjul spesifikke lokasjoner (for kurssteder) -->
                     <div class="option-row taxonomy-specific-locations-setting ka-taxonomy-plugin-design-only ka-taxonomy-dashed-top" id="taxonomy_specific_locations_setting">
-                        <label class="option-label">Spesifikke lokasjoner: <span class="ka-tooltip" data-title="Spesifikke lokasjoner viser adresser og link til Google maps over kurslisten."><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
+                        <label class="option-label"><?php esc_html_e('Spesifikke lokasjoner:', 'kursagenten'); ?> <span class="ka-tooltip" data-title="<?php echo esc_attr__('Spesifikke lokasjoner viser adresser og link til Google maps over kurslisten.', 'kursagenten'); ?>"><i class="ka-icon icon-notice" aria-hidden="true" style="margin-left:6px; vertical-align: middle;"></i></span></label>
                         <div class="option-input">
                             <?php
                             $hide_specific_locations = get_option('kursagenten_taxonomy_hide_specific_locations', '0');
@@ -1429,32 +1383,32 @@ class Designmaler {
                                        name="kursagenten_taxonomy_hide_specific_locations"
                                        value="1"
                                        <?php checked($hide_specific_locations, '1'); ?>>
-                                Skjul spesifikke lokasjoner på kurssteder
+                                <?php esc_html_e('Skjul spesifikke lokasjoner på kurssteder', 'kursagenten'); ?>
                             </label>
                         </div>
                     </div>
 
                     <!-- Vis link-bokser til flere kategorier/steder/instruktører -->
                     <div class="option-row ka-taxonomy-plugin-design-only">
-                        <label class="option-label">Vis link-bokser:</label>
+                        <label class="option-label"><?php esc_html_e('Vis link-bokser:', 'kursagenten'); ?></label>
                         <div class="option-input">
                             <?php
                             $show_footer_links = get_option('kursagenten_taxonomy_show_footer_links', '1');
                             ?>
                             <input type="hidden" name="kursagenten_taxonomy_show_footer_links" value="0">
                             <input type="checkbox" name="kursagenten_taxonomy_show_footer_links" value="1" <?php checked($show_footer_links, '1'); ?>>
-                            Vis link-bokser til flere kategorier/steder/instruktører etter kurslisten
+                            <?php esc_html_e('Vis link-bokser til flere kategorier/steder/instruktører etter kurslisten', 'kursagenten'); ?>
                         </div>
                     </div>
 
                     <!-- Spesifikke innstillinger per taksonomi -->
                     <div class="taxonomy-specific-settings ka-taxonomy-plugin-design-only">
-                        <h4>Overstyr innstillinger for spesifikke taksonomier</h4>
+                        <h4><?php esc_html_e('Overstyr innstillinger for spesifikke taksonomier', 'kursagenten'); ?></h4>
                         <?php
                         $taxonomies = [
-                            'ka_coursecategory' => 'Kurskategorier',
-                            'ka_course_location' => 'Kurssteder',
-                            'ka_instructors' => 'Instruktører'
+                            'ka_coursecategory' => __('Kurskategorier', 'kursagenten'),
+                            'ka_course_location' => __('Kurssteder', 'kursagenten'),
+                            'ka_instructors' => __('Instruktører', 'kursagenten'),
                         ];
                         
                         foreach ($taxonomies as $tax_name => $tax_label) :
@@ -1472,7 +1426,7 @@ class Designmaler {
                                                name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_override" 
                                                value="1" 
                                                <?php checked($override_enabled, true); ?>>
-                                        Egne innstillinger for <?php echo esc_html($tax_label); ?>
+                                        <?php printf(esc_html__('Egne innstillinger for %s', 'kursagenten'), esc_html($tax_label)); ?>
                                     </label>
                                     <button type="button"
                                             class="button-link taxonomy-override-panel-toggle"
@@ -1485,13 +1439,13 @@ class Designmaler {
                                 <div class="taxonomy-override-settings" style="display: none;">
                                     <!-- Layout -->
                                     <div class="option-row">
-                                        <label class="option-label">Bredde:</label>
+                                        <label class="option-label"><?php esc_html_e('Bredde:', 'kursagenten'); ?></label>
                                         <div class="option-input">
                                             <select name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_layout">
                                                 <?php 
                                                 $current_tax_layout = get_option("kursagenten_taxonomy_{$tax_name}_layout", '');
                                                 ?>
-                                                <option value="" <?php selected($current_tax_layout, ''); ?>>Bruk standard innstilling</option>
+                                                <option value="" <?php selected($current_tax_layout, ''); ?>><?php esc_html_e('Bruk standard innstilling', 'kursagenten'); ?></option>
                                                 <option value="default" <?php selected($current_tax_layout, 'default'); ?>>Tema-standard</option>
                                                 <option value="full-width" <?php selected($current_tax_layout, 'full-width'); ?>>Full bredde</option>
                                             </select>
@@ -1500,14 +1454,14 @@ class Designmaler {
                                     
                                     <!-- Design -->
                                     <div class="option-row">
-                                        <label class="option-label">Layout:</label>
+                                        <label class="option-label"><?php esc_html_e('Layout:', 'kursagenten'); ?></label>
                                         <div class="option-input">
                                             <select name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_design">
                                                 <?php 
                                                 $design_default = ($tax_name === 'ka_instructors') ? 'profile' : '';
                                                 $current_tax_design = get_option("kursagenten_taxonomy_{$tax_name}_design", $design_default);
                                                 ?>
-                                                <option value="" <?php selected($current_tax_design, ''); ?>>Bruk standard innstilling</option>
+                                                <option value="" <?php selected($current_tax_design, ''); ?>><?php esc_html_e('Bruk standard innstilling', 'kursagenten'); ?></option>
                                                 <?php foreach ($designs as $value => $label) : ?>
                                                     <option value="<?php echo esc_attr($value); ?>" 
                                                             <?php selected($current_tax_design, $value); ?>>
@@ -1520,7 +1474,7 @@ class Designmaler {
                                     
                                     <!-- List type -->
                                     <div class="option-row">
-                                        <label class="option-label">Listedesign:</label>
+                                        <label class="option-label"><?php esc_html_e('Listedesign:', 'kursagenten'); ?></label>
                                         <div class="option-input">
                                             <select name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_list_type"
                                                     id="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_list_type"
@@ -1529,7 +1483,7 @@ class Designmaler {
                                                 <?php 
                                                 $current_tax_list_type = get_option("kursagenten_taxonomy_{$tax_name}_list_type", '');
                                                 ?>
-                                                <option value="" <?php selected($current_tax_list_type, ''); ?>>Bruk standard innstilling</option>
+                                                <option value="" <?php selected($current_tax_list_type, ''); ?>><?php esc_html_e('Bruk standard innstilling', 'kursagenten'); ?></option>
                                                 <?php foreach ($list_types as $value => $label) : ?>
                                                     <option value="<?php echo esc_attr($value); ?>" 
                                                             <?php selected($current_tax_list_type, $value); ?>>
@@ -1545,9 +1499,9 @@ class Designmaler {
                                         <div class="option-input">
                                             <?php $tax_simple_cards_grouping = get_option("kursagenten_taxonomy_{$tax_name}_simple_cards_grouping", ''); ?>
                                             <select name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_simple_cards_grouping">
-                                                <option value="" <?php selected($tax_simple_cards_grouping, ''); ?>>Bruk standard innstilling</option>
-                                                <option value="course" <?php selected($tax_simple_cards_grouping, 'course'); ?>>Ett kort per kurs (neste dato)</option>
-                                                <option value="course_location" <?php selected($tax_simple_cards_grouping, 'course_location'); ?>>Ett kort per kurs og lokasjon (neste dato per lokasjon)</option>
+                                                <option value="" <?php selected($tax_simple_cards_grouping, ''); ?>><?php esc_html_e('Bruk standard innstilling', 'kursagenten'); ?></option>
+                                                <option value="course" <?php selected($tax_simple_cards_grouping, 'course'); ?>><?php esc_html_e('Ett kort per kurs (neste dato)', 'kursagenten'); ?></option>
+                                                <option value="course_location" <?php selected($tax_simple_cards_grouping, 'course_location'); ?>><?php esc_html_e('Ett kort per kurs og lokasjon (neste dato per lokasjon)', 'kursagenten'); ?></option>
                                             </select>
                                         </div>
                                     </div>
@@ -1561,27 +1515,27 @@ class Designmaler {
                                                        name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_buttons_display"
                                                        value=""
                                                        <?php checked($buttons_display_specific, ''); ?>>
-                                                Bruk standard innstilling
+                                                <?php esc_html_e('Bruk standard innstilling', 'kursagenten'); ?>
                                             </label>
                                             <label class="radio-label">
                                                 <input type="radio"
                                                        name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_buttons_display"
                                                        value="show_buttons"
                                                        <?php checked($buttons_display_specific, 'show_buttons'); ?>>
-                                                Vis knapper
+                                                <?php esc_html_e('Vis knapper', 'kursagenten'); ?>
                                             </label>
                                             <label class="radio-label">
                                                 <input type="radio"
                                                        name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_buttons_display"
                                                        value="signup_link"
                                                        <?php checked($buttons_display_specific, 'signup_link'); ?>>
-                                                Vis påmeldingslink
+                                                <?php esc_html_e('Vis påmeldingslink', 'kursagenten'); ?>
                                             </label>
                                         </div>
                                     </div>
 
                                     <div class="option-row taxonomy-override-viewtype-row" id="taxonomy-override-<?php echo esc_attr($tax_name); ?>-viewtype-row">
-                                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Visningstype:</label>
+                                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> <?php esc_html_e('Visningstype:', 'kursagenten'); ?></label>
                                         <div class="option-input">
                                             <?php $view_type_specific = get_option("kursagenten_taxonomy_{$tax_name}_view_type", ''); ?>
                                             <?php $filter_display_specific = get_option("kursagenten_taxonomy_{$tax_name}_filter_display", ''); ?>
@@ -1592,14 +1546,14 @@ class Designmaler {
                                                                name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_view_type"
                                                                value=""
                                                                <?php checked($view_type_specific, ''); ?>>
-                                                        Bruk standard innstilling
+                                                        <?php esc_html_e('Bruk standard innstilling', 'kursagenten'); ?>
                                                     </label>
                                                     <label class="radio-label">
                                                         <input type="radio"
                                                                name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_view_type"
                                                                value="all_coursedates"
                                                                <?php checked($view_type_specific, 'all_coursedates'); ?>>
-                                                        Vis alle kursdatoer (med filtre)
+                                                        <?php esc_html_e('Vis alle kursdatoer (med filtre)', 'kursagenten'); ?>
                                                         <button type="button" class="button-link ka-inline-settings-toggle taxonomy-override-viewtype-toggle ka-inline-meta-link" data-taxonomy="<?php echo esc_attr($tax_name); ?>" style="margin-left:8px;">Flere valg</button>
                                                     </label>
                                                     <label class="radio-label">
@@ -1607,41 +1561,41 @@ class Designmaler {
                                                                name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_view_type"
                                                                value="main_courses"
                                                                <?php checked($view_type_specific, 'main_courses'); ?>>
-                                                        Vis hovedkurs (med neste tilgjengelige dato)
+                                                        <?php esc_html_e('Vis hovedkurs (med neste tilgjengelige dato)', 'kursagenten'); ?>
                                                         <button type="button" class="button-link ka-inline-meta-link taxonomy-override-main-courses-info-link" data-taxonomy="<?php echo esc_attr($tax_name); ?>">Informasjon</button>
                                                     </label>
                                                 </div>
                                                 <div id="taxonomy-override-<?php echo esc_attr($tax_name); ?>-viewtype-right-panel" class="ka-taxonomy-viewtype-right-panel taxonomy-override-viewtype-right-panel" style="display:none; border:1px solid #e2e4e7; border-radius:6px; padding:12px; background:#fcfcfc;">
                                                     <div id="taxonomy-override-<?php echo esc_attr($tax_name); ?>-all-coursedates-panel">
-                                                        <strong>Undervalg for "Vis alle kursdatoer"</strong>
+                                                        <strong><?php esc_html_e('Undervalg for "Vis alle kursdatoer"', 'kursagenten'); ?></strong>
                                                         <div style="margin-top:10px;">
                                                             <label class="radio-label">
                                                                 <input type="radio"
                                                                        name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_filter_display"
                                                                        value=""
                                                                        <?php checked($filter_display_specific, ''); ?>>
-                                                                Bruk standard innstilling
+                                                                <?php esc_html_e('Bruk standard innstilling', 'kursagenten'); ?>
                                                             </label>
                                                             <label class="radio-label">
                                                                 <input type="radio"
                                                                        name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_filter_display"
                                                                        value="standard"
                                                                        <?php checked($filter_display_specific, 'standard'); ?>>
-                                                                Standard (toppfilter + venstrefilter slik de er konfigurert)
+                                                                <?php esc_html_e('Standard (toppfilter + venstrefilter slik de er konfigurert)', 'kursagenten'); ?>
                                                             </label>
                                                             <label class="radio-label">
                                                                 <input type="radio"
                                                                        name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_filter_display"
                                                                        value="venstre"
                                                                        <?php checked($filter_display_specific, 'venstre'); ?>>
-                                                                Vis filtrene i venstre kolonne
+                                                                <?php esc_html_e('Vis filtrene i venstre kolonne', 'kursagenten'); ?>
                                                             </label>
                                                             <label class="radio-label">
                                                                 <input type="radio"
                                                                        name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_filter_display"
                                                                        value="topp"
                                                                        <?php checked($filter_display_specific, 'topp'); ?>>
-                                                                Vis filtrene på toppen av listen
+                                                                <?php esc_html_e('Vis filtrene på toppen av listen', 'kursagenten'); ?>
                                                             </label>
                                                             <?php if ($can_view_filter_button_option) : ?>
                                                                 <label class="radio-label">
@@ -1657,14 +1611,14 @@ class Designmaler {
                                                                        name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_filter_display"
                                                                        value="skjul"
                                                                        <?php checked($filter_display_specific, 'skjul'); ?>>
-                                                                Skjul alle filtre, kursteller, "vis antall kurs" og sortering
+                                                                <?php esc_html_e('Skjul alle filtre, kursteller, "vis antall kurs" og sortering', 'kursagenten'); ?>
                                                             </label>
                                                         </div>
-                                                        <p class="description" style="margin-top:8px;">Passer spesielt godt for sider med få kurs per sted/kategori/instruktør.</p>
+                                                        <p class="description" style="margin-top:8px;"><?php esc_html_e('Passer spesielt godt for sider med få kurs per sted/kategori/instruktør.', 'kursagenten'); ?></p>
                                                     </div>
                                                     <div id="taxonomy-override-<?php echo esc_attr($tax_name); ?>-main-courses-panel" style="display:none;">
-                                                        <strong>Undervalg for "Vis hovedkurs"</strong>
-                                                        <p class="description" style="margin-top:8px;">Denne visningen bruker den enklere listen med neste tilgjengelige dato og har ikke de samme filtervalgene som "Vis alle kursdatoer".</p>
+                                                        <strong><?php esc_html_e('Undervalg for "Vis hovedkurs"', 'kursagenten'); ?></strong>
+                                                        <p class="description" style="margin-top:8px;"><?php esc_html_e('Denne visningen bruker den enklere listen med neste tilgjengelige dato og har ikke de samme filtervalgene som "Vis alle kursdatoer".', 'kursagenten'); ?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1680,7 +1634,7 @@ class Designmaler {
                                             'list_type_selector' => "#kursagenten_taxonomy_{$tax_name}_list_type",
                                             'list_type' => $current_tax_list_type,
                                             'taxonomy' => $tax_name,
-                                            'section_label' => 'Vis i listen:',
+                                            'section_label' => __('Vis i listen:', 'kursagenten'),
                                             'row_class' => 'option-row',
                                         ]
                                     );
@@ -1688,11 +1642,11 @@ class Designmaler {
                                     
                                     <!-- Grid kolonner for taksonomi-spesifikke innstillinger (kun når grid er valgt) -->
                                     <div class="option-row grid-columns-settings taxonomy-grid-columns-settings" id="taxonomy_<?php echo esc_attr($tax_name); ?>_grid_columns_settings" style="<?php echo (in_array($current_tax_list_type, ['grid', 'simple-cards'])) ? '' : 'display: none;'; ?>">
-                                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Antall kolonner i rutenett:</label>
+                                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> <?php esc_html_e('Antall kolonner i rutenett:', 'kursagenten'); ?></label>
                                         <div class="option-input">
                                             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 10px;">
                                                 <div>
-                                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Desktop:</label>
+                                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;"><?php esc_html_e('Desktop:', 'kursagenten'); ?></label>
                                                     <?php
                                                     $current_desktop = get_option("kursagenten_taxonomy_{$tax_name}_grid_columns_desktop", '');
                                                     if ($current_desktop === '0' || $current_desktop === 0) {
@@ -1703,7 +1657,7 @@ class Designmaler {
                                                     $tax_override_grid_defs = $this->get_grid_column_defaults_for_list_type($current_tax_list_type === 'simple-cards' ? 'simple-cards' : 'grid');
                                                     ?>
                                                     <select name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_grid_columns_desktop">
-                                                        <option value="" <?php selected($current_desktop, '', false); ?>>Bruk standard (<?php echo esc_html($tax_override_grid_defs['desktop']); ?>)</option>
+                                                        <option value="" <?php selected($current_desktop, '', false); ?>><?php printf(esc_html__('Bruk standard (%s)', 'kursagenten'), esc_html($tax_override_grid_defs['desktop'])); ?></option>
                                                         <?php
                                                         for ($i = 1; $i <= 6; $i++) {
                                                             printf(
@@ -1717,7 +1671,7 @@ class Designmaler {
                                                     </select>
                                                 </div>
                                                 <div>
-                                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Tablet:</label>
+                                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;"><?php esc_html_e('Tablet:', 'kursagenten'); ?></label>
                                                     <?php
                                                     $current_tablet = get_option("kursagenten_taxonomy_{$tax_name}_grid_columns_tablet", '');
                                                     if ($current_tablet === '0' || $current_tablet === 0) {
@@ -1725,7 +1679,7 @@ class Designmaler {
                                                     }
                                                     ?>
                                                     <select name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_grid_columns_tablet">
-                                                        <option value="" <?php selected($current_tablet, '', false); ?>>Bruk standard (<?php echo esc_html($tax_override_grid_defs['tablet']); ?>)</option>
+                                                        <option value="" <?php selected($current_tablet, '', false); ?>><?php printf(esc_html__('Bruk standard (%s)', 'kursagenten'), esc_html($tax_override_grid_defs['tablet'])); ?></option>
                                                         <?php
                                                         for ($i = 1; $i <= 4; $i++) {
                                                             printf(
@@ -1739,7 +1693,7 @@ class Designmaler {
                                                     </select>
                                                 </div>
                                                 <div>
-                                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;">Mobil:</label>
+                                                    <label style="display: block; margin-bottom: 5px; font-weight: 500;"><?php esc_html_e('Mobil:', 'kursagenten'); ?></label>
                                                     <?php
                                                     $current_mobile = get_option("kursagenten_taxonomy_{$tax_name}_grid_columns_mobile", '');
                                                     if ($current_mobile === '0' || $current_mobile === 0) {
@@ -1747,7 +1701,7 @@ class Designmaler {
                                                     }
                                                     ?>
                                                     <select name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_grid_columns_mobile">
-                                                        <option value="" <?php selected($current_mobile, '', false); ?>>Bruk standard (<?php echo esc_html($tax_override_grid_defs['mobile']); ?>)</option>
+                                                        <option value="" <?php selected($current_mobile, '', false); ?>><?php printf(esc_html__('Bruk standard (%s)', 'kursagenten'), esc_html($tax_override_grid_defs['mobile'])); ?></option>
                                                         <?php
                                                         for ($i = 1; $i <= 2; $i++) {
                                                             printf(
@@ -1766,30 +1720,30 @@ class Designmaler {
                                     
                                     <!-- Vis bilder -->
                                     <div class="option-row">
-                                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> Vis bilder:</label>
+                                        <label class="option-label"><i class="ka-icon icon-arrow-turn-down-right-regular" style="top: 2px;position: relative;"></i> <?php esc_html_e('Vis bilder:', 'kursagenten'); ?></label>
                                         <div class="option-input">
                                             <?php
                                             $show_images_taxonomy_specific = get_option("kursagenten_taxonomy_{$tax_name}_show_images", '');
                                             ?>
                                             <select name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_show_images">
-                                                <option value="" <?php selected($show_images_taxonomy_specific, ''); ?>>Bruk standard innstilling</option>
-                                                <option value="yes" <?php selected($show_images_taxonomy_specific, 'yes'); ?>>Ja</option>
-                                                <option value="no" <?php selected($show_images_taxonomy_specific, 'no'); ?>>Nei</option>
+                                                <option value="" <?php selected($show_images_taxonomy_specific, ''); ?>><?php esc_html_e('Bruk standard innstilling', 'kursagenten'); ?></option>
+                                                <option value="yes" <?php selected($show_images_taxonomy_specific, 'yes'); ?>><?php esc_html_e('Ja', 'kursagenten'); ?></option>
+                                                <option value="no" <?php selected($show_images_taxonomy_specific, 'no'); ?>><?php esc_html_e('Nei', 'kursagenten'); ?></option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <!-- Vis link-bokser til flere kategorier/steder/instruktører -->
                                     <div class="option-row">
-                                        <label class="option-label">Vis link-bokser etter kurslisten:</label>
+                                        <label class="option-label"><?php esc_html_e('Vis link-bokser etter kurslisten:', 'kursagenten'); ?></label>
                                         <div class="option-input">
                                             <?php
                                             $show_footer_links_specific = get_option("kursagenten_taxonomy_{$tax_name}_show_footer_links", '');
                                             ?>
                                             <select name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_show_footer_links">
-                                                <option value="" <?php selected($show_footer_links_specific, ''); ?>>Bruk standard innstilling</option>
-                                                <option value="1" <?php selected($show_footer_links_specific, '1'); ?>>Ja</option>
-                                                <option value="0" <?php selected($show_footer_links_specific, '0'); ?>>Nei</option>
+                                                <option value="" <?php selected($show_footer_links_specific, ''); ?>><?php esc_html_e('Bruk standard innstilling', 'kursagenten'); ?></option>
+                                                <option value="1" <?php selected($show_footer_links_specific, '1'); ?>><?php esc_html_e('Ja', 'kursagenten'); ?></option>
+                                                <option value="0" <?php selected($show_footer_links_specific, '0'); ?>><?php esc_html_e('Nei', 'kursagenten'); ?></option>
                                             </select>
                                         </div>
                                     </div>
@@ -1797,18 +1751,18 @@ class Designmaler {
                             <?php if ($tax_name === 'ka_instructors'): ?>
                                     <!-- Navnevisning -->
                                     <div class="option-row">
-                                        <label class="option-label">Navnevisning:</label>
+                                        <label class="option-label"><?php esc_html_e('Navnevisning:', 'kursagenten'); ?></label>
                                         <div class="option-input">
                                             <?php
                                             $name_display = get_option("kursagenten_taxonomy_{$tax_name}_name_display", '');
                                             ?>
                                             <select name="kursagenten_taxonomy_<?php echo esc_attr($tax_name); ?>_name_display">
-                                                <option value="" <?php selected($name_display, ''); ?>>Bruk standard innstilling</option>
-                                                <option value="full" <?php selected($name_display, 'full'); ?>>Fullt navn</option>
-                                                <option value="firstname" <?php selected($name_display, 'firstname'); ?>>Fornavn</option>
-                                                <option value="lastname" <?php selected($name_display, 'lastname'); ?>>Etternavn</option>
+                                                <option value="" <?php selected($name_display, ''); ?>><?php esc_html_e('Bruk standard innstilling', 'kursagenten'); ?></option>
+                                                <option value="full" <?php selected($name_display, 'full'); ?>><?php esc_html_e('Fullt navn', 'kursagenten'); ?></option>
+                                                <option value="firstname" <?php selected($name_display, 'firstname'); ?>><?php esc_html_e('Fornavn', 'kursagenten'); ?></option>
+                                                <option value="lastname" <?php selected($name_display, 'lastname'); ?>><?php esc_html_e('Etternavn', 'kursagenten'); ?></option>
                                             </select>
-                                            <p class="description">Merk: på <a href="/wp-admin/admin.php?page=design#section-systemsider">siden</a> med instruktøroversikten må du legge til vis="fornavn" eller vis="etternavn" i kortkoden for å vise kun fornavn eller etternavn. Du kan gå direkte til redigering fra <a href="/wp-admin/admin.php?page=design#section-systemsider">Wordpress sider</a>.</p>
+                                            <p class="description"><?php echo wp_kses_post(__('Merk: på <a href="/wp-admin/admin.php?page=design#section-systemsider">siden</a> med instruktøroversikten må du legge til vis="fornavn" eller vis="etternavn" i kortkoden for å vise kun fornavn eller etternavn. Du kan gå direkte til redigering fra <a href="/wp-admin/admin.php?page=design#section-systemsider">Wordpress sider</a>.', 'kursagenten')); ?></p>
                                         </div>
                                     </div>
                                     <?php endif; ?>
@@ -1820,34 +1774,34 @@ class Designmaler {
 
                 <!-- Standardbilder -->
                 <div class="options-card" data-section="valg-for-bilder">
-                    <h3 id="valg-for-bilder">Valg for bilder</h3>
-                    <p>Standarbilder brukes som en bakupløsning for å hindre ødelagte design. Disse brukes som plassholdere om et bilde mangler. Velger du ingen bilder, bruker vi Kursagentens standard erstatningsbilder om nødvendig. Du kan også sette inn url til plassholderbilder via <a href="/wp-admin/admin.php?page=kursagenten#kortkoder">kortkoder</a>.</p>
+                    <h3 id="valg-for-bilder"><?php esc_html_e('Valg for bilder', 'kursagenten'); ?></h3>
+                    <p><?php echo wp_kses_post(__('Standarbilder brukes som en bakupløsning for å hindre ødelagte design. Disse brukes som plassholdere om et bilde mangler. Velger du ingen bilder, bruker vi Kursagentens standard erstatningsbilder om nødvendig. Du kan også sette inn url til plassholderbilder via <a href="/wp-admin/admin.php?page=kursagenten#kortkoder">kortkoder</a>.', 'kursagenten')); ?></p>
                     <table class="form-table">
                         <tr>
-                            <th scope="row">Generelt plassholderbilde</th>
+                            <th scope="row"><?php esc_html_e('Generelt plassholderbilde', 'kursagenten'); ?></th>
                             <td><?php $this->plassholderbilde_generelt_callback(); ?></td>
                         </tr>
                         <tr>
-                            <th scope="row">Plassholderbilde for kurs</th>
+                            <th scope="row"><?php esc_html_e('Plassholderbilde for kurs', 'kursagenten'); ?></th>
                             <td><?php $this->plassholderbilde_kurs_callback(); ?></td>
                         </tr>
                         <tr>
-                            <th scope="row">Plassholderbilde for instruktør</th>
+                            <th scope="row"><?php esc_html_e('Plassholderbilde for instruktør', 'kursagenten'); ?></th>
                             <td><?php $this->plassholderbilde_instruktor_callback(); ?></td>
                         </tr>
                         <tr>
-                            <th scope="row">Plassholderbilde for sted</th>
+                            <th scope="row"><?php esc_html_e('Plassholderbilde for sted', 'kursagenten'); ?></th>
                             <td><?php $this->plassholderbilde_sted_callback(); ?></td>
                         </tr>
                     </table>
                 </div>
 
                 <div class="options-card" data-section="egen-css">
-                    <h3>Egen CSS</h3>
-                    <p>Her kan du legge til egendefinert CSS som vil bli lastet inn på alle sider som hører til utvidelsen. Denne CSS-en vil ha høyest prioritet og vil overstyre utvidelsens standard CSS.</p>
+                    <h3><?php esc_html_e('Egen CSS', 'kursagenten'); ?></h3>
+                    <p><?php esc_html_e('Her kan du legge til egendefinert CSS som vil bli lastet inn på alle sider som hører til utvidelsen. Denne CSS-en vil ha høyest prioritet og vil overstyre utvidelsens standard CSS.', 'kursagenten'); ?></p>
                     <textarea name="kursagenten_custom_css" id="kursagenten_custom_css" rows="10" style="width: 100%; font-family: monospace;"><?php echo esc_textarea(get_option('kursagenten_custom_css', '')); ?></textarea>
                     <p class="description">
-                        <strong>Nyttige selectorer:</strong><br>
+                        <strong><?php esc_html_e('Nyttige selectorer:', 'kursagenten'); ?></strong><br>
                         <code class="copytext" title="Kopier til utklippstavle">#ka</code> - Den ytterste wrapperen på alle frontend-sider som hører til utvidelsen<br>
                         <code class="copytext" title="Kopier til utklippstavle">body[class*="kursagenten-single"] #ka</code> - Enkeltkurs-sider<br>
                         <code class="copytext" title="Kopier til utklippstavle">body[class*="kursagenten-archive"] #ka</code> - Kurslister (archive)<br>
@@ -2734,16 +2688,16 @@ class Designmaler {
      */
     private function render_list_display_field_checkboxes($context = 'archive', $args = []) {
         $fields = array(
-            'location' => 'Sted',
-            'location_freetext' => 'Fritekst sted',
-            'room' => 'Rom/lokale',
-            'last_date' => 'Sluttdato',
-            'registration_deadline' => 'Påmeldingsfrist',
-            'time' => 'Tid',
-            'duration' => 'Varighet',
-            'day_schedules' => 'Antall kursdager',
-            'price' => 'Pris',
-            'instructor' => 'Instruktør',
+            'location' => __('Sted', 'kursagenten'),
+            'location_freetext' => __('Fritekst sted', 'kursagenten'),
+            'room' => __('Rom/lokale', 'kursagenten'),
+            'last_date' => __('Sluttdato', 'kursagenten'),
+            'registration_deadline' => __('Påmeldingsfrist', 'kursagenten'),
+            'time' => __('Tid', 'kursagenten'),
+            'duration' => __('Varighet', 'kursagenten'),
+            'day_schedules' => __('Antall kursdager', 'kursagenten'),
+            'price' => __('Pris', 'kursagenten'),
+            'instructor' => __('Instruktør', 'kursagenten'),
         );
 
         $context_base = ($context === 'taxonomy') ? 'taxonomy' : 'archive';
@@ -2789,8 +2743,8 @@ class Designmaler {
             : array_keys($fields);
 
         $section_label = ($context === 'taxonomy')
-            ? 'Vis i listen (taksonomi):'
-            : 'Vis i listen:';
+            ? __('Vis i listen (taksonomi):', 'kursagenten')
+            : __('Vis i listen:', 'kursagenten');
         if (isset($args['section_label']) && is_string($args['section_label']) && $args['section_label'] !== '') {
             $section_label = $args['section_label'];
         }
@@ -2830,7 +2784,7 @@ class Designmaler {
                 </div>
                 <p style="margin-top:8px;">
                     <button type="button" class="button button-secondary button-small ka-reset-list-display-defaults">
-                        Bruk standardvalg for valgt listedesign
+                        <?php esc_html_e('Bruk standardvalg for valgt listedesign', 'kursagenten'); ?>
                     </button>
                 </p>
             </div>
@@ -2847,14 +2801,14 @@ class Designmaler {
      */
     private function render_single_display_field_checkboxes() {
         $fields = array(
-            'first_date'    => 'Startdato',
-            'last_date'     => 'Sluttdato',
-            'day_schedules' => 'Antall kursdager',
-            'time'          => 'Tid',
-            'duration'      => 'Varighet',
-            'language'      => 'Språk',
-            'price'         => 'Pris',
-            'room'          => 'Kurslokale',
+            'first_date'    => __('Startdato', 'kursagenten'),
+            'last_date'     => __('Sluttdato', 'kursagenten'),
+            'day_schedules' => __('Antall kursdager', 'kursagenten'),
+            'time'          => __('Tid', 'kursagenten'),
+            'duration'      => __('Varighet', 'kursagenten'),
+            'language'      => __('Språk', 'kursagenten'),
+            'price'         => __('Pris', 'kursagenten'),
+            'room'          => __('Kurslokale', 'kursagenten'),
         );
 
         $enabled_fields = function_exists('kursagenten_get_single_display_fields_enabled_list')
@@ -2898,7 +2852,7 @@ class Designmaler {
                 </div>
                 <p style="margin-top:8px;">
                     <button type="button" class="button button-secondary button-small ka-reset-list-display-defaults">
-                        Bruk standardvalg
+                        <?php esc_html_e('Bruk standardvalg', 'kursagenten'); ?>
                     </button>
                 </p>
             </div>
@@ -4333,39 +4287,39 @@ class Designmaler {
         if (self::$required_pages === null) {
             self::$required_pages = [
                 'kurs' => [
-                    'title' => 'Kurs',
+                    'title' => __('Kurs', 'kursagenten'),
                     'content' => '<!-- wp:shortcode -->
 [kursliste]
 <!-- /wp:shortcode -->',
-                    'description' => 'Oversiktsside/kalender for alle kurs',
+                    'description' => __('Oversiktsside/kalender for alle kurs', 'kursagenten'),
                     'slug' => 'kurs'
                 ],
                 'kurskategorier' => [
-                    'title' => 'Kurskategorier',
+                    'title' => __('Kurskategorier', 'kursagenten'),
                     'content' => '  <!-- wp:shortcode -->
                                     [kurskategorier kilde=ikon layout=stablet grid=5 gridtablet=3 gridmobil=1 radavstand=2em bildestr=130px bildeformat=4/3 fontmin="14" fontmaks="18"]
                                     <!-- /wp:shortcode -->',
-                    'description' => 'Oversiktsside for alle kurskategorier',
+                    'description' => __('Oversiktsside for alle kurskategorier', 'kursagenten'),
                     'slug' => 'kurskategorier'
                 ],
                 'kurssteder' => [
-                    'title' => 'Kurssteder',
+                    'title' => __('Kurssteder', 'kursagenten'),
                     'content' => '  <!-- wp:shortcode -->
                                     [kurssteder layout=rad stil=kort grid=3 gridtablet=2 gridmobil=1 radavstand=2em bildestr=100px bildeform=firkantet bildeformat=1/1 fontmin="14" fontmaks="18"]
                                     <!-- /wp:shortcode -->',
-                    'description' => 'Oversiktsside for alle kurssteder',
+                    'description' => __('Oversiktsside for alle kurssteder', 'kursagenten'),
                     'slug' => 'kurssteder'
                 ],
                 'instruktorer' => [
-                    'title' => 'Instruktører',
+                    'title' => __('Instruktører', 'kursagenten'),
                     'content' => '  <!-- wp:shortcode -->
                                     [instruktorer kilde=ikon layout=rad stil=kort grid=2 gridtablet=1 gridmobil=1 radavstand=2em bildestr=250px bildeformat=1/1 fontmin="14" fontmaks="18" utdrag=ja]
                                     <!-- /wp:shortcode -->',
-                    'description' => 'Oversiktsside for alle instruktører',
+                    'description' => __('Oversiktsside for alle instruktører', 'kursagenten'),
                     'slug' => 'instruktorer'
                 ],
                 'betaling' => [
-                    'title' => 'Betaling',
+                    'title' => __('Betaling', 'kursagenten'),
                     'content' => '<!-- wp:html -->
 <iframe title="Betal for kurs" id="kursagentenIframe" allowfullscreen frameBorder="0" style="overflow:hidden;height:900px;width:100%;border-radius: 8px;"></iframe>
 
@@ -4392,7 +4346,7 @@ if (queryString) {
 </script>
 <script type="text/javascript" src="https://embed.kursagenten.no/js/iframe-resizer/iframeResizer.min.js"></script>
 <!-- /wp:html -->',
-                    'description' => 'Betalingsside for kurs',
+                    'description' => __('Betalingsside for kurs', 'kursagenten'),
                     'slug' => 'betaling'
                 ]
             ];
@@ -4411,11 +4365,11 @@ if (queryString) {
             <table class="widefat light-grey-rows" style="border: 0;">
                 <thead>
                     <tr>
-                        <th scope="col">Side</th>
-                        <th scope="col">Beskrivelse</th>
-                        <th scope="col">Tildelt side</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Handlinger</th>
+                        <th scope="col"><?php esc_html_e('Side', 'kursagenten'); ?></th>
+                        <th scope="col"><?php esc_html_e('Beskrivelse', 'kursagenten'); ?></th>
+                        <th scope="col"><?php esc_html_e('Tildelt side', 'kursagenten'); ?></th>
+                        <th scope="col"><?php esc_html_e('Status', 'kursagenten'); ?></th>
+                        <th scope="col"><?php esc_html_e('Handlinger', 'kursagenten'); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -4440,7 +4394,7 @@ if (queryString) {
                                 ?>
                                     <span class="copytext" 
                                           data-shortcode="<?php echo esc_attr($shortcode); ?>"
-                                          title="Kopier kortkode for <?php echo esc_attr($page['title']); ?>"
+                                          title="<?php echo esc_attr(sprintf(__('Kopier kortkode for %s', 'kursagenten'), $page['title'])); ?>"
                                           style="cursor: pointer; margin-left: 5px;">
                                         <i class="ka-icon icon-code-simple-solid-full" style="font-size: 14px; color: #666; vertical-align: middle;"></i>
                                     </span>
@@ -4453,9 +4407,14 @@ if (queryString) {
                                     $payment_url = get_permalink($page_id);
                                     if (!empty($payment_url)) {
                                         $payment_url_with_pid = esc_url($payment_url) . '?pid={pid}';
-                                        echo '<div style="color: #939393; font-size: .95em; font-style: italic;">Legg inn betalingslenke '
-                                            . '<span class="copytext" title="Klikk for å kopiere">' . esc_html($payment_url_with_pid) . '</span>'
-                                            . ' i <a href="https://kursadmin.kursagenten.no/IframeSetting" target="_blank" rel="noopener">Kursagenten</a>'
+                                        echo '<div style="color: #939393; font-size: .95em; font-style: italic;">'
+                                            . wp_kses_post(
+                                                sprintf(
+                                                    /* translators: %1$s: payment URL with {pid} placeholder */
+                                                    __('Legg inn betalingslenke %1$s i <a href="https://kursadmin.kursagenten.no/IframeSetting" target="_blank" rel="noopener">Kursagenten</a>', 'kursagenten'),
+                                                    '<span class="copytext" title="' . esc_attr__('Klikk for å kopiere', 'kursagenten') . '">' . esc_html($payment_url_with_pid) . '</span>'
+                                                )
+                                            )
                                             . '</div>';
                                     }
                                 }
@@ -4467,10 +4426,12 @@ if (queryString) {
                                         data-key="<?php echo esc_attr($key); ?>"
                                         data-nonce="<?php echo wp_create_nonce('ka_change_page'); ?>"
                                         style="min-width: 200px;">
-                                    <option value="">-- Velg side --</option>
+                                    <option value=""><?php esc_html_e('-- Velg side --', 'kursagenten'); ?></option>
                                     <?php foreach ($all_pages as $page_option): 
                                         $selected = ($exists && $page_id == $page_option->ID) ? ' selected' : '';
-                                        $status_text = $page_option->post_status === 'publish' ? ' (Publisert)' : ' (Kladd)';
+                                        $status_text = $page_option->post_status === 'publish'
+                                            ? ' (' . __('Publisert', 'kursagenten') . ')'
+                                            : ' (' . __('Kladd', 'kursagenten') . ')';
                                     ?>
                                         <option value="<?php echo esc_attr($page_option->ID); ?>"<?php echo $selected; ?>>
                                             <?php echo esc_html($page_option->post_title . $status_text); ?>
@@ -4484,10 +4445,10 @@ if (queryString) {
                                         <?php 
                                         switch ($post_status) {
                                             case 'publish':
-                                                echo 'Publisert';
+                                                esc_html_e('Publisert', 'kursagenten');
                                                 break;
                                             case 'draft':
-                                                echo 'Kladd';
+                                                esc_html_e('Kladd', 'kursagenten');
                                                 break;
                                             default:
                                                 echo '? ' . ucfirst($post_status);
@@ -4495,18 +4456,18 @@ if (queryString) {
                                         ?>
                                     </span>
                                     <div class="page-links">
-                                        <a href="<?php echo get_edit_post_link($page_id); ?>" target="_blank">Rediger</a>
+                                        <a href="<?php echo get_edit_post_link($page_id); ?>" target="_blank"><?php esc_html_e('Rediger', 'kursagenten'); ?></a>
                                         |
-                                        <a href="<?php echo get_permalink($page_id); ?>" target="_blank">Vis</a>
+                                        <a href="<?php echo get_permalink($page_id); ?>" target="_blank"><?php esc_html_e('Vis', 'kursagenten'); ?></a>
                                         <?php if ($post_status === 'draft'): ?>
                                             |
                                             <a href="#" class="ka-publish-page-link" 
                                                data-key="<?php echo esc_attr($key); ?>"
-                                               data-nonce="<?php echo wp_create_nonce('ka_publish_page'); ?>">Publiser</a>
+                                               data-nonce="<?php echo wp_create_nonce('ka_publish_page'); ?>"><?php esc_html_e('Publiser', 'kursagenten'); ?></a>
                                         <?php endif; ?>
                                     </div>
                                 <?php else: ?>
-                                    <span class="status-indicator not-created">Ikke opprettet</span>
+                                    <span class="status-indicator not-created"><?php esc_html_e('Ikke opprettet', 'kursagenten'); ?></span>
                                 <?php endif; ?>
                             </td>
                             <td class="actions">
@@ -4516,20 +4477,20 @@ if (queryString) {
                                                 data-action="create" 
                                                 data-key="<?php echo esc_attr($key); ?>"
                                                 data-nonce="<?php echo wp_create_nonce('ka_manage_pages'); ?>">
-                                            Opprett ny side
+                                            <?php esc_html_e('Opprett ny side', 'kursagenten'); ?>
                                         </button>
                                     <?php else: ?>
                                         <button type="button" class="button button-secondary ka-system-page-action"
                                                 data-action="reset"
                                                 data-key="<?php echo esc_attr($key); ?>"
                                                 data-nonce="<?php echo wp_create_nonce('ka_manage_pages'); ?>">
-                                            Tilbakestill innhold
+                                            <?php esc_html_e('Tilbakestill innhold', 'kursagenten'); ?>
                                         </button>
                                         <button type="button" class="button button-link-delete ka-system-page-action"
                                                 data-action="delete"
                                                 data-key="<?php echo esc_attr($key); ?>"
                                                 data-nonce="<?php echo wp_create_nonce('ka_manage_pages'); ?>">
-                                            Slett
+                                            <?php esc_html_e('Slett', 'kursagenten'); ?>
                                         </button>
                                     <?php endif; ?>
                                 </div>
@@ -4709,7 +4670,7 @@ if (queryString) {
             if ($is_ajax) {
                 wp_send_json_error('Mangler page_key');
             }
-            wp_die('Ugyldig forespørsel');
+            wp_die(esc_html__('Ugyldig forespørsel', 'kursagenten'));
         }
 
         // Verifiser nonce
@@ -4718,7 +4679,7 @@ if (queryString) {
             if ($is_ajax) {
                 wp_send_json_error('Ugyldig sikkerhetskode');
             }
-            wp_die('Ugyldig sikkerhetskode');
+            wp_die(esc_html__('Ugyldig sikkerhetskode', 'kursagenten'));
         }
 
         $page_key = sanitize_key($_POST['ka_page_key']);
@@ -4903,7 +4864,7 @@ if (queryString) {
             if (!in_array($page_key, $existing_keys)) {
                 if ($page_key === 'betaling') {
                     $desired_slug = 'kurs-betaling';
-                    $post_title = 'Betaling for kurs';
+                    $post_title = __('Betaling for kurs', 'kursagenten');
                 }
             } else {
                 // Already our system page, just update option and return
@@ -4937,7 +4898,7 @@ if (queryString) {
                 update_post_meta($page_id, '_ka_system_page_keys', $existing_keys);
             }
             
-            self::add_admin_notice('Systemside ble opprettet.');
+            self::add_admin_notice(__('Systemside ble opprettet.', 'kursagenten'));
         }
         
         return $page_id;
@@ -4963,7 +4924,7 @@ if (queryString) {
                 wp_delete_post($page_id, true);
             }
             delete_option('ka_page_' . $page_key);
-            self::add_admin_notice('Systemside ble slettet.');
+            self::add_admin_notice(__('Systemside ble slettet.', 'kursagenten'));
             return true;
         }
         return false;
@@ -4979,7 +4940,7 @@ if (queryString) {
                 'post_content' => $pages[$page_key]['content']
             ]);
             
-            self::add_admin_notice('Sideinnhold ble tilbakestilt.');
+            self::add_admin_notice(__('Sideinnhold ble tilbakestilt.', 'kursagenten'));
             return true;
         }
         return false;
@@ -5355,8 +5316,8 @@ if (queryString) {
         <div class="image-upload-wrapper">
             <img id="ka_plassholderbilde_generelt_preview" src="<?php echo esc_url($image_url ? $image_url : $fallback_url); ?>" style="max-width: 80px; max-height: 80px; <?php echo ($image_url || $fallback_url) ? '' : 'display: none;'; ?> border:1px solid #eee; background:#fafafa;" />
             <input type="hidden" id="ka_plassholderbilde_generelt" name="design_option_name[ka_plassholderbilde_generelt]" value="<?php echo esc_attr($image_url); ?>" />
-            <button type="button" class="button upload_image_button_ka_plassholderbilde_generelt">Velg bilde</button>
-            <button type="button" class="button remove_image_button_ka_plassholderbilde_generelt" style="<?php echo $image_url ? '' : 'display: none;'; ?>">Fjern bilde</button>
+            <button type="button" class="button upload_image_button_ka_plassholderbilde_generelt"><?php esc_html_e('Velg bilde', 'kursagenten'); ?></button>
+            <button type="button" class="button remove_image_button_ka_plassholderbilde_generelt" style="<?php echo $image_url ? '' : 'display: none;'; ?>"><?php esc_html_e('Fjern bilde', 'kursagenten'); ?></button>
         </div>
         <?php
     }
@@ -5371,8 +5332,8 @@ if (queryString) {
         <div class="image-upload-wrapper">
             <img id="ka_plassholderbilde_kurs_preview" src="<?php echo esc_url($image_url ? $image_url : $fallback_url); ?>" style="max-width: 80px; max-height: 80px; <?php echo ($image_url || $fallback_url) ? '' : 'display: none;'; ?> border:1px solid #eee; background:#fafafa;" />
             <input type="hidden" id="ka_plassholderbilde_kurs" name="design_option_name[ka_plassholderbilde_kurs]" value="<?php echo esc_attr($image_url); ?>" />
-            <button type="button" class="button upload_image_button_ka_plassholderbilde_kurs">Velg bilde</button>
-            <button type="button" class="button remove_image_button_ka_plassholderbilde_kurs" style="<?php echo $image_url ? '' : 'display: none;'; ?>">Fjern bilde</button>
+            <button type="button" class="button upload_image_button_ka_plassholderbilde_kurs"><?php esc_html_e('Velg bilde', 'kursagenten'); ?></button>
+            <button type="button" class="button remove_image_button_ka_plassholderbilde_kurs" style="<?php echo $image_url ? '' : 'display: none;'; ?>"><?php esc_html_e('Fjern bilde', 'kursagenten'); ?></button>
         </div>
         <?php
     }
@@ -5387,8 +5348,8 @@ if (queryString) {
         <div class="image-upload-wrapper">
             <img id="ka_plassholderbilde_instruktor_preview" src="<?php echo esc_url($image_url ? $image_url : $fallback_url); ?>" style="max-width: 80px; max-height: 80px; <?php echo ($image_url || $fallback_url) ? '' : 'display: none;'; ?> border:1px solid #eee; background:#fafafa;" />
             <input type="hidden" id="ka_plassholderbilde_instruktor" name="design_option_name[ka_plassholderbilde_instruktor]" value="<?php echo esc_attr($image_url); ?>" />
-            <button type="button" class="button upload_image_button_ka_plassholderbilde_instruktor">Velg bilde</button>
-            <button type="button" class="button remove_image_button_ka_plassholderbilde_instruktor" style="<?php echo $image_url ? '' : 'display: none;'; ?>">Fjern bilde</button>
+            <button type="button" class="button upload_image_button_ka_plassholderbilde_instruktor"><?php esc_html_e('Velg bilde', 'kursagenten'); ?></button>
+            <button type="button" class="button remove_image_button_ka_plassholderbilde_instruktor" style="<?php echo $image_url ? '' : 'display: none;'; ?>"><?php esc_html_e('Fjern bilde', 'kursagenten'); ?></button>
         </div>
         <?php
     }
@@ -5403,8 +5364,8 @@ if (queryString) {
         <div class="image-upload-wrapper">
             <img id="ka_plassholderbilde_sted_preview" src="<?php echo esc_url($image_url ? $image_url : $fallback_url); ?>" style="max-width: 80px; max-height: 80px; <?php echo ($image_url || $fallback_url) ? '' : 'display: none;'; ?> border:1px solid #eee; background:#fafafa;" />
             <input type="hidden" id="ka_plassholderbilde_sted" name="design_option_name[ka_plassholderbilde_sted]" value="<?php echo esc_attr($image_url); ?>" />
-            <button type="button" class="button upload_image_button_ka_plassholderbilde_sted">Velg bilde</button>
-            <button type="button" class="button remove_image_button_ka_plassholderbilde_sted" style="<?php echo $image_url ? '' : 'display: none;'; ?>">Fjern bilde</button>
+            <button type="button" class="button upload_image_button_ka_plassholderbilde_sted"><?php esc_html_e('Velg bilde', 'kursagenten'); ?></button>
+            <button type="button" class="button remove_image_button_ka_plassholderbilde_sted" style="<?php echo $image_url ? '' : 'display: none;'; ?>"><?php esc_html_e('Fjern bilde', 'kursagenten'); ?></button>
         </div>
         <?php
     }

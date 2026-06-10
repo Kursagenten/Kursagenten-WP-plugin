@@ -1,0 +1,16 @@
+{
+  "%d dag": {
+    "msgid_plural": "%d dager",
+    "forms": [
+      "%d jour",
+      "%d jours"
+    ]
+  },
+  "%d kurs": {
+    "msgid_plural": "%d kurs",
+    "forms": [
+      "%d cours",
+      "%d cours"
+    ]
+  }
+}

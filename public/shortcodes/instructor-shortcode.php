@@ -60,7 +60,7 @@ class InstructorGrid {
         $terms = $this->get_terms();
         
         if (empty($terms) || is_wp_error($terms)) {
-            return '<div class="no-instructors">Det er for øyeblikket ingen instruktører å vise.</div>';
+            return '<div class="no-instructors">' . esc_html__('Det er for øyeblikket ingen instruktører å vise.', 'kursagenten') . '</div>';
         }
 
         // Generer output ved å bruke ID-spesifikke grid-stiler
@@ -257,7 +257,7 @@ class InstructorGrid {
                         <img src='{$thumbnail}' 
                              width='" . esc_attr((string) $width) . "' 
                              height='" . esc_attr((string) $height) . "' 
-                             alt='" . esc_attr(sprintf(/* translators: %s: instructor name */ 'Bilde av %s', $display_name)) . "' 
+                             alt='" . esc_attr(sprintf(/* translators: %s: instructor name */ __('Bilde av %s', 'kursagenten'), $display_name)) . "' 
                              class='wp-image-{$term->term_id}' 
                              decoding='async'>
                     </picture>

@@ -20,8 +20,8 @@ class Kursagenten_Theme_Customizations {
     public function add_menu_page() {
         add_submenu_page(
             'kursagenten',
-            'Tematilpasninger',
-            'Tematilpasninger',
+            __('Tematilpasninger', 'kursagenten'),
+            __('Tematilpasninger', 'kursagenten'),
             'manage_options',
             'kursagenten-theme-customizations',
             array($this, 'render_settings_page')
@@ -30,7 +30,7 @@ class Kursagenten_Theme_Customizations {
     
     public function render_settings_page() {
         if (!current_user_can('manage_options')) {
-            wp_die(__('Du har ikke tillatelse til å åpne denne siden.'));
+            wp_die(__('Du har ikke tillatelse til å åpne denne siden.', 'kursagenten'));
         }
         
         $options = get_option($this->option_name);

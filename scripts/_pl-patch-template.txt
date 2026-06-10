@@ -1,0 +1,620 @@
+(100-1000px)	(100-1000px)
+<strong>Bygg ditt eget design</strong> er aktivt. Du kan fortsatt styre kursdata-visning under.	<strong>Build your own design</strong> is active. You can still control course data display below.
+<strong>Bygg ditt eget design</strong> er aktivt. Kursagenten bruker WordPress sitt malhierarki, slik at tema/page builder kan styre oppsett.	<strong>Build your own design</strong> is active. Kursagenten uses the WordPress template hierarchy so your theme/page builder can control the layout.
+<strong>Byggeblokker kommer:</strong> vi planlegger moduler for blant annet kursliste med kurssteder/lenker og informasjon om kommende kurs.	<strong>Blocks coming soon:</strong> we are planning modules for course lists with course locations/links and information about upcoming courses.
+<strong>Cache:</strong> Tøm cache hvis du ikke ser endringer umiddelbart.	<strong>Cache:</strong> Clear cache if you do not see changes immediately.
+<strong>Designendringer:</strong> Hvis designendringer ikke vises, kan det være nødvendig å tømme cache og oppdatere permalenker.	<strong>Design changes:</strong> If design changes do not appear, you may need to clear cache and update permalinks.
+<strong>E-post:</strong> Instruktørens e-postadresse.	<strong>Email:</strong> The instructor's email address.
+<strong>Egen opprydding:</strong> Du kan også kjøre opprydding separat ved å klikke på knappen "Rydd opp i kurs" på <a href="admin.php?page=kursinnstillinger">Synkronisering</a>-siden. Dette er nyttig hvis du bare ønsker å rydde opp uten å synkronisere alle kursene på nytt.	<strong>Separate cleanup:</strong> You can also run cleanup separately by clicking the "Clean up courses" button on the <a href="admin.php?page=kursinnstillinger">Synchronization</a> page. This is useful if you only want to clean up without re-synchronizing all courses.
+<strong>Eget innhold over/under:</strong> Du kan legge inn vanlig innhold i editoren over og under kortkoden for å skrive en introduksjon, legge til bilder eller annen informasjon.	<strong>Custom content above/below:</strong> You can add regular content in the editor above and below the shortcode to write an introduction, add images or other information.
+<strong>Ekstra felter:</strong> Spesifikke felter avhengig av taksonomitypen (se nedenfor).	<strong>Extra fields:</strong> Specific fields depending on the taxonomy type (see below).
+<strong>Enkel - kun tittel og kort beskrivelse:</strong> Tittel og kort beskrivelse, deretter kursliste. Egnet når du ikke har bilder eller utvidet beskrivelse.	<strong>Simple – title and short description only:</strong> Title and short description, then course list. Suitable when you do not have images or extended description.
+<strong>Enkle kort:</strong> Hvite kort med overskrift og tekst. Viser neste tilgjengelige dato for kursene. Mulig å velge antall kolonner for desktop, tablet og mobil.	<strong>Simple cards:</strong> White cards with heading and text. Shows the next available date for courses. You can choose the number of columns for desktop, tablet and mobile.
+<strong>Felles designmal:</strong> Alle taksonomier bruker samme designmal.	<strong>Shared design template:</strong> All taxonomies use the same design template.
+<strong>Grid:</strong> Et rutenett med kurskort i flere kolonner. Mulig å velge antall kolonner for desktop, tablet og mobil.	<strong>Grid:</strong> A grid of course cards in multiple columns. You can choose the number of columns for desktop, tablet and mobile.
+<strong>Hovedbilde:</strong> Et bilde som vises på kategorisiden og i lister.	<strong>Main image:</strong> An image displayed on the category page and in lists.
+<strong>Hva er kortkoder?</strong> Kortkoder er små koder du plasserer i innhold (sider/innlegg) for å vise dynamiske lister og komponenter fra pluginen.	<strong>What are shortcodes?</strong> Shortcodes are small codes you place in content (pages/posts) to display dynamic lists and components from the plugin.
+<strong>Hvor brukes de?</strong> Vanligvis på egne sider eller innlegg (f.eks. «Kurs», «Kurskategorier», «Kurssteder», «Instruktører»). Du kan også bruke dem i menyen eller widgets.	<strong>Where are they used?</strong> Usually on dedicated pages or posts (e.g. "Courses", "Course categories", "Course locations", "Instructors"). You can also use them in menus or widgets.
+<strong>Ikon:</strong> Et alternativt bilde som kan brukes i stedet for hovedbilde i lister. Her er det fint å laste opp png-ikoner (bruk <code>kilde=ikon</code> i kortkoden).	<strong>Icon:</strong> An alternative image that can be used instead of the main image in lists. PNG icons work well here (use <code>kilde=ikon</code> in the shortcode).
+<strong>Instruktører</strong> – Inneholder <code class="copytext">[instruktorer]</code> for å vise alle instruktører.	<strong>Instructors</strong> – Contains <code class="copytext">[instruktorer]</code> to display all instructors.
+<strong>Kompakt:</strong> En mer kompakt listevisning med mindre mellomrom. Uten bakgrunn, og med færre kurselementer	<strong>Compact:</strong> A more compact list view with less spacing. No background, and fewer course elements.
+<strong>Kort beskrivelse:</strong> En kort tekst som kan vises i lister og oversikter. Vises ofte direkte under overskriften.	<strong>Short description:</strong> A short text that can be displayed in lists and overviews. Often shown directly below the heading.
+<strong>Kort beskrivelse:</strong> En kort tekst som kan vises i lister.	<strong>Short description:</strong> A short text that can be displayed in lists.
+<strong>Kort beskrivelse:</strong> En kort tekst som kan vises i lister. Vises ofte direkte under overskriften.	<strong>Short description:</strong> A short text that can be displayed in lists. Often shown directly below the heading.
+<strong>Kurs</strong> – Inneholder <code class="copytext">[kursliste]</code> for å vise alle kurs med filtre.	<strong>Courses</strong> – Contains <code class="copytext">[kursliste]</code> to display all courses with filters.
+<strong>Kurskategorier</strong> – Inneholder <code class="copytext">[kurskategorier]</code> for å vise alle kategorier.	<strong>Course categories</strong> – Contains <code class="copytext">[kurskategorier]</code> to display all categories.
+<strong>Kursliste (kun for kurskategorier):</strong> Tre alternativer styrer hvordan kategorien påvirker kurslisten:	<strong>Course list (course categories only):</strong> Three options control how the category affects the course list:
+<strong>Kursliste med filter </strong><span class="smal"><span class="copytext">[kursliste]</span></span><br><span class="copytext small">[kursliste kategori="web" sted="oslo" måned="9" språk="norsk" list_type="grid" filter="topp" knapper="signup_link" bilder="yes" vis="-sluttdato" st=sted/st=ikke-sted klasse="min-klasse"]</span>	<strong>Course list with filter </strong><span class="smal"><span class="copytext">[kursliste]</span></span><br><span class="copytext small">[kursliste kategori="web" sted="oslo" måned="9" språk="norsk" list_type="grid" filter="topp" knapper="signup_link" bilder="yes" vis="-sluttdato" st=sted/st=ikke-sted klasse="min-klasse"]</span>
+<strong>Kurssteder opprettes automatisk</strong> når du synkroniserer kurs fra Kursagenten. Du kan ikke legge til kurssteder manuelt her.	<strong>Course locations are created automatically</strong> when you synchronize courses from Kursagenten. You cannot add course locations manually here.
+<strong>Kurssteder</strong> – Inneholder <code class="copytext">[kurssteder]</code> for å vise alle kurssteder.	<strong>Course locations</strong> – Contains <code class="copytext">[kurssteder]</code> to display all course locations.
+<strong>Layout og struktur:</strong> Hvor elementene plasseres på siden (header, innhold, sidekolonne, footer).	<strong>Layout and structure:</strong> Where elements are placed on the page (header, content, sidebar, footer).
+<strong>Layout:</strong> Velg designet på siden. Dette styrer hvor/hvordan tittel, tekst, hovedbilde og kursliste vises.	<strong>Layout:</strong> Choose the page design. This controls where/how title, text, main image and course list are displayed.
+<strong>Layout</strong> bestemmer oppsettet av elementer på siden (header, kolonner, hooks).</br><strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, ren, kompakt, dato og tittel). </br><strong>Visningstype</strong> bestemmer om du vil vise hovedkurs eller alle kursdatoer.	<strong>Layout</strong> determines the arrangement of elements on the page (header, columns, hooks).</br><strong>List design</strong> determines how courses are displayed in the list (default, grid, plain, compact, date and title). </br><strong>Display type</strong> determines whether to show main courses or all course dates.
+<strong>Liste med instruktører </strong><span class="smal"><span class="copytext">[instruktorer]</span></span><br><span class="copytext small" style="color:#666">[instruktorer layout="stablet/rad/liste" grid=3 gridtablet=2 gridmobil=1 radavstand="1rem" stil="standard/kort" bildestr="100px" bildeform="avrundet/rund/firkantet/10px" bildeformat="4/3" overskrift="h3" fontmin="13px" fontmaks="15px" avstand="2em .5em" skygge="ja" skjul="Iris,Anna" utdrag="ja" beskrivelse="ja" klasse="min-klasse"]</span>	<strong>Instructor list </strong><span class="smal"><span class="copytext">[instruktorer]</span></span><br><span class="copytext small" style="color:#666">[instruktorer layout="stablet/rad/liste" grid=3 gridtablet=2 gridmobil=1 radavstand="1rem" stil="standard/kort" bildestr="100px" bildeform="avrundet/rund/firkantet/10px" bildeformat="4/3" overskrift="h3" fontmin="13px" fontmaks="15px" avstand="2em .5em" skygge="ja" skjul="Iris,Anna" utdrag="ja" beskrivelse="ja" klasse="min-klasse"]</span>
+<strong>Liste med kurskategorier </strong><span class="smal"><span class="copytext">[kurskategorier]</span></span><br><span class="copytext small" style="color:#666">[kurskategorier kilde="bilde/ikon" layout="stablet/rad/liste" grid=3 gridtablet=2 gridmobil=1  radavstand="1rem" stil="standard/kort" bildestr="100px" bildeform="avrundet/rund/firkantet/10px" bildeformat="4/3" overskrift="h3" fontmin="13" fontmaks="18" avstand="2em .5em" skygge="ja" vis="hovedkategorier/subkategorier/slug/standard" st=sted/st=ikke-sted utdrag="ja" klasse="min-klasse"]</span>	<strong>Course category list </strong><span class="smal"><span class="copytext">[kurskategorier]</span></span><br><span class="copytext small" style="color:#666">[kurskategorier kilde="bilde/ikon" layout="stablet/rad/liste" grid=3 gridtablet=2 gridmobil=1  radavstand="1rem" stil="standard/kort" bildestr="100px" bildeform="avrundet/rund/firkantet/10px" bildeformat="4/3" overskrift="h3" fontmin="13" fontmaks="18" avstand="2em .5em" skygge="ja" vis="hovedkategorier/subkategorier/slug/standard" st=sted/st=ikke-sted utdrag="ja" klasse="min-klasse"]</span>
+<strong>Liste med kurssteder </strong><span class="smal"><span class="copytext">[kurssteder]</span></span><br><span class="copytext small" style="color:#666">[kurssteder layout="stablet/rad/liste" grid=3 gridtablet=2 gridmobil=1 radavstand="1rem" stil="standard/kort" bildestr="100px" bildeform="avrundet/rund/firkantet/10px" bildeformat="4/3" overskrift="h3" fontmin="13px" fontmaks="15px" avstand="2em .5em" skygge="ja" utdrag="ja" vis="standard/alta,oslo,bergen" region="østlandet" stedinfo="ja" klasse="min-klasse"]</span>	<strong>Course location list </strong><span class="smal"><span class="copytext">[kurssteder]</span></span><br><span class="copytext small" style="color:#666">[kurssteder layout="stablet/rad/liste" grid=3 gridtablet=2 gridmobil=1 radavstand="1rem" stil="standard/kort" bildestr="100px" bildeform="avrundet/rund/firkantet/10px" bildeformat="4/3" overskrift="h3" fontmin="13px" fontmaks="15px" avstand="2em .5em" skygge="ja" utdrag="ja" vis="standard/alta,oslo,bergen" region="østlandet" stedinfo="ja" klasse="min-klasse"]</span>
+<strong>Listedesign:</strong> Velg designet på kurslisten (standard, rutenett, kompakt, enkle kort...)	<strong>List design:</strong> Choose the course list design (default, grid, compact, simple cards...)
+<strong>Listedesign:</strong> Velg listedesign (standard, rutenett, kompakt, enkel liste, enkle kort).	<strong>List design:</strong> Choose list design (default, grid, compact, simple list, simple cards).
+<strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, ren, kompakt, dato og tittel).	<strong>List design</strong> determines how courses are displayed in the list (default, grid, plain, compact, date and title).
+<strong>Manuell synkronisering:</strong> Gå til <a href="admin.php?page=kursinnstillinger">Synkronisering</a> og klikk på "Hent alle kurs fra Kursagenten". Dette bør gjøres første gang du setter opp pluginen, og ved behov for å oppdatere alle kursene samtidig.	<strong>Manual synchronization:</strong> Go to <a href="admin.php?page=kursinnstillinger">Synchronization</a> and click "Fetch all courses from Kursagenten". This should be done the first time you set up the plugin, and when you need to update all courses at once.
+<strong>Manuelt:</strong> Du kan endre region for individuelle steder ved å redigere kursstedet i <a href="edit-tags.php?taxonomy=ka_course_location&post_type=ka_course">Kurssteder</a>-oversikten.	<strong>Manual:</strong> You can change the region for individual locations by editing the course location in the <a href="edit-tags.php?taxonomy=ka_course_location&post_type=ka_course">Course locations</a> overview.
+<strong>Merk:</strong> Regioner må være aktivert for at filtreringen skal fungere. Du kan også endre region for individuelle kurssteder ved å redigere kursstedet i <a href="edit-tags.php?taxonomy=ka_course_location&post_type=ka_course">Kurssteder</a>-oversikten.	<strong>Note:</strong> Regions must be enabled for filtering to work. You can also change the region for individual course locations by editing the location in the <a href="edit-tags.php?taxonomy=ka_course_location&post_type=ka_course">Course locations</a> overview.
+<strong>Navn:</strong> Instruktørens navn (kan deles opp i fornavn og etternavn).	<strong>Name:</strong> The instructor's name (can be split into first and last name).
+<strong>Navn:</strong> Kategorinavnet (kommer fra Kursagenten, bør ikke endres).	<strong>Name:</strong> The category name (comes from Kursagenten, should not be changed).
+<strong>Navn:</strong> Stedsnavnet (kommer fra Kursagenten, men kan endres via navnendring-funksjonen).	<strong>Name:</strong> The location name (comes from Kursagenten, but can be changed via the name change feature).
+<strong>Navnendring på kurssteder:</strong><br>Du kan endre navn på kurssteder under <a href="%s">Synkronisering → Navnendring på kurssteder</a>. Når du endrer navn på et sted, blir også slugs (nettadressen) på kursene som har dette stedet oppdatert.<br> Det gamle stedet blir ikke slettet, men blir ikke lenger synlig på nettsiden.	<strong>Name change for course locations:</strong><br>You can change course location names under <a href="%s">Synchronization → Course location name changes</a>. When you change a location name, slugs (URLs) for courses with this location are also updated.<br> The old location is not deleted, but is no longer visible on the website.
+<strong>Når bør du bruke kortkoder?</strong> Hvis du bygger sidene med Elementor eller andre page builders, vil kortkoder sannsynligvis være det du må bruke.	<strong>When should you use shortcodes?</strong> If you build pages with Elementor or other page builders, shortcodes will likely be what you need to use.
+<strong>Obs:</strong> For at brukerne skal kunne slå filteret av og på, må du dra <em>«Ledige kurs»</em> inn i «Filtre i venstre kolonne» eller «Filtre over kurslisten» under Filterinnstillinger.	<strong>Note:</strong> For users to be able to turn the filter on and off, you must drag <em>"Available courses"</em> into "Filters in left column" or "Filters above course list" under Filter settings.
+<strong>OBS!</strong> Fyll inn <a href="#kursagenten-innstillinger" style="color:white; text-decoration: underline;">innstillinger fra Kursagenten</a> før du henter alle kursene dine (synkroniser alle kurs).	<strong>NOTE!</strong> Enter <a href="#kursagenten-innstillinger" style="color:white; text-decoration: underline;">settings from Kursagenten</a> before fetching all your courses (sync all courses).
+<strong>Overstyr profil fra Kursagenten:</strong> Aktiver denne for å kunne redigere navn, e-post og telefon. Når aktivert, vil ikke disse feltene oppdateres automatisk fra Kursagenten ved synkronisering.	<strong>Override profile from Kursagenten:</strong> Enable this to edit name, email and phone. When enabled, these fields will not be updated automatically from Kursagenten during synchronization.
+<strong>Overstyr profilbilde:</strong> Aktiver denne for å bruke et eget opplastet bilde i stedet for bildet fra Kursagenten.	<strong>Override profile image:</strong> Enable this to use your own uploaded image instead of the image from Kursagenten.
+<strong>Page builder (Kadence Elements, Elementor m.fl.):</strong> Hvis du vil styre single/archive/taksonomi med page builder-betingelser, gå til <a href="admin.php?page=design#section-enkeltkurs">Kursdesign → Enkeltkurs</a> og aktiver <em>Bruk WordPress sitt standard malhierarki</em>. Da lar pluginen tema/page builder velge mal uten å tvinge pluginens egne layout-filer.	<strong>Page builder (Kadence Elements, Elementor, etc.):</strong> If you want to control single/archive/taxonomy with page builder conditions, go to <a href="admin.php?page=design#section-enkeltkurs">Course design → Single course</a> and enable <em>Use WordPress default template hierarchy</em>. The plugin then lets the theme/page builder choose the template without forcing the plugin's own layout files.
+<strong>Permalenker:</strong> Ved endring av URL-innstillinger, lagre «Permalenker» på nytt.	<strong>Permalinks:</strong> When changing URL settings, save "Permalinks" again.
+<strong>Plassering:</strong> Filtrene velges ved å dra dem til korrekt plassering. Du kan velge å vise dem til venstre for kurslisten og/eller over kurslisten.	<strong>Placement:</strong> Choose filters by dragging them to the correct position. You can show them to the left of the course list and/or above the course list.
+<strong>Profil - rundt bilde og tittel:</strong> Rundt bilde, deretter tittel og beskrivelse, deretter kursliste	<strong>Profile – around image and title:</strong> Around the image, then title and description, then course list.
+<strong>Profilbilde:</strong> Et hovedbilde som vises på instruktørsiden og i lister. Dette kan være fra Kursagenten eller et eget opplastet bilde.	<strong>Profile image:</strong> A main image displayed on the instructor page and in lists. This can be from Kursagenten or your own uploaded image.
+<strong>Region:</strong> (Hvis regioner er aktivert) Velg hvilken region stedet tilhører.	<strong>Region:</strong> (If regions are enabled) Choose which region the location belongs to.
+<strong>Regioner:</strong><br>Du kan aktivere og administrere regioner under <a href="%s">Synkronisering → Regioner</a>.	<strong>Regions:</strong><br>You can enable and manage regions under <a href="%s">Synchronization → Regions</a>.
+<strong>Regioner:</strong><br>Regioner er aktivert. Du kan administrere regioninndelingen under <a href="%s">Synkronisering → Regioner</a>. Tilhørighet til en region kan endres under hvert kurssted.	<strong>Regions:</strong><br>Regions are enabled. You can manage regional division under <a href="%s">Synchronization → Regions</a>. Regional assignment can be changed for each course location.
+<strong>Rekkefølge på elementer:</strong> Hvilken rekkefølge informasjonen vises i (introtekst, hovedinnhold, kursdatoer, instruktører, osv.).	<strong>Element order:</strong> The order in which information is displayed (intro text, main content, course dates, instructors, etc.).
+<strong>Rekkefølge:</strong> Du kan også dra i filtrene for å endre rekkefølgen de vises i.	<strong>Order:</strong> You can also drag filters to change the order they are displayed in.
+<strong>Ren og enkel liste:</strong> Basert på Standard liste, men uten bakgrunn, og med færre kurselementer	<strong>Clean and simple list:</strong> Based on Standard list, but without background and with fewer course elements.
+<strong>Separate designmaler:</strong> Aktiver dette for å kunne velge forskjellige designmaler for kategorier, steder og instruktører.	<strong>Separate design templates:</strong> Enable this to choose different design templates for categories, locations and instructors.
+<strong>Skjul i automenyer:</strong> Når aktivert, skjules kategorien i autogenererte menyer som bruker kortkoden <code>[ka-meny]</code>. Dette er nyttig hvis du har kategorier som ikke skal vises i hovedmenyen.	<strong>Hide in auto menus:</strong> When enabled, the category is hidden in auto-generated menus that use the <code>[ka-meny]</code> shortcode. Useful if you have categories that should not appear in the main menu.
+<strong>Skjul i oversiktslister:</strong> Når aktivert, skjules kategorien i kortkoder som <code>[kurskategorier]</code> og lignende lister. Kategorien vil fortsatt være tilgjengelig direkte via URL.	<strong>Hide in overview lists:</strong> When enabled, the category is hidden in shortcodes such as <code>[kurskategorier]</code> and similar lists. The category will still be accessible directly via URL.
+<strong>Slug:</strong> URL-vennlig versjon av navnet (bør ikke endres da det kan føre til ødelagte lenker).	<strong>Slug:</strong> URL-friendly version of the name (should not be changed as it may break links).
+<strong>Slug:</strong> URL-vennlig versjon av navnet (oppdateres automatisk ved navnendring).	<strong>Slug:</strong> URL-friendly version of the name (updated automatically when the name changes).
+<strong>Standard - med bilde og beskrivelse:</strong> Tittel og beskrivelse, deretter bilde og beskrivelse, deretter kursliste	<strong>Default – with image and description:</strong> Title and description, then image and description, then course list.
+<strong>Standard:</strong> 1 kolonne	<strong>Default:</strong> 1 column
+<strong>Standard:</strong> 100px	<strong>Default:</strong> 100px
+<strong>Standard:</strong> 1rem	<strong>Default:</strong> 1rem
+<strong>Standard:</strong> 2 kolonner	<strong>Default:</strong> 2 columns
+<strong>Standard:</strong> 2em .5em	<strong>Default:</strong> 2em .5em
+<strong>Standard:</strong> 3 kolonner	<strong>Default:</strong> 3 columns
+<strong>Standard:</strong> En tradisjonell listevisning med kurskort, ett kurs per rad/boks.	<strong>Default:</strong> A traditional list view with course cards, one course per row/box.
+<strong>Synkronisering:</strong> Hvis kurs ikke oppdateres automatisk, sjekk at webhooks er konfigurert korrekt i Kursagenten.	<strong>Synchronization:</strong> If courses are not updated automatically, check that webhooks are configured correctly in Kursagenten.
+<strong>Tagger eller lister:</strong> Filtrene kan velges som tagger eller avkrysningsliste. Tagger er knapper som velger ett filter av gangen, og avkrysningsliste er en liste som kan velge flere filter samtidig.	<strong>Tags or lists:</strong> Filters can be shown as tags or checkboxes. Tags are buttons that select one filter at a time; checkboxes allow selecting multiple filters at once.
+<strong>Telefon:</strong> Instruktørens telefonnummer.	<strong>Phone:</strong> The instructor's phone number.
+<strong>Test:</strong> Besøk frontend og se at det ser ut som det skal.	<strong>Test:</strong> Visit the frontend and verify it looks as expected.
+<strong>Utvidet beskrivelse:</strong> En lengre tekst med HTML-formatering som vises på instruktørsiden.	<strong>Extended description:</strong> A longer text with HTML formatting displayed on the instructor page.
+<strong>Utvidet beskrivelse:</strong> En lengre tekst med HTML-formatering som vises på kategorisiden.	<strong>Extended description:</strong> A longer text with HTML formatting displayed on the category page.
+<strong>Utvidet beskrivelse:</strong> En lengre tekst med HTML-formatering som vises på stedssiden.	<strong>Extended description:</strong> A longer text with HTML formatting displayed on the location page.
+<strong>Utvidet beskrivelse:</strong> En lengre tekst med rik tekstformatering (HTML) som vises på taksonomisiden. Her kan du beskrive kategorien, stedet eller instruktøren med tekst, bilder og annen informasjon.	<strong>Extended description:</strong> A longer text with rich text formatting (HTML) displayed on the taxonomy page. Here you can describe the category, location or instructor with text, images and other information.
+<strong>Velge eksisterende side:</strong> Du kan også velge en eksisterende WordPress-side fra dropdown-menyen og tilordne den til en funksjon. Lim inn kortkoden manuelt. Koden kan du kopiere fra ikonet <i class="ka-icon icon-code-simple-solid-full" style="height: 14px;"></i> ved siden av navnet.	<strong>Select existing page:</strong> You can also select an existing WordPress page from the dropdown and assign it to a function. Paste the shortcode manually. You can copy the code from the <i class="ka-icon icon-code-simple-solid-full" style="height: 14px;"></i> icon next to the name.
+<strong>Viktig:</strong> Endringer i designmal kan kreve oppdatering/refresh av cache og permalenker, spesielt ved utstrakte URL-tilpasninger.	<strong>Important:</strong> Changes to the design template may require cache refresh and permalink updates, especially for extensive URL customizations.
+<strong>Viktig:</strong> Navnet på kursstedet i WordPress-administrasjonen er skrivebeskyttet når det kommer fra Kursagenten. For å endre navnet som vises på nettsiden, bruk navnendring-funksjonen i stedet for å redigere taksonomien direkte.	<strong>Important:</strong> The course location name in WordPress admin is read-only when it comes from Kursagenten. To change the name shown on the website, use the name change feature instead of editing the taxonomy directly.
+<strong>Viktig:</strong> Når du overskriver felter, vil de ikke lenger oppdateres automatisk fra Kursagenten. Du må manuelt oppdatere dem hvis det er endringer i Kursagenten.	<strong>Important:</strong> When you override fields, they will no longer be updated automatically from Kursagenten. You must update them manually if there are changes in Kursagenten.
+<strong>Vis bilder:</strong> Skru av/på bilder i listen. Best egnet om du har lastet opp bilder til kursene i Kursagenten.	<strong>Show images:</strong> Turn images in the list on/off. Best suited if you have uploaded images for courses in Kursagenten.
+<strong>Vis:</strong> Kategorien vises i filteret, og kurs tagget med kategorien vises i kurslisten.<br><strong>Skjul kun kategorien fra filter:</strong> Kategorien skjules fra filteret, men kurs tagget med denne kategorien vises fortsatt i kurslisten (under sine øvrige kategorier).<br><strong>Skjul kategorien og alle tilhørende kurs:</strong> Verken kategorien eller kurs tagget med denne vises i kurslisten – nyttig for interne kategorier.	<strong>Show:</strong> The category appears in the filter, and courses tagged with the category appear in the course list.<br><strong>Hide only the category from filter:</strong> The category is hidden from the filter, but courses tagged with this category still appear in the course list (under their other categories).<br><strong>Hide the category and all related courses:</strong> Neither the category nor courses tagged with it appear in the course list – useful for internal categories.
+<strong>Visning av liste:</strong> I venstre kolonne vil listene vises som avkrysningsliste, mens over kursliten vises lister som dropdown-menyer.	<strong>List display:</strong> In the left column, lists are shown as checkboxes; above the course list, lists are shown as dropdown menus.
+<strong>Visningstype:</strong> Velg om du vil vise hovedkurs (ett kurs per rad/boks) eller alle kursdatoer (tilsvarende "Kursliste med filter").	<strong>Display type:</strong> Choose whether to show main courses (one course per row/box) or all course dates (equivalent to "Course list with filter").
+<strong>Visningstype</strong> bestemmer om du vil vise hovedkurs eller alle kursdatoer.	<strong>Display type</strong> determines whether to show main courses or all course dates.
+<strong>Visuelle detaljer:</strong> Styling, spacing og annet visuelt design.	<strong>Visual details:</strong> Styling, spacing and other visual design.
+✓ (kan overstyres i AIOSEO Pro)	✓ (can be overridden in AIOSEO Pro)
+✓ (kan overstyres i SEOPress Pro)	✓ (can be overridden in SEOPress Pro)
+Adresse	Address
+AJAX-konfigurasjon mangler.	AJAX configuration is missing.
+Aktiver dette hvis du bruker andre SEO-utvidelser som ikke er listet under, eller ønsker å håndtere SEO helt selv.	Enable this if you use other SEO plugins that are not listed below, or want to handle SEO entirely on your own.
+Aktiver ekstra sikkerhetsfunksjoner	Enable extra security features
+Aktiver regioninndeling (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge)	Enable regional division (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge)
+Aktiver støtte for jQuery	Enable jQuery support
+Alle	All
+Alle (%d)	All (%d)
+Alle instruktører	All instructors
+Alle kurs	All courses
+Alle kurskategorier	All course categories
+Alle kurssteder	All course locations
+Alle systemsider følger WordPress sin standard template-hierarki, så hvis temaet ditt har egne templates (f.eks. <code>single-ka_course.php</code> eller <code>taxonomy-ka_coursecategory.php</code>), vil disse brukes i stedet for pluginen sin standardmal.	All system pages follow WordPress's standard template hierarchy, so if your theme has its own templates (e.g. <code>single-ka_course.php</code> or <code>taxonomy-ka_coursecategory.php</code>), those are used instead of the plugin's default template.
+Alle taksonomisider (kategorier, kurssteder og instruktører) kan berikes med ekstra innhold som bilder, tekst og beskrivelser. Dette gjør at du kan tilpasse hver enkelt side med unikt innhold utover det som kommer fra Kursagenten.	All taxonomy pages (categories, course locations and instructors) can be enriched with extra content such as images, text and descriptions. This lets you customize each page with unique content beyond what comes from Kursagenten.
+Alle tilgjengelige kurssteder og datoer	All available course locations and dates
+Alternativ farge for bokser:	Alternative color for boxes:
+Annet	Other
+Antall kolonner i rutenett:	Number of columns in grid:
+Antall kolonner på desktop.	Number of columns on desktop.
+Antall kolonner på mobil.	Number of columns on tablet.
+Antall kolonner på tablet.	Number of columns on mobile.
+Antall kurs per side:	Number of courses per page:
+Antall kursdager	Number of course days
+Automenyer brukes når du vil at menyen automatisk skal vise taksonomier og/eller kurs uten at du manuelt må oppdatere menyelementer når noe endres.	Auto menus are used when you want the menu to automatically show taxonomies and/or courses without manually updating menu items when something changes.
+Automenyer i WordPress-menyen	Auto menus in the WordPress menu
+Av (håndteres av Rank Math Pro)	Off (handled by Rank Math Pro)
+Avanserte innstillinger	Advanced settings
+Avbryt	Cancel
+Avrundet søkefelt med ikon	Rounded search field with icon
+avrundet, rund, firkantet<br><strong>Standard</strong>: avrundet	rounded, circle, square<br><strong>Default</strong>: rounded
+Avstand	Spacing
+Avstand rundt alle elementene, første verdi er topp og bunn, andre verdi er venstre og høyre.	Spacing around all elements; the first value is top and bottom, the second is left and right.
+Bakgrunn fremhevede områder:	Background for highlighted areas:
+Bakgrunn i toppfelt:	Background in top bar:
+Bakgrunnsbilde og overlay:	Background image and overlay:
+Bakgrunnstype:	Background type:
+Base skriftstørrelse:	Base font size:
+Bedriftsinformasjon	Company information
+Begge feltene må fylles ut	Both fields must be filled in
+Begrense innholdet med <strong>stedsfilter</strong> (f.eks. bare "Oslo" eller "ikke-Oslo").	Limit content with <strong>location filter</strong> (e.g. only "Oslo" or "not Oslo").
+Begrenser til termer med kurs på angitt sted. Start med "ikke-" for å ekskludere. La stå tom for alle.	Limits to terms with courses at the specified location. Start with "not-" to exclude. Leave empty for all.
+Berik innholdet ditt	Enrich your content
+Berike taksonomisider	Enrich taxonomy pages
+Beskrivelse	Description
+Betaling	Payment
+Betaling for kurs	Payment for courses
+Betalingsside	Payment page
+Betalingsside for kurs	Payment page for courses
+bilde	image
+Bilde av %s	Image of %s
+Bilde av kurs i %s	Image of course in %s
+Bilde av kurssted	Course location image
+Bilde for kurs i %s	Image for course in %s
+Bilde hentet fra Kursagenten	Image fetched from Kursagenten
+Bilde hentet fra Kursagenten:	Image fetched from Kursagenten:
+Element	Element
+LinkedIn	LinkedIn
+Meny	Menu
+Passer spesielt godt for sider med få kurs per sted/kategori/instruktør.	Works especially well for pages with few courses per location/category/instructor.
+Plassering for innhold i venstre kolonne.	Placement for content in the left column.
+Plassholderbilde for instruktør	Placeholder image for instructor
+Plassholderbilde for kurs	Placeholder image for course
+Plugin-side	Plugin page
+Pluginen oppretter automatisk systemsider for enkeltsider som håndteres av pluginen. Disse sidene genereres dynamisk og trenger ikke å opprettes manuelt:	The plugin automatically creates system pages for single pages handled by the plugin. These pages are generated dynamically and do not need to be created manually:
+Postnr/sted	Postal code/city
+Pris	Price
+Pris høy til lav	Price high to low
+Pris lav til høy	Price low to high
+Pris:	Price:
+Profil - rundt bilde og tittel	Profile - round image and title
+profilbilde	profile image
+Prøv igjen	Try again
+Prøv å endre dine filtervalg eller nullstill alle filtre for å se alle tilgjengelige kurs.	Try changing your filter choices or reset all filters to see all available courses.
+Publiser	Publish
+Publisert	Published
+På denne siden:	On this page:
+På forespørsel	On request
+Påmelding	Registration
+Påmeldingsfrist	Registration deadline
+Påmeldingsfrist:	Registration deadline:
+Rediger	Edit
+Rediger i Kursadmin	Edit in Kursadmin
+Rediger instruktør	Edit instructor
+Rediger instruktøren for å legge til bilder, kontaktinformasjon og beskrivelser.	Edit the instructor to add images, contact information and descriptions.
+Rediger kurs	Edit course
+Rediger kursdato	Edit course date
+Rediger kurskategori	Edit course category
+Rediger kurssted	Edit course location
+Rediger Wordpress innhold	Edit WordPress content
+Regioner	Regions
+Regioner aktivert%s	Regions enabled%s
+Regioner deaktivert%s	Regions disabled%s
+Regioner lar deg organisere kurssteder i geografiske områder (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge). Dette er nyttig for filtrering og organisering av kurssteder.	Regions let you organize course locations into geographic areas (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge). This is useful for filtering and organizing course locations.
+Regioninndeling	Regional division
+Regioninndeling lagret%s	Regional division saved%s
+Regioninndeling tilbakestilt til standard%s	Regional division reset to default%s
+Registrer nå	Register now
+Relaterte kurs	Related courses
+Ren og enkel liste	Clean and simple list
+Resett til standard	Reset to default
+Resten av året	Rest of the year
+Rett etter footer-seksjonen.	Right after the footer section.
+Rett før footer.	Right before footer.
+Rett under hele header-blokken.	Right below the entire header block.
+Rett under pagineringskontroller i mal "Standard".	Right below pagination controls in the "Default" template.
+Rom eller lokale der kurset holdes.	Room or venue where the course is held.
+Rom:	Room:
+Rom/lokale	Room/venue
+Rutenett	Grid
+Rydd opp i kurs	Clean up courses
+Rydd opp i kurs etter synkronisering	Clean up courses after synchronization
+Rydd vekk utløpte kursdatoer, duplikate kurs, og slettede kurs som ikke finnes i Kursagenten	Remove expired course dates, duplicate courses, and deleted courses that no longer exist in Kursagenten
+Samme slug brukes flere steder: %s	Same slug used in multiple places: %s
+Se <a href="#stedsnavn-og-regioner">Stedsnavn og regioner</a> for mer informasjon om hvordan regioner fungerer.	See <a href="#stedsnavn-og-regioner">Location names and regions</a> for more information on how regions work.
+Se alle kursdatoer	View all course dates
+Se detaljer	View details
+Se dokumentasjon	View documentation
+Se kurs: %s	View course: %s
+Se kursdetaljer	View course details
+Se neste dato	See next date
+Se oversikt over alle importerte kurs	View overview of all imported courses
+Seksjonsmeny	Section menu
+Send til Trello	Send to Trello
+Seneste dato	Latest date
+SEO innstillinger	SEO settings
+SEO på kurs og taksonomisider	SEO for courses and taxonomy pages
+Serveren returnerte HTTP %1$s i stedet for ZIP-fil. URL: %2$s. Dette kan skyldes en feilside, omdirigering, eller Cloudflare bot-verifisering.	The server returned HTTP %1$s instead of a ZIP file. URL: %2$s. This may be caused by an error page, redirect, or Cloudflare bot verification.
+Sett foreldrekategori til:	Set parent category to:
+Sett inn	Insert
+Sett inn i kursdato	Insert into course date
+show_buttons, signup_link<br><strong>Standard:</strong> hentes fra Kursdesign	show_buttons, signup_link<br><strong>Default:</strong> fetched from Course design
+Side	Page
+Sidebakgrunn:	Page background:
+Sideinnhold ble tilbakestilt.	Page content was reset.
+Sidekolonne etter	Sidebar after
+Sidekolonne før	Sidebar before
+Sidene blir merket med "Kursagenten" i sideoversikten for enkel identifikasjon.	Pages are marked with "Kursagenten" in the page overview for easy identification.
+Sidene blir merket med "Kursagenten" i sideoversikten. Ved å klikke på <i class="ka-icon icon-code-simple-solid-full"></i> kopierer du kortkoden til utklippstavlen, og kan lime den inn der du ønsker å vise den på en eksisterende side.	Pages are marked with "Kursagenten" in the page overview. By clicking <i class="ka-icon icon-code-simple-solid-full"></i> you copy the shortcode to the clipboard and can paste it where you want to display it on an existing page.
+Sider og systemsider	Pages and system pages
+Sider som må opprettes	Pages that must be created
+Sider som opprettes automatisk	Pages created automatically
+Sikkerhetssjekk feilet	Security check failed
+Sikkerhetssjekk feilet. Vennligst oppdater siden og prøv igjen.	Security check failed. Please refresh the page and try again.
+Sikre deg plass på dette kurset nå. Har du spørsmål, ikke nøl med å kontakte oss.	Secure your place on this course now. If you have questions, do not hesitate to contact us.
+Siste endringer	Recent changes
+Siste frist for å melde deg på dette kurset.	Last deadline to register for this course.
+Sjekk <a href="admin.php?page=seo">Endre url-er</a> om du må tilpasse url-strukturer. Her kan du endre fra feks. "/kurs/ditt-kurs" til "/undervisning/ditt-kurs".	Check <a href="admin.php?page=seo">Change URLs</a> if you need to customize URL structures. Here you can change e.g. from "/kurs/your-course" to "/undervisning/your-course".
+Sjekk for oppdateringer	Check for updates
+Skjul	Hide
+Skjul alle filtre, kursteller, "vis antall kurs" og sortering	Hide all filters, course counter, "show number of courses" and sorting
+Skjul i automenyer	Hide in auto menus
+Skjul i oversiktslister	Hide in overview lists
+Skjul i url-er	Hide in URLs
+Skjul instruktør ved å skrive en kommaseparert liste med fornavn til instruktør slik det er skrevet i feltet "fornavn"	Hide instructor by writing a comma-separated list of instructor first names as entered in the "first name" field
+Skjul kategorien og alle tilhørende kurs	Hide the category and all related courses
+Skjul kun kategorien fra filter	Hide only the category from filter
+Skjul kun kategorien fra filter (kursene vises fortsatt)	Hide only the category from filter (courses still shown)
+Skjul spesifikke lokasjoner på kurssteder	Hide specific locations on course locations
+Skjul stedsfilter i videre visning	Hide location filter in further views
+Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Se informasjon om fallback-mekanismen nedenfor.	If you hide the prefix in URLs, conflicts may occur with regular pages, posts or other taxonomies with the same slug. See information about the fallback mechanism below.
+Skjult	Hidden
+Skjult fra filter	Hidden from filter
+Skjult i kursliste	Hidden in course list
+Skjult i lister	Hidden in lists
+Skjult i menyer	Hidden in menus
+Skjulte kurs	Hidden courses
+Skriv inn avstanden mellom radene, i pixler, em eller rem. Ønsker du ingen avstand, skriv 0.	Enter the spacing between rows in pixels, em or rem. For no spacing, enter 0.
+Skriv inn nytt navn	Enter new name
+Skriv inn stedsnavn manuelt	Enter location name manually
+Skriv inn størrelse på bildet du ønsker, i pixler. Ønsker du ikke bilde, skriv 0. Når bildestr settes til 0, lastes ikke bildene inn i det hele tatt.	Enter the image size you want in pixels. For no image, enter 0. When bildestr is set to 0, images are not loaded at all.
+Skriver du kun kortkodene <span class="copytext">[kurskategorier]</span>, <span class="copytext">[kurssteder]</span> eller <span class="copytext">[instruktorer]</span> brukes standardvalgene.<br>Bruk eventuelt de fulle kodene over, og fjern de valgene du ikke trenger.	If you only use the shortcodes <span class="copytext">[kurskategorier]</span>, <span class="copytext">[kurssteder]</span> or <span class="copytext">[instruktorer]</span>, the default values are used.<br>Alternatively, use the full codes above and remove the options you do not need.
+Skru av SEO	Turn off SEO
+Skru av SEO på kurs og taksonomisider	Turn off SEO for courses and taxonomy pages
+Skru på de innstillingene du ønsker å bruke:	Enable the settings you want to use:
+Skygge	Shadow
+Skygge ved musepeker over kurs/kurskategori.	Shadow on hover for course/course category.
+Slett	Delete
+Slugs (nettadresser) på kursene som har dette stedet oppdateres ved neste synkronisering.	Slugs (URLs) for courses with this location are updated on the next synchronization.
+Sluttdato	End date
+Sluttdato:	End date:
+Slutter:	Ends:
+Slå av	Turn off
+Slå på	Turn on
+Sorter etter	Sort by
+Sosiale profiler	Social profiles
+Spesifikke lokasjoner	Specific locations
+Spesifikke lokasjoner viser adresser og link til Google maps over kurslisten.	Specific locations show addresses and links to Google maps above the course list.
+Spesifikke lokasjoner:	Specific locations:
+Språk	Language
+Språk:	Language:
+St	St
+stablet, rad, liste<br><strong>Standard:</strong> stablet	stacked, row, list<br><strong>Default:</strong> stacked
+Standarbilder brukes som en bakupløsning for å hindre ødelagte design. Disse brukes som plassholdere om et bilde mangler. Velger du ingen bilder, bruker vi Kursagentens standard erstatningsbilder om nødvendig. Du kan også sette inn url til plassholderbilder via <a href="/wp-admin/admin.php?page=kursagenten#kortkoder">kortkoder</a>.	Default images are used as a fallback to prevent broken designs. These are used as placeholders when an image is missing. If you choose no images, we use Kursagenten's default replacement images if necessary. You can also set placeholder image URLs via <a href="/wp-admin/admin.php?page=kursagenten#kortkoder">shortcodes</a>.
+Standard - med bilde og beskrivelse	Default - with image and description
+Standard (toppfilter + venstrefilter slik de er konfigurert)	Default (top filter + left filter as configured)
+Standard høyde for filterlister:	Default height for filter lists:
+Standard liste	Default list
+standard, grid, compact, plain, date-and-title, simple-cards<br><strong>Standard:</strong> hentes fra Kursdesign	standard, grid, compact, plain, date-and-title, simple-cards<br><strong>Default:</strong> fetched from Course design
+standard, kommaseparert liste (feks alta,oslo,bergen eller "Oslo,Mo i Rana")<br><strong>Standard</strong>: viser alle steder	standard, comma-separated list (e.g. alta,oslo,bergen or "Oslo,Mo i Rana")<br><strong>Default</strong>: shows all locations
+Standard: 1300px	Default: 1300px
+Standard: 16px	Default: 16px
+Standard: inherit	Default: inherit
+Startdato	Start date
+Startdato:	Start date:
+Starter:	Starts:
+Startmåned	Start month
+Status	Status
+Sted	Location
+sted, ikke-sted<br><strong>Standard</strong>: viser alle	location, not-location<br><strong>Default</strong>: shows all
+Sted:	Location:
+Stedinfo	Location info
+Stedsnavn mangler	Location name missing
+Stedsnavn og regioner	Location names and regions
+Stil	Style
+Styre utseende på kurslister	Control course list appearance
+Støtte for "Site Reviews"-plugin, anmeldelser	Support for "Site Reviews" plugin, reviews
+Støttede SEO-utvidelser	Supported SEO plugins
+Synkronisering	Synchronization
+Synkronisering av kurs	Course synchronization
+Synlig	Visible
+Synlige kurs	Visible courses
+Synlighet	Visibility
+Synlighet lister	List visibility
+Synlighet og skjuling	Visibility and hiding
+Systemside ble opprettet.	System page was created.
+Systemside ble slettet.	System page was deleted.
+Søk	Search
+Søk etter kurs	Search for courses
+Søk etter kurs...	Search for courses...
+Søk etter kurskategori	Search for course category
+Søk i instruktører	Search instructors
+Søk i kursdato	Search course dates
+Søk i kurssteder	Search course locations
+Søk KA kurs	Search KA courses
+Søkefelt:	Search field:
+Søkefeltet får pill-form, tydelig kant og forstørrelsesglass til høyre. Gjelder kun når søk ligger i venstre kolonne.	The search field gets a pill shape, clear border and magnifying glass on the right. Only applies when search is in the left column.
+sørlandet, østlandet, vestlandet, midt-norge, nord-norge<br><strong>Standard</strong>: ingen filtrering	sørlandet, østlandet, vestlandet, midt-norge, nord-norge<br><strong>Default</strong>: no filtering
+Ta kontakt med oss, så hjelper vi deg med å finne det perfekte kurset for dine behov.	Contact us and we will help you find the perfect course for your needs.
+Ta tak i filteret du ønsker å bruke, og dra til enten venstre kolonne eller over kursliste. Velg om filteret skal vises som tagger eller avkrysningsliste.<br>For å fjerne et filter, dra det tilbake til tilgjengelige filtre. Husk å <strong>lagre</strong> endringene dine.	Grab the filter you want to use and drag it to either the left column or above the course list. Choose whether the filter should be displayed as tags or a checklist.<br>To remove a filter, drag it back to available filters. Remember to <strong>save</strong> your changes.
+Tablet:	Tablet:
+Taksonomi-sider	Taxonomy pages
+Taksonomiene <strong>Kurskategorier</strong>, <strong>Kurssteder</strong> og <strong>Instruktører</strong> er tilgjengelige som egne Gutenberg-blokker i blokkeditoren.	The taxonomies <strong>Course categories</strong>, <strong>Course locations</strong> and <strong>Instructors</strong> are available as separate Gutenberg blocks in the block editor.
+Taksonomier (kategori, sted, instruktør)	Taxonomies (category, location, instructor)
+Taksonomisider	Taxonomy pages
+tekst<br><strong>Standard</strong>: tom (ingen klasse)	text<br><strong>Default</strong>: empty (no class)
+Teksten justerer seg etter skjermstørrelse. Dette er den minste fontstørrelsen du vil bruke for tekst og overskrifter.	Text adjusts to screen size. This is the smallest font size you will use for text and headings.
+Tekstfarge	Text color
+Telefon	Phone
+Tema for enkeltkurs	Theme for single course
+Tema for kurslister	Theme for course lists
+Tema-standard	Theme default
+Tematilpasninger	Theme customizations
+Test frontend: kursliste, enkeltkurs, kategorier, kurssteder og instruktører, og juster filtrene/design ved behov.	Test frontend: course list, single course, categories, course locations and instructors, and adjust filters/design as needed.
+Tid	Time
+tid, varighet, pris, sted, fritekst-sted, rom, instruktør, sluttdato, påmeldingsfrist<br><strong>Standard:</strong> hentes fra Kursdesign	time, duration, price, location, free-text location, room, instructor, end date, registration deadline<br><strong>Default:</strong> fetched from Course design
+Tidligste dato	Earliest date
+Tidspunkt:	Time:
+Til toppen	Back to top
+Tilbake til %s	Back to %s
+Tilbakestill innhold	Reset content
+Tilbyder guid:	Provider GUID:
+Tilbyder ID:	Provider ID:
+Tildelt side	Assigned page
+Tilgjengelige felter	Available fields
+Tilgjengelige filtre:	Available filters:
+Tilgjengelige ikoner	Available icons
+Tilpass grunnleggende designvariabler som farger, skriftstørrelser, og maksbredde på plugin-sider.	Customize basic design variables such as colors, font sizes, and max width on plugin pages.
+Tilpass visningen av kurslisten. Denne vises på systemsiden "Kurs", og alle andre steder som bruker kortkoden <span class="copytext">[kursliste]</span>.	Customize the course list display. This is shown on the system page "Courses" and everywhere else that uses the shortcode <span class="copytext">[kursliste]</span>.
+Tips og feilsøking	Tips and troubleshooting
+Tips: Hvis du har mange kurskategorier, kan du velge ut noen som hovedkategorier eller opprette egne. Dette gjør kategoriene mer oversiktlige for besøkende.	Tip: If you have many course categories, you can select some as main categories or create your own. This makes the categories more manageable for visitors.
+Trello changelog	Trello changelog
+Tøm farger	Clear colors
+Ugyldig forespørsel	Invalid request
+Ugyldig sikkerhetskode	Invalid security code
+Ukjent feil	Unknown error
+Ulike layout. Stablet viser bilde over kurs-/kategorinavn, rad viser bilde til venstre. Liste viser alle navn under hverandre. Liste har lavere mellomrom mellom punktene, og passer bedre med små bilder/uten bilder.	Different layouts. Stacked shows image above course/category name; row shows image to the left. List shows all names stacked vertically. List has less spacing between items and works better with small images or no images.
+Ulike tilleggsfunksjoner	Various additional features
+Under <a href="admin.php?page=design">Kursdesign</a> styrer du listedesign på systemsidene. Det finnes innstillinger for bildebruk, antall kolonner og paginering.	Under <a href="admin.php?page=design">Course design</a> you control list design on system pages. There are settings for image use, number of columns and pagination.
+Under <a href="admin.php?page=design#section-systemsider">Kursdesign → Wordpress sider</a> kan du opprette følgende sider:	Under <a href="admin.php?page=design#section-systemsider">Course design → WordPress pages</a> you can create the following pages:
+Under bilde og beskrivelse	Below image and description
+Under overskrift, over filter/paginering og liste.	Below heading, above filter/pagination and list.
+Underkategorier:	Subcategories:
+Undervalg for "Vis alle kursdatoer"	Sub-option for "Show all course dates"
+Undervalg for "Vis hovedkurs"	Sub-option for "Show main courses"
+Unntak: Du kan legge til ekstra innhold mellom "Introtekst" og "Innhold" på enkeltkurs hvis du ønsker å berike kursene med nettstedsspesifikk informasjon.	Exception: You can add extra content between "Intro text" and "Content" on single courses if you want to enrich courses with site-specific information.
+URL-er	URLs
+URL-er og SEO	URLs and SEO
+Utdrag	Excerpt
+Utseende venstre filterkolonne	Left filter column appearance
+Utvid %s	Expand %s
+Utvidelse	Plugin
+Utvidet beskrivelse	Extended description
+Utviklet av %s	Developed by %s
+Valg	Option
+Valg for bilder	Image options
+Valg for lister og grid	Options for lists and grid
+Variant	Variant
+Varighet	Duration
+Varighet:	Duration:
+Ved å bytte designmal endres hele presentasjonen av kurset. Dette kan påvirke hvordan besøkende opplever kursinformasjonen.	Changing the design template changes the entire presentation of the course. This can affect how visitors experience the course information.
+Velg	Select
+Velg "Fullt navn", "Fornavn" eller "Etternavn" i feltet "Navnevisning".	Choose "Full name", "First name" or "Last name" in the "Name display" field.
+Velg bakgrunnsfarge:	Select background color:
+Velg bilde	Select image
+Velg dato	Select date
+Velg datoer	Select dates
+Velg design på sider som viser kursdetaljer, både for alle lokasjoner og enkeltlokasjoner.	Select design for pages showing course details, both for all locations and single locations.
+Velg designet på siden. Dette styrer hvor/hvordan tittel, tekst, hovedbilde og kursliste vises.	Choose the page design. This controls where/how title, text, main image and course list are displayed.
+Velg en forelder for å lage et hierarki, og la dette bli en subkategori.	Choose a parent to create a hierarchy and make this a subcategory.
+Velg et felles design for kurskategorier, kurssteder og instruktører. Du kan også velge å ha egne design for hver enkelt taksonomi.	Choose a shared design for course categories, course locations and instructors. You can also choose to have separate designs for each taxonomy.
+Velg farger	Select colors
+Velg filtre på kursliste i <a href="admin.php?page=design">Kursdesign</a>, og også andre designvalg (liste/grid, detaljer, og malvalg).	Choose filters on the course list in <a href="admin.php?page=design">Course design</a>, and other design choices (list/grid, details, and template selection).
+Velg font-farge (valgfritt):	Select font color (optional):
+Velg fra-til dato	Select from-to date
+Velg helt firkantede bilder, litt avrundet i kantene, eller runde bilder.	Choose fully square images, slightly rounded corners, or round images.
+Velg hovedbilde	Set featured image
+Velg hvilke filtre som skal vises på kurslisten. Du kan dra filteret til enten venstre kolonne eller over kursliste. Velg om filteret skal vises som tagger eller avkrysningsliste.	Choose which filters to display on the course list. You can drag the filter to either the left column or above the course list. Choose whether the filter should be displayed as tags or a checklist.
+Velg hvilken overskrift du vil bruke for navnene.	Choose which heading to use for names.
+Velg hvilken region denne lokasjonen tilhører.	Choose which region this location belongs to.
+Velg hvordan kurslistene på taksonomisidene skal vises:	Choose how course lists on taxonomy pages are displayed:
+Velg instruktør	Select instructor
+Velg kategori	Select category
+Velg kurssted	Select course location
+Velg listedesign for kortkoden <span class="copytext">[kursliste]</span> uten å endre global innstilling i Kursdesign.	Choose list design for the <span class="copytext">[kursliste]</span> shortcode without changing the global setting in Course design.
+Velg minst én rad før du bruker masseredigering.	Select at least one row before using bulk edit.
+Velg måned	Select month
+Velg om denne skal vises i autogenererte menyer.	Choose whether this should appear in auto-generated menus.
+Velg om denne skal vises i kategorilister og oversikter.	Choose whether this should appear in category lists and overviews.
+Velg om denne skal vises i kursagentens egne oversikter.	Choose whether this should appear in Kursagenten's own overviews.
+Velg om kurslisten skal vise vanlig knappestil eller kun påmeldingslink-stil.	Choose whether the course list should show standard button style or registration link style only.
+Velg periode	Select period
+Velg pris	Select price
+Velg sider og design	Select pages and design
+Velg sider som tilegnes til ulike deler av Kursagenten. Du kan velge fra eksisterende sider, eller opprette nye sider.	Select pages assigned to different parts of Kursagenten. You can choose from existing pages or create new pages.
+Velg språk	Select language
+Velg standard antall kurs som skal vises per side (1-50)	Select default number of courses to display per page (1-50)
+Velg sted...	Select location...
+Velg stedet fra listen eller skriv inn navnet manuelt, og angi det nye navnet.	Select the location from the list or enter the name manually, and specify the new name.
+Velg tidspunkt	Select time
+Velg ønsket automeny (f.eks. <strong>Kurskategorier</strong>, <strong>Kategorier og kurs</strong>, <strong>Kurssteder</strong> eller <strong>Instruktører</strong>) og klikk <strong>Legg til i meny</strong>.	Choose the desired auto menu (e.g. <strong>Course categories</strong>, <strong>Categories and courses</strong>, <strong>Course locations</strong> or <strong>Instructors</strong>) and click <strong>Add to menu</strong>.
+Velg å vise fornavn, etternavn eller begge.	Choose to show first name, last name or both.
+Velg å vise/skjule kurskategorier/menypunkter som hører til spesifikke steder. Eksempel: vis alle kurs som ikke er nettkurs: st="ikke-nettbasert"	Choose to show/hide course categories/menu items belonging to specific locations. Example: show all courses that are not online courses: st="ikke-nettbasert"
+Velge om menyen skal vise <strong>hovedkategorier</strong>, <strong>subkategorier</strong> eller starte i en bestemt kategori.	Choose whether the menu should show <strong>top-level categories</strong>, <strong>subcategories</strong> or start in a specific category.
+Velkommen til Kursagenten	Welcome to Kursagenten
+Venstre kolonne	Left column
+venstre, topp, filter-knapp, skjul<br><strong>Standard:</strong> slik filtere er satt opp i Kursdesign	left, top, filter button, hide<br><strong>Default:</strong> as filters are set up in Course design
+Viktig info om url-er<br>Her kan du endre url for kurs, instruktør, kurskategori og kurssted. <span style="color:#b74444;font-weight:bold;">OBS! Ikke rør med mindre du vet hva du gjør.</span> Det kan ødelegge nettstedet, og gjøre disse sidene utilgjengelige. Husk å lagre <a href="/wp-admin/options-permalink.php" target="_blank">permalenkeinnstillingene</a> etter du har gjort en endring.	Important info about URLs<br>Here you can change the URL for courses, instructor, course category and course location. <span style="color:#b74444;font-weight:bold;">NOTE! Do not change unless you know what you are doing.</span> This can break the site and make these pages unavailable. Remember to save <a href="/wp-admin/options-permalink.php" target="_blank">permalink settings</a> after making a change.
+Viktig:	Important:
+Viktig: Kursene skal i hovedsak <strong>ikke redigeres på nettsiden</strong> – all redigering bør gjøres i Kursagenten. Dette sikrer at informasjonen er oppdatert og riktig synkronisert.	Important: Courses should <strong>not be edited on the website</strong> in general – all editing should be done in Kursagenten. This ensures the information is up to date and correctly synchronized.
+Vis	Show
+Vis (i)	Show (i)
+Vis (k)	Show (k)
+Vis (s)	Show (s)
+Vis alle kurs	Show all courses
+Vis alle kursdatoer (med filtre)	Show all course dates (with filters)
+Vis alle synligheter	Show all visibility states
+Vis antall kurs	Show number of courses
+Vis bilder:	Show images:
+Vis detaljer	View details
+Vis filter i boks med bakgrunn	Show filter in box with background
+Vis filter med kategorier som også er brukt på kurs med denne kategorien, i tillegg til underkategoriene. Nyttig om du ikke kan lage en hovedkategori med underkategorier, men vil ha mulighet til å filtrere likevel.	Show filter with categories also used on courses with this category, in addition to subcategories. Useful if you cannot create a parent category with subcategories but still want filtering.
+Vis filtrene i venstre kolonne	Show filters in left column
+Vis filtrene på toppen av listen	Show filters at the top of the list
+Vis flere fargevalg	Show more color options
+Vis flere lokasjoner	Show more locations
+Vis flere lokasjoner +	Show more locations +
+Vis færre	Show fewer
+Vis hovedkategorier	Show main categories
+Vis hovedkurs (med neste tilgjengelige dato)	Show main courses (with next available date)
+Vis i Google Maps	View in Google Maps
+Vis i listen (taksonomi):	Show in list (taxonomy):
+Vis i listen:	Show in list:
+Vis instruktør	Show instructor
+Vis instruktører i enkeltkurs	Show instructors in single course
+Vis instruktører:	Show instructors:
+Vis KA kurs	View KA course
+Vis kategorien og tilhørende kurs	Show category and related courses
+Vis kategorifilter	Show category filter
+Vis kategorifilter (visningstype Alle kursdatoer)	Show category filter (display type All course dates)
+Vis knapper	Show buttons
+Vis kontaktperson i enkeltkurs	Show contact person in single course
+Vis kontaktperson:	Show contact person:
+Vis kun kategorier med kurs på angitt sted (valgfritt)	Show only categories with courses at the specified location (optional)
+Vis kun kurs, ikke kategorier	Show only courses, not categories
+Vis kun ledige	Show available only
+Vis kun ledige kurs som standard	Show available courses only by default
+Vis kun ledige plasser	Show only available places
+Vis kurs	View course
+Vis kurs i %s	View courses in %s
+Vis kursdato	View course date
+Vis kursfilter på kategoriside	Show course filter on category page
+Vis kurskategori	Show course category
+Vis kurssted	Show course location
+Vis link-bokser etter kurslisten:	Show link boxes after course list:
+Vis link-bokser til flere kategorier/steder/instruktører etter kurslisten	Show link boxes to more categories/locations/instructors after course list
+Vis link-bokser:	Show link boxes:
+Vis liste med spesifikke lokasjoner under hvert stedsnavn. Dette kommer fra feltet "Fritekst sted" i Kursagenten.	Show list of specific locations under each location name. This comes from the "Free-text location" field in Kursagenten.
+Vis menypunkter:	Show menu items:
+Vis mer	Show more
+Vis påmeldingslink	Show registration link
+Vis resultater	Show results
+Vis som kort, med hvit bakgrunn og skygge bak hele kortet.	Show as card with white background and shadow behind the entire card.
+Vis subkategorier	Show subcategories
+Vis tekst fra feltet "Kort beskrivelse".	Show text from the "Short description" field.
+Vis tekst fra feltet "Utvidet beskrivelse". Merk at dette vil overskrive utdrag.	Show text from the "Extended description" field. Note that this will override the excerpt.
+Vise fullt navn, fornavn eller etternavn	Show full name, first name or last name
+viser alle steder i Østlandet eller Bergen (OR-logikk)	shows all locations in Østlandet or Bergen (OR logic)
+viser kun kurssteder i Østlandet	shows only course locations in Østlandet
+Vises rett etter H1 i toppseksjonen.	Displayed right after H1 in the top section.
+Vises rett under hele header-blokken.	Displayed right below the entire header block.
+Visningstype:	Display type:
+Vår Course-schema	Include Course schema
+Vår SEO av (meta-tagger)	Turn SEO off (meta tags)
+Våre tilpasninger (tittel/beskrivelse)	Customizations (title/description)
+Webhooks	Webhooks
+Webhooks sikrer at kursene dine alltid er oppdatert uten manuell innsats. For å aktivere webhooks:	Webhooks ensure your courses are always up to date without manual effort. To enable webhooks:
+Wordpress har stort sett støtte for javascript biblioteket Jquery. Hvis det ikke er støtte for dette, kan du velge å aktivere det her.<br><br>	WordPress generally supports the JavaScript library jQuery. If there is no support for this, you can choose to enable it here.<br><br>
+Wordpress sider	WordPress pages
+yes, no<br><strong>Standard:</strong> hentes fra Kursdesign	yes, no<br><strong>Default:</strong> fetched from Course design
+YouTube	YouTube
+Øverst i høyre kolonne.	At the top of the right column.
+Åpne %s i Google Maps	Open %s in Google Maps
+Åpne <a href="admin.php?page=kursinnstillinger">Synkronisering</a> og koble mot Kursagenten-kontoen din. Legg inn <a href="https://kursadmin.kursagenten.no/IntegrationSettings" target="_blank">Webhooks</a> i Kursagenten, så blir kurset overført automatisk når det blir lagret/opprettet. <br>Første gang bør du klikke på "Hent alle kurs fra Kursagenten". Da henter du alle kursene samtidig.	Open <a href="admin.php?page=kursinnstillinger">Synchronization</a> and connect to your Kursagenten account. Add <a href="https://kursadmin.kursagenten.no/IntegrationSettings" target="_blank">Webhooks</a> in Kursagenten so the course is transferred automatically when saved/created.<br>The first time, click "Fetch all courses from Kursagenten" to fetch all courses at once.
+Åpne adresse i Google Maps	Open address in Google Maps
+Åpne i Google Maps	Open in Google Maps
+0 = ingen begrensning	0 = no limit
+Alle steder	All locations
+Alternativt bilde	Alternative image
+Automatisk (anbefalt)	Automatic (recommended)
+Automatisk bruker responsivt srcset når mulig for skarpere bilder.	Automatic uses responsive srcset when possible for sharper images.
+Avrundet	Rounded
+Bakgrunn	Background
+Bakgrunn hover	Background hover
+Bakgrunnsbilde	Background image
+Bakgrunnsfarge	Background color
+Bakgrunnsfarge bak bilde	Background color behind image
+Bakgrunnskilde	Background source
+Behold H3 som standard med mindre du har en tydelig semantisk grunn til å endre.	Keep H3 as default unless you have a clear semantic reason to change it.
+Bilde	Image
+Bilde hentes fra instruktørprofil i Kursagenten. Dette bildet kan overstyres her inne på nettsiden. Det er også mulig å bruke et alternativt bilde om du ønsker en annen stil/annet bilde enn det som er brukt i Kursagenten.	Images are fetched from the instructor profile in Kursagenten. This image can be overridden on the website. You can also use an alternative image if you want a different style or image than the one used in Kursagenten.
+H2	H2
+H3	H3
+H4	H4
+H5	H5
+H6	H6
+Kursagenten	Kursagenten
+P	P
+Portrett 2:3	Portrait 2:3
+Portrett 3:4	Portrait 3:4
+Plassholderbilde	Placeholder image
+Preset-stiler	Preset styles
+Prikket	Dotted
+Profilbilde	Profile image
+Rad kort	Row card
+Rad standard	Row standard
+Rad utvidet beskrivelse	Row extended description
+Radavstand	Row spacing
+Ramme:	Border:
+Rammefarge	Border color
+Rammeinnstillinger	Border settings
+Rammestil	Border style
+Rammetykkelse	Border width
+Rediger i Element-kort	Edit in Element card
+Region	Region
+Region er deaktivert i Synkronisering → Regioner.	Region is disabled in Synchronization → Regions.
+Rund	Round
+Sentrert	Centered
+Skjul %s	Hide %s
+Skjul instruktører	Hide instructors
+Skygge/kantstil	Shadow/border style
+Solid	Solid
+Spacing	Spacing
+Span	Span
+Stablet kort	Stacked card
+Stablet kort innfelt	Stacked inset card
+Stablet kort overlapp	Stacked overlapping card
+Stablet standard	Stacked standard
+Standard profilbilde	Standard profile image
+Start direkte med visuelle stilvalg	Start directly with visual style choices
+Stedsbeskrivelser fra feltet 'Sted' i Kursagenten.	Location descriptions from the 'Location' field in Kursagenten.
+Stedsfilter (st)	Location filter (loc)
+Stedsnavn hentes fra Kursagenten. Det er mulig å endre stedsnavnet. For at dette skal bli korrekt i alle titler og url-er, bør dette gjøres under Admin → Kursagenten → Synkronisering. Endre navn, og hent deretter alle kurs på nytt. Da vil alle forekomster av stedsnavn blir vist korrekt.	Location names are fetched from Kursagenten. You can change the location name. For this to be correct in all titles and URLs, do this under Admin → Kursagenten → Synchronization. Change the name, then re-fetch all courses. All occurrences of the location name will then display correctly.
+Stedstekst: her har vi ingen felter i Kursagenten, og alt må legges inn på nettsiden. Du har mulighet til å legge inn både Kort beskrivelse og Lang beskrivelse. Dette dukker opp på de enkelte kurssted-sidene på nettsiden.	Location text: we have no fields for this in Kursagenten, and everything must be added on the website. You can add both Short description and Long description. These appear on the individual course location pages on the website.
+Stiplet	Dashed
+Stor	Large
+Subkategorier	Subcategories
+Svak	Subtle
+Taksonomibilde	Taxonomy image
+Tekst	Text
+Tekst blir hentet fra introtekst og kursbeskrivelse i Kursagenten. Det er mulig å legge inn egen tekst i tillegg her på websiden. Naviger til kurset som innlogget admin, og klikk deretter på «Legg til ekstra Wordpress innhold» mellom introtekst og kursbeskrivelse.	Text is fetched from the intro text and course description in Kursagenten. You can add your own text on the website as well. Navigate to the course while logged in as admin, then click "Add extra WordPress content" between the intro text and course description.
+Tekst minst til størst (px)	Text smallest to largest (px)
+Thumbnail	Thumbnail
+Tittel	Title
+Tittel minst til størst (px)	Title smallest to largest (px)
+Tittel-element	Title element
+Tøm	Clear
+Topp	Top
+TOPP	TOP
+Tynn	Thin
+Vanlig	Regular
+Velg bildetype	Select image type
+Velg elementer	Select items
+Velg foreldrekategori	Select parent category
+Velg kategorinivå	Select category level
+Velg region for filtrering. Kan kombineres med stedvalg ('x eller y'-logikk).	Select region for filtering. Can be combined with location selection ('x or y' logic).
+Velg steder	Select locations
+Velg stil	Select style
+Venstre	Left
+VENSTRE	LEFT
+Vis beskrivelse	Show description
+Vis bilde	Show image
+Vis e-post	Show email
+Vis eller skjul kategorier knyttet til valgt sted.	Show or hide categories linked to the selected location.
+Vis instruktører med preset-stiler	Show instructors with preset styles
+Vis instruktører uten kurs	Show instructors without courses
+Vis instruktørnavn som	Show instructor name as
+Vis kun %s	Show only %s
+Vis kun følgende steder	Show only the following locations
+Vis kurskategorier med preset-stiler	Show course categories with preset styles
+Vis kurskategorier, kurssteder eller instruktører med preset-stiler.	Show course categories, course locations, or instructors with preset styles.
+Vis kurssteder med preset-stiler	Show course locations with preset styles
+Vis lang beskrivelse	Show long description
+Vis også manuelt opprettede instruktører uten publiserte kurs.	Also show manually created instructors without published courses.
+Vis stedinfo	Show location info
+Vis telefon	Show phone
+Wrapper padding	Wrapper padding

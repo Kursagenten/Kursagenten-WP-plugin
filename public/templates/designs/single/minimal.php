@@ -26,6 +26,11 @@ $location = get_post_meta($course_id, 'ka_course_location', true);
 $location_freetext = get_post_meta($course_id, 'ka_course_location_freetext', true);
 $location_room = get_post_meta($course_id, 'ka_course_location_room', true);
 $button_text = get_post_meta($course_id, 'ka_course_button_text', true);
+$show_registration_meta = get_post_meta($course_id, 'ka_course_showRegistrationForm', true);
+$show_registration = function_exists('kursagenten_normalize_bool')
+    ? kursagenten_normalize_bool($show_registration_meta)
+    : !empty($show_registration_meta) && $show_registration_meta !== 'false';
+$button_label = kursagenten_get_course_button_label((string) $button_text, $show_registration);
 $signup_url = get_post_meta($course_id, 'ka_course_signup_url', true);
 
 // Hent taksonomier
@@ -82,68 +87,68 @@ $locations = get_the_terms($course_id, 'ka_course_location');
                 <?php endif; ?>
                 
                 <div class="course-info-box">
-                    <h3>Kursinformasjon</h3>
+                    <h3><?php esc_html_e('Kursinformasjon', 'kursagenten'); ?></h3>
                     
                     <div class="info-list">
                         <?php if (!empty($first_course_date)) : ?>
                             <div class="info-item">
-                                <div class="info-label">Startdato:</div>
+                                <div class="info-label"><?php echo esc_html__('Startdato:', 'kursagenten'); ?></div>
                                 <div class="info-value"><?php echo esc_html(ka_format_date($first_course_date)); ?></div>
                             </div>
                         <?php endif; ?>
 
                         <?php if (!empty($last_course_date)) : ?>
                             <div class="info-item">
-                                <div class="info-label">Sluttdato:</div>
+                                <div class="info-label"><?php echo esc_html__('Sluttdato:', 'kursagenten'); ?></div>
                                 <div class="info-value"><?php echo esc_html(ka_format_date($last_course_date)); ?></div>
                             </div>
                         <?php endif; ?>
 
                         <?php if (!empty($registration_deadline)) : ?>
                             <div class="info-item">
-                                <div class="info-label">Påmeldingsfrist:</div>
+                                <div class="info-label"><?php echo esc_html__('Påmeldingsfrist:', 'kursagenten'); ?></div>
                                 <div class="info-value"><?php echo esc_html(ka_format_date($registration_deadline)); ?></div>
                             </div>
                         <?php endif; ?>
 
                         <?php if (!empty($duration)) : ?>
                             <div class="info-item">
-                                <div class="info-label">Varighet:</div>
+                                <div class="info-label"><?php echo esc_html__('Varighet:', 'kursagenten'); ?></div>
                                 <div class="info-value"><?php echo esc_html($duration); ?></div>
                             </div>
                         <?php endif; ?>
 
                         <?php if (!empty($coursetime)) : ?>
                             <div class="info-item">
-                                <div class="info-label">Tidspunkt:</div>
+                                <div class="info-label"><?php echo esc_html__('Tidspunkt:', 'kursagenten'); ?></div>
                                 <div class="info-value"><?php echo esc_html($coursetime); ?></div>
                             </div>
                         <?php endif; ?>
 
                         <?php if (!empty($price)) : ?>
                             <div class="info-item">
-                                <div class="info-label">Pris:</div>
+                                <div class="info-label"><?php echo esc_html__('Pris:', 'kursagenten'); ?></div>
                                 <div class="info-value"><?php echo esc_html($price); ?> <?php echo esc_html($after_price); ?></div>
                             </div>
                         <?php endif; ?>
 
                         <?php if (!empty($location)) : ?>
                             <div class="info-item">
-                                <div class="info-label">Sted:</div>
+                                <div class="info-label"><?php echo esc_html__('Sted:', 'kursagenten'); ?></div>
                                 <div class="info-value notranslate" translate="no"><?php echo esc_html($location); ?></div>
                             </div>
                         <?php endif; ?>
 
                         <?php if (!empty($location_freetext)) : ?>
                             <div class="info-item">
-                                <div class="info-label">Lokasjon:</div>
+                                <div class="info-label"><?php echo esc_html__('Lokasjon:', 'kursagenten'); ?></div>
                                 <div class="info-value notranslate" translate="no"><?php echo esc_html($location_freetext); ?></div>
                             </div>
                         <?php endif; ?>
 
                         <?php if (!empty($location_room)) : ?>
                             <div class="info-item">
-                                <div class="info-label">Rom:</div>
+                                <div class="info-label"><?php echo esc_html__('Rom:', 'kursagenten'); ?></div>
                                 <div class="info-value notranslate" translate="no"><?php echo esc_html($location_room); ?></div>
                             </div>
                         <?php endif; ?>
@@ -152,7 +157,7 @@ $locations = get_the_terms($course_id, 'ka_course_location');
                     <?php if (!empty($signup_url)) : ?>
                         <div class="sidebar-actions">
                             <a href="<?php echo esc_url($signup_url); ?>" class="course-button primary full-width">
-                                <?php echo esc_html($button_text ? $button_text : 'Meld deg på'); ?>
+                                <?php echo esc_html($button_label); ?>
                             </a>
                         </div>
                     <?php endif; ?>
@@ -160,7 +165,7 @@ $locations = get_the_terms($course_id, 'ka_course_location');
                 
                 <?php if (!empty($categories)) : ?>
                     <div class="course-categories-box">
-                        <h3>Kategorier</h3>
+                        <h3><?php esc_html_e('Kategorier', 'kursagenten'); ?></h3>
                         <div class="categories-list">
                             <?php foreach ($categories as $category) : ?>
                                 <a href="<?php echo esc_url(get_term_link($category)); ?>" class="category-tag">

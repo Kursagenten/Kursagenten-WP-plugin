@@ -11,7 +11,9 @@ $query = get_course_dates_query();
 $top_filters = get_option('kursagenten_top_filters', []);
 $left_filters = get_option('kursagenten_left_filters', []);
 $filter_types = get_option('kursagenten_filter_types', []);
-$available_filters = get_option('kursagenten_available_filters', []);
+$available_filters = kursagenten_localize_available_filters(
+    get_option('kursagenten_available_filters', [])
+);
 
 // Convert filter settings to arrays if they're stored as comma-separated strings
 if (!is_array($top_filters)) {
@@ -109,16 +111,8 @@ $taxonomy_data['language']['terms'] = $language_terms;
 //$taxonomy_data['month']['terms'] = $month_terms;
 
 // **Bring terms and meta data together
-// Prepare filter-information (place after $available_filters and $taxonomy_data are defined)
-$filter_display_info = [];
-foreach ($available_filters as $filter_key => $filter_info) {
-    $filter_display_info[$filter_key] = [
-        'label' => $filter_info['label'] ?? '',
-        'placeholder' => $filter_info['placeholder'] ?? 'Velg',
-        'filter_key' => $taxonomy_data[$filter_key]['filter_key'] ?? '',
-        'url_key' => $taxonomy_data[$filter_key]['url_key'] ?? ''
-    ];
-}
+// Prepare filter-information (place after $available_filters and $taxonomy_data are defined).
+$filter_display_info = kursagenten_build_filter_display_info($available_filters, $taxonomy_data);
 
 ?>
 
@@ -146,7 +140,7 @@ foreach ($available_filters as $filter_key => $filter_info) {
                     <?php foreach ($top_filters as $filter) : ?>
                         <div class="filter-item <?php echo esc_attr($filter_types[$filter] ?? ''); ?> <?php echo esc_attr($search_class); ?>">
                             <?php if ($filter === 'search') : ?>
-                                <input type="text" id="search" name="search" class="filter-search <?php echo esc_attr($search_class); ?>" placeholder="Søk etter kurs...">
+                                <input type="text" id="search" name="search" class="filter-search <?php echo esc_attr($search_class); ?>" placeholder="<?php echo esc_attr__('Søk etter kurs...', 'kursagenten'); ?>">
                             <?php elseif ($filter === 'date') : ?>
                                 <?php
                                 $date = "";
@@ -170,9 +164,9 @@ foreach ($available_filters as $filter_key => $filter_info) {
                                             data-filter-key="date"
                                             data-url-key="dato"
                                             name="calendar-input"
-                                            placeholder="Velg fra-til dato"
+                                            placeholder="<?php echo esc_attr__('Velg fra-til dato', 'kursagenten'); ?>"
                                             value="<?php echo esc_attr($date); ?>"
-                                            aria-label="Velg datoer">
+                                            aria-label="<?php echo esc_attr__('Velg datoer', 'kursagenten'); ?>">
                                     <i class="ka-icon icon-chevron-down"></i>
                                 </div>
                             <?php elseif (!empty($taxonomy_data[$filter]['terms'])) : ?>
@@ -196,7 +190,7 @@ foreach ($available_filters as $filter_key => $filter_info) {
                                             // Get filter information from prepared array
                                             $current_filter_info = $filter_display_info[$filter] ?? [];
                                             $filter_label = $current_filter_info['label'] ?? '';
-                                            $filter_placeholder = $current_filter_info['placeholder'] ?? 'Velg';
+                                            $filter_placeholder = $current_filter_info['placeholder'] ?? __('Velg', 'kursagenten');
 
                                             // Get active filters from URL parameters
                                             $url_key = $taxonomy_data[$filter]['url_key'];
@@ -222,7 +216,7 @@ foreach ($available_filters as $filter_key => $filter_info) {
 
                                                 $display_text = count($active_names) <= 2 ?
                                                     implode(', ', $active_names) :
-                                                    sprintf('%d %s valgt', count($active_names), strtolower($filter_label));
+                                                    sprintf(__('%d %s valgt', 'kursagenten'), count($active_names), strtolower($filter_label));
                                             }
 
                                             $has_active_filters = !empty($active_filters) ? 'has-active-filters' : '';
@@ -262,7 +256,7 @@ foreach ($available_filters as $filter_key => $filter_info) {
 
                     <div id="active-filters-container">
                         <div id="active-filters" class="active-filters"></div>
-                        <a href="#" id="reset-filters" class="reset-filters reset-filters-btn">Nullstill filter</a>
+                        <a href="#" id="reset-filters" class="reset-filters reset-filters-btn"><?php esc_html_e('Nullstill filter', 'kursagenten'); ?></a>
                     </div>
                 </div> <!-- End .filter-container filter-top -->
             </div> <!-- End .course-grid -->    
@@ -315,9 +309,9 @@ foreach ($available_filters as $filter_key => $filter_info) {
                                                     data-filter-key="date"
                                                     data-url-key="dato"
                                                     name="calendar-input"
-                                                    placeholder="Velg fra-til dato"
+                                                    placeholder="<?php echo esc_attr__('Velg fra-til dato', 'kursagenten'); ?>"
                                                     value="<?php echo esc_attr($date); ?>"
-                                                    aria-label="Velg datoer">
+                                                    aria-label="<?php echo esc_attr__('Velg datoer', 'kursagenten'); ?>">
                                             <i class="ka-icon icon-chevron-down"></i>
                                         </div>
                                     <?php elseif (!empty($taxonomy_data[$filter]['terms'])) : ?>
@@ -376,23 +370,23 @@ foreach ($available_filters as $filter_key => $filter_info) {
                         <div class="courselist-header">
                             <!-- Course Count -->
                             <div id="courselist-header-left">
-                                <div id="course-count"><?php echo $course_count; ?> kurs <?php echo $query->max_num_pages > 1 ? sprintf("- side %d av %d", $query->get('paged'), $query->max_num_pages) : ''; ?></div>                              
+                                <div id="course-count"><?php echo esc_html(sprintf(_n('%d kurs', '%d kurs', (int) $course_count, 'kursagenten'), (int) $course_count)); ?> <?php echo $query->max_num_pages > 1 ? sprintf(__(' - side %d av %d', 'kursagenten'), $query->get('paged'), $query->max_num_pages) : ''; ?></div>                              
                             </div>
 
                             <!-- Sorting Controls -->
                             <div id="courselist-header-right">
                                 <div class="sort-dropdown">
                                     <div class="sort-dropdown-toggle">
-                                        <span class="selected-text">Sorter etter</span>
+                                        <span class="selected-text"><?php esc_html_e('Sorter etter', 'kursagenten'); ?></span>
                                         <span class="dropdown-icon"><i class="ka-icon icon-chevron-down"></i></span>
                                     </div>
                                     <div class="sort-dropdown-content">
-                                        <button class="sort-option" data-sort="title" data-order="asc">Fra A til Å</button>
-                                        <button class="sort-option" data-sort="title" data-order="desc">Fra Å til A</button>
-                                        <button class="sort-option" data-sort="price" data-order="asc">Pris lav til høy</button>
-                                        <button class="sort-option" data-sort="price" data-order="desc">Pris høy til lav</button>
-                                        <button class="sort-option" data-sort="date" data-order="asc">Tidligste dato</button>
-                                        <button class="sort-option" data-sort="date" data-order="desc">Seneste dato</button>
+                                        <button class="sort-option" data-sort="title" data-order="asc"><?php esc_html_e('Fra A til Å', 'kursagenten'); ?></button>
+                                        <button class="sort-option" data-sort="title" data-order="desc"><?php esc_html_e('Fra Å til A', 'kursagenten'); ?></button>
+                                        <button class="sort-option" data-sort="price" data-order="asc"><?php esc_html_e('Pris lav til høy', 'kursagenten'); ?></button>
+                                        <button class="sort-option" data-sort="price" data-order="desc"><?php esc_html_e('Pris høy til lav', 'kursagenten'); ?></button>
+                                        <button class="sort-option" data-sort="date" data-order="asc"><?php esc_html_e('Tidligste dato', 'kursagenten'); ?></button>
+                                        <button class="sort-option" data-sort="date" data-order="desc"><?php esc_html_e('Seneste dato', 'kursagenten'); ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -427,8 +421,8 @@ foreach ($available_filters as $filter_key => $filter_info) {
                                 'current' => max(1, $query->get('paged')),
                                 'format' => 'side=%#%',
                                 'total' => $query->max_num_pages,
-                                'prev_text' => '<i class="ka-icon icon-chevron-left"></i> <span>Forrige</span>',
-                                'next_text' => '<span>Neste</span> <i class="ka-icon icon-chevron-right"></i>',
+                                'prev_text' => '<i class="ka-icon icon-chevron-left"></i> <span>' . esc_html__('Forrige', 'kursagenten') . '</span>',
+                                'next_text' => '<span>' . esc_html__('Neste', 'kursagenten') . '</span> <i class="ka-icon icon-chevron-right"></i>',
                                 'add_args' => array_map(function ($item) {
                                     return is_array($item) ? join(',', $item) : $item;
                                 }, array_diff_key($_REQUEST, ['side' => true, 'action' => true, 'nonce' => true, 'list_type' => true]))
@@ -444,7 +438,7 @@ foreach ($available_filters as $filter_key => $filter_info) {
                     <?php
                         wp_reset_postdata();
                     else :
-                        echo '<p>Ingen kurs tilgjengelige.</p>';
+                        echo '<p>' . esc_html__('Ingen kurs tilgjengelige.', 'kursagenten') . '</p>';
                     endif;
                     ?>
                 </div>
@@ -462,7 +456,7 @@ foreach ($available_filters as $filter_key => $filter_info) {
     </section><!-- End .courselist -->
     <section class="ka-section ka-footer">
         <div class="ka-content-container title-section">
-            <h4>Footer</h4>
+            <h4><?php esc_html_e('Footer', 'kursagenten'); ?></h4>
         </div>
     </section>
 </article>
@@ -476,7 +470,9 @@ foreach ($available_filters as $filter_key => $filter_info) {
         'top_filters' => get_option('kursagenten_top_filters', []),
         'left_filters' => get_option('kursagenten_left_filters', []),
         'filter_types' => get_option('kursagenten_filter_types', []),
-        'available_filters' => get_option('kursagenten_available_filters', []),
+        'available_filters' => kursagenten_localize_available_filters(
+            get_option('kursagenten_available_filters', [])
+        ),
     ];
     echo json_encode($filter_data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG);
     ?>

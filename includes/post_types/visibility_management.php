@@ -117,7 +117,7 @@ function add_course_visibility_column($columns) {
     foreach ($columns as $key => $value) {
         $new_columns[$key] = $value;
         if ($key === 'title') {
-            $new_columns['visibility'] = 'Synlighet';
+            $new_columns['visibility'] = __('Synlighet', 'kursagenten');
         }
     }
     return $new_columns;
@@ -139,7 +139,7 @@ function course_visibility_column_content($column, $post_id) {
                 border-radius: 3px;
                 display: inline-block;
                 font-size: 12px;
-            ">Inaktiv</span>';
+            ">' . esc_html__('Inaktiv', 'kursagenten') . '</span>';
             return;
         }
 
@@ -162,7 +162,7 @@ function course_visibility_column_content($column, $post_id) {
                 border-radius: 3px;
                 display: inline-block;
                 font-size: 12px;
-            ">Skjult</span>';
+            ">' . esc_html__('Skjult', 'kursagenten') . '</span>';
         } else {
             echo '<span class="course-visible-indicator" style="
                 background-color: #28a745;
@@ -171,7 +171,7 @@ function course_visibility_column_content($column, $post_id) {
                 border-radius: 3px;
                 display: inline-block;
                 font-size: 12px;
-            ">Synlig</span>';
+            ">' . esc_html__('Synlig', 'kursagenten') . '</span>';
         }
     }
 }

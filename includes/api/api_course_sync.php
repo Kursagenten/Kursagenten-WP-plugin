@@ -258,6 +258,9 @@ function create_new_course($data, $main_course_id, $location_id, $language, $is_
         foreach ($common_meta_fields as $key => $value) {
             update_post_meta($post_id, $key, $value);
         }
+        if (function_exists('kursagenten_meta_i18n_active') && kursagenten_meta_i18n_active()) {
+            kursagenten_collect_meta_strings_from_array($common_meta_fields);
+        }
         update_post_meta($post_id, 'ka_main_course_id', (int) $data['id']);
         update_post_meta($post_id, 'ka_is_parent_course', 'yes');
         update_post_meta($post_id, 'ka_meta_description', sanitize_text_field($data['introText']));
@@ -339,6 +342,9 @@ function create_new_sub_course($data, $main_course_id, $location_id, $language, 
         $common_meta_fields = get_common_meta_fields($data, $language);
         foreach ($common_meta_fields as $key => $value) {
             update_post_meta($post_id, $key, $value);
+        }
+        if (function_exists('kursagenten_meta_i18n_active') && kursagenten_meta_i18n_active()) {
+            kursagenten_collect_meta_strings_from_array($common_meta_fields);
         }
         update_post_meta($post_id, 'ka_main_course_id', (int) $main_course_id);
         update_post_meta($post_id, 'ka_main_course_title', sanitize_text_field($data['name']));
@@ -439,6 +445,9 @@ function update_existing_course($post_id, $data, $main_course_id, $location_id, 
         $common_meta_fields = get_common_meta_fields($data, $language);
         foreach ($common_meta_fields as $key => $value) {
             update_post_meta($post_id, $key, $value);
+        }
+        if (function_exists('kursagenten_meta_i18n_active') && kursagenten_meta_i18n_active()) {
+            kursagenten_collect_meta_strings_from_array($common_meta_fields);
         }
         // Oppdater is_active meta-verdi kun for underkurs (ikke foreldrekurs)
         if ($is_parent_course !== 'yes') {
@@ -676,6 +685,11 @@ function create_or_update_course_date($data, $post_id, $main_course_id, $locatio
         }
 
         if (!is_wp_error($coursedate_id)) {
+            if (function_exists('kursagenten_meta_i18n_active') && kursagenten_meta_i18n_active()) {
+                kursagenten_collect_meta_strings_from_array($meta_input);
+                kursagenten_flush_meta_strings();
+            }
+
             // Oppdater location_id
             update_post_meta($coursedate_id, 'ka_location_id', $location_id);
             

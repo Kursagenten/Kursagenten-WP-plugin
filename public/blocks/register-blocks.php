@@ -85,6 +85,18 @@ function kursagenten_register_blocks(): void {
                 'before'
             );
 
+            wp_localize_script(
+                'kursagenten-taxonomy-grid-editor',
+                'kursagentenTaxonomyGridEditorI18n',
+                kursagenten_get_taxonomy_grid_editor_i18n()
+            );
+
+            wp_set_script_translations(
+                'kursagenten-taxonomy-grid-editor',
+                'kursagenten',
+                KURSAG_PLUGIN_DIR . '/lang'
+            );
+
             if (file_exists($editor_css_path)) {
                 wp_register_style(
                     'kursagenten-taxonomy-grid-editor',
@@ -260,7 +272,7 @@ add_action('enqueue_block_editor_assets', 'kursagenten_enqueue_taxonomy_grid_sty
 function kursagenten_block_category(array $categories): array {
     $categories[] = [
         'slug' => 'kursagenten',
-        'title' => 'Kursagenten',
+        'title' => __('Kursagenten', 'kursagenten'),
         'icon' => 'welcome-learn-more',
     ];
 

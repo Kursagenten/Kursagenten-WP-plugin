@@ -75,7 +75,7 @@ class CourseLocationGrid {
         $terms = $this->get_terms($a['vis'], $a['region']);
         
         if (empty($terms) || is_wp_error($terms)) {
-            return '<div class="no-locations">Det er for øyeblikket ingen kurssteder å vise.</div>';
+            return '<div class="no-locations">' . esc_html__('Det er for øyeblikket ingen kurssteder å vise.', 'kursagenten') . '</div>';
         }
 
         // Generer output ved å bruke ID-spesifikke grid-stiler
@@ -367,7 +367,7 @@ class CourseLocationGrid {
                         <img src='{$thumbnail}' 
                              width='" . esc_attr($width) . "' 
                              height='" . esc_attr($height) . "' 
-                             alt='Bilde av {$term->name}' 
+                             alt='" . esc_attr(sprintf(/* translators: %s: location name */ __('Bilde av %s', 'kursagenten'), $term->name)) . "'
                              class='wp-image-{$term->term_id}' 
                              decoding='async'>
                     </picture>

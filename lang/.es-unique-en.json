@@ -1,0 +1,5382 @@
+[
+  {
+    "en": "P",
+    "c": 1
+  },
+  {
+    "en": "No",
+    "c": 1
+  },
+  {
+    "en": "St",
+    "c": 1
+  },
+  {
+    "en": "or",
+    "c": 1
+  },
+  {
+    "en": "H2",
+    "c": 1
+  },
+  {
+    "en": "H3",
+    "c": 1
+  },
+  {
+    "en": "H4",
+    "c": 1
+  },
+  {
+    "en": "H5",
+    "c": 1
+  },
+  {
+    "en": "H6",
+    "c": 1
+  },
+  {
+    "en": "All",
+    "c": 1
+  },
+  {
+    "en": "Day",
+    "c": 1
+  },
+  {
+    "en": "Yes",
+    "c": 1
+  },
+  {
+    "en": "Div",
+    "c": 1
+  },
+  {
+    "en": "Top",
+    "c": 1
+  },
+  {
+    "en": "TOP",
+    "c": 1
+  },
+  {
+    "en": "Date",
+    "c": 1
+  },
+  {
+    "en": "Grid",
+    "c": 2
+  },
+  {
+    "en": "Time",
+    "c": 2
+  },
+  {
+    "en": "Save",
+    "c": 1
+  },
+  {
+    "en": "Link",
+    "c": 1
+  },
+  {
+    "en": "List",
+    "c": 1
+  },
+  {
+    "en": "Room",
+    "c": 1
+  },
+  {
+    "en": "Menu",
+    "c": 1
+  },
+  {
+    "en": "Name",
+    "c": 1
+  },
+  {
+    "en": "Edit",
+    "c": 1
+  },
+  {
+    "en": "Page",
+    "c": 1
+  },
+  {
+    "en": "Hide",
+    "c": 1
+  },
+  {
+    "en": "URLs",
+    "c": 1
+  },
+  {
+    "en": "Show",
+    "c": 1
+  },
+  {
+    "en": "Full",
+    "c": 1
+  },
+  {
+    "en": "Next",
+    "c": 1
+  },
+  {
+    "en": "Bold",
+    "c": 1
+  },
+  {
+    "en": "None",
+    "c": 1
+  },
+  {
+    "en": "Span",
+    "c": 1
+  },
+  {
+    "en": "Text",
+    "c": 1
+  },
+  {
+    "en": "Thin",
+    "c": 1
+  },
+  {
+    "en": "Left",
+    "c": 1
+  },
+  {
+    "en": "LEFT",
+    "c": 1
+  },
+  {
+    "en": "Other",
+    "c": 1
+  },
+  {
+    "en": "Boxes",
+    "c": 1
+  },
+  {
+    "en": "Email",
+    "c": 2
+  },
+  {
+    "en": "Hooks",
+    "c": 1
+  },
+  {
+    "en": "Draft",
+    "c": 1
+  },
+  {
+    "en": "Class",
+    "c": 1
+  },
+  {
+    "en": "Close",
+    "c": 1
+  },
+  {
+    "en": "Menus",
+    "c": 1
+  },
+  {
+    "en": "Level",
+    "c": 1
+  },
+  {
+    "en": "Price",
+    "c": 1
+  },
+  {
+    "en": "Style",
+    "c": 1
+  },
+  {
+    "en": "Phone",
+    "c": 1
+  },
+  {
+    "en": "image",
+    "c": 1
+  },
+  {
+    "en": "Apply",
+    "c": 1
+  },
+  {
+    "en": "Room:",
+    "c": 1
+  },
+  {
+    "en": "Time:",
+    "c": 1
+  },
+  {
+    "en": "Ends:",
+    "c": 1
+  },
+  {
+    "en": "Image",
+    "c": 1
+  },
+  {
+    "en": "Color",
+    "c": 1
+  },
+  {
+    "en": "Hover",
+    "c": 1
+  },
+  {
+    "en": "Right",
+    "c": 1
+  },
+  {
+    "en": "RIGHT",
+    "c": 1
+  },
+  {
+    "en": "Large",
+    "c": 2
+  },
+  {
+    "en": "Small",
+    "c": 1
+  },
+  {
+    "en": "Round",
+    "c": 1
+  },
+  {
+    "en": "Solid",
+    "c": 1
+  },
+  {
+    "en": "Title",
+    "c": 1
+  },
+  {
+    "en": "Clear",
+    "c": 1
+  },
+  {
+    "en": "%d day",
+    "c": 1
+  },
+  {
+    "en": "Cancel",
+    "c": 1
+  },
+  {
+    "en": "Images",
+    "c": 2
+  },
+  {
+    "en": "Width:",
+    "c": 1
+  },
+  {
+    "en": "Design",
+    "c": 1
+  },
+  {
+    "en": "Filter",
+    "c": 1
+  },
+  {
+    "en": "Remove",
+    "c": 1
+  },
+  {
+    "en": "Footer",
+    "c": 1
+  },
+  {
+    "en": "Action",
+    "c": 1
+  },
+  {
+    "en": "Icons:",
+    "c": 1
+  },
+  {
+    "en": "Course",
+    "c": 1
+  },
+  {
+    "en": "Layout",
+    "c": 1
+  },
+  {
+    "en": "Links:",
+    "c": 1
+  },
+  {
+    "en": "Region",
+    "c": 2
+  },
+  {
+    "en": "Insert",
+    "c": 1
+  },
+  {
+    "en": "Hidden",
+    "c": 1
+  },
+  {
+    "en": "Shadow",
+    "c": 1
+  },
+  {
+    "en": "Delete",
+    "c": 1
+  },
+  {
+    "en": "Status",
+    "c": 1
+  },
+  {
+    "en": "Search",
+    "c": 1
+  },
+  {
+    "en": "Plugin",
+    "c": 1
+  },
+  {
+    "en": "Option",
+    "c": 1
+  },
+  {
+    "en": "Modern",
+    "c": 1
+  },
+  {
+    "en": "Price:",
+    "c": 1
+  },
+  {
+    "en": "Select",
+    "c": 1
+  },
+  {
+    "en": "Bottom",
+    "c": 1
+  },
+  {
+    "en": "BOTTOM",
+    "c": 1
+  },
+  {
+    "en": "Double",
+    "c": 1
+  },
+  {
+    "en": "Custom",
+    "c": 1
+  },
+  {
+    "en": "Colors",
+    "c": 1
+  },
+  {
+    "en": "Square",
+    "c": 1
+  },
+  {
+    "en": "Strong",
+    "c": 1
+  },
+  {
+    "en": "Medium",
+    "c": 1
+  },
+  {
+    "en": "Mobile",
+    "c": 1
+  },
+  {
+    "en": "Tablet",
+    "c": 1
+  },
+  {
+    "en": "Normal",
+    "c": 1
+  },
+  {
+    "en": "Dotted",
+    "c": 1
+  },
+  {
+    "en": "Dashed",
+    "c": 1
+  },
+  {
+    "en": "Subtle",
+    "c": 1
+  },
+  {
+    "en": "Address",
+    "c": 1
+  },
+  {
+    "en": "Spacing",
+    "c": 2
+  },
+  {
+    "en": "Payment",
+    "c": 1
+  },
+  {
+    "en": "Design:",
+    "c": 1
+  },
+  {
+    "en": "Example",
+    "c": 1
+  },
+  {
+    "en": "Element",
+    "c": 1
+  },
+  {
+    "en": "Colors:",
+    "c": 1
+  },
+  {
+    "en": "Actions",
+    "c": 1
+  },
+  {
+    "en": "Height:",
+    "c": 1
+  },
+  {
+    "en": "Content",
+    "c": 1
+  },
+  {
+    "en": "Buttons",
+    "c": 1
+  },
+  {
+    "en": "Layout:",
+    "c": 1
+  },
+  {
+    "en": "Mobile:",
+    "c": 1
+  },
+  {
+    "en": "Heading",
+    "c": 1
+  },
+  {
+    "en": "Publish",
+    "c": 1
+  },
+  {
+    "en": "Regions",
+    "c": 1
+  },
+  {
+    "en": "Turn on",
+    "c": 1
+  },
+  {
+    "en": "Default",
+    "c": 1
+  },
+  {
+    "en": "Visible",
+    "c": 1
+  },
+  {
+    "en": "Tablet:",
+    "c": 1
+  },
+  {
+    "en": "Excerpt",
+    "c": 1
+  },
+  {
+    "en": "Variant",
+    "c": 1
+  },
+  {
+    "en": "YouTube",
+    "c": 1
+  },
+  {
+    "en": "Contact",
+    "c": 1
+  },
+  {
+    "en": "Sort by",
+    "c": 1
+  },
+  {
+    "en": "Starts:",
+    "c": 1
+  },
+  {
+    "en": "Rounded",
+    "c": 1
+  },
+  {
+    "en": "Desktop",
+    "c": 1
+  },
+  {
+    "en": "General",
+    "c": 1
+  },
+  {
+    "en": "Columns",
+    "c": 1
+  },
+  {
+    "en": "Border:",
+    "c": 1
+  },
+  {
+    "en": "Hide %s",
+    "c": 1
+  },
+  {
+    "en": "Regular",
+    "c": 1
+  },
+  {
+    "en": "Desktop:",
+    "c": 1
+  },
+  {
+    "en": "Facebook",
+    "c": 1
+  },
+  {
+    "en": "Font max",
+    "c": 1
+  },
+  {
+    "en": "Font min",
+    "c": 1
+  },
+  {
+    "en": "Inactive",
+    "c": 1
+  },
+  {
+    "en": "Settings",
+    "c": 1
+  },
+  {
+    "en": "LinkedIn",
+    "c": 1
+  },
+  {
+    "en": "Overview",
+    "c": 1
+  },
+  {
+    "en": "End date",
+    "c": 1
+  },
+  {
+    "en": "Turn off",
+    "c": 1
+  },
+  {
+    "en": "Language",
+    "c": 1
+  },
+  {
+    "en": "Location",
+    "c": 1
+  },
+  {
+    "en": "Duration",
+    "c": 1
+  },
+  {
+    "en": "Show (i)",
+    "c": 1
+  },
+  {
+    "en": "Show (k)",
+    "c": 1
+  },
+  {
+    "en": "Show (s)",
+    "c": 1
+  },
+  {
+    "en": "Webhooks",
+    "c": 1
+  },
+  {
+    "en": "+%d more",
+    "c": 1
+  },
+  {
+    "en": "All (%d)",
+    "c": 1
+  },
+  {
+    "en": "Previous",
+    "c": 1
+  },
+  {
+    "en": "Register",
+    "c": 1
+  },
+  {
+    "en": "Row card",
+    "c": 1
+  },
+  {
+    "en": "Centered",
+    "c": 1
+  },
+  {
+    "en": "Standard",
+    "c": 1
+  },
+  {
+    "en": "Use image",
+    "c": 1
+  },
+  {
+    "en": "Last name",
+    "c": 2
+  },
+  {
+    "en": "Remove %s",
+    "c": 1
+  },
+  {
+    "en": "Full name",
+    "c": 1
+  },
+  {
+    "en": "No region",
+    "c": 2
+  },
+  {
+    "en": "Instagram",
+    "c": 1
+  },
+  {
+    "en": "KA course",
+    "c": 1
+  },
+  {
+    "en": "Upload %s",
+    "c": 1
+  },
+  {
+    "en": "List_type",
+    "c": 1
+  },
+  {
+    "en": "List type",
+    "c": 1
+  },
+  {
+    "en": "Most used",
+    "c": 1
+  },
+  {
+    "en": "Published",
+    "c": 1
+  },
+  {
+    "en": "Read more",
+    "c": 1
+  },
+  {
+    "en": "Location:",
+    "c": 2
+  },
+  {
+    "en": "More info",
+    "c": 1
+  },
+  {
+    "en": "Next week",
+    "c": 1
+  },
+  {
+    "en": "Next year",
+    "c": 1
+  },
+  {
+    "en": "Try again",
+    "c": 1
+  },
+  {
+    "en": "End date:",
+    "c": 1
+  },
+  {
+    "en": "Language:",
+    "c": 1
+  },
+  {
+    "en": "Expand %s",
+    "c": 1
+  },
+  {
+    "en": "Duration:",
+    "c": 1
+  },
+  {
+    "en": "Show more",
+    "c": 1
+  },
+  {
+    "en": "Full size",
+    "c": 1
+  },
+  {
+    "en": "Semi-bold",
+    "c": 1
+  },
+  {
+    "en": "Thumbnail",
+    "c": 1
+  },
+  {
+    "en": "Image size",
+    "c": 2
+  },
+  {
+    "en": "Custom CSS",
+    "c": 1
+  },
+  {
+    "en": "First name",
+    "c": 2
+  },
+  {
+    "en": "Full width",
+    "c": 1
+  },
+  {
+    "en": "Instructor",
+    "c": 1
+  },
+  {
+    "en": "Categories",
+    "c": 1
+  },
+  {
+    "en": "Source (i)",
+    "c": 1
+  },
+  {
+    "en": "Source (k)",
+    "c": 1
+  },
+  {
+    "en": "Shortcodes",
+    "c": 1
+  },
+  {
+    "en": "Max width:",
+    "c": 1
+  },
+  {
+    "en": "Room/venue",
+    "c": 1
+  },
+  {
+    "en": "Start date",
+    "c": 1
+  },
+  {
+    "en": "Visibility",
+    "c": 1
+  },
+  {
+    "en": "Text color",
+    "c": 1
+  },
+  {
+    "en": "Important:",
+    "c": 1
+  },
+  {
+    "en": "%d courses",
+    "c": 1
+  },
+  {
+    "en": "Contact us",
+    "c": 1
+  },
+  {
+    "en": "Reset date",
+    "c": 1
+  },
+  {
+    "en": "On request",
+    "c": 1
+  },
+  {
+    "en": "Back to %s",
+    "c": 1
+  },
+  {
+    "en": "Show fewer",
+    "c": 1
+  },
+  {
+    "en": "Background",
+    "c": 1
+  },
+  {
+    "en": "Extra bold",
+    "c": 1
+  },
+  {
+    "en": "Main image",
+    "c": 1
+  },
+  {
+    "en": "Square 1:1",
+    "c": 1
+  },
+  {
+    "en": "Show image",
+    "c": 1
+  },
+  {
+    "en": "Show email",
+    "c": 1
+  },
+  {
+    "en": "Show phone",
+    "c": 1
+  },
+  {
+    "en": "All courses",
+    "c": 1
+  },
+  {
+    "en": "Description",
+    "c": 1
+  },
+  {
+    "en": "Image shape",
+    "c": 1
+  },
+  {
+    "en": "Filter box:",
+    "c": 1
+  },
+  {
+    "en": "Grid mobile",
+    "c": 1
+  },
+  {
+    "en": "Grid tablet",
+    "c": 1
+  },
+  {
+    "en": "Not created",
+    "c": 1
+  },
+  {
+    "en": "Information",
+    "c": 1
+  },
+  {
+    "en": "Instructors",
+    "c": 2
+  },
+  {
+    "en": "Get started",
+    "c": 1
+  },
+  {
+    "en": "Kursagenten",
+    "c": 2
+  },
+  {
+    "en": "Course date",
+    "c": 1
+  },
+  {
+    "en": "Course list",
+    "c": 1
+  },
+  {
+    "en": "Course room",
+    "c": 1
+  },
+  {
+    "en": "Add to menu",
+    "c": 1
+  },
+  {
+    "en": "License key",
+    "c": 1
+  },
+  {
+    "en": "Name change",
+    "c": 1
+  },
+  {
+    "en": "Next course",
+    "c": 1
+  },
+  {
+    "en": "Plugin page",
+    "c": 1
+  },
+  {
+    "en": "Row spacing",
+    "c": 2
+  },
+  {
+    "en": "Edit course",
+    "c": 1
+  },
+  {
+    "en": "Start month",
+    "c": 1
+  },
+  {
+    "en": "Back to top",
+    "c": 1
+  },
+  {
+    "en": "Select date",
+    "c": 1
+  },
+  {
+    "en": "Select time",
+    "c": 1
+  },
+  {
+    "en": "Left column",
+    "c": 1
+  },
+  {
+    "en": "Image of %s",
+    "c": 1
+  },
+  {
+    "en": "From A to Z",
+    "c": 1
+  },
+  {
+    "en": "From Z to A",
+    "c": 1
+  },
+  {
+    "en": "Instructor:",
+    "c": 1
+  },
+  {
+    "en": "Latest date",
+    "c": 1
+  },
+  {
+    "en": "Start date:",
+    "c": 1
+  },
+  {
+    "en": "View course",
+    "c": 1
+  },
+  {
+    "en": "Data source",
+    "c": 1
+  },
+  {
+    "en": "Extra large",
+    "c": 1
+  },
+  {
+    "en": "Adjustments",
+    "c": 1
+  },
+  {
+    "en": "Source type",
+    "c": 1
+  },
+  {
+    "en": "Card margin",
+    "c": 1
+  },
+  {
+    "en": "Simple list",
+    "c": 1
+  },
+  {
+    "en": "(100-1000px)",
+    "c": 1
+  },
+  {
+    "en": "Payment page",
+    "c": 1
+  },
+  {
+    "en": "Course Image",
+    "c": 1
+  },
+  {
+    "en": "Simple cards",
+    "c": 1
+  },
+  {
+    "en": "Company name",
+    "c": 1
+  },
+  {
+    "en": "Remove image",
+    "c": 1
+  },
+  {
+    "en": "More options",
+    "c": 1
+  },
+  {
+    "en": "Footer after",
+    "c": 1
+  },
+  {
+    "en": "Header after",
+    "c": 1
+  },
+  {
+    "en": "Main contact",
+    "c": 1
+  },
+  {
+    "en": "Compact list",
+    "c": 1
+  },
+  {
+    "en": "Course dates",
+    "c": 1
+  },
+  {
+    "en": "Save license",
+    "c": 1
+  },
+  {
+    "en": "List design:",
+    "c": 1
+  },
+  {
+    "en": "Register now",
+    "c": 1
+  },
+  {
+    "en": "SEO settings",
+    "c": 1
+  },
+  {
+    "en": "Section menu",
+    "c": 1
+  },
+  {
+    "en": "Hide in URLs",
+    "c": 1
+  },
+  {
+    "en": "Turn off SEO",
+    "c": 1
+  },
+  {
+    "en": "Default list",
+    "c": 1
+  },
+  {
+    "en": "Provider ID:",
+    "c": 1
+  },
+  {
+    "en": "Clear colors",
+    "c": 1
+  },
+  {
+    "en": "URLs and SEO",
+    "c": 1
+  },
+  {
+    "en": "Select image",
+    "c": 1
+  },
+  {
+    "en": "Select month",
+    "c": 1
+  },
+  {
+    "en": "Select price",
+    "c": 1
+  },
+  {
+    "en": "Show images:",
+    "c": 1
+  },
+  {
+    "en": "View details",
+    "c": 2
+  },
+  {
+    "en": "Show buttons",
+    "c": 1
+  },
+  {
+    "en": "Instructors:",
+    "c": 1
+  },
+  {
+    "en": "Course days:",
+    "c": 1
+  },
+  {
+    "en": "Course room:",
+    "c": 1
+  },
+  {
+    "en": "Close filter",
+    "c": 1
+  },
+  {
+    "en": "Next course:",
+    "c": 1
+  },
+  {
+    "en": "the overview",
+    "c": 1
+  },
+  {
+    "en": "Registration",
+    "c": 1
+  },
+  {
+    "en": "Select dates",
+    "c": 1
+  },
+  {
+    "en": "Show results",
+    "c": 1
+  },
+  {
+    "en": "0 = no limit",
+    "c": 1
+  },
+  {
+    "en": "Image format",
+    "c": 1
+  },
+  {
+    "en": "Image shapes",
+    "c": 1
+  },
+  {
+    "en": "Extra strong",
+    "c": 1
+  },
+  {
+    "en": "Element card",
+    "c": 1
+  },
+  {
+    "en": "Border style",
+    "c": 2
+  },
+  {
+    "en": "Card padding",
+    "c": 1
+  },
+  {
+    "en": "More rounded",
+    "c": 1
+  },
+  {
+    "en": "Portrait 2:3",
+    "c": 1
+  },
+  {
+    "en": "Portrait 3:4",
+    "c": 1
+  },
+  {
+    "en": "Row standard",
+    "c": 1
+  },
+  {
+    "en": "Border color",
+    "c": 1
+  },
+  {
+    "en": "Border width",
+    "c": 1
+  },
+  {
+    "en": "Stacked card",
+    "c": 1
+  },
+  {
+    "en": "Select items",
+    "c": 1
+  },
+  {
+    "en": "Select style",
+    "c": 1
+  },
+  {
+    "en": "Show only %s",
+    "c": 1
+  },
+  {
+    "en": "Documentation",
+    "c": 1
+  },
+  {
+    "en": "Extra content",
+    "c": 1
+  },
+  {
+    "en": "Single course",
+    "c": 2
+  },
+  {
+    "en": "Footer before",
+    "c": 1
+  },
+  {
+    "en": "Header before",
+    "c": 1
+  },
+  {
+    "en": "Fetch courses",
+    "c": 1
+  },
+  {
+    "en": "Primary font:",
+    "c": 1
+  },
+  {
+    "en": "Do not change",
+    "c": 1
+  },
+  {
+    "en": "Access denied",
+    "c": 1
+  },
+  {
+    "en": "Click \"Save\".",
+    "c": 1
+  },
+  {
+    "en": "Click to copy",
+    "c": 1
+  },
+  {
+    "en": "Button color:",
+    "c": 1
+  },
+  {
+    "en": "Course design",
+    "c": 1
+  },
+  {
+    "en": "Course filter",
+    "c": 1
+  },
+  {
+    "en": "Add KA course",
+    "c": 1
+  },
+  {
+    "en": "Location name",
+    "c": 1
+  },
+  {
+    "en": "Name display:",
+    "c": 1
+  },
+  {
+    "en": "New KA course",
+    "c": 1
+  },
+  {
+    "en": "Profile image",
+    "c": 2
+  },
+  {
+    "en": "On this page:",
+    "c": 1
+  },
+  {
+    "en": "Sidebar after",
+    "c": 1
+  },
+  {
+    "en": "Default: 16px",
+    "c": 1
+  },
+  {
+    "en": "Location info",
+    "c": 1
+  },
+  {
+    "en": "Search field:",
+    "c": 1
+  },
+  {
+    "en": "Theme default",
+    "c": 1
+  },
+  {
+    "en": "Reset content",
+    "c": 1
+  },
+  {
+    "en": "Assigned page",
+    "c": 1
+  },
+  {
+    "en": "Unknown error",
+    "c": 1
+  },
+  {
+    "en": "Image options",
+    "c": 1
+  },
+  {
+    "en": "Select colors",
+    "c": 1
+  },
+  {
+    "en": "Show in list:",
+    "c": 1
+  },
+  {
+    "en": "Display type:",
+    "c": 1
+  },
+  {
+    "en": "profile image",
+    "c": 1
+  },
+  {
+    "en": "Course dates:",
+    "c": 1
+  },
+  {
+    "en": "Remove filter",
+    "c": 1
+  },
+  {
+    "en": "Course times:",
+    "c": 1
+  },
+  {
+    "en": "Next 3 months",
+    "c": 1
+  },
+  {
+    "en": "Next 6 months",
+    "c": 1
+  },
+  {
+    "en": "Reset filters",
+    "c": 1
+  },
+  {
+    "en": "See next date",
+    "c": 1
+  },
+  {
+    "en": "Earliest date",
+    "c": 1
+  },
+  {
+    "en": "Select period",
+    "c": 1
+  },
+  {
+    "en": "All locations",
+    "c": 1
+  },
+  {
+    "en": "Image quality",
+    "c": 1
+  },
+  {
+    "en": "Custom format",
+    "c": 1
+  },
+  {
+    "en": "E.g. 5/4, 7/5",
+    "c": 1
+  },
+  {
+    "en": "Border radius",
+    "c": 1
+  },
+  {
+    "en": "Landscape 2:1",
+    "c": 1
+  },
+  {
+    "en": "Landscape 3:1",
+    "c": 1
+  },
+  {
+    "en": "Landscape 3:2",
+    "c": 1
+  },
+  {
+    "en": "Landscape 4:1",
+    "c": 1
+  },
+  {
+    "en": "Landscape 4:3",
+    "c": 1
+  },
+  {
+    "en": "Preset styles",
+    "c": 1
+  },
+  {
+    "en": "Subcategories",
+    "c": 1
+  },
+  {
+    "en": "Title element",
+    "c": 1
+  },
+  {
+    "en": "Date and title",
+    "c": 1
+  },
+  {
+    "en": "Design options",
+    "c": 1
+  },
+  {
+    "en": "Filter by date",
+    "c": 1
+  },
+  {
+    "en": "Featured image",
+    "c": 1
+  },
+  {
+    "en": "Primary color:",
+    "c": 1
+  },
+  {
+    "en": "Parent course:",
+    "c": 1
+  },
+  {
+    "en": "No instructors",
+    "c": 1
+  },
+  {
+    "en": "Can be used on",
+    "c": 1
+  },
+  {
+    "en": "Add instructor",
+    "c": 1
+  },
+  {
+    "en": "Link to course",
+    "c": 1
+  },
+  {
+    "en": "Course cleanup",
+    "c": 1
+  },
+  {
+    "en": "Send to Trello",
+    "c": 1
+  },
+  {
+    "en": "Sidebar before",
+    "c": 1
+  },
+  {
+    "en": "Recent changes",
+    "c": 1
+  },
+  {
+    "en": "Hidden courses",
+    "c": 1
+  },
+  {
+    "en": "Enter new name",
+    "c": 1
+  },
+  {
+    "en": "Taxonomy pages",
+    "c": 2
+  },
+  {
+    "en": "Provider GUID:",
+    "c": 1
+  },
+  {
+    "en": "View KA course",
+    "c": 1
+  },
+  {
+    "en": "%d %s selected",
+    "c": 1
+  },
+  {
+    "en": "Filter courses",
+    "c": 1
+  },
+  {
+    "en": "Subcategories:",
+    "c": 1
+  },
+  {
+    "en": "Landscape 16:9",
+    "c": 1
+  },
+  {
+    "en": "Taxonomy image",
+    "c": 1
+  },
+  {
+    "en": "All instructors",
+    "c": 1
+  },
+  {
+    "en": "Base font size:",
+    "c": 1
+  },
+  {
+    "en": "Taxonomy design",
+    "c": 1
+  },
+  {
+    "en": "Filter settings",
+    "c": 1
+  },
+  {
+    "en": "Company details",
+    "c": 1
+  },
+  {
+    "en": "Parent category",
+    "c": 1
+  },
+  {
+    "en": "Instructor link",
+    "c": 1
+  },
+  {
+    "en": "Course settings",
+    "c": 1
+  },
+  {
+    "en": "Course category",
+    "c": 1
+  },
+  {
+    "en": "Course location",
+    "c": 1
+  },
+  {
+    "en": "Add course date",
+    "c": 1
+  },
+  {
+    "en": "Menu shortcodes",
+    "c": 1
+  },
+  {
+    "en": "New course date",
+    "c": 1
+  },
+  {
+    "en": "Create new page",
+    "c": 1
+  },
+  {
+    "en": "Edit instructor",
+    "c": 1
+  },
+  {
+    "en": "Hidden in lists",
+    "c": 1
+  },
+  {
+    "en": "Hidden in menus",
+    "c": 1
+  },
+  {
+    "en": "Social profiles",
+    "c": 1
+  },
+  {
+    "en": "Default: 1300px",
+    "c": 1
+  },
+  {
+    "en": "Synchronization",
+    "c": 1
+  },
+  {
+    "en": "Visible courses",
+    "c": 1
+  },
+  {
+    "en": "List visibility",
+    "c": 1
+  },
+  {
+    "en": "Available icons",
+    "c": 1
+  },
+  {
+    "en": "Invalid request",
+    "c": 1
+  },
+  {
+    "en": "Developed by %s",
+    "c": 1
+  },
+  {
+    "en": "Select category",
+    "c": 1
+  },
+  {
+    "en": "Select language",
+    "c": 1
+  },
+  {
+    "en": "Show instructor",
+    "c": 1
+  },
+  {
+    "en": "WordPress pages",
+    "c": 1
+  },
+  {
+    "en": "No items found.",
+    "c": 1
+  },
+  {
+    "en": "Course overview",
+    "c": 1
+  },
+  {
+    "en": "Related courses",
+    "c": 1
+  },
+  {
+    "en": "View course: %s",
+    "c": 1
+  },
+  {
+    "en": "Use card design",
+    "c": 1
+  },
+  {
+    "en": "Main categories",
+    "c": 1
+  },
+  {
+    "en": "Border settings",
+    "c": 1
+  },
+  {
+    "en": "Wrapper padding",
+    "c": 1
+  },
+  {
+    "en": "Background color",
+    "c": 2
+  },
+  {
+    "en": "Background type:",
+    "c": 1
+  },
+  {
+    "en": "Use default (%s)",
+    "c": 1
+  },
+  {
+    "en": "Design templates",
+    "c": 1
+  },
+  {
+    "en": "Design variables",
+    "c": 1
+  },
+  {
+    "en": "After pagination",
+    "c": 1
+  },
+  {
+    "en": "Parent category:",
+    "c": 1
+  },
+  {
+    "en": "Gutenberg blocks",
+    "c": 1
+  },
+  {
+    "en": "Right column top",
+    "c": 1
+  },
+  {
+    "en": "Instructor title",
+    "c": 1
+  },
+  {
+    "en": "Instructors list",
+    "c": 1
+  },
+  {
+    "en": "Intro text after",
+    "c": 1
+  },
+  {
+    "en": "Course date link",
+    "c": 1
+  },
+  {
+    "en": "Course date list",
+    "c": 1
+  },
+  {
+    "en": "Course locations",
+    "c": 2
+  },
+  {
+    "en": "Current version:",
+    "c": 1
+  },
+  {
+    "en": "Postal code/city",
+    "c": 1
+  },
+  {
+    "en": "Edit course date",
+    "c": 1
+  },
+  {
+    "en": "Reset to default",
+    "c": 1
+  },
+  {
+    "en": "Clean up courses",
+    "c": 1
+  },
+  {
+    "en": "Page background:",
+    "c": 1
+  },
+  {
+    "en": "Default: inherit",
+    "c": 1
+  },
+  {
+    "en": "Available fields",
+    "c": 1
+  },
+  {
+    "en": "Trello changelog",
+    "c": 1
+  },
+  {
+    "en": "View course date",
+    "c": 1
+  },
+  {
+    "en": "Show link boxes:",
+    "c": 1
+  },
+  {
+    "en": "Navigate courses",
+    "c": 1
+  },
+  {
+    "en": " - page %d of %d",
+    "c": 1
+  },
+  {
+    "en": "More instructors",
+    "c": 1
+  },
+  {
+    "en": "Available places",
+    "c": 1
+  },
+  {
+    "en": "More information",
+    "c": 1
+  },
+  {
+    "en": "About the course",
+    "c": 1
+  },
+  {
+    "en": "Rest of the year",
+    "c": 1
+  },
+  {
+    "en": "Show all courses",
+    "c": 1
+  },
+  {
+    "en": "Show menu items:",
+    "c": 1
+  },
+  {
+    "en": "Background hover",
+    "c": 1
+  },
+  {
+    "en": "Background image",
+    "c": 1
+  },
+  {
+    "en": "Custom size (px)",
+    "c": 1
+  },
+  {
+    "en": "Font weight text",
+    "c": 1
+  },
+  {
+    "en": "Layout and style",
+    "c": 1
+  },
+  {
+    "en": "more information",
+    "c": 1
+  },
+  {
+    "en": "Dark overlay (%)",
+    "c": 1
+  },
+  {
+    "en": "Hide instructors",
+    "c": 1
+  },
+  {
+    "en": "Stacked standard",
+    "c": 1
+  },
+  {
+    "en": "Select locations",
+    "c": 1
+  },
+  {
+    "en": "Show description",
+    "c": 1
+  },
+  {
+    "en": "-- Select page --",
+    "c": 1
+  },
+  {
+    "en": "Alternative image",
+    "c": 2
+  },
+  {
+    "en": "Advanced settings",
+    "c": 1
+  },
+  {
+    "en": "Change URL prefix",
+    "c": 1
+  },
+  {
+    "en": "After intro text.",
+    "c": 1
+  },
+  {
+    "en": "Fine-tune colors:",
+    "c": 1
+  },
+  {
+    "en": "Intro text before",
+    "c": 1
+  },
+  {
+    "en": "KA course updated",
+    "c": 1
+  },
+  {
+    "en": "KA course archive",
+    "c": 1
+  },
+  {
+    "en": "Get started – A–Z",
+    "c": 1
+  },
+  {
+    "en": "Short description",
+    "c": 1
+  },
+  {
+    "en": "Kursagenten admin",
+    "c": 1
+  },
+  {
+    "en": "Course categories",
+    "c": 2
+  },
+  {
+    "en": "Course list after",
+    "c": 1
+  },
+  {
+    "en": "Available courses",
+    "c": 1
+  },
+  {
+    "en": "Enter license key",
+    "c": 1
+  },
+  {
+    "en": "Useful selectors:",
+    "c": 1
+  },
+  {
+    "en": "About the company",
+    "c": 2
+  },
+  {
+    "en": "Update instructor",
+    "c": 1
+  },
+  {
+    "en": "Parent KA course:",
+    "c": 1
+  },
+  {
+    "en": "Parent instructor",
+    "c": 1
+  },
+  {
+    "en": "Edit in Kursadmin",
+    "c": 1
+  },
+  {
+    "en": "Regions enabled%s",
+    "c": 1
+  },
+  {
+    "en": "Regional division",
+    "c": 1
+  },
+  {
+    "en": "Check for updates",
+    "c": 1
+  },
+  {
+    "en": "Search KA courses",
+    "c": 1
+  },
+  {
+    "en": "Select instructor",
+    "c": 1
+  },
+  {
+    "en": "Show instructors:",
+    "c": 1
+  },
+  {
+    "en": "locations updated",
+    "c": 1
+  },
+  {
+    "en": "Share this course",
+    "c": 1
+  },
+  {
+    "en": "Register interest",
+    "c": 1
+  },
+  {
+    "en": "Reset all filters",
+    "c": 1
+  },
+  {
+    "en": "Price high to low",
+    "c": 1
+  },
+  {
+    "en": "Price low to high",
+    "c": 1
+  },
+  {
+    "en": "Background source",
+    "c": 1
+  },
+  {
+    "en": "Element alignment",
+    "c": 1
+  },
+  {
+    "en": "Font weight title",
+    "c": 1
+  },
+  {
+    "en": "Placeholder image",
+    "c": 1
+  },
+  {
+    "en": "Select image type",
+    "c": 1
+  },
+  {
+    "en": "Image aspect ratio",
+    "c": 1
+  },
+  {
+    "en": "Day/evening course",
+    "c": 1
+  },
+  {
+    "en": "Filter course list",
+    "c": 1
+  },
+  {
+    "en": "Free-text location",
+    "c": 1
+  },
+  {
+    "en": "Before intro text.",
+    "c": 1
+  },
+  {
+    "en": "Before course list",
+    "c": 1
+  },
+  {
+    "en": "Header after title",
+    "c": 1
+  },
+  {
+    "en": "Hero - two columns",
+    "c": 1
+  },
+  {
+    "en": "Main content after",
+    "c": 1
+  },
+  {
+    "en": "How to add content",
+    "c": 1
+  },
+  {
+    "en": "Button text color:",
+    "c": 1
+  },
+  {
+    "en": "Available courses:",
+    "c": 1
+  },
+  {
+    "en": "Parent instructor:",
+    "c": 1
+  },
+  {
+    "en": "Regions disabled%s",
+    "c": 1
+  },
+  {
+    "en": "View documentation",
+    "c": 1
+  },
+  {
+    "en": "Hide in auto menus",
+    "c": 1
+  },
+  {
+    "en": "Hidden from filter",
+    "c": 1
+  },
+  {
+    "en": "Search for courses",
+    "c": 1
+  },
+  {
+    "en": "Search instructors",
+    "c": 1
+  },
+  {
+    "en": "Available filters:",
+    "c": 1
+  },
+  {
+    "en": "Set featured image",
+    "c": 1
+  },
+  {
+    "en": "Select location...",
+    "c": 1
+  },
+  {
+    "en": "%1$d %2$s selected",
+    "c": 1
+  },
+  {
+    "en": "Ready to register?",
+    "c": 1
+  },
+  {
+    "en": "Short description:",
+    "c": 1
+  },
+  {
+    "en": "The course is full",
+    "c": 1
+  },
+  {
+    "en": "Course information",
+    "c": 1
+  },
+  {
+    "en": "Next course (full)",
+    "c": 1
+  },
+  {
+    "en": "Specific locations",
+    "c": 1
+  },
+  {
+    "en": "View courses in %s",
+    "c": 1
+  },
+  {
+    "en": "Show subcategories",
+    "c": 1
+  },
+  {
+    "en": "Stacked inset card",
+    "c": 1
+  },
+  {
+    "en": "Show location info",
+    "c": 1
+  },
+  {
+    "en": "Company information",
+    "c": 1
+  },
+  {
+    "en": "Enrich your content",
+    "c": 1
+  },
+  {
+    "en": "Payment for courses",
+    "c": 1
+  },
+  {
+    "en": "Use default setting",
+    "c": 1
+  },
+  {
+    "en": "Main content before",
+    "c": 1
+  },
+  {
+    "en": "What is cleaned up:",
+    "c": 1
+  },
+  {
+    "en": "Right column bottom",
+    "c": 1
+  },
+  {
+    "en": "Do not limit height",
+    "c": 1
+  },
+  {
+    "en": "No KA courses found",
+    "c": 1
+  },
+  {
+    "en": "No course locations",
+    "c": 1
+  },
+  {
+    "en": "KA course scheduled",
+    "c": 1
+  },
+  {
+    "en": "KA course published",
+    "c": 1
+  },
+  {
+    "en": "Kursagenten license",
+    "c": 1
+  },
+  {
+    "en": "Add course category",
+    "c": 1
+  },
+  {
+    "en": "Add course location",
+    "c": 1
+  },
+  {
+    "en": "Name change removed",
+    "c": 1
+  },
+  {
+    "en": "Specific locations:",
+    "c": 1
+  },
+  {
+    "en": "Search course dates",
+    "c": 1
+  },
+  {
+    "en": "Show available only",
+    "c": 1
+  },
+  {
+    "en": "Course date archive",
+    "c": 1
+  },
+  {
+    "en": "– page %1$d of %2$d",
+    "c": 1
+  },
+  {
+    "en": "Contact information",
+    "c": 1
+  },
+  {
+    "en": "Course registration",
+    "c": 1
+  },
+  {
+    "en": "View course details",
+    "c": 1
+  },
+  {
+    "en": "Select from-to date",
+    "c": 1
+  },
+  {
+    "en": "Show more locations",
+    "c": 1
+  },
+  {
+    "en": "View in Google Maps",
+    "c": 1
+  },
+  {
+    "en": "Open in Google Maps",
+    "c": 1
+  },
+  {
+    "en": "Font size for title",
+    "c": 1
+  },
+  {
+    "en": "Shadow/border style",
+    "c": 1
+  },
+  {
+    "en": "All course locations",
+    "c": 1
+  },
+  {
+    "en": "After sidebar/aside.",
+    "c": 1
+  },
+  {
+    "en": "Filter by instructor",
+    "c": 1
+  },
+  {
+    "en": "Before main content.",
+    "c": 1
+  },
+  {
+    "en": "Header after section",
+    "c": 1
+  },
+  {
+    "en": "Hooks coming soon...",
+    "c": 1
+  },
+  {
+    "en": "No instructors found",
+    "c": 1
+  },
+  {
+    "en": "No course categories",
+    "c": 1
+  },
+  {
+    "en": "Course list settings",
+    "c": 1
+  },
+  {
+    "en": "KA course attributes",
+    "c": 1
+  },
+  {
+    "en": "Course date updated.",
+    "c": 1
+  },
+  {
+    "en": "Course category link",
+    "c": 1
+  },
+  {
+    "en": "Course location link",
+    "c": 1
+  },
+  {
+    "en": "Loading course days…",
+    "c": 1
+  },
+  {
+    "en": "Bulk edit visibility",
+    "c": 1
+  },
+  {
+    "en": "About course editing",
+    "c": 1
+  },
+  {
+    "en": "Edit course category",
+    "c": 1
+  },
+  {
+    "en": "Edit course location",
+    "c": 1
+  },
+  {
+    "en": "Right before footer.",
+    "c": 1
+  },
+  {
+    "en": "Theme customizations",
+    "c": 1
+  },
+  {
+    "en": "Extended description",
+    "c": 1
+  },
+  {
+    "en": "Show category filter",
+    "c": 1
+  },
+  {
+    "en": "Show contact person:",
+    "c": 1
+  },
+  {
+    "en": "Show course category",
+    "c": 1
+  },
+  {
+    "en": "Show course location",
+    "c": 1
+  },
+  {
+    "en": "No options available",
+    "c": 1
+  },
+  {
+    "en": "Show main categories",
+    "c": 1
+  },
+  {
+    "en": "Element alignment %s",
+    "c": 1
+  },
+  {
+    "en": "None, but use border",
+    "c": 1
+  },
+  {
+    "en": "Kursagenten Taxonomy",
+    "c": 1
+  },
+  {
+    "en": "Edit in Element card",
+    "c": 1
+  },
+  {
+    "en": "Enable jQuery support",
+    "c": 1
+  },
+  {
+    "en": "All course categories",
+    "c": 1
+  },
+  {
+    "en": "Number of course days",
+    "c": 1
+  },
+  {
+    "en": "Enrich taxonomy pages",
+    "c": 1
+  },
+  {
+    "en": "Course location image",
+    "c": 1
+  },
+  {
+    "en": "Use as featured image",
+    "c": 1
+  },
+  {
+    "en": "Use default selection",
+    "c": 1
+  },
+  {
+    "en": "After the entire page",
+    "c": 1
+  },
+  {
+    "en": "Remove featured image",
+    "c": 1
+  },
+  {
+    "en": "Before sidebar/aside.",
+    "c": 1
+  },
+  {
+    "en": "No valid mapping data",
+    "c": 1
+  },
+  {
+    "en": "No course dates found",
+    "c": 1
+  },
+  {
+    "en": "Copy shortcode for %s",
+    "c": 1
+  },
+  {
+    "en": "Course locations list",
+    "c": 1
+  },
+  {
+    "en": "Link to an instructor",
+    "c": 1
+  },
+  {
+    "en": "Name change not found",
+    "c": 1
+  },
+  {
+    "en": "New name for location",
+    "c": 1
+  },
+  {
+    "en": "Registration deadline",
+    "c": 1
+  },
+  {
+    "en": "Clean and simple list",
+    "c": 1
+  },
+  {
+    "en": "Hidden in course list",
+    "c": 1
+  },
+  {
+    "en": "Location name missing",
+    "c": 1
+  },
+  {
+    "en": "Supported SEO plugins",
+    "c": 1
+  },
+  {
+    "en": "Visibility and hiding",
+    "c": 1
+  },
+  {
+    "en": "Invalid security code",
+    "c": 1
+  },
+  {
+    "en": "Show more locations +",
+    "c": 1
+  },
+  {
+    "en": "Include Course schema",
+    "c": 1
+  },
+  {
+    "en": "← Back to instructors",
+    "c": 1
+  },
+  {
+    "en": "View all course dates",
+    "c": 1
+  },
+  {
+    "en": "Image of course in %s",
+    "c": 1
+  },
+  {
+    "en": "e.g. oslo or not-oslo",
+    "c": 1
+  },
+  {
+    "en": "More course locations",
+    "c": 1
+  },
+  {
+    "en": "No courses available.",
+    "c": 1
+  },
+  {
+    "en": "Security check failed",
+    "c": 1
+  },
+  {
+    "en": "Search for courses...",
+    "c": 1
+  },
+  {
+    "en": "No instructors found.",
+    "c": 1
+  },
+  {
+    "en": "No options available.",
+    "c": 1
+  },
+  {
+    "en": "Location filter (loc)",
+    "c": 1
+  },
+  {
+    "en": "Select category level",
+    "c": 1
+  },
+  {
+    "en": "Show long description",
+    "c": 1
+  },
+  {
+    "en": "Background in top bar:",
+    "c": 1
+  },
+  {
+    "en": "Custom settings for %s",
+    "c": 1
+  },
+  {
+    "en": "Filters in left column",
+    "c": 1
+  },
+  {
+    "en": "Categories and courses",
+    "c": 1
+  },
+  {
+    "en": "Course date attributes",
+    "c": 1
+  },
+  {
+    "en": "Course date scheduled.",
+    "c": 1
+  },
+  {
+    "en": "Course date published.",
+    "c": 1
+  },
+  {
+    "en": "Course categories list",
+    "c": 1
+  },
+  {
+    "en": "Link to a course date.",
+    "c": 1
+  },
+  {
+    "en": "Name of new instructor",
+    "c": 1
+  },
+  {
+    "en": "Update course category",
+    "c": 1
+  },
+  {
+    "en": "Update course location",
+    "c": 1
+  },
+  {
+    "en": "Parent course location",
+    "c": 1
+  },
+  {
+    "en": "Override profile image",
+    "c": 1
+  },
+  {
+    "en": "Pages and system pages",
+    "c": 1
+  },
+  {
+    "en": "Hide in overview lists",
+    "c": 1
+  },
+  {
+    "en": "Course synchronization",
+    "c": 1
+  },
+  {
+    "en": "Theme for course lists",
+    "c": 1
+  },
+  {
+    "en": "Select parent category",
+    "c": 2
+  },
+  {
+    "en": "Select course location",
+    "c": 1
+  },
+  {
+    "en": "Welcome to Kursagenten",
+    "c": 1
+  },
+  {
+    "en": "Show registration link",
+    "c": 1
+  },
+  {
+    "en": "Image for course in %s",
+    "c": 1
+  },
+  {
+    "en": "More course categories",
+    "c": 1
+  },
+  {
+    "en": "Kursagenten auto menus",
+    "c": 1
+  },
+  {
+    "en": "Registration deadline:",
+    "c": 1
+  },
+  {
+    "en": "Edit WordPress content",
+    "c": 1
+  },
+  {
+    "en": "Show number of courses",
+    "c": 1
+  },
+  {
+    "en": "Open %s in Google Maps",
+    "c": 1
+  },
+  {
+    "en": "Standard profile image",
+    "c": 1
+  },
+  {
+    "en": "After the main content.",
+    "c": 1
+  },
+  {
+    "en": "Filters – how they work",
+    "c": 1
+  },
+  {
+    "en": "Filter course date list",
+    "c": 1
+  },
+  {
+    "en": "Font for main headings:",
+    "c": 1
+  },
+  {
+    "en": "How to create the pages",
+    "c": 1
+  },
+  {
+    "en": "Course list with filter",
+    "c": 1
+  },
+  {
+    "en": "Uploaded to this course",
+    "c": 1
+  },
+  {
+    "en": "Uploaded to course date",
+    "c": 1
+  },
+  {
+    "en": "External link behavior:",
+    "c": 1
+  },
+  {
+    "en": "Parent course location:",
+    "c": 1
+  },
+  {
+    "en": "Set parent category to:",
+    "c": 1
+  },
+  {
+    "en": "Insert into course date",
+    "c": 1
+  },
+  {
+    "en": "Page content was reset.",
+    "c": 1
+  },
+  {
+    "en": "Search course locations",
+    "c": 1
+  },
+  {
+    "en": "Theme for single course",
+    "c": 1
+  },
+  {
+    "en": "Select pages and design",
+    "c": 1
+  },
+  {
+    "en": "Show more color options",
+    "c": 1
+  },
+  {
+    "en": "The course runs from %s",
+    "c": 1
+  },
+  {
+    "en": "Automatic (recommended)",
+    "c": 1
+  },
+  {
+    "en": "Show instructor name as",
+    "c": 1
+  },
+  {
+    "en": "Payment page for courses",
+    "c": 1
+  },
+  {
+    "en": "Rename posts to Articles",
+    "c": 1
+  },
+  {
+    "en": "System page was created.",
+    "c": 1
+  },
+  {
+    "en": "System page was deleted.",
+    "c": 1
+  },
+  {
+    "en": "Tips and troubleshooting",
+    "c": 1
+  },
+  {
+    "en": "Select background color:",
+    "c": 1
+  },
+  {
+    "en": "Show in list (taxonomy):",
+    "c": 1
+  },
+  {
+    "en": "Turn SEO off (meta tags)",
+    "c": 1
+  },
+  {
+    "en": "Max words in description",
+    "c": 1
+  },
+  {
+    "en": "Row extended description",
+    "c": 1
+  },
+  {
+    "en": "Stacked overlapping card",
+    "c": 1
+  },
+  {
+    "en": "Use background color only",
+    "c": 1
+  },
+  {
+    "en": "You have several options:",
+    "c": 1
+  },
+  {
+    "en": "Filters above course list",
+    "c": 1
+  },
+  {
+    "en": "Filter by course category",
+    "c": 1
+  },
+  {
+    "en": "Filter by course location",
+    "c": 1
+  },
+  {
+    "en": "General placeholder image",
+    "c": 1
+  },
+  {
+    "en": "No course days available.",
+    "c": 1
+  },
+  {
+    "en": "No course locations found",
+    "c": 1
+  },
+  {
+    "en": "Settings from Kursagenten",
+    "c": 1
+  },
+  {
+    "en": "Enter company information",
+    "c": 1
+  },
+  {
+    "en": "Link to a course category",
+    "c": 1
+  },
+  {
+    "en": "Link to a course location",
+    "c": 1
+  },
+  {
+    "en": "Regional division saved%s",
+    "c": 1
+  },
+  {
+    "en": "Font size for description",
+    "c": 1
+  },
+  {
+    "en": "Number of columns in grid:",
+    "c": 1
+  },
+  {
+    "en": "No course categories found",
+    "c": 1
+  },
+  {
+    "en": "Pages that must be created",
+    "c": 1
+  },
+  {
+    "en": "Location names and regions",
+    "c": 1
+  },
+  {
+    "en": "Search for course category",
+    "c": 1
+  },
+  {
+    "en": "Options for lists and grid",
+    "c": 1
+  },
+  {
+    "en": "Show all visibility states",
+    "c": 1
+  },
+  {
+    "en": "← Back to course locations",
+    "c": 1
+  },
+  {
+    "en": "No filters are configured.",
+    "c": 1
+  },
+  {
+    "en": "Course times and locations",
+    "c": 1
+  },
+  {
+    "en": "Show only available places",
+    "c": 1
+  },
+  {
+    "en": "No course locations found.",
+    "c": 1
+  },
+  {
+    "en": "Parent category (optional)",
+    "c": 1
+  },
+  {
+    "en": "Number of courses per page:",
+    "c": 1
+  },
+  {
+    "en": "Course location name change",
+    "c": 1
+  },
+  {
+    "en": "Filter course dates by date",
+    "c": 1
+  },
+  {
+    "en": "Instructors list navigation",
+    "c": 1
+  },
+  {
+    "en": "KA course reverted to draft",
+    "c": 1
+  },
+  {
+    "en": "Click \"Add new instructor\".",
+    "c": 2
+  },
+  {
+    "en": "Course date list navigation",
+    "c": 1
+  },
+  {
+    "en": "Dark text and light overlay",
+    "c": 1
+  },
+  {
+    "en": "Name of new course location",
+    "c": 1
+  },
+  {
+    "en": "Creating custom instructors",
+    "c": 1
+  },
+  {
+    "en": "Pages created automatically",
+    "c": 1
+  },
+  {
+    "en": "Various additional features",
+    "c": 1
+  },
+  {
+    "en": "Below image and description",
+    "c": 1
+  },
+  {
+    "en": "Show filters in left column",
+    "c": 1
+  },
+  {
+    "en": "← Back to course categories",
+    "c": 1
+  },
+  {
+    "en": "Add extra WordPress content",
+    "c": 1
+  },
+  {
+    "en": "Open address in Google Maps",
+    "c": 1
+  },
+  {
+    "en": "No parent categories found.",
+    "c": 1
+  },
+  {
+    "en": "Alternative color for boxes:",
+    "c": 1
+  },
+  {
+    "en": "Number of columns on tablet.",
+    "c": 1
+  },
+  {
+    "en": "Number of columns on mobile.",
+    "c": 1
+  },
+  {
+    "en": "Disable Gravatar on frontend",
+    "c": 1
+  },
+  {
+    "en": "Design templates for courses",
+    "c": 1
+  },
+  {
+    "en": "Change name for new location",
+    "c": 1
+  },
+  {
+    "en": "Change the instructor's name",
+    "c": 1
+  },
+  {
+    "en": "No KA courses found in trash",
+    "c": 1
+  },
+  {
+    "en": "Could not fetch course days.",
+    "c": 1
+  },
+  {
+    "en": "Course data from Kursagenten",
+    "c": 1
+  },
+  {
+    "en": "Course locations and regions",
+    "c": 1
+  },
+  {
+    "en": "Added directly via WordPress",
+    "c": 1
+  },
+  {
+    "en": "Report bugs and improvements",
+    "c": 1
+  },
+  {
+    "en": "New name for course category",
+    "c": 1
+  },
+  {
+    "en": "Placeholder image for course",
+    "c": 1
+  },
+  {
+    "en": "Enter location name manually",
+    "c": 1
+  },
+  {
+    "en": "Courses in the same category",
+    "c": 1
+  },
+  {
+    "en": "Number of columns on desktop.",
+    "c": 1
+  },
+  {
+    "en": "Background image and overlay:",
+    "c": 1
+  },
+  {
+    "en": "Both fields must be filled in",
+    "c": 1
+  },
+  {
+    "en": "Hero - top section with image",
+    "c": 1
+  },
+  {
+    "en": "Do not change parent category",
+    "c": 1
+  },
+  {
+    "en": "KA course published privately",
+    "c": 1
+  },
+  {
+    "en": "Shortcodes for lists and grid",
+    "c": 1
+  },
+  {
+    "en": "Course categories, auto menus",
+    "c": 1
+  },
+  {
+    "en": "Left filter column appearance",
+    "c": 1
+  },
+  {
+    "en": "Select font color (optional):",
+    "c": 1
+  },
+  {
+    "en": "Background color behind image",
+    "c": 1
+  },
+  {
+    "en": "Max words in long description",
+    "c": 1
+  },
+  {
+    "en": "Text smallest to largest (px)",
+    "c": 1
+  },
+  {
+    "en": "<strong>Default:</strong> 1rem",
+    "c": 1
+  },
+  {
+    "en": "AJAX configuration is missing.",
+    "c": 1
+  },
+  {
+    "en": "Enable extra security features",
+    "c": 1
+  },
+  {
+    "en": "Off (handled by Rank Math Pro)",
+    "c": 1
+  },
+  {
+    "en": "Rounded search field with icon",
+    "c": 1
+  },
+  {
+    "en": "Image fetched from Kursagenten",
+    "c": 1
+  },
+  {
+    "en": "No parent category (top level)",
+    "c": 1
+  },
+  {
+    "en": "No course dates found in trash",
+    "c": 1
+  },
+  {
+    "en": "Course date reverted to draft.",
+    "c": 1
+  },
+  {
+    "en": "Course filter on category page",
+    "c": 1
+  },
+  {
+    "en": "Overview pages with shortcodes",
+    "c": 1
+  },
+  {
+    "en": "Override data from Kursagenten",
+    "c": 1
+  },
+  {
+    "en": "Placeholder image for location",
+    "c": 1
+  },
+  {
+    "en": "Control course list appearance",
+    "c": 1
+  },
+  {
+    "en": "Title smallest to largest (px)",
+    "c": 1
+  },
+  {
+    "en": "<strong>Default:</strong> 100px",
+    "c": 1
+  },
+  {
+    "en": "Image fetched from Kursagenten:",
+    "c": 1
+  },
+  {
+    "en": "There are two ways to clean up:",
+    "c": 1
+  },
+  {
+    "en": "One card per course (next date)",
+    "c": 1
+  },
+  {
+    "en": "After the \"Next course\" module.",
+    "c": 1
+  },
+  {
+    "en": "Could not load version history.",
+    "c": 1
+  },
+  {
+    "en": "Profile - round image and title",
+    "c": 1
+  },
+  {
+    "en": "Right after the footer section.",
+    "c": 1
+  },
+  {
+    "en": "At the top of the right column.",
+    "c": 1
+  },
+  {
+    "en": "Auto menus in the WordPress menu",
+    "c": 1
+  },
+  {
+    "en": "Get all courses from Kursagenten",
+    "c": 1
+  },
+  {
+    "en": "Category filter on category page",
+    "c": 1
+  },
+  {
+    "en": "Conflicts found for hidden URLs:",
+    "c": 1
+  },
+  {
+    "en": "Course date published privately.",
+    "c": 1
+  },
+  {
+    "en": "Course locations list navigation",
+    "c": 1
+  },
+  {
+    "en": "Name change for course locations",
+    "c": 1
+  },
+  {
+    "en": "Network error. Please try again.",
+    "c": 1
+  },
+  {
+    "en": "When you change a location name:",
+    "c": 1
+  },
+  {
+    "en": "Placeholder image for instructor",
+    "c": 1
+  },
+  {
+    "en": "Default height for filter lists:",
+    "c": 1
+  },
+  {
+    "en": "Show instructors without courses",
+    "c": 1
+  },
+  {
+    "en": "Background for highlighted areas:",
+    "c": 1
+  },
+  {
+    "en": "Use external link on course title",
+    "c": 1
+  },
+  {
+    "en": "Fill in name and optionally slug.",
+    "c": 1
+  },
+  {
+    "en": "Fetching courses from Kursagenten",
+    "c": 1
+  },
+  {
+    "en": "Kursagenten: Bulk edit visibility",
+    "c": 1
+  },
+  {
+    "en": "Course categories list navigation",
+    "c": 1
+  },
+  {
+    "en": "Overview page for all instructors",
+    "c": 1
+  },
+  {
+    "en": "Override profile from Kursagenten",
+    "c": 1
+  },
+  {
+    "en": "Show instructors in single course",
+    "c": 1
+  },
+  {
+    "en": "Show category and related courses",
+    "c": 1
+  },
+  {
+    "en": "The course runs from %1$s to %2$s",
+    "c": 1
+  },
+  {
+    "en": "Show only courses, not categories",
+    "c": 1
+  },
+  {
+    "en": "Show only the following locations",
+    "c": 1
+  },
+  {
+    "en": "<strong>Default:</strong> 1 column",
+    "c": 1
+  },
+  {
+    "en": "<strong>Default:</strong> 2em .5em",
+    "c": 1
+  },
+  {
+    "en": "After links in the header section.",
+    "c": 1
+  },
+  {
+    "en": "Could not fetch update package: %s",
+    "c": 1
+  },
+  {
+    "en": "At the bottom of the right column.",
+    "c": 1
+  },
+  {
+    "en": "SEO for courses and taxonomy pages",
+    "c": 1
+  },
+  {
+    "en": "Hide only the category from filter",
+    "c": 1
+  },
+  {
+    "en": "Sub-option for \"Show main courses\"",
+    "c": 1
+  },
+  {
+    "en": "Show filter in box with background",
+    "c": 1
+  },
+  {
+    "en": "Show link boxes after course list:",
+    "c": 1
+  },
+  {
+    "en": "Customizations (title/description)",
+    "c": 1
+  },
+  {
+    "en": "Information about course locations",
+    "c": 1
+  },
+  {
+    "en": "An error occurred while filtering.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Default:</strong> 2 columns",
+    "c": 1
+  },
+  {
+    "en": "<strong>Default:</strong> 3 columns",
+    "c": 1
+  },
+  {
+    "en": "Block XML-RPC in .htaccess (Apache)",
+    "c": 1
+  },
+  {
+    "en": "Show filters at the top of the list",
+    "c": 1
+  },
+  {
+    "en": "Show course filter on category page",
+    "c": 1
+  },
+  {
+    "en": "✓ (can be overridden in AIOSEO Pro)",
+    "c": 1
+  },
+  {
+    "en": "Can't find what you're looking for?",
+    "c": 1
+  },
+  {
+    "en": "Preview: no upcoming courses found.",
+    "c": 1
+  },
+  {
+    "en": "No courses available at the moment.",
+    "c": 1
+  },
+  {
+    "en": "Show instructors with preset styles",
+    "c": 1
+  },
+  {
+    "en": "Kursagenten plugin - Version history",
+    "c": 1
+  },
+  {
+    "en": "Add images and location descriptions",
+    "c": 1
+  },
+  {
+    "en": "Regional division reset to default%s",
+    "c": 1
+  },
+  {
+    "en": "Right below the entire header block.",
+    "c": 1
+  },
+  {
+    "en": "Enable the settings you want to use:",
+    "c": 1
+  },
+  {
+    "en": "Default - with image and description",
+    "c": 1
+  },
+  {
+    "en": "Show all course dates (with filters)",
+    "c": 1
+  },
+  {
+    "en": "Show contact person in single course",
+    "c": 1
+  },
+  {
+    "en": "No courses available for this filter",
+    "c": 1
+  },
+  {
+    "en": "%1$s has the same slug as %2$s \"%3$s\"",
+    "c": 1
+  },
+  {
+    "en": "These slugs use fallback with prefix.",
+    "c": 1
+  },
+  {
+    "en": "No mapping received or invalid format",
+    "c": 1
+  },
+  {
+    "en": "Click \"Save\" to save the name change.",
+    "c": 1
+  },
+  {
+    "en": "Light text and dark overlay (default)",
+    "c": 1
+  },
+  {
+    "en": "Same slug used in multiple places: %s",
+    "c": 1
+  },
+  {
+    "en": "View overview of all imported courses",
+    "c": 1
+  },
+  {
+    "en": "✓ (can be overridden in SEOPress Pro)",
+    "c": 1
+  },
+  {
+    "en": "Hide location filter in further views",
+    "c": 1
+  },
+  {
+    "en": "Something went wrong during bulk edit.",
+    "c": 1
+  },
+  {
+    "en": "Overview page for all course locations",
+    "c": 1
+  },
+  {
+    "en": "Overview page/calendar for all courses",
+    "c": 1
+  },
+  {
+    "en": "Clean up courses after synchronization",
+    "c": 1
+  },
+  {
+    "en": "Sub-option for \"Show all course dates\"",
+    "c": 1
+  },
+  {
+    "en": "Choose which heading to use for names.",
+    "c": 1
+  },
+  {
+    "en": "Show available courses only by default",
+    "c": 1
+  },
+  {
+    "en": "Click \"Custom settings for instructors\"",
+    "c": 1
+  },
+  {
+    "en": "Copy the webhook URL shown on the page:",
+    "c": 1
+  },
+  {
+    "en": "Missing Kursagenten IDs on course date.",
+    "c": 1
+  },
+  {
+    "en": "Overview page for all course categories",
+    "c": 1
+  },
+  {
+    "en": "Room or venue where the course is held.",
+    "c": 1
+  },
+  {
+    "en": "Show full name, first name or last name",
+    "c": 1
+  },
+  {
+    "en": "– Used for troubleshooting and overview",
+    "c": 1
+  },
+  {
+    "en": "Use external link on registration button",
+    "c": 1
+  },
+  {
+    "en": "You do not have access to this function.",
+    "c": 1
+  },
+  {
+    "en": "Course dates that are deleted or expired",
+    "c": 1
+  },
+  {
+    "en": "Paste the license key you were assigned.",
+    "c": 1
+  },
+  {
+    "en": "shows only course locations in Østlandet",
+    "c": 1
+  },
+  {
+    "en": "All available course locations and dates",
+    "c": 1
+  },
+  {
+    "en": "No course dates available at the moment.",
+    "c": 1
+  },
+  {
+    "en": "Start directly with visual style choices",
+    "c": 1
+  },
+  {
+    "en": "Show course locations with preset styles",
+    "c": 1
+  },
+  {
+    "en": "This field is overridden from Kursagenten",
+    "c": 1
+  },
+  {
+    "en": "Simple - Title and short description only",
+    "c": 1
+  },
+  {
+    "en": "The name is what is displayed on the page",
+    "c": 1
+  },
+  {
+    "en": "Override settings for specific taxonomies",
+    "c": 1
+  },
+  {
+    "en": "Placement for content in the left column.",
+    "c": 1
+  },
+  {
+    "en": "Hide the category and all related courses",
+    "c": 1
+  },
+  {
+    "en": "Could not load filters. Please try again.",
+    "c": 1
+  },
+  {
+    "en": "Show course categories with preset styles",
+    "c": 1
+  },
+  {
+    "en": "Remove parent category (move to top level)",
+    "c": 1
+  },
+  {
+    "en": "Instructor title, course title/description",
+    "c": 1
+  },
+  {
+    "en": "Last deadline to register for this course.",
+    "c": 1
+  },
+  {
+    "en": "Support for \"Site Reviews\" plugin, reviews",
+    "c": 1
+  },
+  {
+    "en": "yes<br><strong>Default</strong>: no shadow",
+    "c": 1
+  },
+  {
+    "en": "yes<br><strong>Default</strong>: not shown",
+    "c": 1
+  },
+  {
+    "en": "card<br><strong>Default</strong>: not card",
+    "c": 1
+  },
+  {
+    "en": "An unknown error occurred while filtering.",
+    "c": 1
+  },
+  {
+    "en": "Add profile images and extended information",
+    "c": 1
+  },
+  {
+    "en": "Hide specific locations on course locations",
+    "c": 1
+  },
+  {
+    "en": "Turn off SEO for courses and taxonomy pages",
+    "c": 1
+  },
+  {
+    "en": "Shadow on hover for course/course category.",
+    "c": 1
+  },
+  {
+    "en": "Taxonomies (category, location, instructor)",
+    "c": 1
+  },
+  {
+    "en": "Show main courses (with next available date)",
+    "c": 1
+  },
+  {
+    "en": "Displayed right after H1 in the top section.",
+    "c": 1
+  },
+  {
+    "en": "You do not have permission to open this page.",
+    "c": 1
+  },
+  {
+    "en": "Could not fetch course days from Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "Choose which region this location belongs to.",
+    "c": 1
+  },
+  {
+    "en": "Choose to show first name, last name or both.",
+    "c": 1
+  },
+  {
+    "en": "Show text from the \"Short description\" field.",
+    "c": 1
+  },
+  {
+    "en": "Use default selection for selected list design",
+    "c": 1
+  },
+  {
+    "en": "Displayed right below the entire header block.",
+    "c": 1
+  },
+  {
+    "en": "image, icon<br><strong>Default:</strong> image",
+    "c": 1
+  },
+  {
+    "en": "yes<br><strong>Default</strong>: not displayed",
+    "c": 1
+  },
+  {
+    "en": "There are currently no instructors to display.",
+    "c": 1
+  },
+  {
+    "en": "An error occurred while fetching filter counts",
+    "c": 1
+  },
+  {
+    "en": "Select at least one row before using bulk edit.",
+    "c": 1
+  },
+  {
+    "en": "* Note: This section is still under development.",
+    "c": 1
+  },
+  {
+    "en": "Default (top filter + left filter as configured)",
+    "c": 1
+  },
+  {
+    "en": "Below heading, above filter/pagination and list.",
+    "c": 1
+  },
+  {
+    "en": "Region is disabled in Synchronization → Regions.",
+    "c": 1
+  },
+  {
+    "en": "After any course list section on the detail page.",
+    "c": 1
+  },
+  {
+    "en": "Find the perfect course for you and your business",
+    "c": 1
+  },
+  {
+    "en": "More information about data flow from Kursagenten",
+    "c": 1
+  },
+  {
+    "en": "image, ka-bilde<br><strong>Default:</strong> image",
+    "c": 1
+  },
+  {
+    "en": "text<br><strong>Default</strong>: empty (no class)",
+    "c": 1
+  },
+  {
+    "en": "There are currently no related courses to display.",
+    "c": 1
+  },
+  {
+    "en": "Design templates present content in different ways.",
+    "c": 1
+  },
+  {
+    "en": "Kursagenten: License key saved. Registering site...",
+    "c": 1
+  },
+  {
+    "en": "Course categories, course locations and instructors",
+    "c": 1
+  },
+  {
+    "en": "There are currently no course locations to display.",
+    "c": 1
+  },
+  {
+    "en": "What Kursagenten adds (when no SEO plugin is active)",
+    "c": 1
+  },
+  {
+    "en": "Show category filter (display type All course dates)",
+    "c": 1
+  },
+  {
+    "en": "e.g. 4/3, 16/9, 1/1<br><strong>Default</strong>: 4/3",
+    "c": 1
+  },
+  {
+    "en": "Could not write downloaded package to temporary file.",
+    "c": 1
+  },
+  {
+    "en": "Courses deleted in Kursagenten (no longer in the API)",
+    "c": 1
+  },
+  {
+    "en": "Kursagenten: License key missing. %sEnter key here%s.",
+    "c": 1
+  },
+  {
+    "en": "shows all locations in Østlandet or Bergen (OR logic)",
+    "c": 1
+  },
+  {
+    "en": "Used when Shadow/border style = None, but use border.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Phone:</strong> The instructor's phone number.",
+    "c": 1
+  },
+  {
+    "en": "Your courses are fetched from Kursagenten in two ways:",
+    "c": 1
+  },
+  {
+    "en": "Preview: no registration link for the selected course.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Email:</strong> The instructor's email address.",
+    "c": 1
+  },
+  {
+    "en": "Changes are saved automatically when you move counties.",
+    "c": 1
+  },
+  {
+    "en": "Go to <strong>Appearance → Menus</strong> in WordPress.",
+    "c": 1
+  },
+  {
+    "en": "Check \"Enable regional division\" to enable the feature.",
+    "c": 1
+  },
+  {
+    "en": "e.g. 13px, 15px, 18px<br><strong>Default</strong>: 13px",
+    "c": 1
+  },
+  {
+    "en": "e.g. 15px, 18px, 26px<br><strong>Default</strong>: 18px",
+    "c": 1
+  },
+  {
+    "en": "stacked, row, list<br><strong>Default:</strong> stacked",
+    "c": 1
+  },
+  {
+    "en": "Hide only the category from filter (courses still shown)",
+    "c": 1
+  },
+  {
+    "en": "Choose how course lists on taxonomy pages are displayed:",
+    "c": 1
+  },
+  {
+    "en": "Preview: the course has no description from Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "Show or hide categories linked to the selected location.",
+    "c": 1
+  },
+  {
+    "en": "One card per course and location (next date per location)",
+    "c": 1
+  },
+  {
+    "en": "After the entire footer section (after &lt;/article&gt;).",
+    "c": 1
+  },
+  {
+    "en": "Something went wrong while communicating with the server.",
+    "c": 1
+  },
+  {
+    "en": "Preview: no course overview page has been configured yet.",
+    "c": 1
+  },
+  {
+    "en": "Before the entire header section (before &lt;article&gt;).",
+    "c": 1
+  },
+  {
+    "en": "Applies parent category to all selected course categories.",
+    "c": 1
+  },
+  {
+    "en": "Whether the image should be landscape, portrait or square.",
+    "c": 1
+  },
+  {
+    "en": "Add images, descriptions and organize into main categories",
+    "c": 1
+  },
+  {
+    "en": "Overrides the text color from the overlay selection above.",
+    "c": 1
+  },
+  {
+    "en": "Right below pagination controls in the \"Default\" template.",
+    "c": 1
+  },
+  {
+    "en": "Choose whether this should appear in auto-generated menus.",
+    "c": 1
+  },
+  {
+    "en": "At the very bottom, after the course list (bottom section).",
+    "c": 1
+  },
+  {
+    "en": "Select default number of courses to display per page (1-50)",
+    "c": 1
+  },
+  {
+    "en": "comma-separated list<br><strong>Default</strong>: shows all",
+    "c": 1
+  },
+  {
+    "en": "\"Slug\" is the SEO-friendly version of the URL. Example /oslo",
+    "c": 1
+  },
+  {
+    "en": "Use taxonomy image, and background color if image is missing",
+    "c": 1
+  },
+  {
+    "en": "rounded, circle, square<br><strong>Default</strong>: rounded",
+    "c": 1
+  },
+  {
+    "en": "Preview: no course times registered for the selected course.",
+    "c": 1
+  },
+  {
+    "en": "You must enter a license key before you can use the settings.",
+    "c": 1
+  },
+  {
+    "en": "e.g. h3, h4, h5, p, span, div<br><strong>Default</strong>: h3",
+    "c": 1
+  },
+  {
+    "en": "location, not-location<br><strong>Default</strong>: shows all",
+    "c": 1
+  },
+  {
+    "en": "Security check failed. Please refresh the page and try again.",
+    "c": 1
+  },
+  {
+    "en": "Main image used on the category page and in category overviews",
+    "c": 1
+  },
+  {
+    "en": "Click \"Change name for new location\" to add a new name change.",
+    "c": 1
+  },
+  {
+    "en": "This image is used as the main image on the instructor profile.",
+    "c": 1
+  },
+  {
+    "en": "yes, no<br><strong>Default:</strong> fetched from Course design",
+    "c": 1
+  },
+  {
+    "en": "Location descriptions from the 'Location' field in Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "Applies to filters placed in the left column of the course list.",
+    "c": 1
+  },
+  {
+    "en": "Preview: no published single courses found to use as an example.",
+    "c": 1
+  },
+  {
+    "en": "\"Slug\" is the SEO-friendly version of the URL. Example /my-course",
+    "c": 1
+  },
+  {
+    "en": "Use course image, and background color if course image is missing",
+    "c": 1
+  },
+  {
+    "en": "This is the largest font size you will use for text and headings.",
+    "c": 1
+  },
+  {
+    "en": "Choose whether this should appear in Kursagenten's own overviews.",
+    "c": 1
+  },
+  {
+    "en": "Also show manually created instructors without published courses.",
+    "c": 1
+  },
+  {
+    "en": "Choose a parent to create a hierarchy and make this a subcategory.",
+    "c": 1
+  },
+  {
+    "en": "Choose whether this should appear in category lists and overviews.",
+    "c": 1
+  },
+  {
+    "en": "first name, last name<br><strong>Default</strong>: shows full name",
+    "c": 1
+  },
+  {
+    "en": "Automatic uses responsive srcset when possible for sharper images.",
+    "c": 1
+  },
+  {
+    "en": "\"Slug\" is the SEO-friendly version of the URL. Example /kari-norman",
+    "c": 1
+  },
+  {
+    "en": "Just below main image/extended description, before the course list.",
+    "c": 1
+  },
+  {
+    "en": "Name change saved. Slug updates will occur at next synchronization.",
+    "c": 1
+  },
+  {
+    "en": "Preview: no contact information registered for the selected course.",
+    "c": 1
+  },
+  {
+    "en": "No courses found. Remove one or more filters, or reset all filters.",
+    "c": 1
+  },
+  {
+    "en": "Override image display in <span class=\"copytext\">[kursliste]</span>.",
+    "c": 1
+  },
+  {
+    "en": "Enter URLs for social profiles. These can be used across the website.",
+    "c": 1
+  },
+  {
+    "en": "Name change updated. Slug updates will occur at next synchronization.",
+    "c": 1
+  },
+  {
+    "en": "Show as card with white background and shadow behind the entire card.",
+    "c": 1
+  },
+  {
+    "en": "Hide all filters, course counter, \"show number of courses\" and sorting",
+    "c": 1
+  },
+  {
+    "en": "Choose fully square images, slightly rounded corners, or round images.",
+    "c": 1
+  },
+  {
+    "en": "Show only categories with courses at the specified location (optional)",
+    "c": 1
+  },
+  {
+    "en": "Drag counties between regions to organize them according to your needs.",
+    "c": 1
+  },
+  {
+    "en": "Contact us and we will help you find the perfect course for your needs.",
+    "c": 1
+  },
+  {
+    "en": "Edit the instructor to add images, contact information and descriptions.",
+    "c": 1
+  },
+  {
+    "en": "Keep H3 as default unless you have a clear semantic reason to change it.",
+    "c": 1
+  },
+  {
+    "en": "This image can be used as an alternative image on the instructor profile.",
+    "c": 1
+  },
+  {
+    "en": "You can control where categories appear with several visibility settings:",
+    "c": 1
+  },
+  {
+    "en": "You can add placeholder images under Admin → Kursagenten → Course design.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Cache:</strong> Clear cache if you do not see changes immediately.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Test:</strong> Visit the frontend and verify it looks as expected.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Visual details:</strong> Styling, spacing and other visual design.",
+    "c": 1
+  },
+  {
+    "en": "Use \"Reset to default\" to restore the regional division to default values.",
+    "c": 1
+  },
+  {
+    "en": "Click to view individual course days with date, time, instructor and room.",
+    "c": 1
+  },
+  {
+    "en": "Show link boxes to more categories/locations/instructors after course list",
+    "c": 1
+  },
+  {
+    "en": "Note: the instructor must be linked to a course for the data to be fetched.",
+    "c": 1
+  },
+  {
+    "en": "Choose \"Full name\", \"First name\" or \"Last name\" in the \"Name display\" field.",
+    "c": 1
+  },
+  {
+    "en": "Show course categories, course locations, or instructors with preset styles.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Image:</strong> An image displayed on the location page and in lists.",
+    "c": 1
+  },
+  {
+    "en": "Kursagenten: The license is invalid or deleted. %sEnter a new license here%s.",
+    "c": 1
+  },
+  {
+    "en": "Enter the spacing between rows in pixels, em or rem. For no spacing, enter 0.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Number per page:</strong> Choose how many courses to display per page.",
+    "c": 1
+  },
+  {
+    "en": "This field shows whether the image was automatically fetched from Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "List and grid design <span class=\"small\"><a href=\"#lister\">more info</a></span>",
+    "c": 1
+  },
+  {
+    "en": "No courses available with the selected filters. Reset filters if you are stuck.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Short description:</strong> A short text that can be displayed in lists.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Permalinks:</strong> When changing URL settings, save \"Permalinks\" again.",
+    "c": 1
+  },
+  {
+    "en": "The old location is not deleted, but it will no longer be visible on the website.",
+    "c": 1
+  },
+  {
+    "en": "For instructors from Kursagenten, you can override the data with your own values:",
+    "c": 1
+  },
+  {
+    "en": "First create a <strong>custom menu</strong> or a menu item of type \"Custom link\".",
+    "c": 1
+  },
+  {
+    "en": "Pages are marked with \"Kursagenten\" in the page overview for easy identification.",
+    "c": 1
+  },
+  {
+    "en": "Specific locations show addresses and links to Google maps above the course list.",
+    "c": 1
+  },
+  {
+    "en": "show_buttons, signup_link<br><strong>Default:</strong> fetched from Course design",
+    "c": 1
+  },
+  {
+    "en": "<strong>Main image:</strong> An image displayed on the category page and in lists.",
+    "c": 1
+  },
+  {
+    "en": "Short description is used in overviews and as introductory text on the detail page",
+    "c": 1
+  },
+  {
+    "en": "Course list with filter <span class=\"small\"><a href=\"#lister\">more info</a></span>",
+    "c": 1
+  },
+  {
+    "en": "Works especially well for pages with few courses per location/category/instructor.",
+    "c": 1
+  },
+  {
+    "en": "Enable regional division (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge)",
+    "c": 1
+  },
+  {
+    "en": "You can create instructors directly in WordPress that do not come from Kursagenten:",
+    "c": 1
+  },
+  {
+    "en": "No matches with the selected filters. Try a different search or adjust the filters.",
+    "c": 1
+  },
+  {
+    "en": "Try changing your filter choices or reset all filters to see all available courses.",
+    "c": 1
+  },
+  {
+    "en": "Slugs (URLs) for courses with this location are updated on the next synchronization.",
+    "c": 1
+  },
+  {
+    "en": "After registration you will receive an email with more information about the course.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Shared design template:</strong> All taxonomies use the same design template.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Name:</strong> The instructor's name (can be split into first and last name).",
+    "c": 1
+  },
+  {
+    "en": "Limit content with <strong>location filter</strong> (e.g. only \"Oslo\" or \"not Oslo\").",
+    "c": 1
+  },
+  {
+    "en": "Click the triangle on the menu item to open settings. Here you can among other things:",
+    "c": 1
+  },
+  {
+    "en": "Select region for filtering. Can be combined with location selection ('x or y' logic).",
+    "c": 1
+  },
+  {
+    "en": "Go to <a href=\"admin.php?page=kursinnstillinger#regions\">Synchronization → Regions</a>.",
+    "c": 1
+  },
+  {
+    "en": "Enter brief information about the company. This text can be displayed with a shortcode.",
+    "c": 1
+  },
+  {
+    "en": "Select the location from the list or enter the name manually, and specify the new name.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Image:</strong> Upload a main image displayed on the taxonomy page and in lists.",
+    "c": 1
+  },
+  {
+    "en": "Go to <a href=\"admin.php?page=kursinnstillinger\">Synchronization</a> in WordPress admin.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Images:</strong> Use placeholder images via shortcodes if you are missing images.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Name:</strong> The category name (comes from Kursagenten, should not be changed).",
+    "c": 1
+  },
+  {
+    "en": "The changes below apply to all selected terms. Fields set to \"Do not change\" are skipped.",
+    "c": 1
+  },
+  {
+    "en": "Go to <a href=\"admin.php?page=design#design-taksonomi\">Course design → Taxonomy pages</a>",
+    "c": 1
+  },
+  {
+    "en": "Also check \"Clean up courses\" before running sync to ensure old course dates are removed.",
+    "c": 1
+  },
+  {
+    "en": "The name as displayed on the page. Can be changed under <a href=\"%s\">Synchronization</a>.",
+    "c": 1
+  },
+  {
+    "en": "Provide either coursedate_id (WP post ID) or location_id + schedule_id (Kursagenten IDs).",
+    "c": 1
+  },
+  {
+    "en": "<strong>Extra fields:</strong> Specific fields depending on the taxonomy type (see below).",
+    "c": 1
+  },
+  {
+    "en": "<strong>Display type</strong> determines whether to show main courses or all course dates.",
+    "c": 1
+  },
+  {
+    "en": "Show text from the \"Extended description\" field. Note that this will override the excerpt.",
+    "c": 1
+  },
+  {
+    "en": "You can register for the course now. After registration you will receive more information.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Alternative image:</strong> An extra image that can be used on the instructor page.",
+    "c": 1
+  },
+  {
+    "en": "Customize basic design variables such as colors, font sizes, and max width on plugin pages.",
+    "c": 1
+  },
+  {
+    "en": "Secure your place on this course now. If you have questions, do not hesitate to contact us.",
+    "c": 1
+  },
+  {
+    "en": "<em>Show</em> – the category appears in the filter and courses appear in the list (default).",
+    "c": 1
+  },
+  {
+    "en": "<strong>Order:</strong> You can also drag filters to change the order they are displayed in.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Default:</strong> A traditional list view with course cards, one course per row/box.",
+    "c": 1
+  },
+  {
+    "en": "Select design for pages showing course details, both for all locations and single locations.",
+    "c": 1
+  },
+  {
+    "en": "Spacing around all elements; the first value is top and bottom, the second is left and right.",
+    "c": 1
+  },
+  {
+    "en": "In the URL field, type <code>#</code> (so the menu item can be saved without an actual link).",
+    "c": 1
+  },
+  {
+    "en": "Webhooks ensure your courses are always up to date without manual effort. To enable webhooks:",
+    "c": 1
+  },
+  {
+    "en": "<strong>Region:</strong> (If regions are enabled) Choose which region the location belongs to.",
+    "c": 1
+  },
+  {
+    "en": "Add custom CSS class to the wrapper element. Useful for custom styling or theme-specific needs.",
+    "c": 1
+  },
+  {
+    "en": "Text adjusts to screen size. This is the smallest font size you will use for text and headings.",
+    "c": 1
+  },
+  {
+    "en": "You must run a full synchronization (\"Fetch all courses from Kursagenten\") to apply name changes.",
+    "c": 1
+  },
+  {
+    "en": "NB! Run a full sync from Kursagenten immediately after adding/changing the name of a location(s)!",
+    "c": 1
+  },
+  {
+    "en": "Choose whether the course list should show standard button style or registration link style only.",
+    "c": 1
+  },
+  {
+    "en": "Smallest font (mobile) to largest font (large desktop). Provides a gradual increase in font size.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Build your own design</strong> is active. You can still control course data display below.",
+    "c": 1
+  },
+  {
+    "en": "sørlandet, østlandet, vestlandet, midt-norge, nord-norge<br><strong>Default</strong>: no filtering",
+    "c": 1
+  },
+  {
+    "en": "left, top, filter button, hide<br><strong>Default:</strong> as filters are set up in Course design",
+    "c": 1
+  },
+  {
+    "en": "You can add extra text above or below the shortcode for introduction, SEO text or other information.",
+    "c": 1
+  },
+  {
+    "en": "The course is full. You can register your interest for more information or to join the waiting list.",
+    "c": 1
+  },
+  {
+    "en": "<strong>List design:</strong> Choose the course list design (default, grid, compact, simple cards...)",
+    "c": 1
+  },
+  {
+    "en": "<strong>List design:</strong> Choose list design (default, grid, compact, simple list, simple cards).",
+    "c": 1
+  },
+  {
+    "en": "<strong>Slug:</strong> URL-friendly version of the name (should not be changed as it may break links).",
+    "c": 1
+  },
+  {
+    "en": "<strong>Slug:</strong> URL-friendly version of the name (updated automatically when the name changes).",
+    "c": 1
+  },
+  {
+    "en": "Drag the menu item to where the menu should appear, for example as a submenu under the \"Courses\" page.",
+    "c": 1
+  },
+  {
+    "en": "Choose the page design. This controls where/how title, text, main image and course list are displayed.",
+    "c": 1
+  },
+  {
+    "en": "Go to the <a href=\"edit-tags.php?taxonomy=ka_instructors&post_type=ka_course\">Instructors</a> overview.",
+    "c": 1
+  },
+  {
+    "en": "Remove expired course dates, duplicate courses, and deleted courses that no longer exist in Kursagenten",
+    "c": 1
+  },
+  {
+    "en": "Paste the webhook URL into the <strong>CourseCreated</strong> and <strong>CourseUpdated</strong> fields.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Extended description:</strong> A longer text with HTML formatting displayed on the category page.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Extended description:</strong> A longer text with HTML formatting displayed on the location page.",
+    "c": 1
+  },
+  {
+    "en": "The name as displayed on the page. Should only be changed on the instructor's user profile in Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "Limits to terms with courses at the specified location. Start with \"not-\" to exclude. Leave empty for all.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Extended description:</strong> A longer text with HTML formatting displayed on the instructor page.",
+    "c": 1
+  },
+  {
+    "en": "For \"Categories and courses\": choose whether the menu should only show courses (without the category level).",
+    "c": 1
+  },
+  {
+    "en": "Go to <a href=\"admin.php?page=bedriftsinformasjon\">Company information</a> and fill in basic company details.",
+    "c": 1
+  },
+  {
+    "en": "See <a href=\"#stedsnavn-og-regioner\">Location names and regions</a> for more information on how regions work.",
+    "c": 1
+  },
+  {
+    "en": "top-level categories, subcategories, parent slug (e.g. dance or truck)<br><strong>Default</strong>: shows all",
+    "c": 1
+  },
+  {
+    "en": "No date has been set for new courses. Register your interest for more information or to join the waiting list.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Compact:</strong> A more compact list view with less spacing. No background, and fewer course elements.",
+    "c": 1
+  },
+  {
+    "en": "Enable this if you use other SEO plugins that are not listed below, or want to handle SEO entirely on your own.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Instructors</strong> – Contains <code class=\"copytext\">[instruktorer]</code> to display all instructors.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Layout and structure:</strong> Where elements are placed on the page (header, content, sidebar, footer).",
+    "c": 1
+  },
+  {
+    "en": "There are not many design templates available for single courses yet. We plan to add more design templates soon.",
+    "c": 1
+  },
+  {
+    "en": "Hide instructor by writing a comma-separated list of instructor first names as entered in the \"first name\" field",
+    "c": 1
+  },
+  {
+    "en": "Select pages assigned to different parts of Kursagenten. You can choose from existing pages or create new pages.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Regions:</strong><br>You can enable and manage regions under <a href=\"%s\">Synchronization → Regions</a>.",
+    "c": 1
+  },
+  {
+    "en": "Filter the location list to show only specific locations. You can use location names or slugs (case-insensitive).",
+    "c": 1
+  },
+  {
+    "en": "After registration you will receive an email with more information about the course and how it will be conducted.",
+    "c": 1
+  },
+  {
+    "en": "Name, phone number, and email are transferred from Kursagenten. This can be overridden on the website if desired.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Courses</strong> – Contains <code class=\"copytext\">[kursliste]</code> to display all courses with filters.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Name:</strong> The location name (comes from Kursagenten, but can be changed via the name change feature).",
+    "c": 1
+  },
+  {
+    "en": "<strong>Profile – around image and title:</strong> Around the image, then title and description, then course list.",
+    "c": 1
+  },
+  {
+    "en": "Course locations have the same visibility settings as course categories (hide in overview lists and in auto menus).",
+    "c": 1
+  },
+  {
+    "en": "<strong>Design changes:</strong> If design changes do not appear, you may need to clear cache and update permalinks.",
+    "c": 1
+  },
+  {
+    "en": "Course categories can be enriched with images, icons and descriptions. You can also control where categories appear.",
+    "c": 1
+  },
+  {
+    "en": "standard, grid, compact, plain, date-and-title, simple-cards<br><strong>Default:</strong> fetched from Course design",
+    "c": 1
+  },
+  {
+    "en": "<strong>Automatic:</strong> Locations are automatically assigned to regions based on county when regions are enabled.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Course list (course categories only):</strong> Three options control how the category affects the course list:",
+    "c": 1
+  },
+  {
+    "en": "<strong>Clean and simple list:</strong> Based on Standard list, but without background and with fewer course elements.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Course categories</strong> – Contains <code class=\"copytext\">[kurskategorier]</code> to display all categories.",
+    "c": 1
+  },
+  {
+    "en": "You can freely change title, slug and content on the pages. The only thing that should not be removed is the shortcode.",
+    "c": 1
+  },
+  {
+    "en": "You can choose a shared design template for all taxonomies, or enable separate design templates for each taxonomy type:",
+    "c": 1
+  },
+  {
+    "en": "<strong>Short description:</strong> A short text that can be displayed in lists. Often shown directly below the heading.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Course locations</strong> – Contains <code class=\"copytext\">[kurssteder]</code> to display all course locations.",
+    "c": 1
+  },
+  {
+    "en": "Enter the image size you want in pixels. For no image, enter 0. When bildestr is set to 0, images are not loaded at all.",
+    "c": 1
+  },
+  {
+    "en": "Show list of specific locations under each location name. This comes from the \"Free-text location\" field in Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "Course date does not exist. coursedate_id must be the WordPress post ID for a ka_coursedate, not Kursagenten's course ID.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Override profile image:</strong> Enable this to use your own uploaded image instead of the image from Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "List design can be changed with attributes in the shortcode. See the <a href=\"#lister\">overview</a> for available options.",
+    "c": 1
+  },
+  {
+    "en": "Go to <a href=\"admin.php?page=kursinnstillinger#location-name-mapping\">Synchronization → Course location name changes</a>.",
+    "c": 1
+  },
+  {
+    "en": "For course providers with few courses and 1/no categories: shows only a flat list of main courses without category levels.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Default – with image and description:</strong> Title and description, then image and description, then course list.",
+    "c": 1
+  },
+  {
+    "en": "standard, comma-separated list (e.g. alta,oslo,bergen or \"Oslo,Mo i Rana\")<br><strong>Default</strong>: shows all locations",
+    "c": 1
+  },
+  {
+    "en": "Normally these areas are slightly darker than the background. Also used as the primary color on boxes in the \"Boxes\" design.",
+    "c": 1
+  },
+  {
+    "en": "You can choose whether to use the main image, or upload your own icons for lists. Choose kilde=ikon if you want to use these.",
+    "c": 1
+  },
+  {
+    "en": "Kursagenten: The site has been registered with us and can now be used. Available updates will be made available in \"Plugins\".",
+    "c": 1
+  },
+  {
+    "en": "Test frontend: course list, single course, categories, course locations and instructors, and adjust filters/design as needed.",
+    "c": 1
+  },
+  {
+    "en": "Images can be added to each individual course in Kursagenten. If no image has been uploaded, a placeholder image can be used.",
+    "c": 1
+  },
+  {
+    "en": "<strong>List design</strong> determines how courses are displayed in the list (default, grid, plain, compact, date and title).",
+    "c": 1
+  },
+  {
+    "en": "<strong>Layout:</strong> Choose the page design. This controls where/how title, text, main image and course list are displayed.",
+    "c": 1
+  },
+  {
+    "en": "Course locations can be enriched with images and descriptions. You can also change location names and organize them in regions.",
+    "c": 1
+  },
+  {
+    "en": "Add payment link %1$s in <a href=\"https://kursadmin.kursagenten.no/IframeSetting\" target=\"_blank\" rel=\"noopener\">Kursagenten</a>",
+    "c": 1
+  },
+  {
+    "en": "<strong>Show images:</strong> Turn images in the list on/off. Best suited if you have uploaded images for courses in Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "Under <a href=\"admin.php?page=design#section-systemsider\">Course design → WordPress pages</a> you can create the following pages:",
+    "c": 1
+  },
+  {
+    "en": "Used to highlight certain boxes in the \"Boxes\" design. If only \"Background for highlighted areas\" is set, both get the same color.",
+    "c": 1
+  },
+  {
+    "en": "This view uses the simpler list with the next available date and does not have the same filter options as \"Show all course dates\".",
+    "c": 1
+  },
+  {
+    "en": "Place auto menus under a main menu item (e.g. the Courses page). When used as the main menu item, the top level will have no link.",
+    "c": 1
+  },
+  {
+    "en": "Override filter display for <span class=\"copytext\">[kursliste]</span>. Useful when the same list is used in different page layouts.",
+    "c": 1
+  },
+  {
+    "en": "The search field gets a pill shape, clear border and magnifying glass on the right. Only applies when search is in the left column.",
+    "c": 1
+  },
+  {
+    "en": "Choose list design for the <span class=\"copytext\">[kursliste]</span> shortcode without changing the global setting in Course design.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Width:</strong> Choose whether to use the theme's default width or full width. In most cases, default width works as intended.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Short description:</strong> A short text that can be displayed in lists and overviews. Often shown directly below the heading.",
+    "c": 1
+  },
+  {
+    "en": "WordPress generally supports the JavaScript library jQuery. If there is no support for this, you can choose to enable it here.<br><br>",
+    "c": 1
+  },
+  {
+    "en": "<strong>Grid:</strong> A grid of course cards in multiple columns. You can choose the number of columns for desktop, tablet and mobile.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Separate design templates:</strong> Enable this to choose different design templates for categories, locations and instructors.",
+    "c": 1
+  },
+  {
+    "en": "The entire filter area in the left column is placed in a rounded box. Default background follows the theme color (--ka-box-background).",
+    "c": 1
+  },
+  {
+    "en": "<strong>Element order:</strong> The order in which information is displayed (intro text, main content, course dates, instructors, etc.).",
+    "c": 1
+  },
+  {
+    "en": "<strong>Synchronization:</strong> If courses are not updated automatically, check that webhooks are configured correctly in Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "Valid regions: <code>sørlandet</code>, <code>østlandet</code>, <code>vestlandet</code>, <code>midt-norge</code>, <code>nord-norge</code>",
+    "c": 1
+  },
+  {
+    "en": "<strong>Use in shortcodes:</strong> You can filter course locations by region in the <code class=\"copytext\">[kurssteder]</code> shortcode:",
+    "c": 1
+  },
+  {
+    "en": "Choose whether the menu should show <strong>top-level categories</strong>, <strong>subcategories</strong> or start in a specific category.",
+    "c": 1
+  },
+  {
+    "en": "<strong>List display:</strong> In the left column, lists are shown as checkboxes; above the course list, lists are shown as dropdown menus.",
+    "c": 1
+  },
+  {
+    "en": "An external link can be added to the course in the \"Link to registration form:\" field in Kursagenten. This will open a page of your choice.",
+    "c": 1
+  },
+  {
+    "en": "When enabled, locations can be organized into regions. This does not affect synchronization but can be used for filtering and organization.",
+    "c": 1
+  },
+  {
+    "en": "Changing the design template changes the entire presentation of the course. This can affect how visitors experience the course information.",
+    "c": 1
+  },
+  {
+    "en": "If you choose to show an image, it will first look for a main image from the course location. If none is found, a placeholder image is used.",
+    "c": 1
+  },
+  {
+    "en": "These settings can be set when editing the category, via quick edit, and via bulk edit (\"Kursagenten: Bulk edit visibility\") in the overview.",
+    "c": 1
+  },
+  {
+    "en": "Changes page width. Go to <a href=\"/wp-admin/admin.php?page=design#section-designvariabler\">Design variables</a> to change max content width.",
+    "c": 1
+  },
+  {
+    "en": "The server returned HTTP %1$s instead of a ZIP file. URL: %2$s. This may be caused by an error page, redirect, or Cloudflare bot verification.",
+    "c": 1
+  },
+  {
+    "en": "Good practice for uploading images is a maximum size of 500 KB. When transferring from Kursagenten, there is a maximum transfer limit of 1 MB.",
+    "c": 1
+  },
+  {
+    "en": "Choose a shared design for course categories, course locations and instructors. You can also choose to have separate designs for each taxonomy.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Blocks coming soon:</strong> we are planning modules for course lists with course locations/links and information about upcoming courses.",
+    "c": 1
+  },
+  {
+    "en": "Blocks for single courses will come in a later update. For now, you can build content with your theme/page builder and existing hooks/shortcodes.",
+    "c": 1
+  },
+  {
+    "en": "Kursagenten: This license is already in use on another site. Contact us at post@kursagenten.no and we will help you. %sEnter a new license here%s.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Profile image:</strong> A main image displayed on the instructor page and in lists. This can be from Kursagenten or your own uploaded image.",
+    "c": 1
+  },
+  {
+    "en": "You can change the name of course locations that come from Kursagenten. This is useful if you want shorter or more descriptive names on the website.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Warning:</strong> Name and slug for course locations cannot be changed here. You can change the name under <a href=\"%s\">Synchronization</a>.",
+    "c": 1
+  },
+  {
+    "en": "When this is enabled, the course list will by default hide full courses and courses \"on request\". The user can turn the filter off again on the page.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Build your own design</strong> is active. Kursagenten uses the WordPress template hierarchy so your theme/page builder can control the layout.",
+    "c": 1
+  },
+  {
+    "en": "For categories with multiple levels, you can show only top-level categories, only subcategories, only subcategories under a given parent slug, or all.",
+    "c": 1
+  },
+  {
+    "en": "Auto menus are used when you want the menu to automatically show taxonomies and/or courses without manually updating menu items when something changes.",
+    "c": 1
+  },
+  {
+    "en": "Exception: You can add extra content between \"Intro text\" and \"Content\" on single courses if you want to enrich courses with site-specific information.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Important:</strong> Changes to the design template may require cache refresh and permalink updates, especially for extensive URL customizations.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Course locations are created automatically</strong> when you synchronize courses from Kursagenten. You cannot add course locations manually here.",
+    "c": 1
+  },
+  {
+    "en": "<strong>When should you use shortcodes?</strong> If you build pages with Elementor or other page builders, shortcodes will likely be what you need to use.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Display type:</strong> Choose whether to show main courses (one course per row/box) or all course dates (equivalent to \"Course list with filter\").",
+    "c": 1
+  },
+  {
+    "en": "Automatically adds and removes a block of xmlrpc.php in .htaccess when the option is turned on/off. Requires Apache and write access to .htaccess.<br><br>",
+    "c": 1
+  },
+  {
+    "en": "Cleanup removes courses and course dates that no longer exist in Kursagenten, as well as expired course dates. This keeps the website tidy and up to date.",
+    "c": 1
+  },
+  {
+    "en": "Use the <code>type</code>, <code>start</code> and optionally <code>st</code> parameters to control which categories/locations or instructors are displayed.",
+    "c": 1
+  },
+  {
+    "en": "In <strong>Link text</strong> (or equivalent field), paste the desired <code>[ka-meny]</code> shortcode, e.g. <code>[ka-meny type=\"kurskategorier\"]</code>.",
+    "c": 1
+  },
+  {
+    "en": "Tip: If you have many course categories, you can select some as main categories or create your own. This makes the categories more manageable for visitors.",
+    "c": 1
+  },
+  {
+    "en": "<strong>What are shortcodes?</strong> Shortcodes are small codes you place in content (pages/posts) to display dynamic lists and components from the plugin.",
+    "c": 1
+  },
+  {
+    "en": "Find the <strong>\"Kursagenten auto menus\"</strong> box in the left column. If you do not see it, check that it is enabled under \"Screen options\" at the top.",
+    "c": 1
+  },
+  {
+    "en": "Choose to show/hide course categories/menu items belonging to specific locations. Example: show all courses that are not online courses: st=\"ikke-nettbasert\"",
+    "c": 1
+  },
+  {
+    "en": "Choose filters on the course list in <a href=\"admin.php?page=design\">Course design</a>, and other design choices (list/grid, details, and template selection).",
+    "c": 1
+  },
+  {
+    "en": "time, duration, price, location, free-text location, room, instructor, end date, registration deadline<br><strong>Default:</strong> fetched from Course design",
+    "c": 1
+  },
+  {
+    "en": "This option disables Gravatar on the frontend and uses a local default image instead. This can resolve issues with tracking prevention in some browsers.<br><br>",
+    "c": 1
+  },
+  {
+    "en": "For more examples of menu shortcodes and how to combine them with other shortcodes, see the <a href=\"#kortkoder\">Shortcodes</a> section further up on this page.",
+    "c": 1
+  },
+  {
+    "en": "Save the menu as usual. On the front page, the auto menu will automatically expand to the correct tree structure based on taxonomies and courses in Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "If regions are enabled, you can assign each course location to a region (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge). This can be done in two ways:",
+    "c": 1
+  },
+  {
+    "en": "<strong>Placement:</strong> Choose filters by dragging them to the correct position. You can show them to the left of the course list and/or above the course list.",
+    "c": 1
+  },
+  {
+    "en": "Here you can add custom CSS that will be loaded on all pages belonging to the plugin. This CSS has the highest priority and will override the plugin's default CSS.",
+    "c": 1
+  },
+  {
+    "en": "The plugin automatically creates system pages for single pages handled by the plugin. These pages are generated dynamically and do not need to be created manually:",
+    "c": 1
+  },
+  {
+    "en": "You can add menu items that automatically generate course categories, course locations and instructors. More information in the <a href=\"#menyer\">Menus</a> section.",
+    "c": 1
+  },
+  {
+    "en": "In <a href=\"admin.php?page=design\">Course design</a> you can choose design templates and settings for taxonomy pages (categories, course locations and instructors).",
+    "c": 1
+  },
+  {
+    "en": "Log in to <a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Kursagenten</a> and go to <strong>Integration settings → Webhooks</strong>.",
+    "c": 1
+  },
+  {
+    "en": "Customize the course list display. This is shown on the system page \"Courses\" and everywhere else that uses the shortcode <span class=\"copytext\">[kursliste]</span>.",
+    "c": 1
+  },
+  {
+    "en": "Under <a href=\"admin.php?page=design\">Course design</a> you control list design on system pages. There are settings for image use, number of columns and pagination.",
+    "c": 1
+  },
+  {
+    "en": "This page helps you get started quickly with setting up the Kursagenten plugin from A to Z. Follow the steps in order, and use the left menu to jump between sections.",
+    "c": 1
+  },
+  {
+    "en": "Use taxonomy image, and <a href=\"/wp-admin/admin.php?page=design&ka_open=valg-for-bilder%2Ctaksonomi#valg-for-bilder\">general placeholder image</a> if image is missing",
+    "c": 1
+  },
+  {
+    "en": "You can choose whether to use an image you upload yourself, or the image fetched from Kursagenten. Choose kilde=ka-bilde if you want to use the image from Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "Kursagenten offers both auto menus and menu shortcodes, so you can build dynamic menus that always reflect current course categories, course locations and instructors.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Simple – title and short description only:</strong> Title and short description, then course list. Suitable when you do not have images or extended description.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Icon:</strong> An alternative image that can be used instead of the main image in lists. PNG icons work well here (use <code>kilde=ikon</code> in the shortcode).",
+    "c": 1
+  },
+  {
+    "en": "If you hide the prefix in URLs, conflicts may occur with regular pages, posts or other taxonomies with the same slug. See information about the fallback mechanism below.",
+    "c": 1
+  },
+  {
+    "en": "When webhooks are enabled, courses are updated automatically in WordPress when they are changed or created in Kursagenten. This applies to course data, dates and locations.",
+    "c": 1
+  },
+  {
+    "en": "Check <a href=\"admin.php?page=seo\">Change URLs</a> if you need to customize URL structures. Here you can change e.g. from \"/kurs/your-course\" to \"/undervisning/your-course\".",
+    "c": 1
+  },
+  {
+    "en": "Only for positive filter (e.g. online): hides the location filter on the course list page. With a \"not-\" filter, the filter is shown so the user can choose another location.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Custom content above/below:</strong> You can add regular content in the editor above and below the shortcode to write an introduction, add images or other information.",
+    "c": 1
+  },
+  {
+    "en": "Custom instructors work the same way as instructors from Kursagenten, but they will not be updated automatically and can be freely edited without enabling \"override\" features.",
+    "c": 1
+  },
+  {
+    "en": "Filter course locations by region (only if regions are enabled). Can be combined with the vis parameter (OR logic: shows locations from the region OR the specified locations).",
+    "c": 1
+  },
+  {
+    "en": "Use course image, and <a href=\"/wp-admin/admin.php?page=design&ka_open=valg-for-bilder%2Cenkeltkurs#valg-for-bilder\">placeholder image for course</a> if course image is missing",
+    "c": 1
+  },
+  {
+    "en": "Found a bug or have suggestions for improvement? We'd love to hear from you. We're working to make Kursagenten better for you.<br>Send an email directly to the inbox in Trello:",
+    "c": 1
+  },
+  {
+    "en": "<strong>Simple cards:</strong> White cards with heading and text. Shows the next available date for courses. You can choose the number of columns for desktop, tablet and mobile.",
+    "c": 1
+  },
+  {
+    "en": "<p><strong>Use the Kursagenten instructor profile instead:</strong></p><ol><li>Delete this instructor</li><li>Save a course in Kursagenten where the instructor is added</li></ol>",
+    "c": 1
+  },
+  {
+    "en": "<strong>Tags or lists:</strong> Filters can be shown as tags or checkboxes. Tags are buttons that select one filter at a time; checkboxes allow selecting multiple filters at once.",
+    "c": 1
+  },
+  {
+    "en": "In WordPress there are two types of pages: Pages and posts. Posts correspond to blog posts or other content with categories and tags. Enable to rename posts to \"Articles\".<br><br>",
+    "c": 1
+  },
+  {
+    "en": "You can also configure how course lists on taxonomy pages are displayed. See <a href=\"#section-styre-utseende-på-kurslister\">Control course list appearance</a> for more information.",
+    "c": 1
+  },
+  {
+    "en": "The taxonomies <strong>Course categories</strong>, <strong>Course locations</strong> and <strong>Instructors</strong> are available as separate Gutenberg blocks in the block editor.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Important:</strong> When you override fields, they will no longer be updated automatically from Kursagenten. You must update them manually if there are changes in Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "This adds rating to the Course schema on course pages. It also adds a redirect based on query strings in emails from Kursagenten to the rating form on the correct course page.<br><br>",
+    "c": 1
+  },
+  {
+    "en": "Regions let you organize course locations into geographic areas (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge). This is useful for filtering and organizing course locations.",
+    "c": 1
+  },
+  {
+    "en": "Enter information that will be used in various places on the website. This includes the main contact name (privacy policy), as well as company name and address (contact page and footer).",
+    "c": 1
+  },
+  {
+    "en": "Instructors can be enriched with images, contact information and descriptions. You can also create custom instructors that do not come from Kursagenten, and override data from Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "Show filter with categories also used on courses with this category, in addition to subcategories. Useful if you cannot create a parent category with subcategories but still want filtering.",
+    "c": 1
+  },
+  {
+    "en": "<a href=\"admin.php?page=design\">Course design</a> – Create the pages you need for courses, categories, locations and instructors via \"WordPress pages\". Shortcodes are inserted automatically.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Where are they used?</strong> Usually on dedicated pages or posts (e.g. \"Courses\", \"Course categories\", \"Course locations\", \"Instructors\"). You can also use them in menus or widgets.",
+    "c": 1
+  },
+  {
+    "en": "Check \"Clean up courses\" if many expired course dates are shown on the website. A nightly cleanup runs, so this may be unnecessary now. <strong>NB:</strong> Cleanup takes an extra 3-5 minutes.",
+    "c": 1
+  },
+  {
+    "en": "Course categories, course locations and instructors can be enriched with text and images if desired. More information in the <a href=\"#berike-taksonomisider\">Enrich taxonomy pages</a> section.",
+    "c": 1
+  },
+  {
+    "en": "Menu shortcodes are used when you want to build menus using the <code class=\"copytext\">[ka-meny]</code> shortcode, typically in a custom menu or in content where the theme supports shortcodes.",
+    "c": 1
+  },
+  {
+    "en": "Filter lists in the left column can become long. They are limited to a default height with a \"Show more\" link. Default height is 250px. You can choose a different height for filter lists below.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Regions:</strong><br>Regions are enabled. You can manage regional division under <a href=\"%s\">Synchronization → Regions</a>. Regional assignment can be changed for each course location.",
+    "c": 1
+  },
+  {
+    "en": "These settings work as defaults for shortcodes. You can also override them directly in the shortcode with attributes. See <a href=\"#lister\">Shortcodes for lists and grid</a> for more information.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Override profile from Kursagenten:</strong> Enable this to edit name, email and phone. When enabled, these fields will not be updated automatically from Kursagenten during synchronization.",
+    "c": 1
+  },
+  {
+    "en": "Drag the auto menu to the correct position in the menu structure. As a main menu item it can be at the top level, or you can drag it under an existing page (e.g. \"Courses\") to use it as a submenu.",
+    "c": 1
+  },
+  {
+    "en": "Enter settings to automatically fetch courses from Kursagenten. Once you have entered the settings, you can click \"Get all courses from Kursagenten\" to fetch everything on first-time installation.",
+    "c": 1
+  },
+  {
+    "en": "<strong>NOTE!</strong> Enter <a href=\"#kursagenten-innstillinger\" style=\"color:white; text-decoration: underline;\">settings from Kursagenten</a> before fetching all your courses (sync all courses).",
+    "c": 1
+  },
+  {
+    "en": "When these are active, we turn off our meta tags and leave it to the plugin. Course schema is normally provided by Kursagenten, except for Rank Math Pro where we let Rank Math handle Course schema.",
+    "c": 1
+  },
+  {
+    "en": "Choose which filters to display on the course list. You can drag the filter to either the left column or above the course list. Choose whether the filter should be displayed as tags or a checklist.",
+    "c": 1
+  },
+  {
+    "en": "Important: Courses should <strong>not be edited on the website</strong> in general – all editing should be done in Kursagenten. This ensures the information is up to date and correctly synchronized.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Note:</strong> For users to be able to turn the filter on and off, you must drag <em>\"Available courses\"</em> into \"Filters in left column\" or \"Filters above course list\" under Filter settings.",
+    "c": 1
+  },
+  {
+    "en": "Drag counties between regions to organize them. Note that some counties are outdated but are included for backward compatibility. Use \"Reset to default\" to reset the regional division to default values.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Hide in overview lists:</strong> When enabled, the category is hidden in shortcodes such as <code>[kurskategorier]</code> and similar lists. The category will still be accessible directly via URL.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Automatic synchronization via webhooks:</strong> When webhooks are configured, courses are updated automatically when they change in Kursagenten. This is the recommended method for ongoing updates.",
+    "c": 1
+  },
+  {
+    "en": "When you visit a course on the frontend, you will find an edit icon that takes you directly to course editing in Kursagenten. This makes it easy to update course information without going through the website.",
+    "c": 1
+  },
+  {
+    "en": "You can use blocks instead of shortcodes if you build pages with Gutenberg. The same options described under <a href=\"#lister\">Shortcodes for lists and grid</a> are largely available directly in block settings.",
+    "c": 1
+  },
+  {
+    "en": "Create or select the necessary pages for courses, course categories, course locations and instructors. Choose design for course list, single course, categories, locations and instructors. Choose primary colors.",
+    "c": 1
+  },
+  {
+    "en": "You can choose to display full name, first name or last name on the instructor page and in the instructor list. You must change settings in both Course design and the WordPress page that displays the instructors.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Hide in auto menus:</strong> When enabled, the category is hidden in auto-generated menus that use the <code>[ka-meny]</code> shortcode. Useful if you have categories that should not appear in the main menu.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Manual:</strong> You can change the region for individual locations by editing the course location in the <a href=\"edit-tags.php?taxonomy=ka_course_location&post_type=ka_course\">Course locations</a> overview.",
+    "c": 1
+  },
+  {
+    "en": "In <a href=\"admin.php?page=design#section-enkeltkurs\">Course design → Single course</a> you choose the design template for single course pages. The design template affects the entire layout of the course detail page:",
+    "c": 1
+  },
+  {
+    "en": "<strong>Extended description:</strong> A longer text with rich text formatting (HTML) displayed on the taxonomy page. Here you can describe the category, location or instructor with text, images and other information.",
+    "c": 1
+  },
+  {
+    "en": "Choose the desired auto menu (e.g. <strong>Course categories</strong>, <strong>Categories and courses</strong>, <strong>Course locations</strong> or <strong>Instructors</strong>) and click <strong>Add to menu</strong>.",
+    "c": 1
+  },
+  {
+    "en": "Images are fetched from the instructor profile in Kursagenten. This image can be overridden on the website. You can also use an alternative image if you want a different style or image than the one used in Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Automatic creation:</strong> Go to <a href=\"admin.php?page=design#section-systemsider\">Course design → WordPress pages</a> and click \"Create page\" for each page you need. The shortcode is inserted automatically.",
+    "c": 1
+  },
+  {
+    "en": "Different layouts. Stacked shows image above course/category name; row shows image to the left. List shows all names stacked vertically. List has less spacing between items and works better with small images or no images.",
+    "c": 1
+  },
+  {
+    "en": "This option adds:<br>1) Clickjacking Protection (X-Frame-Options) in WordPress, strengthens security headers.<br>2) Disables theme and plugin editing<br>3) Removes WP version number<br>4) Disables XML-RPC in WordPress<br><br>",
+    "c": 1
+  },
+  {
+    "en": "<em>Hide the category and all related courses</em> – both the category and all courses tagged with the category are completely hidden from the course list. Useful for internal categories that should not be visible to visitors.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Important:</strong> The course location name in WordPress admin is read-only when it comes from Kursagenten. To change the name shown on the website, use the name change feature instead of editing the taxonomy directly.",
+    "c": 1
+  },
+  {
+    "en": "Pages are marked with \"Kursagenten\" in the page overview. By clicking <i class=\"ka-icon icon-code-simple-solid-full\"></i> you copy the shortcode to the clipboard and can paste it where you want to display it on an existing page.",
+    "c": 1
+  },
+  {
+    "en": "Category text: we have no fields for this in Kursagenten, and everything must be added on the website. You can add both Short description and Long description. These appear on the individual course category pages on the website.",
+    "c": 1
+  },
+  {
+    "en": "Location text: we have no fields for this in Kursagenten, and everything must be added on the website. You can add both Short description and Long description. These appear on the individual course location pages on the website.",
+    "c": 1
+  },
+  {
+    "en": "All taxonomy pages (categories, course locations and instructors) can be enriched with extra content such as images, text and descriptions. This lets you customize each page with unique content beyond what comes from Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "Can be used in course category lists if you want a different image than the main image. Profile image corresponds to icon image in older setups. Use a .png or .svg image file. You can download icons from e.g. https://thenounproject.com/",
+    "c": 1
+  },
+  {
+    "en": "Your courses are automatically transferred from Kursagenten along with course categories, course locations and instructors. But to give your website a professional look, you can enrich these with images and text directly on the website.",
+    "c": 1
+  },
+  {
+    "en": "Cloudflare is blocking the download with bot verification. URL: %s. Solution: Go to Cloudflare Dashboard > Security > WAF > Custom Rules and add a rule that allows /kursagenten-api/download_plugin, or disable Bot Fight Mode for this URL.",
+    "c": 1
+  },
+  {
+    "en": "Could not write XML-RPC rule to .htaccess automatically. Check file permissions. The file is usually in the WordPress root (same level as wp-config.php). Copy this in manually:<br><pre style=\"margin-top:8px;white-space:pre-wrap;\">%s</pre>",
+    "c": 1
+  },
+  {
+    "en": "Most data should be managed from Kursagenten. For a few parts we do not have fields, and for those you can enrich category/location/instructor directly on the website via Admin → Kursagenten → Course locations/Instructors/Course locations.",
+    "c": 1
+  },
+  {
+    "en": "Icons are available as HTML with CSS classes. You can use them directly in HTML code. Control size and color with width, height and background-color on i.ka-icon. Remember to add <i>icon-</i> before the icon name. E.g. icon-calendar. Example:",
+    "c": 1
+  },
+  {
+    "en": "Instructors have the same visibility settings as course categories (hide in overview lists and in auto menus). You can also hide specific instructors in shortcodes using the <code>skjul</code> parameter in the <code>[instruktorer]</code> shortcode.",
+    "c": 1
+  },
+  {
+    "en": "All system pages follow WordPress's standard template hierarchy, so if your theme has its own templates (e.g. <code>single-ka_course.php</code> or <code>taxonomy-ka_coursecategory.php</code>), those are used instead of the plugin's default template.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Automatic cleanup:</strong> An automatic nightly cleanup also runs at 03:00 every night, so manual cleanup is not always necessary. Use manual cleanup if you have many expired course dates showing on the website and want to clean up immediately.",
+    "c": 1
+  },
+  {
+    "en": "Kursagenten adds meta tags, Open Graph, Twitter Cards and Course schema on course and taxonomy pages. When you have an SEO plugin installed, we adapt automatically to avoid duplicates. <br>You can also turn off our SEO entirely if you use other solutions.",
+    "c": 1
+  },
+  {
+    "en": "Each category, location and instructor automatically gets its own page. These are generated from templates chosen in <a href=\"admin.php?page=design\">Course design</a>. You can enrich these pages with extra content, images and text by editing the taxonomies.",
+    "c": 1
+  },
+  {
+    "en": "Text is fetched from the intro text and course description in Kursagenten. You can add your own text on the website as well. Navigate to the course while logged in as admin, then click \"Add extra WordPress content\" between the intro text and course description.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Manual synchronization:</strong> Go to <a href=\"admin.php?page=kursinnstillinger\">Synchronization</a> and click \"Fetch all courses from Kursagenten\". This should be done the first time you set up the plugin, and when you need to update all courses at once.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Note:</strong> Regions must be enabled for filtering to work. You can also change the region for individual course locations by editing the location in the <a href=\"edit-tags.php?taxonomy=ka_course_location&post_type=ka_course\">Course locations</a> overview.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Separate cleanup:</strong> You can also run cleanup separately by clicking the \"Clean up courses\" button on the <a href=\"admin.php?page=kursinnstillinger\">Synchronization</a> page. This is useful if you only want to clean up without re-synchronizing all courses.",
+    "c": 1
+  },
+  {
+    "en": "Grab the filter you want to use and drag it to either the left column or above the course list. Choose whether the filter should be displayed as tags or a checklist.<br>To remove a filter, drag it back to available filters. Remember to <strong>save</strong> your changes.",
+    "c": 1
+  },
+  {
+    "en": "Insert the shortcode in the text field of a custom menu. In the URL field, type #. To get the menu as a submenu, drag this menu item to the right under another menu item. To create a menu from a specific category (with subcategories), enter the category slug after start=\"\".",
+    "c": 1
+  },
+  {
+    "en": "If you only use the shortcodes <span class=\"copytext\">[kurskategorier]</span>, <span class=\"copytext\">[kurssteder]</span> or <span class=\"copytext\">[instruktorer]</span>, the default values are used.<br>Alternatively, use the full codes above and remove the options you do not need.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Checkbox before synchronization:</strong> When you click \"Fetch all courses from Kursagenten\", you can check \"Clean up courses after synchronization\". This runs cleanup automatically after synchronization is complete. <strong>Note:</strong> Cleanup takes an extra 3–5 minutes.",
+    "c": 1
+  },
+  {
+    "en": "Location names are fetched from Kursagenten. You can change the location name. For this to be correct in all titles and URLs, do this under Admin → Kursagenten → Synchronization. Change the name, then re-fetch all courses. All occurrences of the location name will then display correctly.",
+    "c": 1
+  },
+  {
+    "en": "The course list can be filtered by category, location, start month, language, etc. Filters are part of the <code class=\"copytext\">[kursliste]</code> shortcode. If you created pages via <a href=\"admin.php?page=design\">Course design</a> → WordPress pages, this applies to the \"Courses\" page.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Select existing page:</strong> You can also select an existing WordPress page from the dropdown and assign it to a function. Paste the shortcode manually. You can copy the code from the <i class=\"ka-icon icon-code-simple-solid-full\" style=\"height: 14px;\"></i> icon next to the name.",
+    "c": 1
+  },
+  {
+    "en": "<em>Hide only the category from filter</em> – the category is hidden from filter options, but courses tagged with the category still appear in the course list under their other categories. Useful for \"broad\" tags that do not make sense as filters (e.g. \"Lectures\", \"HMS and safety courses\").",
+    "c": 1
+  },
+  {
+    "en": "You can change the name of course locations that come from Kursagenten. This is done via <a href=\"admin.php?page=kursinnstillinger#location-name-mapping\">Synchronization → Course location name changes</a>. See <a href=\"#stedsnavn-og-regioner\">Location names and regions</a> for more information.",
+    "c": 1
+  },
+  {
+    "en": "You can upload images for each category. You can also upload a \"profile image\". This can be used in blocks/shortcodes as an alternative to the main image. If no category image has been uploaded, it will try to use an image from a linked course. If none is found, a placeholder image will be used.",
+    "c": 1
+  },
+  {
+    "en": "Note: AIOSEO (Pro), SEOPress (Pro) and Slim SEO Schema (separate extension) can also set up their own Course schema. If you enable this in those extensions, we recommend turning off Kursagenten SEO to avoid duplicates. For Rank Math Free we still recommend Kursagenten's Course schema as the default.",
+    "c": 1
+  },
+  {
+    "en": "Override which details are shown for each course in <span class=\"copytext\">[kursliste]</span>. Without a prefix, only specified fields are shown. With <span class=\"copytext\">-</span>/<span class=\"copytext\">!</span> fields are hidden; with <span class=\"copytext\">+</span> fields are shown without changing the rest.",
+    "c": 1
+  },
+  {
+    "en": "A payment page is also created automatically when the plugin is activated. This page contains code that generates the payment box and is required for payment functionality to work. The payment page is published automatically, while the other overview pages are created as drafts so you can edit them before publishing.",
+    "c": 1
+  },
+  {
+    "en": "Default images are used as a fallback to prevent broken designs. These are used as placeholders when an image is missing. If you choose no images, we use Kursagenten's default replacement images if necessary. You can also set placeholder image URLs via <a href=\"/wp-admin/admin.php?page=kursagenten#kortkoder\">shortcodes</a>.",
+    "c": 1
+  },
+  {
+    "en": "Go to <a href=\"admin.php?page=design#section-systemsider\">WordPress pages</a>. Edit the page with the instructor overview and add vis=\"fornavn\" or vis=\"etternavn\" to the shortcode to show only first name or last name. You can go directly to editing from <a href=\"admin.php?page=design#section-systemsider\">WordPress pages</a>.",
+    "c": 1
+  },
+  {
+    "en": "Enter information that will be used in various places on the website. This includes the main contact name (privacy policy), as well as company name and address (contact page and footer).<br>You can also add information about the company that can be displayed with a shortcode. See all shortcodes <a href=\"#kortkoder\">here</a>.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Layout</strong> determines the arrangement of elements on the page (header, columns, hooks).</br><strong>List design</strong> determines how courses are displayed in the list (default, grid, plain, compact, date and title). </br><strong>Display type</strong> determines whether to show main courses or all course dates.",
+    "c": 1
+  },
+  {
+    "en": "Note: on the <a href=\"/wp-admin/admin.php?page=design#section-systemsider\">page</a> with the instructor overview, you must add vis=\"fornavn\" or vis=\"etternavn\" to the shortcode to show first name or last name only. You can go directly to editing from <a href=\"/wp-admin/admin.php?page=design#section-systemsider\">WordPress pages</a>.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Course list with filter </strong><span class=\"smal\"><span class=\"copytext\">[kursliste]</span></span><br><span class=\"copytext small\">[kursliste kategori=\"web\" sted=\"oslo\" måned=\"9\" språk=\"norsk\" list_type=\"grid\" filter=\"topp\" knapper=\"signup_link\" bilder=\"yes\" vis=\"-sluttdato\" st=sted/st=ikke-sted klasse=\"min-klasse\"]</span>",
+    "c": 1
+  },
+  {
+    "en": "<strong>Name change for course locations:</strong><br>You can change course location names under <a href=\"%s\">Synchronization → Course location name changes</a>. When you change a location name, slugs (URLs) for courses with this location are also updated.<br> The old location is not deleted, but is no longer visible on the website.",
+    "c": 1
+  },
+  {
+    "en": "To display overviews and lists of courses, categories, locations and instructors, you must create regular WordPress pages with shortcodes. These pages should be created from <a href=\"admin.php?page=design#section-systemsider\">Course design → WordPress pages</a>. If you already have pages you want to use, select them from the dropdown.",
+    "c": 1
+  },
+  {
+    "en": "The category name is fetched from tags in Kursagenten. You can structure these in your desired hierarchy on the website, up to two levels. If you want to change the category name, you should change the tag in Kursagenten. Note: a new course category will be created, but the old one will not be deleted. Transfer any text and images to the new category.",
+    "c": 1
+  },
+  {
+    "en": "How fallback works: When \"Hide in URLs\" is enabled, we first try a short URL without prefix. If the slug conflicts with a page/post or another hidden taxonomy, a prefix URL is used automatically (e.g. <code>/kurskategori/slug/</code> or your custom value such as <code>/kat/slug/</code>). Regular WordPress pages and posts always take priority in case of conflict.",
+    "c": 1
+  },
+  {
+    "en": "Open <a href=\"admin.php?page=kursinnstillinger\">Synchronization</a> and connect to your Kursagenten account. Add <a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Webhooks</a> in Kursagenten so the course is transferred automatically when saved/created.<br>The first time, click \"Fetch all courses from Kursagenten\" to fetch all courses at once.",
+    "c": 1
+  },
+  {
+    "en": "Go to the taxonomy overview (e.g. <a href=\"edit-tags.php?taxonomy=ka_coursecategory&post_type=ka_course\">Course categories</a>, <a href=\"edit-tags.php?taxonomy=ka_course_location&post_type=ka_course\">Course locations</a> or <a href=\"edit-tags.php?taxonomy=ka_instructors&post_type=ka_course\">Instructors</a>) and click \"Edit\" on the taxonomy you want to enrich. Here you can add:",
+    "c": 1
+  },
+  {
+    "en": "Important info about URLs<br>Here you can change the URL for courses, instructor, course category and course location. <span style=\"color:#b74444;font-weight:bold;\">NOTE! Do not change unless you know what you are doing.</span> This can break the site and make these pages unavailable. Remember to save <a href=\"/wp-admin/options-permalink.php\" target=\"_blank\">permalink settings</a> after making a change.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Page builder (Kadence Elements, Elementor, etc.):</strong> If you want to control single/archive/taxonomy with page builder conditions, go to <a href=\"admin.php?page=design#section-enkeltkurs\">Course design → Single course</a> and enable <em>Use WordPress default template hierarchy</em>. The plugin then lets the theme/page builder choose the template without forcing the plugin's own layout files.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Show:</strong> The category appears in the filter, and courses tagged with the category appear in the course list.<br><strong>Hide only the category from filter:</strong> The category is hidden from the filter, but courses tagged with this category still appear in the course list (under their other categories).<br><strong>Hide the category and all related courses:</strong> Neither the category nor courses tagged with it appear in the course list – useful for internal categories.",
+    "c": 1
+  },
+  {
+    "en": "<p><strong>Return to Kursagenten data:</strong></p><ol><li>Disable the \"Override profile from Kursagenten\" button</li><li>Update the instructor profile in Kursagenten</li><li>The profile is updated here. Note: the instructor must be linked to a course for the data to be fetched.</li></ol><p>- If you use data from Kursagenten, you do not need to keep it updated in two places.<br>- An instructor created in Kursagenten with the same name will automatically be merged with this instructor.</p>",
+    "c": 1
+  },
+  {
+    "en": "<strong>Instructor list </strong><span class=\"smal\"><span class=\"copytext\">[instruktorer]</span></span><br><span class=\"copytext small\" style=\"color:#666\">[instruktorer layout=\"stablet/rad/liste\" grid=3 gridtablet=2 gridmobil=1 radavstand=\"1rem\" stil=\"standard/kort\" bildestr=\"100px\" bildeform=\"avrundet/rund/firkantet/10px\" bildeformat=\"4/3\" overskrift=\"h3\" fontmin=\"13px\" fontmaks=\"15px\" avstand=\"2em .5em\" skygge=\"ja\" skjul=\"Iris,Anna\" utdrag=\"ja\" beskrivelse=\"ja\" klasse=\"min-klasse\"]</span>",
+    "c": 1
+  },
+  {
+    "en": "Shortcodes can be inserted in page and post content. You can insert the full course list, or lists of all course categories, courses in the same category (used on course pages), or instructors.<br>There are many options. You will find the full shortcode below with all options, plus a list explaining every option.<br>Copy the shortcode and paste it where you want to display it.<br>Note that you must remove options you do not need, and parts where multiple options are listed (e.g. stablet/rad/liste).",
+    "c": 1
+  },
+  {
+    "en": "<strong>Course location list </strong><span class=\"smal\"><span class=\"copytext\">[kurssteder]</span></span><br><span class=\"copytext small\" style=\"color:#666\">[kurssteder layout=\"stablet/rad/liste\" grid=3 gridtablet=2 gridmobil=1 radavstand=\"1rem\" stil=\"standard/kort\" bildestr=\"100px\" bildeform=\"avrundet/rund/firkantet/10px\" bildeformat=\"4/3\" overskrift=\"h3\" fontmin=\"13px\" fontmaks=\"15px\" avstand=\"2em .5em\" skygge=\"ja\" utdrag=\"ja\" vis=\"standard/alta,oslo,bergen\" region=\"østlandet\" stedinfo=\"ja\" klasse=\"min-klasse\"]</span>",
+    "c": 1
+  },
+  {
+    "en": "Here you will find settings for synchronizing courses from Kursagenten. <br>- By clicking \"Get all courses from Kursagenten\" you transfer all your courses. Note that synchronization is one-way only.<br>- We recommend <strong>syncing courses automatically</strong>. Add <a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Webhooks</a> in Kursagenten so the course is transferred when it is saved/created. See URL below.<br>- You can also clean up courses if there are outdated dates or similar.<br><br>",
+    "c": 1
+  },
+  {
+    "en": "If you create pages for courses, course categories, course locations and/or instructors, the pages are created as regular WordPress pages. You can freely change the title and content. A <a href=\"/wp-admin/admin.php?page=ka_documentation#kortkoder\">shortcode</a> is inserted automatically.</br><strong>Blocks:</strong> The taxonomies Course categories, Course locations and Instructors are available as separate Gutenberg blocks in the block editor. You can choose to use the blocks instead of shortcodes if you build the pages with Gutenberg.",
+    "c": 1
+  },
+  {
+    "en": "<strong>Course category list </strong><span class=\"smal\"><span class=\"copytext\">[kurskategorier]</span></span><br><span class=\"copytext small\" style=\"color:#666\">[kurskategorier kilde=\"bilde/ikon\" layout=\"stablet/rad/liste\" grid=3 gridtablet=2 gridmobil=1  radavstand=\"1rem\" stil=\"standard/kort\" bildestr=\"100px\" bildeform=\"avrundet/rund/firkantet/10px\" bildeformat=\"4/3\" overskrift=\"h3\" fontmin=\"13\" fontmaks=\"18\" avstand=\"2em .5em\" skygge=\"ja\" vis=\"hovedkategorier/subkategorier/slug/standard\" st=sted/st=ikke-sted utdrag=\"ja\" klasse=\"min-klasse\"]</span>",
+    "c": 1
+  },
+  {
+    "en": "Each course has its own page generated automatically based on the selected design template. Content is fetched from Kursagenten, including the image. You can add custom content between intro text and main content by editing the course. You will see a marker for this area when you visit the page as an administrator, plus a link to edit. There is also a shortcut to edit the course in Kursagenten. Look for a pencil icon you can click. This opens the course in Kursagenten in a new tab. Make your changes there, save, and you will see the changes on the website immediately.",
+    "c": 1
+  },
+  {
+    "en": "You can find the settings for <strong><a href=\"https://kursadmin.kursagenten.no/ProviderInformation\" target=\"_blank\">Provider ID and Provider GUID</a></strong> in Kursagenten under <em>Company information -> Settings</em>, and <strong><a href=\"https://kursadmin.kursagenten.no/IframeSetting\" target=\"_blank\">Theme for course lists</a></strong> under <em>Embedded / iframe</em><br><br>In Integration settings, under the <strong><a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Webhooks</a></strong> tab, enter %s in the CourseCreated and CourseUpdated fields to automatically update courses when they are created or changed in Kursagenten.",
+    "c": 1
+  },
+  {
+    "en": "Here you can change names for course locations that come from Kursagenten. When you change the name of a location, the slugs (URLs) of courses at that location are also updated.<br><br>1. The new location is saved when you click \"Save\".<br>2. The location is \"translated\" to the new name when courses are fetched from Kursagenten.<br>3. Slugs/URLs for courses at this location are updated immediately.<br>4. The old location is not deleted, but is no longer visible on the website.<br><br>5. <span style=\"color: #d63638;\"><strong>Important:</strong></span> To apply the name changes, run a full sync from Kursagenten by clicking \"Get all courses from Kursagenten\". Also remember to check \"Clean up courses\" before running the sync.<br><br>",
+    "c": 1
+  }
+]

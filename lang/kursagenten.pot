@@ -1,0 +1,5699 @@
+# Copyright (C) 2026 Kursagenten Team
+# This file is distributed under the same license as the Kursagenten plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Kursagenten 1.1.24\n"
+"Report-Msgid-Bugs-To: https://kursagenten.no\n"
+"POT-Creation-Date: 2026-06-10 05:46:03+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: scripts/extract-pot.js\n"
+"X-Domain: kursagenten\n"
+
+#: public/templates/designs/archive/default.php
+#: public/templates/designs/archive/full-width.php
+#: public/templates/designs/archive/modern.php
+msgid " - side %d av %d"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "-- Velg side --"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "– Brukes for feilsøking og oversikt"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "– side %1$d av %2$d"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "\"Slug\" er den SEO-vennlige versjonen av url-en. Eksempel /kari-norman"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "\"Slug\" er den SEO-vennlige versjonen av url-en. Eksempel /mitt-kurs"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "\"Slug\" er den SEO-vennlige versjonen av url-en. Eksempel /oslo"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "(100-1000px)"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "* Merk: Denne delen er fortsatt under utvikling."
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+msgid "%1$d %2$s valgt"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "%1$s har samme slug som %2$s \"%3$s\""
+msgstr ""
+
+#: public/templates/designs/archive/default.php
+#: public/templates/designs/archive/full-width.php
+#: public/templates/designs/archive/modern.php
+msgid "%d %s valgt"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "← Tilbake til instruktører"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "← Tilbake til kurskategorier"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "← Tilbake til kurssteder"
+msgstr ""
+
+#: public/templates/list-types/compact.php
+#: public/templates/list-types/date-and-title.php
+#: public/templates/list-types/grid.php
+msgid "+%d flere"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<a href=\"admin.php?page=design\">Kursdesign</a> – Opprett ønskede sider for kurs, kategorier, steder og instruktører via \"Wordpress sider\". Kortkoder legges inn automatisk."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<em>Skjul kategorien og alle tilhørende kurs</em> – både kategorien og alle kurs som er tagget med kategorien skjules helt fra kurslisten. Nyttig for interne kategorier som ikke skal være synlige for besøkende."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<em>Skjul kun kategorien fra filter</em> – kategorien skjules fra filtervalgene, men kurs som er tagget med kategorien vises fortsatt i kurslisten under sine andre kategorier. Nyttig for «brede» tagger som ikke gir mening som filter (f.eks. «Foredrag», «HMS og sikkerhetskurs»)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<em>Vis</em> – kategorien vises i filteret og kursene vises i listen (standard)."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "<p><strong>Bruk Kursagenten instruktørprofil i stedet:</strong></p><ol><li>Slett denne instruktøren</li><li>Lagre et kurs i Kursagenten hvor instruktøren er lagt inn</li></ol>"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "<p><strong>Gå tilbake til Kursagenten-data:</strong></p><ol><li>Deaktiver \"Overstyr profil fra Kursagenten\" knappen</li><li>Oppdater instruktørprofilen i Kursagenten</li><li>Profilen oppdateres her. Merk: instruktøren må være knyttet til et kurs for at dataene skal bli hentet over.</li></ol><p>- Bruker du data fra Kursagenten, slipper du å holde dem oppdatert to steder.<br>- En instruktør som er opprettet i Kursagenten med det samme navnet, vil automatisk bli slått sammen med denne instruktøren.</p>"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "<strong>Advarsel:</strong> Navn og slug på kurssteder kan ikke endres her. Du kan endre navnet under <a href=\"%s\">Synkronisering</a>."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Alternativt bilde:</strong> Et ekstra bilde som kan brukes på instruktørsiden."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Antall per side:</strong> Velg antall kurs som skal vises per side."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Automatisk opprettelse:</strong> Gå til <a href=\"admin.php?page=design#section-systemsider\">Kursdesign → Wordpress sider</a> og klikk på \"Opprett side\" for hver side du trenger. Kortkoden legges inn automatisk."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Automatisk opprydding:</strong> Det kjøres også en automatisk nattlig opprydding klokken 03:00 hver natt, så det er ikke alltid nødvendig å kjøre opprydding manuelt. Bruk manuell opprydding hvis du har mange utløpte kursdatoer som vises på nettsiden og ønsker å rydde opp umiddelbart."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Automatisk synkronisering via webhooks:</strong> Når webhooks er konfigurert, oppdateres kursene automatisk når de endres i Kursagenten. Dette er den anbefalte metoden for løpende oppdateringer."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Automatisk:</strong> Steder blir automatisk tilordnet til regioner basert på fylke når regioner er aktivert."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Avkrysning før synkronisering:</strong> Når du klikker på \"Hent alle kurs fra Kursagenten\", kan du kryss av for \"Rydd opp i kurs etter synkronisering\". Dette kjører opprydding automatisk etter at synkroniseringen er fullført. <strong>NB:</strong> Opprydding tar 3-5 minutter ekstra."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Bilde:</strong> Et bilde som vises på stedssiden og i lister."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Bilde:</strong> Last opp et hovedbilde som vises på taksonomisiden og i lister."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Bilder:</strong> Bruk plassholder-bilder via kortkodene om du mangler bilder."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Bredde:</strong> Velg om du vil bruke temaets standardbredde eller full bredde. Stort sett vil standardbredde fungerer som tiltenkt."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Bruk i kortkoder:</strong> Du kan filtrere kurssteder basert på region i kortkoden <code class=\"copytext\">[kurssteder]</code>:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "<strong>Bygg ditt eget design</strong> er aktivt. Du kan fortsatt styre kursdata-visning under."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "<strong>Bygg ditt eget design</strong> er aktivt. Kursagenten bruker WordPress sitt malhierarki, slik at tema/page builder kan styre oppsett."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "<strong>Byggeblokker kommer:</strong> vi planlegger moduler for blant annet kursliste med kurssteder/lenker og informasjon om kommende kurs."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Cache:</strong> Tøm cache hvis du ikke ser endringer umiddelbart."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Designendringer:</strong> Hvis designendringer ikke vises, kan det være nødvendig å tømme cache og oppdatere permalenker."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>E-post:</strong> Instruktørens e-postadresse."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Egen opprydding:</strong> Du kan også kjøre opprydding separat ved å klikke på knappen \"Rydd opp i kurs\" på <a href=\"admin.php?page=kursinnstillinger\">Synkronisering</a>-siden. Dette er nyttig hvis du bare ønsker å rydde opp uten å synkronisere alle kursene på nytt."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Eget innhold over/under:</strong> Du kan legge inn vanlig innhold i editoren over og under kortkoden for å skrive en introduksjon, legge til bilder eller annen informasjon."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Ekstra felter:</strong> Spesifikke felter avhengig av taksonomitypen (se nedenfor)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Enkel - kun tittel og kort beskrivelse:</strong> Tittel og kort beskrivelse, deretter kursliste. Egnet når du ikke har bilder eller utvidet beskrivelse."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Enkle kort:</strong> Hvite kort med overskrift og tekst. Viser neste tilgjengelige dato for kursene. Mulig å velge antall kolonner for desktop, tablet og mobil."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Felles designmal:</strong> Alle taksonomier bruker samme designmal."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Grid:</strong> Et rutenett med kurskort i flere kolonner. Mulig å velge antall kolonner for desktop, tablet og mobil."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Hovedbilde:</strong> Et bilde som vises på kategorisiden og i lister."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Hva er kortkoder?</strong> Kortkoder er små koder du plasserer i innhold (sider/innlegg) for å vise dynamiske lister og komponenter fra pluginen."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Hvor brukes de?</strong> Vanligvis på egne sider eller innlegg (f.eks. «Kurs», «Kurskategorier», «Kurssteder», «Instruktører»). Du kan også bruke dem i menyen eller widgets."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Ikon:</strong> Et alternativt bilde som kan brukes i stedet for hovedbilde i lister. Her er det fint å laste opp png-ikoner (bruk <code>kilde=ikon</code> i kortkoden)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Instruktører</strong> – Inneholder <code class=\"copytext\">[instruktorer]</code> for å vise alle instruktører."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Kompakt:</strong> En mer kompakt listevisning med mindre mellomrom. Uten bakgrunn, og med færre kurselementer"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Kort beskrivelse:</strong> En kort tekst som kan vises i lister og oversikter. Vises ofte direkte under overskriften."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Kort beskrivelse:</strong> En kort tekst som kan vises i lister."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Kort beskrivelse:</strong> En kort tekst som kan vises i lister. Vises ofte direkte under overskriften."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Kurs</strong> – Inneholder <code class=\"copytext\">[kursliste]</code> for å vise alle kurs med filtre."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Kurskategorier</strong> – Inneholder <code class=\"copytext\">[kurskategorier]</code> for å vise alle kategorier."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Kursliste (kun for kurskategorier):</strong> Tre alternativer styrer hvordan kategorien påvirker kurslisten:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Kursliste med filter </strong><span class=\"smal\"><span class=\"copytext\">[kursliste]</span></span><br><span class=\"copytext small\">[kursliste kategori=\"web\" sted=\"oslo\" måned=\"9\" språk=\"norsk\" list_type=\"grid\" filter=\"topp\" knapper=\"signup_link\" bilder=\"yes\" vis=\"-sluttdato\" st=sted/st=ikke-sted klasse=\"min-klasse\"]</span>"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "<strong>Kurssteder opprettes automatisk</strong> når du synkroniserer kurs fra Kursagenten. Du kan ikke legge til kurssteder manuelt her."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Kurssteder</strong> – Inneholder <code class=\"copytext\">[kurssteder]</code> for å vise alle kurssteder."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Layout og struktur:</strong> Hvor elementene plasseres på siden (header, innhold, sidekolonne, footer)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Layout:</strong> Velg designet på siden. Dette styrer hvor/hvordan tittel, tekst, hovedbilde og kursliste vises."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "<strong>Layout</strong> bestemmer oppsettet av elementer på siden (header, kolonner, hooks).</br><strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, ren, kompakt, dato og tittel). </br><strong>Visningstype</strong> bestemmer om du vil vise hovedkurs eller alle kursdatoer."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Liste med instruktører </strong><span class=\"smal\"><span class=\"copytext\">[instruktorer]</span></span><br><span class=\"copytext small\" style=\"color:#666\">[instruktorer layout=\"stablet/rad/liste\" grid=3 gridtablet=2 gridmobil=1 radavstand=\"1rem\" stil=\"standard/kort\" bildestr=\"100px\" bildeform=\"avrundet/rund/firkantet/10px\" bildeformat=\"4/3\" overskrift=\"h3\" fontmin=\"13px\" fontmaks=\"15px\" avstand=\"2em .5em\" skygge=\"ja\" skjul=\"Iris,Anna\" utdrag=\"ja\" beskrivelse=\"ja\" klasse=\"min-klasse\"]</span>"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Liste med kurskategorier </strong><span class=\"smal\"><span class=\"copytext\">[kurskategorier]</span></span><br><span class=\"copytext small\" style=\"color:#666\">[kurskategorier kilde=\"bilde/ikon\" layout=\"stablet/rad/liste\" grid=3 gridtablet=2 gridmobil=1  radavstand=\"1rem\" stil=\"standard/kort\" bildestr=\"100px\" bildeform=\"avrundet/rund/firkantet/10px\" bildeformat=\"4/3\" overskrift=\"h3\" fontmin=\"13\" fontmaks=\"18\" avstand=\"2em .5em\" skygge=\"ja\" vis=\"hovedkategorier/subkategorier/slug/standard\" st=sted/st=ikke-sted utdrag=\"ja\" klasse=\"min-klasse\"]</span>"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Liste med kurssteder </strong><span class=\"smal\"><span class=\"copytext\">[kurssteder]</span></span><br><span class=\"copytext small\" style=\"color:#666\">[kurssteder layout=\"stablet/rad/liste\" grid=3 gridtablet=2 gridmobil=1 radavstand=\"1rem\" stil=\"standard/kort\" bildestr=\"100px\" bildeform=\"avrundet/rund/firkantet/10px\" bildeformat=\"4/3\" overskrift=\"h3\" fontmin=\"13px\" fontmaks=\"15px\" avstand=\"2em .5em\" skygge=\"ja\" utdrag=\"ja\" vis=\"standard/alta,oslo,bergen\" region=\"østlandet\" stedinfo=\"ja\" klasse=\"min-klasse\"]</span>"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Listedesign:</strong> Velg designet på kurslisten (standard, rutenett, kompakt, enkle kort...)"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Listedesign:</strong> Velg listedesign (standard, rutenett, kompakt, enkel liste, enkle kort)."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "<strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, ren, kompakt, dato og tittel)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Manuell synkronisering:</strong> Gå til <a href=\"admin.php?page=kursinnstillinger\">Synkronisering</a> og klikk på \"Hent alle kurs fra Kursagenten\". Dette bør gjøres første gang du setter opp pluginen, og ved behov for å oppdatere alle kursene samtidig."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Manuelt:</strong> Du kan endre region for individuelle steder ved å redigere kursstedet i <a href=\"edit-tags.php?taxonomy=ka_course_location&post_type=ka_course\">Kurssteder</a>-oversikten."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Merk:</strong> Regioner må være aktivert for at filtreringen skal fungere. Du kan også endre region for individuelle kurssteder ved å redigere kursstedet i <a href=\"edit-tags.php?taxonomy=ka_course_location&post_type=ka_course\">Kurssteder</a>-oversikten."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Navn:</strong> Instruktørens navn (kan deles opp i fornavn og etternavn)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Navn:</strong> Kategorinavnet (kommer fra Kursagenten, bør ikke endres)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Navn:</strong> Stedsnavnet (kommer fra Kursagenten, men kan endres via navnendring-funksjonen)."
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "<strong>Navnendring på kurssteder:</strong><br>Du kan endre navn på kurssteder under <a href=\"%s\">Synkronisering → Navnendring på kurssteder</a>. Når du endrer navn på et sted, blir også slugs (nettadressen) på kursene som har dette stedet oppdatert.<br> Det gamle stedet blir ikke slettet, men blir ikke lenger synlig på nettsiden."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Når bør du bruke kortkoder?</strong> Hvis du bygger sidene med Elementor eller andre page builders, vil kortkoder sannsynligvis være det du må bruke."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "<strong>Obs:</strong> For at brukerne skal kunne slå filteret av og på, må du dra <em>«Ledige kurs»</em> inn i «Filtre i venstre kolonne» eller «Filtre over kurslisten» under Filterinnstillinger."
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "<strong>OBS!</strong> Fyll inn <a href=\"#kursagenten-innstillinger\" style=\"color:white; text-decoration: underline;\">innstillinger fra Kursagenten</a> før du henter alle kursene dine (synkroniser alle kurs)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Overstyr profil fra Kursagenten:</strong> Aktiver denne for å kunne redigere navn, e-post og telefon. Når aktivert, vil ikke disse feltene oppdateres automatisk fra Kursagenten ved synkronisering."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Overstyr profilbilde:</strong> Aktiver denne for å bruke et eget opplastet bilde i stedet for bildet fra Kursagenten."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Page builder (Kadence Elements, Elementor m.fl.):</strong> Hvis du vil styre single/archive/taksonomi med page builder-betingelser, gå til <a href=\"admin.php?page=design#section-enkeltkurs\">Kursdesign → Enkeltkurs</a> og aktiver <em>Bruk WordPress sitt standard malhierarki</em>. Da lar pluginen tema/page builder velge mal uten å tvinge pluginens egne layout-filer."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Permalenker:</strong> Ved endring av URL-innstillinger, lagre «Permalenker» på nytt."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Plassering:</strong> Filtrene velges ved å dra dem til korrekt plassering. Du kan velge å vise dem til venstre for kurslisten og/eller over kurslisten."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Profil - rundt bilde og tittel:</strong> Rundt bilde, deretter tittel og beskrivelse, deretter kursliste"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Profilbilde:</strong> Et hovedbilde som vises på instruktørsiden og i lister. Dette kan være fra Kursagenten eller et eget opplastet bilde."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Region:</strong> (Hvis regioner er aktivert) Velg hvilken region stedet tilhører."
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "<strong>Regioner:</strong><br>Du kan aktivere og administrere regioner under <a href=\"%s\">Synkronisering → Regioner</a>."
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "<strong>Regioner:</strong><br>Regioner er aktivert. Du kan administrere regioninndelingen under <a href=\"%s\">Synkronisering → Regioner</a>. Tilhørighet til en region kan endres under hvert kurssted."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Rekkefølge på elementer:</strong> Hvilken rekkefølge informasjonen vises i (introtekst, hovedinnhold, kursdatoer, instruktører, osv.)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Rekkefølge:</strong> Du kan også dra i filtrene for å endre rekkefølgen de vises i."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Ren og enkel liste:</strong> Basert på Standard liste, men uten bakgrunn, og med færre kurselementer"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Separate designmaler:</strong> Aktiver dette for å kunne velge forskjellige designmaler for kategorier, steder og instruktører."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Skjul i automenyer:</strong> Når aktivert, skjules kategorien i autogenererte menyer som bruker kortkoden <code>[ka-meny]</code>. Dette er nyttig hvis du har kategorier som ikke skal vises i hovedmenyen."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Skjul i oversiktslister:</strong> Når aktivert, skjules kategorien i kortkoder som <code>[kurskategorier]</code> og lignende lister. Kategorien vil fortsatt være tilgjengelig direkte via URL."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Slug:</strong> URL-vennlig versjon av navnet (bør ikke endres da det kan føre til ødelagte lenker)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Slug:</strong> URL-vennlig versjon av navnet (oppdateres automatisk ved navnendring)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Standard - med bilde og beskrivelse:</strong> Tittel og beskrivelse, deretter bilde og beskrivelse, deretter kursliste"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Standard:</strong> 1 kolonne"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Standard:</strong> 100px"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Standard:</strong> 1rem"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Standard:</strong> 2 kolonner"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Standard:</strong> 2em .5em"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Standard:</strong> 3 kolonner"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Standard:</strong> En tradisjonell listevisning med kurskort, ett kurs per rad/boks."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Synkronisering:</strong> Hvis kurs ikke oppdateres automatisk, sjekk at webhooks er konfigurert korrekt i Kursagenten."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Tagger eller lister:</strong> Filtrene kan velges som tagger eller avkrysningsliste. Tagger er knapper som velger ett filter av gangen, og avkrysningsliste er en liste som kan velge flere filter samtidig."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Telefon:</strong> Instruktørens telefonnummer."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Test:</strong> Besøk frontend og se at det ser ut som det skal."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Utvidet beskrivelse:</strong> En lengre tekst med HTML-formatering som vises på instruktørsiden."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Utvidet beskrivelse:</strong> En lengre tekst med HTML-formatering som vises på kategorisiden."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Utvidet beskrivelse:</strong> En lengre tekst med HTML-formatering som vises på stedssiden."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Utvidet beskrivelse:</strong> En lengre tekst med rik tekstformatering (HTML) som vises på taksonomisiden. Her kan du beskrive kategorien, stedet eller instruktøren med tekst, bilder og annen informasjon."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Velge eksisterende side:</strong> Du kan også velge en eksisterende WordPress-side fra dropdown-menyen og tilordne den til en funksjon. Lim inn kortkoden manuelt. Koden kan du kopiere fra ikonet <i class=\"ka-icon icon-code-simple-solid-full\" style=\"height: 14px;\"></i> ved siden av navnet."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Viktig:</strong> Endringer i designmal kan kreve oppdatering/refresh av cache og permalenker, spesielt ved utstrakte URL-tilpasninger."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Viktig:</strong> Navnet på kursstedet i WordPress-administrasjonen er skrivebeskyttet når det kommer fra Kursagenten. For å endre navnet som vises på nettsiden, bruk navnendring-funksjonen i stedet for å redigere taksonomien direkte."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Viktig:</strong> Når du overskriver felter, vil de ikke lenger oppdateres automatisk fra Kursagenten. Du må manuelt oppdatere dem hvis det er endringer i Kursagenten."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Vis bilder:</strong> Skru av/på bilder i listen. Best egnet om du har lastet opp bilder til kursene i Kursagenten."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "<strong>Vis:</strong> Kategorien vises i filteret, og kurs tagget med kategorien vises i kurslisten.<br><strong>Skjul kun kategorien fra filter:</strong> Kategorien skjules fra filteret, men kurs tagget med denne kategorien vises fortsatt i kurslisten (under sine øvrige kategorier).<br><strong>Skjul kategorien og alle tilhørende kurs:</strong> Verken kategorien eller kurs tagget med denne vises i kurslisten – nyttig for interne kategorier."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Visning av liste:</strong> I venstre kolonne vil listene vises som avkrysningsliste, mens over kursliten vises lister som dropdown-menyer."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Visningstype:</strong> Velg om du vil vise hovedkurs (ett kurs per rad/boks) eller alle kursdatoer (tilsvarende \"Kursliste med filter\")."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "<strong>Visningstype</strong> bestemmer om du vil vise hovedkurs eller alle kursdatoer."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "<strong>Visuelle detaljer:</strong> Styling, spacing og annet visuelt design."
+msgstr ""
+
+#: includes/options/seo.php
+msgid "✓ (kan overstyres i AIOSEO Pro)"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "✓ (kan overstyres i SEOPress Pro)"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "0 = ingen begrensning"
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Adresse"
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+msgid "AJAX-konfigurasjon mangler."
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Aktiver dette hvis du bruker andre SEO-utvidelser som ikke er listet under, eller ønsker å håndtere SEO helt selv."
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Aktiver ekstra sikkerhetsfunksjoner"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Aktiver regioninndeling (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge)"
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Aktiver støtte for jQuery"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Alle"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+msgid "Alle (%d)"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Alle instruktører"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+#: includes/post_types/register_post_types.php
+#: public/blocks/single-elements/render.php
+msgid "Alle kurs"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Alle kurskategorier"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Alle kurssteder"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Alle steder"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Alle systemsider følger WordPress sin standard template-hierarki, så hvis temaet ditt har egne templates (f.eks. <code>single-ka_course.php</code> eller <code>taxonomy-ka_coursecategory.php</code>), vil disse brukes i stedet for pluginen sin standardmal."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Alle taksonomisider (kategorier, kurssteder og instruktører) kan berikes med ekstra innhold som bilder, tekst og beskrivelser. Dette gjør at du kan tilpasse hver enkelt side med unikt innhold utover det som kommer fra Kursagenten."
+msgstr ""
+
+#: public/templates/list-types/compact.php
+#: public/templates/list-types/date-and-title.php
+#: public/templates/list-types/grid.php
+msgid "Alle tilgjengelige kurssteder og datoer"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Alternativ farge for bokser:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Alternativt bilde"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Annet"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Antall kolonner i rutenett:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Antall kolonner på desktop."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Antall kolonner på mobil."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Antall kolonner på tablet."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Antall kurs per side:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Antall kursdager"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Automatisk (anbefalt)"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Automatisk bruker responsivt srcset når mulig for skarpere bilder."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Automenyer brukes når du vil at menyen automatisk skal vise taksonomier og/eller kurs uten at du manuelt må oppdatere menyelementer når noe endres."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Automenyer i WordPress-menyen"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Av (håndteres av Rank Math Pro)"
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Avanserte innstillinger"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: includes/options/kursinnstillinger.php
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Avbryt"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Avrundet"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Avrundet søkefelt med ikon"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "avrundet, rund, firkantet<br><strong>Standard</strong>: avrundet"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Avstand"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Avstand rundt alle elementene, første verdi er topp og bunn, andre verdi er venstre og høyre."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Bakgrunn"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bakgrunn fremhevede områder:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Bakgrunn hover"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bakgrunn i toppfelt:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Bakgrunnsbilde"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bakgrunnsbilde og overlay:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/options/coursedesign.php
+msgid "Bakgrunnsfarge"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Bakgrunnsfarge bak bilde"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Bakgrunnskilde"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bakgrunnstype:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Base skriftstørrelse:"
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+#: includes/options/documentation.php
+#: includes/options/kursagenten-admin_options.php
+msgid "Bedriftsinformasjon"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Begge feltene må fylles ut"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Begrense innholdet med <strong>stedsfilter</strong> (f.eks. bare \"Oslo\" eller \"ikke-Oslo\")."
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "Begrenser til termer med kurs på angitt sted. Start med \"ikke-\" for å ekskludere. La stå tom for alle."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Behold H3 som standard med mindre du har en tydelig semantisk grunn til å endre."
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Berik innholdet ditt"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Berike taksonomisider"
+msgstr ""
+
+#: includes/options/coursedesign.php
+#: includes/options/documentation.php
+msgid "Beskrivelse"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Betaling"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Betaling for kurs"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Betalingsside"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Betalingsside for kurs"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "bilde"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Bilde"
+msgstr ""
+
+#: public/shortcodes/course-location-shortcode.php
+#: public/shortcodes/instructor-shortcode.php
+#: public/templates/designs/single/boxes.php
+msgid "Bilde av %s"
+msgstr ""
+
+#: public/shortcodes/coursecategories-shortcode.php
+#: public/shortcodes/related-courses-shortcode.php
+msgid "Bilde av kurs i %s"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Bilde av kurssted"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Bilde for kurs i %s"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Bilde hentes fra instruktørprofil i Kursagenten. Dette bildet kan overstyres her inne på nettsiden. Det er også mulig å bruke et alternativt bilde om du ønsker en annen stil/annet bilde enn det som er brukt i Kursagenten."
+msgstr ""
+
+#: includes/post_types/register_image_fields.php
+msgid "Bilde hentet fra Kursagenten"
+msgstr ""
+
+#: includes/post_types/register_image_fields.php
+msgid "Bilde hentet fra Kursagenten:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "bilde, ikon<br><strong>Standard:</strong> bilde"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "bilde, ka-bilde<br><strong>Standard:</strong> bilde"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Bildeform"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/options/documentation.php
+msgid "Bildeformat"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Bildeformer"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Bildekvalitet"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/options/documentation.php
+msgid "Bilder"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Bildestr"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Bildestørrelse"
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Blokker XML-RPC i .htaccess (Apache)"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bokser"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Book time"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bredde:"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Bruk"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Bruk \"Resett til standard\" for å tilbakestille regioninndelingen til standardverdiene."
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Bruk bilde"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Bruk card-design"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bruk ekstern lenke på kurstittel"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bruk ekstern lenke på påmeldingsknapp"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bruk kun bakgrunnsfarge"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bruk kursbilde, og <a href=\"/wp-admin/admin.php?page=design&ka_open=valg-for-bilder%2Cenkeltkurs#valg-for-bilder\">plassholderbilde for kurs</a> om kursbilde mangler"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bruk kursbilde, og bakgrunnsfarge om kursbilde mangler"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Bruk parameterne <code>type</code>, <code>start</code> og eventuelt <code>st</code> for å styre hvilke kategorier/steder eller instruktører som skal vises."
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Bruk som hovedbilde"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bruk standard (%s)"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bruk standard innstilling"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bruk standardvalg"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bruk standardvalg for valgt listedesign"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bruk taksonomibilde, og <a href=\"/wp-admin/admin.php?page=design&ka_open=valg-for-bilder%2Ctaksonomi#valg-for-bilder\">generelt plassholderbilde</a> om bilde mangler"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Bruk taksonomibilde, og bakgrunnsfarge om bilde mangler"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Brukes for å fremheve enkelte bokser i \"Bokser\"-design. Hvis kun «Bakgrunn fremhevede områder» er satt, får begge samme farge."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Brukes når Skygge/kantstil = Ingen, men bruk ramme."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Bunn"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "BUNN"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Byggeblokker for enkeltkurs kommer i en senere oppdatering. Foreløpig kan du bygge innhold med tema/page builder og eksisterende hooks/kortkoder."
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+msgid "Cloudflare blokkerer nedlastingen med bot-verifisering. URL: %s. Løsning: Gå til Cloudflare Dashboard > Security > WAF > Custom Rules og legg til regel som tillater /kursagenten-api/download_plugin, eller deaktiver Bot Fight Mode for denne URL-en."
+msgstr ""
+
+#: includes/post_types/register_image_fields.php
+msgid "Course Image"
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+msgid "Dag"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Dag-/kveldskurs"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Datakilde"
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+msgid "Dato"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Dato og tittel"
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Deaktiver Gravatar på frontend"
+msgstr ""
+
+#: public/templates/designs/single/modern.php
+msgid "Del dette kurset"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Denne siden hjelper deg raskt i gang med å sette opp Kursagenten-pluginen fra A til Å. Følg stegene i rekkefølge, og bruk venstremenyen for å hoppe mellom seksjoner."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Denne visningen bruker den enklere listen med neste tilgjengelige dato og har ikke de samme filtervalgene som \"Vis alle kursdatoer\"."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Design"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Design på taksonomi"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Design:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Design: Lister og grid <span class=\"small\"><a href=\"#lister\">mer info</a></span>"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Designet på listene kan endres med attributter i kortkoden. Se <a href=\"#lister\">oversikt</a> for å se hvilke valg du kan gjøre."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Designmalene viser frem innholdet på forskjellige måter."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Designmaler"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Designmaler for kurs"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Designvalg"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Designvariabler"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Desktop"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Desktop:"
+msgstr ""
+
+#: public/shortcodes/instructor-shortcode.php
+msgid "Det er for øyeblikket ingen instruktører å vise."
+msgstr ""
+
+#: public/shortcodes/course-location-shortcode.php
+msgid "Det er for øyeblikket ingen kurssteder å vise."
+msgstr ""
+
+#: public/shortcodes/related-courses-shortcode.php
+msgid "Det er for øyeblikket ingen relaterte kurs å vise."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Det er foreløpig ikke mange designmaler tilgjengelig for enkeltkurs. Vi planlegger å utvide med flere designmaler snart."
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+#: public/templates/list-types/standard.php
+msgid "Det er ikke satt opp dato for nye kurs. Meld din interesse for å få mer informasjon eller å sette deg på venteliste."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Det er mulig å legge inn plassholderbilder under Admin → Kursagenten → Kursdesign."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Det finnes to måter å rydde opp på:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Det gamle stedet blir ikke slettet, men blir ikke lenger synlig på nettsiden."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Det meste av data skal styres fra Kursagenten. Det er enkelte deler vi ikke har felter for, og for disse delene kan du berike kategori/sted/instruktør direkte her på nettsiden via Admin → Kursagenten → Kurssteder/Instruktører/Kurssteder"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Det opprettes også automatisk en side for betaling når pluginen aktiveres. Denne siden inneholder kode som genererer betalingsboksen og er nødvendig for at betalingsfunksjonaliteten skal fungere. Betalingssiden publiseres automatisk, mens de andre oversiktssidene opprettes som kladd (draft) slik at du kan redigere dem før publisering."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Dette bildet brukes som hovedbilde på instruktørprofilen."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Dette bildet kan brukes som et alternativt bilde på instruktørprofilen."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Dette er den største fontstørrelsen du vil bruke for tekst og overskrifter."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Dette feltet er overskrevet fra Kursagenten"
+msgstr ""
+
+#: includes/post_types/register_image_fields.php
+msgid "Dette feltet viser om bildet er automatisk hentet fra Kursagenten."
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Dette legger inn rating i Course schema på kurssidene. Det legger også inn redirect basert på querystrings i eposter fra Kursagenten, til rating-skjema på korrekt kursside.<br><br>"
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Dette valget deaktiverer Gravatar på frontend og bruker et lokalt standardbilde i stedet. Dette kan løse problemer med tracking prevention i enkelte nettlesere.<br><br>"
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Dette valget legger til:<br>1) Clickjacking Protection (X-Frame-Options) i WordPress, styrker security headers.<br>2) Deaktiverer tema- og plugin redigering<br>3) Fjerner WP versjonsnummer<br>4) Deaktiverer XML-RPC i WordPress<br><br>"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Disse innstillingene fungerer som standardvalg for kortkodene. Du kan også overstyre dem direkte i kortkoden med attributter. Se <a href=\"#lister\">Kortkoder for lister og grid</a> for mer informasjon."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Disse innstillingene kan settes både ved redigering av kategorien, via hurtigredigering, og via masseredigering («Kursagenten: Masserediger synlighet») i oversikten."
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Disse slugene bruker fallback med prefix."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Div"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Dobbel"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Dokumentasjon"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Dra automenyen til riktig plassering i menystrukturen. Som hovedmenypunkt kan den stå på toppnivå, eller du kan dra den innunder en eksisterende side (f.eks. \"Kurs\") for å bruke den som undermeny."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Dra fylker mellom regionene for å organisere dem etter dine behov."
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Dra fylker mellom regioner for å organisere dem. Merk at en del fylker er utdaterte, men er inkludert for bakover-kompatibilitet. Bruk \"Resett til standard\" for å tilbakestille regioninndelingen til standardverdiene."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Dra menypunktet dit menyen skal vises, for eksempel som undermeny under siden \"Kurs\"."
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Du finner innstillingene for <strong><a href=\"https://kursadmin.kursagenten.no/ProviderInformation\" target=\"_blank\">Tilbyder ID og Tilbyder Guid</a></strong> i Kursagenten under <em>Bedriftsinsformasjon-> Innstillinger</em>, og <strong><a href=\"https://kursadmin.kursagenten.no/IframeSetting\" target=\"_blank\">Tema for kurslister</a></strong> under <em>Embedded / iframe</em><br><br>I Integrasjonsinnstillinger, under fanen <strong><a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Webhooks</a></strong>, skal du legge inn %s i feltene CourseCreated og CourseUpdated for å automatisk oppdatere kurs når det blir opprettet eller endret på Kursagenten."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du har flere alternativer:"
+msgstr ""
+
+#: includes/api/api_sync_on_demand.php
+msgid "Du har ikke tilgang til denne funksjonen."
+msgstr ""
+
+#: includes/options/theme_specific_customizations.php
+msgid "Du har ikke tillatelse til å åpne denne siden."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du kan bruke blokkene i stedet for kortkoder hvis du bygger sidene med Gutenberg. De samme valgene som beskrives under <a href=\"#lister\">Kortkoder for lister og grid</a> er i stor grad tilgjengelige direkte i blokkinnstillingene."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du kan endre navn på kurssteder som kommer fra Kursagenten. Dette er nyttig hvis du ønsker å bruke kortere eller mer beskrivende navn på nettsiden."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du kan endre navn på kurssteder som kommer fra Kursagenten. Dette gjøres via <a href=\"admin.php?page=kursinnstillinger#location-name-mapping\">Synkronisering → Navnendring på kurssteder</a>. Se <a href=\"#stedsnavn-og-regioner\">Stedsnavn og regioner</a> for mer informasjon."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du kan fritt endre tittel, slug og innhold på sidene. Det eneste som ikke bør fjernes er kortkoden."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du kan kontrollere hvor kategoriene vises med flere synlighetsinnstillinger:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Du kan laste opp bilder for hver kategori. Det er også mulig å laste opp et «profilbilde». Dette kan brukes i blokker/kortkoder, som et alternativ til hovedbildet. Har det ikke blitt lastet opp et kategoribilde, vil den prøve å bruke et bilde fra et tilknyttet kurs. Om dette ikke finnes, vil den bruke plassholderbilde."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du kan legge inn menypunkter som automatisk generer kurskategorier, kurssteder og instruktører. Mer informasjon i seksjonen <a href=\"#menyer\">Menyer</a>."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du kan legge til ekstra tekst over eller under kortkoden for introduksjon, SEO-tekst eller annen informasjon."
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+#: public/templates/list-types/standard.php
+msgid "Du kan melde deg på kurset nå. Etter påmelding vil du få mer informasjon."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du kan også konfigurere hvordan kurslistene på taksonomisidene skal vises. Se <a href=\"#section-styre-utseende-på-kurslister\">Styre utseende på kurslister</a> for mer informasjon."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du kan opprette instruktører direkte i WordPress som ikke kommer fra Kursagenten:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du kan velge en felles designmal for alle taksonomier, eller aktivere separate designmaler for hver taksonomitype:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du kan velge om du vil bruke et bilde du laster opp selv, eller bruke bildet hentet fra Kursagenten. Velg kilde=ka-bilde hvis du vil bruke bilde fra Kursagenten."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du kan velge om du vil bruke hovedbilde, eller laste opp egne ikoner for lister. Velg kilde=ikon hvis du vil bruke disse."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du kan velge å vise fullt navn, fornavn eller etternavn på instruktørsiden og i listen med instruktører. Du må både endre innstillinger i Kursdesign og i Wordpress-siden som viser instruktørene."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Du må kjøre en full synkronisering (\"Hent alle kurs fra Kursagenten\") for å ta i bruk navnendringene."
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Du må legge inn lisensnøkkel før du kan bruke innstillingene."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "E-post"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Egen CSS"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Egendefinert"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Egendefinert format"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Egendefinert størrelse (px)"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Egne innstillinger for %s"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Egne instruktører fungerer på samme måte som instruktører fra Kursagenten, men de vil ikke oppdateres automatisk og kan fritt redigeres uten å aktivere \"overstyr\"-funksjoner."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Eks: 5/4, 7/5"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Eksempel"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Ekstern lenke kan legges inn på kurset i feltet \"Link til påmeldingskjema:\" i Kursagenten. Dette vil åpne en valgfri side."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Ekstra fet"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Ekstra innhold"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Ekstra kraftig"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Ekstra stor"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Element"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Element-justering"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Element-justering %s"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Element-kort"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "eller"
+msgstr ""
+
+#: public/templates/includes/course-ajax-filter.php
+msgid "En feil oppstod under filtreringen."
+msgstr ""
+
+#: public/templates/includes/course-ajax-filter.php
+msgid "En feil oppstod under henting av filter counts"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "En ukjent feil oppstod under filtreringen."
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Endre navn på nytt sted"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Endre navnet på instruktøren"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Endre url prefix"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Endrer sidebredde. Gå til <a href=\"/wp-admin/admin.php?page=design#section-designvariabler\">Designvariabler</a> for å endre maks innholdbredde."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Endring av stedsnavn"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Endringene lagres automatisk når du flytter fylker."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Endringene under gjelder for alle valgte termer. Felter satt til «Ikke endre» blir hoppet over."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Enkel - Kun tittel og kort beskrivelse"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/options/coursedesign.php
+#: includes/options/documentation.php
+msgid "Enkeltkurs"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Enkle kort"
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "Epost"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Ett kort per kurs (neste dato)"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Ett kort per kurs og lokasjon (neste dato per lokasjon)"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Etter eventuell kursliste-seksjon på detaljsiden."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Etter hele footer-seksjonen (etter &lt;/article&gt;)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Etter hele siden"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Etter hovedinnholdet."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Etter introtekst."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Etter lenkene i header-seksjonen."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Etter modulen \"Neste kurs\"."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Etter paginering"
+msgstr ""
+
+#: public/templates/list-types/standard.php
+msgid "Etter påmelding vil du få en e-post med mer informasjon om kurset, og hvordan det skal gjennomføres."
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Etter påmelding vil du få en e-post med mer informasjon om kurset."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Etter sidekolonne/aside."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/options/coursedesign.php
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Etternavn"
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "f.eks. oslo eller ikke-oslo"
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "Facebook"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Fant ingen foreldrekategorier."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Fant ingen instruktører."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Fant ingen kurssteder."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Farge"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Farger"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Farger:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "feks 13px, 15px, 18px<br><strong>Standard</strong>: 13px"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "feks 15px, 18px, 26px<br><strong>Standard</strong>: 18px"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "feks 4/3, 16/9, 1/1<br><strong>Standard</strong>: 4/3"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "feks h3, h4, h5, p, span, div<br><strong>Standard</strong>: h3"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Fet"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: includes/options/documentation.php
+#: public/shortcodes/course-list-shortcode.php
+msgid "Filter"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Filterboks:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Filterinnstillinger"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Filtre – slik fungerer de"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Filtre i venstre kolonne"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Filtre over kurslisten"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/designs/archive/full-width.php
+msgid "Filtrer kurs"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Filtrer kursdato liste"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Filtrer kursdato på dato"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Filtrer kursliste"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Filtrer kurssteder basert på region (kun hvis regioner er aktivert). Kan kombineres med vis-parameteren (OR-logikk: viser steder fra regionen ELLER de spesifiserte stedene)."
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Filtrer på dato"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Filtrer på instruktør"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Filtrer på kurskategori"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Filtrer på kurssted"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Filtrer stedslisten til kun vise spesifikke steder. Kan bruke stedsnavn eller slug (case-insensitive)."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Finjuster farger:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Finn boksen <strong>\"Kursagenten automenyer\"</strong> i venstre kolonne. Hvis du ikke ser den, sjekk at den er aktivert under \"Skjerminnstillinger\" øverst."
+msgstr ""
+
+#: public/templates/designs/archive/full-width.php
+msgid "Finn det perfekte kurset for deg og din bedrift"
+msgstr ""
+
+#: public/templates/designs/archive/full-width.php
+msgid "Finner du ikke det du leter etter?"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Firkantet"
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "Firmainformasjon"
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "Firmanavn"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+#: includes/post_types/register_post_types.php
+msgid "Fjern"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Fjern %s"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Fjern bilde"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Fjern filter"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Fjern foreldrekategori (flytt til toppnivå)"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Fjern hovedbilde"
+msgstr ""
+
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+#: public/templates/designs/taxonomy/hero.php
+msgid "Flere instruktører"
+msgstr ""
+
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+#: public/templates/designs/taxonomy/hero.php
+msgid "Flere kurskategorier"
+msgstr ""
+
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+#: public/templates/designs/taxonomy/hero.php
+msgid "Flere kurssteder"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Flere valg"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Font for hovedoverskrifter:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Fontmaks"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Fontmin"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Fontstørrelse for beskrivelse"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Fontstørrelse for tittel"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Fontvekt tekst"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Fontvekt tittel"
+msgstr ""
+
+#: includes/options/documentation.php
+#: public/templates/designs/archive/default.php
+#: public/templates/designs/archive/modern.php
+msgid "Footer"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Footer etter"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Footer før"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "For \"Kategorier og kurs\": velge om menyen bare skal vise kurs (uten kategorinivå)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "For de kategoriene som har flere nivåer, er det mulighet til å vise kun toppnivåene, kun underkategoriene, kun underkategorier under gitt foreldreslug, eller alle."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "For flere eksempler på meny-kortkoder og hvordan du kan kombinere dem med andre kortkoder, se seksjonen <a href=\"#kortkoder\">Kortkoder</a> lenger opp på denne siden."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "For instruktører som kommer fra Kursagenten, kan du overskrive dataene med egne verdier:"
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "For kurstilbydere med få kurs og 1/ingen kategorier: viser kun en flat liste med hovedkurs uten kategorinivå."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "For å vise oversikter og lister med kurs, kategorier, steder og instruktører, må du opprette vanlige WordPress-sider med kortkoder. Disse sidene bør opprettes fra <a href=\"admin.php?page=design#section-systemsider\">Kursdesign → Wordpress sider</a>. Har du allerede sider du ønsker å bruke, velger du dem fra dropdown-menyen."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+#: includes/post_types/register_taxonomies.php
+msgid "Foreldrekategori"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Foreldrekategori (valgfritt)"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Foreldrekategori:"
+msgstr ""
+
+#: public/blocks/single-elements/render.php
+msgid "Forhåndsvisning: fant ingen publiserte enkeltkurs å bruke som eksempel."
+msgstr ""
+
+#: public/blocks/single-elements/render.php
+msgid "Forhåndsvisning: ingen kommende kurs funnet."
+msgstr ""
+
+#: public/blocks/single-elements/render.php
+msgid "Forhåndsvisning: ingen kontaktinformasjon registrert for valgt kurs."
+msgstr ""
+
+#: public/blocks/single-elements/render.php
+msgid "Forhåndsvisning: ingen kursoversiktsside er konfigurert ennå."
+msgstr ""
+
+#: public/blocks/single-elements/render.php
+msgid "Forhåndsvisning: ingen kurstider registrert for valgt kurs."
+msgstr ""
+
+#: public/blocks/single-elements/render.php
+msgid "Forhåndsvisning: ingen påmeldingslenke for valgt kurs."
+msgstr ""
+
+#: public/blocks/single-elements/render.php
+msgid "Forhåndsvisning: kurset har ingen beskrivelse fra Kursagenten."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/options/coursedesign.php
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Fornavn"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "fornavn, etternavn<br><strong>Standard</strong>: viser fullt navn"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/templates/designs/archive/default.php
+#: public/templates/designs/archive/full-width.php
+msgid "Forrige"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/designs/archive/default.php
+msgid "Fra A til Å"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/designs/archive/default.php
+msgid "Fra Å til A"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Fritekst sted"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Full bredde"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Full størrelse"
+msgstr ""
+
+#: public/blocks/single-elements/render.php
+#: public/templates/list-types/compact.php
+#: public/templates/list-types/grid.php
+msgid "Fullt"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Fullt navn"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Fyll ut navn og eventuelt slug."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Før hele header-seksjonen (før &lt;article&gt;)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Før hovedinnholdet."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Før introtekst."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Før kursliste"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Før sidekolonne/aside."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Generelt"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Generelt plassholderbilde"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Gjelder filter som er plassert i venstre kolonne på kurslisten."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Gjelder foreldrekategori for alle valgte kurskategorier."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "God skikk for opplasting av bilder er å ha en maks størrelse på 500kb. I overføring fra Kursagenten er det en maksgrense for overføring på 1MB."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Grid"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Gridmobil"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Gridtablet"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Gutenberg blokker"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Gyldige regioner: <code>sørlandet</code>, <code>østlandet</code>, <code>vestlandet</code>, <code>midt-norge</code>, <code>nord-norge</code>"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Gå til <a href=\"admin.php?page=bedriftsinformasjon\">Bedriftsinformasjon</a> og fyll ut grunnleggende firmaopplysninger."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Gå til <a href=\"admin.php?page=design#design-taksonomi\">Kursdesign → Taksonomisider</a>"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Gå til <a href=\"admin.php?page=design#section-systemsider\">Wordpress sider</a>. Rediger siden med instruktøroversikten og legg til vis=\"fornavn\" eller vis=\"etternavn\" i kortkoden for å vise kun fornavn eller etternavn. Du kan gå direkte til redigering fra <a href=\"admin.php?page=design#section-systemsider\">Wordpress sider</a>."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Gå til <a href=\"admin.php?page=kursinnstillinger\">Synkronisering</a> i WordPress-administrasjonen."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Gå til <a href=\"admin.php?page=kursinnstillinger#location-name-mapping\">Synkronisering → Navnendring på kurssteder</a>."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Gå til <a href=\"admin.php?page=kursinnstillinger#regions\">Synkronisering → Regioner</a>."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Gå til <a href=\"edit-tags.php?taxonomy=ka_instructors&post_type=ka_course\">Instruktører</a>-oversikten."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Gå til <strong>Utseende → Menyer</strong> i WordPress."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Gå til oversikten over taksonomiene (f.eks. <a href=\"edit-tags.php?taxonomy=ka_coursecategory&post_type=ka_course\">Kurskategorier</a>, <a href=\"edit-tags.php?taxonomy=ka_course_location&post_type=ka_course\">Kurssteder</a> eller <a href=\"edit-tags.php?taxonomy=ka_instructors&post_type=ka_course\">Instruktører</a>) og klikk på \"Rediger\" på den taksonomien du vil berike. Her kan du legge til:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "H2"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "H3"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "H4"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "H5"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "H6"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Halvfet"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Handling"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Handlinger"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Har du funnet feil eller har du forbedringsforslag? Vi hører gjerne fra deg. Vi jobber for å gjøre Kursagenten bedre for deg.<br>Send en epost rett til inboksen i Trello:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Header etter"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Header etter seksjon"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Header etter tittel"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Header før"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Hele filterområdet i venstre kolonne legges i en avrundet boks. Standard bakgrunn følger temafargen (--ka-box-background)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Helt nederst, etter kurslisten (bunnseksjon)."
+msgstr ""
+
+#: includes/api/api_sync_on_demand.php
+msgid "Hent alle kurs fra Kursagenten"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Hent kursene"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Henting av kurs fra Kursagenten"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Her finner du innstillinger for synkronisering av kurs fra Kursagenten. <br>- Ved å klikke på \"Hent alle kurs fra Kursagenten\" overfører du alle kursene dine. Merk at det kun er enveis-synkronisering.<br>- Vi anbefaler å <strong>synkronisere kursene automatisk</strong>. Legg inn <a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Webhooks</a> i Kursagenten, så blir kurset overført når det blir lagret/opprettet. Se url under.<br>- Du kan også rydde opp i kursene hvis det er utdaterte datoer eller lignende.<br><br>"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Her kan du endre navn på kurssteder som kommer fra Kursagenten. Når du endrer navn på et sted, blir også slugs (nettadressen) på kursene som har dette stedet oppdatert.<br><br>1. Nytt sted blir lagret når du klikker på \"Lagre\".<br>2. Stedet blir \"oversatt\" til det nye navnet når kurs blir hentet fra Kursagenten.<br>3. Slugs/nettadresser på kursene som har dette stedet oppdateres umiddelbart.<br>4. Det gamle stedet blir ikke slettet, men blir ikke lenger synlig på nettsiden.<br><br>5. <span style=\"color: #d63638;\"><strong>Viktig:</strong></span> For å ta i bruk navnendringene, kjør en full synk fra Kursagenten ved å klikke på \"Hent alle kurs fra Kursagenten\". Husk også å markere \"Rydd opp i kurs\" før du kjører synken.<br><br>"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Her kan du legge til egendefinert CSS som vil bli lastet inn på alle sider som hører til utvidelsen. Denne CSS-en vil ha høyest prioritet og vil overstyre utvidelsens standard CSS."
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Her kan du skrive inn informasjon som vil bli brukt ulike steder på nettsiden. Dette inkluderer navn på hovedkontakt (personvernerklæring), samt firmanavn og adresse (kontaktside og bunnfelt)."
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "Her kan du skrive inn informasjon som vil bli brukt ulike steder på nettsiden. Dette inkluderer navn på hovedkontakt (personvernerklæring), samt firmanavn og adresse (kontaktside og bunnfelt).<br>Du kan også legge inn informasjon om bedriften som kan vises på med kortkode. Se alle kortkoder <a href=\"#kortkoder\">her</a>."
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "Her kan du skrive inn kort informasjon om bedriften. Denne teksten kan vises på med kortkode."
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "Her kan du skrive inn URL til sosiale profiler. Disse kan bli brukt rundt på nettsiden."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Hero - to kolonner"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Hero - toppseksjon med bilde"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Hooks"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Hooks kommer..."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/post_types/register_custom_taxonomy_fields.php
+#: includes/post_types/register_post_types.php
+msgid "Hovedbilde"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Hovedbilde som brukes på kategorisiden og i kategorioversikter"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Hovedfarge:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Hovedfont:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Hovedinnhold etter"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Hovedinnhold før"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Hovedkategorier"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "hovedkategorier, subkategorier, foreldreslug (feks dans eller truck)<br><strong>Standard</strong>: viser alle"
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "Hovedkontakt"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Hovedkurs:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Hover"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Hva Kursagenten legger til (når ingen SEO-utvidelse er aktiv)"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Hva ryddes opp:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Hver kategori, hvert sted og hver instruktør får automatisk sin egen side. Disse genereres fra maler som velges i <a href=\"admin.php?page=design\">Kursdesign</a>. Du kan berike disse sidene med ekstra innhold, bilder og tekst ved å redigere taksonomiene."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Hvert kurs har sin egen side som genereres automatisk basert på valgt designmal. Innholdet hentes fra Kursagenten, inkludert bildet. Du kan legge til eget innhold mellom introtekst og hovedinnhold ved å redigere kurset. Du ser en markering for dette området når du besøker siden som administrator, samt en link for å gå til redigering. Det er også snarvei for å redigere kurset i Kursagenten.  Se etter et blyant-ikon du kan klikke på. Dette åpner kurset i Kursagenten, i en ny fane. Gjør endringene du ønsker der, lagre, og så ser du umiddelbart endringene på nettsiden."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Hvis du oppretter sider for kurs, kurskategorier, kurssteder og/eller instruktører, vil sidene opprettes som vanlige WordPress-sider. Du kan fritt endre tittel og innhold. En <a href=\"/wp-admin/admin.php?page=ka_documentation#kortkoder\">kortkode</a> legges inn automatisk.</br><strong>Blokker:</strong> Taksonomiene Kurskategorier, Kurssteder og Instruktører er tilgjengelige som egne Gutenberg-blokker i blokkeditoren. Du kan velge å bruke blokkene i stedet for kortkoder hvis du bygger sidene med Gutenberg."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Hvis regioner er aktivert, kan du tilordne hvert kurssted til en region (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge). Dette kan gjøres på to måter:"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Hvordan fallback fungerer: Når \"Skjul i url-er\" er aktivert, forsøker vi først kort URL uten prefix. Hvis slugen er i konflikt med en side/innlegg eller en annen skjult taksonomi, brukes automatisk prefiks-URL (f.eks. <code>/kurskategori/slug/</code> eller din tilpassede verdi som <code>/kat/slug/</code>). Vanlige WordPress-sider og innlegg får alltid prioritet ved konflikt."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Hvordan legge til innhold"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Hvordan opprette sidene"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Hvorvidt bildet skal være liggende, stående eller kvadratisk."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Høyde:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Høyre"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "HØYRE"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Høyre kolonne bunn"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Høyre kolonne topp"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "I <a href=\"admin.php?page=design\">Kursdesign</a> kan du velge designmaler og innstillinger for taksonomisider (kategorier, kurssteder og instruktører)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "I <a href=\"admin.php?page=design#section-enkeltkurs\">Kursdesign → Enkeltkurs</a> velger du designmal for enkeltsider for kurs. Designmalen påvirker hele oppsettet av kursdetaljsiden:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "I <strong>Link-tekst</strong> (eller tilsvarende felt) limer du inn ønsket <code>[ka-meny]</code>-kortkode, f.eks. <code>[ka-meny type=\"kurskategorier\"]</code>."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "I Kursagenten kan det legges inn bilder på hvert enkelt kurs. Om ikke bilde har blitt lastet opp, kan det brukes et plassholderbilde."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "I URL-feltet skriver du <code>#</code> (slik at menypunktet kan lagres uten faktisk lenke)."
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "I Wordpress finnes to typer sider: Sider og innlegg. Innlegg tilsvarer blogginnlegg eller annet som har kategorier og tagger. Aktiver for å omdøpe innlegg til \"Artikler\".<br><br>"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Ikke begrens høyde"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Ikke endre"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Ikke endre foreldrekategori"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Ikke opprettet"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Ikke tilgang"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Ikoner er tilgjengelige som html med css-klasser. Du kan bruke dem direkte i HTML-kode. Styr størrelse og farge med width, height og background-color på i.ka-icon. Husk å legge til <i>icon-</i> før navnet på ikonet. F.eks. icon-calendar. Eksempel:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Ikoner:"
+msgstr ""
+
+#: includes/post_types/visibility_management.php
+msgid "Inaktiv"
+msgstr ""
+
+#: includes/options/coursedesign.php
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Informasjon"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Informasjon om kurssteder"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Ingen"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/templates/mobile-filters.php
+msgid "Ingen alternativer tilgjengelig"
+msgstr ""
+
+#: public/blocks/taxonomy-grid/render.php
+msgid "Ingen elementer funnet."
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/templates/mobile-filters.php
+msgid "Ingen filtre er konfigurert."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Ingen foreldrekategori (toppnivå)"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Ingen gyldig mapping data"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Ingen instruktører"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Ingen instruktører funnet"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Ingen KA kurs funnet"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Ingen KA kurs funnet i søppelkurven"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/includes/course-ajax-filter.php
+msgid "Ingen kurs funnet. Fjern ett eller flere filtre, eller nullstill alle filtre."
+msgstr ""
+
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+#: public/templates/designs/taxonomy/hero.php
+msgid "Ingen kurs tilgjengelige for dette filteret"
+msgstr ""
+
+#: public/templates/designs/taxonomy/default-2.php
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+msgid "Ingen kurs tilgjengelige for øyeblikket."
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+msgid "Ingen kurs tilgjengelige med valgte filtre. Nullstill filtre hvis du står fast."
+msgstr ""
+
+#: public/templates/designs/archive/default.php
+#: public/templates/designs/archive/full-width.php
+#: public/templates/designs/archive/modern.php
+msgid "Ingen kurs tilgjengelige."
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+msgid "Ingen kursdager tilgjengelig."
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Ingen kursdatoer funnet"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Ingen kursdatoer funnet i søppelkurven"
+msgstr ""
+
+#: public/templates/list-types/compact.php
+#: public/templates/list-types/date-and-title.php
+#: public/templates/list-types/grid.php
+msgid "Ingen kursdatoer tilgjengelig for øyeblikket."
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Ingen kurskategorier"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Ingen kurskategorier funnet"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Ingen kurssteder"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Ingen kurssteder funnet"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Ingen mapping mottatt eller ugyldig format"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Ingen region"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Ingen tilgjengelige valg."
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Ingen treff med valgte filtre. Prøv et annet søk eller juster filtrene."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Ingen, men bruk ramme"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Innhold"
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+msgid "Innstillinger"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Innstillinger for kursliste"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Innstillinger fra Kursagenten"
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "Instagram"
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+#: includes/options/coursedesign.php
+#: includes/options/seo.php
+msgid "Instruktør"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Instruktør-tittel"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Instruktør-tittel, kurs tittel/beskrivelse"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Instruktør:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/misc/frontend-i18n.php
+#: includes/options/coursedesign.php
+msgid "Instruktører"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Instruktører har samme synlighetsinnstillinger som kurskategorier (skjul i oversiktslister og i automenyer). Du kan også skjule spesifikke instruktører i kortkoder ved å bruke <code>skjul</code>-parameteren i kortkoden <code>[instruktorer]</code>."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Instruktører kan berikes med bilder, kontaktinformasjon og beskrivelser. Du kan også opprette egne instruktører som ikke kommer fra Kursagenten, og overskrive data fra Kursagenten."
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Instruktører liste"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Instruktører listenavigasjon"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+#: public/templates/designs/single/modern.php
+msgid "Instruktører:"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Instruktørlink"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Introtekst etter"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Introtekst før"
+msgstr ""
+
+#: includes/options/coursedesign.php
+#: includes/post_types/register_image_fields.php
+msgid "Ja"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "ja<br><strong>Standard</strong>: uten skygge"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "ja<br><strong>Standard</strong>: viser ikke"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "ja<br><strong>Standard</strong>: vises ikke"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Justeringer"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "KA kurs"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "KA kurs gjort om til kladd"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "KA kurs oppdatert"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "KA kurs planlagt"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "KA kurs publisert"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "KA kurs publisert privat"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "KA kursattributter"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "KA kursliste"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Kan brukes i lister med kurskategorier om du ønsker et annet bilde enn hovedbilde. Profilbilde tilsvarer ikon-bilde i eldre oppsett. Bruk en .png eller .svg bildefil. Du kan laste ned ikoner på feks. https://thenounproject.com/"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kan brukes på"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Kantlinjeradius"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Kantstil"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/templates/designs/single/minimal.php
+#: public/templates/designs/single/modern.php
+msgid "Kategorier"
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "Kategorier og kurs"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Kategorifilter på kategorisiden"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Kategorinavnet blir hentet fra taggene i Kursagenten. Disse kan du strukturere i ønsket hierarki her på nettsiden, i maks to nivåer. Hvis du ønsker å endre kategorinavnet, bør du endre taggen i Kursagenten. Merk: en ny kurskategori blir opprettet, men den gamle blir ikke slettet. Overfør eventuell tekst og bilder til den nye kategorien."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Kategoritekst: her har vi ingen felter i Kursagenten, og alt må legges inn på nettsiden. Du har mulighet til å legge inn både Kort beskrivelse og Lang beskrivelse. Dette dukker opp på de enkelte kurskategori-sidene på nettsiden."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kilde (i)"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kilde (k)"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Kildetype"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Kjøp"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Kjøp prøvetime"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Kjøp prøvetimer"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Kladd"
+msgstr ""
+
+#: public/templates/designs/single/modern.php
+msgid "Klar til å melde deg på?"
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+msgid "Klarte ikke å hente kursdager fra Kursagenten."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Klasse"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Klikk \"Lagre\" for å lagre navnendringen."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Klikk \"Lagre\"."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Klikk \"Legg til ny instruktør\"."
+msgstr ""
+
+#: includes/options/coursedesign.php
+#: includes/options/kursinnstillinger.php
+msgid "Klikk for å kopiere"
+msgstr ""
+
+#: public/templates/includes/template-functions.php
+msgid "Klikk for å se de enkelte kursdagene med dato, klokkeslett, instruktør og lokale."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Klikk på \"Egne innstillinger for instruktører\""
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Klikk på \"Endre navn på nytt sted\" for å legge til en ny navnendring."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Klikk på \"Legg til ny instruktør\"."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Klikk på trekanten på menypunktet for å åpne innstillingene. Her kan du blant annet:"
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+msgid "Klokkeslett"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Knappefarge tekst:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Knappefarge:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+#: includes/options/documentation.php
+msgid "Knapper"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Kolonner"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Kom i gang"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kom i gang – A–Å"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "kommasepartert liste<br><strong>Standard</strong>: viser alle"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Kompakt liste"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Konflikter funnet for skjulte URL-er:"
+msgstr ""
+
+#: public/blocks/single-elements/render.php
+msgid "Kontakt"
+msgstr ""
+
+#: public/templates/designs/archive/full-width.php
+#: public/templates/designs/single/modern.php
+msgid "Kontakt oss"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Kontaktinformasjon"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Kopier kortkode for %s"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kopier webhook-URL-en som vises på siden:"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Kort beskrivelse"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Kort beskrivelse brukes i oversikter og som innledende tekst på detaljside"
+msgstr ""
+
+#: public/templates/list-types/standard.php
+#: public/templates/partials/coursedates_grid.php
+msgid "Kort beskrivelse:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Kort margin"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Kort padding"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "kort<br><strong>Standard</strong>: ikke kort"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kortkoder"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kortkoder for lister og grid"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kortkoder kan legges inn i teksten på sider og blogginnlegg. Du kan legge inn hele kurslisten, eller lister med enten alle kurskategorier, kurs i samme kategori (brukes på kurssider), eller instruktører.<br>Det er mange ulike valg. Du finner full kortkode under, med samtlige valg, samt en liste som forklarer alle valgene.<br>Kortkoden kopieres, og limes inn der du ønsker å vise den. <br>Merk at du må fjerne eventuelle valg du ikke trenger, og deler der flere valg er listet opp (feks som stablet/rad/liste)."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Kraftig"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kryss av for \"Aktiver regioninndeling\" for å aktivere funksjonen."
+msgstr ""
+
+#: includes/api/api_sync_on_demand.php
+msgid "Kryss av på \"Rydd opp i kurs\" om det er mange utløpte kursdatoer som vises på websiden. Det blir kjørt en nattlig opprydning, så det kan være unødvendig å gjøre dette nå. <strong>NB:</strong> Opprydding tar 3-5 minutter ekstra."
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "Kun for positiv filter (f.eks. nettbasert): skjuler stedsfilteret på kurslistesiden. Ved \"ikke-\"-filter vises filteret slik at bruker kan velge annet sted."
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+msgid "Kunne ikke hente kursdager."
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+msgid "Kunne ikke hente oppdateringspakke: %s"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Kunne ikke laste filtrene. Vennligst prøv igjen."
+msgstr ""
+
+#: includes/misc/dashboard-changelog-widget.php
+msgid "Kunne ikke laste versjonshistorikk."
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+msgid "Kunne ikke skrive nedlastet pakke til midlertidig fil."
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Kunne ikke skrive XML-RPC-regel til .htaccess automatisk. Sjekk filrettigheter. Filen ligger vanligvis i WordPress-roten (samme nivå som wp-config.php). Kopier inn dette manuelt:<br><pre style=\"margin-top:8px;white-space:pre-wrap;\">%s</pre>"
+msgstr ""
+
+#: includes/options/coursedesign.php
+#: includes/options/seo.php
+#: includes/post_types/register_post_types.php
+msgid "Kurs"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Kurs i samme kategori"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kurs som er slettet i Kursagenten (finnes ikke lenger i API-et)"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/options/kursagenten-admin_options.php
+#: public/blocks/register-blocks.php
+msgid "Kursagenten"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kursagenten admin"
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "Kursagenten automenyer"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Kursagenten legger til meta-tagger, Open Graph, Twitter Cards og Course-schema på kurs- og taksonomisider. Når du har en SEO-utvidelse installert, tilpasser vi oss automatisk for å unngå duplikater. <br>Du kan også skru av vår SEO helt hvis du bruker andre løsninger."
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+msgid "Kursagenten lisens"
+msgstr ""
+
+#: includes/misc/dashboard-changelog-widget.php
+msgid "Kursagenten plugin - Versjonshistorikk"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Kursagenten Taxonomi"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kursagenten tilbyr både automenyer og meny-kortkoder, slik at du kan bygge dynamiske menyer som alltid speiler gjeldende kurskategorier, kurssteder og instruktører."
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+msgid "Kursagenten: Denne lisensen er allerede i bruk på en annen side. Gi oss beskjed på post@kursagenten.no, så skal vi hjelpe deg. %sLegg inn ny lisens her%s."
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+msgid "Kursagenten: Lisensen er ugyldig eller slettet. %sLegg inn ny lisens her%s."
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+msgid "Kursagenten: Lisensnøkkel lagret. Registrerer siden..."
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+msgid "Kursagenten: Lisensnøkkel mangler. %sLegg inn nøkkel her%s."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Kursagenten: Masserediger synlighet"
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+msgid "Kursagenten: Siden har blitt registrert hos oss, og kan nå brukes. Tilgjengelige oppdateringer vil bli gjort tilgjenglig i \"Utvidelser\"."
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Kursdager:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kursdata fra Kursagenten"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Kursdato"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "kursdato arkiv"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Kursdato attributter"
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+msgid "Kursdato finnes ikke. coursedate_id må være WordPress post-ID for en ka_coursedate, ikke Kursagentens kurs-ID."
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Kursdato gjort om til kladd."
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Kursdato link"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Kursdato liste"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Kursdato listenavigasjon"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Kursdato oppdatert."
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Kursdato planlagt."
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Kursdato publisert privat."
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Kursdato publisert."
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Kursdatoer"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kursdatoer som er slettet eller utløpt"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Kursdatoer:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Kursdesign"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Kursene dine blir automatisk overført fra Kursagenten sammen med kurskategorier, kurssteder og instruktører. Men for å gi nettsiden din et profesjonelt uttrykk, kan du berike disse med bilder og tekst direkte på nettsiden."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kursene dine hentes fra Kursagenten på to måter:"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Kurset er fullt"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Kurset er fullt. Du kan melde din interesse for å få mer informasjon eller å sette deg på venteliste."
+msgstr ""
+
+#: public/templates/list-types/standard.php
+#: public/templates/partials/coursedates_grid.php
+msgid "Kurset varer fra %1$s til %2$s"
+msgstr ""
+
+#: public/templates/list-types/standard.php
+msgid "Kurset varer fra %s"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Kursfilter"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Kursfilter på kategoriside"
+msgstr ""
+
+#: public/templates/designs/single/minimal.php
+#: public/templates/designs/single/modern.php
+msgid "Kursinformasjon"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Kursinnstillinger"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Kurskategori"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Kurskategori link"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/options/coursedesign.php
+#: includes/options/documentation.php
+msgid "Kurskategorier"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kurskategorier kan berikes med bilder, ikoner og beskrivelser. Du kan også kontrollere hvor kategoriene vises."
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Kurskategorier liste"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Kurskategorier listenavigasjon"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kurskategorier, automenyer"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Kurskategorier, kurssteder og instruktører"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kurskategorier, kurssteder og instruktører kan berikes med tekst og bilder om ønsket. Mer informasjon i seksjonen <a href=\"#berike-taksonomisider\">Berike taksonomisider</a>."
+msgstr ""
+
+#: includes/options/documentation.php
+#: includes/post_types/register_custom_taxonomy_fields.php
+#: includes/post_types/register_post_types.php
+msgid "Kursliste"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kursliste etter"
+msgstr ""
+
+#: includes/options/coursedesign.php
+#: includes/options/documentation.php
+msgid "Kursliste med filter"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kursliste med filter <span class=\"small\"><a href=\"#lister\">mer info</a></span>"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kurslisten kan filtreres på kategori, sted, startmåned, språk m.m. Filtrene vises som del av kortkoden <code class=\"copytext\">[kursliste]</code>. Har du opprettet sider via <a href=\"admin.php?page=design\">Kursdesign</a> → Wordpress sider, gjelder dette siden \"Kurs\"."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Kurslokale"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Kurslokale:"
+msgstr ""
+
+#: public/templates/designs/taxonomy/default-2.php
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+msgid "Kursoversikt"
+msgstr ""
+
+#: kursagenten.php
+msgid "Kurspåmelding"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Kurssted"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Kurssted link"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/misc/frontend-i18n.php
+#: includes/options/coursedesign.php
+msgid "Kurssteder"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kurssteder har samme synlighetsinnstillinger som kurskategorier (skjul i oversiktslister og i automenyer)."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Kurssteder kan berikes med bilder og beskrivelser. Du kan også endre navn på steder og organisere dem i regioner."
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Kurssteder liste"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Kurssteder listenavigasjon"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Kurssteder og regioner"
+msgstr ""
+
+#: public/blocks/single-elements/render.php
+#: public/templates/designs/single/default.php
+msgid "Kurstider og steder"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Kurstider:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Kvadrat 1:1"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Lagre"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+#: includes/plugin_update/secure_updater.php
+msgid "Lagre lisens"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Lagre menyen som vanlig. På forsiden vil automenyen automatisk utvides til riktig trestruktur basert på taksonomier og kurs i Kursagenten."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Lagt inn direkte via WordPress"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Landskap 16:9"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Landskap 2:1"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Landskap 3:1"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Landskap 3:2"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Landskap 4:1"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Landskap 4:3"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Large"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Last opp %s"
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+msgid "Laster kursdager…"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Lastet opp til dette kurset"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Lastet opp til kursdato"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Layout"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Layout og stil"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Layout:"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Ledige kurs"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Ledige kurs:"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/designs/single/boxes.php
+msgid "Ledige plasser"
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "Legg automenyer under et hovedmenypunkt (f.eks. siden Kurs). Brukt som hovedmenypunkt vil toppnivået være uten link."
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Legg inn bedriftsinformasjon"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Legg inn betalingslenke %1$s i <a href=\"https://kursadmin.kursagenten.no/IframeSetting\" target=\"_blank\" rel=\"noopener\">Kursagenten</a>"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Legg inn innstillinger for å automatisk hente kurs fra Kursagenten. Når du har lagt inn innstillinger, kan du klikke på \"Hent alle kurs fra Kursagenten\" så blir alt hentet ved første gangs installering."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Legg inn kortkoden i tekstfeltet i en egendefinert meny. I url-feltet skriver du #. For å få menyen som en undermeny, dra dette menypunktet til høyre innunder et annet menypunkt. For å lage meny av en bestemt kategori (med underkategorier), skriv inn kategori-slug etter start=\"\"."
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Legg inn lisensnøkkel"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Legg til bilder og stedsbeskrivelser"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Legg til bilder, beskrivelser og organiser i hovedkategorier"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Legg til egendefinert CSS-klasse til wrapper-elementet. Nyttig for custom styling eller tema-spesifikke behov."
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Legg til ekstra Wordpress innhold"
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "Legg til i meny"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Legg til instruktør"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Legg til KA kurs"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Legg til kursdato"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Legg til kurskategori"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Legg til kurssted"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Legg til profilbilder og utvidet informasjon"
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Legger automatisk inn og fjerner en blokkering av xmlrpc.php i .htaccess når valget skrus av/på. Krever Apache og skrivetilgang til .htaccess.<br><br>"
+msgstr ""
+
+#: public/templates/designs/single/modern.php
+#: public/templates/list-types/compact.php
+#: public/templates/list-types/plain.php
+msgid "Les mer"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Like under hovedbilde/utvidet beskrivelse, før kurslisten."
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+#: includes/plugin_update/secure_updater.php
+msgid "Lim inn lisensnøkkelen du fikk tildelt."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Lim inn webhook-URL-en i feltene <strong>CourseCreated</strong> og <strong>CourseUpdated</strong>."
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Link"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Link til en kursdato."
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Link til en kurskategori"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Link til et instruktør"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Link til et kurssted"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Link til kurs"
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "LinkedIn"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Linker:"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+#: includes/plugin_update/secure_updater.php
+msgid "Lisensnøkkel"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "List_type"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Liste"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Liste enkel"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Listedesign:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Listene med filtre i venstre kolonne kan bli lange. De begrenses til en standard høyde, med \"Vis mer\"-link. Standard høyde er 250px. Du kan velge en annen høyde for filterlister under."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Listetype"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Liten"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Logg inn på <a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Kursagenten</a> og gå til <strong>Integrasjonsinnstillinger → Webhooks</strong>."
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+msgid "Lokale"
+msgstr ""
+
+#: public/templates/designs/single/minimal.php
+#: public/templates/designs/single/modern.php
+msgid "Lokasjon:"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "lokasjoner oppdatert"
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+#: includes/misc/frontend-i18n.php
+#: kursagenten.php
+msgid "Lukk"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+msgid "Lukk filter"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Lys tekst og mørkt overlay (standard)"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Maks ord i beskrivelse"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Maks ord i lang beskrivelse"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Maksbredde:"
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+msgid "Mangler Kursagenten-ID-er på kursdato."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Masseredigering av synlighet"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Medium"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Meld deg på"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Meld feil og forbedringer"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Meld interesse"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Meny"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Meny-kortkoder"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Meny-kortkoder brukes når du vil bygge menyer ved hjelp av kortkoden <code class=\"copytext\">[ka-meny]</code>, typisk i en egendefinert meny eller i innhold der temaet støtter kortkoder."
+msgstr ""
+
+#: includes/options/documentation.php
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Menyer"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Mer avrundet"
+msgstr ""
+
+#: public/templates/designs/single/default.php
+msgid "Mer info"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "mer informasjon"
+msgstr ""
+
+#: public/templates/list-types/standard.php
+#: public/templates/partials/coursedates_grid.php
+msgid "Mer informasjon"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Mer informasjon om dataflyt fra Kursagenten"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Merk også \"Rydd opp i kurs\" før du kjører synken for å sikre at gamle kursdatoer fjernes."
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Merk: AIOSEO (Pro), SEOPress (Pro) og Slim SEO Schema (egen utvidelse) kan også sette opp eget Course-schema. Hvis du aktiverer dette i disse utvidelsene, anbefaler vi å skru av Kursagenten SEO for å unngå duplikater. For Rank Math Free anbefaler vi fortsatt Kursagenten sitt Course-schema som standard."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Merk: instruktøren må være knyttet til et kurs for at dataene skal bli hentet over."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Merk: på <a href=\"/wp-admin/admin.php?page=design#section-systemsider\">siden</a> med instruktøroversikten må du legge til vis=\"fornavn\" eller vis=\"etternavn\" i kortkoden for å vise kun fornavn eller etternavn. Du kan gå direkte til redigering fra <a href=\"/wp-admin/admin.php?page=design#section-systemsider\">Wordpress sider</a>."
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Mest brukt"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Minste font (mobil) til største font (stor desktop). Gir en gradvis økning i fontstørrelse."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Mobil"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Mobil:"
+msgstr ""
+
+#: public/templates/designs/archive/modern.php
+msgid "Moderne"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Mørk overlay (%)"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Mørk tekst og lyst overlay"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "naviger i kurs"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Navn"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Navn på nytt instruktør"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Navn på nytt kurssted"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Navn på sted"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Navn, telefonnummer og epost blir overført fra Kursagenten. Dette kan overstyres på nettsiden om ønskelig."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Navnendring"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Navnendring fjernet"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Navnendring ikke funnet"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Navnendring lagret. Slug-oppdateringer vil skje ved neste synkronisering."
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Navnendring oppdatert. Slug-oppdateringer vil skje ved neste synkronisering."
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Navnendring på kurssteder"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Navnet er det som vises på siden"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Navnet slik det som vises på siden. Bør kun endres på instruktørens brukerprofil på Kursagenten."
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Navnet slik det som vises på siden. Kan endres under <a href=\"%s\">Synkronisering</a>."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Navnevisning:"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "NB! Kjør full synk fra Kursagenten umiddelbart etter å ha lagt til/endret navn på et sted(er)!"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Nederst i høyre kolonne."
+msgstr ""
+
+#: includes/options/coursedesign.php
+#: includes/post_types/register_image_fields.php
+msgid "Nei"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/templates/designs/archive/default.php
+#: public/templates/designs/archive/full-width.php
+msgid "Neste"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Neste 3 måneder"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Neste 6 måneder"
+msgstr ""
+
+#: includes/options/documentation.php
+#: public/blocks/single-elements/render.php
+#: public/templates/designs/single/boxes.php
+msgid "Neste kurs"
+msgstr ""
+
+#: public/blocks/single-elements/render.php
+msgid "Neste kurs (fullt)"
+msgstr ""
+
+#: public/templates/list-types/compact.php
+#: public/templates/list-types/date-and-title.php
+#: public/templates/list-types/grid.php
+msgid "Neste kurs:"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Neste uke"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Neste år"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Nettbrett"
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+msgid "Nettverksfeil. Prøv igjen."
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Nivå"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Noe gikk galt ved kommunikasjon med serveren."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Noe gikk galt ved masseredigering."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Normal"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Normalt sett er disse områdene litt mørkere enn bakgrunnen. Brukes også som hovedfarge på bokser i \"Bokser\"-design."
+msgstr ""
+
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+#: public/templates/designs/taxonomy/hero.php
+msgid "Nullstill alle filtre"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/mobile-filters.php
+msgid "Nullstill dato"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/designs/archive/default.php
+msgid "Nullstill filter"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Ny kursdato"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Nytt KA kurs"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Nytt navn for kurskategori"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Nytt navn på sted"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Nyttige selectorer:"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Når aktivert, kan lokasjoner organiseres i regioner. Dette påvirker ikke synkronisering, men kan brukes for filtrering og organisering."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Når dette er aktivert vil kurslisten som standard skjule fulle kurs og kurs «på forespørsel». Brukeren kan slå filteret av igjen på siden."
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Når disse er aktive, slår vi av våre meta-tagger og overlater til utvidelsen. Course-schema leveres normalt av Kursagenten, med unntak av Rank Math Pro der vi lar Rank Math håndtere Course-schema."
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Når du besøker et kurs på frontend, finner du et redigeringsikon som tar deg direkte til kursredigering i Kursagenten. Dette gjør det enkelt å oppdatere kursinformasjon uten å gå veien om nettsiden."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Når du endrer navn på et sted:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Når webhooks er aktivert, vil kursene automatisk oppdateres i WordPress når de endres eller opprettes i Kursagenten. Dette gjelder både kursdata, datoer og lokasjoner."
+msgstr ""
+
+#: includes/misc/dashboard-changelog-widget.php
+msgid "Nåværende versjon:"
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "Om bedriften"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Om du velger å vise bilde, vil det først bli sett etter hovedbilde fra kurssted. Hvis det ikke blir funnet, brukes plassholderbilde."
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "Om firmaet"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Om kurset"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Om kursredigering"
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Omdøp innlegg til Artikler"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Oppdater instruktør"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Oppdater kurskategori"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Oppdater kurssted"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Oppførsel eksterne lenker:"
+msgstr ""
+
+#: includes/api/api_day_schedules.php
+msgid "Oppgi enten coursedate_id (WP post-ID) eller location_id + schedule_id (Kursagenten-IDer)."
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Opprett eller velg nødvendige sider for kurs, kurskategorier, kurssteder og instruktører. Velg design på kursliste, enkeltkurs, kategorier, steder og instruktører. Velg hovedfarger."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Opprett først en <strong>egendefinert meny</strong> eller et menypunkt av typen \"Egendefinert lenke\"."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Opprett ny side"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Opprette egne instruktører"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Opprydding av kurs"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Opprydding fjerner kurs og kursdatoer som ikke lenger finnes i Kursagenten, samt utløpte kursdatoer. Dette holder nettsiden ryddig og oppdatert."
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Overordnet instruktør"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Overordnet instruktør:"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Overordnet KA kurs:"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Overordnet kurssted"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Overordnet kurssted:"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Oversikt"
+msgstr ""
+
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+#: public/templates/designs/taxonomy/hero.php
+msgid "oversikten"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Oversiktsside for alle instruktører"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Oversiktsside for alle kurskategorier"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Oversiktsside for alle kurssteder"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Oversiktsside/kalender for alle kurs"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Oversiktssider med kortkoder"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Overskrift"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Overskrive data fra Kursagenten"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Overstyr hvilke detaljer som vises i hvert kurs i <span class=\"copytext\">[kursliste]</span>. Uten prefiks settes kun oppgitte felter til synlig. Med <span class=\"copytext\">-</span>/<span class=\"copytext\">!</span> skjules felt, og med <span class=\"copytext\">+</span> vises felt uten å endre resten."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Overstyr innstillinger for spesifikke taksonomier"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Overstyr profil fra Kursagenten"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Overstyr profilbilde"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Overstyr visning av bilder i <span class=\"copytext\">[kursliste]</span>."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Overstyr visning av filtre for <span class=\"copytext\">[kursliste]</span>. Nyttig når samme liste skal brukes i ulike sideoppsett."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Overstyrer tekstfargen fra overlay-valget over."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "P"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Passer spesielt godt for sider med få kurs per sted/kategori/instruktør."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Plassering for innhold i venstre kolonne."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Plassholderbilde"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Plassholderbilde for instruktør"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Plassholderbilde for kurs"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Plassholderbilde for sted"
+msgstr ""
+
+#: includes/misc/dashboard-changelog-widget.php
+msgid "Plugin-side"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Pluginen oppretter automatisk systemsider for enkeltsider som håndteres av pluginen. Disse sidene genereres dynamisk og trenger ikke å opprettes manuelt:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Portrett 2:3"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Portrett 3:4"
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "Postnr/sted"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Preset-stiler"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Prikket"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: includes/options/coursedesign.php
+msgid "Pris"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/designs/archive/default.php
+msgid "Pris høy til lav"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/designs/archive/default.php
+msgid "Pris lav til høy"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+#: public/templates/designs/single/minimal.php
+msgid "Pris:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Profil - rundt bilde og tittel"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "profilbilde"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Profilbilde"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Prøv igjen"
+msgstr ""
+
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+#: public/templates/designs/taxonomy/hero.php
+msgid "Prøv å endre dine filtervalg eller nullstill alle filtre for å se alle tilgjengelige kurs."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Publiser"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Publisert"
+msgstr ""
+
+#: includes/options/options_menu_top.php
+msgid "På denne siden:"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+#: public/templates/list-types/compact.php
+msgid "På forespørsel"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/blocks/single-elements/render.php
+msgid "Påmelding"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Påmeldingsfrist"
+msgstr ""
+
+#: public/templates/designs/single/minimal.php
+#: public/templates/designs/single/modern.php
+msgid "Påmeldingsfrist:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Rad kort"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Rad standard"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Rad utvidet beskrivelse"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/options/documentation.php
+msgid "Radavstand"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Ramme:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Rammefarge"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Rammeinnstillinger"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Rammestil"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Rammetykkelse"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Rediger"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Rediger i Element-kort"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Rediger i Kursadmin"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Rediger instruktør"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Rediger instruktøren for å legge til bilder, kontaktinformasjon og beskrivelser."
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Rediger kurs"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Rediger kursdato"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Rediger kurskategori"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Rediger kurssted"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Rediger Wordpress innhold"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/options/documentation.php
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Region"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Region er deaktivert i Synkronisering → Regioner."
+msgstr ""
+
+#: includes/options/documentation.php
+#: includes/options/kursinnstillinger.php
+msgid "Regioner"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Regioner aktivert%s"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Regioner deaktivert%s"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Regioner lar deg organisere kurssteder i geografiske områder (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge). Dette er nyttig for filtrering og organisering av kurssteder."
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Regioninndeling"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Regioninndeling lagret%s"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Regioninndeling tilbakestilt til standard%s"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Registrer deg"
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+msgid "Registrer nå"
+msgstr ""
+
+#: public/templates/designs/single/modern.php
+msgid "Relaterte kurs"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Ren og enkel liste"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Resett til standard"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Resten av året"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Rett etter footer-seksjonen."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Rett før footer."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Rett under hele header-blokken."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Rett under pagineringskontroller i mal \"Standard\"."
+msgstr ""
+
+#: public/templates/includes/template-functions.php
+msgid "Rom eller lokale der kurset holdes."
+msgstr ""
+
+#: public/templates/designs/single/minimal.php
+#: public/templates/designs/single/modern.php
+msgid "Rom:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Rom/lokale"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Rund"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Rutenett"
+msgstr ""
+
+#: includes/api/api_sync_on_demand.php
+msgid "Rydd opp i kurs"
+msgstr ""
+
+#: includes/api/api_sync_on_demand.php
+msgid "Rydd opp i kurs etter synkronisering"
+msgstr ""
+
+#: includes/api/api_sync_on_demand.php
+msgid "Rydd vekk utløpte kursdatoer, duplikate kurs, og slettede kurs som ikke finnes i Kursagenten"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Samme slug brukes flere steder: %s"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Se <a href=\"#stedsnavn-og-regioner\">Stedsnavn og regioner</a> for mer informasjon om hvordan regioner fungerer."
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Se alle kursdatoer"
+msgstr ""
+
+#: public/templates/list-types/standard.php
+#: public/templates/partials/coursedates_accordion_item.php
+#: public/templates/partials/coursedates_grid.php
+msgid "Se detaljer"
+msgstr ""
+
+#: includes/misc/dashboard-changelog-widget.php
+msgid "Se dokumentasjon"
+msgstr ""
+
+#: public/templates/list-types/grid.php
+#: public/templates/list-types/simple-cards.php
+#: public/templates/list-types/standard.php
+msgid "Se kurs: %s"
+msgstr ""
+
+#: public/templates/list-types/standard.php
+#: public/templates/partials/coursedates_accordion_item.php
+#: public/templates/partials/coursedates_grid.php
+msgid "Se kursdetaljer"
+msgstr ""
+
+#: public/blocks/single-elements/render.php
+msgid "Se neste dato"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Se oversikt over alle importerte kurs"
+msgstr ""
+
+#: includes/options/options_menu_top.php
+msgid "Seksjonsmeny"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Send til Trello"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/designs/archive/default.php
+msgid "Seneste dato"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Sentrert"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "SEO innstillinger"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "SEO på kurs og taksonomisider"
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+msgid "Serveren returnerte HTTP %1$s i stedet for ZIP-fil. URL: %2$s. Dette kan skyldes en feilside, omdirigering, eller Cloudflare bot-verifisering."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Sett foreldrekategori til:"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Sett inn"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Sett inn i kursdato"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "show_buttons, signup_link<br><strong>Standard:</strong> hentes fra Kursdesign"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Side"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Sidebakgrunn:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Sideinnhold ble tilbakestilt."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Sidekolonne etter"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Sidekolonne før"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Sidene blir merket med \"Kursagenten\" i sideoversikten for enkel identifikasjon."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Sidene blir merket med \"Kursagenten\" i sideoversikten. Ved å klikke på <i class=\"ka-icon icon-code-simple-solid-full\"></i> kopierer du kortkoden til utklippstavlen, og kan lime den inn der du ønsker å vise den på en eksisterende side."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Sider og systemsider"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Sider som må opprettes"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Sider som opprettes automatisk"
+msgstr ""
+
+#: public/templates/includes/course-ajax-filter.php
+msgid "Sikkerhetssjekk feilet"
+msgstr ""
+
+#: public/templates/includes/course-ajax-filter.php
+msgid "Sikkerhetssjekk feilet. Vennligst oppdater siden og prøv igjen."
+msgstr ""
+
+#: public/templates/designs/single/modern.php
+msgid "Sikre deg plass på dette kurset nå. Har du spørsmål, ikke nøl med å kontakte oss."
+msgstr ""
+
+#: includes/misc/dashboard-changelog-widget.php
+msgid "Siste endringer"
+msgstr ""
+
+#: public/templates/includes/template-functions.php
+msgid "Siste frist for å melde deg på dette kurset."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Sjekk <a href=\"admin.php?page=seo\">Endre url-er</a> om du må tilpasse url-strukturer. Her kan du endre fra feks. \"/kurs/ditt-kurs\" til \"/undervisning/ditt-kurs\"."
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+msgid "Sjekk for oppdateringer"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Skjul"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Skjul %s"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Skjul alle filtre, kursteller, \"vis antall kurs\" og sortering"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Skjul i automenyer"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Skjul i oversiktslister"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Skjul i url-er"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Skjul instruktør ved å skrive en kommaseparert liste med fornavn til instruktør slik det er skrevet i feltet \"fornavn\""
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Skjul instruktører"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Skjul kategorien og alle tilhørende kurs"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Skjul kun kategorien fra filter"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Skjul kun kategorien fra filter (kursene vises fortsatt)"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Skjul spesifikke lokasjoner på kurssteder"
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "Skjul stedsfilter i videre visning"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Se informasjon om fallback-mekanismen nedenfor."
+msgstr ""
+
+#: includes/post_types/visibility_management.php
+msgid "Skjult"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Skjult fra filter"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Skjult i kursliste"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Skjult i lister"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Skjult i menyer"
+msgstr ""
+
+#: includes/post_types/visibility_management.php
+msgid "Skjulte kurs"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Skriv inn avstanden mellom radene, i pixler, em eller rem. Ønsker du ingen avstand, skriv 0."
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Skriv inn nytt navn"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Skriv inn stedsnavn manuelt"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Skriv inn størrelse på bildet du ønsker, i pixler. Ønsker du ikke bilde, skriv 0. Når bildestr settes til 0, lastes ikke bildene inn i det hele tatt."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Skriver du kun kortkodene <span class=\"copytext\">[kurskategorier]</span>, <span class=\"copytext\">[kurssteder]</span> eller <span class=\"copytext\">[instruktorer]</span> brukes standardvalgene.<br>Bruk eventuelt de fulle kodene over, og fjern de valgene du ikke trenger."
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Skru av SEO"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Skru av SEO på kurs og taksonomisider"
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Skru på de innstillingene du ønsker å bruke:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Skygge"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Skygge ved musepeker over kurs/kurskategori."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Skygge/kantstil"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Slett"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Slugs (nettadresser) på kursene som har dette stedet oppdateres ved neste synkronisering."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Sluttdato"
+msgstr ""
+
+#: public/templates/designs/single/minimal.php
+#: public/templates/designs/single/modern.php
+msgid "Sluttdato:"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Slutter:"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Slå av"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Slå på"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Solid"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/designs/archive/default.php
+msgid "Sorter etter"
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "Sosiale profiler"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Spacing"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Span"
+msgstr ""
+
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+#: public/templates/designs/taxonomy/hero.php
+msgid "Spesifikke lokasjoner"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Spesifikke lokasjoner viser adresser og link til Google maps over kurslisten."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Spesifikke lokasjoner:"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: includes/options/coursedesign.php
+msgid "Språk"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Språk:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "St"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Stablet kort"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Stablet kort innfelt"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Stablet kort overlapp"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Stablet standard"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "stablet, rad, liste<br><strong>Standard:</strong> stablet"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Standarbilder brukes som en bakupløsning for å hindre ødelagte design. Disse brukes som plassholdere om et bilde mangler. Velger du ingen bilder, bruker vi Kursagentens standard erstatningsbilder om nødvendig. Du kan også sette inn url til plassholderbilder via <a href=\"/wp-admin/admin.php?page=kursagenten#kortkoder\">kortkoder</a>."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/misc/frontend-i18n.php
+#: includes/options/coursedesign.php
+msgid "Standard"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Standard - med bilde og beskrivelse"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Standard (toppfilter + venstrefilter slik de er konfigurert)"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Standard høyde for filterlister:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Standard liste"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Standard profilbilde"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "standard, grid, compact, plain, date-and-title, simple-cards<br><strong>Standard:</strong> hentes fra Kursdesign"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "standard, kommaseparert liste (feks alta,oslo,bergen eller \"Oslo,Mo i Rana\")<br><strong>Standard</strong>: viser alle steder"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Standard: 1300px"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Standard: 16px"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Standard: inherit"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Start direkte med visuelle stilvalg"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: includes/options/coursedesign.php
+msgid "Startdato"
+msgstr ""
+
+#: public/templates/designs/single/minimal.php
+#: public/templates/designs/single/modern.php
+msgid "Startdato:"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Starter:"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Startmåned"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Status"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Sted"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "sted, ikke-sted<br><strong>Standard</strong>: viser alle"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+#: public/templates/designs/single/minimal.php
+msgid "Sted:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Stedinfo"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Stedsbeskrivelser fra feltet 'Sted' i Kursagenten."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Stedsfilter (st)"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Stedsnavn hentes fra Kursagenten. Det er mulig å endre stedsnavnet. For at dette skal bli korrekt i alle titler og url-er, bør dette gjøres under Admin → Kursagenten → Synkronisering. Endre navn, og hent deretter alle kurs på nytt. Da vil alle forekomster av stedsnavn blir vist korrekt."
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Stedsnavn mangler"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Stedsnavn og regioner"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Stedstekst: her har vi ingen felter i Kursagenten, og alt må legges inn på nettsiden. Du har mulighet til å legge inn både Kort beskrivelse og Lang beskrivelse. Dette dukker opp på de enkelte kurssted-sidene på nettsiden."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Stil"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Stiplet"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Stor"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Styre utseende på kurslister"
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Støtte for \"Site Reviews\"-plugin, anmeldelser"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Støttede SEO-utvidelser"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Subkategorier"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Svak"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+#: includes/options/kursinnstillinger.php
+msgid "Synkronisering"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Synkronisering av kurs"
+msgstr ""
+
+#: includes/post_types/visibility_management.php
+msgid "Synlig"
+msgstr ""
+
+#: includes/post_types/visibility_management.php
+msgid "Synlige kurs"
+msgstr ""
+
+#: includes/options/documentation.php
+#: includes/post_types/visibility_management.php
+msgid "Synlighet"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Synlighet lister"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Synlighet og skjuling"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Systemside ble opprettet."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Systemside ble slettet."
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Søk"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Søk etter kurs"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/designs/archive/default.php
+msgid "Søk etter kurs..."
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Søk etter kurskategori"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Søk i instruktører"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Søk i kursdato"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Søk i kurssteder"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Søk KA kurs"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Søk utdannelse"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Søk utdanning"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Søkefelt:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Søkefeltet får pill-form, tydelig kant og forstørrelsesglass til høyre. Gjelder kun når søk ligger i venstre kolonne."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "sørlandet, østlandet, vestlandet, midt-norge, nord-norge<br><strong>Standard</strong>: ingen filtrering"
+msgstr ""
+
+#: public/templates/designs/archive/full-width.php
+msgid "Ta kontakt med oss, så hjelper vi deg med å finne det perfekte kurset for dine behov."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Ta tak i filteret du ønsker å bruke, og dra til enten venstre kolonne eller over kursliste. Velg om filteret skal vises som tagger eller avkrysningsliste.<br>For å fjerne et filter, dra det tilbake til tilgjengelige filtre. Husk å <strong>lagre</strong> endringene dine."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Tablet:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Taksonomi-sider"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Taksonomibilde"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Taksonomiene <strong>Kurskategorier</strong>, <strong>Kurssteder</strong> og <strong>Instruktører</strong> er tilgjengelige som egne Gutenberg-blokker i blokkeditoren."
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Taksonomier (kategori, sted, instruktør)"
+msgstr ""
+
+#: includes/options/coursedesign.php
+#: includes/options/documentation.php
+msgid "Taksonomisider"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Tekst"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Tekst blir hentet fra introtekst og kursbeskrivelse i Kursagenten. Det er mulig å legge inn egen tekst i tillegg her på websiden. Naviger til kurset som innlogget admin, og klikk deretter på «Legg til ekstra Wordpress innhold» mellom introtekst og kursbeskrivelse."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Tekst minst til størst (px)"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "tekst<br><strong>Standard</strong>: tom (ingen klasse)"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Teksten justerer seg etter skjermstørrelse. Dette er den minste fontstørrelsen du vil bruke for tekst og overskrifter."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Tekstfarge"
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Telefon"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Tema for enkeltkurs"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Tema for kurslister"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Tema-standard"
+msgstr ""
+
+#: includes/options/theme_specific_customizations.php
+msgid "Tematilpasninger"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Test frontend: kursliste, enkeltkurs, kategorier, kurssteder og instruktører, og juster filtrene/design ved behov."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Thumbnail"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Tid"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "tid, varighet, pris, sted, fritekst-sted, rom, instruktør, sluttdato, påmeldingsfrist<br><strong>Standard:</strong> hentes fra Kursdesign"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/designs/archive/default.php
+msgid "Tidligste dato"
+msgstr ""
+
+#: public/templates/designs/single/minimal.php
+#: public/templates/designs/single/modern.php
+msgid "Tidspunkt:"
+msgstr ""
+
+#: includes/options/options_menu_top.php
+msgid "Til toppen"
+msgstr ""
+
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+#: public/templates/designs/taxonomy/hero.php
+msgid "Tilbake til %s"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Tilbakestill innhold"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Tilbyder guid:"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Tilbyder ID:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Tildelt side"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Tilgjengelige felter"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Tilgjengelige filtre:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Tilgjengelige ikoner"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Tilpass grunnleggende designvariabler som farger, skriftstørrelser, og maksbredde på plugin-sider."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Tilpass visningen av kurslisten. Denne vises på systemsiden \"Kurs\", og alle andre steder som bruker kortkoden <span class=\"copytext\">[kursliste]</span>."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Tips og feilsøking"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Tips: Hvis du har mange kurskategorier, kan du velge ut noen som hovedkategorier eller opprette egne. Dette gjør kategoriene mer oversiktlige for besøkende."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Tittel"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Tittel minst til størst (px)"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Tittel-element"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Topp"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "TOPP"
+msgstr ""
+
+#: includes/misc/dashboard-changelog-widget.php
+msgid "Trello changelog"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Tynn"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Tøm"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Tøm farger"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Ugyldig forespørsel"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Ugyldig sikkerhetskode"
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+msgid "Ukjent feil"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Ulike layout. Stablet viser bilde over kurs-/kategorinavn, rad viser bilde til venstre. Liste viser alle navn under hverandre. Liste har lavere mellomrom mellom punktene, og passer bedre med små bilder/uten bilder."
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Ulike tilleggsfunksjoner"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Under <a href=\"admin.php?page=design\">Kursdesign</a> styrer du listedesign på systemsidene. Det finnes innstillinger for bildebruk, antall kolonner og paginering."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Under <a href=\"admin.php?page=design#section-systemsider\">Kursdesign → Wordpress sider</a> kan du opprette følgende sider:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Under bilde og beskrivelse"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Under overskrift, over filter/paginering og liste."
+msgstr ""
+
+#: public/templates/designs/taxonomy/hero-two-columns.php
+#: public/templates/designs/taxonomy/hero.php
+msgid "Underkategorier:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Undervalg for \"Vis alle kursdatoer\""
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Undervalg for \"Vis hovedkurs\""
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Unntak: Du kan legge til ekstra innhold mellom \"Introtekst\" og \"Innhold\" på enkeltkurs hvis du ønsker å berike kursene med nettstedsspesifikk informasjon."
+msgstr ""
+
+#: includes/options/seo.php
+msgid "URL-er"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "URL-er og SEO"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Utdrag"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Utseende venstre filterkolonne"
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "Utvid %s"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Utvidelse"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Utvidet beskrivelse"
+msgstr ""
+
+#: includes/misc/dashboard-changelog-widget.php
+msgid "Utviklet av %s"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Valg"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Valg for bilder"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Valg for lister og grid"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vanlig"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Variant"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Varighet"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+#: public/templates/designs/single/minimal.php
+msgid "Varighet:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Ved å bytte designmal endres hele presentasjonen av kurset. Dette kan påvirke hvordan besøkende opplever kursinformasjonen."
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/designs/archive/default.php
+msgid "Velg"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Velg \"Fullt navn\", \"Fornavn\" eller \"Etternavn\" i feltet \"Navnevisning\"."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Velg bakgrunnsfarge:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Velg bilde"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Velg bildetype"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Velg dato"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/designs/archive/default.php
+msgid "Velg datoer"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Velg design på sider som viser kursdetaljer, både for alle lokasjoner og enkeltlokasjoner."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Velg designet på siden. Dette styrer hvor/hvordan tittel, tekst, hovedbilde og kursliste vises."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Velg elementer"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Velg en forelder for å lage et hierarki, og la dette bli en subkategori."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Velg et felles design for kurskategorier, kurssteder og instruktører. Du kan også velge å ha egne design for hver enkelt taksonomi."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Velg farger"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Velg filtre på kursliste i <a href=\"admin.php?page=design\">Kursdesign</a>, og også andre designvalg (liste/grid, detaljer, og malvalg)."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Velg font-farge (valgfritt):"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Velg foreldrekategori"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/designs/archive/default.php
+msgid "Velg fra-til dato"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Velg helt firkantede bilder, litt avrundet i kantene, eller runde bilder."
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Velg hovedbilde"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Velg hvilke filtre som skal vises på kurslisten. Du kan dra filteret til enten venstre kolonne eller over kursliste. Velg om filteret skal vises som tagger eller avkrysningsliste."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Velg hvilken overskrift du vil bruke for navnene."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Velg hvilken region denne lokasjonen tilhører."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Velg hvordan kurslistene på taksonomisidene skal vises:"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Velg instruktør"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Velg kategori"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Velg kategorinivå"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Velg kurssted"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Velg listedesign for kortkoden <span class=\"copytext\">[kursliste]</span> uten å endre global innstilling i Kursdesign."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Velg minst én rad før du bruker masseredigering."
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Velg måned"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Velg om denne skal vises i autogenererte menyer."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Velg om denne skal vises i kategorilister og oversikter."
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Velg om denne skal vises i kursagentens egne oversikter."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Velg om kurslisten skal vise vanlig knappestil eller kun påmeldingslink-stil."
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Velg periode"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Velg pris"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Velg region for filtrering. Kan kombineres med stedvalg ('x eller y'-logikk)."
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Velg sider og design"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Velg sider som tilegnes til ulike deler av Kursagenten. Du kan velge fra eksisterende sider, eller opprette nye sider."
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Velg språk"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Velg standard antall kurs som skal vises per side (1-50)"
+msgstr ""
+
+#: includes/options/kursinnstillinger.php
+msgid "Velg sted..."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Velg steder"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Velg stedet fra listen eller skriv inn navnet manuelt, og angi det nye navnet."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Velg stil"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Velg tidspunkt"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Velg ønsket automeny (f.eks. <strong>Kurskategorier</strong>, <strong>Kategorier og kurs</strong>, <strong>Kurssteder</strong> eller <strong>Instruktører</strong>) og klikk <strong>Legg til i meny</strong>."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Velg å vise fornavn, etternavn eller begge."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Velg å vise/skjule kurskategorier/menypunkter som hører til spesifikke steder. Eksempel: vis alle kurs som ikke er nettkurs: st=\"ikke-nettbasert\""
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Velge om menyen skal vise <strong>hovedkategorier</strong>, <strong>subkategorier</strong> eller starte i en bestemt kategori."
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Velkommen til Kursagenten"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Venstre"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "VENSTRE"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Venstre kolonne"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "venstre, topp, filter-knapp, skjul<br><strong>Standard:</strong> slik filtere er satt opp i Kursdesign"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Viktig info om url-er<br>Her kan du endre url for kurs, instruktør, kurskategori og kurssted. <span style=\"color:#b74444;font-weight:bold;\">OBS! Ikke rør med mindre du vet hva du gjør.</span> Det kan ødelegge nettstedet, og gjøre disse sidene utilgjengelige. Husk å lagre <a href=\"/wp-admin/options-permalink.php\" target=\"_blank\">permalenkeinnstillingene</a> etter du har gjort en endring."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Viktig:"
+msgstr ""
+
+#: includes/options/kursagenten-admin_options.php
+msgid "Viktig: Kursene skal i hovedsak <strong>ikke redigeres på nettsiden</strong> – all redigering bør gjøres i Kursagenten. Dette sikrer at informasjonen er oppdatert og riktig synkronisert."
+msgstr ""
+
+#: includes/options/coursedesign.php
+#: includes/options/documentation.php
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Vis"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Vis (i)"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Vis (k)"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Vis (s)"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/mobile-filters.php
+msgid "Vis alle kurs"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis alle kursdatoer (med filtre)"
+msgstr ""
+
+#: includes/post_types/visibility_management.php
+msgid "Vis alle synligheter"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+msgid "Vis antall kurs"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis beskrivelse"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis bilde"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis bilder:"
+msgstr ""
+
+#: includes/plugin_update/secure_updater.php
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Vis detaljer"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis e-post"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis eller skjul kategorier knyttet til valgt sted."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis filter i boks med bakgrunn"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Vis filter med kategorier som også er brukt på kurs med denne kategorien, i tillegg til underkategoriene. Nyttig om du ikke kan lage en hovedkategori med underkategorier, men vil ha mulighet til å filtrere likevel."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis filtrene i venstre kolonne"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis filtrene på toppen av listen"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis flere fargevalg"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Vis flere lokasjoner"
+msgstr ""
+
+#: public/templates/includes/queries.php
+msgid "Vis flere lokasjoner +"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Vis færre"
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "Vis hovedkategorier"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis hovedkurs (med neste tilgjengelige dato)"
+msgstr ""
+
+#: public/templates/designs/single/boxes.php
+#: public/templates/designs/single/default.php
+msgid "Vis i Google Maps"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis i listen (taksonomi):"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis i listen:"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Vis instruktør"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis instruktører i enkeltkurs"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis instruktører med preset-stiler"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis instruktører uten kurs"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis instruktører:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis instruktørnavn som"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Vis KA kurs"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Vis kategorien og tilhørende kurs"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Vis kategorifilter"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Vis kategorifilter (visningstype Alle kursdatoer)"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis knapper"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis kontaktperson i enkeltkurs"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis kontaktperson:"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis kun %s"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis kun følgende steder"
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "Vis kun kategorier med kurs på angitt sted (valgfritt)"
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "Vis kun kurs, ikke kategorier"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Vis kun ledige"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis kun ledige kurs som standard"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/shortcodes/course-list-shortcode.php
+#: public/templates/mobile-filters.php
+msgid "Vis kun ledige plasser"
+msgstr ""
+
+#: public/templates/partials/coursedates_accordion_item.php
+msgid "Vis kurs"
+msgstr ""
+
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+#: public/templates/designs/taxonomy/hero.php
+msgid "Vis kurs i %s"
+msgstr ""
+
+#: includes/post_types/register_post_types.php
+msgid "Vis kursdato"
+msgstr ""
+
+#: includes/post_types/register_custom_taxonomy_fields.php
+msgid "Vis kursfilter på kategoriside"
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Vis kurskategori"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis kurskategorier med preset-stiler"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis kurskategorier, kurssteder eller instruktører med preset-stiler."
+msgstr ""
+
+#: includes/post_types/register_taxonomies.php
+msgid "Vis kurssted"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis kurssteder med preset-stiler"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis lang beskrivelse"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis link-bokser etter kurslisten:"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis link-bokser til flere kategorier/steder/instruktører etter kurslisten"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis link-bokser:"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Vis liste med spesifikke lokasjoner under hvert stedsnavn. Dette kommer fra feltet \"Fritekst sted\" i Kursagenten."
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "Vis menypunkter:"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+msgid "Vis mer"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis også manuelt opprettede instruktører uten publiserte kurs."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Vis påmeldingslink"
+msgstr ""
+
+#: includes/misc/frontend-i18n.php
+#: public/templates/mobile-filters.php
+msgid "Vis resultater"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Vis som kort, med hvit bakgrunn og skygge bak hele kortet."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis stedinfo"
+msgstr ""
+
+#: public/menus/menu-taxonomies.php
+msgid "Vis subkategorier"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Vis tekst fra feltet \"Kort beskrivelse\"."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Vis tekst fra feltet \"Utvidet beskrivelse\". Merk at dette vil overskrive utdrag."
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Vis telefon"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Vise fullt navn, fornavn eller etternavn"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "viser alle steder i Østlandet eller Bergen (OR-logikk)"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "viser kun kurssteder i Østlandet"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Vises rett etter H1 i toppseksjonen."
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Vises rett under hele header-blokken."
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Visningstype:"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Vår Course-schema"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Vår SEO av (meta-tagger)"
+msgstr ""
+
+#: includes/options/seo.php
+msgid "Våre tilpasninger (tittel/beskrivelse)"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Webhooks"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Webhooks sikrer at kursene dine alltid er oppdatert uten manuell innsats. For å aktivere webhooks:"
+msgstr ""
+
+#: includes/options/avansert.php
+msgid "Wordpress har stort sett støtte for javascript biblioteket Jquery. Hvis det ikke er støtte for dette, kan du velge å aktivere det her.<br><br>"
+msgstr ""
+
+#: includes/options/coursedesign.php
+msgid "Wordpress sider"
+msgstr ""
+
+#: includes/misc/block-editor-i18n.php
+msgid "Wrapper padding"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "yes, no<br><strong>Standard:</strong> hentes fra Kursdesign"
+msgstr ""
+
+#: includes/options/bedriftsinnstillinger.php
+msgid "YouTube"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Øverst i høyre kolonne."
+msgstr ""
+
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+#: public/templates/designs/taxonomy/hero.php
+msgid "Åpne %s i Google Maps"
+msgstr ""
+
+#: includes/options/documentation.php
+msgid "Åpne <a href=\"admin.php?page=kursinnstillinger\">Synkronisering</a> og koble mot Kursagenten-kontoen din. Legg inn <a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Webhooks</a> i Kursagenten, så blir kurset overført automatisk når det blir lagret/opprettet. <br>Første gang bør du klikke på \"Hent alle kurs fra Kursagenten\". Da henter du alle kursene samtidig."
+msgstr ""
+
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+#: public/templates/designs/taxonomy/hero.php
+msgid "Åpne adresse i Google Maps"
+msgstr ""
+
+#: public/templates/designs/taxonomy/default.php
+#: public/templates/designs/taxonomy/hero-two-columns.php
+#: public/templates/designs/taxonomy/hero.php
+msgid "Åpne i Google Maps"
+msgstr ""
+
+#: public/templates/includes/template-functions.php
+msgid "%d dag"
+msgid_plural "%d dager"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/misc/frontend-i18n.php
+#: public/templates/designs/archive/default.php
+#: public/templates/designs/archive/full-width.php
+msgid "%d kurs"
+msgid_plural "%d kurs"
+msgstr[0] ""
+msgstr[1] ""
+

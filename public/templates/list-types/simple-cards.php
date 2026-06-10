@@ -61,6 +61,8 @@ if ($simple_cards_grouping === 'course_location' && $has_location_id) {
     $sub_courses = get_posts([
         'post_type' => 'ka_course',
         'posts_per_page' => 1,
+        // Bypass Polylang language filtering for API-synced courses.
+        'lang' => '',
         'meta_query' => [
             'relation' => 'AND',
             ['key' => 'ka_main_course_id', 'value' => $main_course_id, 'compare' => '='],
@@ -78,6 +80,8 @@ if (!$course_id) {
     $main_courses = get_posts([
         'post_type' => 'ka_course',
         'posts_per_page' => 1,
+        // Bypass Polylang language filtering for API-synced courses.
+        'lang' => '',
         'meta_query' => [
             'relation' => 'AND',
             ['key' => 'ka_main_course_id', 'value' => $main_course_id, 'compare' => '='],
@@ -158,7 +162,9 @@ $featured_image_thumb = $featured_image_thumb ?: $placeholder_image;
 
 // Set up link to course. Course grouping links to the parent course; course+location
 // grouping links to the subcourse for that location (resolved in $course_id above).
-$course_link = $course_id ? get_permalink($course_id) : '#';
+$course_link = $course_id
+    ? (function_exists('kursagenten_get_localized_permalink') ? kursagenten_get_localized_permalink((int) $course_id) : get_permalink($course_id))
+    : '#';
 $list_item_links = ka_resolve_course_list_links(
     (string) $course_link,
     (int) ($selected_coursedate_data['id'] ?? 0),
@@ -226,7 +232,7 @@ $view_type_class = ' view-type-maincourses';
                   // whole card in an <a> would nest <a>/<button> inside <a> (invalid
                   // HTML), which browsers "repair" by splitting the anchor and breaking
                   // the layout. ?>
-            <a href="<?php echo esc_url($course_link); ?>"<?php echo $course_link_target_attrs; ?> class="simple-card-link" title="<?php echo esc_attr($course_title); ?>" aria-label="Se kurs: <?php echo esc_attr($course_title); ?>"></a>
+            <a href="<?php echo esc_url($course_link); ?>"<?php echo $course_link_target_attrs; ?> class="simple-card-link" title="<?php echo esc_attr($course_title); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: course title */ __( 'Se kurs: %s', 'kursagenten' ), $course_title ) ); ?>"></a>
             <?php if ($show_images === 'yes') : ?>
             <!-- Image area - left side with same border-radius -->
             <div class="simple-card-image">
@@ -272,7 +278,7 @@ $view_type_class = ' view-type-maincourses';
                     <span class="simple-card-date">
                         <i class="ka-icon icon-calendar"></i>
                         <span>
-                            Neste kurs: <?php echo esc_html($list_date_text); ?>
+                            <?php echo esc_html__( 'Neste kurs:', 'kursagenten' ); ?> <?php echo esc_html($list_date_text); ?>
                             <?php if ($show_location_in_date) : ?>
                                 &nbsp;-&nbsp;<?php if ($show_location_name) : ?><span class="notranslate" translate="no"><?php echo esc_html($location); ?></span><?php endif; ?><?php if ($show_location_freetext) : ?><?php if ($is_location_taxonomy) : ?><span class="notranslate" translate="no"><?php echo esc_html($location_freetext); ?></span><?php else : ?><?php if ($show_location_name) : ?>&nbsp;<?php endif; ?>(<span class="notranslate" translate="no"><?php echo esc_html($location_freetext); ?></span>)<?php endif; ?><?php endif; ?>
                             <?php endif; ?>

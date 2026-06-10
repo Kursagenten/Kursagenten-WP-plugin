@@ -16,31 +16,31 @@ function capitalize_first_letter($string) {
 // Registrering av taksonomien 'kurskategori'
 register_taxonomy('ka_coursecategory', array('ka_course', 'ka_coursedate', 'instructor'), array(
     'labels' => array(
-        'name' => 'Kurskategorier',
+        'name' => __('Kurskategorier', 'kursagenten'),
         'singular_name' => capitalize_first_letter($kurskategori),
-        'menu_name' => 'Kurskategorier',
-        'all_items' => 'Alle kurskategorier',
-        'edit_item' => 'Rediger kurskategori',
-        'view_item' => 'Vis kurskategori',
-        'update_item' => 'Oppdater kurskategori',
-        'add_new_item' => 'Legg til kurskategori',
-        'new_item_name' => 'Nytt navn for kurskategori',
-        'parent_item' => 'Foreldrekategori',
-        'parent_item_colon' => 'Foreldrekategori:',
-        'search_items' => 'Søk etter kurskategori',
-        'most_used' => 'Mest brukt',
-        'not_found' => 'Ingen kurskategorier funnet',
-        'no_terms' => 'Ingen kurskategorier',
-        'name_field_description' => 'Navnet er det som vises på siden',
-        'slug_field_description' => '"Slug" er den SEO-vennlige versjonen av url-en. Eksempel /mitt-kurs',
-        'parent_field_description' => 'Velg en forelder for å lage et hierarki, og la dette bli en subkategori.',
-        'desc_field_description' => 'Kort beskrivelse brukes i oversikter og som innledende tekst på detaljside',
-        'filter_by_item' => 'Filtrer på kurskategori',
-        'items_list_navigation' => 'Kurskategorier listenavigasjon',
-        'items_list' => 'Kurskategorier liste',
-        'back_to_items' => '← Tilbake til kurskategorier',
-        'item_link' => 'Kurskategori link',
-        'item_link_description' => 'Link til en kurskategori',
+        'menu_name' => __('Kurskategorier', 'kursagenten'),
+        'all_items' => __('Alle kurskategorier', 'kursagenten'),
+        'edit_item' => __('Rediger kurskategori', 'kursagenten'),
+        'view_item' => __('Vis kurskategori', 'kursagenten'),
+        'update_item' => __('Oppdater kurskategori', 'kursagenten'),
+        'add_new_item' => __('Legg til kurskategori', 'kursagenten'),
+        'new_item_name' => __('Nytt navn for kurskategori', 'kursagenten'),
+        'parent_item' => __('Foreldrekategori', 'kursagenten'),
+        'parent_item_colon' => __('Foreldrekategori:', 'kursagenten'),
+        'search_items' => __('Søk etter kurskategori', 'kursagenten'),
+        'most_used' => __('Mest brukt', 'kursagenten'),
+        'not_found' => __('Ingen kurskategorier funnet', 'kursagenten'),
+        'no_terms' => __('Ingen kurskategorier', 'kursagenten'),
+        'name_field_description' => __('Navnet er det som vises på siden', 'kursagenten'),
+        'slug_field_description' => __('"Slug" er den SEO-vennlige versjonen av url-en. Eksempel /mitt-kurs', 'kursagenten'),
+        'parent_field_description' => __('Velg en forelder for å lage et hierarki, og la dette bli en subkategori.', 'kursagenten'),
+        'desc_field_description' => __('Kort beskrivelse brukes i oversikter og som innledende tekst på detaljside', 'kursagenten'),
+        'filter_by_item' => __('Filtrer på kurskategori', 'kursagenten'),
+        'items_list_navigation' => __('Kurskategorier listenavigasjon', 'kursagenten'),
+        'items_list' => __('Kurskategorier liste', 'kursagenten'),
+        'back_to_items' => __('← Tilbake til kurskategorier', 'kursagenten'),
+        'item_link' => __('Kurskategori link', 'kursagenten'),
+        'item_link_description' => __('Link til en kurskategori', 'kursagenten'),
         'archives'  => capitalize_first_letter($kurskategori),
     ),
     'public' => true,
@@ -57,32 +57,35 @@ register_taxonomy('ka_coursecategory', array('ka_course', 'ka_coursedate', 'inst
 // Registrering av taksonomien 'kurssted'
 register_taxonomy('ka_course_location', array('ka_course', 'ka_coursedate', 'instructor'), array(
     'labels' => array(
-        'name' => 'Kurssteder',
+        'name' => __('Kurssteder', 'kursagenten'),
         'singular_name' => capitalize_first_letter($kurssted),
-        'menu_name' => 'Kurssteder',
-        'all_items' => 'Alle kurssteder',
-        'edit_item' => 'Rediger kurssted',
-        'view_item' => 'Vis kurssted',
-        'update_item' => 'Oppdater kurssted',
-        'add_new_item' => 'Legg til kurssted',
-        'new_item_name' => 'Navn på nytt kurssted',
-        'parent_item' => 'Overordnet kurssted',
-        'parent_item_colon' => 'Overordnet kurssted:',
-        'search_items' => 'Søk i kurssteder',
-        'most_used' => 'Mest brukt',
-        'not_found' => 'Ingen kurssteder funnet',
-        'no_terms' => 'Ingen kurssteder',
-        'filter_by_item' => 'Filtrer på kurssted',
-        'items_list_navigation' => 'Kurssteder listenavigasjon',
-        'items_list' => 'Kurssteder liste',
-        'back_to_items' => '← Tilbake til kurssteder',
-        'item_link' => 'Kurssted link',
-        'item_link_description' => 'Link til et kurssted',
+        'menu_name' => __('Kurssteder', 'kursagenten'),
+        'all_items' => __('Alle kurssteder', 'kursagenten'),
+        'edit_item' => __('Rediger kurssted', 'kursagenten'),
+        'view_item' => __('Vis kurssted', 'kursagenten'),
+        'update_item' => __('Oppdater kurssted', 'kursagenten'),
+        'add_new_item' => __('Legg til kurssted', 'kursagenten'),
+        'new_item_name' => __('Navn på nytt kurssted', 'kursagenten'),
+        'parent_item' => __('Overordnet kurssted', 'kursagenten'),
+        'parent_item_colon' => __('Overordnet kurssted:', 'kursagenten'),
+        'search_items' => __('Søk i kurssteder', 'kursagenten'),
+        'most_used' => __('Mest brukt', 'kursagenten'),
+        'not_found' => __('Ingen kurssteder funnet', 'kursagenten'),
+        'no_terms' => __('Ingen kurssteder', 'kursagenten'),
+        'filter_by_item' => __('Filtrer på kurssted', 'kursagenten'),
+        'items_list_navigation' => __('Kurssteder listenavigasjon', 'kursagenten'),
+        'items_list' => __('Kurssteder liste', 'kursagenten'),
+        'back_to_items' => __('← Tilbake til kurssteder', 'kursagenten'),
+        'item_link' => __('Kurssted link', 'kursagenten'),
+        'item_link_description' => __('Link til et kurssted', 'kursagenten'),
         'archives'  => capitalize_first_letter($kurssted),
-        'name_field_description' => 'Navnet slik det som vises på siden. Kan endres under <a href="' . admin_url('admin.php?page=kursinnstillinger#places') . '">Synkronisering</a>.',
-        'slug_field_description' => '"Slug" er den SEO-vennlige versjonen av url-en. Eksempel /oslo',
-        'parent_field_description' => 'Velg en forelder for å lage et hierarki, og la dette bli en subkategori.',
-        'desc_field_description' => 'Kort beskrivelse brukes i oversikter og som innledende tekst på detaljside',
+        'name_field_description' => wp_kses_post(sprintf(
+            __('Navnet slik det som vises på siden. Kan endres under <a href="%s">Synkronisering</a>.', 'kursagenten'),
+            esc_url(admin_url('admin.php?page=kursinnstillinger#places'))
+        )),
+        'slug_field_description' => __('"Slug" er den SEO-vennlige versjonen av url-en. Eksempel /oslo', 'kursagenten'),
+        'parent_field_description' => __('Velg en forelder for å lage et hierarki, og la dette bli en subkategori.', 'kursagenten'),
+        'desc_field_description' => __('Kort beskrivelse brukes i oversikter og som innledende tekst på detaljside', 'kursagenten'),
     ),
     'public' => true,
     'hierarchical' => true,
@@ -98,32 +101,32 @@ register_taxonomy('ka_course_location', array('ka_course', 'ka_coursedate', 'ins
 // Registrering av taksonomien 'instruktorer'
 register_taxonomy('ka_instructors', array('ka_course', 'ka_coursedate', 'instructor'), array(
     'labels' => array(
-        'name' => 'Instruktører',
-        'singular_name' => 'Instruktør',
-        'menu_name' => 'Instruktører',
-        'all_items' => 'Alle instruktører',
-        'edit_item' => 'Rediger instruktør',
-        'view_item' => 'Vis instruktør',
-        'update_item' => 'Oppdater instruktør',
-        'add_new_item' => 'Legg til instruktør',
-        'new_item_name' => 'Navn på nytt instruktør',
-        'parent_item' => 'Overordnet instruktør',
-        'parent_item_colon' => 'Overordnet instruktør:',
-        'search_items' => 'Søk i instruktører',
-        'most_used' => 'Mest brukt',
-        'not_found' => 'Ingen instruktører funnet',
-        'no_terms' => 'Ingen instruktører',
-        'filter_by_item' => 'Filtrer på instruktør',
-        'items_list_navigation' => 'Instruktører listenavigasjon',
-        'items_list' => 'Instruktører liste',
-        'back_to_items' => '← Tilbake til instruktører',
-        'item_link' => 'Instruktørlink',
-        'item_link_description' => 'Link til et instruktør',
-        'archives'  => 'Instruktører',
-        'name_field_description' => 'Navnet slik det som vises på siden. Bør kun endres på instruktørens brukerprofil på Kursagenten.',
-        'slug_field_description' => '"Slug" er den SEO-vennlige versjonen av url-en. Eksempel /kari-norman',
-        'parent_field_description' => 'Velg en forelder for å lage et hierarki, og la dette bli en subkategori.',
-        'desc_field_description' => 'Kort beskrivelse brukes i oversikter og som innledende tekst på detaljside',
+        'name' => __('Instruktører', 'kursagenten'),
+        'singular_name' => __('Instruktør', 'kursagenten'),
+        'menu_name' => __('Instruktører', 'kursagenten'),
+        'all_items' => __('Alle instruktører', 'kursagenten'),
+        'edit_item' => __('Rediger instruktør', 'kursagenten'),
+        'view_item' => __('Vis instruktør', 'kursagenten'),
+        'update_item' => __('Oppdater instruktør', 'kursagenten'),
+        'add_new_item' => __('Legg til instruktør', 'kursagenten'),
+        'new_item_name' => __('Navn på nytt instruktør', 'kursagenten'),
+        'parent_item' => __('Overordnet instruktør', 'kursagenten'),
+        'parent_item_colon' => __('Overordnet instruktør:', 'kursagenten'),
+        'search_items' => __('Søk i instruktører', 'kursagenten'),
+        'most_used' => __('Mest brukt', 'kursagenten'),
+        'not_found' => __('Ingen instruktører funnet', 'kursagenten'),
+        'no_terms' => __('Ingen instruktører', 'kursagenten'),
+        'filter_by_item' => __('Filtrer på instruktør', 'kursagenten'),
+        'items_list_navigation' => __('Instruktører listenavigasjon', 'kursagenten'),
+        'items_list' => __('Instruktører liste', 'kursagenten'),
+        'back_to_items' => __('← Tilbake til instruktører', 'kursagenten'),
+        'item_link' => __('Instruktørlink', 'kursagenten'),
+        'item_link_description' => __('Link til et instruktør', 'kursagenten'),
+        'archives'  => __('Instruktører', 'kursagenten'),
+        'name_field_description' => __('Navnet slik det som vises på siden. Bør kun endres på instruktørens brukerprofil på Kursagenten.', 'kursagenten'),
+        'slug_field_description' => __('"Slug" er den SEO-vennlige versjonen av url-en. Eksempel /kari-norman', 'kursagenten'),
+        'parent_field_description' => __('Velg en forelder for å lage et hierarki, og la dette bli en subkategori.', 'kursagenten'),
+        'desc_field_description' => __('Kort beskrivelse brukes i oversikter og som innledende tekst på detaljside', 'kursagenten'),
     ),
     'public' => true,
     'hierarchical' => false,
@@ -142,9 +145,9 @@ add_action('admin_menu', function() {
     
     // Add taxonomy submenus under Kursagenten menu (parent 'kursagenten')
     add_submenu_page(
-        'kursagenten',                                      // Parent slug
-        'Kurskategorier',                                   // Page title
-        'Kurskategorier',                                   // Menu title
+        'kursagenten',
+        __('Kurskategorier', 'kursagenten'),
+        __('Kurskategorier', 'kursagenten'),
         'manage_categories',                                // Capability
         'edit-tags.php?taxonomy=ka_coursecategory&post_type=ka_course', // Menu slug
         ''                                                  // Callback (empty for taxonomy links)
@@ -152,8 +155,8 @@ add_action('admin_menu', function() {
     
     add_submenu_page(
         'kursagenten',
-        'Kurssteder',
-        'Kurssteder',
+        __('Kurssteder', 'kursagenten'),
+        __('Kurssteder', 'kursagenten'),
         'manage_categories',
         'edit-tags.php?taxonomy=ka_course_location&post_type=ka_course',
         ''
@@ -161,8 +164,8 @@ add_action('admin_menu', function() {
     
     add_submenu_page(
         'kursagenten',
-        'Instruktører',
-        'Instruktører',
+        __('Instruktører', 'kursagenten'),
+        __('Instruktører', 'kursagenten'),
         'manage_categories',
         'edit-tags.php?taxonomy=ka_instructors&post_type=ka_course',
         ''
@@ -237,9 +240,9 @@ add_action('all_admin_notices', function() {
         ?>
         <div style="margin-top: 0px; padding: 12px 0; border-left-color: #2271b1;">
             <p style="margin: 0;">
-                <strong>Kursdatoer:</strong> 
-                <a href="<?php echo esc_url($kursdatoer_url); ?>">Se alle kursdatoer</a> 
-                <span style="color: #666; margin-left: 10px;">– Brukes for feilsøking og oversikt</span>
+                <strong><?php esc_html_e('Kursdatoer:', 'kursagenten'); ?></strong>
+                <a href="<?php echo esc_url($kursdatoer_url); ?>"><?php esc_html_e('Se alle kursdatoer', 'kursagenten'); ?></a>
+                <span style="color: #666; margin-left: 10px;"><?php esc_html_e('– Brukes for feilsøking og oversikt', 'kursagenten'); ?></span>
             </p>
         </div>
         <?php
@@ -290,8 +293,10 @@ add_action('ka_course_location_edit_form_fields', function($term) {
         // Update description text
         var $desc = $('#name-description');
         if ($desc.length) {
-            var syncUrl = '<?php echo esc_js(admin_url('admin.php?page=kursinnstillinger#places')); ?>';
-            $desc.html('Navnet slik det som vises på siden. Kan endres under <a href="' + syncUrl + '">Synkronisering</a>.');
+            $desc.html(<?php echo wp_json_encode(wp_kses_post(sprintf(
+                __('Navnet slik det som vises på siden. Kan endres under <a href="%s">Synkronisering</a>.', 'kursagenten'),
+                esc_url(admin_url('admin.php?page=kursinnstillinger#places'))
+            ))); ?>);
         }
     });
     </script>
@@ -303,66 +308,49 @@ add_action('ka_course_location_pre_add_form', function($taxonomy) {
     $sync_url = admin_url('admin.php?page=kursinnstillinger#places');
     $regions_url = admin_url('admin.php?page=kursinnstillinger#regions');
     $use_regions = get_option('kursagenten_use_regions', false);
+
+    $location_info_title = __('Informasjon om kurssteder', 'kursagenten');
+    $location_info_paragraphs = array(
+        wp_kses_post(__('<strong>Kurssteder opprettes automatisk</strong> når du synkroniserer kurs fra Kursagenten. Du kan ikke legge til kurssteder manuelt her.', 'kursagenten')),
+        wp_kses_post(sprintf(
+            __('<strong>Navnendring på kurssteder:</strong><br>Du kan endre navn på kurssteder under <a href="%s">Synkronisering → Navnendring på kurssteder</a>. Når du endrer navn på et sted, blir også slugs (nettadressen) på kursene som har dette stedet oppdatert.<br> Det gamle stedet blir ikke slettet, men blir ikke lenger synlig på nettsiden.', 'kursagenten'),
+            esc_url($sync_url)
+        )),
+    );
+    if ($use_regions) {
+        $location_info_paragraphs[] = wp_kses_post(sprintf(
+            __('<strong>Regioner:</strong><br>Regioner er aktivert. Du kan administrere regioninndelingen under <a href="%s">Synkronisering → Regioner</a>. Tilhørighet til en region kan endres under hvert kurssted.', 'kursagenten'),
+            esc_url($regions_url)
+        ));
+    } else {
+        $location_info_paragraphs[] = wp_kses_post(sprintf(
+            __('<strong>Regioner:</strong><br>Du kan aktivere og administrere regioner under <a href="%s">Synkronisering → Regioner</a>.', 'kursagenten'),
+            esc_url($regions_url)
+        ));
+    }
     ?>
     <script type="text/javascript">
     jQuery(document).ready(function($) {
-        // Create the information message
-        var infoHtml = '<div class="form-wrap" style="margin-top: 0;">' +
-            '<h2>Informasjon om kurssteder</h2>' +
-            '<div class="notice notice-info" style="padding: 15px; margin: 15px 0;">' +
-            '<p style="margin-bottom: 10px;">' +
-            '<strong>Kurssteder opprettes automatisk</strong> når du synkroniserer kurs fra Kursagenten. Du kan ikke legge til kurssteder manuelt her.' +
-            '</p>' +
-            '<p style="margin-bottom: 10px;">' +
-            '<strong>Navnendring på kurssteder:</strong><br>' +
-            'Du kan endre navn på kurssteder under <a href="<?php echo esc_js($sync_url); ?>">Synkronisering → Navnendring på kurssteder</a>. ' +
-            'Når du endrer navn på et sted, blir også slugs (nettadressen) på kursene som har dette stedet oppdatert.<br> Det gamle stedet blir ikke slettet, men blir ikke lenger synlig på nettsiden.' +
-            '</p>' +
-            <?php if ($use_regions) : ?>
-            '<p style="margin-bottom: 0;">' +
-            '<strong>Regioner:</strong><br>' +
-            'Regioner er aktivert. Du kan administrere regioninndelingen under <a href="<?php echo esc_js($regions_url); ?>">Synkronisering → Regioner</a>. Tilhørighet til en region kan endres under hvert kurssted.' +
-            '</p>' +
-            <?php else : ?>
-            '<p style="margin-bottom: 0;">' +
-            '<strong>Regioner:</strong><br>' +
-            'Du kan aktivere og administrere regioner under <a href="<?php echo esc_js($regions_url); ?>">Synkronisering → Regioner</a>.' +
-            '</p>' +
-            <?php endif; ?>
-            '</div>' +
-            '</div>';
-        
-        // Wait for the form to be rendered, then replace it
+        var locationInfoTitle = <?php echo wp_json_encode($location_info_title); ?>;
+        var locationInfoParagraphs = <?php echo wp_json_encode($location_info_paragraphs); ?>;
+
         setTimeout(function() {
             var $formWrap = $('#col-left .form-wrap');
-            if ($formWrap.length) {
-                // Hide the form but keep the structure
-                $formWrap.find('form#addtag').hide();
-                $formWrap.find('h2').text('Informasjon om kurssteder');
-                
-                // Insert info message after h2
-                $formWrap.find('h2').after('<div class="notice notice-info" style="padding: 15px; margin: 15px 0;">' +
-                    '<p style="margin-bottom: 10px;">' +
-                    '<strong>Kurssteder opprettes automatisk</strong> når du synkroniserer kurs fra Kursagenten. Du kan ikke legge til kurssteder manuelt her.' +
-                    '</p>' +
-                    '<p style="margin-bottom: 10px;">' +
-                    '<strong>Navnendring på kurssteder:</strong><br>' +
-                    'Du kan endre navn på kurssteder under <a href="<?php echo esc_js($sync_url); ?>">Synkronisering → Navnendring på kurssteder</a>. ' +
-                    'Når du endrer navn på et sted, blir også slugs (nettadressen) på kursene som har dette stedet oppdatert.<br> Det gamle stedet blir ikke slettet, men blir ikke lenger synlig på nettsiden.' +
-                    '</p>' +
-                    <?php if ($use_regions) : ?>
-                    '<p style="margin-bottom: 0;">' +
-                    '<strong>Regioner:</strong><br>' +
-                    'Regioner er aktivert. Du kan administrere regioninndelingen under <a href="<?php echo esc_js($regions_url); ?>">Synkronisering → Regioner</a>. Tilhørighet til en region kan endres under hvert kurssted.' +
-                    '</p>' +
-                    <?php else : ?>
-                    '<p style="margin-bottom: 0;">' +
-                    '<strong>Regioner:</strong><br>' +
-                    'Du kan aktivere og administrere regioner under <a href="<?php echo esc_js($regions_url); ?>">Synkronisering → Regioner</a>.' +
-                    '</p>' +
-                    <?php endif; ?>
-                    '</div>');
+            if (!$formWrap.length) {
+                return;
             }
+
+            $formWrap.find('form#addtag').hide();
+            $formWrap.find('h2').text(locationInfoTitle);
+
+            var noticeHtml = '<div class="notice notice-info" style="padding: 15px; margin: 15px 0;">';
+            locationInfoParagraphs.forEach(function(paragraph, index) {
+                var marginBottom = index === locationInfoParagraphs.length - 1 ? '0' : '10px';
+                noticeHtml += '<p style="margin-bottom: ' + marginBottom + ';">' + paragraph + '</p>';
+            });
+            noticeHtml += '</div>';
+
+            $formWrap.find('h2').after(noticeHtml);
         }, 100);
     });
     </script>
@@ -424,7 +412,10 @@ add_action('edit_term', function($term_id, $tt_id, $taxonomy) {
         add_action('admin_notices', function() {
             ?>
             <div class="notice notice-warning is-dismissible">
-                <p><strong>Advarsel:</strong> Navn og slug på kurssteder kan ikke endres her. Du kan endre navnet under <a href="<?php echo esc_url(admin_url('admin.php?page=kursinnstillinger#places')); ?>">Synkronisering</a>.</p>
+                <p><?php echo wp_kses_post(sprintf(
+                    __('<strong>Advarsel:</strong> Navn og slug på kurssteder kan ikke endres her. Du kan endre navnet under <a href="%s">Synkronisering</a>.', 'kursagenten'),
+                    esc_url(admin_url('admin.php?page=kursinnstillinger#places'))
+                )); ?></p>
             </div>
             <?php
         });

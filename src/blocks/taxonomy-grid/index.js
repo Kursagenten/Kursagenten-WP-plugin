@@ -25,6 +25,26 @@ import metadata from '../../../public/blocks/taxonomy-grid/block.json';
 import taxonomyGridIconUrl from '../../../public/blocks/shared/icon.svg';
 import './editor.css';
 
+const blockEditorStrings = window?.kursagentenTaxonomyGridEditorI18n?.strings || {};
+function t( text ) {
+	return blockEditorStrings[ text ] || text;
+}
+function tf( format, ...substitutions ) {
+	let result = t( format );
+	substitutions.forEach( ( sub ) => {
+		result = result.replace( '%s', String( sub ) );
+	} );
+	return result;
+}
+function translateOptions( options ) {
+	return options.map( ( option ) => ( {
+		...option,
+		...( option.label !== undefined ? { label: t( option.label ) } : {} ),
+		...( option.title !== undefined ? { title: t( option.title ) } : {} ),
+	} ) );
+}
+
+
 const taxonomyGridBlockIcon = (
 	<img
 		src={ taxonomyGridIconUrl }
@@ -148,7 +168,7 @@ function PresetLayoutIcon( { presetKey } ) {
 	);
 }
 
-const PRESETS = [
+const PRESETS_RAW = [
 	{ key: 'stablet-standard', label: 'Stablet standard', icon: '▦', defaults: { columnsDesktop: 3, columnsTablet: 2, columnsMobile: 1, showDescription: false, showImage: true, useCardDesign: false, backgroundMode: 'color', textAlignDesktop: 'center', textAlignTablet: 'center', textAlignMobile: 'center', verticalAlignDesktop: 'top', verticalAlignTablet: 'top', verticalAlignMobile: 'top' } },
 	{ key: 'stablet-kort', label: 'Stablet kort', icon: '▣', defaults: { columnsDesktop: 3, columnsTablet: 2, columnsMobile: 1, showDescription: false, showImage: true, useCardDesign: true, shadowPreset: 'xsoft', backgroundMode: 'color', cardPaddingDesktop: '24px 18px', cardPaddingTablet: '24px 14px', cardPaddingMobile: '24px 12px', textAlignDesktop: 'center', textAlignTablet: 'center', textAlignMobile: 'center', verticalAlignDesktop: 'top', verticalAlignTablet: 'top', verticalAlignMobile: 'top' } },
 	{ key: 'stablet-kort-innfelt', label: 'Stablet kort innfelt', icon: '◫', defaults: { columnsDesktop: 3, columnsTablet: 2, columnsMobile: 1, showDescription: false, showImage: true, useCardDesign: true, shadowPreset: 'xsoft', imageSize: '120px', imageAspect: '1/1', imageRadiusTop: '100%', imageRadiusRight: '100%', imageRadiusBottom: '100%', imageRadiusLeft: '100%', cardPaddingDesktop: '16px 40px 40px 40px', cardPaddingTablet: '16px 34px 40px 34px', cardPaddingMobile: '16px 34px 30px 34px', cardMarginDesktop: '5px', cardMarginTablet: '5px', cardMarginMobile: '0px', rowGapDesktop: '25px', rowGapTablet: '25px', rowGapMobile: '30px', backgroundMode: 'color', textAlignDesktop: 'center', textAlignTablet: 'center', textAlignMobile: 'center', verticalAlignDesktop: 'top', verticalAlignTablet: 'top', verticalAlignMobile: 'top' } },
@@ -160,98 +180,111 @@ const PRESETS = [
 	{ key: 'kort-bakgrunn', label: 'Bakgrunnsbilde', icon: '◧', defaults: { columnsDesktop: 3, columnsTablet: 2, columnsMobile: 1, showDescription: true, showImage: true, useCardDesign: true, shadowPreset: 'xsoft', backgroundMode: 'taxonomyImage', cardPaddingDesktop: '26px', cardPaddingTablet: '26px', cardPaddingMobile: '26px', textColor: '#ffffff', textAlignDesktop: 'left', textAlignTablet: 'left', textAlignMobile: 'left', verticalAlignDesktop: 'bottom', verticalAlignTablet: 'bottom', verticalAlignMobile: 'bottom' } },
 	{ key: 'kort-bakgrunnsfarge', label: 'Bakgrunnsfarge', icon: '◩', defaults: { columnsDesktop: 3, columnsTablet: 2, columnsMobile: 1, showDescription: true, showImage: false, useCardDesign: true, shadowPreset: 'xsoft', backgroundMode: 'color', cardPaddingDesktop: '26px', cardPaddingTablet: '26px', cardPaddingMobile: '26px', textColor: '#333333', textAlignDesktop: 'center', textAlignTablet: 'center', textAlignMobile: 'center', verticalAlignDesktop: 'center', verticalAlignTablet: 'center', verticalAlignMobile: 'center' } },
 ];
+const PRESETS = PRESETS_RAW.map( ( preset ) => ( { ...preset, label: t( preset.label ) } ) );
 
-const SOURCE_OPTIONS = [
-	{ label: 'Kurskategorier', value: 'category' },
-	{ label: 'Kurssteder', value: 'location' },
-	{ label: 'Instruktører', value: 'instructor' },
+const SOURCE_OPTIONS_RAW = [
+	{ label: t( 'Kurskategorier' ), value: 'category' },
+	{ label: t( 'Kurssteder' ), value: 'location' },
+	{ label: t( 'Instruktører' ), value: 'instructor' },
 ];
+const SOURCE_OPTIONS = translateOptions( SOURCE_OPTIONS_RAW );
 
-const FILTER_OPTIONS = [
-	{ label: 'Standard', value: 'standard' },
-	{ label: 'Hovedkategorier', value: 'hovedkategorier' },
-	{ label: 'Subkategorier', value: 'subkategorier' },
+const FILTER_OPTIONS_RAW = [
+	{ label: t( 'Standard' ), value: 'standard' },
+	{ label: t( 'Hovedkategorier' ), value: 'hovedkategorier' },
+	{ label: t( 'Subkategorier' ), value: 'subkategorier' },
 ];
+const FILTER_OPTIONS = translateOptions( FILTER_OPTIONS_RAW );
 
-const CATEGORY_IMAGE_SOURCE_OPTIONS = [
-	{ label: 'Hovedbilde', value: 'main' },
-	{ label: 'Profilbilde', value: 'icon' },
+const CATEGORY_IMAGE_SOURCE_OPTIONS_RAW = [
+	{ label: t( 'Hovedbilde' ), value: 'main' },
+	{ label: t( 'Profilbilde' ), value: 'icon' },
 ];
+const CATEGORY_IMAGE_SOURCE_OPTIONS = translateOptions( CATEGORY_IMAGE_SOURCE_OPTIONS_RAW );
 
-const NAME_MODE_OPTIONS = [
-	{ label: 'Standard', value: 'standard' },
-	{ label: 'Fornavn', value: 'fornavn' },
-	{ label: 'Etternavn', value: 'etternavn' },
+const NAME_MODE_OPTIONS_RAW = [
+	{ label: t( 'Standard' ), value: 'standard' },
+	{ label: t( 'Fornavn' ), value: 'fornavn' },
+	{ label: t( 'Etternavn' ), value: 'etternavn' },
 ];
+const NAME_MODE_OPTIONS = translateOptions( NAME_MODE_OPTIONS_RAW );
 
-const INSTRUCTOR_IMAGE_SOURCE_OPTIONS = [
-	{ label: 'Standard profilbilde', value: 'standard' },
-	{ label: 'Alternativt bilde', value: 'alternative' },
+const INSTRUCTOR_IMAGE_SOURCE_OPTIONS_RAW = [
+	{ label: t( 'Standard profilbilde' ), value: 'standard' },
+	{ label: t( 'Alternativt bilde' ), value: 'alternative' },
 ];
+const INSTRUCTOR_IMAGE_SOURCE_OPTIONS = translateOptions( INSTRUCTOR_IMAGE_SOURCE_OPTIONS_RAW );
 
-const IMAGE_ASPECT_OPTIONS = [
-	{ label: 'Landskap 4:3', value: '4/3' },
-	{ label: 'Landskap 3:2', value: '3/2' },
-	{ label: 'Landskap 16:9', value: '16/9' },
-	{ label: 'Landskap 2:1', value: '2/1' },
-	{ label: 'Landskap 3:1', value: '3/1' },
-	{ label: 'Landskap 4:1', value: '4/1' },
-	{ label: 'Portrett 3:4', value: '3/4' },
-	{ label: 'Portrett 2:3', value: '2/3' },
-	{ label: 'Kvadrat 1:1', value: '1/1' },
-	{ label: 'Egendefinert', value: 'custom' },
+const IMAGE_ASPECT_OPTIONS_RAW = [
+	{ label: t( 'Landskap 4:3' ), value: '4/3' },
+	{ label: t( 'Landskap 3:2' ), value: '3/2' },
+	{ label: t( 'Landskap 16:9' ), value: '16/9' },
+	{ label: t( 'Landskap 2:1' ), value: '2/1' },
+	{ label: t( 'Landskap 3:1' ), value: '3/1' },
+	{ label: t( 'Landskap 4:1' ), value: '4/1' },
+	{ label: t( 'Portrett 3:4' ), value: '3/4' },
+	{ label: t( 'Portrett 2:3' ), value: '2/3' },
+	{ label: t( 'Kvadrat 1:1' ), value: '1/1' },
+	{ label: t( 'Egendefinert' ), value: 'custom' },
 ];
+const IMAGE_ASPECT_OPTIONS = translateOptions( IMAGE_ASPECT_OPTIONS_RAW );
 
-const IMAGE_RESOLUTION_OPTIONS = [
-	{ label: 'Automatisk (anbefalt)', value: 'auto' },
-	{ label: 'Thumbnail', value: 'thumbnail' },
-	{ label: 'Medium', value: 'medium' },
-	{ label: 'Large', value: 'large' },
-	{ label: 'Full størrelse', value: 'full' },
+const IMAGE_RESOLUTION_OPTIONS_RAW = [
+	{ label: t( 'Automatisk (anbefalt)' ), value: 'auto' },
+	{ label: t( 'Thumbnail' ), value: 'thumbnail' },
+	{ label: t( 'Medium' ), value: 'medium' },
+	{ label: t( 'Large' ), value: 'large' },
+	{ label: t( 'Full størrelse' ), value: 'full' },
 ];
+const IMAGE_RESOLUTION_OPTIONS = translateOptions( IMAGE_RESOLUTION_OPTIONS_RAW );
 
-const SHADOW_OPTIONS = [
-	{ label: 'Ingen', value: 'none' },
-	{ label: 'Ingen, men bruk ramme', value: 'outline' },
-	{ label: 'Svak', value: 'xsoft' },
-	{ label: 'Normal', value: 'soft' },
-	{ label: 'Medium', value: 'medium' },
-	{ label: 'Kraftig', value: 'large' },
-	{ label: 'Ekstra kraftig', value: 'xl' },
+const SHADOW_OPTIONS_RAW = [
+	{ label: t( 'Ingen' ), value: 'none' },
+	{ label: t( 'Ingen, men bruk ramme' ), value: 'outline' },
+	{ label: t( 'Svak' ), value: 'xsoft' },
+	{ label: t( 'Normal' ), value: 'soft' },
+	{ label: t( 'Medium' ), value: 'medium' },
+	{ label: t( 'Kraftig' ), value: 'large' },
+	{ label: t( 'Ekstra kraftig' ), value: 'xl' },
 ];
+const SHADOW_OPTIONS = translateOptions( SHADOW_OPTIONS_RAW );
 
-const TITLE_TAG_OPTIONS = [
-	{ label: 'H2', value: 'h2' },
-	{ label: 'H3', value: 'h3' },
-	{ label: 'H4', value: 'h4' },
-	{ label: 'H5', value: 'h5' },
-	{ label: 'H6', value: 'h6' },
-	{ label: 'P', value: 'p' },
-	{ label: 'Div', value: 'div' },
-	{ label: 'Span', value: 'span' },
+const TITLE_TAG_OPTIONS_RAW = [
+	{ label: t( 'H2' ), value: 'h2' },
+	{ label: t( 'H3' ), value: 'h3' },
+	{ label: t( 'H4' ), value: 'h4' },
+	{ label: t( 'H5' ), value: 'h5' },
+	{ label: t( 'H6' ), value: 'h6' },
+	{ label: t( 'P' ), value: 'p' },
+	{ label: t( 'Div' ), value: 'div' },
+	{ label: t( 'Span' ), value: 'span' },
 ];
+const TITLE_TAG_OPTIONS = translateOptions( TITLE_TAG_OPTIONS_RAW );
 
 const TAXONOMY_GRID_EDITOR_DATA = window?.kursagentenTaxonomyGridData || {};
-const REGION_OPTIONS = [
+const REGION_OPTIONS_RAW = [
 	{ label: 'Ingen region', value: '' },
 	...( Array.isArray( TAXONOMY_GRID_EDITOR_DATA.regionOptions ) ? TAXONOMY_GRID_EDITOR_DATA.regionOptions : [] ),
 ];
+const REGION_OPTIONS = translateOptions( REGION_OPTIONS_RAW );
 const REGIONS_ENABLED = !! TAXONOMY_GRID_EDITOR_DATA.useRegions;
 
-const FONT_WEIGHT_OPTIONS = [
-	{ label: 'Tynn', value: '100' },
-	{ label: 'Vanlig', value: '400' },
-	{ label: 'Halvfet', value: '600' },
-	{ label: 'Fet', value: '700' },
-	{ label: 'Ekstra fet', value: '800' },
+const FONT_WEIGHT_OPTIONS_RAW = [
+	{ label: t( 'Tynn' ), value: '100' },
+	{ label: t( 'Vanlig' ), value: '400' },
+	{ label: t( 'Halvfet' ), value: '600' },
+	{ label: t( 'Fet' ), value: '700' },
+	{ label: t( 'Ekstra fet' ), value: '800' },
 ];
+const FONT_WEIGHT_OPTIONS = translateOptions( FONT_WEIGHT_OPTIONS_RAW );
 
-const IMAGE_BORDER_STYLES = [
-	{ label: 'Solid', value: 'solid' },
-	{ label: 'Stiplet', value: 'dashed' },
-	{ label: 'Prikket', value: 'dotted' },
-	{ label: 'Dobbel', value: 'double' },
+const IMAGE_BORDER_STYLES_RAW = [
+	{ label: t( 'Solid' ), value: 'solid' },
+	{ label: t( 'Stiplet' ), value: 'dashed' },
+	{ label: t( 'Prikket' ), value: 'dotted' },
+	{ label: t( 'Dobbel' ), value: 'double' },
 ];
+const IMAGE_BORDER_STYLES = translateOptions( IMAGE_BORDER_STYLES_RAW );
 
 const COLORS = [
 	{ color: '#ffffff', name: 'Hvit' },
@@ -268,11 +301,12 @@ const DEFAULT_ATTRIBUTES = Object.fromEntries(
 
 const getPresetDefaults = ( presetKey ) => PRESETS.find( ( preset ) => preset.key === presetKey )?.defaults || {};
 
-const RESPONSIVE_TABS = [
+const RESPONSIVE_TABS_RAW = [
 	{ name: 'desktop', title: 'Desktop', className: 'k-device-tab-desktop' },
 	{ name: 'tablet', title: 'Nettbrett', className: 'k-device-tab-tablet' },
 	{ name: 'mobile', title: 'Mobil', className: 'k-device-tab-mobile' },
 ];
+const RESPONSIVE_TABS = translateOptions( RESPONSIVE_TABS_RAW );
 
 /**
  * Syncs the editor viewport to the selected device type when switching responsive tabs.
@@ -307,14 +341,15 @@ function syncEditorViewportToDevice( tabName ) {
 	}
 }
 
-const BORDER_STATE_TABS = [
+const BORDER_STATE_TABS_RAW = [
 	{ name: 'normal', title: 'Normal' },
 	{ name: 'hover', title: 'Hover' },
 ];
+const BORDER_STATE_TABS = translateOptions( BORDER_STATE_TABS_RAW );
 
 function PresetPicker( { attributes, onSelectPreset } ) {
 	return (
-		<BaseControl label="Velg stil">
+		<BaseControl label={ t( 'Velg stil' ) }>
 			<div className="k-editor-preset-grid">
 				{ PRESETS.map( ( preset ) => {
 					const isActive = attributes.stylePreset === preset.key;
@@ -387,19 +422,19 @@ function AlignmentButtons( { label, horizontalValue, verticalValue, onHorizontal
 					variant={ horizontalValue === 'left' ? 'primary' : 'secondary' }
 					onClick={ () => onHorizontalChange( 'left' ) }
 					icon={ <HorizontalAlignIcon type="left" /> }
-					label="Venstre"
+					label={ t( 'Venstre' ) }
 				/>
 				<Button
 					variant={ horizontalValue === 'center' ? 'primary' : 'secondary' }
 					onClick={ () => onHorizontalChange( 'center' ) }
 					icon={ <HorizontalAlignIcon type="center" /> }
-					label="Sentrert"
+					label={ t( 'Sentrert' ) }
 				/>
 				<Button
 					variant={ horizontalValue === 'right' ? 'primary' : 'secondary' }
 					onClick={ () => onHorizontalChange( 'right' ) }
 					icon={ <HorizontalAlignIcon type="right" /> }
-					label="Høyre"
+					label={ t( 'Høyre' ) }
 				/>
 			</ButtonGroup>
 			<ButtonGroup className="k-editor-align-group k-editor-align-group-vertical">
@@ -407,19 +442,19 @@ function AlignmentButtons( { label, horizontalValue, verticalValue, onHorizontal
 					variant={ verticalValue === 'top' ? 'primary' : 'secondary' }
 					onClick={ () => onVerticalChange( 'top' ) }
 					icon={ <VerticalAlignIcon type="top" /> }
-					label="Topp"
+					label={ t( 'Topp' ) }
 				/>
 				<Button
 					variant={ verticalValue === 'center' ? 'primary' : 'secondary' }
 					onClick={ () => onVerticalChange( 'center' ) }
 					icon={ <VerticalAlignIcon type="center" /> }
-					label="Sentrert"
+					label={ t( 'Sentrert' ) }
 				/>
 				<Button
 					variant={ verticalValue === 'bottom' ? 'primary' : 'secondary' }
 					onClick={ () => onVerticalChange( 'bottom' ) }
 					icon={ <VerticalAlignIcon type="bottom" /> }
-					label="Bunn"
+					label={ t( 'Bunn' ) }
 				/>
 			</ButtonGroup>
 		</BaseControl>
@@ -527,28 +562,28 @@ function RadiusCornerInput( { label, value, onChange, cornerClass } ) {
 
 function RadiusCornersControl( { values, onChange } ) {
 	return (
-		<BaseControl label="Kantlinjeradius">
+		<BaseControl label={ t( 'Kantlinjeradius' ) }>
 			<div className="k-radius-grid">
 				<RadiusCornerInput
-					label="TOPP"
+					label={ t( 'TOPP' ) }
 					value={ values.top }
 					onChange={ ( next ) => onChange( { ...values, top: next } ) }
 					cornerClass="k-corner-top-left"
 				/>
 				<RadiusCornerInput
-					label="HØYRE"
+					label={ t( 'HØYRE' ) }
 					value={ values.right }
 					onChange={ ( next ) => onChange( { ...values, right: next } ) }
 					cornerClass="k-corner-top-right"
 				/>
 				<RadiusCornerInput
-					label="BUNN"
+					label={ t( 'BUNN' ) }
 					value={ values.bottom }
 					onChange={ ( next ) => onChange( { ...values, bottom: next } ) }
 					cornerClass="k-corner-bottom-right"
 				/>
 				<RadiusCornerInput
-					label="VENSTRE"
+					label={ t( 'VENSTRE' ) }
 					value={ values.left }
 					onChange={ ( next ) => onChange( { ...values, left: next } ) }
 					cornerClass="k-corner-bottom-left"
@@ -578,7 +613,7 @@ function SpacingDiagram() {
 function BorderStylesControl( { attributes, setAttributes, colors } ) {
 	return (
 		<div className="k-border-styles-panel k-panel-border">
-			<h4 className="k-border-styles-title">Kantstil</h4>
+			<h4 className="k-border-styles-title">{ t( 'Kantstil' ) }</h4>
 			<TabPanel className="k-border-state-tabs k-responsive-tabs" tabs={ BORDER_STATE_TABS }>
 				{ ( tab ) => {
 					const isHover = tab.name === 'hover';
@@ -589,7 +624,7 @@ function BorderStylesControl( { attributes, setAttributes, colors } ) {
 					return (
 						<div className="k-border-state-content">
 							<TextControl
-								label="Rammetykkelse"
+								label={ t( 'Rammetykkelse' ) }
 								value={ widthValue }
 								onChange={ ( value ) =>
 									setAttributes(
@@ -600,7 +635,7 @@ function BorderStylesControl( { attributes, setAttributes, colors } ) {
 								}
 							/>
 							<SelectControl
-								label="Rammestil"
+								label={ t( 'Rammestil' ) }
 								value={ styleValue }
 								options={ IMAGE_BORDER_STYLES }
 								onChange={ ( value ) =>
@@ -612,7 +647,7 @@ function BorderStylesControl( { attributes, setAttributes, colors } ) {
 								}
 							/>
 							<ColorSettingRow
-								label="Rammefarge"
+								label={ t( 'Rammefarge' ) }
 								value={ colorValue || '' }
 								colors={ colors }
 								onChange={ ( value ) =>
@@ -633,10 +668,10 @@ function BorderStylesControl( { attributes, setAttributes, colors } ) {
 
 function ImageShapePresetPicker( { attributes, setAttributes } ) {
 	const presets = [
-		{ key: 'rounded', label: 'Avrundet', aspect: null, radius: '8px' },
-		{ key: 'rounded-large', label: 'Mer avrundet', aspect: null, radius: '20px' },
-		{ key: 'round', label: 'Rund', aspect: '1/1', radius: '100%' },
-		{ key: 'square', label: 'Firkantet', aspect: null, radius: '0px' },
+		{ key: 'rounded', label: t( 'Avrundet' ), aspect: null, radius: '8px' },
+		{ key: 'rounded-large', label: t( 'Mer avrundet' ), aspect: null, radius: '20px' },
+		{ key: 'round', label: t( 'Rund' ), aspect: '1/1', radius: '100%' },
+		{ key: 'square', label: t( 'Firkantet' ), aspect: null, radius: '0px' },
 	];
 
 	const currentRadiusSignature = `${ attributes.imageRadiusTop }|${ attributes.imageRadiusRight }|${ attributes.imageRadiusBottom }|${ attributes.imageRadiusLeft }`;
@@ -652,13 +687,13 @@ function ImageShapePresetPicker( { attributes, setAttributes } ) {
 	const showCustomControls = isCustomOpen || ! activePreset;
 	const label = (
 		<span className="k-option-label">
-			<span>Bildeformer</span>
+			<span>{ t( 'Bildeformer' ) }</span>
 			<button
 				type="button"
 				className="k-option-custom-link"
 				onClick={ () => setIsCustomOpen( ( previous ) => ! previous ) }
 			>
-				Egendefinert
+				{ t( 'Egendefinert' ) }
 			</button>
 		</span>
 	);
@@ -717,10 +752,10 @@ function ImageShapePresetPicker( { attributes, setAttributes } ) {
 
 function ImageSizePresetPicker( { attributes, setAttributes } ) {
 	const presets = [
-		{ key: 'small', label: 'Liten', value: '80px', previewClass: 'k-size-small' },
-		{ key: 'medium', label: 'Medium', value: '120px', previewClass: 'k-size-medium' },
-		{ key: 'large', label: 'Stor', value: '240px', previewClass: 'k-size-large' },
-		{ key: 'xlarge', label: 'Ekstra stor', value: '400px', previewClass: 'k-size-xlarge' },
+		{ key: 'small', label: t( 'Liten' ), value: '80px', previewClass: 'k-size-small' },
+		{ key: 'medium', label: t( 'Medium' ), value: '120px', previewClass: 'k-size-medium' },
+		{ key: 'large', label: t( 'Stor' ), value: '240px', previewClass: 'k-size-large' },
+		{ key: 'xlarge', label: t( 'Ekstra stor' ), value: '400px', previewClass: 'k-size-xlarge' },
 	];
 
 	const activePreset = presets.find( ( preset ) => preset.value === attributes.imageSize )?.key;
@@ -728,13 +763,13 @@ function ImageSizePresetPicker( { attributes, setAttributes } ) {
 	const showCustomInput = isCustomOpen || ! activePreset;
 	const label = (
 		<span className="k-option-label">
-			<span>Bildestørrelse</span>
+			<span>{ t( 'Bildestørrelse' ) }</span>
 			<button
 				type="button"
 				className="k-option-custom-link"
 				onClick={ () => setIsCustomOpen( ( previous ) => ! previous ) }
 			>
-				Egendefinert
+				{ t( 'Egendefinert' ) }
 			</button>
 		</span>
 	);
@@ -759,7 +794,7 @@ function ImageSizePresetPicker( { attributes, setAttributes } ) {
 			</div>
 			{ showCustomInput && (
 				<TextControl
-					label="Egendefinert størrelse (px)"
+					label={ t( 'Egendefinert størrelse (px)' ) }
 					value={ ( attributes.imageSize || '' ).replace( 'px', '' ) }
 					onChange={ ( value ) => {
 						const numericValue = value.replace( /[^0-9]/g, '' );
@@ -822,10 +857,10 @@ function TermChecklistDropdown( {
 	items,
 	selectedValues,
 	onToggleValue,
-	buttonLabel = 'Velg elementer',
-	clearLabel = 'Tøm',
+	buttonLabel = t( 'Velg elementer' ),
+	clearLabel = t( 'Tøm' ),
 	onClearSelection,
-	emptyText = 'Ingen tilgjengelige valg.',
+	emptyText = t( 'Ingen tilgjengelige valg.' ),
 } ) {
 	const selectedCount = Array.isArray( selectedValues ) ? selectedValues.length : 0;
 	return (
@@ -865,6 +900,8 @@ function TermChecklistDropdown( {
 
 registerBlockType( metadata.name, {
 	...metadata,
+	title: t( 'Kursagenten Taxonomi' ),
+	description: t( 'Vis kurskategorier, kurssteder eller instruktører med preset-stiler.' ),
 	icon: taxonomyGridBlockIcon,
 	edit( { attributes, setAttributes } ) {
 		const blockProps = useBlockProps();
@@ -923,10 +960,10 @@ registerBlockType( metadata.name, {
 			} ) )
 			.filter( ( item ) => item.value );
 		const categoryLocationFilterOptions = [
-			{ label: 'Alle steder', value: '' },
+			{ label: t( 'Alle steder' ), value: '' },
 			...locationChecklistItems.flatMap( ( item ) => [
-				{ label: `Vis kun ${ item.label }`, value: item.value },
-				{ label: `Skjul ${ item.label }`, value: `ikke-${ item.value }` },
+				{ label: tf( 'Vis kun %s', item.label ), value: item.value },
+				{ label: tf( 'Skjul %s', item.label ), value: `ikke-${ item.value }` },
 			] ),
 		];
 		const isBackgroundPreset = attributes.stylePreset === 'kort-bakgrunn' || attributes.stylePreset === 'kort-bakgrunnsfarge';
@@ -984,8 +1021,8 @@ registerBlockType( metadata.name, {
 			attributes: previewAttributes,
 		} );
 		const SETTINGS_TABS = [
-			{ name: 'general', title: 'Generelt' },
-			{ name: 'adjustments', title: 'Justeringer' },
+			{ name: 'general', title: t( 'Generelt' ) },
+			{ name: 'adjustments', title: t( 'Justeringer' ) },
 		];
 
 		useEffect( () => {
@@ -1152,9 +1189,7 @@ registerBlockType( metadata.name, {
 							type="button"
 							className="k-option-custom-link"
 							onClick={ () => setShowSourceInfoModal( true ) }
-						>
-							mer informasjon
-						</button>
+						>{ t( 'mer informasjon' ) }</button>
 					</div>
 					<TabPanel
 						key={ activeSettingsTab }
@@ -1167,9 +1202,9 @@ registerBlockType( metadata.name, {
 							<>
 								{ tab.name === 'general' && (
 									<>
-										<PanelBody title="Datakilde" initialOpen={ false }>
+										<PanelBody title={ t( 'Datakilde' ) } initialOpen={ false }>
 											<SelectControl
-												label="Kildetype"
+												label={ t( 'Kildetype' ) }
 												value={ attributes.sourceType }
 												options={ SOURCE_OPTIONS }
 												onChange={ ( value ) => setAttributes( { sourceType: value } ) }
@@ -1177,17 +1212,17 @@ registerBlockType( metadata.name, {
 											{ isCategorySource && (
 												<>
 													<SelectControl
-														label="Velg kategorinivå"
+														label={ t( 'Velg kategorinivå' ) }
 														value={ attributes.filterMode }
 														options={ FILTER_OPTIONS }
 														onChange={ ( value ) => setAttributes( { filterMode: value } ) }
 													/>
 													{ attributes.filterMode === 'standard' && (
 														<TermChecklistDropdown
-															label="Foreldrekategori (valgfritt)"
+															label={ t( 'Foreldrekategori (valgfritt)' ) }
 															items={ categoryParentItems }
 															selectedValues={ attributes.categoryParentSlugs || [] }
-															buttonLabel="Velg foreldrekategori"
+															buttonLabel={ t( 'Velg foreldrekategori' ) }
 															onToggleValue={ ( value ) => {
 																const selected = Array.isArray( attributes.categoryParentSlugs ) ? attributes.categoryParentSlugs : [];
 																const next = selected.includes( value )
@@ -1196,19 +1231,19 @@ registerBlockType( metadata.name, {
 																setAttributes( { categoryParentSlugs: next, categoryParentSlug: '' } );
 															} }
 															onClearSelection={ () => setAttributes( { categoryParentSlugs: [], categoryParentSlug: '' } ) }
-															emptyText="Fant ingen foreldrekategorier."
+															emptyText={ t( 'Fant ingen foreldrekategorier.' ) }
 														/>
 													) }
 													<SelectControl
-														label="Stedsfilter (st)"
-														help="Vis eller skjul kategorier knyttet til valgt sted."
+														label={ t( 'Stedsfilter (st)' ) }
+														help={ t( 'Vis eller skjul kategorier knyttet til valgt sted.' ) }
 														value={ attributes.categoryLocationFilter || '' }
 														options={ categoryLocationFilterOptions }
 														onChange={ ( value ) => setAttributes( { categoryLocationFilter: value } ) }
 													/>
 													{ attributes.showImage && (
 														<SelectControl
-															label="Velg bildetype"
+															label={ t( 'Velg bildetype' ) }
 															value={ attributes.categoryImageSource || 'main' }
 															options={ CATEGORY_IMAGE_SOURCE_OPTIONS }
 															onChange={ ( value ) => setAttributes( { categoryImageSource: value } ) }
@@ -1219,10 +1254,10 @@ registerBlockType( metadata.name, {
 											{ isLocationSource && (
 												<>
 													<SelectControl
-														label="Region"
+														label={ t( 'Region' ) }
 														help={ REGIONS_ENABLED
-															? "Velg region for filtrering. Kan kombineres med stedvalg ('x eller y'-logikk)."
-															: 'Region er deaktivert i Synkronisering → Regioner.'
+															? t( "Velg region for filtrering. Kan kombineres med stedvalg ('x eller y'-logikk)." )
+															: t( 'Region er deaktivert i Synkronisering → Regioner.' )
 														}
 														value={ attributes.region || '' }
 														options={ REGION_OPTIONS }
@@ -1230,10 +1265,10 @@ registerBlockType( metadata.name, {
 														disabled={ ! REGIONS_ENABLED }
 													/>
 													<TermChecklistDropdown
-														label="Vis kun følgende steder"
+														label={ t( 'Vis kun følgende steder' ) }
 														items={ locationChecklistItems }
 														selectedValues={ attributes.locationInclude || [] }
-														buttonLabel="Velg steder"
+														buttonLabel={ t( 'Velg steder' ) }
 														onToggleValue={ ( value ) => {
 															const selected = Array.isArray( attributes.locationInclude ) ? attributes.locationInclude : [];
 															const next = selected.includes( value )
@@ -1242,11 +1277,11 @@ registerBlockType( metadata.name, {
 															setAttributes( { locationInclude: next } );
 														} }
 														onClearSelection={ () => setAttributes( { locationInclude: [] } ) }
-														emptyText="Fant ingen kurssteder."
+														emptyText={ t( 'Fant ingen kurssteder.' ) }
 													/>
 													<ToggleControl
-														label="Vis stedinfo"
-														help="Stedsbeskrivelser fra feltet 'Sted' i Kursagenten."
+														label={ t( 'Vis stedinfo' ) }
+														help={ t( 'Stedsbeskrivelser fra feltet \'Sted\' i Kursagenten.' ) }
 														checked={ !! attributes.locationShowInfo }
 														onChange={ ( value ) => setAttributes( { locationShowInfo: value } ) }
 													/>
@@ -1255,31 +1290,31 @@ registerBlockType( metadata.name, {
 											{ isInstructorSource && (
 												<>
 													<SelectControl
-														label="Vis instruktørnavn som"
+														label={ t( 'Vis instruktørnavn som' ) }
 														value={ attributes.instructorNameMode }
 														options={ NAME_MODE_OPTIONS }
 														onChange={ ( value ) => setAttributes( { instructorNameMode: value } ) }
 													/>
 													{ attributes.showImage && (
 														<SelectControl
-															label="Velg bildetype"
+															label={ t( 'Velg bildetype' ) }
 															value={ attributes.instructorImageSource || 'standard' }
 															options={ INSTRUCTOR_IMAGE_SOURCE_OPTIONS }
 															onChange={ ( value ) => setAttributes( { instructorImageSource: value } ) }
 														/>
 													) }
 													<ToggleControl
-														label="Vis telefon"
+														label={ t( 'Vis telefon' ) }
 														checked={ !! attributes.showInstructorPhone }
 														onChange={ ( value ) => setAttributes( { showInstructorPhone: value } ) }
 													/>
 													<ToggleControl
-														label="Vis e-post"
+														label={ t( 'Vis e-post' ) }
 														checked={ !! attributes.showInstructorEmail }
 														onChange={ ( value ) => setAttributes( { showInstructorEmail: value } ) }
 													/>
 													<TermChecklistDropdown
-														label="Skjul instruktører"
+														label={ t( 'Skjul instruktører' ) }
 														items={ instructorChecklistItems }
 														selectedValues={ attributes.instructorExclude || [] }
 														onToggleValue={ ( value ) => {
@@ -1289,39 +1324,39 @@ registerBlockType( metadata.name, {
 																: [ ...selected, value ];
 															setAttributes( { instructorExclude: next } );
 														} }
-														emptyText="Fant ingen instruktører."
+														emptyText={ t( 'Fant ingen instruktører.' ) }
 													/>
 													<ToggleControl
-														label="Vis instruktører uten kurs"
-														help="Vis også manuelt opprettede instruktører uten publiserte kurs."
+														label={ t( 'Vis instruktører uten kurs' ) }
+														help={ t( 'Vis også manuelt opprettede instruktører uten publiserte kurs.' ) }
 														checked={ attributes.includeEmptyInstructors !== false }
 														onChange={ ( value ) => setAttributes( { includeEmptyInstructors: value } ) }
 													/>
 												</>
 											) }
 											<ToggleControl
-												label="Vis bilde"
+												label={ t( 'Vis bilde' ) }
 												checked={ attributes.showImage }
 												onChange={ ( value ) => setAttributes( { showImage: value } ) }
 											/>
 											<ToggleControl
-												label="Vis beskrivelse"
+												label={ t( 'Vis beskrivelse' ) }
 												checked={ attributes.showDescription }
 												onChange={ ( value ) => setAttributes( { showDescription: value } ) }
 											/>
 											{ isInstructorSource && attributes.showDescription && (
 												<ToggleControl
-													label="Vis lang beskrivelse"
+													label={ t( 'Vis lang beskrivelse' ) }
 													checked={ !! attributes.showLongDescription }
 													onChange={ ( value ) => setAttributes( { showLongDescription: value } ) }
 												/>
 											) }
 										</PanelBody>
 
-										<PanelBody title="Layout og stil" initialOpen={ true }>
+										<PanelBody title={ t( 'Layout og stil' ) } initialOpen={ true }>
 											<PresetPicker attributes={ attributes } onSelectPreset={ applyPreset } />
 											<ToggleControl
-												label="Bruk card-design"
+												label={ t( 'Bruk card-design' ) }
 												checked={ attributes.useCardDesign }
 												onChange={ ( value ) => {
 													if ( value && attributes.shadowPreset === 'none' ) {
@@ -1334,8 +1369,8 @@ registerBlockType( metadata.name, {
 											{ attributes.showDescription && !isRadExtendedPreset && (
 												<RangeControl
 													className="k-description-limit-control"
-													label="Maks ord i beskrivelse"
-													help="0 = ingen begrensning"
+													label={ t( 'Maks ord i beskrivelse' ) }
+													help={ t( '0 = ingen begrensning' ) }
 													value={ attributes.descriptionWordLimit }
 													onChange={ ( value ) => setAttributes( { descriptionWordLimit: value ?? 22 } ) }
 													min={ 0 }
@@ -1345,8 +1380,8 @@ registerBlockType( metadata.name, {
 											{ attributes.showLongDescription && (
 												<RangeControl
 													className="k-description-limit-control"
-													label="Maks ord i lang beskrivelse"
-													help="0 = ingen begrensning"
+													label={ t( 'Maks ord i lang beskrivelse' ) }
+													help={ t( '0 = ingen begrensning' ) }
 													value={ attributes.descriptionWordLimitExtended }
 													onChange={ ( value ) => setAttributes( { descriptionWordLimitExtended: value ?? 0 } ) }
 													min={ 0 }
@@ -1355,7 +1390,7 @@ registerBlockType( metadata.name, {
 											) }
 											{ attributes.useCardDesign && (
 												<SelectControl
-													label="Skygge/kantstil"
+													label={ t( 'Skygge/kantstil' ) }
 													value={ attributes.shadowPreset }
 													options={ SHADOW_OPTIONS }
 													onChange={ ( value ) => setAttributes( { shadowPreset: value } ) }
@@ -1388,18 +1423,18 @@ registerBlockType( metadata.name, {
 													{ showInlineBorderSettings && (
 														<div className="k-panel-border">
 															<TextControl
-																label="Rammetykkelse"
+																label={ t( 'Rammetykkelse' ) }
 																value={ attributes.cardBorderWidth }
 																onChange={ ( value ) => setAttributes( { cardBorderWidth: value } ) }
 															/>
 															<SelectControl
-																label="Rammestil"
+																label={ t( 'Rammestil' ) }
 																value={ attributes.cardBorderStyle }
 																options={ IMAGE_BORDER_STYLES }
 																onChange={ ( value ) => setAttributes( { cardBorderStyle: value } ) }
 															/>
 															<ColorSettingRow
-																label="Rammefarge"
+																label={ t( 'Rammefarge' ) }
 																value={ attributes.cardBorderColor || '' }
 																colors={ resolvedColors }
 																onChange={ ( value ) => setAttributes( { cardBorderColor: value || '' } ) }
@@ -1410,7 +1445,7 @@ registerBlockType( metadata.name, {
 											) }
 											{ showLayoutImageAspectControl && (
 												<SelectControl
-													label="Bildeformat"
+													label={ t( 'Bildeformat' ) }
 													value={ imageAspectControlValue }
 													options={ IMAGE_ASPECT_OPTIONS }
 													onChange={ ( value ) => {
@@ -1426,8 +1461,8 @@ registerBlockType( metadata.name, {
 											) }
 											{ showLayoutImageAspectControl && imageAspectControlValue === 'custom' && (
 												<TextControl
-													label="Egendefinert format"
-													help="Eks: 5/4, 7/5"
+													label={ t( 'Egendefinert format' ) }
+													help={ t( 'Eks: 5/4, 7/5' ) }
 													value={ attributes.imageAspect }
 													onChange={ ( value ) => setAttributes( { imageAspect: value } ) }
 												/>
@@ -1437,8 +1472,8 @@ registerBlockType( metadata.name, {
 											) }
 											{ attributes.showImage && (
 												<SelectControl
-													label="Bildekvalitet"
-													help="Automatisk bruker responsivt srcset når mulig for skarpere bilder."
+													label={ t( 'Bildekvalitet' ) }
+													help={ t( 'Automatisk bruker responsivt srcset når mulig for skarpere bilder.' ) }
 													value={ attributes.imageResolution || 'auto' }
 													options={ IMAGE_RESOLUTION_OPTIONS }
 													onChange={ ( value ) => setAttributes( { imageResolution: value } ) }
@@ -1449,11 +1484,11 @@ registerBlockType( metadata.name, {
 											) }
 											{ isBackgroundPreset && !isKortBakgrunnStyle && !isKortBakgrunnFargeStyle && (
 												<SelectControl
-													label="Bakgrunnskilde"
+													label={ t( 'Bakgrunnskilde' ) }
 													value={ attributes.backgroundMode }
 													options={ [
-														{ label: 'Bakgrunnsfarge', value: 'color' },
-														{ label: 'Taksonomibilde', value: 'taxonomyImage' },
+														{ label: t( 'Bakgrunnsfarge' ), value: 'color' },
+														{ label: t( 'Taksonomibilde' ), value: 'taxonomyImage' },
 													] }
 													onChange={ ( value ) => setAttributes( { backgroundMode: value } ) }
 												/>
@@ -1462,7 +1497,7 @@ registerBlockType( metadata.name, {
 												<>
 													{ isKortBakgrunnStyle && (
 														<RangeControl
-															label="Mørk overlay (%)"
+															label={ t( 'Mørk overlay (%)' ) }
 															value={ attributes.overlayStrength }
 															onChange={ ( value ) => setAttributes( { overlayStrength: value || 0 } ) }
 															min={ 0 }
@@ -1471,21 +1506,21 @@ registerBlockType( metadata.name, {
 													) }
 
 													{ isKortBakgrunnFargeStyle && (
-														<BaseControl label="Farger">
+														<BaseControl label={ t( 'Farger' ) }>
 															<ColorSettingRow
-																label="Tekst"
+																label={ t( 'Tekst' ) }
 																value={ attributes.textColor || '' }
 																onChange={ ( value ) => setAttributes( { textColor: value } ) }
 																colors={ resolvedColors }
 															/>
 															<ColorSettingRow
-																label="Bakgrunn"
+																label={ t( 'Bakgrunn' ) }
 																value={ attributes.cardBackgroundColor || '' }
 																onChange={ ( value ) => setAttributes( { cardBackgroundColor: value } ) }
 																colors={ resolvedColors }
 															/>
 													<ColorSettingRow
-														label="Bakgrunn hover"
+														label={ t( 'Bakgrunn hover' ) }
 														value={ attributes.cardBackgroundColorHover || '' }
 														onChange={ ( value ) => setAttributes( { cardBackgroundColorHover: value } ) }
 														colors={ resolvedColors }
@@ -1496,7 +1531,7 @@ registerBlockType( metadata.name, {
 											) }
 											{ showLayoutTextAlignControl && (
 												<AlignmentButtons
-													label="Element-justering"
+													label={ t( 'Element-justering' ) }
 													horizontalValue={ attributes.textAlignDesktop }
 													verticalValue={ attributes.verticalAlignDesktop }
 													onHorizontalChange={ ( value ) =>
@@ -1526,7 +1561,7 @@ registerBlockType( metadata.name, {
 															return (
 																<div className="k-responsive-tab-content">
 																	<RangeControl
-																		label="Kolonner"
+																		label={ t( 'Kolonner' ) }
 																		value={ fields.columns }
 																		onChange={ ( value ) => setDeviceColumns( innerTab.name, value ) }
 																		min={ 1 }
@@ -1544,9 +1579,9 @@ registerBlockType( metadata.name, {
 
 								{ tab.name === 'adjustments' && (
 									<>
-										<PanelBody title="Element-kort" initialOpen={ elementCardAutoOpen }>
+										<PanelBody title={ t( 'Element-kort' ) } initialOpen={ elementCardAutoOpen }>
 											<div className="k-text-align-panel k-panel-border">
-												<h4 className="k-text-align-title">Element-justering</h4>
+												<h4 className="k-text-align-title">{ t( 'Element-justering' ) }</h4>
 												<TabPanel className="k-text-align-tabs k-responsive-tabs" tabs={ RESPONSIVE_TABS } onSelect={ syncEditorViewportToDevice }>
 													{ ( innerTab ) => {
 														const horizontalValue =
@@ -1558,7 +1593,7 @@ registerBlockType( metadata.name, {
 
 														return (
 															<AlignmentButtons
-																label={ `Element-justering ${ innerTab.title.toLowerCase() }` }
+																label={ tf( 'Element-justering %s', innerTab.title.toLowerCase() ) }
 																horizontalValue={ horizontalValue }
 																verticalValue={ getDeviceVerticalAlign( innerTab.name ) }
 																onHorizontalChange={ ( next ) => setDeviceTextAlign( innerTab.name, next ) }
@@ -1568,47 +1603,47 @@ registerBlockType( metadata.name, {
 													} }
 												</TabPanel>
 											</div>
-											<BaseControl label="Farger">
+											<BaseControl label={ t( 'Farger' ) }>
 												<ColorSettingRow
-													label="Bakgrunn"
+													label={ t( 'Bakgrunn' ) }
 													value={ attributes.cardBackgroundColor || '' }
 													colors={ resolvedColors }
 													onChange={ ( value ) => setAttributes( { cardBackgroundColor: value || '' } ) }
 												/>
 												<ColorSettingRow
-													label="Bakgrunn hover"
+													label={ t( 'Bakgrunn hover' ) }
 													value={ attributes.cardBackgroundColorHover || '' }
 													colors={ resolvedColors }
 													onChange={ ( value ) => setAttributes( { cardBackgroundColorHover: value || '' } ) }
 												/>
 											</BaseControl>
 											<TextControl
-												label="Kantlinjeradius"
+												label={ t( 'Kantlinjeradius' ) }
 												value={ attributes.cardRadius }
 												onChange={ ( value ) => setAttributes( { cardRadius: value } ) }
 											/>
 											<div className="k-settings-divider" aria-hidden="true"></div>
-											<p className="k-settings-help-text"><strong>Ramme:</strong> Brukes når Skygge/kantstil = Ingen, men bruk ramme.</p>
+											<p className="k-settings-help-text"><strong>{ t( 'Ramme:' ) }</strong> { t( 'Brukes når Skygge/kantstil = Ingen, men bruk ramme.' ) }</p>
 											<TextControl
-												label="Rammetykkelse"
+												label={ t( 'Rammetykkelse' ) }
 												value={ attributes.cardBorderWidth }
 												onChange={ ( value ) => setAttributes( { cardBorderWidth: value } ) }
 											/>
 											<SelectControl
-												label="Rammestil"
+												label={ t( 'Rammestil' ) }
 												value={ attributes.cardBorderStyle }
 												options={ IMAGE_BORDER_STYLES }
 												onChange={ ( value ) => setAttributes( { cardBorderStyle: value } ) }
 											/>
 											<ColorSettingRow
-												label="Rammefarge"
+												label={ t( 'Rammefarge' ) }
 												value={ attributes.cardBorderColor || '' }
 												colors={ resolvedColors }
 												onChange={ ( value ) => setAttributes( { cardBorderColor: value || '' } ) }
 											/>
 										</PanelBody>
 
-										<PanelBody title="Kolonner" initialOpen={ false }>
+										<PanelBody title={ t( 'Kolonner' ) } initialOpen={ false }>
 											<TabPanel className="k-responsive-tabs" tabs={ RESPONSIVE_TABS } onSelect={ syncEditorViewportToDevice }>
 												{ ( innerTab ) => {
 													const fields = getDeviceFields( innerTab.name );
@@ -1617,7 +1652,7 @@ registerBlockType( metadata.name, {
 													return (
 														<div className="k-responsive-tab-content">
 															<RangeControl
-																label="Kolonner"
+																label={ t( 'Kolonner' ) }
 																value={ fields.columns }
 																onChange={ ( value ) => setDeviceColumns( innerTab.name, value ) }
 																min={ 1 }
@@ -1629,29 +1664,29 @@ registerBlockType( metadata.name, {
 											</TabPanel>
 										</PanelBody>
 
-										<PanelBody title="Spacing" initialOpen={ false }>
+										<PanelBody title={ t( 'Spacing' ) } initialOpen={ false }>
 											<TabPanel className="k-responsive-tabs" tabs={ RESPONSIVE_TABS } onSelect={ syncEditorViewportToDevice }>
 												{ ( innerTab ) => {
 													const fields = getSpacingFields( innerTab.name );
 													return (
 														<div className="k-responsive-tab-content">
 															<TextControl
-																label="Wrapper padding"
+																label={ t( 'Wrapper padding' ) }
 																value={ fields.wrapperPadding }
 																onChange={ ( value ) => setSpacingField( innerTab.name, 'wrapperPadding', value ) }
 															/>
 															<TextControl
-																label="Kort padding"
+																label={ t( 'Kort padding' ) }
 																value={ fields.cardPadding }
 																onChange={ ( value ) => setSpacingField( innerTab.name, 'cardPadding', value ) }
 															/>
 															<TextControl
-																label="Kort margin"
+																label={ t( 'Kort margin' ) }
 																value={ fields.cardMargin }
 																onChange={ ( value ) => setSpacingField( innerTab.name, 'cardMargin', value ) }
 															/>
 															<TextControl
-																label="Radavstand"
+																label={ t( 'Radavstand' ) }
 																value={ fields.rowGap }
 																onChange={ ( value ) => setSpacingField( innerTab.name, 'rowGap', value ) }
 															/>
@@ -1663,12 +1698,12 @@ registerBlockType( metadata.name, {
 										</PanelBody>
 
 										{ attributes.showImage && (
-											<PanelBody title="Bilde" initialOpen={ false }>
+											<PanelBody title={ t( 'Bilde' ) } initialOpen={ false }>
 												<ImageShapePresetPicker attributes={ attributes } setAttributes={ setAttributes } />
 												<BorderStylesControl attributes={ attributes } setAttributes={ setAttributes } colors={ resolvedColors } />
-												<BaseControl label="Bakgrunnsfarge bak bilde">
+												<BaseControl label={ t( 'Bakgrunnsfarge bak bilde' ) }>
 													<ColorSettingRow
-														label="Bakgrunn"
+														label={ t( 'Bakgrunn' ) }
 														value={ attributes.imageBackgroundColor || '' }
 														colors={ resolvedColors }
 														onChange={ ( value ) => setAttributes( { imageBackgroundColor: value || '' } ) }
@@ -1677,9 +1712,9 @@ registerBlockType( metadata.name, {
 											</PanelBody>
 										) }
 
-										<PanelBody title="Tekst" initialOpen={ false }>
+										<PanelBody title={ t( 'Tekst' ) } initialOpen={ false }>
 											<div className="k-text-align-panel k-panel-border">
-												<h4 className="k-text-align-title">Element-justering</h4>
+												<h4 className="k-text-align-title">{ t( 'Element-justering' ) }</h4>
 												<TabPanel className="k-text-align-tabs k-responsive-tabs" tabs={ RESPONSIVE_TABS } onSelect={ syncEditorViewportToDevice }>
 													{ ( innerTab ) => {
 														const horizontalValue =
@@ -1691,7 +1726,7 @@ registerBlockType( metadata.name, {
 
 														return (
 															<AlignmentButtons
-																label={ `Element-justering ${ innerTab.title.toLowerCase() }` }
+																label={ tf( 'Element-justering %s', innerTab.title.toLowerCase() ) }
 																horizontalValue={ horizontalValue }
 																verticalValue={ getDeviceVerticalAlign( innerTab.name ) }
 																onHorizontalChange={ ( next ) => setDeviceTextAlign( innerTab.name, next ) }
@@ -1701,10 +1736,10 @@ registerBlockType( metadata.name, {
 													} }
 												</TabPanel>
 											</div>
-											<p className="k-settings-help-text">Minste font (mobil) til største font (stor desktop). Gir en gradvis økning i fontstørrelse.</p>
+											<p className="k-settings-help-text">{ t( 'Minste font (mobil) til største font (stor desktop). Gir en gradvis økning i fontstørrelse.' ) }</p>
 											<FontSizeMinMaxControl
-												label="Tittel minst til størst (px)"
-												help="Fontstørrelse for tittel"
+												label={ t( 'Tittel minst til størst (px)' ) }
+												help={ t( 'Fontstørrelse for tittel' ) }
 												minValue={ attributes.fontMin ?? 15 }
 												maxValue={ attributes.fontMax ?? 20 }
 												minLimit={ 11 }
@@ -1714,8 +1749,8 @@ registerBlockType( metadata.name, {
 											/>
 											{ ( attributes.showDescription || attributes.stylePreset === 'rad-detalj' ) && (
 												<FontSizeMinMaxControl
-													label="Tekst minst til størst (px)"
-													help="Fontstørrelse for beskrivelse"
+													label={ t( 'Tekst minst til størst (px)' ) }
+													help={ t( 'Fontstørrelse for beskrivelse' ) }
 													minValue={ attributes.descriptionFontMin ?? 12 }
 													maxValue={ attributes.descriptionFontMax ?? 16 }
 													minLimit={ 10 }
@@ -1724,16 +1759,16 @@ registerBlockType( metadata.name, {
 													onMaxChange={ ( value ) => setAttributes( { descriptionFontMax: value || attributes.descriptionFontMin } ) }
 												/>
 											) }
-											<BaseControl label="Farge">
+											<BaseControl label={ t( 'Farge' ) }>
 												<ColorSettingRow
-													label="Tittel"
+													label={ t( 'Tittel' ) }
 													value={ attributes.titleColor || attributes.textColor || '' }
 													colors={ resolvedColors }
 													onChange={ ( value ) => setAttributes( { titleColor: value || '' } ) }
 												/>
 												{ ( attributes.showDescription || attributes.stylePreset === 'rad-detalj' ) && (
 													<ColorSettingRow
-														label="Tekst"
+														label={ t( 'Tekst' ) }
 														value={ attributes.descriptionColor || attributes.textColor || '' }
 														colors={ resolvedColors }
 														onChange={ ( value ) => setAttributes( { descriptionColor: value || '' } ) }
@@ -1741,20 +1776,20 @@ registerBlockType( metadata.name, {
 												) }
 											</BaseControl>
 											<FontWeightButtons
-												label="Fontvekt tittel"
+												label={ t( 'Fontvekt tittel' ) }
 												value={ attributes.fontWeightTitle || '600' }
 												onChange={ ( value ) => setAttributes( { fontWeightTitle: value } ) }
 											/>
 											{ ( attributes.showDescription || attributes.stylePreset === 'rad-detalj' ) && (
 												<FontWeightButtons
-													label="Fontvekt tekst"
+													label={ t( 'Fontvekt tekst' ) }
 													value={ attributes.fontWeightDescription || '400' }
 													onChange={ ( value ) => setAttributes( { fontWeightDescription: value } ) }
 												/>
 											) }
 											<SelectControl
-												label="Tittel-element"
-												help="Behold H3 som standard med mindre du har en tydelig semantisk grunn til å endre."
+												label={ t( 'Tittel-element' ) }
+												help={ t( 'Behold H3 som standard med mindre du har en tydelig semantisk grunn til å endre.' ) }
 												value={ attributes.titleTag }
 												options={ TITLE_TAG_OPTIONS }
 												onChange={ ( value ) => setAttributes( { titleTag: value } ) }
@@ -1767,80 +1802,67 @@ registerBlockType( metadata.name, {
 					</TabPanel>
 					{ showSourceInfoModal && (
 						<Modal
-							title="Mer informasjon om dataflyt fra Kursagenten"
+							title={ t( 'Mer informasjon om dataflyt fra Kursagenten' ) }
 							onRequestClose={ () => setShowSourceInfoModal( false ) }
 						>
 							<div className="k-source-info-modal-content">
 								<p>
-									Det meste av data skal styres fra Kursagenten. Det er enkelte deler vi ikke har
-									felter for, og for disse delene kan du berike kategori/sted/instruktør direkte
-									her på nettsiden via Admin → Kursagenten → Kurssteder/Instruktører/Kurssteder
+									{ t( 'Det meste av data skal styres fra Kursagenten. Det er enkelte deler vi ikke har felter for, og for disse delene kan du berike kategori/sted/instruktør direkte her på nettsiden via Admin → Kursagenten → Kurssteder/Instruktører/Kurssteder' ) }
 								</p>
 
-								<h2>Bilder</h2>
+								<h2>{ t( 'Bilder' ) }</h2>
 								<p>
-									God skikk for opplasting av bilder er å ha en maks størrelse på 500kb. I
-									overføring fra Kursagenten er det en maksgrense for overføring på 1MB.
-								</p>
-								<p><strong>Plassholderbilde</strong><br />
-									Det er mulig å legge inn plassholderbilder under Admin → Kursagenten → Kursdesign.
-								</p>
-
-								<h2>Enkeltkurs</h2>
-								<p><strong>Tekst</strong><br />
-									Tekst blir hentet fra introtekst og kursbeskrivelse i Kursagenten. Det er
-									mulig å legge inn egen tekst i tillegg her på websiden. Naviger til kurset
-									som innlogget admin, og klikk deretter på «Legg til ekstra Wordpress innhold»
-									mellom introtekst og kursbeskrivelse.
-								</p>
-								<p><strong>Bilde</strong><br />
-									I Kursagenten kan det legges inn bilder på hvert enkelt kurs. Om ikke bilde
-									har blitt lastet opp, kan det brukes et plassholderbilde.
-								</p>
-
-								<h2>Kurskategorier</h2>
-								<p><strong>Tekst</strong><br />
-									Kategorinavnet blir hentet fra taggene i Kursagenten. Disse kan du strukturere
-									i ønsket hierarki her på nettsiden, i maks to nivåer. Hvis du ønsker å endre
-									kategorinavnet, bør du endre taggen i Kursagenten. Merk: en ny kurskategori blir
-									opprettet, men den gamle blir ikke slettet. Overfør eventuell tekst og bilder til den nye kategorien.
+									{ t( 'God skikk for opplasting av bilder er å ha en maks størrelse på 500kb. I overføring fra Kursagenten er det en maksgrense for overføring på 1MB.' ) }
 								</p>
 								<p>
-									<strong>Kategoritekst</strong>: her har vi ingen felter i Kursagenten, og alt må legges
-									inn på nettsiden. Du har mulighet til å legge inn både Kort beskrivelse og Lang
-									beskrivelse. Dette dukker opp på de enkelte kurskategori-sidene på nettsiden.
-								</p>
-								<p><strong>Bilde</strong><br />
-									Du kan laste opp bilder for hver kategori. Det er også mulig å laste opp et
-									«profilbilde». Dette kan brukes i blokker/kortkoder, som et alternativ til hovedbildet.
-									Har det ikke blitt lastet opp et kategoribilde, vil den prøve å bruke et bilde fra et
-									tilknyttet kurs. Om dette ikke finnes, vil den bruke plassholderbilde.
+									<strong>{ t( 'Plassholderbilde' ) }</strong><br />
+									{ t( 'Det er mulig å legge inn plassholderbilder under Admin → Kursagenten → Kursdesign.' ) }
 								</p>
 
-								<h2>Instruktører</h2>
-								<p><strong>Tekst</strong><br />
-									Navn, telefonnummer og epost blir overført fra Kursagenten. Dette kan overstyres
-									på nettsiden om ønskelig.
-								</p>
-								<p><strong>Bilde</strong><br />
-									Bilde hentes fra instruktørprofil i Kursagenten. Dette bildet kan overstyres her inne på
-									nettsiden. Det er også mulig å bruke et alternativt bilde om du ønsker en annen stil/annet
-									bilde enn det som er brukt i Kursagenten.
-								</p>
-
-								<h2>Kurssteder</h2>
-								<p><strong>Tekst</strong><br />
-									Stedsnavn hentes fra Kursagenten. Det er mulig å endre stedsnavnet. For at dette
-									skal bli korrekt i alle titler og url-er, bør dette gjøres under Admin → Kursagenten → Synkronisering.
-									Endre navn, og hent deretter alle kurs på nytt. Da vil alle forekomster av stedsnavn blir vist korrekt.
+								<h2>{ t( 'Enkeltkurs' ) }</h2>
+								<p>
+									<strong>{ t( 'Tekst' ) }</strong><br />
+									{ t( 'Tekst blir hentet fra introtekst og kursbeskrivelse i Kursagenten. Det er mulig å legge inn egen tekst i tillegg her på websiden. Naviger til kurset som innlogget admin, og klikk deretter på «Legg til ekstra Wordpress innhold» mellom introtekst og kursbeskrivelse.' ) }
 								</p>
 								<p>
-									<strong>Stedstekst</strong>: her har vi ingen felter i Kursagenten, og alt må legges inn
-									på nettsiden. Du har mulighet til å legge inn både Kort beskrivelse og Lang beskrivelse.
-									Dette dukker opp på de enkelte kurssted-sidene på nettsiden.
+									<strong>{ t( 'Bilde' ) }</strong><br />
+									{ t( 'I Kursagenten kan det legges inn bilder på hvert enkelt kurs. Om ikke bilde har blitt lastet opp, kan det brukes et plassholderbilde.' ) }
 								</p>
-								<p><strong>Bilde</strong><br />
-									Om du velger å vise bilde, vil det først bli sett etter hovedbilde fra kurssted. Hvis det ikke blir funnet, brukes plassholderbilde.
+
+								<h2>{ t( 'Kurskategorier' ) }</h2>
+								<p>
+									<strong>{ t( 'Tekst' ) }</strong><br />
+									{ t( 'Kategorinavnet blir hentet fra taggene i Kursagenten. Disse kan du strukturere i ønsket hierarki her på nettsiden, i maks to nivåer. Hvis du ønsker å endre kategorinavnet, bør du endre taggen i Kursagenten. Merk: en ny kurskategori blir opprettet, men den gamle blir ikke slettet. Overfør eventuell tekst og bilder til den nye kategorien.' ) }
+								</p>
+								<p>
+									{ t( 'Kategoritekst: her har vi ingen felter i Kursagenten, og alt må legges inn på nettsiden. Du har mulighet til å legge inn både Kort beskrivelse og Lang beskrivelse. Dette dukker opp på de enkelte kurskategori-sidene på nettsiden.' ) }
+								</p>
+								<p>
+									<strong>{ t( 'Bilde' ) }</strong><br />
+									{ t( 'Du kan laste opp bilder for hver kategori. Det er også mulig å laste opp et «profilbilde». Dette kan brukes i blokker/kortkoder, som et alternativ til hovedbildet. Har det ikke blitt lastet opp et kategoribilde, vil den prøve å bruke et bilde fra et tilknyttet kurs. Om dette ikke finnes, vil den bruke plassholderbilde.' ) }
+								</p>
+
+								<h2>{ t( 'Instruktører' ) }</h2>
+								<p>
+									<strong>{ t( 'Tekst' ) }</strong><br />
+									{ t( 'Navn, telefonnummer og epost blir overført fra Kursagenten. Dette kan overstyres på nettsiden om ønskelig.' ) }
+								</p>
+								<p>
+									<strong>{ t( 'Bilde' ) }</strong><br />
+									{ t( 'Bilde hentes fra instruktørprofil i Kursagenten. Dette bildet kan overstyres her inne på nettsiden. Det er også mulig å bruke et alternativt bilde om du ønsker en annen stil/annet bilde enn det som er brukt i Kursagenten.' ) }
+								</p>
+
+								<h2>{ t( 'Kurssteder' ) }</h2>
+								<p>
+									<strong>{ t( 'Tekst' ) }</strong><br />
+									{ t( 'Stedsnavn hentes fra Kursagenten. Det er mulig å endre stedsnavnet. For at dette skal bli korrekt i alle titler og url-er, bør dette gjøres under Admin → Kursagenten → Synkronisering. Endre navn, og hent deretter alle kurs på nytt. Da vil alle forekomster av stedsnavn blir vist korrekt.' ) }
+								</p>
+								<p>
+									{ t( 'Stedstekst: her har vi ingen felter i Kursagenten, og alt må legges inn på nettsiden. Du har mulighet til å legge inn både Kort beskrivelse og Lang beskrivelse. Dette dukker opp på de enkelte kurssted-sidene på nettsiden.' ) }
+								</p>
+								<p>
+									<strong>{ t( 'Bilde' ) }</strong><br />
+									{ t( 'Om du velger å vise bilde, vil det først bli sett etter hovedbilde fra kurssted. Hvis det ikke blir funnet, brukes plassholderbilde.' ) }
 								</p>
 							</div>
 						</Modal>
@@ -1861,8 +1883,8 @@ registerBlockType( metadata.name, {
 
 registerBlockVariation( metadata.name, {
 	name: 'kurskategorier',
-	title: 'Kurskategorier',
-	description: 'Vis kurskategorier med preset-stiler',
+	title: t( 'Kurskategorier' ),
+	description: t( 'Vis kurskategorier med preset-stiler' ),
 	attributes: {
 		sourceType: 'category',
 		stylePreset: 'stablet-standard',
@@ -1873,8 +1895,8 @@ registerBlockVariation( metadata.name, {
 
 registerBlockVariation( metadata.name, {
 	name: 'kurssteder',
-	title: 'Kurssteder',
-	description: 'Vis kurssteder med preset-stiler',
+	title: t( 'Kurssteder' ),
+	description: t( 'Vis kurssteder med preset-stiler' ),
 	attributes: {
 		sourceType: 'location',
 		stylePreset: 'stablet-kort-overlapp',
@@ -1884,8 +1906,8 @@ registerBlockVariation( metadata.name, {
 
 registerBlockVariation( metadata.name, {
 	name: 'instruktorer',
-	title: 'Instruktører',
-	description: 'Vis instruktører med preset-stiler',
+	title: t( 'Instruktører' ),
+	description: t( 'Vis instruktører med preset-stiler' ),
 	attributes: {
 		sourceType: 'instructor',
 		stylePreset: 'stablet-kort-overlapp',
@@ -1898,8 +1920,8 @@ registerBlockVariation( metadata.name, {
 
 registerBlockVariation( metadata.name, {
 	name: 'preset-stiler',
-	title: 'Preset-stiler',
-	description: 'Start direkte med visuelle stilvalg',
+	title: t( 'Preset-stiler' ),
+	description: t( 'Start direkte med visuelle stilvalg' ),
 	attributes: {
 		sourceType: 'category',
 		stylePreset: 'kort-bakgrunn',

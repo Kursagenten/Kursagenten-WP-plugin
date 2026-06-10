@@ -40,8 +40,8 @@ function kursagenten_register_admin_menu() {
 
     // Registrer hovedmenyen først
     add_menu_page(
-        'Kursagenten',                         // Page title
-        'Kursagenten',                         // Menu title
+        __('Kursagenten', 'kursagenten'),      // Page title
+        __('Kursagenten', 'kursagenten'),      // Menu title
         'manage_options',                      // Capability
         'kursagenten',                         // Menu slug
         'kursagenten_admin_landing_page',      // Callback function
@@ -52,8 +52,8 @@ function kursagenten_register_admin_menu() {
     // Legg til hovedsiden som submeny også for å unngå at første submeny blir standard
     add_submenu_page(
         'kursagenten',                         // Parent slug
-        'Oversikt',                           // Page title
-        'Oversikt',                           // Menu title
+        __('Oversikt', 'kursagenten'),         // Page title
+        __('Oversikt', 'kursagenten'),         // Menu title
         'manage_options',                      // Capability
         'kursagenten',                         // Menu slug (samme som parent)
         'kursagenten_admin_landing_page'       // Callback function
@@ -70,7 +70,7 @@ function kursagenten_admin_landing_page() {
     if (empty($current_key)) {
         ?>
         <div class="wrap options-form ka-wrap" id="toppen" style="max-width: 720px; margin: 0 auto; margin-top: 10vh;">
-            <h1>Velkommen til Kursagenten</h1>
+            <h1><?php esc_html_e('Velkommen til Kursagenten', 'kursagenten'); ?></h1>
             <div style="padding:12px; margin-top:12px; background:#fff3cd; border-left:4px solid #dba617; border-radius:4px; color:#533f03;">
                 <p style="margin:0;"><?php echo esc_html__('Du må legge inn lisensnøkkel før du kan bruke innstillingene.', 'kursagenten'); ?></p>
             </div>
@@ -106,71 +106,70 @@ function kursagenten_admin_landing_page() {
     <div class="wrap options-form ka-wrap" id="toppen">
         <form method="post" action="options.php">
             <?php kursagenten_sticky_admin_menu(); ?>
-            <h1>Velkommen til Kursagenten</h1>
+            <h1><?php esc_html_e('Velkommen til Kursagenten', 'kursagenten'); ?></h1>
             
 
                 
             <div id="kom-igang" class="options-card">
-                <h3>Kom i gang</h3>
+                <h3><?php esc_html_e('Kom i gang', 'kursagenten'); ?></h3>
                     <div class="ka-grid ka-grid-3">
                         <div class="kort">
-                            <h4 class="welcome-panel-title">Hent kursene</h4>
-                            <p>Legg inn innstillinger for å automatisk hente kurs fra Kursagenten. Når du har lagt inn innstillinger, kan du klikke på "Hent alle kurs fra Kursagenten" så blir alt hentet ved første gangs installering.</p>
+                            <h4 class="welcome-panel-title"><?php esc_html_e('Hent kursene', 'kursagenten'); ?></h4>
+                            <p><?php esc_html_e('Legg inn innstillinger for å automatisk hente kurs fra Kursagenten. Når du har lagt inn innstillinger, kan du klikke på "Hent alle kurs fra Kursagenten" så blir alt hentet ved første gangs installering.', 'kursagenten'); ?></p>
                             <ul>
-                                <li><a href="admin.php?page=kursinnstillinger"><strong>Synkronisering</strong></a></li>
+                                <li><a href="admin.php?page=kursinnstillinger"><strong><?php esc_html_e('Synkronisering', 'kursagenten'); ?></strong></a></li>
                             </ul>
                         </div>
                         
                         <div class="kort">
-                            <h4 class="welcome-panel-title">Legg inn bedriftsinformasjon</h4>
-                            <p>Her kan du skrive inn informasjon som vil bli brukt ulike steder på nettsiden. Dette inkluderer navn på hovedkontakt (personvernerklæring), samt firmanavn og adresse (kontaktside og bunnfelt).</p>
+                            <h4 class="welcome-panel-title"><?php esc_html_e('Legg inn bedriftsinformasjon', 'kursagenten'); ?></h4>
+                            <p><?php esc_html_e('Her kan du skrive inn informasjon som vil bli brukt ulike steder på nettsiden. Dette inkluderer navn på hovedkontakt (personvernerklæring), samt firmanavn og adresse (kontaktside og bunnfelt).', 'kursagenten'); ?></p>
                             <ul>
-                                <li><a href="admin.php?page=bedriftsinformasjon"><strong>Bedriftsinformasjon</strong></a></li>
+                                <li><a href="admin.php?page=bedriftsinformasjon"><strong><?php esc_html_e('Bedriftsinformasjon', 'kursagenten'); ?></strong></a></li>
                             </ul>
                         </div>
                         
                         <div class="kort">
-                            <h4 class="welcome-panel-title">Velg sider og design</h4>
-                            <p>Opprett eller velg nødvendige sider for kurs, kurskategorier, kurssteder og instruktører. Velg design på kursliste, enkeltkurs, kategorier, steder og instruktører. Velg hovedfarger.</p>
+                            <h4 class="welcome-panel-title"><?php esc_html_e('Velg sider og design', 'kursagenten'); ?></h4>
+                            <p><?php esc_html_e('Opprett eller velg nødvendige sider for kurs, kurskategorier, kurssteder og instruktører. Velg design på kursliste, enkeltkurs, kategorier, steder og instruktører. Velg hovedfarger.', 'kursagenten'); ?></p>
                             <ul>
-                                <li><a href="admin.php?page=design"><strong>Designvalg</strong></a></li>
+                                <li><a href="admin.php?page=design"><strong><?php esc_html_e('Designvalg', 'kursagenten'); ?></strong></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <div id="berike-innhold" class="options-card">
-                    <h3>Berik innholdet ditt</h3>
+                    <h3><?php esc_html_e('Berik innholdet ditt', 'kursagenten'); ?></h3>
                     <div class="ka-grid ka-grid-2">
                         <div class="kort">
-                            <h4 class="welcome-panel-title">Kurskategorier, kurssteder og instruktører</h4>
-                            <p>Kursene dine blir automatisk overført fra Kursagenten sammen med kurskategorier, kurssteder og instruktører. Men for å gi nettsiden din et profesjonelt uttrykk, kan du berike disse med bilder og tekst direkte på nettsiden.</p>
+                            <h4 class="welcome-panel-title"><?php esc_html_e('Kurskategorier, kurssteder og instruktører', 'kursagenten'); ?></h4>
+                            <p><?php esc_html_e('Kursene dine blir automatisk overført fra Kursagenten sammen med kurskategorier, kurssteder og instruktører. Men for å gi nettsiden din et profesjonelt uttrykk, kan du berike disse med bilder og tekst direkte på nettsiden.', 'kursagenten'); ?></p>
                             <ul>
-                                <li><a href="edit-tags.php?taxonomy=ka_coursecategory&post_type=ka_course"><strong>Kurskategorier</strong></a> – Legg til bilder, beskrivelser og organiser i hovedkategorier</li>
-                                <li><a href="edit-tags.php?taxonomy=ka_course_location&post_type=ka_course"><strong>Kurssteder</strong></a> – Legg til bilder og stedsbeskrivelser</li>
-                                <li><a href="edit-tags.php?taxonomy=ka_instructors&post_type=ka_course"><strong>Instruktører</strong></a> – Legg til profilbilder og utvidet informasjon</li>
+                                <li><a href="edit-tags.php?taxonomy=ka_coursecategory&post_type=ka_course"><strong><?php esc_html_e('Kurskategorier', 'kursagenten'); ?></strong></a> – <?php esc_html_e('Legg til bilder, beskrivelser og organiser i hovedkategorier', 'kursagenten'); ?></li>
+                                <li><a href="edit-tags.php?taxonomy=ka_course_location&post_type=ka_course"><strong><?php esc_html_e('Kurssteder', 'kursagenten'); ?></strong></a> – <?php esc_html_e('Legg til bilder og stedsbeskrivelser', 'kursagenten'); ?></li>
+                                <li><a href="edit-tags.php?taxonomy=ka_instructors&post_type=ka_course"><strong><?php esc_html_e('Instruktører', 'kursagenten'); ?></strong></a> – <?php esc_html_e('Legg til profilbilder og utvidet informasjon', 'kursagenten'); ?></li>
                             </ul>
-                            <p><em>Tips: Hvis du har mange kurskategorier, kan du velge ut noen som hovedkategorier eller opprette egne. Dette gjør kategoriene mer oversiktlige for besøkende.</em></p>
+                            <p><em><?php esc_html_e('Tips: Hvis du har mange kurskategorier, kan du velge ut noen som hovedkategorier eller opprette egne. Dette gjør kategoriene mer oversiktlige for besøkende.', 'kursagenten'); ?></em></p>
                         </div>
                         
                         <div class="kort">
-                            <h4 class="welcome-panel-title">Om kursredigering</h4>
-                            <p><strong>Viktig:</strong> Kursene skal i hovedsak <strong>ikke redigeres på nettsiden</strong> – all redigering bør gjøres i Kursagenten. Dette sikrer at informasjonen er oppdatert og riktig synkronisert.</p>
-                            <p>Når du besøker et kurs på frontend, finner du et redigeringsikon som tar deg direkte til kursredigering i Kursagenten. Dette gjør det enkelt å oppdatere kursinformasjon uten å gå veien om nettsiden.</p>
+                            <h4 class="welcome-panel-title"><?php esc_html_e('Om kursredigering', 'kursagenten'); ?></h4>
+                            <p><?php echo wp_kses_post(__('Viktig: Kursene skal i hovedsak <strong>ikke redigeres på nettsiden</strong> – all redigering bør gjøres i Kursagenten. Dette sikrer at informasjonen er oppdatert og riktig synkronisert.', 'kursagenten')); ?></p>
+                            <p><?php esc_html_e('Når du besøker et kurs på frontend, finner du et redigeringsikon som tar deg direkte til kursredigering i Kursagenten. Dette gjør det enkelt å oppdatere kursinformasjon uten å gå veien om nettsiden.', 'kursagenten'); ?></p>
                             <ul>
-                                <li><a href="edit.php?post_type=ka_course"><strong>Alle kurs</strong></a> – Se oversikt over alle importerte kurs</li>
+                                <li><a href="edit.php?post_type=ka_course"><strong><?php esc_html_e('Alle kurs', 'kursagenten'); ?></strong></a> – <?php esc_html_e('Se oversikt over alle importerte kurs', 'kursagenten'); ?></li>
                             </ul>
-                            <p><em>Unntak: Du kan legge til ekstra innhold mellom "Introtekst" og "Innhold" på enkeltkurs hvis du ønsker å berike kursene med nettstedsspesifikk informasjon.</em></p>
+                            <p><em><?php esc_html_e('Unntak: Du kan legge til ekstra innhold mellom "Introtekst" og "Innhold" på enkeltkurs hvis du ønsker å berike kursene med nettstedsspesifikk informasjon.', 'kursagenten'); ?></em></p>
                         </div>
                     </div>
                 </div>
 
                 <div id="meld-feil" class="options-card">
-                <h3>Meld feil og forbedringer</h3>
+                <h3><?php esc_html_e('Meld feil og forbedringer', 'kursagenten'); ?></h3>
                         <div class="kort">
-                            <p>Har du funnet feil eller har du forbedringsforslag? Vi hører gjerne fra deg. Vi jobber for å gjøre Kursagenten bedre for deg.<br>
-                                Send en epost rett til inboksen i Trello:</p>
-                            <p><a href="mailto:tonebhagen+p3gzydq7w8klqykuvdjs@app.trello.com?subject=WP%20Plugin%20tilbakemelding"><strong>Send til Trello</strong></a></p>
+                            <p><?php echo wp_kses_post(__('Har du funnet feil eller har du forbedringsforslag? Vi hører gjerne fra deg. Vi jobber for å gjøre Kursagenten bedre for deg.<br>Send en epost rett til inboksen i Trello:', 'kursagenten')); ?></p>
+                            <p><a href="mailto:tonebhagen+p3gzydq7w8klqykuvdjs@app.trello.com?subject=WP%20Plugin%20tilbakemelding"><strong><?php esc_html_e('Send til Trello', 'kursagenten'); ?></strong></a></p>
                         </div>
                     
                 </div>

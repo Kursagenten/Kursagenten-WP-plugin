@@ -108,7 +108,7 @@ do_action('ka_taxonomy_header_before', $term);
                 </div>
                 <?php wp_reset_postdata(); ?>
             <?php else: ?>
-                <p>Ingen kurs tilgjengelige.</p>
+                <p><?php esc_html_e('Ingen kurs tilgjengelige.', 'kursagenten'); ?></p>
             <?php endif; ?>
         </div>
     </section>

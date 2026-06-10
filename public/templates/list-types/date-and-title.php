@@ -48,6 +48,8 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     $main_courses = get_posts([
         'post_type' => 'ka_course',
         'posts_per_page' => 1,
+        // Bypass Polylang language filtering for API-synced courses.
+        'lang' => '',
         'meta_query' => [
             'relation' => 'AND',
             [
@@ -115,7 +117,9 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
     $course_link_context_course_id = (int) $course_id;
 
     // Sett opp link til kurset - finn lokasjonsundersiden basert på valgt kursdato
-    $course_link = $course_id ? get_permalink($course_id) : '#'; // Fallback til hovedkurset
+    $course_link = $course_id
+        ? (function_exists('kursagenten_get_localized_permalink') ? kursagenten_get_localized_permalink((int) $course_id) : get_permalink($course_id))
+        : '#'; // Fallback til hovedkurset
     
     // Hvis vi har en valgt kursdato, prøv å finne lokasjonsundersiden
     if (!empty($selected_coursedate_data['id'])) {
@@ -128,6 +132,8 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
             $sub_course = get_posts([
                 'post_type' => 'ka_course',
                 'posts_per_page' => 1,
+                // Bypass Polylang language filtering for API-synced courses.
+                'lang' => '',
                 'meta_query' => [
                     'relation' => 'AND',
                     [
@@ -150,7 +156,9 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
             
             // Bruk lokasjonsundersiden hvis den finnes, ellers fallback til hovedkurset
             if (!empty($sub_course)) {
-                $course_link = get_permalink($sub_course[0]->ID);
+                $course_link = function_exists('kursagenten_get_localized_permalink')
+                    ? kursagenten_get_localized_permalink((int) $sub_course[0]->ID)
+                    : get_permalink($sub_course[0]->ID);
                 $course_link_context_course_id = (int) $sub_course[0]->ID;
             }
         }
@@ -197,7 +205,10 @@ if ($view_type === 'main_courses' && !$force_standard_view) {
         $course_link_context_course_id = (int) ($related_course_info['id'] ?? 0);
     } else {
         // Hvis ingen relatert kursinfo, bruk fallback-data
-        $course_link = false;
+        $course_link = ka_get_course_permalink_for_coursedate((int) get_the_ID());
+        if ($course_link === '') {
+            $course_link = '#';
+        }
     }
 }
 
@@ -253,12 +264,12 @@ if ($list_date_text === '') {
                                 <i class="ka-icon icon-calendar"></i>
                                 <span>
                                     <?php if ($view_type === 'main_courses' && !$force_standard_view) : ?>
-                                        <strong>Neste kurs: </strong>
+                                        <strong><?php echo esc_html__( 'Neste kurs:', 'kursagenten' ); ?> </strong>
                                     <?php endif; ?>
                                     <?php echo esc_html($list_date_text); ?>
                                     <?php if ($view_type === 'main_courses' && !$force_standard_view && count($related_coursedate_ids) > 1) : ?>
                                         <a href="#" class="show-ka-modal" data-course-id="<?php echo esc_attr($course_id); ?>" style="margin-left: 8px; font-size: 0.9em;">
-                                            (+<?php echo count($related_coursedate_ids) - 1; ?> flere)
+                                            (<?php echo esc_html( sprintf( /* translators: %d: number of additional course dates */ __( '+%d flere', 'kursagenten' ), count( $related_coursedate_ids ) - 1 ) ); ?>)
                                         </a>
                                     <?php endif; ?>
                                 </span>
@@ -286,7 +297,7 @@ if ($list_date_text === '') {
         <div class="compact-course-actions">
             <?php if (!empty($signup_url)) : ?>
                 <button class="compact-btn compact-btn-primary pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
-                    <?php echo esc_html($button_text ?: 'Påmelding'); ?>
+                    <?php echo esc_html( kursagenten_get_course_button_label( (string) $button_text, $show_registration ) ); ?>
                 </button>
             <?php endif; ?>
             
@@ -301,10 +312,10 @@ if ($list_date_text === '') {
     <div class="ka-modal-content">
         <div class="ka-modal-header">
             <h3><?php echo esc_html($course_title); ?></h3>
-            <button class="ka-modal-close" aria-label="Lukk">&times;</button>
+            <button class="ka-modal-close" aria-label="<?php echo esc_attr__( 'Lukk', 'kursagenten' ); ?>">&times;</button>
         </div>
         <div class="ka-modal-body">
-            <h4>Alle tilgjengelige kurssteder og datoer</h4>
+            <h4><?php echo esc_html__( 'Alle tilgjengelige kurssteder og datoer', 'kursagenten' ); ?></h4>
             <?php
             // Hent main_course_id for å finne alle kursdatoer
             $main_course_id = get_post_meta($course_id, 'ka_main_course_id', true);
@@ -383,7 +394,7 @@ if ($list_date_text === '') {
                     </div>
                 <?php endforeach;
             else : ?>
-                <p>Ingen kursdatoer tilgjengelig for øyeblikket.</p>
+                <p><?php echo esc_html__( 'Ingen kursdatoer tilgjengelig for øyeblikket.', 'kursagenten' ); ?></p>
             <?php endif; ?>
         </div>
     </div>

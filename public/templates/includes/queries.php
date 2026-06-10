@@ -229,6 +229,61 @@ if (!function_exists('ka_resolve_course_list_links')) {
     }
 }
 
+if (!function_exists('ka_get_course_permalink_for_coursedate')) {
+    /**
+     * Resolve a public ka_course URL for a ka_coursedate list item.
+     */
+    function ka_get_course_permalink_for_coursedate(int $coursedate_id): string {
+        $coursedate_id = (int) $coursedate_id;
+        if ($coursedate_id <= 0) {
+            return '';
+        }
+
+        $location_id    = get_post_meta($coursedate_id, 'ka_location_id', true);
+        $main_course_id = get_post_meta($coursedate_id, 'ka_main_course_id', true);
+
+        $info = get_course_info_by_location($location_id, $main_course_id);
+        if (is_array($info) && !empty($info['id'])) {
+            return function_exists('kursagenten_get_localized_permalink')
+                ? kursagenten_get_localized_permalink((int) $info['id'])
+                : (string) ($info['permalink'] ?? '');
+        }
+
+        if ($main_course_id === '' || $main_course_id === null) {
+            return '';
+        }
+
+        $parent_courses = get_posts([
+            'post_type'      => 'ka_course',
+            'posts_per_page' => 1,
+            'fields'         => 'ids',
+            // Bypass Polylang language filtering for API-synced courses.
+            'lang'           => '',
+            'meta_query'     => [
+                'relation' => 'AND',
+                [
+                    'key'     => 'ka_main_course_id',
+                    'value'   => $main_course_id,
+                    'compare' => '=',
+                ],
+                [
+                    'key'     => 'ka_is_parent_course',
+                    'value'   => 'yes',
+                    'compare' => '=',
+                ],
+            ],
+        ]);
+
+        if (empty($parent_courses)) {
+            return '';
+        }
+
+        return function_exists('kursagenten_get_localized_permalink')
+            ? kursagenten_get_localized_permalink((int) $parent_courses[0])
+            : (string) get_permalink((int) $parent_courses[0]);
+    }
+}
+
 if (!function_exists('ka_get_course_list_course_link')) {
     /**
      * Resolve course card URL for list views.
@@ -329,7 +384,9 @@ function get_selected_coursedate_data($related_coursedate) {
                 'after_price' => get_post_meta($selected_coursedate, 'ka_course_text_after_price', true),
                 'duration' => get_post_meta($selected_coursedate, 'ka_course_duration', true),
                 'time' => get_post_meta($selected_coursedate, 'ka_course_time', true),
-                'language' => get_post_meta($selected_coursedate, 'ka_course_language', true),
+                'language' => function_exists('kursagenten_translate_meta_value')
+                    ? kursagenten_translate_meta_value('ka_course_language', (string) get_post_meta($selected_coursedate, 'ka_course_language', true))
+                    : get_post_meta($selected_coursedate, 'ka_course_language', true),
                 'button_text' => get_post_meta($selected_coursedate, 'ka_course_button_text', true),
                 'signup_url' => ka_get_coursedate_signup_url($selected_coursedate),
                 'coursedatemissing' => $coursedatemissing,
@@ -420,6 +477,7 @@ function get_all_sorted_coursedates($related_coursedate) {
                 'duration' => get_post_meta($coursedate_id, 'ka_course_duration', true),
                 'time' => get_post_meta($coursedate_id, 'ka_course_time', true),
                 'button_text' => get_post_meta($coursedate_id, 'ka_course_button_text', true),
+                'show_registration' => get_post_meta($coursedate_id, 'ka_course_showRegistrationForm', true),
                 'signup_url' => ka_get_coursedate_signup_url($coursedate_id),
                 'missing_first_date' => empty($course_first_date),
                 'course_isFull' => $is_full, // Normalized boolean value
@@ -428,7 +486,9 @@ function get_all_sorted_coursedates($related_coursedate) {
                 'address_number' => get_post_meta($coursedate_id, 'ka_course_address_street_number', true),
                 'postal_code' => get_post_meta($coursedate_id, 'ka_course_address_zipcode', true),
                 'city' => get_post_meta($coursedate_id, 'ka_course_address_place', true),
-                'language' => get_post_meta($coursedate_id, 'ka_course_language', true),
+                'language' => function_exists('kursagenten_translate_meta_value')
+                    ? kursagenten_translate_meta_value('ka_course_language', (string) get_post_meta($coursedate_id, 'ka_course_language', true))
+                    : get_post_meta($coursedate_id, 'ka_course_language', true),
                 'course_location_room' => get_post_meta($coursedate_id, 'ka_course_location_room', true),
                 'day_schedules_count' => (int) get_post_meta($coursedate_id, 'ka_course_day_schedules_count', true),
             ];
@@ -1042,6 +1102,9 @@ function get_course_info_by_location($related_course_id, $main_course_id = null)
     $sub_course_args = [
         'post_type'      => 'ka_course',
         'posts_per_page' => 1,
+        // Bypass Polylang language filtering: API-synced courses may have no
+        // language assigned, so resolve links across all languages.
+        'lang'           => '',
         'meta_query'     => [
             'relation' => 'AND',
             [
@@ -1081,7 +1144,9 @@ function get_course_info_by_location($related_course_id, $main_course_id = null)
         $course_info = [
             'id'         => $course_id,
             'title'      => get_the_title($course_id),
-            'permalink'  => get_permalink($course_id),
+            'permalink'  => function_exists('kursagenten_get_localized_permalink')
+                ? kursagenten_get_localized_permalink((int) $course_id)
+                : get_permalink($course_id),
             'thumbnail'  => get_the_post_thumbnail_url($course_id, 'thumbnail') ?: $placeholder_image,
             'thumbnail-medium'  => get_the_post_thumbnail_url($course_id, 'medium') ?: $placeholder_image,
             'thumbnail-full'  => get_the_post_thumbnail_url($course_id, 'full') ?: $placeholder_image,
@@ -1098,6 +1163,8 @@ function get_course_info_by_location($related_course_id, $main_course_id = null)
     $main_course_args = [
         'post_type'      => 'ka_course',
         'posts_per_page' => 1,
+        // Bypass Polylang language filtering (see comment above).
+        'lang'           => '',
         'meta_query'     => [
             'relation' => 'AND',
             [
@@ -1128,7 +1195,9 @@ function get_course_info_by_location($related_course_id, $main_course_id = null)
         $course_info = [
             'id'         => $course_id,
             'title'      => get_the_title($course_id),
-            'permalink'  => get_permalink($course_id),
+            'permalink'  => function_exists('kursagenten_get_localized_permalink')
+                ? kursagenten_get_localized_permalink((int) $course_id)
+                : get_permalink($course_id),
             'thumbnail'  => get_the_post_thumbnail_url($course_id, 'thumbnail') ?: $placeholder_image,
             'thumbnail-medium'  => get_the_post_thumbnail_url($course_id, 'medium') ?: $placeholder_image,
             'thumbnail-full'  => get_the_post_thumbnail_url($course_id, 'full') ?: $placeholder_image,

@@ -1,0 +1,4103 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Kursagenten 1.1.24\n"
+"Report-Msgid-Bugs-To: https://kursagenten.no\n"
+"POT-Creation-Date: 2026-06-10 05:46:03+0000\n"
+"PO-Revision-Date: 2026-06-10 00:00+0000\n"
+"Last-Translator: Kursagenten Team\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: scripts/merge-locale.js\n"
+"X-Domain: kursagenten\n"
+
+msgid " - side %d av %d"
+msgstr " - Seite %d von %d"
+
+msgid "-- Velg side --"
+msgstr "-- Seite auswählen --"
+
+msgid "– Brukes for feilsøking og oversikt"
+msgstr "– Wird für Fehlerbehebung und Übersicht verwendet"
+
+msgid "– side %1$d av %2$d"
+msgstr "– Seite %1$d von %2$d"
+
+msgid "\"Slug\" er den SEO-vennlige versjonen av url-en. Eksempel /kari-norman"
+msgstr "„Slug“ ist die SEO-freundliche Version der URL. Beispiel /kari-norman"
+
+msgid "\"Slug\" er den SEO-vennlige versjonen av url-en. Eksempel /mitt-kurs"
+msgstr "„Slug“ ist die SEO-freundliche Version der URL. Beispiel /my-course"
+
+msgid "\"Slug\" er den SEO-vennlige versjonen av url-en. Eksempel /oslo"
+msgstr "„Slug“ ist die SEO-freundliche Version der URL. Beispiel /oslo"
+
+msgid "(100-1000px)"
+msgstr "(100-1000px)"
+
+msgid "* Merk: Denne delen er fortsatt under utvikling."
+msgstr "* Hinweis: Dieser Abschnitt befindet sich noch in der Entwicklung."
+
+msgid "%1$d %2$s valgt"
+msgstr "%1$d %2$s ausgewählt"
+
+msgid "%1$s har samme slug som %2$s \"%3$s\""
+msgstr "%1$s hat denselben Slug wie %2$s „%3$s“"
+
+msgid "%d %s valgt"
+msgstr "%d %s ausgewählt"
+
+msgid "← Tilbake til instruktører"
+msgstr "← Zurück zu Dozenten"
+
+msgid "← Tilbake til kurskategorier"
+msgstr "← Zurück zu Kurskategorien"
+
+msgid "← Tilbake til kurssteder"
+msgstr "← Zurück zu Kursorten"
+
+msgid "+%d flere"
+msgstr "+%d mehr"
+
+msgid "<a href=\"admin.php?page=design\">Kursdesign</a> – Opprett ønskede sider for kurs, kategorier, steder og instruktører via \"Wordpress sider\". Kortkoder legges inn automatisk."
+msgstr "<a href=\"admin.php?Seite=Design\">KursDesign</a> – Erstellen the Seiten you need for Kurse, Kategorien, Standorte and Dozenten via \"WordPress-Seiten\". Shortcodes are inserted automatischally."
+
+msgid "<em>Skjul kategorien og alle tilhørende kurs</em> – både kategorien og alle kurs som er tagget med kategorien skjules helt fra kurslisten. Nyttig for interne kategorier som ikke skal være synlige for besøkende."
+msgstr "<em>Ausblenden the Kategorie and all related Kurse</em> – both the Kategorie and all Kurse tagged with the Kategorie are completely hidden from the Kurs list. Useful for internal Kategorien that should not be visible to visitors."
+
+msgid "<em>Skjul kun kategorien fra filter</em> – kategorien skjules fra filtervalgene, men kurs som er tagget med kategorien vises fortsatt i kurslisten under sine andre kategorier. Nyttig for «brede» tagger som ikke gir mening som filter (f.eks. «Foredrag», «HMS og sikkerhetskurs»)."
+msgstr "<em>Ausblenden only the Kategorie from filter</em> – the Kategorie is hidden from filtern options, but Kurse tagged with the Kategorie still appear in the Kurs list under their other Kategorien. Useful for \"broad\" tags that do not make sense as Filter (e.g. \"Lectures\", \"HMS and safety Kurse\")."
+
+msgid "<em>Vis</em> – kategorien vises i filteret og kursene vises i listen (standard)."
+msgstr "<em>Show</em> – the Kategorie appears in the filtern and Kurse appear in the list (Standard)."
+
+msgid "<p><strong>Bruk Kursagenten instruktørprofil i stedet:</strong></p><ol><li>Slett denne instruktøren</li><li>Lagre et kurs i Kursagenten hvor instruktøren er lagt inn</li></ol>"
+msgstr "<p><strong>Verwenden Sie the Kursagenten Dozent profile instead:</strong></p><ol><li>Löschen this Dozent</li><li>Speichern a Kurs in Kursagenten where the Dozent is added</li></ol>"
+
+msgid "<p><strong>Gå tilbake til Kursagenten-data:</strong></p><ol><li>Deaktiver \"Overstyr profil fra Kursagenten\" knappen</li><li>Oppdater instruktørprofilen i Kursagenten</li><li>Profilen oppdateres her. Merk: instruktøren må være knyttet til et kurs for at dataene skal bli hentet over.</li></ol><p>- Bruker du data fra Kursagenten, slipper du å holde dem oppdatert to steder.<br>- En instruktør som er opprettet i Kursagenten med det samme navnet, vil automatisk bli slått sammen med denne instruktøren.</p>"
+msgstr "<p><strong>Return to Kursagenten data:</strong></p><ol><li>Deaktivieren Sie the \"Profil von Kursagenten überschreiben\" button</li><li>Aktualisieren the Dozent profile in Kursagenten</li><li>The profile is updated here. Hinweis: the Dozent must be linked to a Kurs for the data to be fetched.</li></ol><p>- If you verwenden Sie data from Kursagenten, Sie haben nicht need to keep it updated in two places.<br>- An Dozent created in Kursagenten with the same name will automatischally be merged with this Dozent.</p>"
+
+msgid "<strong>Advarsel:</strong> Navn og slug på kurssteder kan ikke endres her. Du kan endre navnet under <a href=\"%s\">Synkronisering</a>."
+msgstr "<strong>Warnung:</strong> Name and slug for Kurs Standorte cannot be changed here. Sie können change the name under <a href=\"%s\">Synchronisation</a>."
+
+msgid "<strong>Alternativt bilde:</strong> Et ekstra bilde som kan brukes på instruktørsiden."
+msgstr "<strong>Alternatives Bild:</strong> An extra Bild that can be used on the Dozent Seite."
+
+msgid "<strong>Antall per side:</strong> Velg antall kurs som skal vises per side."
+msgstr "<strong>Number per Seite:</strong> Wählen Sie how many Kurse to display per Seite."
+
+msgid "<strong>Automatisk opprettelse:</strong> Gå til <a href=\"admin.php?page=design#section-systemsider\">Kursdesign → Wordpress sider</a> og klikk på \"Opprett side\" for hver side du trenger. Kortkoden legges inn automatisk."
+msgstr "<strong>Automatisch creation:</strong> Gehen Sie zu <a href=\"admin.php?Seite=Design#section-systemsider\">KursDesign → WordPress-Seiten</a> and klicken Sie \"Erstellen Seite\" for each Seite you need. The shortcode is inserted automatischally."
+
+msgid "<strong>Automatisk opprydding:</strong> Det kjøres også en automatisk nattlig opprydding klokken 03:00 hver natt, så det er ikke alltid nødvendig å kjøre opprydding manuelt. Bruk manuell opprydding hvis du har mange utløpte kursdatoer som vises på nettsiden og ønsker å rydde opp umiddelbart."
+msgstr "<strong>Automatisch cleanup:</strong> An automatisch nightly cleanup also runs at 03:00 every night, so manuell cleanup is not always necessary. Verwenden Sie manuell cleanup if Sie haben many expired Kurs dates showing on the website and want to clean up immediately."
+
+msgid "<strong>Automatisk synkronisering via webhooks:</strong> Når webhooks er konfigurert, oppdateres kursene automatisk når de endres i Kursagenten. Dette er den anbefalte metoden for løpende oppdateringer."
+msgstr "<strong>Automatisch Synchronisation via webhooks:</strong> When webhooks are configured, Kurse are updated automatischally when they change in Kursagenten. This is the empfohlen method for ongoing updates."
+
+msgid "<strong>Automatisk:</strong> Steder blir automatisk tilordnet til regioner basert på fylke når regioner er aktivert."
+msgstr "<strong>Automatisch:</strong> Standorte are automatischally assigned to regions based on county when regions are enabled."
+
+msgid "<strong>Avkrysning før synkronisering:</strong> Når du klikker på \"Hent alle kurs fra Kursagenten\", kan du kryss av for \"Rydd opp i kurs etter synkronisering\". Dette kjører opprydding automatisk etter at synkroniseringen er fullført. <strong>NB:</strong> Opprydding tar 3-5 minutter ekstra."
+msgstr "<strong>Checkbox before Synchronisation:</strong> Wenn Sie klicken Sie \"Fetch all Kurse from Kursagenten\", Sie können aktivieren Sie \"Kurse nach der Synchronisation bereinigen\". This runs cleanup automatischally after Synchronisation is complete. <strong>Hinweis:</strong> Cleanup takes an extra 3–5 minutes."
+
+msgid "<strong>Bilde:</strong> Et bilde som vises på stedssiden og i lister."
+msgstr "<strong>Bild:</strong> An Bild displayed on the Standort Seite and in lists."
+
+msgid "<strong>Bilde:</strong> Last opp et hovedbilde som vises på taksonomisiden og i lister."
+msgstr "<strong>Bild:</strong> Upload a main Bild displayed on the taxonomy Seite and in lists."
+
+msgid "<strong>Bilder:</strong> Bruk plassholder-bilder via kortkodene om du mangler bilder."
+msgstr "<strong>Bilder:</strong> Verwenden Sie placeholder Bilder via shortcodes if you are missing Bilder."
+
+msgid "<strong>Bredde:</strong> Velg om du vil bruke temaets standardbredde eller full bredde. Stort sett vil standardbredde fungerer som tiltenkt."
+msgstr "<strong>Width:</strong> Wählen Sie whether to verwenden Sie the theme's Standard width or full width. In most cases, Standard width works as intended."
+
+msgid "<strong>Bruk i kortkoder:</strong> Du kan filtrere kurssteder basert på region i kortkoden <code class=\"copytext\">[kurssteder]</code>:"
+msgstr "<strong>Verwenden Sie in shortcodes:</strong> Sie können filtern Kurs Standorte by region in the <code class=\"copytext\">[kurssteder]</code> shortcode:"
+
+msgid "<strong>Bygg ditt eget design</strong> er aktivt. Du kan fortsatt styre kursdata-visning under."
+msgstr "<strong>Build your own Design</strong> is active. Sie können still control Kurs data display below."
+
+msgid "<strong>Bygg ditt eget design</strong> er aktivt. Kursagenten bruker WordPress sitt malhierarki, slik at tema/page builder kan styre oppsett."
+msgstr "<strong>Build your own Design</strong> is active. Kursagenten uses the WordPress template hierarchy so your theme/Seite builder can control the layout."
+
+msgid "<strong>Byggeblokker kommer:</strong> vi planlegger moduler for blant annet kursliste med kurssteder/lenker og informasjon om kommende kurs."
+msgstr "<strong>Blocks coming soon:</strong> we are planning modules for Kurs lists with Kurs Standorte/links and information about upcoming Kurse."
+
+msgid "<strong>Cache:</strong> Tøm cache hvis du ikke ser endringer umiddelbart."
+msgstr "<strong>Cache:</strong> Clear cache if Sie haben nicht see changes immediately."
+
+msgid "<strong>Designendringer:</strong> Hvis designendringer ikke vises, kan det være nødvendig å tømme cache og oppdatere permalenker."
+msgstr "<strong>Design changes:</strong> If Design changes do not appear, you may need to clear cache and aktualisieren permalinks."
+
+msgid "<strong>E-post:</strong> Instruktørens e-postadresse."
+msgstr "<strong>Email:</strong> The Dozent's email address."
+
+msgid "<strong>Egen opprydding:</strong> Du kan også kjøre opprydding separat ved å klikke på knappen \"Rydd opp i kurs\" på <a href=\"admin.php?page=kursinnstillinger\">Synkronisering</a>-siden. Dette er nyttig hvis du bare ønsker å rydde opp uten å synkronisere alle kursene på nytt."
+msgstr "<strong>Separate cleanup:</strong> Sie können also run cleanup separately by clicking the \"Kurse bereinigen\" button on the <a href=\"admin.php?Seite=kursinnstillinger\">Synchronisation</a> Seite. This is useful if you only want to clean up without re-synchronizing all Kurse."
+
+msgid "<strong>Eget innhold over/under:</strong> Du kan legge inn vanlig innhold i editoren over og under kortkoden for å skrive en introduksjon, legge til bilder eller annen informasjon."
+msgstr "<strong>Benutzerdefiniert content above/below:</strong> Sie können hinzufügen regular content in the editor above and below the shortcode to write an introduction, hinzufügen Bilder or other information."
+
+msgid "<strong>Ekstra felter:</strong> Spesifikke felter avhengig av taksonomitypen (se nedenfor)."
+msgstr "<strong>Felder adicionales:</strong> Felder específicos según el tipo de Taxonomie (véase abajo)."
+
+msgid "<strong>Enkel - kun tittel og kort beskrivelse:</strong> Tittel og kort beskrivelse, deretter kursliste. Egnet når du ikke har bilder eller utvidet beskrivelse."
+msgstr "<strong>Simple – title and short Beschreibung only:</strong> Title and short Beschreibung, then Kurs list. Suitable when Sie haben nicht have Bilder or extended Beschreibung."
+
+msgid "<strong>Enkle kort:</strong> Hvite kort med overskrift og tekst. Viser neste tilgjengelige dato for kursene. Mulig å velge antall kolonner for desktop, tablet og mobil."
+msgstr "<strong>Simple cards:</strong> White cards with heading and text. Shows the next verfügbar date for Kurse. Sie können wählen Sie the number of columns for desktop, tablet and mobile."
+
+msgid "<strong>Felles designmal:</strong> Alle taksonomier bruker samme designmal."
+msgstr "<strong>Shared Design template:</strong> All taxonomies verwenden Sie the same Design template."
+
+msgid "<strong>Grid:</strong> Et rutenett med kurskort i flere kolonner. Mulig å velge antall kolonner for desktop, tablet og mobil."
+msgstr "<strong>Grid:</strong> A grid of Kurs cards in multiple columns. Sie können wählen Sie the number of columns for desktop, tablet and mobile."
+
+msgid "<strong>Hovedbilde:</strong> Et bilde som vises på kategorisiden og i lister."
+msgstr "<strong>Hauptbild:</strong> An Bild displayed on the Kategorie Seite and in lists."
+
+msgid "<strong>Hva er kortkoder?</strong> Kortkoder er små koder du plasserer i innhold (sider/innlegg) for å vise dynamiske lister og komponenter fra pluginen."
+msgstr "<strong>What are shortcodes?</strong> Shortcodes are small codes you place in content (Seiten/posts) to display dynamic lists and components from the plugin."
+
+msgid "<strong>Hvor brukes de?</strong> Vanligvis på egne sider eller innlegg (f.eks. «Kurs», «Kurskategorier», «Kurssteder», «Instruktører»). Du kan også bruke dem i menyen eller widgets."
+msgstr "<strong>Where are they used?</strong> Usually on dedicated Seiten or posts (e.g. \"Kurse\", \"Kurskategorien\", \"Kursorte\", \"Dozenten\"). Sie können also verwenden Sie them in menus or widgets."
+
+msgid "<strong>Ikon:</strong> Et alternativt bilde som kan brukes i stedet for hovedbilde i lister. Her er det fint å laste opp png-ikoner (bruk <code>kilde=ikon</code> i kortkoden)."
+msgstr "<strong>Icon:</strong> An alternative Bild that can be used instead of the main Bild in lists. PNG icons work well here (verwenden Sie <code>kilde=ikon</code> in the shortcode)."
+
+msgid "<strong>Instruktører</strong> – Inneholder <code class=\"copytext\">[instruktorer]</code> for å vise alle instruktører."
+msgstr "<strong>Dozenten</strong> – Contains <code class=\"copytext\">[instruktorer]</code> to display all Dozenten."
+
+msgid "<strong>Kompakt:</strong> En mer kompakt listevisning med mindre mellomrom. Uten bakgrunn, og med færre kurselementer"
+msgstr "<strong>Compact:</strong> A more compact list view with less spacing. No background, and fewer Kurs elements."
+
+msgid "<strong>Kort beskrivelse:</strong> En kort tekst som kan vises i lister og oversikter. Vises ofte direkte under overskriften."
+msgstr "<strong>Kurzbeschreibung:</strong> A short text that can be displayed in lists and Übersichts. Often shown directly below the heading."
+
+msgid "<strong>Kort beskrivelse:</strong> En kort tekst som kan vises i lister."
+msgstr "<strong>Kurzbeschreibung:</strong> A short text that can be displayed in lists."
+
+msgid "<strong>Kort beskrivelse:</strong> En kort tekst som kan vises i lister. Vises ofte direkte under overskriften."
+msgstr "<strong>Kurzbeschreibung:</strong> Ein kurzer Text, der in Listen angezeigt werden kann. Wird oft direkt unter der Überschrift angezeigt."
+
+msgid "<strong>Kurs</strong> – Inneholder <code class=\"copytext\">[kursliste]</code> for å vise alle kurs med filtre."
+msgstr "<strong>Kurse</strong> – Contains <code class=\"copytext\">[kursliste]</code> to display all Kurse with Filter."
+
+msgid "<strong>Kurskategorier</strong> – Inneholder <code class=\"copytext\">[kurskategorier]</code> for å vise alle kategorier."
+msgstr "<strong>Kurskategorien</strong> – Contains <code class=\"copytext\">[kurskategorier]</code> to display all Kategorien."
+
+msgid "<strong>Kursliste (kun for kurskategorier):</strong> Tre alternativer styrer hvordan kategorien påvirker kurslisten:"
+msgstr "<strong>Kursliste (Kurs Kategorien only):</strong> Three options control how the Kategorie affects the Kurs list:"
+
+msgid "<strong>Kursliste med filter </strong><span class=\"smal\"><span class=\"copytext\">[kursliste]</span></span><br><span class=\"copytext small\">[kursliste kategori=\"web\" sted=\"oslo\" måned=\"9\" språk=\"norsk\" list_type=\"grid\" filter=\"topp\" knapper=\"signup_link\" bilder=\"yes\" vis=\"-sluttdato\" st=sted/st=ikke-sted klasse=\"min-klasse\"]</span>"
+msgstr "<strong>Kursliste with filtern </strong><span class=\"smal\"><span class=\"copytext\">[kursliste]</span></span><br><span class=\"copytext small\">[kursliste kategori=\"web\" sted=\"oslo\" måned=\"9\" språk=\"norsk\" list_type=\"grid\" filter=\"topp\" knapper=\"signup_link\" bilder=\"yes\" vis=\"-sluttdato\" st=sted/st=ikke-sted klasse=\"min-klasse\"]</span>"
+
+msgid "<strong>Kurssteder opprettes automatisk</strong> når du synkroniserer kurs fra Kursagenten. Du kan ikke legge til kurssteder manuelt her."
+msgstr "<strong>Kursorte are created automatischally</strong> wenn Sie synchronize Kurse from Kursagenten. You cannot hinzufügen Kurs Standorte manuellly here."
+
+msgid "<strong>Kurssteder</strong> – Inneholder <code class=\"copytext\">[kurssteder]</code> for å vise alle kurssteder."
+msgstr "<strong>Kursorte</strong> – Contains <code class=\"copytext\">[kurssteder]</code> to display all Kurs Standorte."
+
+msgid "<strong>Layout og struktur:</strong> Hvor elementene plasseres på siden (header, innhold, sidekolonne, footer)."
+msgstr "<strong>Layout and structure:</strong> Where elements are placed on the Seite (header, content, sidebar, footer)."
+
+msgid "<strong>Layout:</strong> Velg designet på siden. Dette styrer hvor/hvordan tittel, tekst, hovedbilde og kursliste vises."
+msgstr "<strong>Layout:</strong> Wählen Sie the Seite Design. This controls where/how title, text, main Bild and Kurs list are displayed."
+
+msgid "<strong>Layout</strong> bestemmer oppsettet av elementer på siden (header, kolonner, hooks).</br><strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, ren, kompakt, dato og tittel). </br><strong>Visningstype</strong> bestemmer om du vil vise hovedkurs eller alle kursdatoer."
+msgstr "<strong>Layout</strong> determines the arrangement of elements on the Seite (header, columns, hooks).</br><strong>List Design</strong> determines how Kurse are displayed in the list (Standard, grid, plain, compact, date and title). </br><strong>Display type</strong> determines whether to anzeigen main Kurse or all Kurs dates."
+
+msgid "<strong>Liste med instruktører </strong><span class=\"smal\"><span class=\"copytext\">[instruktorer]</span></span><br><span class=\"copytext small\" style=\"color:#666\">[instruktorer layout=\"stablet/rad/liste\" grid=3 gridtablet=2 gridmobil=1 radavstand=\"1rem\" stil=\"standard/kort\" bildestr=\"100px\" bildeform=\"avrundet/rund/firkantet/10px\" bildeformat=\"4/3\" overskrift=\"h3\" fontmin=\"13px\" fontmaks=\"15px\" avstand=\"2em .5em\" skygge=\"ja\" skjul=\"Iris,Anna\" utdrag=\"ja\" beskrivelse=\"ja\" klasse=\"min-klasse\"]</span>"
+msgstr "<strong>Dozent list </strong><span class=\"smal\"><span class=\"copytext\">[instruktorer]</span></span><br><span class=\"copytext small\" style=\"color:#666\">[instruktorer layout=\"stablet/rad/liste\" grid=3 gridtablet=2 gridmobil=1 radavstand=\"1rem\" stil=\"Standard/kort\" bildestr=\"100px\" bildeform=\"avrundet/rund/firkantet/10px\" bildeformat=\"4/3\" overskrift=\"h3\" fontmin=\"13px\" fontmaks=\"15px\" avstand=\"2em .5em\" skygge=\"ja\" skjul=\"Iris,Anna\" utdrag=\"ja\" beskrivelse=\"ja\" klasse=\"min-klasse\"]</span>"
+
+msgid "<strong>Liste med kurskategorier </strong><span class=\"smal\"><span class=\"copytext\">[kurskategorier]</span></span><br><span class=\"copytext small\" style=\"color:#666\">[kurskategorier kilde=\"bilde/ikon\" layout=\"stablet/rad/liste\" grid=3 gridtablet=2 gridmobil=1  radavstand=\"1rem\" stil=\"standard/kort\" bildestr=\"100px\" bildeform=\"avrundet/rund/firkantet/10px\" bildeformat=\"4/3\" overskrift=\"h3\" fontmin=\"13\" fontmaks=\"18\" avstand=\"2em .5em\" skygge=\"ja\" vis=\"hovedkategorier/subkategorier/slug/standard\" st=sted/st=ikke-sted utdrag=\"ja\" klasse=\"min-klasse\"]</span>"
+msgstr "<strong>Kurskategorie list </strong><span class=\"smal\"><span class=\"copytext\">[kurskategorier]</span></span><br><span class=\"copytext small\" style=\"color:#666\">[kurskategorier kilde=\"bilde/ikon\" layout=\"stablet/rad/liste\" grid=3 gridtablet=2 gridmobil=1  radavstand=\"1rem\" stil=\"Standard/kort\" bildestr=\"100px\" bildeform=\"avrundet/rund/firkantet/10px\" bildeformat=\"4/3\" overskrift=\"h3\" fontmin=\"13\" fontmaks=\"18\" avstand=\"2em .5em\" skygge=\"ja\" vis=\"hovedkategorier/subkategorier/slug/Standard\" st=sted/st=ikke-sted utdrag=\"ja\" klasse=\"min-klasse\"]</span>"
+
+msgid "<strong>Liste med kurssteder </strong><span class=\"smal\"><span class=\"copytext\">[kurssteder]</span></span><br><span class=\"copytext small\" style=\"color:#666\">[kurssteder layout=\"stablet/rad/liste\" grid=3 gridtablet=2 gridmobil=1 radavstand=\"1rem\" stil=\"standard/kort\" bildestr=\"100px\" bildeform=\"avrundet/rund/firkantet/10px\" bildeformat=\"4/3\" overskrift=\"h3\" fontmin=\"13px\" fontmaks=\"15px\" avstand=\"2em .5em\" skygge=\"ja\" utdrag=\"ja\" vis=\"standard/alta,oslo,bergen\" region=\"østlandet\" stedinfo=\"ja\" klasse=\"min-klasse\"]</span>"
+msgstr "<strong>Kursort list </strong><span class=\"smal\"><span class=\"copytext\">[kurssteder]</span></span><br><span class=\"copytext small\" style=\"color:#666\">[kurssteder layout=\"stablet/rad/liste\" grid=3 gridtablet=2 gridmobil=1 radavstand=\"1rem\" stil=\"Standard/kort\" bildestr=\"100px\" bildeform=\"avrundet/rund/firkantet/10px\" bildeformat=\"4/3\" overskrift=\"h3\" fontmin=\"13px\" fontmaks=\"15px\" avstand=\"2em .5em\" skygge=\"ja\" utdrag=\"ja\" vis=\"Standard/alta,oslo,bergen\" region=\"østlandet\" stedinfo=\"ja\" klasse=\"min-klasse\"]</span>"
+
+msgid "<strong>Listedesign:</strong> Velg designet på kurslisten (standard, rutenett, kompakt, enkle kort...)"
+msgstr "<strong>List Design:</strong> Wählen Sie the Kurs list Design (Standard, grid, compact, simple cards...)"
+
+msgid "<strong>Listedesign:</strong> Velg listedesign (standard, rutenett, kompakt, enkel liste, enkle kort)."
+msgstr "<strong>List Design:</strong> Wählen Sie list Design (Standard, grid, compact, simple list, simple cards)."
+
+msgid "<strong>Listedesign</strong> bestemmer hvordan kursene vises i listen (standard, rutenett, ren, kompakt, dato og tittel)."
+msgstr "<strong>List Design</strong> determines how Kurse are displayed in the list (Standard, grid, plain, compact, date and title)."
+
+msgid "<strong>Manuell synkronisering:</strong> Gå til <a href=\"admin.php?page=kursinnstillinger\">Synkronisering</a> og klikk på \"Hent alle kurs fra Kursagenten\". Dette bør gjøres første gang du setter opp pluginen, og ved behov for å oppdatere alle kursene samtidig."
+msgstr "<strong>Manuell Synchronisation:</strong> Gehen Sie zu <a href=\"admin.php?Seite=kursinnstillinger\">Synchronisation</a> and klicken Sie \"Fetch all Kurse from Kursagenten\". This should be done the first time you set up the plugin, and wenn Sie need to aktualisieren all Kurse at once."
+
+msgid "<strong>Manuelt:</strong> Du kan endre region for individuelle steder ved å redigere kursstedet i <a href=\"edit-tags.php?taxonomy=ka_course_location&post_type=ka_course\">Kurssteder</a>-oversikten."
+msgstr "<strong>Manuell:</strong> Sie können change the region for individual Standorte by editing the Kurs Standort in the <a href=\"edit-tags.php?taxonomy=ka_Kurs_Standort&post_type=ka_Kurs\">Kursorte</a> Übersicht."
+
+msgid "<strong>Merk:</strong> Regioner må være aktivert for at filtreringen skal fungere. Du kan også endre region for individuelle kurssteder ved å redigere kursstedet i <a href=\"edit-tags.php?taxonomy=ka_course_location&post_type=ka_course\">Kurssteder</a>-oversikten."
+msgstr "<strong>Hinweis:</strong> Regions must be enabled for filtering to work. Sie können also change the region for individual Kurs Standorte by editing the Standort in the <a href=\"edit-tags.php?taxonomy=ka_Kurs_Standort&post_type=ka_Kurs\">Kursorte</a> Übersicht."
+
+msgid "<strong>Navn:</strong> Instruktørens navn (kan deles opp i fornavn og etternavn)."
+msgstr "<strong>Name:</strong> The Dozent's name (can be split into first and last name)."
+
+msgid "<strong>Navn:</strong> Kategorinavnet (kommer fra Kursagenten, bør ikke endres)."
+msgstr "<strong>Name:</strong> The Kategorie name (comes from Kursagenten, should not be changed)."
+
+msgid "<strong>Navn:</strong> Stedsnavnet (kommer fra Kursagenten, men kan endres via navnendring-funksjonen)."
+msgstr "<strong>Name:</strong> The Standort name (comes from Kursagenten, but can be changed via the name change feature)."
+
+msgid "<strong>Navnendring på kurssteder:</strong><br>Du kan endre navn på kurssteder under <a href=\"%s\">Synkronisering → Navnendring på kurssteder</a>. Når du endrer navn på et sted, blir også slugs (nettadressen) på kursene som har dette stedet oppdatert.<br> Det gamle stedet blir ikke slettet, men blir ikke lenger synlig på nettsiden."
+msgstr "<strong>Name change for Kurs Standorte:</strong><br>Sie können change Kurs Standort names under <a href=\"%s\">Synchronisation → Kursort name changes</a>. Wenn Sie change a Standort name, slugs (URLs) for Kurse with this Standort are also updated.<br> The old Standort is not deleted, but is no longer visible on the website."
+
+msgid "<strong>Når bør du bruke kortkoder?</strong> Hvis du bygger sidene med Elementor eller andre page builders, vil kortkoder sannsynligvis være det du må bruke."
+msgstr "<strong>When should you verwenden Sie shortcodes?</strong> If you build Seiten with Elementor or other Seite builders, shortcodes will likely be what you need to use."
+
+msgid "<strong>Obs:</strong> For at brukerne skal kunne slå filteret av og på, må du dra <em>«Ledige kurs»</em> inn i «Filtre i venstre kolonne» eller «Filtre over kurslisten» under Filterinnstillinger."
+msgstr "<strong>Hinweis:</strong> For users to be able to turn the filtern on and off, Sie müssen ziehen Sie <em>\"Verfügbare Kurse\"</em> into \"Filter in left column\" or \"Filter above Kurs list\" under Filtereinstellungen."
+
+msgid "<strong>OBS!</strong> Fyll inn <a href=\"#kursagenten-innstillinger\" style=\"color:white; text-decoration: underline;\">innstillinger fra Kursagenten</a> før du henter alle kursene dine (synkroniser alle kurs)."
+msgstr "<strong>NOTE!</strong> Geben Sie ein <a href=\"#kursagenten-innstillinger\" style=\"color:white; text-decoration: underline;\">Einstellungen from Kursagenten</a> before fetching all your Kurse (sync all Kurse)."
+
+msgid "<strong>Overstyr profil fra Kursagenten:</strong> Aktiver denne for å kunne redigere navn, e-post og telefon. Når aktivert, vil ikke disse feltene oppdateres automatisk fra Kursagenten ved synkronisering."
+msgstr "<strong>Profil von Kursagenten überschreiben:</strong> Aktivieren Sie this to bearbeiten name, email and phone. When enabled, these fields will not be updated automatischally from Kursagenten during Synchronisation."
+
+msgid "<strong>Overstyr profilbilde:</strong> Aktiver denne for å bruke et eget opplastet bilde i stedet for bildet fra Kursagenten."
+msgstr "<strong>Profilbild überschreiben:</strong> Aktivieren Sie this to verwenden Sie your own uploaded Bild instead of the Bild from Kursagenten."
+
+msgid "<strong>Page builder (Kadence Elements, Elementor m.fl.):</strong> Hvis du vil styre single/archive/taksonomi med page builder-betingelser, gå til <a href=\"admin.php?page=design#section-enkeltkurs\">Kursdesign → Enkeltkurs</a> og aktiver <em>Bruk WordPress sitt standard malhierarki</em>. Da lar pluginen tema/page builder velge mal uten å tvinge pluginens egne layout-filer."
+msgstr "<strong>Seite builder (Kadence Elements, Elementor, etc.):</strong> If you want to control single/archive/taxonomy with Seite builder conditions, gehen Sie zu <a href=\"admin.php?Seite=Design#section-enkeltkurs\">KursDesign → Einzelkurs</a> and aktivieren Sie <em>Verwenden Sie WordPress Standard template hierarchy</em>. The plugin then lets the theme/Seite builder wählen Sie the template without forcing the plugin's own layout files."
+
+msgid "<strong>Permalenker:</strong> Ved endring av URL-innstillinger, lagre «Permalenker» på nytt."
+msgstr "<strong>Permalinks:</strong> When changing URL Einstellungen, speichern \"Permalinks\" again."
+
+msgid "<strong>Plassering:</strong> Filtrene velges ved å dra dem til korrekt plassering. Du kan velge å vise dem til venstre for kurslisten og/eller over kurslisten."
+msgstr "<strong>Placement:</strong> Wählen Sie Filter by dragging them to the correct position. Sie können anzeigen them to the left of the Kurs list and/or above the Kurs list."
+
+msgid "<strong>Profil - rundt bilde og tittel:</strong> Rundt bilde, deretter tittel og beskrivelse, deretter kursliste"
+msgstr "<strong>Profile – around Bild and title:</strong> Around the Bild, then title and Beschreibung, then Kurs list."
+
+msgid "<strong>Profilbilde:</strong> Et hovedbilde som vises på instruktørsiden og i lister. Dette kan være fra Kursagenten eller et eget opplastet bilde."
+msgstr "<strong>Profilbild:</strong> A main Bild displayed on the Dozent Seite and in lists. This can be from Kursagenten or your own uploaded Bild."
+
+msgid "<strong>Region:</strong> (Hvis regioner er aktivert) Velg hvilken region stedet tilhører."
+msgstr "<strong>Region:</strong> (If regions are enabled) Wählen Sie which region the Standort belongs to."
+
+msgid "<strong>Regioner:</strong><br>Du kan aktivere og administrere regioner under <a href=\"%s\">Synkronisering → Regioner</a>."
+msgstr "<strong>Regions:</strong><br>Sie können aktivieren Sie and manage regions under <a href=\"%s\">Synchronisation → Regions</a>."
+
+msgid "<strong>Regioner:</strong><br>Regioner er aktivert. Du kan administrere regioninndelingen under <a href=\"%s\">Synkronisering → Regioner</a>. Tilhørighet til en region kan endres under hvert kurssted."
+msgstr "<strong>Regions:</strong><br>Regions are enabled. Sie können manage regional division under <a href=\"%s\">Synchronisation → Regions</a>. Regional assignment can be changed for each Kurs Standort."
+
+msgid "<strong>Rekkefølge på elementer:</strong> Hvilken rekkefølge informasjonen vises i (introtekst, hovedinnhold, kursdatoer, instruktører, osv.)."
+msgstr "<strong>Element order:</strong> The order in which information is displayed (intro text, main content, Kurs dates, Dozenten, etc.)."
+
+msgid "<strong>Rekkefølge:</strong> Du kan også dra i filtrene for å endre rekkefølgen de vises i."
+msgstr "<strong>Order:</strong> Sie können also ziehen Sie Filter to change the order they are displayed in."
+
+msgid "<strong>Ren og enkel liste:</strong> Basert på Standard liste, men uten bakgrunn, og med færre kurselementer"
+msgstr "<strong>Clean and simple list:</strong> Based on Standard list, but without background and with fewer Kurs elements."
+
+msgid "<strong>Separate designmaler:</strong> Aktiver dette for å kunne velge forskjellige designmaler for kategorier, steder og instruktører."
+msgstr "<strong>Separate Design templates:</strong> Aktivieren Sie this to wählen Sie different Design templates for Kategorien, Standorte and Dozenten."
+
+msgid "<strong>Skjul i automenyer:</strong> Når aktivert, skjules kategorien i autogenererte menyer som bruker kortkoden <code>[ka-meny]</code>. Dette er nyttig hvis du har kategorier som ikke skal vises i hovedmenyen."
+msgstr "<strong>In Automatikmenüs ausblenden:</strong> When enabled, the Kategorie is hidden in auto-generated menus that verwenden Sie the <code>[ka-meny]</code> shortcode. Useful if Sie haben Kategorien that should not appear in the main menu."
+
+msgid "<strong>Skjul i oversiktslister:</strong> Når aktivert, skjules kategorien i kortkoder som <code>[kurskategorier]</code> og lignende lister. Kategorien vil fortsatt være tilgjengelig direkte via URL."
+msgstr "<strong>In Übersichtslisten ausblenden:</strong> When enabled, the Kategorie is hidden in shortcodes such as <code>[kurskategorier]</code> and similar lists. The Kategorie will still be accessible directly via URL."
+
+msgid "<strong>Slug:</strong> URL-vennlig versjon av navnet (bør ikke endres da det kan føre til ødelagte lenker)."
+msgstr "<strong>Slug:</strong> Versión amigable für URL des Name (no Sie müssen cambiarse ya que Sie können romper Links)."
+
+msgid "<strong>Slug:</strong> URL-vennlig versjon av navnet (oppdateres automatisk ved navnendring)."
+msgstr "<strong>Slug:</strong> URL-friendly version of the name (updated automatischally when the name changes)."
+
+msgid "<strong>Standard - med bilde og beskrivelse:</strong> Tittel og beskrivelse, deretter bilde og beskrivelse, deretter kursliste"
+msgstr "<strong>Standard – with Bild and Beschreibung:</strong> Title and Beschreibung, then Bild and Beschreibung, then Kurs list."
+
+msgid "<strong>Standard:</strong> 1 kolonne"
+msgstr "<strong>Standard:</strong> 1 column"
+
+msgid "<strong>Standard:</strong> 100px"
+msgstr "<strong>Standard:</strong> 100px"
+
+msgid "<strong>Standard:</strong> 1rem"
+msgstr "<strong>Standard:</strong> 1rem"
+
+msgid "<strong>Standard:</strong> 2 kolonner"
+msgstr "<strong>Standard:</strong> 2 columns"
+
+msgid "<strong>Standard:</strong> 2em .5em"
+msgstr "<strong>Standard:</strong> 2em .5em"
+
+msgid "<strong>Standard:</strong> 3 kolonner"
+msgstr "<strong>Standard:</strong> 3 columns"
+
+msgid "<strong>Standard:</strong> En tradisjonell listevisning med kurskort, ett kurs per rad/boks."
+msgstr "<strong>Standard:</strong> A traditional list view with Kurs cards, one Kurs per row/box."
+
+msgid "<strong>Synkronisering:</strong> Hvis kurs ikke oppdateres automatisk, sjekk at webhooks er konfigurert korrekt i Kursagenten."
+msgstr "<strong>Synchronisation:</strong> If Kurse are not updated automatischally, aktivieren Sie that webhooks are configured correctly in Kursagenten."
+
+msgid "<strong>Tagger eller lister:</strong> Filtrene kan velges som tagger eller avkrysningsliste. Tagger er knapper som velger ett filter av gangen, og avkrysningsliste er en liste som kan velge flere filter samtidig."
+msgstr "<strong>Tags or lists:</strong> Filter can be shown as tags or checkboxes. Tags are buttons that wählen Sie one filtern at a time; checkboxes allow selecting multiple Filter at once."
+
+msgid "<strong>Telefon:</strong> Instruktørens telefonnummer."
+msgstr "<strong>Phone:</strong> The Dozent's phone number."
+
+msgid "<strong>Test:</strong> Besøk frontend og se at det ser ut som det skal."
+msgstr "<strong>Prueba:</strong> Besuchen Sie el frontend und prüfen Sie que se ve como se espera."
+
+msgid "<strong>Utvidet beskrivelse:</strong> En lengre tekst med HTML-formatering som vises på instruktørsiden."
+msgstr "<strong>Erweiterte Beschreibung:</strong> A longer text with HTML formatting displayed on the Dozent Seite."
+
+msgid "<strong>Utvidet beskrivelse:</strong> En lengre tekst med HTML-formatering som vises på kategorisiden."
+msgstr "<strong>Erweiterte Beschreibung:</strong> A longer text with HTML formatting displayed on the Kategorie Seite."
+
+msgid "<strong>Utvidet beskrivelse:</strong> En lengre tekst med HTML-formatering som vises på stedssiden."
+msgstr "<strong>Erweiterte Beschreibung:</strong> A longer text with HTML formatting displayed on the Standort Seite."
+
+msgid "<strong>Utvidet beskrivelse:</strong> En lengre tekst med rik tekstformatering (HTML) som vises på taksonomisiden. Her kan du beskrive kategorien, stedet eller instruktøren med tekst, bilder og annen informasjon."
+msgstr "<strong>Erweiterte Beschreibung:</strong> A longer text with rich text formatting (HTML) displayed on the taxonomy Seite. Here Sie können describe the Kategorie, Standort or Dozent with text, Bilder and other information."
+
+msgid "<strong>Velge eksisterende side:</strong> Du kan også velge en eksisterende WordPress-side fra dropdown-menyen og tilordne den til en funksjon. Lim inn kortkoden manuelt. Koden kan du kopiere fra ikonet <i class=\"ka-icon icon-code-simple-solid-full\" style=\"height: 14px;\"></i> ved siden av navnet."
+msgstr "<strong>Wählen Sie existing Seite:</strong> Sie können also wählen Sie an existing WordPress Seite from the dropdown and assign it to a function. Fügen Sie ein the shortcode manuellly. Sie können copy the code from the <i class=\"ka-icon icon-code-simple-solid-full\" style=\"height: 14px;\"></i> icon next to the name."
+
+msgid "<strong>Viktig:</strong> Endringer i designmal kan kreve oppdatering/refresh av cache og permalenker, spesielt ved utstrakte URL-tilpasninger."
+msgstr "<strong>Wichtig:</strong> Changes to the Design template may require cache refresh and permalink updates, especially for extensive URL benutzerdefiniertizations."
+
+msgid "<strong>Viktig:</strong> Navnet på kursstedet i WordPress-administrasjonen er skrivebeskyttet når det kommer fra Kursagenten. For å endre navnet som vises på nettsiden, bruk navnendring-funksjonen i stedet for å redigere taksonomien direkte."
+msgstr "<strong>Wichtig:</strong> The Kurs Standort name in WordPress admin is read-only when it comes from Kursagenten. To change the name shown on the website, verwenden Sie the name change feature instead of editing the taxonomy directly."
+
+msgid "<strong>Viktig:</strong> Når du overskriver felter, vil de ikke lenger oppdateres automatisk fra Kursagenten. Du må manuelt oppdatere dem hvis det er endringer i Kursagenten."
+msgstr "<strong>Wichtig:</strong> Wenn Sie override fields, they will no longer be updated automatischally from Kursagenten. Sie müssen aktualisieren them manuellly if there are changes in Kursagenten."
+
+msgid "<strong>Vis bilder:</strong> Skru av/på bilder i listen. Best egnet om du har lastet opp bilder til kursene i Kursagenten."
+msgstr "<strong>Anzeigen Bilder:</strong> Turn Bilder in the list on/off. Best suited if Sie haben uploaded Bilder for Kurse in Kursagenten."
+
+msgid "<strong>Vis:</strong> Kategorien vises i filteret, og kurs tagget med kategorien vises i kurslisten.<br><strong>Skjul kun kategorien fra filter:</strong> Kategorien skjules fra filteret, men kurs tagget med denne kategorien vises fortsatt i kurslisten (under sine øvrige kategorier).<br><strong>Skjul kategorien og alle tilhørende kurs:</strong> Verken kategorien eller kurs tagget med denne vises i kurslisten – nyttig for interne kategorier."
+msgstr "<strong>Show:</strong> The Kategorie appears in the filter, and Kurse tagged with the Kategorie appear in the Kurs list.<br><strong>Ausblenden only the Kategorie from filter:</strong> The Kategorie is hidden from the filter, but Kurse tagged with this Kategorie still appear in the Kurs list (under their other Kategorien).<br><strong>Ausblenden the Kategorie and all related Kurse:</strong> Neither the Kategorie nor Kurse tagged with it appear in the Kurs list – useful for internal Kategorien."
+
+msgid "<strong>Visning av liste:</strong> I venstre kolonne vil listene vises som avkrysningsliste, mens over kursliten vises lister som dropdown-menyer."
+msgstr "<strong>List display:</strong> In the left column, lists are shown as checkboxes; above the Kurs list, lists are shown as dropdown menus."
+
+msgid "<strong>Visningstype:</strong> Velg om du vil vise hovedkurs (ett kurs per rad/boks) eller alle kursdatoer (tilsvarende \"Kursliste med filter\")."
+msgstr "<strong>Display type:</strong> Wählen Sie whether to anzeigen main Kurse (one Kurs per row/box) or all Kurs dates (equivalent to \"Kursliste with filter\")."
+
+msgid "<strong>Visningstype</strong> bestemmer om du vil vise hovedkurs eller alle kursdatoer."
+msgstr "<strong>Display type</strong> determines whether to anzeigen main Kurse or all Kurs dates."
+
+msgid "<strong>Visuelle detaljer:</strong> Styling, spacing og annet visuelt design."
+msgstr "<strong>Visual details:</strong> Styling, spacing and other visual Design."
+
+msgid "✓ (kan overstyres i AIOSEO Pro)"
+msgstr "✓ (se Sie können überschreiben en AIOSEO Pro)"
+
+msgid "✓ (kan overstyres i SEOPress Pro)"
+msgstr "✓ (se Sie können überschreiben en SEOPress Pro)"
+
+msgid "0 = ingen begrensning"
+msgstr "0 = keine Begrenzung"
+
+msgid "Adresse"
+msgstr "Adresse"
+
+msgid "AJAX-konfigurasjon mangler."
+msgstr "AJAX-Konfiguration fehlt."
+
+msgid "Aktiver dette hvis du bruker andre SEO-utvidelser som ikke er listet under, eller ønsker å håndtere SEO helt selv."
+msgstr "Aktivieren Sie dies, wenn Sie andere SEO-Plugins verwenden, die unten nicht aufgeführt sind, oder SEO vollständig selbst verwalten möchten."
+
+msgid "Aktiver ekstra sikkerhetsfunksjoner"
+msgstr "Aktivieren Sie zusätzliche Sicherheitsfunktionen"
+
+msgid "Aktiver regioninndeling (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge)"
+msgstr "Regionale Aufteilung aktivieren (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge)"
+
+msgid "Aktiver støtte for jQuery"
+msgstr "Aktivieren Sie die jQuery-Unterstützung"
+
+msgid "Alle"
+msgstr "Alle"
+
+msgid "Alle (%d)"
+msgstr "Alle (%d)"
+
+msgid "Alle instruktører"
+msgstr "Alle Ausbilder"
+
+msgid "Alle kurs"
+msgstr "Alle Kurse"
+
+msgid "Alle kurskategorier"
+msgstr "Alle Kurskategorien"
+
+msgid "Alle kurssteder"
+msgstr "Alle Kursorte"
+
+msgid "Alle steder"
+msgstr "Alle Standorte"
+
+msgid "Alle systemsider følger WordPress sin standard template-hierarki, så hvis temaet ditt har egne templates (f.eks. <code>single-ka_course.php</code> eller <code>taxonomy-ka_coursecategory.php</code>), vil disse brukes i stedet for pluginen sin standardmal."
+msgstr "Alle Systemseiten folgen der Standardvorlagenhierarchie von WordPress. Wenn Ihr Theme also über eigene Vorlagen verfügt (z. B. <code>single-ka_course.php</code> oder <code>taxonomy-ka_coursecategory.php</code>), werden diese anstelle der Standardvorlage des Plugins verwendet."
+
+msgid "Alle taksonomisider (kategorier, kurssteder og instruktører) kan berikes med ekstra innhold som bilder, tekst og beskrivelser. Dette gjør at du kan tilpasse hver enkelt side med unikt innhold utover det som kommer fra Kursagenten."
+msgstr "Alle Taxonomieseiten (Kategorien, Kursorte und Dozenten) können mit zusätzlichen Inhalten wie Bildern, Texten und Beschreibungen angereichert werden. Auf diese Weise können Sie jede Seite mit einzigartigen Inhalten anpassen, die über den Inhalt von Kursagenten hinausgehen."
+
+msgid "Alle tilgjengelige kurssteder og datoer"
+msgstr "Alle verfügbaren Kursorte und Termine"
+
+msgid "Alternativ farge for bokser:"
+msgstr "Alternative Farbe für Boxen:"
+
+msgid "Alternativt bilde"
+msgstr "Alternatives Bild"
+
+msgid "Annet"
+msgstr "Andere"
+
+msgid "Antall kolonner i rutenett:"
+msgstr "Anzahl der Spalten im Raster:"
+
+msgid "Antall kolonner på desktop."
+msgstr "Anzahl der Spalten auf dem Desktop."
+
+msgid "Antall kolonner på mobil."
+msgstr "Anzahl der Spalten auf dem Tablet."
+
+msgid "Antall kolonner på tablet."
+msgstr "Anzahl der Spalten auf Mobilgeräten."
+
+msgid "Antall kurs per side:"
+msgstr "Anzahl Kurse pro Seite:"
+
+msgid "Antall kursdager"
+msgstr "Anzahl der Kurstage"
+
+msgid "Automatisk (anbefalt)"
+msgstr "Automatisch (empfohlen)"
+
+msgid "Automatisk bruker responsivt srcset når mulig for skarpere bilder."
+msgstr "Automatisch wird responsives srcset verwendet, wenn möglich, für schärfere Bilder."
+
+msgid "Automenyer brukes når du vil at menyen automatisk skal vise taksonomier og/eller kurs uten at du manuelt må oppdatere menyelementer når noe endres."
+msgstr "Automatische Menüs werden verwendet, wenn Sie möchten, dass das Menü automatisch Taxonomien und/oder Kurse anzeigt, ohne die Menüelemente manuell zu aktualisieren, wenn sich etwas ändert."
+
+msgid "Automenyer i WordPress-menyen"
+msgstr "Auto-Menüs im Menü WordPress"
+
+msgid "Av (håndteres av Rank Math Pro)"
+msgstr "Aus (verwaltet von Rank Math Pro)"
+
+msgid "Avanserte innstillinger"
+msgstr "Erweiterte Einstellungen"
+
+msgid "Avbryt"
+msgstr "Abbrechen"
+
+msgid "Avrundet"
+msgstr "Abgerundet"
+
+msgid "Avrundet søkefelt med ikon"
+msgstr "Abgerundetes Suchfeld mit Symbol"
+
+msgid "avrundet, rund, firkantet<br><strong>Standard</strong>: avrundet"
+msgstr "gerundet, Kreis, Quadrat<br><strong>Standard</strong>: gerundet"
+
+msgid "Avstand"
+msgstr "Abstand"
+
+msgid "Avstand rundt alle elementene, første verdi er topp og bunn, andre verdi er venstre og høyre."
+msgstr "Abstand um alle Elemente; Der erste Wert ist oben und unten, der zweite ist links und rechts."
+
+msgid "Bakgrunn"
+msgstr "Hintergrund"
+
+msgid "Bakgrunn fremhevede områder:"
+msgstr "Hintergrund für hervorgehobene Bereiche:"
+
+msgid "Bakgrunn hover"
+msgstr "Hintergrund Hover"
+
+msgid "Bakgrunn i toppfelt:"
+msgstr "Hintergrund in der oberen Leiste:"
+
+msgid "Bakgrunnsbilde"
+msgstr "Hintergrundbild"
+
+msgid "Bakgrunnsbilde og overlay:"
+msgstr "Hintergrundbild und Overlay:"
+
+msgid "Bakgrunnsfarge"
+msgstr "Hintergrundfarbe"
+
+msgid "Bakgrunnsfarge bak bilde"
+msgstr "Hintergrundfarbe hinter Bild"
+
+msgid "Bakgrunnskilde"
+msgstr "Hintergrundquelle"
+
+msgid "Bakgrunnstype:"
+msgstr "Hintergrundtyp:"
+
+msgid "Base skriftstørrelse:"
+msgstr "Basisschriftgröße:"
+
+msgid "Bedriftsinformasjon"
+msgstr "Firmeninformationen"
+
+msgid "Begge feltene må fylles ut"
+msgstr "Beide Felder müssen ausgefüllt werden"
+
+msgid "Begrense innholdet med <strong>stedsfilter</strong> (f.eks. bare \"Oslo\" eller \"ikke-Oslo\")."
+msgstr "Begrenzen Sie den Inhalt mit dem <strong>Standortfilter</strong> (z. B. nur „Oslo“ oder „nicht Oslo“)."
+
+msgid "Begrenser til termer med kurs på angitt sted. Start med \"ikke-\" for å ekskludere. La stå tom for alle."
+msgstr "Beschränkung auf Semester mit Kursen am angegebenen Standort. Beginnen Sie mit „nicht-“, um auszuschließen. Für alle leer lassen."
+
+msgid "Behold H3 som standard med mindre du har en tydelig semantisk grunn til å endre."
+msgstr "Behalten Sie H3 als Standard bei, es sei denn, Sie haben einen klaren semantischen Grund zur Änderung."
+
+msgid "Berik innholdet ditt"
+msgstr "Bereichern Sie Ihre Inhalte"
+
+msgid "Berike taksonomisider"
+msgstr "Bereichern Sie Taxonomieseiten"
+
+msgid "Beskrivelse"
+msgstr "Beschreibung"
+
+msgid "Betaling"
+msgstr "Zahlung"
+
+msgid "Betaling for kurs"
+msgstr "Bezahlung für Kurse"
+
+msgid "Betalingsside"
+msgstr "Zahlungsseite"
+
+msgid "Betalingsside for kurs"
+msgstr "Zahlungsseite für Kurse"
+
+msgid "bilde"
+msgstr "Bild"
+
+msgid "Bilde"
+msgstr "Bild"
+
+msgid "Bilde av %s"
+msgstr "Bild von %s"
+
+msgid "Bilde av kurs i %s"
+msgstr "Bild des Kurses in %s"
+
+msgid "Bilde av kurssted"
+msgstr "Bild des Kursortes"
+
+msgid "Bilde for kurs i %s"
+msgstr "Bild für Kurs in %s"
+
+msgid "Bilde hentes fra instruktørprofil i Kursagenten. Dette bildet kan overstyres her inne på nettsiden. Det er også mulig å bruke et alternativt bilde om du ønsker en annen stil/annet bilde enn det som er brukt i Kursagenten."
+msgstr "Bilder are fetched from the Dozent profile in Kursagenten. This Bild can be overridden on the website. Sie können also verwenden Sie an alternative Bild if you want a different style or Bild than the one used in Kursagenten."
+
+msgid "Bilde hentet fra Kursagenten"
+msgstr "Bild abgerufen von Kursagenten"
+
+msgid "Bilde hentet fra Kursagenten:"
+msgstr "Bild abgerufen von Kursagenten:"
+
+msgid "bilde, ikon<br><strong>Standard:</strong> bilde"
+msgstr "Bild, icon<br><strong>Standard:</strong> Bild"
+
+msgid "bilde, ka-bilde<br><strong>Standard:</strong> bilde"
+msgstr "Bild, ka-bilde<br><strong>Standard:</strong> Bild"
+
+msgid "Bildeform"
+msgstr "Bild shape"
+
+msgid "Bildeformat"
+msgstr "Bildformat"
+
+msgid "Bildeformer"
+msgstr "Bildformen"
+
+msgid "Bildekvalitet"
+msgstr "Bildqualität"
+
+msgid "Bilder"
+msgstr "Bilder"
+
+msgid "Bildestr"
+msgstr "Bildgröße"
+
+msgid "Bildestørrelse"
+msgstr "Bildgröße"
+
+msgid "Blokker XML-RPC i .htaccess (Apache)"
+msgstr "XML-RPC in .htaccess blockieren (Apache)"
+
+msgid "Bokser"
+msgstr "Boxen"
+
+msgid "Book time"
+msgstr "Termin buchen"
+
+msgid "Bredde:"
+msgstr "Breite:"
+
+msgid "Bruk"
+msgstr "Anwenden"
+
+msgid "Bruk \"Resett til standard\" for å tilbakestille regioninndelingen til standardverdiene."
+msgstr "Verwenden Sie \"Auf Standard zurücksetzen\" to restore the regional division to Standard values."
+
+msgid "Bruk bilde"
+msgstr "Bild verwenden"
+
+msgid "Bruk card-design"
+msgstr "Karten-Design verwenden"
+
+msgid "Bruk ekstern lenke på kurstittel"
+msgstr "Verwenden Sie external link on Kurs title"
+
+msgid "Bruk ekstern lenke på påmeldingsknapp"
+msgstr "Verwenden Sie external link on Anmeldung button"
+
+msgid "Bruk kun bakgrunnsfarge"
+msgstr "Verwenden Sie background color only"
+
+msgid "Bruk kursbilde, og <a href=\"/wp-admin/admin.php?page=design&ka_open=valg-for-bilder%2Cenkeltkurs#valg-for-bilder\">plassholderbilde for kurs</a> om kursbilde mangler"
+msgstr "Verwenden Sie Kurs Bild, and <a href=\"/wp-admin/admin.php?Seite=Design&ka_open=valg-for-bilder%2Cenkeltkurs#valg-for-bilder\">placeholder Bild for Kurs</a> if Kurs Bild is missing"
+
+msgid "Bruk kursbilde, og bakgrunnsfarge om kursbilde mangler"
+msgstr "Verwenden Sie Kurs Bild, and background color if Kurs Bild is missing"
+
+msgid "Bruk parameterne <code>type</code>, <code>start</code> og eventuelt <code>st</code> for å styre hvilke kategorier/steder eller instruktører som skal vises."
+msgstr "Verwenden Sie the <code>type</code>, <code>start</code> and optionally <code>st</code> parameters to control which Kategorien/Standorte or Dozenten are displayed."
+
+msgid "Bruk som hovedbilde"
+msgstr "Als Beitragsbild verwenden"
+
+msgid "Bruk standard (%s)"
+msgstr "Verwenden Sie Standard (%s)"
+
+msgid "Bruk standard innstilling"
+msgstr "Verwenden Sie Standard setting"
+
+msgid "Bruk standardvalg"
+msgstr "Verwenden Sie Standard selection"
+
+msgid "Bruk standardvalg for valgt listedesign"
+msgstr "Verwenden Sie Standard selection for selected list Design"
+
+msgid "Bruk taksonomibilde, og <a href=\"/wp-admin/admin.php?page=design&ka_open=valg-for-bilder%2Ctaksonomi#valg-for-bilder\">generelt plassholderbilde</a> om bilde mangler"
+msgstr "Verwenden Sie taxonomy Bild, and <a href=\"/wp-admin/admin.php?Seite=Design&ka_open=valg-for-bilder%2Ctaksonomi#valg-for-bilder\">Allgemein placeholder Bild</a> if Bild is missing"
+
+msgid "Bruk taksonomibilde, og bakgrunnsfarge om bilde mangler"
+msgstr "Verwenden Sie taxonomy Bild, and background color if Bild is missing"
+
+msgid "Brukes for å fremheve enkelte bokser i \"Bokser\"-design. Hvis kun «Bakgrunn fremhevede områder» er satt, får begge samme farge."
+msgstr "Used to highlight certain boxes in the \"Boxes\" Design. If only \"Background for highlighted areas\" is set, both get the same color."
+
+msgid "Brukes når Skygge/kantstil = Ingen, men bruk ramme."
+msgstr "Wird verwendet, wenn Schatten-/Rahmenstil = Keine, aber Rahmen verwenden."
+
+msgid "Bunn"
+msgstr "Unten"
+
+msgid "BUNN"
+msgstr "UNTEN"
+
+msgid "Byggeblokker for enkeltkurs kommer i en senere oppdatering. Foreløpig kan du bygge innhold med tema/page builder og eksisterende hooks/kortkoder."
+msgstr "Blocks for single Kurse will come in a later update. For now, Sie können build content with your theme/Seite builder and existing hooks/shortcodes."
+
+msgid "Cloudflare blokkerer nedlastingen med bot-verifisering. URL: %s. Løsning: Gå til Cloudflare Dashboard > Security > WAF > Custom Rules og legg til regel som tillater /kursagenten-api/download_plugin, eller deaktiver Bot Fight Mode for denne URL-en."
+msgstr "Cloudflare is blocking the download with bot verification. URL: %s. Solution: Gehen Sie zu Cloudflare Dashboard > Security > WAF > Benutzerdefiniert Rules and hinzufügen a rule that allows /kursagenten-api/download_plugin, or deaktivieren Sie Bot Fight Mode for this URL."
+
+msgid "Course Image"
+msgstr "Kurs Bild"
+
+msgid "Dag"
+msgstr "Tag"
+
+msgid "Dag-/kveldskurs"
+msgstr "Tages-/Abendkurs"
+
+msgid "Datakilde"
+msgstr "Datenquelle"
+
+msgid "Dato"
+msgstr "Datum"
+
+msgid "Dato og tittel"
+msgstr "Datum und Titel"
+
+msgid "Deaktiver Gravatar på frontend"
+msgstr "Gravatar im Frontend deaktivieren"
+
+msgid "Del dette kurset"
+msgstr "Diesen Kurs teilen"
+
+msgid "Denne siden hjelper deg raskt i gang med å sette opp Kursagenten-pluginen fra A til Å. Følg stegene i rekkefølge, og bruk venstremenyen for å hoppe mellom seksjoner."
+msgstr "This Seite helps you get started quickly with setting up the Kursagenten plugin from A to Z. Follow the steps in order, and verwenden Sie the left menu to jump between sections."
+
+msgid "Denne visningen bruker den enklere listen med neste tilgjengelige dato og har ikke de samme filtervalgene som \"Vis alle kursdatoer\"."
+msgstr "This view uses the simpler list with the next verfügbar date and does not have the same filtern options as \"Anzeigen all Kurs dates\"."
+
+msgid "Design"
+msgstr "Design"
+
+msgid "Design på taksonomi"
+msgstr "Taxonomy Design"
+
+msgid "Design:"
+msgstr "Design:"
+
+msgid "Design: Lister og grid <span class=\"small\"><a href=\"#lister\">mer info</a></span>"
+msgstr "List and grid Design <span class=\"small\"><a href=\"#lister\">more info</a></span>"
+
+msgid "Designet på listene kan endres med attributter i kortkoden. Se <a href=\"#lister\">oversikt</a> for å se hvilke valg du kan gjøre."
+msgstr "List Design can be changed with attributes in the shortcode. See the <a href=\"#lister\">Übersicht</a> for verfügbar options."
+
+msgid "Designmalene viser frem innholdet på forskjellige måter."
+msgstr "Designvorlagen present content in different ways."
+
+msgid "Designmaler"
+msgstr "Designvorlagen"
+
+msgid "Designmaler for kurs"
+msgstr "Designvorlagen for Kurse"
+
+msgid "Designvalg"
+msgstr "Designoptionen"
+
+msgid "Designvariabler"
+msgstr "Designvariablen"
+
+msgid "Desktop"
+msgstr "Desktop"
+
+msgid "Desktop:"
+msgstr "Desktop:"
+
+msgid "Det er for øyeblikket ingen instruktører å vise."
+msgstr "There are currently no Dozenten to display."
+
+msgid "Det er for øyeblikket ingen kurssteder å vise."
+msgstr "There are currently no Kurs Standorte to display."
+
+msgid "Det er for øyeblikket ingen relaterte kurs å vise."
+msgstr "There are currently no related Kurse to display."
+
+msgid "Det er foreløpig ikke mange designmaler tilgjengelig for enkeltkurs. Vi planlegger å utvide med flere designmaler snart."
+msgstr "There are not many Design templates verfügbar for single Kurse yet. We plan to hinzufügen more Design templates soon."
+
+msgid "Det er ikke satt opp dato for nye kurs. Meld din interesse for å få mer informasjon eller å sette deg på venteliste."
+msgstr "No date has been set for new Kurse. Register your interest for more information or to join the waiting list."
+
+msgid "Det er mulig å legge inn plassholderbilder under Admin → Kursagenten → Kursdesign."
+msgstr "Sie können Platzhalterbilder unter Admin → Kursagenten → KursDesign hinzufügen."
+
+msgid "Det finnes to måter å rydde opp på:"
+msgstr "Hay dos formas de bereinigen:"
+
+msgid "Det gamle stedet blir ikke slettet, men blir ikke lenger synlig på nettsiden."
+msgstr "The old Standort is not deleted, but it will no longer be visible on the website."
+
+msgid "Det meste av data skal styres fra Kursagenten. Det er enkelte deler vi ikke har felter for, og for disse delene kan du berike kategori/sted/instruktør direkte her på nettsiden via Admin → Kursagenten → Kurssteder/Instruktører/Kurssteder"
+msgstr "Die meisten Daten sollten in Kursagenten verwaltet werden. Für einige Bereiche haben wir keine Felder; diese können Sie direkt auf der Website über Admin → Kursagenten → Kursorte/Dozenten/Kursorte anreichern."
+
+msgid "Det opprettes også automatisk en side for betaling når pluginen aktiveres. Denne siden inneholder kode som genererer betalingsboksen og er nødvendig for at betalingsfunksjonaliteten skal fungere. Betalingssiden publiseres automatisk, mens de andre oversiktssidene opprettes som kladd (draft) slik at du kan redigere dem før publisering."
+msgstr "A Zahlung Seite is also created automatischally when the plugin is activated. This Seite contains code that generates the Zahlung box and is required for Zahlung functionality to work. The Zahlung Seite is published automatischally, while the other Übersicht Seiten are created as drafts so Sie können bearbeiten them before publishing."
+
+msgid "Dette bildet brukes som hovedbilde på instruktørprofilen."
+msgstr "This Bild is used as the main Bild on the Dozent profile."
+
+msgid "Dette bildet kan brukes som et alternativt bilde på instruktørprofilen."
+msgstr "This Bild can be used as an alternative Bild on the Dozent profile."
+
+msgid "Dette er den største fontstørrelsen du vil bruke for tekst og overskrifter."
+msgstr "This is the largest font size you will verwenden Sie for text and headings."
+
+msgid "Dette feltet er overskrevet fra Kursagenten"
+msgstr "Este Feld se überschreibt desde Kursagenten"
+
+msgid "Dette feltet viser om bildet er automatisk hentet fra Kursagenten."
+msgstr "This field shows whether the Bild was automatischally fetched from Kursagenten."
+
+msgid "Dette legger inn rating i Course schema på kurssidene. Det legger også inn redirect basert på querystrings i eposter fra Kursagenten, til rating-skjema på korrekt kursside.<br><br>"
+msgstr "This adds rating to the Kurs schema on Kurs Seiten. It also adds a redirect based on query strings in emails from Kursagenten to the rating form on the correct Kurs Seite.<br><br>"
+
+msgid "Dette valget deaktiverer Gravatar på frontend og bruker et lokalt standardbilde i stedet. Dette kan løse problemer med tracking prevention i enkelte nettlesere.<br><br>"
+msgstr "This option disables Gravatar on the frontend and uses a local Standard Bild instead. This can resolve issues with tracking prevention in some browsers.<br><br>"
+
+msgid "Dette valget legger til:<br>1) Clickjacking Protection (X-Frame-Options) i WordPress, styrker security headers.<br>2) Deaktiverer tema- og plugin redigering<br>3) Fjerner WP versjonsnummer<br>4) Deaktiverer XML-RPC i WordPress<br><br>"
+msgstr "Esta opción añade:<br>1) Protección contra clickjacking (X-Frame-Options) en WordPress, refuerza las cabeceras de seguridad.<br>2) Desactiva la edición de temas und Plugins<br>3) Elimina el número de versión de WP<br>4) Desactiva XML-RPC en WordPress<br><br>"
+
+msgid "Disse innstillingene fungerer som standardvalg for kortkodene. Du kan også overstyre dem direkte i kortkoden med attributter. Se <a href=\"#lister\">Kortkoder for lister og grid</a> for mer informasjon."
+msgstr "These Einstellungen work as Standards for shortcodes. Sie können also override them directly in the shortcode with attributes. See <a href=\"#lister\">Shortcodes for lists and grid</a> for more information."
+
+msgid "Disse innstillingene kan settes både ved redigering av kategorien, via hurtigredigering, og via masseredigering («Kursagenten: Masserediger synlighet») i oversikten."
+msgstr "These Einstellungen can be set when editing the Kategorie, via quick edit, and via bulk bearbeiten (\"Kursagenten: Sichtbarkeit massenbearbeiten\") in die Übersicht."
+
+msgid "Disse slugene bruker fallback med prefix."
+msgstr "These slugs verwenden Sie fallback with prefix."
+
+msgid "Div"
+msgstr "Div"
+
+msgid "Dobbel"
+msgstr "Doppelt"
+
+msgid "Dokumentasjon"
+msgstr "Dokumentation"
+
+msgid "Dra automenyen til riktig plassering i menystrukturen. Som hovedmenypunkt kan den stå på toppnivå, eller du kan dra den innunder en eksisterende side (f.eks. \"Kurs\") for å bruke den som undermeny."
+msgstr "Ziehen Sie the auto menu to the correct position in the menu structure. As a main menu item it can be at the top level, or Sie können ziehen Sie it under an existing Seite (e.g. \"Kurse\") to verwenden Sie it as a submenu."
+
+msgid "Dra fylker mellom regionene for å organisere dem etter dine behov."
+msgstr "Ziehen Sie counties between regions to organize them according to your needs."
+
+msgid "Dra fylker mellom regioner for å organisere dem. Merk at en del fylker er utdaterte, men er inkludert for bakover-kompatibilitet. Bruk \"Resett til standard\" for å tilbakestille regioninndelingen til standardverdiene."
+msgstr "Ziehen Sie counties between regions to organize them. Hinweis that some counties are outdated but are included for backward compatibility. Verwenden Sie \"Auf Standard zurücksetzen\" to zurücksetzen the regional division to Standard values."
+
+msgid "Dra menypunktet dit menyen skal vises, for eksempel som undermeny under siden \"Kurs\"."
+msgstr "Ziehen Sie the menu item to where the menu should appear, for example as a submenu under the \"Kurse\" Seite."
+
+msgid "Du finner innstillingene for <strong><a href=\"https://kursadmin.kursagenten.no/ProviderInformation\" target=\"_blank\">Tilbyder ID og Tilbyder Guid</a></strong> i Kursagenten under <em>Bedriftsinsformasjon-> Innstillinger</em>, og <strong><a href=\"https://kursadmin.kursagenten.no/IframeSetting\" target=\"_blank\">Tema for kurslister</a></strong> under <em>Embedded / iframe</em><br><br>I Integrasjonsinnstillinger, under fanen <strong><a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Webhooks</a></strong>, skal du legge inn %s i feltene CourseCreated og CourseUpdated for å automatisk oppdatere kurs når det blir opprettet eller endret på Kursagenten."
+msgstr "Sie können find the Einstellungen for <strong><a href=\"https://kursadmin.kursagenten.no/ProviderInformation\" target=\"_blank\">Provider ID and Provider GUID</a></strong> in Kursagenten under <em>Unternehmensinformationen -> Einstellungen</em>, and <strong><a href=\"https://kursadmin.kursagenten.no/IframeSetting\" target=\"_blank\">Theme for Kurs lists</a></strong> under <em>Embedded / iframe</em><br><br>In Integration Einstellungen, under the <strong><a href=\"https://kursadmin.kursagenten.no/IntegrationEinstellungen\" target=\"_blank\">Webhooks</a></strong> tab, geben Sie ein %s in the KursCreated and KursUpdated fields to automatischally aktualisieren Kurse when they are created or changed in Kursagenten."
+
+msgid "Du har flere alternativer:"
+msgstr "Sie haben several options:"
+
+msgid "Du har ikke tilgang til denne funksjonen."
+msgstr "Sie haben nicht have access to this function."
+
+msgid "Du har ikke tillatelse til å åpne denne siden."
+msgstr "Sie haben nicht have permission to open this Seite."
+
+msgid "Du kan bruke blokkene i stedet for kortkoder hvis du bygger sidene med Gutenberg. De samme valgene som beskrives under <a href=\"#lister\">Kortkoder for lister og grid</a> er i stor grad tilgjengelige direkte i blokkinnstillingene."
+msgstr "Sie können verwenden Sie blocks instead of shortcodes if you build Seiten with Gutenberg. The same options described under <a href=\"#lister\">Shortcodes for lists and grid</a> are largely verfügbar directly in block Einstellungen."
+
+msgid "Du kan endre navn på kurssteder som kommer fra Kursagenten. Dette er nyttig hvis du ønsker å bruke kortere eller mer beskrivende navn på nettsiden."
+msgstr "Sie können change the name of Kurs Standorte that come from Kursagenten. This is useful if you want shorter or more descriptive names on the website."
+
+msgid "Du kan endre navn på kurssteder som kommer fra Kursagenten. Dette gjøres via <a href=\"admin.php?page=kursinnstillinger#location-name-mapping\">Synkronisering → Navnendring på kurssteder</a>. Se <a href=\"#stedsnavn-og-regioner\">Stedsnavn og regioner</a> for mer informasjon."
+msgstr "Sie können change the name of Kurs Standorte that come from Kursagenten. This is done via <a href=\"admin.php?Seite=kursinnstillinger#Standort-name-mapping\">Synchronisation → Kursort name changes</a>. See <a href=\"#stedsnavn-og-regioner\">Standortnames and regions</a> for more information."
+
+msgid "Du kan fritt endre tittel, slug og innhold på sidene. Det eneste som ikke bør fjernes er kortkoden."
+msgstr "Sie können freely change title, slug and content on the Seiten. The only thing that should not be removed is the shortcode."
+
+msgid "Du kan kontrollere hvor kategoriene vises med flere synlighetsinnstillinger:"
+msgstr "Sie können control where Kategorien appear with several visibility Einstellungen:"
+
+msgid "Du kan laste opp bilder for hver kategori. Det er også mulig å laste opp et «profilbilde». Dette kan brukes i blokker/kortkoder, som et alternativ til hovedbildet. Har det ikke blitt lastet opp et kategoribilde, vil den prøve å bruke et bilde fra et tilknyttet kurs. Om dette ikke finnes, vil den bruke plassholderbilde."
+msgstr "Sie können upload Bilder for each Kategorie. Sie können also upload a \"profile Bild\". This can be used in blocks/shortcodes as an alternative to the main Bild. If no Kategorie Bild has been uploaded, it will try to verwenden Sie an Bild from a linked Kurs. If none is found, a placeholder Bild will be used."
+
+msgid "Du kan legge inn menypunkter som automatisk generer kurskategorier, kurssteder og instruktører. Mer informasjon i seksjonen <a href=\"#menyer\">Menyer</a>."
+msgstr "Sie können hinzufügen menu items that automatischally generate Kurs Kategorien, Kurs Standorte and Dozenten. Mehr Informationen in the <a href=\"#menyer\">Menus</a> section."
+
+msgid "Du kan legge til ekstra tekst over eller under kortkoden for introduksjon, SEO-tekst eller annen informasjon."
+msgstr "Sie können hinzufügen extra text above or below the shortcode for introduction, SEO text or other information."
+
+msgid "Du kan melde deg på kurset nå. Etter påmelding vil du få mer informasjon."
+msgstr "Sie können register for the Kurs now. After Anmeldung you will receive more information."
+
+msgid "Du kan også konfigurere hvordan kurslistene på taksonomisidene skal vises. Se <a href=\"#section-styre-utseende-på-kurslister\">Styre utseende på kurslister</a> for mer informasjon."
+msgstr "Sie können also configure how Kurs lists on taxonomy Seiten are displayed. See <a href=\"#section-styre-utseende-på-kurslister\">Control Kurs list appearance</a> for more information."
+
+msgid "Du kan opprette instruktører direkte i WordPress som ikke kommer fra Kursagenten:"
+msgstr "Sie können erstellen Dozenten directly in WordPress that do not come from Kursagenten:"
+
+msgid "Du kan velge en felles designmal for alle taksonomier, eller aktivere separate designmaler for hver taksonomitype:"
+msgstr "Sie können wählen Sie a shared Design template for all taxonomies, or aktivieren Sie separate Design templates for each taxonomy type:"
+
+msgid "Du kan velge om du vil bruke et bilde du laster opp selv, eller bruke bildet hentet fra Kursagenten. Velg kilde=ka-bilde hvis du vil bruke bilde fra Kursagenten."
+msgstr "Sie können wählen Sie whether to verwenden Sie an Bild you upload yourself, or the Bild fetched from Kursagenten. Wählen Sie kilde=ka-bilde if you want to verwenden Sie the Bild from Kursagenten."
+
+msgid "Du kan velge om du vil bruke hovedbilde, eller laste opp egne ikoner for lister. Velg kilde=ikon hvis du vil bruke disse."
+msgstr "Sie können wählen Sie whether to verwenden Sie the main Bild, or upload your own icons for lists. Wählen Sie kilde=ikon if you want to verwenden Sie these."
+
+msgid "Du kan velge å vise fullt navn, fornavn eller etternavn på instruktørsiden og i listen med instruktører. Du må både endre innstillinger i Kursdesign og i Wordpress-siden som viser instruktørene."
+msgstr "Sie können wählen Sie to display full name, first name or last name on the Dozent Seite and in the Dozent list. Sie müssen change Einstellungen in both KursDesign and the WordPress Seite that displays the Dozenten."
+
+msgid "Du må kjøre en full synkronisering (\"Hent alle kurs fra Kursagenten\") for å ta i bruk navnendringene."
+msgstr "Sie müssen run a full Synchronisation (\"Fetch all Kurse from Kursagenten\") to apply name changes."
+
+msgid "Du må legge inn lisensnøkkel før du kan bruke innstillingene."
+msgstr "Sie müssen geben Sie ein a Lizenz key before Sie können verwenden Sie the Einstellungen."
+
+msgid "E-post"
+msgstr "E-Mail"
+
+msgid "Egen CSS"
+msgstr "Benutzerdefiniertes CSS"
+
+msgid "Egendefinert"
+msgstr "Benutzerdefiniert"
+
+msgid "Egendefinert format"
+msgstr "Benutzerdefiniertes Format"
+
+msgid "Egendefinert størrelse (px)"
+msgstr "Benutzerdefinierte Größe (px)"
+
+msgid "Egne innstillinger for %s"
+msgstr "Benutzerdefiniert Einstellungen for %s"
+
+msgid "Egne instruktører fungerer på samme måte som instruktører fra Kursagenten, men de vil ikke oppdateres automatisk og kan fritt redigeres uten å aktivere \"overstyr\"-funksjoner."
+msgstr "Benutzerdefiniert Dozenten work the same way as Dozenten from Kursagenten, but they will not be updated automatischally and can be freely edited without enabling \"override\" features."
+
+msgid "Eks: 5/4, 7/5"
+msgstr "Z. B. 5/4, 7/5"
+
+msgid "Eksempel"
+msgstr "Beispiel"
+
+msgid "Ekstern lenke kan legges inn på kurset i feltet \"Link til påmeldingskjema:\" i Kursagenten. Dette vil åpne en valgfri side."
+msgstr "An external link can be added to the Kurs in the \"Link to Anmeldung form:\" field in Kursagenten. This will open a Seite of your choice."
+
+msgid "Ekstra fet"
+msgstr "Extra fett"
+
+msgid "Ekstra innhold"
+msgstr "Inhalt adicional"
+
+msgid "Ekstra kraftig"
+msgstr "Extra kräftig"
+
+msgid "Ekstra stor"
+msgstr "Extra groß"
+
+msgid "Element"
+msgstr "Element"
+
+msgid "Element-justering"
+msgstr "Elementausrichtung"
+
+msgid "Element-justering %s"
+msgstr "Elementausrichtung %s"
+
+msgid "Element-kort"
+msgstr "Elementkarte"
+
+msgid "eller"
+msgstr "oder"
+
+msgid "En feil oppstod under filtreringen."
+msgstr "Ein Fehler ist aufgetreten al filtern."
+
+msgid "En feil oppstod under henting av filter counts"
+msgstr "An error occurred while fetching filtern counts"
+
+msgid "En ukjent feil oppstod under filtreringen."
+msgstr "Ein Fehler ist aufgetreten desconocido al filtern."
+
+msgid "Endre navn på nytt sted"
+msgstr "Change name for new Standort"
+
+msgid "Endre navnet på instruktøren"
+msgstr "Change the Dozent's name"
+
+msgid "Endre url prefix"
+msgstr "URL-Präfix ändern"
+
+msgid "Endrer sidebredde. Gå til <a href=\"/wp-admin/admin.php?page=design#section-designvariabler\">Designvariabler</a> for å endre maks innholdbredde."
+msgstr "Changes Seite width. Gehen Sie zu <a href=\"/wp-admin/admin.php?Seite=Design#section-Designvariabler\">Designvariablen</a> to change max content width."
+
+msgid "Endring av stedsnavn"
+msgstr "Kursort name change"
+
+msgid "Endringene lagres automatisk når du flytter fylker."
+msgstr "Changes are speichernd automatischally wenn Sie move counties."
+
+msgid "Endringene under gjelder for alle valgte termer. Felter satt til «Ikke endre» blir hoppet over."
+msgstr "The changes below apply to all selected terms. Fields set to \"Nicht ändern\" are skipped."
+
+msgid "Enkel - Kun tittel og kort beskrivelse"
+msgstr "Simple - Title and short Beschreibung only"
+
+msgid "Enkeltkurs"
+msgstr "Einzelkurs"
+
+msgid "Enkle kort"
+msgstr "Einfache Karten"
+
+msgid "Epost"
+msgstr "E-Mail"
+
+msgid "Ett kort per kurs (neste dato)"
+msgstr "One card per Kurs (next date)"
+
+msgid "Ett kort per kurs og lokasjon (neste dato per lokasjon)"
+msgstr "One card per Kurs and Standort (next date per Standort)"
+
+msgid "Etter eventuell kursliste-seksjon på detaljsiden."
+msgstr "After any Kurs list section on the detail Seite."
+
+msgid "Etter hele footer-seksjonen (etter &lt;/article&gt;)."
+msgstr "Después de toda la sección des Fußzeile (después de &lt;/article&gt;)."
+
+msgid "Etter hele siden"
+msgstr "After the entire Seite"
+
+msgid "Etter hovedinnholdet."
+msgstr "Después des Inhalt principal."
+
+msgid "Etter introtekst."
+msgstr "Después des Text introductorio."
+
+msgid "Etter lenkene i header-seksjonen."
+msgstr "Después der Links in der sección des Überschrift."
+
+msgid "Etter modulen \"Neste kurs\"."
+msgstr "After the \"Nächster Kurs\" module."
+
+msgid "Etter paginering"
+msgstr "Después der Paginierung"
+
+msgid "Etter påmelding vil du få en e-post med mer informasjon om kurset, og hvordan det skal gjennomføres."
+msgstr "After Anmeldung you will receive an email with more information about the Kurs and how it will be conducted."
+
+msgid "Etter påmelding vil du få en e-post med mer informasjon om kurset."
+msgstr "After Anmeldung you will receive an email with more information about the Kurs."
+
+msgid "Etter sidekolonne/aside."
+msgstr "Después der Seitenleiste/aside."
+
+msgid "Etternavn"
+msgstr "Nachname"
+
+msgid "f.eks. oslo eller ikke-oslo"
+msgstr "z. B. oslo oder not-oslo"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Fant ingen foreldrekategorier."
+msgstr "Keine übergeordneten Kategorien gefunden."
+
+msgid "Fant ingen instruktører."
+msgstr "Keine Dozenten gefunden."
+
+msgid "Fant ingen kurssteder."
+msgstr "Keine Kursorte gefunden."
+
+msgid "Farge"
+msgstr "Farbe"
+
+msgid "Farger"
+msgstr "Farben"
+
+msgid "Farger:"
+msgstr "Farben:"
+
+msgid "feks 13px, 15px, 18px<br><strong>Standard</strong>: 13px"
+msgstr "e.g. 13px, 15px, 18px<br><strong>Standard</strong>: 13px"
+
+msgid "feks 15px, 18px, 26px<br><strong>Standard</strong>: 18px"
+msgstr "e.g. 15px, 18px, 26px<br><strong>Standard</strong>: 18px"
+
+msgid "feks 4/3, 16/9, 1/1<br><strong>Standard</strong>: 4/3"
+msgstr "e.g. 4/3, 16/9, 1/1<br><strong>Standard</strong>: 4/3"
+
+msgid "feks h3, h4, h5, p, span, div<br><strong>Standard</strong>: h3"
+msgstr "e.g. h3, h4, h5, p, span, div<br><strong>Standard</strong>: h3"
+
+msgid "Fet"
+msgstr "Fett"
+
+msgid "Filter"
+msgstr "Filter"
+
+msgid "Filterboks:"
+msgstr "Filtern box:"
+
+msgid "Filterinnstillinger"
+msgstr "Filtereinstellungen"
+
+msgid "Filtre – slik fungerer de"
+msgstr "Filter – how they work"
+
+msgid "Filtre i venstre kolonne"
+msgstr "Filter in left column"
+
+msgid "Filtre over kurslisten"
+msgstr "Filter above Kurs list"
+
+msgid "Filtrer kurs"
+msgstr "Kurse filtern"
+
+msgid "Filtrer kursdato liste"
+msgstr "Filtern Kurs date list"
+
+msgid "Filtrer kursdato på dato"
+msgstr "Filtern Kurs dates by date"
+
+msgid "Filtrer kursliste"
+msgstr "Filtern Kurs list"
+
+msgid "Filtrer kurssteder basert på region (kun hvis regioner er aktivert). Kan kombineres med vis-parameteren (OR-logikk: viser steder fra regionen ELLER de spesifiserte stedene)."
+msgstr "Filtern Kurs Standorte by region (only if regions are enabled). Can be combined with the vis parameter (OR logic: shows Standorte from the region OR the specified Standorte)."
+
+msgid "Filtrer på dato"
+msgstr "Filtern by date"
+
+msgid "Filtrer på instruktør"
+msgstr "Filtern by Dozent"
+
+msgid "Filtrer på kurskategori"
+msgstr "Filtern by Kurs Kategorie"
+
+msgid "Filtrer på kurssted"
+msgstr "Filtern by Kurs Standort"
+
+msgid "Filtrer stedslisten til kun vise spesifikke steder. Kan bruke stedsnavn eller slug (case-insensitive)."
+msgstr "Filtern the Standort list to anzeigen only specific Standorte. Sie können verwenden Sie Standort names or slugs (case-insensitive)."
+
+msgid "Finjuster farger:"
+msgstr "Ajustar Farben:"
+
+msgid "Finn boksen <strong>\"Kursagenten automenyer\"</strong> i venstre kolonne. Hvis du ikke ser den, sjekk at den er aktivert under \"Skjerminnstillinger\" øverst."
+msgstr "Find the <strong>\"Kursagenten-Automatikmenüs\"</strong> box in the left column. If Sie haben nicht see it, aktivieren Sie that it is enabled under \"Screen options\" at the top."
+
+msgid "Finn det perfekte kurset for deg og din bedrift"
+msgstr "Finden Sie den perfekten Kurs für Sie und Ihr Unternehmen"
+
+msgid "Finner du ikke det du leter etter?"
+msgstr "Nicht gefunden, wonach Sie suchen?"
+
+msgid "Firkantet"
+msgstr "Quadratisch"
+
+msgid "Firmainformasjon"
+msgstr "Unternehmensdaten"
+
+msgid "Firmanavn"
+msgstr "Unternehmensname"
+
+msgid "Fjern"
+msgstr "Entfernen"
+
+msgid "Fjern %s"
+msgstr "%s entfernen"
+
+msgid "Fjern bilde"
+msgstr "Bild entfernen"
+
+msgid "Fjern filter"
+msgstr "Filtern entfernen"
+
+msgid "Fjern foreldrekategori (flytt til toppnivå)"
+msgstr "Entfernen parent Kategorie (move to top level)"
+
+msgid "Fjern hovedbilde"
+msgstr "Beitragsbild entfernen"
+
+msgid "Flere instruktører"
+msgstr "More Dozenten"
+
+msgid "Flere kurskategorier"
+msgstr "More Kurs Kategorien"
+
+msgid "Flere kurssteder"
+msgstr "More Kurs Standorte"
+
+msgid "Flere valg"
+msgstr "Weitere Optionen"
+
+msgid "Font for hovedoverskrifter:"
+msgstr "Fuente für Überschrifts principales:"
+
+msgid "Fontmaks"
+msgstr "Schrift max."
+
+msgid "Fontmin"
+msgstr "Schrift min."
+
+msgid "Fontstørrelse for beskrivelse"
+msgstr "Schriftgröße für Beschreibung"
+
+msgid "Fontstørrelse for tittel"
+msgstr "Schriftgröße für Titel"
+
+msgid "Fontvekt tekst"
+msgstr "Schriftstärke Text"
+
+msgid "Fontvekt tittel"
+msgstr "Schriftstärke Titel"
+
+msgid "Footer"
+msgstr "Fußzeile"
+
+msgid "Footer etter"
+msgstr "Fußzeile después"
+
+msgid "Footer før"
+msgstr "Fußzeile antes"
+
+msgid "For \"Kategorier og kurs\": velge om menyen bare skal vise kurs (uten kategorinivå)."
+msgstr "For \"Kategorien and Kurse\": wählen Sie whether the menu should only anzeigen Kurse (without the Kategorie level)."
+
+msgid "For de kategoriene som har flere nivåer, er det mulighet til å vise kun toppnivåene, kun underkategoriene, kun underkategorier under gitt foreldreslug, eller alle."
+msgstr "For Kategorien with multiple levels, Sie können anzeigen only top-level Kategorien, only subKategorien, only subKategorien under a given parent slug, or all."
+
+msgid "For flere eksempler på meny-kortkoder og hvordan du kan kombinere dem med andre kortkoder, se seksjonen <a href=\"#kortkoder\">Kortkoder</a> lenger opp på denne siden."
+msgstr "For more examples of menu shortcodes and how to combine them with other shortcodes, see the <a href=\"#kortkoder\">Shortcodes</a> section further up on this Seite."
+
+msgid "For instruktører som kommer fra Kursagenten, kan du overskrive dataene med egne verdier:"
+msgstr "For Dozenten from Kursagenten, Sie können override the data with your own values:"
+
+msgid "For kurstilbydere med få kurs og 1/ingen kategorier: viser kun en flat liste med hovedkurs uten kategorinivå."
+msgstr "For Kurs providers with few Kurse and 1/no Kategorien: shows only a flat list of main Kurse without Kategorie levels."
+
+msgid "For å vise oversikter og lister med kurs, kategorier, steder og instruktører, må du opprette vanlige WordPress-sider med kortkoder. Disse sidene bør opprettes fra <a href=\"admin.php?page=design#section-systemsider\">Kursdesign → Wordpress sider</a>. Har du allerede sider du ønsker å bruke, velger du dem fra dropdown-menyen."
+msgstr "To display Übersichts and lists of Kurse, Kategorien, Standorte and Dozenten, Sie müssen erstellen regular WordPress-Seiten with shortcodes. These Seiten should be created from <a href=\"admin.php?Seite=Design#section-systemsider\">KursDesign → WordPress-Seiten</a>. If you already have Seiten you want to use, wählen Sie them from the dropdown."
+
+msgid "Foreldrekategori"
+msgstr "Übergeordnete Kategorie"
+
+msgid "Foreldrekategori (valgfritt)"
+msgstr "Übergeordnete Kategorie (optional)"
+
+msgid "Foreldrekategori:"
+msgstr "Übergeordnete Kategorie:"
+
+msgid "Forhåndsvisning: fant ingen publiserte enkeltkurs å bruke som eksempel."
+msgstr "Preview: no published single Kurse found to verwenden Sie as an example."
+
+msgid "Forhåndsvisning: ingen kommende kurs funnet."
+msgstr "Preview: no upcoming Kurse found."
+
+msgid "Forhåndsvisning: ingen kontaktinformasjon registrert for valgt kurs."
+msgstr "Preview: no contact information registered for the selected Kurs."
+
+msgid "Forhåndsvisning: ingen kursoversiktsside er konfigurert ennå."
+msgstr "Preview: no Kurs Übersicht Seite has been configured yet."
+
+msgid "Forhåndsvisning: ingen kurstider registrert for valgt kurs."
+msgstr "Preview: no Kurs times registered for the selected Kurs."
+
+msgid "Forhåndsvisning: ingen påmeldingslenke for valgt kurs."
+msgstr "Preview: no Anmeldung link for the selected Kurs."
+
+msgid "Forhåndsvisning: kurset har ingen beskrivelse fra Kursagenten."
+msgstr "Preview: the Kurs has no Beschreibung from Kursagenten."
+
+msgid "Fornavn"
+msgstr "Vorname"
+
+msgid "fornavn, etternavn<br><strong>Standard</strong>: viser fullt navn"
+msgstr "first name, last name<br><strong>Standard</strong>: shows full name"
+
+msgid "Forrige"
+msgstr "Zurück"
+
+msgid "Fra A til Å"
+msgstr "Von A bis Z"
+
+msgid "Fra Å til A"
+msgstr "Von Z bis A"
+
+msgid "Fritekst sted"
+msgstr "Freitext-Standort"
+
+msgid "Full bredde"
+msgstr "Volle Breite"
+
+msgid "Full størrelse"
+msgstr "Volle Größe"
+
+msgid "Fullt"
+msgstr "Vollständig"
+
+msgid "Fullt navn"
+msgstr "Vollständiger Name"
+
+msgid "Fyll ut navn og eventuelt slug."
+msgstr "Füllen Sie aus el Name y, Optionalmente, el slug."
+
+msgid "Før hele header-seksjonen (før &lt;article&gt;)."
+msgstr "Antes de toda la sección des Überschrift (antes de &lt;article&gt;)."
+
+msgid "Før hovedinnholdet."
+msgstr "Antes des Inhalt principal."
+
+msgid "Før introtekst."
+msgstr "Antes des Text introductorio."
+
+msgid "Før kursliste"
+msgstr "Before Kurs list"
+
+msgid "Før sidekolonne/aside."
+msgstr "Antes der Seitenleiste/aside."
+
+msgid "Generelt"
+msgstr "Allgemein"
+
+msgid "Generelt plassholderbilde"
+msgstr "Allgemein placeholder Bild"
+
+msgid "Gjelder filter som er plassert i venstre kolonne på kurslisten."
+msgstr "Applies to Filter placed in the left column of the Kurs list."
+
+msgid "Gjelder foreldrekategori for alle valgte kurskategorier."
+msgstr "Applies parent Kategorie to all selected Kurs Kategorien."
+
+msgid "God skikk for opplasting av bilder er å ha en maks størrelse på 500kb. I overføring fra Kursagenten er det en maksgrense for overføring på 1MB."
+msgstr "Good practice for uploading Bilder is a maximum size of 500 KB. When transferring from Kursagenten, there is a maximum transfer limit of 1 MB."
+
+msgid "Grid"
+msgstr "Netz"
+
+msgid "Gridmobil"
+msgstr "Raster Mobil"
+
+msgid "Gridtablet"
+msgstr "Raster Tablet"
+
+msgid "Gutenberg blokker"
+msgstr "Gutenberg-Blöcke"
+
+msgid "Gyldige regioner: <code>sørlandet</code>, <code>østlandet</code>, <code>vestlandet</code>, <code>midt-norge</code>, <code>nord-norge</code>"
+msgstr "Gültige Regionen: <code>sørlandet</code>, <code>østlandet</code>, <code>vestlandet</code>, <code>midt-norge</code>, <code>nord-norge</code>"
+
+msgid "Gå til <a href=\"admin.php?page=bedriftsinformasjon\">Bedriftsinformasjon</a> og fyll ut grunnleggende firmaopplysninger."
+msgstr "Gehen Sie zu <a href=\"admin.php?Seite=bedriftsinformasjon\">Unternehmensinformationen</a> and fill in basic company details."
+
+msgid "Gå til <a href=\"admin.php?page=design#design-taksonomi\">Kursdesign → Taksonomisider</a>"
+msgstr "Gehen Sie zu <a href=\"admin.php?Seite=Design#Design-taksonomi\">KursDesign → Taxonomy Seiten</a>"
+
+msgid "Gå til <a href=\"admin.php?page=design#section-systemsider\">Wordpress sider</a>. Rediger siden med instruktøroversikten og legg til vis=\"fornavn\" eller vis=\"etternavn\" i kortkoden for å vise kun fornavn eller etternavn. Du kan gå direkte til redigering fra <a href=\"admin.php?page=design#section-systemsider\">Wordpress sider</a>."
+msgstr "Gehen Sie zu <a href=\"admin.php?Seite=Design#section-systemsider\">WordPress-Seiten</a>. Bearbeiten the Seite with the Dozent Übersicht and hinzufügen vis=\"fornavn\" or vis=\"etternavn\" to the shortcode to anzeigen only first name or last name. Sie können go directly to editing from <a href=\"admin.php?Seite=Design#section-systemsider\">WordPress-Seiten</a>."
+
+msgid "Gå til <a href=\"admin.php?page=kursinnstillinger\">Synkronisering</a> i WordPress-administrasjonen."
+msgstr "Gehen Sie zu <a href=\"admin.php?Seite=kursinnstillinger\">Synchronisation</a> in WordPress admin."
+
+msgid "Gå til <a href=\"admin.php?page=kursinnstillinger#location-name-mapping\">Synkronisering → Navnendring på kurssteder</a>."
+msgstr "Gehen Sie zu <a href=\"admin.php?Seite=kursinnstillinger#Standort-name-mapping\">Synchronisation → Kursort name changes</a>."
+
+msgid "Gå til <a href=\"admin.php?page=kursinnstillinger#regions\">Synkronisering → Regioner</a>."
+msgstr "Gehen Sie zu <a href=\"admin.php?Seite=kursinnstillinger#regions\">Synchronisation → Regions</a>."
+
+msgid "Gå til <a href=\"edit-tags.php?taxonomy=ka_instructors&post_type=ka_course\">Instruktører</a>-oversikten."
+msgstr "Gehen Sie zu the <a href=\"edit-tags.php?taxonomy=ka_Dozenten&post_type=ka_Kurs\">Dozenten</a> Übersicht."
+
+msgid "Gå til <strong>Utseende → Menyer</strong> i WordPress."
+msgstr "Gehen Sie zu <strong>Appearance → Menus</strong> in WordPress."
+
+msgid "Gå til oversikten over taksonomiene (f.eks. <a href=\"edit-tags.php?taxonomy=ka_coursecategory&post_type=ka_course\">Kurskategorier</a>, <a href=\"edit-tags.php?taxonomy=ka_course_location&post_type=ka_course\">Kurssteder</a> eller <a href=\"edit-tags.php?taxonomy=ka_instructors&post_type=ka_course\">Instruktører</a>) og klikk på \"Rediger\" på den taksonomien du vil berike. Her kan du legge til:"
+msgstr "Gehen Sie zu the taxonomy Übersicht (e.g. <a href=\"edit-tags.php?taxonomy=ka_KursKategorie&post_type=ka_Kurs\">Kurskategorien</a>, <a href=\"edit-tags.php?taxonomy=ka_Kurs_Standort&post_type=ka_Kurs\">Kursorte</a> or <a href=\"edit-tags.php?taxonomy=ka_Dozenten&post_type=ka_Kurs\">Dozenten</a>) and klicken Sie \"Edit\" on the taxonomy you want to enrich. Here Sie können add:"
+
+msgid "H2"
+msgstr "H2"
+
+msgid "H3"
+msgstr "H3"
+
+msgid "H4"
+msgstr "H4"
+
+msgid "H5"
+msgstr "H5"
+
+msgid "H6"
+msgstr "H6"
+
+msgid "Halvfet"
+msgstr "Halbfett"
+
+msgid "Handling"
+msgstr "Aktion"
+
+msgid "Handlinger"
+msgstr "Aktionen"
+
+msgid "Har du funnet feil eller har du forbedringsforslag? Vi hører gjerne fra deg. Vi jobber for å gjøre Kursagenten bedre for deg.<br>Send en epost rett til inboksen i Trello:"
+msgstr "¿Ha encontrado un error oder tiene sugerencias de mejora? Neins encantaría saber de usted. Trabajamos für hacer Kursagenten mejor für usted.<br>Envíe un E-Mail directamente al buzón en Trello:"
+
+msgid "Header etter"
+msgstr "Überschrift después"
+
+msgid "Header etter seksjon"
+msgstr "Überschrift después der sección"
+
+msgid "Header etter tittel"
+msgstr "Überschrift después des Titel"
+
+msgid "Header før"
+msgstr "Überschrift antes"
+
+msgid "Hele filterområdet i venstre kolonne legges i en avrundet boks. Standard bakgrunn følger temafargen (--ka-box-background)."
+msgstr "The entire filtern area in the left column is placed in a rounded box. Standard background follows the theme color (--ka-box-background)."
+
+msgid "Helt nederst, etter kurslisten (bunnseksjon)."
+msgstr "At the very bottom, after the Kurs list (bottom section)."
+
+msgid "Hent alle kurs fra Kursagenten"
+msgstr "Alle Kurse von Kursagenten abrufen"
+
+msgid "Hent kursene"
+msgstr "Kurse abrufen"
+
+msgid "Henting av kurs fra Kursagenten"
+msgstr "Fetching Kurse from Kursagenten"
+
+msgid "Her finner du innstillinger for synkronisering av kurs fra Kursagenten. <br>- Ved å klikke på \"Hent alle kurs fra Kursagenten\" overfører du alle kursene dine. Merk at det kun er enveis-synkronisering.<br>- Vi anbefaler å <strong>synkronisere kursene automatisk</strong>. Legg inn <a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Webhooks</a> i Kursagenten, så blir kurset overført når det blir lagret/opprettet. Se url under.<br>- Du kan også rydde opp i kursene hvis det er utdaterte datoer eller lignende.<br><br>"
+msgstr "Here you will find Einstellungen for synchronizing Kurse from Kursagenten. <br>- By clicking \"Alle Kurse von Kursagenten abrufen\" you transfer all your Kurse. Hinweis that Synchronisation is one-way only.<br>- We recommend <strong>syncing Kurse automatischally</strong>. Hinzufügen <a href=\"https://kursadmin.kursagenten.no/IntegrationEinstellungen\" target=\"_blank\">Webhooks</a> in Kursagenten so the Kurs is transferred when it is speichernd/created. See URL below.<br>- Sie können also clean up Kurse if there are outdated dates or similar.<br><br>"
+
+msgid "Her kan du endre navn på kurssteder som kommer fra Kursagenten. Når du endrer navn på et sted, blir også slugs (nettadressen) på kursene som har dette stedet oppdatert.<br><br>1. Nytt sted blir lagret når du klikker på \"Lagre\".<br>2. Stedet blir \"oversatt\" til det nye navnet når kurs blir hentet fra Kursagenten.<br>3. Slugs/nettadresser på kursene som har dette stedet oppdateres umiddelbart.<br>4. Det gamle stedet blir ikke slettet, men blir ikke lenger synlig på nettsiden.<br><br>5. <span style=\"color: #d63638;\"><strong>Viktig:</strong></span> For å ta i bruk navnendringene, kjør en full synk fra Kursagenten ved å klikke på \"Hent alle kurs fra Kursagenten\". Husk også å markere \"Rydd opp i kurs\" før du kjører synken.<br><br>"
+msgstr "Here Sie können change names for Kurs Standorte that come from Kursagenten. Wenn Sie change the name of a Standort, the slugs (URLs) of Kurse at that Standort are also updated.<br><br>1. The new Standort is speichernd wenn Sie klicken Sie \"Speichern\".<br>2. The Standort is \"translated\" to the new name when Kurse are fetched from Kursagenten.<br>3. Slugs/URLs for Kurse at this Standort are updated immediately.<br>4. The old Standort is not deleted, but is no longer visible on the website.<br><br>5. <span style=\"color: #d63638;\"><strong>Wichtig:</strong></span> To apply the name changes, run a full sync from Kursagenten by clicking \"Alle Kurse von Kursagenten abrufen\". Also remember to aktivieren Sie \"Kurse bereinigen\" before running the sync.<br><br>"
+
+msgid "Her kan du legge til egendefinert CSS som vil bli lastet inn på alle sider som hører til utvidelsen. Denne CSS-en vil ha høyest prioritet og vil overstyre utvidelsens standard CSS."
+msgstr "Here Sie können hinzufügen benutzerdefiniert CSS that will be loaded on all Seiten belonging to the plugin. This CSS has the highest priority and will override the plugin's Standard CSS."
+
+msgid "Her kan du skrive inn informasjon som vil bli brukt ulike steder på nettsiden. Dette inkluderer navn på hovedkontakt (personvernerklæring), samt firmanavn og adresse (kontaktside og bunnfelt)."
+msgstr "Geben Sie ein information that will be used in various places on the website. This includes the main contact name (privacy policy), as well as company name and address (contact Seite and footer)."
+
+msgid "Her kan du skrive inn informasjon som vil bli brukt ulike steder på nettsiden. Dette inkluderer navn på hovedkontakt (personvernerklæring), samt firmanavn og adresse (kontaktside og bunnfelt).<br>Du kan også legge inn informasjon om bedriften som kan vises på med kortkode. Se alle kortkoder <a href=\"#kortkoder\">her</a>."
+msgstr "Geben Sie ein information that will be used in various places on the website. This includes the main contact name (privacy policy), as well as company name and address (contact Seite and footer).<br>Sie können also hinzufügen information about the company that can be displayed with a shortcode. See all shortcodes <a href=\"#kortkoder\">here</a>."
+
+msgid "Her kan du skrive inn kort informasjon om bedriften. Denne teksten kan vises på med kortkode."
+msgstr "Geben Sie ein brief information about the company. This text can be displayed with a shortcode."
+
+msgid "Her kan du skrive inn URL til sosiale profiler. Disse kan bli brukt rundt på nettsiden."
+msgstr "Geben Sie ein URLs for social profiles. These can be used across the website."
+
+msgid "Hero - to kolonner"
+msgstr "Hero - dos Spalten"
+
+msgid "Hero - toppseksjon med bilde"
+msgstr "Hero - top section with Bild"
+
+msgid "Hooks"
+msgstr "Hooks"
+
+msgid "Hooks kommer..."
+msgstr "Hooks nächstemente..."
+
+msgid "Hovedbilde"
+msgstr "Hauptbild"
+
+msgid "Hovedbilde som brukes på kategorisiden og i kategorioversikter"
+msgstr "Hauptbild used on the Kategorie Seite and in Kategorie Übersichts"
+
+msgid "Hovedfarge:"
+msgstr "Primärfarbe:"
+
+msgid "Hovedfont:"
+msgstr "Primärschrift:"
+
+msgid "Hovedinnhold etter"
+msgstr "Inhalt principal después"
+
+msgid "Hovedinnhold før"
+msgstr "Inhalt principal antes"
+
+msgid "Hovedkategorier"
+msgstr "Hauptkategorien"
+
+msgid "hovedkategorier, subkategorier, foreldreslug (feks dans eller truck)<br><strong>Standard</strong>: viser alle"
+msgstr "top-level Kategorien, subKategorien, parent slug (e.g. dance or truck)<br><strong>Standard</strong>: shows all"
+
+msgid "Hovedkontakt"
+msgstr "Hauptkontakt"
+
+msgid "Hovedkurs:"
+msgstr "Übergeordneter Kurs:"
+
+msgid "Hover"
+msgstr "Hover"
+
+msgid "Hva Kursagenten legger til (når ingen SEO-utvidelse er aktiv)"
+msgstr "Was Kursagenten hinzufügt (wenn kein SEO-Plugin aktiv ist)"
+
+msgid "Hva ryddes opp:"
+msgstr "Was wird bereinigt:"
+
+msgid "Hver kategori, hvert sted og hver instruktør får automatisk sin egen side. Disse genereres fra maler som velges i <a href=\"admin.php?page=design\">Kursdesign</a>. Du kan berike disse sidene med ekstra innhold, bilder og tekst ved å redigere taksonomiene."
+msgstr "Each Kategorie, Standort and Dozent automatischally gets its own Seite. These are generated from templates chosen in <a href=\"admin.php?Seite=Design\">KursDesign</a>. Sie können enrich these Seiten with extra content, Bilder and text by editing the taxonomies."
+
+msgid "Hvert kurs har sin egen side som genereres automatisk basert på valgt designmal. Innholdet hentes fra Kursagenten, inkludert bildet. Du kan legge til eget innhold mellom introtekst og hovedinnhold ved å redigere kurset. Du ser en markering for dette området når du besøker siden som administrator, samt en link for å gå til redigering. Det er også snarvei for å redigere kurset i Kursagenten.  Se etter et blyant-ikon du kan klikke på. Dette åpner kurset i Kursagenten, i en ny fane. Gjør endringene du ønsker der, lagre, og så ser du umiddelbart endringene på nettsiden."
+msgstr "Each Kurs has its own Seite generated automatischally based on the selected Design template. Content is fetched from Kursagenten, including the Bild. Sie können hinzufügen benutzerdefiniert content between intro text and main content by editing the Kurs. You will see a marker for this area wenn Sie visit the Seite as an administrator, plus a link to edit. There is also a shortcut to bearbeiten the Kurs in Kursagenten. Look for a pencil icon Sie können click. This opens the Kurs in Kursagenten in a new tab. Make your changes there, speichern, and you will see the changes on the website immediately."
+
+msgid "Hvis du oppretter sider for kurs, kurskategorier, kurssteder og/eller instruktører, vil sidene opprettes som vanlige WordPress-sider. Du kan fritt endre tittel og innhold. En <a href=\"/wp-admin/admin.php?page=ka_documentation#kortkoder\">kortkode</a> legges inn automatisk.</br><strong>Blokker:</strong> Taksonomiene Kurskategorier, Kurssteder og Instruktører er tilgjengelige som egne Gutenberg-blokker i blokkeditoren. Du kan velge å bruke blokkene i stedet for kortkoder hvis du bygger sidene med Gutenberg."
+msgstr "If you erstellen Seiten for Kurse, Kurs Kategorien, Kurs Standorte and/or Dozenten, the Seiten are created as regular WordPress-Seiten. Sie können freely change the title and content. A <a href=\"/wp-admin/admin.php?Seite=ka_Dokumentation#kortkoder\">shortcode</a> is inserted automatischally.</br><strong>Blocks:</strong> The taxonomies Kurskategorien, Kursorte and Dozenten are verfügbar as separate Gutenberg blocks in the block editor. Sie können wählen Sie to verwenden Sie the blocks instead of shortcodes if you build the Seiten with Gutenberg."
+
+msgid "Hvis regioner er aktivert, kan du tilordne hvert kurssted til en region (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge). Dette kan gjøres på to måter:"
+msgstr "If regions are enabled, Sie können assign each Kurs Standort to a region (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge). This can be done in two ways:"
+
+msgid "Hvordan fallback fungerer: Når \"Skjul i url-er\" er aktivert, forsøker vi først kort URL uten prefix. Hvis slugen er i konflikt med en side/innlegg eller en annen skjult taksonomi, brukes automatisk prefiks-URL (f.eks. <code>/kurskategori/slug/</code> eller din tilpassede verdi som <code>/kat/slug/</code>). Vanlige WordPress-sider og innlegg får alltid prioritet ved konflikt."
+msgstr "How fallback works: When \"In URLs ausblenden\" is enabled, we first try a short URL without prefix. If the slug conflicts with a Seite/post or another hidden taxonomy, a prefix URL is used automatischally (e.g. <code>/kurskategori/slug/</code> or your benutzerdefiniert value such as <code>/kat/slug/</code>). Regular WordPress-Seiten and posts always take priority in case of conflict."
+
+msgid "Hvordan legge til innhold"
+msgstr "How to hinzufügen content"
+
+msgid "Hvordan opprette sidene"
+msgstr "How to erstellen the Seiten"
+
+msgid "Hvorvidt bildet skal være liggende, stående eller kvadratisk."
+msgstr "Whether the Bild should be landscape, portrait or square."
+
+msgid "Høyde:"
+msgstr "Höhe:"
+
+msgid "Høyre"
+msgstr "Rechts"
+
+msgid "HØYRE"
+msgstr "RECHTS"
+
+msgid "Høyre kolonne bunn"
+msgstr "Parte unten der columna rechts"
+
+msgid "Høyre kolonne topp"
+msgstr "Parte oben der columna rechts"
+
+msgid "I <a href=\"admin.php?page=design\">Kursdesign</a> kan du velge designmaler og innstillinger for taksonomisider (kategorier, kurssteder og instruktører)."
+msgstr "In <a href=\"admin.php?Seite=Design\">KursDesign</a> Sie können wählen Sie Design templates and Einstellungen for taxonomy Seiten (Kategorien, Kurs Standorte and Dozenten)."
+
+msgid "I <a href=\"admin.php?page=design#section-enkeltkurs\">Kursdesign → Enkeltkurs</a> velger du designmal for enkeltsider for kurs. Designmalen påvirker hele oppsettet av kursdetaljsiden:"
+msgstr "In <a href=\"admin.php?Seite=Design#section-enkeltkurs\">KursDesign → Einzelkurs</a> you wählen Sie the Design template for single Kurs Seiten. The Design template affects the entire layout of the Kurs detail Seite:"
+
+msgid "I <strong>Link-tekst</strong> (eller tilsvarende felt) limer du inn ønsket <code>[ka-meny]</code>-kortkode, f.eks. <code>[ka-meny type=\"kurskategorier\"]</code>."
+msgstr "In <strong>Link text</strong> (or equivalent field), fügen Sie ein the desired <code>[ka-meny]</code> shortcode, e.g. <code>[ka-meny type=\"kurskategorier\"]</code>."
+
+msgid "I Kursagenten kan det legges inn bilder på hvert enkelt kurs. Om ikke bilde har blitt lastet opp, kan det brukes et plassholderbilde."
+msgstr "Bilder can be added to each individual Kurs in Kursagenten. If no Bild has been uploaded, a placeholder Bild can be used."
+
+msgid "I URL-feltet skriver du <code>#</code> (slik at menypunktet kan lagres uten faktisk lenke)."
+msgstr "In the URL field, type <code>#</code> (so the menu item can be speichernd without an actual link)."
+
+msgid "I Wordpress finnes to typer sider: Sider og innlegg. Innlegg tilsvarer blogginnlegg eller annet som har kategorier og tagger. Aktiver for å omdøpe innlegg til \"Artikler\".<br><br>"
+msgstr "In WordPress there are two types of Seiten: Seiten and posts. Posts correspond to blog posts or other content with Kategorien and tags. Aktivieren Sie to rename posts to \"Articles\".<br><br>"
+
+msgid "Ikke begrens høyde"
+msgstr "Höhe nicht begrenzen"
+
+msgid "Ikke endre"
+msgstr "Nicht ändern"
+
+msgid "Ikke endre foreldrekategori"
+msgstr "Nicht ändern parent Kategorie"
+
+msgid "Ikke opprettet"
+msgstr "Nicht erstellt"
+
+msgid "Ikke tilgang"
+msgstr "Zugriff verweigert"
+
+msgid "Ikoner er tilgjengelige som html med css-klasser. Du kan bruke dem direkte i HTML-kode. Styr størrelse og farge med width, height og background-color på i.ka-icon. Husk å legge til <i>icon-</i> før navnet på ikonet. F.eks. icon-calendar. Eksempel:"
+msgstr "Icons are verfügbar as HTML with CSS classes. Sie können verwenden Sie them directly in HTML code. Control size and color with width, height and background-color on i.ka-icon. Remember to hinzufügen <i>icon-</i> before the icon name. E.g. icon-calendar. Example:"
+
+msgid "Ikoner:"
+msgstr "Symbole:"
+
+msgid "Inaktiv"
+msgstr "Inaktiv"
+
+msgid "Informasjon"
+msgstr "Informationen"
+
+msgid "Informasjon om kurssteder"
+msgstr "Information about Kurs Standorte"
+
+msgid "Ingen"
+msgstr "Keine"
+
+msgid "Ingen alternativer tilgjengelig"
+msgstr "Keine Optionen verfügbar"
+
+msgid "Ingen elementer funnet."
+msgstr "Keine Elemente gefunden."
+
+msgid "Ingen filtre er konfigurert."
+msgstr "No Filter are configured."
+
+msgid "Ingen foreldrekategori (toppnivå)"
+msgstr "No parent Kategorie (top level)"
+
+msgid "Ingen gyldig mapping data"
+msgstr "Keine gültigen Mapping-Daten"
+
+msgid "Ingen instruktører"
+msgstr "Keine Dozenten"
+
+msgid "Ingen instruktører funnet"
+msgstr "Keine Dozenten gefunden"
+
+msgid "Ingen KA kurs funnet"
+msgstr "Keine KA-Kurse gefunden"
+
+msgid "Ingen KA kurs funnet i søppelkurven"
+msgstr "Keine KA-Kurse gefunden in trash"
+
+msgid "Ingen kurs funnet. Fjern ett eller flere filtre, eller nullstill alle filtre."
+msgstr "No Kurse found. Entfernen one or more Filter, or zurücksetzen all Filter."
+
+msgid "Ingen kurs tilgjengelige for dette filteret"
+msgstr "No Kurse verfügbar for this filter"
+
+msgid "Ingen kurs tilgjengelige for øyeblikket."
+msgstr "No Kurse verfügbar at the moment."
+
+msgid "Ingen kurs tilgjengelige med valgte filtre. Nullstill filtre hvis du står fast."
+msgstr "No Kurse verfügbar with the selected Filter. Filtern zurücksetzen if you are stuck."
+
+msgid "Ingen kurs tilgjengelige."
+msgstr "Keine Kurse verfügbar."
+
+msgid "Ingen kursdager tilgjengelig."
+msgstr "Keine Kurstage verfügbar."
+
+msgid "Ingen kursdatoer funnet"
+msgstr "Keine Kursdaten gefunden"
+
+msgid "Ingen kursdatoer funnet i søppelkurven"
+msgstr "Keine Kursdaten gefunden in trash"
+
+msgid "Ingen kursdatoer tilgjengelig for øyeblikket."
+msgstr "No Kurs dates verfügbar at the moment."
+
+msgid "Ingen kurskategorier"
+msgstr "Keine Kurskategorien"
+
+msgid "Ingen kurskategorier funnet"
+msgstr "Keine Kurskategorien gefunden"
+
+msgid "Ingen kurssteder"
+msgstr "Keine Kursorte"
+
+msgid "Ingen kurssteder funnet"
+msgstr "Keine Kursorte gefunden"
+
+msgid "Ingen mapping mottatt eller ugyldig format"
+msgstr "Nein se recibió mapeo oder el formato nicht es válido"
+
+msgid "Ingen region"
+msgstr "Keine Region"
+
+msgid "Ingen tilgjengelige valg."
+msgstr "Keine Optionen verfügbar."
+
+msgid "Ingen treff med valgte filtre. Prøv et annet søk eller juster filtrene."
+msgstr "No matches with the selected Filter. Try a different suchen or adjust the Filter."
+
+msgid "Ingen, men bruk ramme"
+msgstr "Keine, aber Rahmen verwenden"
+
+msgid "Innhold"
+msgstr "Inhalt"
+
+msgid "Innstillinger"
+msgstr "Einstellungen"
+
+msgid "Innstillinger for kursliste"
+msgstr "Kursliste Einstellungen"
+
+msgid "Innstillinger fra Kursagenten"
+msgstr "Einstellungen from Kursagenten"
+
+msgid "Instagram"
+msgstr "Instagram"
+
+msgid "Instruktør"
+msgstr "Dozent"
+
+msgid "Instruktør-tittel"
+msgstr "Dozent title"
+
+msgid "Instruktør-tittel, kurs tittel/beskrivelse"
+msgstr "Dozent title, Kurs title/Beschreibung"
+
+msgid "Instruktør:"
+msgstr "Dozent:"
+
+msgid "Instruktører"
+msgstr "Dozenten"
+
+msgid "Instruktører har samme synlighetsinnstillinger som kurskategorier (skjul i oversiktslister og i automenyer). Du kan også skjule spesifikke instruktører i kortkoder ved å bruke <code>skjul</code>-parameteren i kortkoden <code>[instruktorer]</code>."
+msgstr "Dozenten have the same visibility Einstellungen as Kurs Kategorien (ausblenden in Übersicht lists and in auto menus). Sie können also ausblenden specific Dozenten in shortcodes using the <code>skjul</code> parameter in the <code>[instruktorer]</code> shortcode."
+
+msgid "Instruktører kan berikes med bilder, kontaktinformasjon og beskrivelser. Du kan også opprette egne instruktører som ikke kommer fra Kursagenten, og overskrive data fra Kursagenten."
+msgstr "Dozenten can be enriched with Bilder, contact information and Beschreibungs. Sie können also erstellen benutzerdefiniert Dozenten that do not come from Kursagenten, and override data from Kursagenten."
+
+msgid "Instruktører liste"
+msgstr "Dozentenliste"
+
+msgid "Instruktører listenavigasjon"
+msgstr "Dozentenliste navigation"
+
+msgid "Instruktører:"
+msgstr "Dozenten:"
+
+msgid "Instruktørlink"
+msgstr "Dozent link"
+
+msgid "Introtekst etter"
+msgstr "Text introductorio después"
+
+msgid "Introtekst før"
+msgstr "Text introductorio antes"
+
+msgid "Ja"
+msgstr "Ja"
+
+msgid "ja<br><strong>Standard</strong>: uten skygge"
+msgstr "yes<br><strong>Standard</strong>: no shadow"
+
+msgid "ja<br><strong>Standard</strong>: viser ikke"
+msgstr "yes<br><strong>Standard</strong>: not shown"
+
+msgid "ja<br><strong>Standard</strong>: vises ikke"
+msgstr "yes<br><strong>Standard</strong>: not displayed"
+
+msgid "Justeringer"
+msgstr "Einstellungen"
+
+msgid "KA kurs"
+msgstr "KA-Kurs"
+
+msgid "KA kurs gjort om til kladd"
+msgstr "KA Kurs reverted to draft"
+
+msgid "KA kurs oppdatert"
+msgstr "KA Kurs updated"
+
+msgid "KA kurs planlagt"
+msgstr "KA Kurs scheduled"
+
+msgid "KA kurs publisert"
+msgstr "KA Kurs published"
+
+msgid "KA kurs publisert privat"
+msgstr "KA Kurs published privately"
+
+msgid "KA kursattributter"
+msgstr "KA Kurs attributes"
+
+msgid "KA kursliste"
+msgstr "KA Kurs archive"
+
+msgid "Kan brukes i lister med kurskategorier om du ønsker et annet bilde enn hovedbilde. Profilbilde tilsvarer ikon-bilde i eldre oppsett. Bruk en .png eller .svg bildefil. Du kan laste ned ikoner på feks. https://thenounproject.com/"
+msgstr "Can be used in Kurs Kategorie lists if you want a different Bild than the main Bild. Profilbild corresponds to icon Bild in older setups. Verwenden Sie a .png or .svg Bild file. Sie können download icons from e.g. https://thenounproject.com/"
+
+msgid "Kan brukes på"
+msgstr "Kann verwendet werden auf"
+
+msgid "Kantlinjeradius"
+msgstr "Rahmenradius"
+
+msgid "Kantstil"
+msgstr "Rahmenstil"
+
+msgid "Kategorier"
+msgstr "Kategorien"
+
+msgid "Kategorier og kurs"
+msgstr "Kategorien and Kurse"
+
+msgid "Kategorifilter på kategorisiden"
+msgstr "Kategorie filtern on Kategorie Seite"
+
+msgid "Kategorinavnet blir hentet fra taggene i Kursagenten. Disse kan du strukturere i ønsket hierarki her på nettsiden, i maks to nivåer. Hvis du ønsker å endre kategorinavnet, bør du endre taggen i Kursagenten. Merk: en ny kurskategori blir opprettet, men den gamle blir ikke slettet. Overfør eventuell tekst og bilder til den nye kategorien."
+msgstr "The Kategorie name is fetched from tags in Kursagenten. Sie können structure these in your desired hierarchy on the website, up to two levels. If you want to change the Kategorie name, you should change the tag in Kursagenten. Hinweis: a new Kurs Kategorie will be created, but the old one will not be deleted. Transfer any text and Bilder to the new Kategorie."
+
+msgid "Kategoritekst: her har vi ingen felter i Kursagenten, og alt må legges inn på nettsiden. Du har mulighet til å legge inn både Kort beskrivelse og Lang beskrivelse. Dette dukker opp på de enkelte kurskategori-sidene på nettsiden."
+msgstr "Kategorie text: we have no fields for this in Kursagenten, and everything must be added on the website. Sie können hinzufügen both Kurzbeschreibung and Lange Beschreibung. These appear on the individual Kurs Kategorie Seiten on the website."
+
+msgid "Kilde (i)"
+msgstr "Quelle (i)"
+
+msgid "Kilde (k)"
+msgstr "Quelle (k)"
+
+msgid "Kildetype"
+msgstr "Quellentyp"
+
+msgid "Kjøp"
+msgstr ""
+
+msgid "Kjøp prøvetime"
+msgstr ""
+
+msgid "Kjøp prøvetimer"
+msgstr ""
+
+msgid "Kladd"
+msgstr "Entwurf"
+
+msgid "Klar til å melde deg på?"
+msgstr "Bereit zur Anmeldung?"
+
+msgid "Klarte ikke å hente kursdager fra Kursagenten."
+msgstr "Could not fetch Kurs days from Kursagenten."
+
+msgid "Klasse"
+msgstr "Klasse"
+
+msgid "Klikk \"Lagre\" for å lagre navnendringen."
+msgstr "Klicken Sie auf „Speichern“, um die Namensänderung zu speichern."
+
+msgid "Klikk \"Lagre\"."
+msgstr "Klicken Sie auf „Speichern“."
+
+msgid "Klikk \"Legg til ny instruktør\"."
+msgstr "Klicken Sie \"Hinzufügen new Dozent\"."
+
+msgid "Klikk for å kopiere"
+msgstr "Zum Kopieren klicken"
+
+msgid "Klikk for å se de enkelte kursdagene med dato, klokkeslett, instruktør og lokale."
+msgstr "Klicken Sie to view individual Kurs days with date, time, Dozent and room."
+
+msgid "Klikk på \"Egne innstillinger for instruktører\""
+msgstr "Klicken Sie \"Benutzerdefiniert Einstellungen for Dozenten\""
+
+msgid "Klikk på \"Endre navn på nytt sted\" for å legge til en ny navnendring."
+msgstr "Klicken Sie \"Change name for new Standort\" to hinzufügen a new name change."
+
+msgid "Klikk på \"Legg til ny instruktør\"."
+msgstr "Klicken Sie \"Hinzufügen new Dozent\"."
+
+msgid "Klikk på trekanten på menypunktet for å åpne innstillingene. Her kan du blant annet:"
+msgstr "Klicken Sie the triangle on the menu item to open Einstellungen. Here Sie können among other things:"
+
+msgid "Klokkeslett"
+msgstr "Zeit"
+
+msgid "Knappefarge tekst:"
+msgstr "Textfarbe des botón:"
+
+msgid "Knappefarge:"
+msgstr "Farbe des botón:"
+
+msgid "Knapper"
+msgstr "Schaltflächen"
+
+msgid "Kolonner"
+msgstr "Spalten"
+
+msgid "Kom i gang"
+msgstr "Loslegen"
+
+msgid "Kom i gang – A–Å"
+msgstr "Loslegen – Von A bis Z"
+
+msgid "kommasepartert liste<br><strong>Standard</strong>: viser alle"
+msgstr "comma-separated list<br><strong>Standard</strong>: shows all"
+
+msgid "Kompakt liste"
+msgstr "Kompakte Liste"
+
+msgid "Konflikter funnet for skjulte URL-er:"
+msgstr "Conflictos encontrados für URLs ocultas:"
+
+msgid "Kontakt"
+msgstr "Kontakt"
+
+msgid "Kontakt oss"
+msgstr "Kontaktieren Sie uns"
+
+msgid "Kontaktinformasjon"
+msgstr "Kontaktinformationen"
+
+msgid "Kopier kortkode for %s"
+msgstr "Kopieren shortcode für %s"
+
+msgid "Kopier webhook-URL-en som vises på siden:"
+msgstr "Copy the webhook URL shown on the Seite:"
+
+msgid "Kort beskrivelse"
+msgstr "Kurzbeschreibung"
+
+msgid "Kort beskrivelse brukes i oversikter og som innledende tekst på detaljside"
+msgstr "Kurzbeschreibung is used in Übersichts and as introductory text on the detail Seite"
+
+msgid "Kort beskrivelse:"
+msgstr "Kurzbeschreibung:"
+
+msgid "Kort margin"
+msgstr "Kartenrand"
+
+msgid "Kort padding"
+msgstr "Kartenabstand"
+
+msgid "kort<br><strong>Standard</strong>: ikke kort"
+msgstr "card<br><strong>Standard</strong>: not card"
+
+msgid "Kortkoder"
+msgstr "Shortcodes"
+
+msgid "Kortkoder for lister og grid"
+msgstr "Shortcodes für listas und Raster"
+
+msgid "Kortkoder kan legges inn i teksten på sider og blogginnlegg. Du kan legge inn hele kurslisten, eller lister med enten alle kurskategorier, kurs i samme kategori (brukes på kurssider), eller instruktører.<br>Det er mange ulike valg. Du finner full kortkode under, med samtlige valg, samt en liste som forklarer alle valgene.<br>Kortkoden kopieres, og limes inn der du ønsker å vise den. <br>Merk at du må fjerne eventuelle valg du ikke trenger, og deler der flere valg er listet opp (feks som stablet/rad/liste)."
+msgstr "Shortcodes can be inserted in Seite and post content. Sie können insert the full Kurs list, or lists of all Kurs Kategorien, Kurse in the same Kategorie (used on Kurs Seiten), or Dozenten.<br>There are many options. You will find the full shortcode below with all options, plus a list explaining every option.<br>Copy the shortcode and fügen Sie ein it where you want to display it.<br>Hinweis that Sie müssen entfernen options Sie haben nicht need, and parts where multiple options are listed (e.g. stablet/rad/liste)."
+
+msgid "Kraftig"
+msgstr "Kräftig"
+
+msgid "Kryss av for \"Aktiver regioninndeling\" for å aktivere funksjonen."
+msgstr "Aktivieren Sie \"Aktivieren Sie regional division\" to aktivieren Sie the feature."
+
+msgid "Kryss av på \"Rydd opp i kurs\" om det er mange utløpte kursdatoer som vises på websiden. Det blir kjørt en nattlig opprydning, så det kan være unødvendig å gjøre dette nå. <strong>NB:</strong> Opprydding tar 3-5 minutter ekstra."
+msgstr "Aktivieren Sie \"Kurse bereinigen\" if many expired Kurs dates are shown on the website. A nightly cleanup runs, so this may be unnecessary now. <strong>NB:</strong> Cleanup takes an extra 3-5 minutes."
+
+msgid "Kun for positiv filter (f.eks. nettbasert): skjuler stedsfilteret på kurslistesiden. Ved \"ikke-\"-filter vises filteret slik at bruker kan velge annet sted."
+msgstr "Only for positive filtern (e.g. online): hides the Standort filtern on the Kurs list Seite. With a \"not-\" filter, the filtern is shown so the user can wählen Sie another Standort."
+
+msgid "Kunne ikke hente kursdager."
+msgstr "Could not fetch Kurs days."
+
+msgid "Kunne ikke hente oppdateringspakke: %s"
+msgstr "Could not fetch aktualisieren package: %s"
+
+msgid "Kunne ikke laste filtrene. Vennligst prøv igjen."
+msgstr "Could not load Filter. Please try again."
+
+msgid "Kunne ikke laste versjonshistorikk."
+msgstr "Konnte nicht cargar el historial de versiones."
+
+msgid "Kunne ikke skrive nedlastet pakke til midlertidig fil."
+msgstr "Konnte nicht escribir el paquete descargado en un archivo temporal."
+
+msgid "Kunne ikke skrive XML-RPC-regel til .htaccess automatisk. Sjekk filrettigheter. Filen ligger vanligvis i WordPress-roten (samme nivå som wp-config.php). Kopier inn dette manuelt:<br><pre style=\"margin-top:8px;white-space:pre-wrap;\">%s</pre>"
+msgstr "Could not write XML-RPC rule to .htaccess automatischally. Aktivieren Sie file permissions. The file is usually in the WordPress root (same level as wp-config.php). Copy this in manuellly:<br><pre style=\"margin-top:8px;white-space:pre-wrap;\">%s</pre>"
+
+msgid "Kurs"
+msgstr "Kurs"
+
+msgid "Kurs i samme kategori"
+msgstr "Kurse in the same Kategorie"
+
+msgid "Kurs som er slettet i Kursagenten (finnes ikke lenger i API-et)"
+msgstr "Kurse deleted in Kursagenten (no longer in the API)"
+
+msgid "Kursagenten"
+msgstr "Kursagenten"
+
+msgid "Kursagenten admin"
+msgstr "Kursagenten-Administration"
+
+msgid "Kursagenten automenyer"
+msgstr "Kursagenten-Automatikmenüs"
+
+msgid "Kursagenten legger til meta-tagger, Open Graph, Twitter Cards og Course-schema på kurs- og taksonomisider. Når du har en SEO-utvidelse installert, tilpasser vi oss automatisk for å unngå duplikater. <br>Du kan også skru av vår SEO helt hvis du bruker andre løsninger."
+msgstr "Kursagenten adds meta tags, Open Graph, Twitter Cards and Kurs schema on Kurs and taxonomy Seiten. Wenn Sie have an SEO plugin installed, we adapt automatischally to avoid duplicates. <br>Sie können also turn off our SEO entirely if you verwenden Sie other solutions."
+
+msgid "Kursagenten lisens"
+msgstr "Kursagenten-Lizenz"
+
+msgid "Kursagenten plugin - Versjonshistorikk"
+msgstr "Kursagenten-Plugin – Versionsverlauf"
+
+msgid "Kursagenten Taxonomi"
+msgstr "Taxonomie de Kursagenten"
+
+msgid "Kursagenten tilbyr både automenyer og meny-kortkoder, slik at du kan bygge dynamiske menyer som alltid speiler gjeldende kurskategorier, kurssteder og instruktører."
+msgstr "Kursagenten offers both auto menus and menu shortcodes, so Sie können build dynamic menus that always reflect current Kurs Kategorien, Kurs Standorte and Dozenten."
+
+msgid "Kursagenten: Denne lisensen er allerede i bruk på en annen side. Gi oss beskjed på post@kursagenten.no, så skal vi hjelpe deg. %sLegg inn ny lisens her%s."
+msgstr "Kursagenten: This Lizenz is already in verwenden Sie on another site. Kontaktieren Sie uns at post@kursagenten.no and we will help you. %sGeben Sie ein a new Lizenz here%s."
+
+msgid "Kursagenten: Lisensen er ugyldig eller slettet. %sLegg inn ny lisens her%s."
+msgstr "Kursagenten: The Lizenz is invalid or deleted. %sGeben Sie ein a new Lizenz here%s."
+
+msgid "Kursagenten: Lisensnøkkel lagret. Registrerer siden..."
+msgstr "Kursagenten: Lizenzschlüssel speichernd. Registering site..."
+
+msgid "Kursagenten: Lisensnøkkel mangler. %sLegg inn nøkkel her%s."
+msgstr "Kursagenten: Lizenzschlüssel missing. %sGeben Sie ein key here%s."
+
+msgid "Kursagenten: Masserediger synlighet"
+msgstr "Kursagenten: Sichtbarkeit massenbearbeiten"
+
+msgid "Kursagenten: Siden har blitt registrert hos oss, og kan nå brukes. Tilgjengelige oppdateringer vil bli gjort tilgjenglig i \"Utvidelser\"."
+msgstr "Kursagenten: The site has been registered with us and can now be used. Verfügbar updates will be made verfügbar in \"Plugins\"."
+
+msgid "Kursdager:"
+msgstr "Kurs days:"
+
+msgid "Kursdata fra Kursagenten"
+msgstr "Kurs data from Kursagenten"
+
+msgid "Kursdato"
+msgstr "Kursdatum"
+
+msgid "kursdato arkiv"
+msgstr "Kursdatum archive"
+
+msgid "Kursdato attributter"
+msgstr "Kursdatum attributes"
+
+msgid "Kursdato finnes ikke. coursedate_id må være WordPress post-ID for en ka_coursedate, ikke Kursagentens kurs-ID."
+msgstr "Kursdatum does not exist. Kursdate_id must be the WordPress post ID for a ka_Kursdate, not Kursagenten's Kurs ID."
+
+msgid "Kursdato gjort om til kladd."
+msgstr "Kursdatum reverted to draft."
+
+msgid "Kursdato link"
+msgstr "Kursdatum link"
+
+msgid "Kursdato liste"
+msgstr "Kursdatum list"
+
+msgid "Kursdato listenavigasjon"
+msgstr "Kursdatum list navigation"
+
+msgid "Kursdato oppdatert."
+msgstr "Kursdatum updated."
+
+msgid "Kursdato planlagt."
+msgstr "Kursdatum scheduled."
+
+msgid "Kursdato publisert privat."
+msgstr "Kursdatum published privately."
+
+msgid "Kursdato publisert."
+msgstr "Kursdatum published."
+
+msgid "Kursdatoer"
+msgstr "Kursdaten"
+
+msgid "Kursdatoer som er slettet eller utløpt"
+msgstr "Kursdaten that are deleted or expired"
+
+msgid "Kursdatoer:"
+msgstr "Kursdaten:"
+
+msgid "Kursdesign"
+msgstr "KursDesign"
+
+msgid "Kursene dine blir automatisk overført fra Kursagenten sammen med kurskategorier, kurssteder og instruktører. Men for å gi nettsiden din et profesjonelt uttrykk, kan du berike disse med bilder og tekst direkte på nettsiden."
+msgstr "Your Kurse are automatischally transferred from Kursagenten along with Kurs Kategorien, Kurs Standorte and Dozenten. But to give your website a professional look, Sie können enrich these with Bilder and text directly on the website."
+
+msgid "Kursene dine hentes fra Kursagenten på to måter:"
+msgstr "Your Kurse are fetched from Kursagenten in two ways:"
+
+msgid "Kurset er fullt"
+msgstr "Der Kurs ist ausgebucht"
+
+msgid "Kurset er fullt. Du kan melde din interesse for å få mer informasjon eller å sette deg på venteliste."
+msgstr "Der Kurs ist ausgebucht. Sie können register your interest for more information or to join the waiting list."
+
+msgid "Kurset varer fra %1$s til %2$s"
+msgstr "The Kurs runs from %1$s to %2$s"
+
+msgid "Kurset varer fra %s"
+msgstr "The Kurs runs from %s"
+
+msgid "Kursfilter"
+msgstr "Kursfilter"
+
+msgid "Kursfilter på kategoriside"
+msgstr "Kursfiltern on Kategorie Seite"
+
+msgid "Kursinformasjon"
+msgstr "Kursinformationen"
+
+msgid "Kursinnstillinger"
+msgstr "Kurseinstellungen"
+
+msgid "Kurskategori"
+msgstr "Kurskategorie"
+
+msgid "Kurskategori link"
+msgstr "Kurskategorie link"
+
+msgid "Kurskategorier"
+msgstr "Kurskategorien"
+
+msgid "Kurskategorier kan berikes med bilder, ikoner og beskrivelser. Du kan også kontrollere hvor kategoriene vises."
+msgstr "Kurskategorien can be enriched with Bilder, icons and Beschreibungs. Sie können also control where Kategorien appear."
+
+msgid "Kurskategorier liste"
+msgstr "Kurskategorien list"
+
+msgid "Kurskategorier listenavigasjon"
+msgstr "Kurskategorien list navigation"
+
+msgid "Kurskategorier, automenyer"
+msgstr "Kurskategorien, auto menus"
+
+msgid "Kurskategorier, kurssteder og instruktører"
+msgstr "Kurskategorien, Kurs Standorte and Dozenten"
+
+msgid "Kurskategorier, kurssteder og instruktører kan berikes med tekst og bilder om ønsket. Mer informasjon i seksjonen <a href=\"#berike-taksonomisider\">Berike taksonomisider</a>."
+msgstr "Kurskategorien, Kurs Standorte and Dozenten can be enriched with text and Bilder if desired. Mehr Informationen in the <a href=\"#berike-taksonomisider\">Enrich taxonomy Seiten</a> section."
+
+msgid "Kursliste"
+msgstr "Kursliste"
+
+msgid "Kursliste etter"
+msgstr "Kursliste after"
+
+msgid "Kursliste med filter"
+msgstr "Kursliste with filter"
+
+msgid "Kursliste med filter <span class=\"small\"><a href=\"#lister\">mer info</a></span>"
+msgstr "Kursliste with filtern <span class=\"small\"><a href=\"#lister\">more info</a></span>"
+
+msgid "Kurslisten kan filtreres på kategori, sted, startmåned, språk m.m. Filtrene vises som del av kortkoden <code class=\"copytext\">[kursliste]</code>. Har du opprettet sider via <a href=\"admin.php?page=design\">Kursdesign</a> → Wordpress sider, gjelder dette siden \"Kurs\"."
+msgstr "The Kurs list can be filtered by Kategorie, Standort, start month, language, etc. Filter are part of the <code class=\"copytext\">[kursliste]</code> shortcode. If you created Seiten via <a href=\"admin.php?Seite=Design\">KursDesign</a> → WordPress-Seiten, this applies to the \"Kurse\" Seite."
+
+msgid "Kurslokale"
+msgstr "Kurs room"
+
+msgid "Kurslokale:"
+msgstr "Kurs room:"
+
+msgid "Kursoversikt"
+msgstr "Kursübersicht"
+
+msgid "Kurspåmelding"
+msgstr "Kursanmeldung"
+
+msgid "Kurssted"
+msgstr "Kursort"
+
+msgid "Kurssted link"
+msgstr "Kursort link"
+
+msgid "Kurssteder"
+msgstr "Kursorte"
+
+msgid "Kurssteder har samme synlighetsinnstillinger som kurskategorier (skjul i oversiktslister og i automenyer)."
+msgstr "Kursorte have the same visibility Einstellungen as Kurs Kategorien (ausblenden in Übersicht lists and in auto menus)."
+
+msgid "Kurssteder kan berikes med bilder og beskrivelser. Du kan også endre navn på steder og organisere dem i regioner."
+msgstr "Kursorte can be enriched with Bilder and Beschreibungs. Sie können also change Standort names and organize them in regions."
+
+msgid "Kurssteder liste"
+msgstr "Kursorte list"
+
+msgid "Kurssteder listenavigasjon"
+msgstr "Kursorte list navigation"
+
+msgid "Kurssteder og regioner"
+msgstr "Kursorte and regions"
+
+msgid "Kurstider og steder"
+msgstr "Kurs times and Standorte"
+
+msgid "Kurstider:"
+msgstr "Kurs times:"
+
+msgid "Kvadrat 1:1"
+msgstr "Quadrat 1:1"
+
+msgid "Lagre"
+msgstr "Speichern"
+
+msgid "Lagre lisens"
+msgstr "Lizenz speichern"
+
+msgid "Lagre menyen som vanlig. På forsiden vil automenyen automatisk utvides til riktig trestruktur basert på taksonomier og kurs i Kursagenten."
+msgstr "Speichern the menu as usual. On the front Seite, the auto menu will automatischally expand to the correct tree structure based on taxonomies and Kurse in Kursagenten."
+
+msgid "Lagt inn direkte via WordPress"
+msgstr "Direkt über WordPress hinzugefügt"
+
+msgid "Landskap 16:9"
+msgstr "Querformat 16:9"
+
+msgid "Landskap 2:1"
+msgstr "Querformat 2:1"
+
+msgid "Landskap 3:1"
+msgstr "Querformat 3:1"
+
+msgid "Landskap 3:2"
+msgstr "Querformat 3:2"
+
+msgid "Landskap 4:1"
+msgstr "Querformat 4:1"
+
+msgid "Landskap 4:3"
+msgstr "Querformat 4:3"
+
+msgid "Large"
+msgstr "Groß"
+
+msgid "Last opp %s"
+msgstr "%s hochladen"
+
+msgid "Laster kursdager…"
+msgstr "Loading Kurs days…"
+
+msgid "Lastet opp til dette kurset"
+msgstr "Uploaded to this Kurs"
+
+msgid "Lastet opp til kursdato"
+msgstr "Uploaded to Kurs date"
+
+msgid "Layout"
+msgstr "Layout"
+
+msgid "Layout og stil"
+msgstr "Design und estilo"
+
+msgid "Layout:"
+msgstr "Layout:"
+
+msgid "Ledige kurs"
+msgstr "Verfügbare Kurse"
+
+msgid "Ledige kurs:"
+msgstr "Verfügbare Kurse:"
+
+msgid "Ledige plasser"
+msgstr "Verfügbare Plätze"
+
+msgid "Legg automenyer under et hovedmenypunkt (f.eks. siden Kurs). Brukt som hovedmenypunkt vil toppnivået være uten link."
+msgstr "Platzieren Sie Automatikmenüs unter einem Hauptmenüpunkt (z. B. der Kursseite). Wird es als Hauptmenüpunkt verwendet, hat die oberste Ebene keinen Link."
+
+msgid "Legg inn bedriftsinformasjon"
+msgstr "Geben Sie ein company information"
+
+msgid "Legg inn betalingslenke %1$s i <a href=\"https://kursadmin.kursagenten.no/IframeSetting\" target=\"_blank\" rel=\"noopener\">Kursagenten</a>"
+msgstr "Hinzufügen Zahlung link %1$s in <a href=\"https://kursadmin.kursagenten.no/IframeSetting\" target=\"_blank\" rel=\"noopener\">Kursagenten</a>"
+
+msgid "Legg inn innstillinger for å automatisk hente kurs fra Kursagenten. Når du har lagt inn innstillinger, kan du klikke på \"Hent alle kurs fra Kursagenten\" så blir alt hentet ved første gangs installering."
+msgstr "Geben Sie ein Einstellungen to automatischally fetch Kurse from Kursagenten. Once Sie haben entered the Einstellungen, Sie können klicken Sie \"Alle Kurse von Kursagenten abrufen\" to fetch everything on first-time installation."
+
+msgid "Legg inn kortkoden i tekstfeltet i en egendefinert meny. I url-feltet skriver du #. For å få menyen som en undermeny, dra dette menypunktet til høyre innunder et annet menypunkt. For å lage meny av en bestemt kategori (med underkategorier), skriv inn kategori-slug etter start=\"\"."
+msgstr "Insert the shortcode in the text field of a benutzerdefiniert menu. In the URL field, type #. To get the menu as a submenu, ziehen Sie this menu item to the right under another menu item. To erstellen a menu from a specific Kategorie (with subKategorien), geben Sie ein the Kategorie slug after start=\"\"."
+
+msgid "Legg inn lisensnøkkel"
+msgstr "Lizenzschlüssel eingeben"
+
+msgid "Legg til bilder og stedsbeskrivelser"
+msgstr "Hinzufügen Bilder and Standort Beschreibungs"
+
+msgid "Legg til bilder, beskrivelser og organiser i hovedkategorier"
+msgstr "Hinzufügen Bilder, Beschreibungs and organize into main Kategorien"
+
+msgid "Legg til egendefinert CSS-klasse til wrapper-elementet. Nyttig for custom styling eller tema-spesifikke behov."
+msgstr "Hinzufügen benutzerdefiniert CSS class to the wrapper element. Useful for benutzerdefiniert styling or theme-specific needs."
+
+msgid "Legg til ekstra Wordpress innhold"
+msgstr "Hinzufügen extra WordPress content"
+
+msgid "Legg til i meny"
+msgstr "Zum Menü hinzufügen"
+
+msgid "Legg til instruktør"
+msgstr "Dozent hinzufügen"
+
+msgid "Legg til KA kurs"
+msgstr "Hinzufügen KA Kurs"
+
+msgid "Legg til kursdato"
+msgstr "Kursdatum hinzufügen"
+
+msgid "Legg til kurskategori"
+msgstr "Hinzufügen Kurs Kategorie"
+
+msgid "Legg til kurssted"
+msgstr "Hinzufügen Kurs Standort"
+
+msgid "Legg til profilbilder og utvidet informasjon"
+msgstr "Hinzufügen profile Bilder and extended information"
+
+msgid "Legger automatisk inn og fjerner en blokkering av xmlrpc.php i .htaccess når valget skrus av/på. Krever Apache og skrivetilgang til .htaccess.<br><br>"
+msgstr "Automatischally adds and removes a block of xmlrpc.php in .htaccess when the option is turned on/off. Requires Apache and write access to .htaccess.<br><br>"
+
+msgid "Les mer"
+msgstr "Mehr erfahren"
+
+msgid "Like under hovedbilde/utvidet beskrivelse, før kurslisten."
+msgstr "Just below main Bild/extended Beschreibung, before the Kurs list."
+
+msgid "Lim inn lisensnøkkelen du fikk tildelt."
+msgstr "Fügen Sie ein the Lizenz key you were assigned."
+
+msgid "Lim inn webhook-URL-en i feltene <strong>CourseCreated</strong> og <strong>CourseUpdated</strong>."
+msgstr "Fügen Sie ein the webhook URL into the <strong>KursCreated</strong> and <strong>KursUpdated</strong> fields."
+
+msgid "Link"
+msgstr "Link"
+
+msgid "Link til en kursdato."
+msgstr "Link to a Kurs date."
+
+msgid "Link til en kurskategori"
+msgstr "Link to a Kurs Kategorie"
+
+msgid "Link til et instruktør"
+msgstr "Link to an Dozent"
+
+msgid "Link til et kurssted"
+msgstr "Link to a Kurs Standort"
+
+msgid "Link til kurs"
+msgstr "Link to Kurs"
+
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+msgid "Linker:"
+msgstr "Links:"
+
+msgid "Lisensnøkkel"
+msgstr "Lizenzschlüssel"
+
+msgid "List_type"
+msgstr "List_type"
+
+msgid "Liste"
+msgstr "Liste"
+
+msgid "Liste enkel"
+msgstr "Einfache Liste"
+
+msgid "Listedesign:"
+msgstr "List Design:"
+
+msgid "Listene med filtre i venstre kolonne kan bli lange. De begrenses til en standard høyde, med \"Vis mer\"-link. Standard høyde er 250px. Du kan velge en annen høyde for filterlister under."
+msgstr "Filtern lists in the left column can become long. They are limited to a Standard height with a \"Mehr anzeigen\" link. Standard height is 250px. Sie können wählen Sie a different height for filtern lists below."
+
+msgid "Listetype"
+msgstr "Listentyp"
+
+msgid "Liten"
+msgstr "Klein"
+
+msgid "Logg inn på <a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Kursagenten</a> og gå til <strong>Integrasjonsinnstillinger → Webhooks</strong>."
+msgstr "Log in to <a href=\"https://kursadmin.kursagenten.no/IntegrationEinstellungen\" target=\"_blank\">Kursagenten</a> and gehen Sie zu <strong>Integration Einstellungen → Webhooks</strong>."
+
+msgid "Lokale"
+msgstr "Raum"
+
+msgid "Lokasjon:"
+msgstr "Standort:"
+
+msgid "lokasjoner oppdatert"
+msgstr "Standorte updated"
+
+msgid "Lukk"
+msgstr "Schließen"
+
+msgid "Lukk filter"
+msgstr "Schließen Filter"
+
+msgid "Lys tekst og mørkt overlay (standard)"
+msgstr "Light text and dark overlay (Standard)"
+
+msgid "Maks ord i beskrivelse"
+msgstr "Max words in Beschreibung"
+
+msgid "Maks ord i lang beskrivelse"
+msgstr "Max words in long Beschreibung"
+
+msgid "Maksbredde:"
+msgstr "Max. Breite:"
+
+msgid "Mangler Kursagenten-ID-er på kursdato."
+msgstr "Missing Kursagenten IDs on Kurs date."
+
+msgid "Masseredigering av synlighet"
+msgstr "Sichtbarkeit massenbearbeiten"
+
+msgid "Medium"
+msgstr "Mittel"
+
+msgid "Meld deg på"
+msgstr "Registrieren"
+
+msgid "Meld feil og forbedringer"
+msgstr "Fehler und Verbesserungen melden"
+
+msgid "Meld interesse"
+msgstr "Interesse registrieren"
+
+msgid "Meny"
+msgstr "Menü"
+
+msgid "Meny-kortkoder"
+msgstr "Menü-Shortcodes"
+
+msgid "Meny-kortkoder brukes når du vil bygge menyer ved hjelp av kortkoden <code class=\"copytext\">[ka-meny]</code>, typisk i en egendefinert meny eller i innhold der temaet støtter kortkoder."
+msgstr "Menü-Shortcodes are used wenn Sie want to build menus using the <code class=\"copytext\">[ka-meny]</code> shortcode, typically in a benutzerdefiniert menu or in content where the theme supports shortcodes."
+
+msgid "Menyer"
+msgstr "Menüs"
+
+msgid "Mer avrundet"
+msgstr "Stärker abgerundet"
+
+msgid "Mer info"
+msgstr "Mehr Informationen"
+
+msgid "mer informasjon"
+msgstr "mehr Informationen"
+
+msgid "Mer informasjon"
+msgstr "Mehr Informationen"
+
+msgid "Mer informasjon om dataflyt fra Kursagenten"
+msgstr "Mehr Informationen about data flow from Kursagenten"
+
+msgid "Merk også \"Rydd opp i kurs\" før du kjører synken for å sikre at gamle kursdatoer fjernes."
+msgstr "Also aktivieren Sie \"Kurse bereinigen\" before running sync to ensure old Kurs dates are removed."
+
+msgid "Merk: AIOSEO (Pro), SEOPress (Pro) og Slim SEO Schema (egen utvidelse) kan også sette opp eget Course-schema. Hvis du aktiverer dette i disse utvidelsene, anbefaler vi å skru av Kursagenten SEO for å unngå duplikater. For Rank Math Free anbefaler vi fortsatt Kursagenten sitt Course-schema som standard."
+msgstr "Hinweis: AIOSEO (Pro), SEOPress (Pro) and Slim SEO Schema (separate extension) can also set up their own Kurs schema. If you aktivieren Sie this in those extensions, we recommend turning off Kursagenten SEO to avoid duplicates. For Rank Math Free we still recommend Kursagenten's Kurs schema as the Standard."
+
+msgid "Merk: instruktøren må være knyttet til et kurs for at dataene skal bli hentet over."
+msgstr "Hinweis: the Dozent must be linked to a Kurs for the data to be fetched."
+
+msgid "Merk: på <a href=\"/wp-admin/admin.php?page=design#section-systemsider\">siden</a> med instruktøroversikten må du legge til vis=\"fornavn\" eller vis=\"etternavn\" i kortkoden for å vise kun fornavn eller etternavn. Du kan gå direkte til redigering fra <a href=\"/wp-admin/admin.php?page=design#section-systemsider\">Wordpress sider</a>."
+msgstr "Hinweis: on the <a href=\"/wp-admin/admin.php?Seite=Design#section-systemsider\">Seite</a> with the Dozent Übersicht, Sie müssen hinzufügen vis=\"fornavn\" or vis=\"etternavn\" to the shortcode to anzeigen first name or last name only. Sie können go directly to editing from <a href=\"/wp-admin/admin.php?Seite=Design#section-systemsider\">WordPress-Seiten</a>."
+
+msgid "Mest brukt"
+msgstr "Am häufigsten verwendet"
+
+msgid "Minste font (mobil) til største font (stor desktop). Gir en gradvis økning i fontstørrelse."
+msgstr "Fuente mehr pequeña (Mobil) a fuente mehr groß (Desktop groß). Proporciona un aumento gradual des tamaño de fuente."
+
+msgid "Mobil"
+msgstr "Mobil"
+
+msgid "Mobil:"
+msgstr "Mobil:"
+
+msgid "Moderne"
+msgstr "Modern"
+
+msgid "Mørk overlay (%)"
+msgstr "Dunkles Overlay (%)"
+
+msgid "Mørk tekst og lyst overlay"
+msgstr "Dunkler Text und helles Overlay"
+
+msgid "naviger i kurs"
+msgstr "Navigate Kurse"
+
+msgid "Navn"
+msgstr "Name"
+
+msgid "Navn på nytt instruktør"
+msgstr "Name of new Dozent"
+
+msgid "Navn på nytt kurssted"
+msgstr "Name of new Kurs Standort"
+
+msgid "Navn på sted"
+msgstr "Standortname"
+
+msgid "Navn, telefonnummer og epost blir overført fra Kursagenten. Dette kan overstyres på nettsiden om ønskelig."
+msgstr "El Name, el número de Telefon und el E-Mail se transfieren desde Kursagenten. Esto se Sie können überschreiben im sitio web wenn lo desea."
+
+msgid "Navnendring"
+msgstr "Namensänderung"
+
+msgid "Navnendring fjernet"
+msgstr "Namensänderung entfernt"
+
+msgid "Navnendring ikke funnet"
+msgstr "Namensänderung nicht gefunden"
+
+msgid "Navnendring lagret. Slug-oppdateringer vil skje ved neste synkronisering."
+msgstr "Name change speichernd. Slug updates will occur at next Synchronisation."
+
+msgid "Navnendring oppdatert. Slug-oppdateringer vil skje ved neste synkronisering."
+msgstr "Name change updated. Slug updates will occur at next Synchronisation."
+
+msgid "Navnendring på kurssteder"
+msgstr "Name change for Kurs Standorte"
+
+msgid "Navnet er det som vises på siden"
+msgstr "The name is what is displayed on the Seite"
+
+msgid "Navnet slik det som vises på siden. Bør kun endres på instruktørens brukerprofil på Kursagenten."
+msgstr "The name as displayed on the Seite. Should only be changed on the Dozent's user profile in Kursagenten."
+
+msgid "Navnet slik det som vises på siden. Kan endres under <a href=\"%s\">Synkronisering</a>."
+msgstr "The name as displayed on the Seite. Can be changed under <a href=\"%s\">Synchronisation</a>."
+
+msgid "Navnevisning:"
+msgstr "Visualización des Name:"
+
+msgid "NB! Kjør full synk fra Kursagenten umiddelbart etter å ha lagt til/endret navn på et sted(er)!"
+msgstr "NB! Run a full sync from Kursagenten immediately after adding/changing the name of a Standort(s)!"
+
+msgid "Nederst i høyre kolonne."
+msgstr "En la parte unten der columna rechts."
+
+msgid "Nei"
+msgstr "Nein"
+
+msgid "Neste"
+msgstr "Weiter"
+
+msgid "Neste 3 måneder"
+msgstr "Nächste 3 Monate"
+
+msgid "Neste 6 måneder"
+msgstr "Nächste 6 Monate"
+
+msgid "Neste kurs"
+msgstr "Nächster Kurs"
+
+msgid "Neste kurs (fullt)"
+msgstr "Nächster Kurs (full)"
+
+msgid "Neste kurs:"
+msgstr "Nächster Kurs:"
+
+msgid "Neste uke"
+msgstr "Nächste Woche"
+
+msgid "Neste år"
+msgstr "Nächstes Jahr"
+
+msgid "Nettbrett"
+msgstr "Tablet"
+
+msgid "Nettverksfeil. Prøv igjen."
+msgstr "Netzwerkfehler. Bitte erneut versuchen."
+
+msgid "Nivå"
+msgstr "Ebene"
+
+msgid "Noe gikk galt ved kommunikasjon med serveren."
+msgstr "Etwas ist schiefgelaufen al comunicarse mit el servidor."
+
+msgid "Noe gikk galt ved masseredigering."
+msgstr "Etwas ist schiefgelaufen durante la edición masiva."
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Normalt sett er disse områdene litt mørkere enn bakgrunnen. Brukes også som hovedfarge på bokser i \"Bokser\"-design."
+msgstr "Normally these areas are slightly darker than the background. Also used as the primary color on boxes in the \"Boxes\" Design."
+
+msgid "Nullstill alle filtre"
+msgstr "Alle Filtern zurücksetzen"
+
+msgid "Nullstill dato"
+msgstr "Datum zurücksetzen"
+
+msgid "Nullstill filter"
+msgstr "Filtern zurücksetzen"
+
+msgid "Ny kursdato"
+msgstr "New Kurs date"
+
+msgid "Nytt KA kurs"
+msgstr "New KA Kurs"
+
+msgid "Nytt navn for kurskategori"
+msgstr "New name for Kurs Kategorie"
+
+msgid "Nytt navn på sted"
+msgstr "New name for Standort"
+
+msgid "Nyttige selectorer:"
+msgstr "Nützliche Selektoren:"
+
+msgid "Når aktivert, kan lokasjoner organiseres i regioner. Dette påvirker ikke synkronisering, men kan brukes for filtrering og organisering."
+msgstr "When enabled, Standorte can be organized into regions. This does not affect Synchronisation but can be used for filtering and organization."
+
+msgid "Når dette er aktivert vil kurslisten som standard skjule fulle kurs og kurs «på forespørsel». Brukeren kan slå filteret av igjen på siden."
+msgstr "When this is enabled, the Kurs list will by Standard ausblenden full Kurse and Kurse \"on request\". The user can turn the filtern off again on the Seite."
+
+msgid "Når disse er aktive, slår vi av våre meta-tagger og overlater til utvidelsen. Course-schema leveres normalt av Kursagenten, med unntak av Rank Math Pro der vi lar Rank Math håndtere Course-schema."
+msgstr "When these are active, we turn off our meta tags and leave it to the plugin. Kurs schema is normally provided by Kursagenten, except for Rank Math Pro where we let Rank Math handle Kurs schema."
+
+msgid "Når du besøker et kurs på frontend, finner du et redigeringsikon som tar deg direkte til kursredigering i Kursagenten. Dette gjør det enkelt å oppdatere kursinformasjon uten å gå veien om nettsiden."
+msgstr "Wenn Sie visit a Kurs on the frontend, you will find an bearbeiten icon that takes you directly to Kurs editing in Kursagenten. This makes it easy to aktualisieren Kurs information without going through the website."
+
+msgid "Når du endrer navn på et sted:"
+msgstr "Wenn Sie den Namen eines Standorts ändern:"
+
+msgid "Når webhooks er aktivert, vil kursene automatisk oppdateres i WordPress når de endres eller opprettes i Kursagenten. Dette gjelder både kursdata, datoer og lokasjoner."
+msgstr "When webhooks are enabled, Kurse are updated automatischally in WordPress when they are changed or created in Kursagenten. This applies to Kurs data, dates and Standorte."
+
+msgid "Nåværende versjon:"
+msgstr "Aktuelle Version:"
+
+msgid "Om bedriften"
+msgstr "Über das Unternehmen"
+
+msgid "Om du velger å vise bilde, vil det først bli sett etter hovedbilde fra kurssted. Hvis det ikke blir funnet, brukes plassholderbilde."
+msgstr "If you wählen Sie to anzeigen an Bild, it will first look for a main Bild from the Kurs Standort. If none is found, a placeholder Bild is used."
+
+msgid "Om firmaet"
+msgstr "Über das Unternehmen"
+
+msgid "Om kurset"
+msgstr "Über den Kurs"
+
+msgid "Om kursredigering"
+msgstr "Über die Kursbearbeitung"
+
+msgid "Omdøp innlegg til Artikler"
+msgstr "Beiträge in Artikel umbenennen"
+
+msgid "Oppdater instruktør"
+msgstr "Aktualisieren Dozent"
+
+msgid "Oppdater kurskategori"
+msgstr "Aktualisieren Kurs Kategorie"
+
+msgid "Oppdater kurssted"
+msgstr "Aktualisieren Kurs Standort"
+
+msgid "Oppførsel eksterne lenker:"
+msgstr "Comportamiento des Link externo:"
+
+msgid "Oppgi enten coursedate_id (WP post-ID) eller location_id + schedule_id (Kursagenten-IDer)."
+msgstr "Provide either Kursdate_id (WP post ID) or Standort_id + schedule_id (Kursagenten IDs)."
+
+msgid "Opprett eller velg nødvendige sider for kurs, kurskategorier, kurssteder og instruktører. Velg design på kursliste, enkeltkurs, kategorier, steder og instruktører. Velg hovedfarger."
+msgstr "Erstellen or wählen Sie the necessary Seiten for Kurse, Kurs Kategorien, Kurs Standorte and Dozenten. Wählen Sie Design for Kurs list, single Kurs, Kategorien, Standorte and Dozenten. Wählen Sie primary colors."
+
+msgid "Opprett først en <strong>egendefinert meny</strong> eller et menypunkt av typen \"Egendefinert lenke\"."
+msgstr "First erstellen a <strong>benutzerdefiniert menu</strong> or a menu item of type \"Benutzerdefiniert link\"."
+
+msgid "Opprett ny side"
+msgstr "Neue Seite erstellen"
+
+msgid "Opprette egne instruktører"
+msgstr "Creating benutzerdefiniert Dozenten"
+
+msgid "Opprydding av kurs"
+msgstr "Kursbereinigung"
+
+msgid "Opprydding fjerner kurs og kursdatoer som ikke lenger finnes i Kursagenten, samt utløpte kursdatoer. Dette holder nettsiden ryddig og oppdatert."
+msgstr "Cleanup removes Kurse and Kurs dates that no longer exist in Kursagenten, as well as expired Kurs dates. This keeps the website tidy and up to date."
+
+msgid "Overordnet instruktør"
+msgstr "Übergeordneter Dozent"
+
+msgid "Overordnet instruktør:"
+msgstr "Übergeordneter Dozent:"
+
+msgid "Overordnet KA kurs:"
+msgstr "Übergeordneter KA-Kurs:"
+
+msgid "Overordnet kurssted"
+msgstr "Parent Kurs Standort"
+
+msgid "Overordnet kurssted:"
+msgstr "Parent Kurs Standort:"
+
+msgid "Oversikt"
+msgstr "Übersicht"
+
+msgid "oversikten"
+msgstr "die Übersicht"
+
+msgid "Oversiktsside for alle instruktører"
+msgstr "Übersicht Seite for all Dozenten"
+
+msgid "Oversiktsside for alle kurskategorier"
+msgstr "Übersicht Seite for all Kurs Kategorien"
+
+msgid "Oversiktsside for alle kurssteder"
+msgstr "Übersicht Seite for all Kurs Standorte"
+
+msgid "Oversiktsside/kalender for alle kurs"
+msgstr "Übersicht Seite/calendar for all Kurse"
+
+msgid "Oversiktssider med kortkoder"
+msgstr "Übersicht Seiten with shortcodes"
+
+msgid "Overskrift"
+msgstr "Überschrift"
+
+msgid "Overskrive data fra Kursagenten"
+msgstr "Daten von Kursagenten überschreiben"
+
+msgid "Overstyr hvilke detaljer som vises i hvert kurs i <span class=\"copytext\">[kursliste]</span>. Uten prefiks settes kun oppgitte felter til synlig. Med <span class=\"copytext\">-</span>/<span class=\"copytext\">!</span> skjules felt, og med <span class=\"copytext\">+</span> vises felt uten å endre resten."
+msgstr "Override which details are shown for each Kurs in <span class=\"copytext\">[kursliste]</span>. Without a prefix, only specified fields are shown. With <span class=\"copytext\">-</span>/<span class=\"copytext\">!</span> fields are hidden; with <span class=\"copytext\">+</span> fields are shown without changing the rest."
+
+msgid "Overstyr innstillinger for spesifikke taksonomier"
+msgstr "Override Einstellungen for specific taxonomies"
+
+msgid "Overstyr profil fra Kursagenten"
+msgstr "Profil von Kursagenten überschreiben"
+
+msgid "Overstyr profilbilde"
+msgstr "Profilbild überschreiben"
+
+msgid "Overstyr visning av bilder i <span class=\"copytext\">[kursliste]</span>."
+msgstr "Override Bild display in <span class=\"copytext\">[kursliste]</span>."
+
+msgid "Overstyr visning av filtre for <span class=\"copytext\">[kursliste]</span>. Nyttig når samme liste skal brukes i ulike sideoppsett."
+msgstr "Override filtern display for <span class=\"copytext\">[kursliste]</span>. Useful when the same list is used in different Seite layouts."
+
+msgid "Overstyrer tekstfargen fra overlay-valget over."
+msgstr "Überschreibt el Textfarbe der selección de superposición zurück."
+
+msgid "P"
+msgstr "P"
+
+msgid "Passer spesielt godt for sider med få kurs per sted/kategori/instruktør."
+msgstr "Funktioniert besonders gut für Seiten mit wenigen Kursen pro Standort/Kategorie/Dozent."
+
+msgid "Plassering for innhold i venstre kolonne."
+msgstr "Platzierung für Inhalte in der linken Spalte."
+
+msgid "Plassholderbilde"
+msgstr "Platzhalterbild"
+
+msgid "Plassholderbilde for instruktør"
+msgstr "Platzhalterbild für den Lehrer"
+
+msgid "Plassholderbilde for kurs"
+msgstr "Platzhalterbild für Kurs"
+
+msgid "Plassholderbilde for sted"
+msgstr "Platzhalterbild for Standort"
+
+msgid "Plugin-side"
+msgstr "Plugin-Seite"
+
+msgid "Pluginen oppretter automatisk systemsider for enkeltsider som håndteres av pluginen. Disse sidene genereres dynamisk og trenger ikke å opprettes manuelt:"
+msgstr "Das Plugin erstellt automatisch Systemseiten für einzelne Seiten, die vom Plugin verwaltet werden. Diese Seiten werden dynamisch generiert und müssen nicht manuell erstellt werden:"
+
+msgid "Portrett 2:3"
+msgstr "Hochformat 2:3"
+
+msgid "Portrett 3:4"
+msgstr "Hochformat 3:4"
+
+msgid "Postnr/sted"
+msgstr "Postleitzahl/Ort"
+
+msgid "Preset-stiler"
+msgstr "Pzurücksetzen styles"
+
+msgid "Prikket"
+msgstr "Gepunktet"
+
+msgid "Pris"
+msgstr "Preis"
+
+msgid "Pris høy til lav"
+msgstr "Preis hoch bis niedrig"
+
+msgid "Pris lav til høy"
+msgstr "Preis niedrig bis hoch"
+
+msgid "Pris:"
+msgstr "Preis:"
+
+msgid "Profil - rundt bilde og tittel"
+msgstr "Profil – rundes Bild und Titel"
+
+msgid "profilbilde"
+msgstr "Profilbild"
+
+msgid "Profilbilde"
+msgstr "Profilbild"
+
+msgid "Prøv igjen"
+msgstr "Versuchen Sie es erneut"
+
+msgid "Prøv å endre dine filtervalg eller nullstill alle filtre for å se alle tilgjengelige kurs."
+msgstr "Versuchen Sie, Ihre Filterauswahl zu ändern oder alle Filter zurückzusetzen, um alle verfügbaren Kurse anzuzeigen."
+
+msgid "Publiser"
+msgstr "Veröffentlichen"
+
+msgid "Publisert"
+msgstr "Veröffentlicht"
+
+msgid "På denne siden:"
+msgstr "Auf dieser Seite:"
+
+msgid "På forespørsel"
+msgstr "Auf Anfrage"
+
+msgid "Påmelding"
+msgstr "Anmeldung"
+
+msgid "Påmeldingsfrist"
+msgstr "Anmeldeschluss"
+
+msgid "Påmeldingsfrist:"
+msgstr "Anmeldeschluss:"
+
+msgid "Rad kort"
+msgstr "Zeilenkarte"
+
+msgid "Rad standard"
+msgstr "Row Standard"
+
+msgid "Rad utvidet beskrivelse"
+msgstr "Row extended Beschreibung"
+
+msgid "Radavstand"
+msgstr "Zeilenabstand"
+
+msgid "Ramme:"
+msgstr "Rahmen:"
+
+msgid "Rammefarge"
+msgstr "Rahmenfarbe"
+
+msgid "Rammeinnstillinger"
+msgstr "Rahmeneinstellungen"
+
+msgid "Rammestil"
+msgstr "Rahmenstil"
+
+msgid "Rammetykkelse"
+msgstr "Rahmenbreite"
+
+msgid "Rediger"
+msgstr "Bearbeiten"
+
+msgid "Rediger i Element-kort"
+msgstr "Bearbeiten in Elementkarte"
+
+msgid "Rediger i Kursadmin"
+msgstr "Im Kursadmin bearbeiten"
+
+msgid "Rediger instruktør"
+msgstr "Lehrer bearbeiten"
+
+msgid "Rediger instruktøren for å legge til bilder, kontaktinformasjon og beskrivelser."
+msgstr "Bearbeiten Sie den Kursleiter, um Bilder, Kontaktinformationen und Beschreibungen hinzuzufügen."
+
+msgid "Rediger kurs"
+msgstr "Kurs bearbeiten"
+
+msgid "Rediger kursdato"
+msgstr "Kursdatum bearbeiten"
+
+msgid "Rediger kurskategori"
+msgstr "Kurskategorie bearbeiten"
+
+msgid "Rediger kurssted"
+msgstr "Kursort bearbeiten"
+
+msgid "Rediger Wordpress innhold"
+msgstr "Bearbeiten Sie den Inhalt von WordPress"
+
+msgid "Region"
+msgstr "Region"
+
+msgid "Region er deaktivert i Synkronisering → Regioner."
+msgstr "Region is disabled in Synchronisation → Regions."
+
+msgid "Regioner"
+msgstr "Regionen"
+
+msgid "Regioner aktivert%s"
+msgstr "Regionen aktiviert%s"
+
+msgid "Regioner deaktivert%s"
+msgstr "Regionen deaktiviert%s"
+
+msgid "Regioner lar deg organisere kurssteder i geografiske områder (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge). Dette er nyttig for filtrering og organisering av kurssteder."
+msgstr "Mit Regionen können Sie Kursstandorte in geografische Gebiete einteilen (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge). Dies ist nützlich zum Filtern und Organisieren von Kursorten."
+
+msgid "Regioninndeling"
+msgstr "Regionale Aufteilung"
+
+msgid "Regioninndeling lagret%s"
+msgstr "Regionaleinteilung gespeichert%s"
+
+msgid "Regioninndeling tilbakestilt til standard%s"
+msgstr "Regionale Abteilung auf Standard zurückgesetzt%s"
+
+msgid "Registrer deg"
+msgstr "Registrieren"
+
+msgid "Registrer nå"
+msgstr "Registrieren Sie sich jetzt"
+
+msgid "Relaterte kurs"
+msgstr "Verwandte Kurse"
+
+msgid "Ren og enkel liste"
+msgstr "Saubere und einfache Liste"
+
+msgid "Resett til standard"
+msgstr "Auf Standard zurücksetzen"
+
+msgid "Resten av året"
+msgstr "Rest des Jahres"
+
+msgid "Rett etter footer-seksjonen."
+msgstr "Direkt nach dem Fußzeilenbereich."
+
+msgid "Rett før footer."
+msgstr "Direkt vor der Fußzeile."
+
+msgid "Rett under hele header-blokken."
+msgstr "Direkt unter dem gesamten Headerblock."
+
+msgid "Rett under pagineringskontroller i mal \"Standard\"."
+msgstr "Direkt unter den Paginierungssteuerelementen in der Vorlage „Standard“."
+
+msgid "Rom eller lokale der kurset holdes."
+msgstr "Raum oder Veranstaltungsort, in dem der Kurs stattfindet."
+
+msgid "Rom:"
+msgstr "Zimmer:"
+
+msgid "Rom/lokale"
+msgstr "Raum/Veranstaltungsort"
+
+msgid "Rund"
+msgstr "Rund"
+
+msgid "Rutenett"
+msgstr "Netz"
+
+msgid "Rydd opp i kurs"
+msgstr "Kurse aufräumen"
+
+msgid "Rydd opp i kurs etter synkronisering"
+msgstr "Bereinigen Sie die Kurse nach der Synchronisierung"
+
+msgid "Rydd vekk utløpte kursdatoer, duplikate kurs, og slettede kurs som ikke finnes i Kursagenten"
+msgstr "Entfernen Sie abgelaufene Kursdaten, duplizieren Sie Kurse und löschen Sie Kurse, die in Kursagenten nicht mehr vorhanden sind."
+
+msgid "Samme slug brukes flere steder: %s"
+msgstr "Dieselbe Schnecke an mehreren Stellen verwendet: %s"
+
+msgid "Se <a href=\"#stedsnavn-og-regioner\">Stedsnavn og regioner</a> for mer informasjon om hvordan regioner fungerer."
+msgstr "Weitere Informationen zur Funktionsweise von Regionen finden Sie unter <a href=\"#stedsnavn-og-regioner\">Standortnamen und Regionen</a>."
+
+msgid "Se alle kursdatoer"
+msgstr "Alle Kurstermine ansehen"
+
+msgid "Se detaljer"
+msgstr "Details anzeigen"
+
+msgid "Se dokumentasjon"
+msgstr "Dokumentation ansehen"
+
+msgid "Se kurs: %s"
+msgstr "Kurs ansehen: %s"
+
+msgid "Se kursdetaljer"
+msgstr "Kursdetails anzeigen"
+
+msgid "Se neste dato"
+msgstr "Siehe nächster Termin"
+
+msgid "Se oversikt over alle importerte kurs"
+msgstr "Übersicht aller importierten Kurse anzeigen"
+
+msgid "Seksjonsmeny"
+msgstr "Abschnittsmenü"
+
+msgid "Send til Trello"
+msgstr "An Trello senden"
+
+msgid "Seneste dato"
+msgstr "Spätester Termin"
+
+msgid "Sentrert"
+msgstr "Zentriert"
+
+msgid "SEO innstillinger"
+msgstr "SEO-Einstellungen"
+
+msgid "SEO på kurs og taksonomisider"
+msgstr "SEO für Kurse und Taxonomieseiten"
+
+msgid "Serveren returnerte HTTP %1$s i stedet for ZIP-fil. URL: %2$s. Dette kan skyldes en feilside, omdirigering, eller Cloudflare bot-verifisering."
+msgstr "Der Server hat HTTP %1$s anstelle einer ZIP-Datei zurückgegeben. URL: %2$s. Dies kann durch eine Fehlerseite, eine Weiterleitung oder eine Cloudflare-Bot-Überprüfung verursacht werden."
+
+msgid "Sett foreldrekategori til:"
+msgstr "Legen Sie die übergeordnete Kategorie fest auf:"
+
+msgid "Sett inn"
+msgstr "Einfügen"
+
+msgid "Sett inn i kursdato"
+msgstr "In Kursdatum einfügen"
+
+msgid "show_buttons, signup_link<br><strong>Standard:</strong> hentes fra Kursdesign"
+msgstr "show_buttons, signup_link<br><strong>Standard:</strong> wird aus dem Kursdesign abgerufen"
+
+msgid "Side"
+msgstr "Seite"
+
+msgid "Sidebakgrunn:"
+msgstr "Seitenhintergrund:"
+
+msgid "Sideinnhold ble tilbakestilt."
+msgstr "Der Seiteninhalt wurde zurückgesetzt."
+
+msgid "Sidekolonne etter"
+msgstr "Seitenleiste danach"
+
+msgid "Sidekolonne før"
+msgstr "Seitenleiste vorher"
+
+msgid "Sidene blir merket med \"Kursagenten\" i sideoversikten for enkel identifikasjon."
+msgstr "Zur leichteren Identifizierung sind Seiten in der Seitenübersicht mit „Kursagenten“ gekennzeichnet."
+
+msgid "Sidene blir merket med \"Kursagenten\" i sideoversikten. Ved å klikke på <i class=\"ka-icon icon-code-simple-solid-full\"></i> kopierer du kortkoden til utklippstavlen, og kan lime den inn der du ønsker å vise den på en eksisterende side."
+msgstr "Seiten sind in der Seitenübersicht mit „Kursagenten“ gekennzeichnet. Durch Klicken auf <i class=\"ka-icon icon-code-simple-solid-full\"></i> kopieren Sie den Shortcode in die Zwischenablage und können ihn dort auf einer vorhandenen Seite einfügen, wo Sie ihn anzeigen möchten."
+
+msgid "Sider og systemsider"
+msgstr "Seiten und Systemseiten"
+
+msgid "Sider som må opprettes"
+msgstr "Seiten, die erstellt werden müssen"
+
+msgid "Sider som opprettes automatisk"
+msgstr "Automatisch erstellte Seiten"
+
+msgid "Sikkerhetssjekk feilet"
+msgstr "Sicherheitsüberprüfung fehlgeschlagen"
+
+msgid "Sikkerhetssjekk feilet. Vennligst oppdater siden og prøv igjen."
+msgstr "Sicherheitsüberprüfung fehlgeschlagen. Bitte aktualisieren Sie die Seite und versuchen Sie es erneut."
+
+msgid "Sikre deg plass på dette kurset nå. Har du spørsmål, ikke nøl med å kontakte oss."
+msgstr "Sichern Sie sich jetzt Ihren Platz in diesem Kurs. Wenn Sie Fragen haben, zögern Sie nicht, uns zu kontaktieren."
+
+msgid "Siste endringer"
+msgstr "Aktuelle Änderungen"
+
+msgid "Siste frist for å melde deg på dette kurset."
+msgstr "Letzter Anmeldeschluss für diesen Kurs."
+
+msgid "Sjekk <a href=\"admin.php?page=seo\">Endre url-er</a> om du må tilpasse url-strukturer. Her kan du endre fra feks. \"/kurs/ditt-kurs\" til \"/undervisning/ditt-kurs\"."
+msgstr "Aktivieren Sie <a href=\"admin.php?page=seo\">URLs ändern</a>, wenn Sie URL-Strukturen anpassen müssen. Hier können Sie z.B. ändern von „/kurs/your-course“ nach „/undervisning/your-course“."
+
+msgid "Sjekk for oppdateringer"
+msgstr "Suchen Sie nach Updates"
+
+msgid "Skjul"
+msgstr "Verstecken"
+
+msgid "Skjul %s"
+msgstr "%s ausblenden"
+
+msgid "Skjul alle filtre, kursteller, \"vis antall kurs\" og sortering"
+msgstr "Alle Filter ausblenden, Kurszähler, „Kursanzahl anzeigen“ und Sortierung"
+
+msgid "Skjul i automenyer"
+msgstr "In automatischen Menüs ausblenden"
+
+msgid "Skjul i oversiktslister"
+msgstr "In Übersichtslisten ausblenden"
+
+msgid "Skjul i url-er"
+msgstr "In URLs ausblenden"
+
+msgid "Skjul instruktør ved å skrive en kommaseparert liste med fornavn til instruktør slik det er skrevet i feltet \"fornavn\""
+msgstr "Blenden Sie den Kursleiter aus, indem Sie eine durch Kommas getrennte Liste mit den Vornamen des Kursleiters erstellen, die im Feld „Vorname“ eingegeben wurden"
+
+msgid "Skjul instruktører"
+msgstr "Ausblenden Dozenten"
+
+msgid "Skjul kategorien og alle tilhørende kurs"
+msgstr "Verstecken Sie die Kategorie und alle zugehörigen Kurse"
+
+msgid "Skjul kun kategorien fra filter"
+msgstr "Nur die Kategorie vor dem Filter ausblenden"
+
+msgid "Skjul kun kategorien fra filter (kursene vises fortsatt)"
+msgstr "Nur die Kategorie aus dem Filter ausblenden (Kurse werden weiterhin angezeigt)"
+
+msgid "Skjul spesifikke lokasjoner på kurssteder"
+msgstr "Verstecken Sie bestimmte Orte auf Kursorten"
+
+msgid "Skjul stedsfilter i videre visning"
+msgstr "Standortfilter in weiteren Ansichten ausblenden"
+
+msgid "Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Se informasjon om fallback-mekanismen nedenfor."
+msgstr "Wenn Sie das Präfix in URLs ausblenden, kann es zu Konflikten mit regulären Seiten, Beiträgen oder anderen Taxonomien mit demselben Slug kommen. Informationen zum Fallback-Mechanismus finden Sie weiter unten."
+
+msgid "Skjult"
+msgstr "Versteckt"
+
+msgid "Skjult fra filter"
+msgstr "Aus dem Filter ausgeblendet"
+
+msgid "Skjult i kursliste"
+msgstr "In der Kursliste versteckt"
+
+msgid "Skjult i lister"
+msgstr "In Listen versteckt"
+
+msgid "Skjult i menyer"
+msgstr "In Menüs versteckt"
+
+msgid "Skjulte kurs"
+msgstr "Versteckte Kurse"
+
+msgid "Skriv inn avstanden mellom radene, i pixler, em eller rem. Ønsker du ingen avstand, skriv 0."
+msgstr "Geben Sie den Abstand zwischen den Zeilen in Pixel, em oder rem ein. Wenn kein Abstand vorhanden ist, geben Sie 0 ein."
+
+msgid "Skriv inn nytt navn"
+msgstr "Geben Sie einen neuen Namen ein"
+
+msgid "Skriv inn stedsnavn manuelt"
+msgstr "Geben Sie den Standortnamen manuell ein"
+
+msgid "Skriv inn størrelse på bildet du ønsker, i pixler. Ønsker du ikke bilde, skriv 0. Når bildestr settes til 0, lastes ikke bildene inn i det hele tatt."
+msgstr "Geben Sie die gewünschte Bildgröße in Pixel ein. Für kein Bild geben Sie 0 ein. Wenn bildestr auf 0 gesetzt ist, werden Bilder überhaupt nicht geladen."
+
+msgid "Skriver du kun kortkodene <span class=\"copytext\">[kurskategorier]</span>, <span class=\"copytext\">[kurssteder]</span> eller <span class=\"copytext\">[instruktorer]</span> brukes standardvalgene.<br>Bruk eventuelt de fulle kodene over, og fjern de valgene du ikke trenger."
+msgstr "Wenn Sie nur die Shortcodes <span class=\"copytext\">[kurskategorier]</span>, <span class=\"copytext\">[kurssteder]</span> oder <span class=\"copytext\">[instruktorer]</span> verwenden, werden die Standardwerte verwendet.<br>Alternativ können Sie die vollständigen Codes oben verwenden und die Optionen entfernen, die Sie nicht benötigen."
+
+msgid "Skru av SEO"
+msgstr "Deaktivieren Sie SEO"
+
+msgid "Skru av SEO på kurs og taksonomisider"
+msgstr "Deaktivieren Sie SEO für Kurse und Taxonomieseiten"
+
+msgid "Skru på de innstillingene du ønsker å bruke:"
+msgstr "Aktivieren Sie die Einstellungen, die Sie verwenden möchten:"
+
+msgid "Skygge"
+msgstr "Schatten"
+
+msgid "Skygge ved musepeker over kurs/kurskategori."
+msgstr "Schatten beim Schweben für Kurs/Kurskategorie."
+
+msgid "Skygge/kantstil"
+msgstr "Schatten-/Rahmenstil"
+
+msgid "Slett"
+msgstr "Löschen"
+
+msgid "Slugs (nettadresser) på kursene som har dette stedet oppdateres ved neste synkronisering."
+msgstr "Slugs (URLs) für Kurse mit diesem Standort werden bei der nächsten Synchronisierung aktualisiert."
+
+msgid "Sluttdato"
+msgstr "Enddatum"
+
+msgid "Sluttdato:"
+msgstr "Enddatum:"
+
+msgid "Slutter:"
+msgstr "Endet:"
+
+msgid "Slå av"
+msgstr "Ausschalten"
+
+msgid "Slå på"
+msgstr "Einschalten"
+
+msgid "Solid"
+msgstr "Voll"
+
+msgid "Sorter etter"
+msgstr "Sortieren nach"
+
+msgid "Sosiale profiler"
+msgstr "Soziale Profile"
+
+msgid "Spacing"
+msgstr "Abstand"
+
+msgid "Span"
+msgstr "Span"
+
+msgid "Spesifikke lokasjoner"
+msgstr "Spezifische Standorte"
+
+msgid "Spesifikke lokasjoner viser adresser og link til Google maps over kurslisten."
+msgstr "Für bestimmte Standorte werden oberhalb der Kursliste Adressen und Links zu Google Maps angezeigt."
+
+msgid "Spesifikke lokasjoner:"
+msgstr "Spezifische Standorte:"
+
+msgid "Språk"
+msgstr "Sprache"
+
+msgid "Språk:"
+msgstr "Sprache:"
+
+msgid "St"
+msgstr "St"
+
+msgid "Stablet kort"
+msgstr "Gestapelte Karte"
+
+msgid "Stablet kort innfelt"
+msgstr "Gestapelte Karte mit inset"
+
+msgid "Stablet kort overlapp"
+msgstr "Gestapelte Karte superpuesta"
+
+msgid "Stablet standard"
+msgstr "Stacked Standard"
+
+msgid "stablet, rad, liste<br><strong>Standard:</strong> stablet"
+msgstr "gestapelt, Zeile, Liste<br><strong>Standard:</strong> gestapelt"
+
+msgid "Standarbilder brukes som en bakupløsning for å hindre ødelagte design. Disse brukes som plassholdere om et bilde mangler. Velger du ingen bilder, bruker vi Kursagentens standard erstatningsbilder om nødvendig. Du kan også sette inn url til plassholderbilder via <a href=\"/wp-admin/admin.php?page=kursagenten#kortkoder\">kortkoder</a>."
+msgstr "Standardbilder werden als Fallback verwendet, um fehlerhafte Designs zu verhindern. Diese werden als Platzhalter verwendet, wenn ein Bild fehlt. Wenn Sie keine Bilder auswählen, verwenden wir bei Bedarf die Standard-Ersatzbilder von Kursagenten. Sie können Platzhalterbild-URLs auch über <a href=\"/wp-admin/admin.php?page=kursagenten#kortkoder\">Shortcodes</a> festlegen."
+
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Standard - med bilde og beskrivelse"
+msgstr "Standard – mit Bild und Beschreibung"
+
+msgid "Standard (toppfilter + venstrefilter slik de er konfigurert)"
+msgstr "Standard (oberer Filter + linker Filter wie konfiguriert)"
+
+msgid "Standard høyde for filterlister:"
+msgstr "Standardhöhe für Filterlisten:"
+
+msgid "Standard liste"
+msgstr "Standardliste"
+
+msgid "Standard profilbilde"
+msgstr "Standard profile Bild"
+
+msgid "standard, grid, compact, plain, date-and-title, simple-cards<br><strong>Standard:</strong> hentes fra Kursdesign"
+msgstr "Standard, Raster, kompakt, einfach, Datum und Titel, einfache Karten<br><strong>Standard:</strong> wird aus dem Kursdesign abgerufen"
+
+msgid "standard, kommaseparert liste (feks alta,oslo,bergen eller \"Oslo,Mo i Rana\")<br><strong>Standard</strong>: viser alle steder"
+msgstr "Standardmäßige, durch Kommas getrennte Liste (z. B. alta, oslo, bergen oder „Oslo, Mo i Rana“)<br><strong>Standard</strong>: Zeigt alle Standorte an"
+
+msgid "Standard: 1300px"
+msgstr "Standard: 1300px"
+
+msgid "Standard: 16px"
+msgstr "Standard: 16px"
+
+msgid "Standard: inherit"
+msgstr "Standard: erben"
+
+msgid "Start direkte med visuelle stilvalg"
+msgstr "Loslegen directamente mit Optionen de estilo visual"
+
+msgid "Startdato"
+msgstr "Startdatum"
+
+msgid "Startdato:"
+msgstr "Startdatum:"
+
+msgid "Starter:"
+msgstr "Beginnt:"
+
+msgid "Startmåned"
+msgstr "Startmonat"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Sted"
+msgstr "Standort"
+
+msgid "sted, ikke-sted<br><strong>Standard</strong>: viser alle"
+msgstr "Standort, Nicht-Standort<br><strong>Standard</strong>: Zeigt alle an"
+
+msgid "Sted:"
+msgstr "Standort:"
+
+msgid "Stedinfo"
+msgstr "Standortinformationen"
+
+msgid "Stedsbeskrivelser fra feltet 'Sted' i Kursagenten."
+msgstr "Standort Beschreibungs from the 'Standort' field in Kursagenten."
+
+msgid "Stedsfilter (st)"
+msgstr "Standortfiltern (loc)"
+
+msgid "Stedsnavn hentes fra Kursagenten. Det er mulig å endre stedsnavnet. For at dette skal bli korrekt i alle titler og url-er, bør dette gjøres under Admin → Kursagenten → Synkronisering. Endre navn, og hent deretter alle kurs på nytt. Da vil alle forekomster av stedsnavn blir vist korrekt."
+msgstr "Standortnames are fetched from Kursagenten. Sie können change the Standort name. For this to be correct in all titles and URLs, do this under Admin → Kursagenten → Synchronisation. Change the name, then re-fetch all Kurse. All occurrences of the Standort name will then display correctly."
+
+msgid "Stedsnavn mangler"
+msgstr "Standortname fehlt"
+
+msgid "Stedsnavn og regioner"
+msgstr "Standortnamen und Regionen"
+
+msgid "Stedstekst: her har vi ingen felter i Kursagenten, og alt må legges inn på nettsiden. Du har mulighet til å legge inn både Kort beskrivelse og Lang beskrivelse. Dette dukker opp på de enkelte kurssted-sidene på nettsiden."
+msgstr "Standort text: we have no fields for this in Kursagenten, and everything must be added on the website. Sie können hinzufügen both Kurzbeschreibung and Lange Beschreibung. These appear on the individual Kurs Standort Seiten on the website."
+
+msgid "Stil"
+msgstr "Stil"
+
+msgid "Stiplet"
+msgstr "Gestrichelt"
+
+msgid "Stor"
+msgstr "Groß"
+
+msgid "Styre utseende på kurslister"
+msgstr "Steuern Sie das Erscheinungsbild der Kursliste"
+
+msgid "Støtte for \"Site Reviews\"-plugin, anmeldelser"
+msgstr "Unterstützung für das Plugin „Site Reviews“, Rezensionen"
+
+msgid "Støttede SEO-utvidelser"
+msgstr "Unterstützte SEO-Plugins"
+
+msgid "Subkategorier"
+msgstr "Unterkategorien"
+
+msgid "Svak"
+msgstr "Dezent"
+
+msgid "Synkronisering"
+msgstr "Synchronisation"
+
+msgid "Synkronisering av kurs"
+msgstr "Kurssynchronisation"
+
+msgid "Synlig"
+msgstr "Sichtbar"
+
+msgid "Synlige kurs"
+msgstr "Sichtbare Kurse"
+
+msgid "Synlighet"
+msgstr "Sichtweite"
+
+msgid "Synlighet lister"
+msgstr "Sichtbarkeit der Liste"
+
+msgid "Synlighet og skjuling"
+msgstr "Sichtbarkeit und Verstecken"
+
+msgid "Systemside ble opprettet."
+msgstr "Die Systemseite wurde erstellt."
+
+msgid "Systemside ble slettet."
+msgstr "Die Systemseite wurde gelöscht."
+
+msgid "Søk"
+msgstr "Suchen"
+
+msgid "Søk etter kurs"
+msgstr "Nach Kursen suchen"
+
+msgid "Søk etter kurs..."
+msgstr "Nach Kursen suchen..."
+
+msgid "Søk etter kurskategori"
+msgstr "Nach Kurskategorie suchen"
+
+msgid "Søk i instruktører"
+msgstr "Suchen Sie nach Ausbildern"
+
+msgid "Søk i kursdato"
+msgstr "Kurstermine suchen"
+
+msgid "Søk i kurssteder"
+msgstr "Kursorte suchen"
+
+msgid "Søk KA kurs"
+msgstr "Suchen Sie nach KA-Kursen"
+
+msgid "Søk utdannelse"
+msgstr "Für Ausbildung bewerben"
+
+msgid "Søk utdanning"
+msgstr "Für Ausbildung bewerben"
+
+msgid "Søkefelt:"
+msgstr "Suchfeld:"
+
+msgid "Søkefeltet får pill-form, tydelig kant og forstørrelsesglass til høyre. Gjelder kun når søk ligger i venstre kolonne."
+msgstr "Das Suchfeld erhält eine Pillenform, einen klaren Rand und eine Lupe auf der rechten Seite. Gilt nur, wenn die Suche in der linken Spalte erfolgt."
+
+msgid "sørlandet, østlandet, vestlandet, midt-norge, nord-norge<br><strong>Standard</strong>: ingen filtrering"
+msgstr "sørlandet, østlandet, vestlandet, midt-norge, nord-norge<br><strong>Standard</strong>: keine Filterung"
+
+msgid "Ta kontakt med oss, så hjelper vi deg med å finne det perfekte kurset for dine behov."
+msgstr "Kontaktieren Sie uns und wir helfen Ihnen, den perfekten Kurs für Ihre Bedürfnisse zu finden."
+
+msgid "Ta tak i filteret du ønsker å bruke, og dra til enten venstre kolonne eller over kursliste. Velg om filteret skal vises som tagger eller avkrysningsliste.<br>For å fjerne et filter, dra det tilbake til tilgjengelige filtre. Husk å <strong>lagre</strong> endringene dine."
+msgstr "Schnappen Sie sich den Filter, den Sie verwenden möchten, und ziehen Sie ihn entweder in die linke Spalte oder über die Kursliste. Wählen Sie aus, ob der Filter als Tags oder als Checkliste angezeigt werden soll.<br>Um einen Filter zu entfernen, ziehen Sie ihn zurück zu den verfügbaren Filtern. Denken Sie daran, Ihre Änderungen zu <strong>speichern</strong>."
+
+msgid "Tablet:"
+msgstr "Tablette:"
+
+msgid "Taksonomi-sider"
+msgstr "Taxonomieseiten"
+
+msgid "Taksonomibilde"
+msgstr "Taxonomiebild"
+
+msgid "Taksonomiene <strong>Kurskategorier</strong>, <strong>Kurssteder</strong> og <strong>Instruktører</strong> er tilgjengelige som egne Gutenberg-blokker i blokkeditoren."
+msgstr "Die Taxonomien <strong>Kurskategorien</strong>, <strong>Kursorte</strong> und <strong>Dozenten</strong> stehen als separate Gutenberg-Blöcke im Blockeditor zur Verfügung."
+
+msgid "Taksonomier (kategori, sted, instruktør)"
+msgstr "Taxonomien (Kategorie, Standort, Dozent)"
+
+msgid "Taksonomisider"
+msgstr "Taxonomieseiten"
+
+msgid "Tekst"
+msgstr "Text"
+
+msgid "Tekst blir hentet fra introtekst og kursbeskrivelse i Kursagenten. Det er mulig å legge inn egen tekst i tillegg her på websiden. Naviger til kurset som innlogget admin, og klikk deretter på «Legg til ekstra Wordpress innhold» mellom introtekst og kursbeskrivelse."
+msgstr "Text is fetched from the intro text and Kurs Beschreibung in Kursagenten. Sie können hinzufügen your own text on the website as well. Navigate to the Kurs while logged in as admin, then klicken Sie \"Hinzufügen extra WordPress content\" between the intro text and Kurs Beschreibung."
+
+msgid "Tekst minst til størst (px)"
+msgstr "Text de menor a mayor (px)"
+
+msgid "tekst<br><strong>Standard</strong>: tom (ingen klasse)"
+msgstr "Text<br><strong>Standard</strong>: leer (keine Klasse)"
+
+msgid "Teksten justerer seg etter skjermstørrelse. Dette er den minste fontstørrelsen du vil bruke for tekst og overskrifter."
+msgstr "Der Text passt sich der Bildschirmgröße an. Dies ist die kleinste Schriftgröße, die Sie für Text und Überschriften verwenden."
+
+msgid "Tekstfarge"
+msgstr "Textfarbe"
+
+msgid "Telefon"
+msgstr "Telefon"
+
+msgid "Tema for enkeltkurs"
+msgstr "Thema für einen einzelnen Kurs"
+
+msgid "Tema for kurslister"
+msgstr "Thema für Kurslisten"
+
+msgid "Tema-standard"
+msgstr "Theme-Standard"
+
+msgid "Tematilpasninger"
+msgstr "Theme-Anpassungen"
+
+msgid "Test frontend: kursliste, enkeltkurs, kategorier, kurssteder og instruktører, og juster filtrene/design ved behov."
+msgstr "Testen Sie das Frontend: Kursliste, Einzelkurs, Kategorien, Kursorte und Dozenten und passen Sie Filter/Design nach Bedarf an."
+
+msgid "Thumbnail"
+msgstr "Miniaturansicht"
+
+msgid "Tid"
+msgstr "Zeit"
+
+msgid "tid, varighet, pris, sted, fritekst-sted, rom, instruktør, sluttdato, påmeldingsfrist<br><strong>Standard:</strong> hentes fra Kursdesign"
+msgstr "Zeit, Dauer, Preis, Ort, Freitext-Ort, Raum, Dozent, Enddatum, Anmeldeschluss<br><strong>Standard:</strong> wird aus dem Kursdesign abgerufen"
+
+msgid "Tidligste dato"
+msgstr "Frühestes Datum"
+
+msgid "Tidspunkt:"
+msgstr "Zeit:"
+
+msgid "Til toppen"
+msgstr "Zurück nach oben"
+
+msgid "Tilbake til %s"
+msgstr "Zurück zu %s"
+
+msgid "Tilbakestill innhold"
+msgstr "Inhalt zurücksetzen"
+
+msgid "Tilbyder guid:"
+msgstr "Anbieter-GUID:"
+
+msgid "Tilbyder ID:"
+msgstr "Anbieter-ID:"
+
+msgid "Tildelt side"
+msgstr "Zugewiesene Seite"
+
+msgid "Tilgjengelige felter"
+msgstr "Verfügbare Felder"
+
+msgid "Tilgjengelige filtre:"
+msgstr "Verfügbare Filter:"
+
+msgid "Tilgjengelige ikoner"
+msgstr "Verfügbare Symbole"
+
+msgid "Tilpass grunnleggende designvariabler som farger, skriftstørrelser, og maksbredde på plugin-sider."
+msgstr "Passen Sie grundlegende Designvariablen wie Farben, Schriftgrößen und maximale Breite auf Plugin-Seiten an."
+
+msgid "Tilpass visningen av kurslisten. Denne vises på systemsiden \"Kurs\", og alle andre steder som bruker kortkoden <span class=\"copytext\">[kursliste]</span>."
+msgstr "Passen Sie die Anzeige der Kursliste an. Dies wird auf der Systemseite „Kurse“ und überall dort angezeigt, wo der Shortcode <span class=\"copytext\">[kursliste]</span> verwendet wird."
+
+msgid "Tips og feilsøking"
+msgstr "Tipps und Fehlerbehebung"
+
+msgid "Tips: Hvis du har mange kurskategorier, kan du velge ut noen som hovedkategorier eller opprette egne. Dette gjør kategoriene mer oversiktlige for besøkende."
+msgstr "Tipp: Wenn Sie viele Kurskategorien haben, können Sie einige als Hauptkategorien auswählen oder eigene erstellen. Dadurch werden die Kategorien für Besucher übersichtlicher."
+
+msgid "Tittel"
+msgstr "Titel"
+
+msgid "Tittel minst til størst (px)"
+msgstr "Titel de menor a mayor (px)"
+
+msgid "Tittel-element"
+msgstr "Titelelement"
+
+msgid "Topp"
+msgstr "Oben"
+
+msgid "TOPP"
+msgstr "OBEN"
+
+msgid "Trello changelog"
+msgstr "Trello-Änderungsprotokoll"
+
+msgid "Tynn"
+msgstr "Dünn"
+
+msgid "Tøm"
+msgstr "Leeren"
+
+msgid "Tøm farger"
+msgstr "Klare Farben"
+
+msgid "Ugyldig forespørsel"
+msgstr "Ungültige Anfrage"
+
+msgid "Ugyldig sikkerhetskode"
+msgstr "Ungültiger Sicherheitscode"
+
+msgid "Ukjent feil"
+msgstr "Unbekannter Fehler"
+
+msgid "Ulike layout. Stablet viser bilde over kurs-/kategorinavn, rad viser bilde til venstre. Liste viser alle navn under hverandre. Liste har lavere mellomrom mellom punktene, og passer bedre med små bilder/uten bilder."
+msgstr "Verschiedene Layouts. Gestapelt zeigt das Bild über dem Kurs-/Kategorienamen; Die Zeile zeigt das Bild links. Die Liste zeigt alle Namen vertikal gestapelt an. Die Liste hat weniger Abstände zwischen den Elementen und funktioniert besser mit kleinen oder keinen Bildern."
+
+msgid "Ulike tilleggsfunksjoner"
+msgstr "Diverse Zusatzfunktionen"
+
+msgid "Under <a href=\"admin.php?page=design\">Kursdesign</a> styrer du listedesign på systemsidene. Det finnes innstillinger for bildebruk, antall kolonner og paginering."
+msgstr "Unter <a href=\"admin.php?page=design\">Kursdesign</a> steuern Sie das Listendesign auf Systemseiten. Es gibt Einstellungen zur Bildverwendung, Spaltenanzahl und Paginierung."
+
+msgid "Under <a href=\"admin.php?page=design#section-systemsider\">Kursdesign → Wordpress sider</a> kan du opprette følgende sider:"
+msgstr "Unter <a href=\"admin.php?page=design#section-systemider\">Kursdesign → WordPress Seiten</a> können Sie folgende Seiten erstellen:"
+
+msgid "Under bilde og beskrivelse"
+msgstr "Unten Bild und Beschreibung"
+
+msgid "Under overskrift, over filter/paginering og liste."
+msgstr "Unterhalb der Überschrift, darüber Filter/Paginierung und Liste."
+
+msgid "Underkategorier:"
+msgstr "Unterkategorien:"
+
+msgid "Undervalg for \"Vis alle kursdatoer\""
+msgstr "Unteroption für „Alle Kurstermine anzeigen“"
+
+msgid "Undervalg for \"Vis hovedkurs\""
+msgstr "Unteroption für „Hauptgerichte anzeigen“"
+
+msgid "Unntak: Du kan legge til ekstra innhold mellom \"Introtekst\" og \"Innhold\" på enkeltkurs hvis du ønsker å berike kursene med nettstedsspesifikk informasjon."
+msgstr "Ausnahme: Sie können bei einzelnen Kursen zwischen „Einführungstext“ und „Inhalt“ zusätzliche Inhalte hinzufügen, wenn Sie Kurse mit standortspezifischen Informationen anreichern möchten."
+
+msgid "URL-er"
+msgstr "URLs"
+
+msgid "URL-er og SEO"
+msgstr "URLs und SEO"
+
+msgid "Utdrag"
+msgstr "Auszug"
+
+msgid "Utseende venstre filterkolonne"
+msgstr "Darstellung der linken Filterspalte"
+
+msgid "Utvid %s"
+msgstr "Erweitern Sie %s"
+
+msgid "Utvidelse"
+msgstr "Erweiterung"
+
+msgid "Utvidet beskrivelse"
+msgstr "Erweiterte Beschreibung"
+
+msgid "Utviklet av %s"
+msgstr "Entwickelt von %s"
+
+msgid "Valg"
+msgstr "Auswahl"
+
+msgid "Valg for bilder"
+msgstr "Bildoptionen"
+
+msgid "Valg for lister og grid"
+msgstr "Optionen für Listen und Raster"
+
+msgid "Vanlig"
+msgstr "Normal"
+
+msgid "Variant"
+msgstr "Variante"
+
+msgid "Varighet"
+msgstr "Dauer"
+
+msgid "Varighet:"
+msgstr "Dauer:"
+
+msgid "Ved å bytte designmal endres hele presentasjonen av kurset. Dette kan påvirke hvordan besøkende opplever kursinformasjonen."
+msgstr "Durch das Ändern der Designvorlage ändert sich die gesamte Präsentation des Kurses. Dies kann sich darauf auswirken, wie Besucher die Kursinformationen wahrnehmen."
+
+msgid "Velg"
+msgstr "Wählen"
+
+msgid "Velg \"Fullt navn\", \"Fornavn\" eller \"Etternavn\" i feltet \"Navnevisning\"."
+msgstr "Wählen Sie im Feld „Namensanzeige“ „Vollständiger Name“, „Vorname“ oder „Nachname“."
+
+msgid "Velg bakgrunnsfarge:"
+msgstr "Hintergrundfarbe auswählen:"
+
+msgid "Velg bilde"
+msgstr "Bild auswählen"
+
+msgid "Velg bildetype"
+msgstr "Bildtyp auswählen"
+
+msgid "Velg dato"
+msgstr "Datum auswählen"
+
+msgid "Velg datoer"
+msgstr "Wählen Sie Daten aus"
+
+msgid "Velg design på sider som viser kursdetaljer, både for alle lokasjoner og enkeltlokasjoner."
+msgstr "Wählen Sie das Design für Seiten mit Kursdetails, sowohl für alle Standorte als auch für einzelne Standorte."
+
+msgid "Velg designet på siden. Dette styrer hvor/hvordan tittel, tekst, hovedbilde og kursliste vises."
+msgstr "Wählen Sie das Seitendesign. Dies steuert, wo/wie Titel, Text, Hauptbild und Kursliste angezeigt werden."
+
+msgid "Velg elementer"
+msgstr "Elemente auswählen"
+
+msgid "Velg en forelder for å lage et hierarki, og la dette bli en subkategori."
+msgstr "Wählen Sie eine übergeordnete Kategorie aus, um eine Hierarchie zu erstellen und diese zu einer Unterkategorie zu machen."
+
+msgid "Velg et felles design for kurskategorier, kurssteder og instruktører. Du kan også velge å ha egne design for hver enkelt taksonomi."
+msgstr "Wählen Sie ein gemeinsames Design für Kurskategorien, Kursorte und Dozenten. Sie können auch separate Designs für jede Taxonomie festlegen."
+
+msgid "Velg farger"
+msgstr "Wählen Sie Farben aus"
+
+msgid "Velg filtre på kursliste i <a href=\"admin.php?page=design\">Kursdesign</a>, og også andre designvalg (liste/grid, detaljer, og malvalg)."
+msgstr "Wählen Sie Filter für die Kursliste unter <a href=\"admin.php?page=design\">Kursdesign</a> und andere Designoptionen (Liste/Raster, Details und Vorlagenauswahl)."
+
+msgid "Velg font-farge (valgfritt):"
+msgstr "Schriftfarbe auswählen (optional):"
+
+msgid "Velg foreldrekategori"
+msgstr "Wählen Sie parent Kategorie"
+
+msgid "Velg fra-til dato"
+msgstr "Wählen Sie Von-Bis-Datum aus"
+
+msgid "Velg helt firkantede bilder, litt avrundet i kantene, eller runde bilder."
+msgstr "Wählen Sie vollständig quadratische Bilder, leicht abgerundete Ecken oder runde Bilder."
+
+msgid "Velg hovedbilde"
+msgstr "Stellen Sie das ausgewählte Bild ein"
+
+msgid "Velg hvilke filtre som skal vises på kurslisten. Du kan dra filteret til enten venstre kolonne eller over kursliste. Velg om filteret skal vises som tagger eller avkrysningsliste."
+msgstr "Wählen Sie aus, welche Filter in der Kursliste angezeigt werden sollen. Sie können den Filter entweder in die linke Spalte oder über die Kursliste ziehen. Wählen Sie, ob der Filter als Tags oder als Checkliste angezeigt werden soll."
+
+msgid "Velg hvilken overskrift du vil bruke for navnene."
+msgstr "Wählen Sie aus, welche Überschrift für Namen verwendet werden soll."
+
+msgid "Velg hvilken region denne lokasjonen tilhører."
+msgstr "Wählen Sie aus, zu welcher Region dieser Standort gehört."
+
+msgid "Velg hvordan kurslistene på taksonomisidene skal vises:"
+msgstr "Wählen Sie aus, wie Kurslisten auf Taxonomieseiten angezeigt werden:"
+
+msgid "Velg instruktør"
+msgstr "Lehrer auswählen"
+
+msgid "Velg kategori"
+msgstr "Kategorie auswählen"
+
+msgid "Velg kategorinivå"
+msgstr "Kategorie auswählen level"
+
+msgid "Velg kurssted"
+msgstr "Kursort auswählen"
+
+msgid "Velg listedesign for kortkoden <span class=\"copytext\">[kursliste]</span> uten å endre global innstilling i Kursdesign."
+msgstr "Wählen Sie das Listendesign für den Shortcode <span class=\"copytext\">[kursliste]</span>, ohne die globale Einstellung im Kursdesign zu ändern."
+
+msgid "Velg minst én rad før du bruker masseredigering."
+msgstr "Wählen Sie mindestens eine Zeile aus, bevor Sie die Massenbearbeitung verwenden."
+
+msgid "Velg måned"
+msgstr "Monat auswählen"
+
+msgid "Velg om denne skal vises i autogenererte menyer."
+msgstr "Wählen Sie, ob dies in automatisch generierten Menüs erscheinen soll."
+
+msgid "Velg om denne skal vises i kategorilister og oversikter."
+msgstr "Wählen Sie, ob dies in Kategorielisten und Übersichten erscheinen soll."
+
+msgid "Velg om denne skal vises i kursagentens egne oversikter."
+msgstr "Wählen Sie, ob dies in den eigenen Übersichten von Kursagenten erscheinen soll."
+
+msgid "Velg om kurslisten skal vise vanlig knappestil eller kun påmeldingslink-stil."
+msgstr "Wählen Sie, ob die Kursliste den Standard-Schaltflächenstil oder nur den Registrierungslinkstil anzeigen soll."
+
+msgid "Velg periode"
+msgstr "Zeitraum auswählen"
+
+msgid "Velg pris"
+msgstr "Preis auswählen"
+
+msgid "Velg region for filtrering. Kan kombineres med stedvalg ('x eller y'-logikk)."
+msgstr "Wählen Sie region for filtering. Can be combined with Standort selection ('x or y' logic)."
+
+msgid "Velg sider og design"
+msgstr "Wählen Sie Seiten und Design aus"
+
+msgid "Velg sider som tilegnes til ulike deler av Kursagenten. Du kan velge fra eksisterende sider, eller opprette nye sider."
+msgstr "Wählen Sie Seiten aus, die verschiedenen Teilen von Kursagenten zugeordnet sind. Sie können aus vorhandenen Seiten auswählen oder neue Seiten erstellen."
+
+msgid "Velg språk"
+msgstr "Sprache auswählen"
+
+msgid "Velg standard antall kurs som skal vises per side (1-50)"
+msgstr "Wählen Sie die Standardanzahl der Kurse aus, die pro Seite angezeigt werden sollen (1–50)."
+
+msgid "Velg sted..."
+msgstr "Standort auswählen..."
+
+msgid "Velg steder"
+msgstr "Standorte auswählen"
+
+msgid "Velg stedet fra listen eller skriv inn navnet manuelt, og angi det nye navnet."
+msgstr "Wählen Sie den Standort aus der Liste aus oder geben Sie den Namen manuell ein und geben Sie den neuen Namen an."
+
+msgid "Velg stil"
+msgstr "Stil auswählen"
+
+msgid "Velg tidspunkt"
+msgstr "Wählen Sie die Uhrzeit aus"
+
+msgid "Velg ønsket automeny (f.eks. <strong>Kurskategorier</strong>, <strong>Kategorier og kurs</strong>, <strong>Kurssteder</strong> eller <strong>Instruktører</strong>) og klikk <strong>Legg til i meny</strong>."
+msgstr "Wählen Sie das gewünschte automatische Menü (z. B. <strong>Kurskategorien</strong>, <strong>Kategorien und Kurse</strong>, <strong>Kursorte</strong> oder <strong>Dozenten</strong>) und klicken Sie auf <strong>Zum Menü hinzufügen</strong>."
+
+msgid "Velg å vise fornavn, etternavn eller begge."
+msgstr "Wählen Sie, ob der Vorname, der Nachname oder beides angezeigt werden soll."
+
+msgid "Velg å vise/skjule kurskategorier/menypunkter som hører til spesifikke steder. Eksempel: vis alle kurs som ikke er nettkurs: st=\"ikke-nettbasert\""
+msgstr "Wählen Sie, ob Sie Kurskategorien/Menüelemente anzeigen/ausblenden möchten, die zu bestimmten Standorten gehören. Beispiel: Alle Kurse anzeigen, die keine Online-Kurse sind: st=\"ikke-nettbasert\""
+
+msgid "Velge om menyen skal vise <strong>hovedkategorier</strong>, <strong>subkategorier</strong> eller starte i en bestemt kategori."
+msgstr "Wählen Sie, ob das Menü <strong>Kategorien der obersten Ebene</strong> oder <strong>Unterkategorien</strong> anzeigen oder in einer bestimmten Kategorie beginnen soll."
+
+msgid "Velkommen til Kursagenten"
+msgstr "Willkommen bei Kursagenten"
+
+msgid "Venstre"
+msgstr "Links"
+
+msgid "VENSTRE"
+msgstr "LINKS"
+
+msgid "Venstre kolonne"
+msgstr "Linke Spalte"
+
+msgid "venstre, topp, filter-knapp, skjul<br><strong>Standard:</strong> slik filtere er satt opp i Kursdesign"
+msgstr "links, oben, Filterschaltfläche, ausblenden<br><strong>Standard:</strong>, da Filter im Kursdesign eingerichtet sind"
+
+msgid "Viktig info om url-er<br>Her kan du endre url for kurs, instruktør, kurskategori og kurssted. <span style=\"color:#b74444;font-weight:bold;\">OBS! Ikke rør med mindre du vet hva du gjør.</span> Det kan ødelegge nettstedet, og gjøre disse sidene utilgjengelige. Husk å lagre <a href=\"/wp-admin/options-permalink.php\" target=\"_blank\">permalenkeinnstillingene</a> etter du har gjort en endring."
+msgstr "Wichtige Informationen zu URLs<br>Hier können Sie die URL für Kurse, Dozenten, Kurskategorie und Kursort ändern. <span style=\"color:#b74444;font-weight:bold;\">HINWEIS! Nehmen Sie keine Änderungen vor, es sei denn, Sie wissen, was Sie tun.</span> Dies kann dazu führen, dass die Website beschädigt wird und diese Seiten nicht mehr verfügbar sind. Denken Sie daran, die <a href=\"/wp-admin/options-permalink.php\" target=\"_blank\">Permalink-Einstellungen</a> zu speichern, nachdem Sie eine Änderung vorgenommen haben."
+
+msgid "Viktig:"
+msgstr "Wichtig:"
+
+msgid "Viktig: Kursene skal i hovedsak <strong>ikke redigeres på nettsiden</strong> – all redigering bør gjøres i Kursagenten. Dette sikrer at informasjonen er oppdatert og riktig synkronisert."
+msgstr "Wichtig: Kurse sollten generell <strong>nicht auf der Website bearbeitet werden</strong> – alle Bearbeitungen sollten in Kursagenten erfolgen. Dadurch wird sichergestellt, dass die Informationen aktuell und korrekt synchronisiert sind."
+
+msgid "Vis"
+msgstr "Zeigen"
+
+msgid "Vis (i)"
+msgstr "Zeige (i)"
+
+msgid "Vis (k)"
+msgstr "Zeige (k)"
+
+msgid "Vis (s)"
+msgstr "Show(s)"
+
+msgid "Vis alle kurs"
+msgstr "Alle Kurse anzeigen"
+
+msgid "Vis alle kursdatoer (med filtre)"
+msgstr "Alle Kurstermine anzeigen (mit Filtern)"
+
+msgid "Vis alle synligheter"
+msgstr "Alle Sichtbarkeitsstatus anzeigen"
+
+msgid "Vis antall kurs"
+msgstr "Anzahl der Kurse anzeigen"
+
+msgid "Vis beskrivelse"
+msgstr "Anzeigen Beschreibung"
+
+msgid "Vis bilde"
+msgstr "Anzeigen Bild"
+
+msgid "Vis bilder:"
+msgstr "Bilder anzeigen:"
+
+msgid "Vis detaljer"
+msgstr "Details anzeigen"
+
+msgid "Vis e-post"
+msgstr "Anzeigen email"
+
+msgid "Vis eller skjul kategorier knyttet til valgt sted."
+msgstr "Anzeigen or ausblenden Kategorien linked to the selected Standort."
+
+msgid "Vis filter i boks med bakgrunn"
+msgstr "Filter im Feld mit Hintergrund anzeigen"
+
+msgid "Vis filter med kategorier som også er brukt på kurs med denne kategorien, i tillegg til underkategoriene. Nyttig om du ikke kan lage en hovedkategori med underkategorier, men vil ha mulighet til å filtrere likevel."
+msgstr "Filter mit Kategorien anzeigen, die zusätzlich zu den Unterkategorien auch für Kurse mit dieser Kategorie verwendet werden. Nützlich, wenn Sie keine übergeordnete Kategorie mit Unterkategorien erstellen können, aber dennoch filtern möchten."
+
+msgid "Vis filtrene i venstre kolonne"
+msgstr "Filter in der linken Spalte anzeigen"
+
+msgid "Vis filtrene på toppen av listen"
+msgstr "Filter oben in der Liste anzeigen"
+
+msgid "Vis flere fargevalg"
+msgstr "Weitere Farboptionen anzeigen"
+
+msgid "Vis flere lokasjoner"
+msgstr "Weitere Standorte anzeigen"
+
+msgid "Vis flere lokasjoner +"
+msgstr "Weitere Standorte anzeigen +"
+
+msgid "Vis færre"
+msgstr "Weniger anzeigen"
+
+msgid "Vis hovedkategorier"
+msgstr "Hauptkategorien anzeigen"
+
+msgid "Vis hovedkurs (med neste tilgjengelige dato)"
+msgstr "Hauptgerichte anzeigen (mit nächstem verfügbaren Termin)"
+
+msgid "Vis i Google Maps"
+msgstr "In Google Maps ansehen"
+
+msgid "Vis i listen (taksonomi):"
+msgstr "In Liste anzeigen (Taxonomie):"
+
+msgid "Vis i listen:"
+msgstr "In Liste anzeigen:"
+
+msgid "Vis instruktør"
+msgstr "Showlehrer"
+
+msgid "Vis instruktører i enkeltkurs"
+msgstr "Dozenten im einzelnen Kurs anzeigen"
+
+msgid "Vis instruktører med preset-stiler"
+msgstr "Anzeigen Dozenten with pzurücksetzen styles"
+
+msgid "Vis instruktører uten kurs"
+msgstr "Anzeigen Dozenten without Kurse"
+
+msgid "Vis instruktører:"
+msgstr "Instruktoren anzeigen:"
+
+msgid "Vis instruktørnavn som"
+msgstr "Anzeigen Dozent name as"
+
+msgid "Vis KA kurs"
+msgstr "KA-Kurs ansehen"
+
+msgid "Vis kategorien og tilhørende kurs"
+msgstr "Kategorie und verwandte Kurse anzeigen"
+
+msgid "Vis kategorifilter"
+msgstr "Kategoriefilter anzeigen"
+
+msgid "Vis kategorifilter (visningstype Alle kursdatoer)"
+msgstr "Kategoriefilter anzeigen (Anzeigetyp Alle Kurstermine)"
+
+msgid "Vis knapper"
+msgstr "Schaltflächen anzeigen"
+
+msgid "Vis kontaktperson i enkeltkurs"
+msgstr "Ansprechpartner im einzelnen Kurs anzeigen"
+
+msgid "Vis kontaktperson:"
+msgstr "Ansprechpartner anzeigen:"
+
+msgid "Vis kun %s"
+msgstr "Anzeigen only %s"
+
+msgid "Vis kun følgende steder"
+msgstr "Anzeigen only the following Standorte"
+
+msgid "Vis kun kategorier med kurs på angitt sted (valgfritt)"
+msgstr "Nur Kategorien mit Kursen am angegebenen Ort anzeigen (optional)"
+
+msgid "Vis kun kurs, ikke kategorier"
+msgstr "Nur Kurse anzeigen, keine Kategorien"
+
+msgid "Vis kun ledige"
+msgstr "Nur verfügbar anzeigen"
+
+msgid "Vis kun ledige kurs som standard"
+msgstr "Standardmäßig nur verfügbare Kurse anzeigen"
+
+msgid "Vis kun ledige plasser"
+msgstr "Nur verfügbare Plätze anzeigen"
+
+msgid "Vis kurs"
+msgstr "Kurs ansehen"
+
+msgid "Vis kurs i %s"
+msgstr "Kurse in %s ansehen"
+
+msgid "Vis kursdato"
+msgstr "Kursdatum anzeigen"
+
+msgid "Vis kursfilter på kategoriside"
+msgstr "Kursfilter auf der Kategorieseite anzeigen"
+
+msgid "Vis kurskategori"
+msgstr "Kurskategorie anzeigen"
+
+msgid "Vis kurskategorier med preset-stiler"
+msgstr "Anzeigen Kurs Kategorien with pzurücksetzen styles"
+
+msgid "Vis kurskategorier, kurssteder eller instruktører med preset-stiler."
+msgstr "Anzeigen Kurs Kategorien, Kurs Standorte, or Dozenten with pzurücksetzen styles."
+
+msgid "Vis kurssted"
+msgstr "Kursort anzeigen"
+
+msgid "Vis kurssteder med preset-stiler"
+msgstr "Anzeigen Kurs Standorte with pzurücksetzen styles"
+
+msgid "Vis lang beskrivelse"
+msgstr "Anzeigen long Beschreibung"
+
+msgid "Vis link-bokser etter kurslisten:"
+msgstr "Linkboxen nach Kursliste anzeigen:"
+
+msgid "Vis link-bokser til flere kategorier/steder/instruktører etter kurslisten"
+msgstr "Linkboxen zu weiteren Kategorien/Standorten/Dozenten nach der Kursliste anzeigen"
+
+msgid "Vis link-bokser:"
+msgstr "Linkboxen anzeigen:"
+
+msgid "Vis liste med spesifikke lokasjoner under hvert stedsnavn. Dette kommer fra feltet \"Fritekst sted\" i Kursagenten."
+msgstr "Unter jedem Standortnamen eine Liste bestimmter Standorte anzeigen. Dies kommt aus dem Feld „Freitext-Standort“ in Kursagenten."
+
+msgid "Vis menypunkter:"
+msgstr "Menüpunkte anzeigen:"
+
+msgid "Vis mer"
+msgstr "Mehr anzeigen"
+
+msgid "Vis også manuelt opprettede instruktører uten publiserte kurs."
+msgstr "Also anzeigen manuellly created Dozenten without published Kurse."
+
+msgid "Vis påmeldingslink"
+msgstr "Registrierungslink anzeigen"
+
+msgid "Vis resultater"
+msgstr "Ergebnisse anzeigen"
+
+msgid "Vis som kort, med hvit bakgrunn og skygge bak hele kortet."
+msgstr "Als Karte mit weißem Hintergrund und Schatten hinter der gesamten Karte anzeigen."
+
+msgid "Vis stedinfo"
+msgstr "Anzeigen Standort info"
+
+msgid "Vis subkategorier"
+msgstr "Unterkategorien anzeigen"
+
+msgid "Vis tekst fra feltet \"Kort beskrivelse\"."
+msgstr "Text aus dem Feld „Kurzbeschreibung“ anzeigen."
+
+msgid "Vis tekst fra feltet \"Utvidet beskrivelse\". Merk at dette vil overskrive utdrag."
+msgstr "Text aus dem Feld „Erweiterte Beschreibung“ anzeigen. Beachten Sie, dass dadurch der Auszug überschrieben wird."
+
+msgid "Vis telefon"
+msgstr "Anzeigen phone"
+
+msgid "Vise fullt navn, fornavn eller etternavn"
+msgstr "Vollständigen Namen, Vornamen oder Nachnamen anzeigen"
+
+msgid "viser alle steder i Østlandet eller Bergen (OR-logikk)"
+msgstr "zeigt alle Standorte in Østlandet oder Bergen (ODER-Logik)"
+
+msgid "viser kun kurssteder i Østlandet"
+msgstr "zeigt nur Kursstandorte in Østlandet"
+
+msgid "Vises rett etter H1 i toppseksjonen."
+msgstr "Wird direkt nach H1 im oberen Bereich angezeigt."
+
+msgid "Vises rett under hele header-blokken."
+msgstr "Wird direkt unter dem gesamten Headerblock angezeigt."
+
+msgid "Visningstype:"
+msgstr "Anzeigetyp:"
+
+msgid "Vår Course-schema"
+msgstr "Kursschema einschließen"
+
+msgid "Vår SEO av (meta-tagger)"
+msgstr "SEO ausschalten (Meta-Tags)"
+
+msgid "Våre tilpasninger (tittel/beskrivelse)"
+msgstr "Anpassungen (Titel/Beschreibung)"
+
+msgid "Webhooks"
+msgstr "Webhooks"
+
+msgid "Webhooks sikrer at kursene dine alltid er oppdatert uten manuell innsats. For å aktivere webhooks:"
+msgstr "Webhooks stellen sicher, dass Ihre Kurse ohne manuellen Aufwand immer auf dem neuesten Stand sind. So aktivieren Sie Webhooks:"
+
+msgid "Wordpress har stort sett støtte for javascript biblioteket Jquery. Hvis det ikke er støtte for dette, kan du velge å aktivere det her.<br><br>"
+msgstr "WordPress unterstützt grundsätzlich die JavaScript-Bibliothek jQuery. Wenn dies nicht unterstützt wird, können Sie es hier aktivieren.<br><br>"
+
+msgid "Wordpress sider"
+msgstr "WordPress Seiten"
+
+msgid "Wrapper padding"
+msgstr "Container-Abstand"
+
+msgid "yes, no<br><strong>Standard:</strong> hentes fra Kursdesign"
+msgstr "ja, nein<br><strong>Standard:</strong> wird aus dem Kursdesign abgerufen"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "Øverst i høyre kolonne."
+msgstr "Oben in der rechten Spalte."
+
+msgid "Åpne %s i Google Maps"
+msgstr "Öffnen Sie %s in Google Maps"
+
+msgid "Åpne <a href=\"admin.php?page=kursinnstillinger\">Synkronisering</a> og koble mot Kursagenten-kontoen din. Legg inn <a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Webhooks</a> i Kursagenten, så blir kurset overført automatisk når det blir lagret/opprettet. <br>Første gang bør du klikke på \"Hent alle kurs fra Kursagenten\". Da henter du alle kursene samtidig."
+msgstr "Öffnen Sie die <a href=\"admin.php?page=kursinnstillinger\">Synchronisierung</a> und stellen Sie eine Verbindung zu Ihrem Kursagenten-Konto her. Fügen Sie <a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Webhooks</a> in Kursagenten hinzu, damit der Kurs beim Speichern/Erstellen automatisch übertragen wird.<br>Klicken Sie beim ersten Mal auf „Alle Kurse von Kursagenten abrufen“, um alle Kurse auf einmal abzurufen."
+
+msgid "Åpne adresse i Google Maps"
+msgstr "Adresse in Google Maps öffnen"
+
+msgid "Åpne i Google Maps"
+msgstr "In Google Maps öffnen"
+
+msgid "%d dag"
+msgid_plural "%d dager"
+msgstr[0] "%d Tag"
+msgstr[1] "%d Tage"
+
+msgid "%d kurs"
+msgid_plural "%d kurs"
+msgstr[0] "%d Kurs"
+msgstr[1] "%d Kurse"
+

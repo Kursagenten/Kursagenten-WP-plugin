@@ -26,11 +26,11 @@ if (empty($header_image)) {
             <div class="ka-content-container">
                 <div class="ka-hero-content">
                     <h1><?php post_type_archive_title(); ?></h1>
-                    <p class="ka-hero-description">Finn det perfekte kurset for deg og din bedrift</p>
+                    <p class="ka-hero-description"><?php esc_html_e('Finn det perfekte kurset for deg og din bedrift', 'kursagenten'); ?></p>
                     
                     <!-- Søkefelt i header -->
                     <div class="ka-hero-search">
-                        <input type="text" id="hero-search" name="hero-search" class="filter-search hero-search" placeholder="Søk etter kurs...">
+                        <input type="text" id="hero-search" name="hero-search" class="filter-search hero-search" placeholder="<?php echo esc_attr__('Søk etter kurs...', 'kursagenten'); ?>">
                         <button type="button" class="ka-search-button">
                             <i class="ka-icon icon-search"></i>
                         </button>
@@ -51,7 +51,7 @@ if (empty($header_image)) {
                             <?php if ($filter === 'search') : ?>
                                 <!-- Skjul søk hvis vi allerede har det i header -->
                                 <div class="filter-search-small">
-                                    <input type="text" id="search" name="search" class="filter-search <?php echo esc_attr($search_class); ?>" placeholder="Søk etter kurs...">
+                                    <input type="text" id="search" name="search" class="filter-search <?php echo esc_attr($search_class); ?>" placeholder="<?php echo esc_attr__('Søk etter kurs...', 'kursagenten'); ?>">
                                 </div>
                             <?php elseif ($filter === 'date') : ?>
                                 <?php
@@ -75,9 +75,9 @@ if (empty($header_image)) {
                                            data-filter-key="date"
                                            data-url-key="dato"
                                            name="calendar-input"
-                                           placeholder="Velg fra-til dato"
+                                           placeholder="<?php echo esc_attr__('Velg fra-til dato', 'kursagenten'); ?>"
                                            value="<?php echo esc_attr($date); ?>"
-                                           aria-label="Velg datoer">
+                                           aria-label="<?php echo esc_attr__('Velg datoer', 'kursagenten'); ?>">
                                     <i class="ka-icon icon-calendar"></i>
                                 </div>
                             <?php elseif (!empty($taxonomy_data[$filter]['terms'])) : ?>
@@ -101,7 +101,7 @@ if (empty($header_image)) {
                                             // Get filter information from prepared array
                                             $current_filter_info = $filter_display_info[$filter] ?? [];
                                             $filter_label = $current_filter_info['label'] ?? '';
-                                            $filter_placeholder = $current_filter_info['placeholder'] ?? 'Velg';
+                                            $filter_placeholder = $current_filter_info['placeholder'] ?? __('Velg', 'kursagenten');
 
                                             // Get active filters from URL parameters
                                             $url_key = $taxonomy_data[$filter]['url_key'];
@@ -127,7 +127,7 @@ if (empty($header_image)) {
 
                                                 $display_text = count($active_names) <= 2 ?
                                                     implode(', ', $active_names) :
-                                                    sprintf('%d %s valgt', count($active_names), strtolower($filter_label));
+                                                    sprintf(__('%d %s valgt', 'kursagenten'), count($active_names), strtolower($filter_label));
                                             }
 
                                             $has_active_filters = !empty($active_filters) ? 'has-active-filters' : '';
@@ -161,7 +161,7 @@ if (empty($header_image)) {
 
                     <div id="active-filters-container" class="modern-active-filters">
                         <div id="active-filters" class="active-filters"></div>
-                        <a href="#" id="reset-filters" class="reset-filters reset-filters-btn">Nullstill filter</a>
+                        <a href="#" id="reset-filters" class="reset-filters reset-filters-btn"><?php esc_html_e('Nullstill filter', 'kursagenten'); ?></a>
                     </div>
                 </div> <!-- End .filter-container filter-top -->
             </div>
@@ -174,7 +174,7 @@ if (empty($header_image)) {
                 <?php if ($has_left_filters) : ?>
                 <div class="left-column modern-left-column">
                     <div class="filter-container left-filter-section">
-                        <h4 class="filter-heading">Filtrer kurs</h4>
+                        <h4 class="filter-heading"><?php esc_html_e('Filtrer kurs', 'kursagenten'); ?></h4>
                         
                         <?php foreach ($left_filters as $filter) : ?>
                             <div class="filter-item">
@@ -185,7 +185,7 @@ if (empty($header_image)) {
                                 ?>
                                 <h5><?php echo $filter_label; ?></h5>
                                 <?php if ($filter === 'search') : ?>
-                                    <input type="text" id="search" name="search" class="filter-search <?php echo esc_attr($search_class); ?>" placeholder="Søk etter kurs...">
+                                    <input type="text" id="search" name="search" class="filter-search <?php echo esc_attr($search_class); ?>" placeholder="<?php echo esc_attr__('Søk etter kurs...', 'kursagenten'); ?>">
                                 <?php elseif ($filter === 'date') : ?>
                                     <?php
                                     $date = "";
@@ -208,9 +208,9 @@ if (empty($header_image)) {
                                                data-filter-key="date"
                                                data-url-key="dato"
                                                name="calendar-input"
-                                               placeholder="Velg fra-til dato"
+                                               placeholder="<?php echo esc_attr__('Velg fra-til dato', 'kursagenten'); ?>"
                                                value="<?php echo esc_attr($date); ?>"
-                                               aria-label="Velg datoer">
+                                               aria-label="<?php echo esc_attr__('Velg datoer', 'kursagenten'); ?>">
                                         <i class="ka-icon icon-calendar"></i>
                                     </div>
                                 <?php elseif (!empty($taxonomy_data[$filter]['terms'])) : ?>
@@ -264,23 +264,23 @@ if (empty($header_image)) {
                         <div class="courselist-header modern-header">
                             <!-- Antall kurs -->
                             <div id="courselist-header-left">
-                                <div id="course-count"><?php echo $course_count; ?> kurs <?php echo $query->max_num_pages > 1 ? sprintf("- side %d av %d", $query->get('paged'), $query->max_num_pages) : ''; ?></div>                              
+                                <div id="course-count"><?php echo esc_html(sprintf(_n('%d kurs', '%d kurs', (int) $course_count, 'kursagenten'), (int) $course_count)); ?> <?php echo $query->max_num_pages > 1 ? sprintf(__(' - side %d av %d', 'kursagenten'), $query->get('paged'), $query->max_num_pages) : ''; ?></div>                              
                             </div>
 
                             <!-- Sortering -->
                             <div id="courselist-header-right">
                                 <div class="sort-dropdown modern-sort">
                                     <div class="sort-dropdown-toggle">
-                                        <span class="selected-text">Sorter etter</span>
+                                        <span class="selected-text"><?php esc_html_e('Sorter etter', 'kursagenten'); ?></span>
                                         <span class="dropdown-icon"><i class="ka-icon icon-chevron-down"></i></span>
                                     </div>
                                     <div class="sort-dropdown-content">
-                                        <button class="sort-option" data-sort="title" data-order="asc">Fra A til Å</button>
-                                        <button class="sort-option" data-sort="title" data-order="desc">Fra Å til A</button>
-                                        <button class="sort-option" data-sort="price" data-order="asc">Pris lav til høy</button>
-                                        <button class="sort-option" data-sort="price" data-order="desc">Pris høy til lav</button>
-                                        <button class="sort-option" data-sort="date" data-order="asc">Tidligste dato</button>
-                                        <button class="sort-option" data-sort="date" data-order="desc">Seneste dato</button>
+                                        <button class="sort-option" data-sort="title" data-order="asc"><?php esc_html_e('Fra A til Å', 'kursagenten'); ?></button>
+                                        <button class="sort-option" data-sort="title" data-order="desc"><?php esc_html_e('Fra Å til A', 'kursagenten'); ?></button>
+                                        <button class="sort-option" data-sort="price" data-order="asc"><?php esc_html_e('Pris lav til høy', 'kursagenten'); ?></button>
+                                        <button class="sort-option" data-sort="price" data-order="desc"><?php esc_html_e('Pris høy til lav', 'kursagenten'); ?></button>
+                                        <button class="sort-option" data-sort="date" data-order="asc"><?php esc_html_e('Tidligste dato', 'kursagenten'); ?></button>
+                                        <button class="sort-option" data-sort="date" data-order="desc"><?php esc_html_e('Seneste dato', 'kursagenten'); ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -306,8 +306,8 @@ if (empty($header_image)) {
                                 'current' => max(1, $query->get('paged')),
                                 'format' => 'side=%#%',
                                 'total' => $query->max_num_pages,
-                                'prev_text' => '<i class="ka-icon icon-chevron-left"></i> <span>Forrige</span>',
-                                'next_text' => '<span>Neste</span> <i class="ka-icon icon-chevron-right"></i>',
+                                'prev_text' => '<i class="ka-icon icon-chevron-left"></i> <span>' . esc_html__('Forrige', 'kursagenten') . '</span>',
+                                'next_text' => '<span>' . esc_html__('Neste', 'kursagenten') . '</span> <i class="ka-icon icon-chevron-right"></i>',
                                 'add_args' => array_map(function ($item) {
                                     return is_array($item) ? join(',', $item) : $item;
                                 }, array_diff_key($_REQUEST, ['side' => true, 'action' => true, 'nonce' => true, 'list_type' => true]))
@@ -323,7 +323,7 @@ if (empty($header_image)) {
                     <?php
                         wp_reset_postdata();
                     else :
-                        echo '<p class="no-courses-message">Ingen kurs tilgjengelige.</p>';
+                        echo '<p class="no-courses-message">' . esc_html__('Ingen kurs tilgjengelige.', 'kursagenten') . '</p>';
                     endif;
                     ?>
                 </div>
@@ -335,9 +335,9 @@ if (empty($header_image)) {
     <section class="ka-section ka-cta-section">
         <div class="ka-content-container">
             <div class="ka-cta-content">
-                <h2>Finner du ikke det du leter etter?</h2>
-                <p>Ta kontakt med oss, så hjelper vi deg med å finne det perfekte kurset for dine behov.</p>
-                <a href="/kontakt" class="ka-button ka-button-primary">Kontakt oss</a>
+                <h2><?php esc_html_e('Finner du ikke det du leter etter?', 'kursagenten'); ?></h2>
+                <p><?php esc_html_e('Ta kontakt med oss, så hjelper vi deg med å finne det perfekte kurset for dine behov.', 'kursagenten'); ?></p>
+                <a href="/kontakt" class="ka-button ka-button-primary"><?php esc_html_e('Kontakt oss', 'kursagenten'); ?></a>
             </div>
         </div>
     </section>

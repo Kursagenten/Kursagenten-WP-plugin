@@ -194,7 +194,7 @@ $taxonomy_header_media_title = ($taxonomy === 'ka_instructors' && function_exist
             <?php if ($view_type === 'all_coursedates'): ?>
                 <!-- Bruk [kursliste] shortcode -->
                 <div class="taxonomy-coursedates">
-                    <h2>Kursoversikt</h2>
+                    <h2><?php esc_html_e('Kursoversikt', 'kursagenten'); ?></h2>
                     <?php
                     do_action('ka_courselist_before', $term);
                     echo do_shortcode($shortcode);
@@ -204,7 +204,7 @@ $taxonomy_header_media_title = ($taxonomy === 'ka_instructors' && function_exist
             <?php elseif ($query && $query->have_posts()): ?>
                 <!-- Vis hovedkurs -->
                 <div class="taxonomy-coursedates">
-                    <h2>Kursoversikt</h2>
+                    <h2><?php esc_html_e('Kursoversikt', 'kursagenten'); ?></h2>
                     <?php
                     do_action('ka_courselist_before', $term);
                     ?>
@@ -285,8 +285,8 @@ $taxonomy_header_media_title = ($taxonomy === 'ka_instructors' && function_exist
                                 'current' => max(1, $query->get('paged')),
                                 'format' => 'side=%#%',
                                 'total' => $query->max_num_pages,
-                                'prev_text' => '<i class="ka-icon icon-chevron-left"></i> <span>Forrige</span>',
-                                'next_text' => '<span>Neste</span> <i class="ka-icon icon-chevron-right"></i>',
+                                'prev_text' => '<i class="ka-icon icon-chevron-left"></i> <span>' . esc_html__('Forrige', 'kursagenten') . '</span>',
+                                'next_text' => '<span>' . esc_html__('Neste', 'kursagenten') . '</span> <i class="ka-icon icon-chevron-right"></i>',
                                 'add_args' => $transport_args
                             ]);
                             ?>
@@ -301,7 +301,7 @@ $taxonomy_header_media_title = ($taxonomy === 'ka_instructors' && function_exist
                 </div>
             <?php else: ?>
                 <div class="no-courses-message">
-                    <p>Ingen kurs tilgjengelige for øyeblikket.</p>
+                    <p><?php esc_html_e('Ingen kurs tilgjengelige for øyeblikket.', 'kursagenten'); ?></p>
                 </div>
             <?php endif; ?>
             <?php wp_reset_postdata(); ?>

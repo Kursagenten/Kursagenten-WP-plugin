@@ -1,6 +1,7 @@
 {
   "apiVersion": 3,
   "name": "kursagenten/taxonomy-grid",
+  "textdomain": "kursagenten",
   "title": "Kursagenten Taxonomi",
   "category": "kursagenten",
   "icon": "screenoptions",

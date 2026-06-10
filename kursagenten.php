@@ -468,6 +468,10 @@ define('KURSAG_PLUGIN_DIR',  plugin_dir_path(KURSAG_PLUGIN_FILE));
 define('KURSAG_PLUGIN_URL',  plugin_dir_url(KURSAG_PLUGIN_FILE));
 //define('KURSAGENTEN_IMAGE_BASE_URL_INSTRUCTOR', '');
 
+require_once KURSAG_PLUGIN_DIR . '/includes/misc/i18n.php';
+require_once KURSAG_PLUGIN_DIR . '/includes/misc/frontend-i18n.php';
+require_once KURSAG_PLUGIN_DIR . '/includes/misc/meta-i18n.php';
+require_once KURSAG_PLUGIN_DIR . '/includes/misc/block-editor-i18n.php';
 
 register_activation_hook(__FILE__, 'kursagenten_activate');
 register_deactivation_hook(__FILE__, 'kursagenten_deactivate');
@@ -1235,13 +1239,7 @@ if (!is_admin()) {
         wp_localize_script(
             'kursagenten-ajax-filter',
             'kurskalender_data',
-            array(
-                'ajax_url' => admin_url('admin-ajax.php'),
-                'filter_nonce' => wp_create_nonce('filter_nonce'),
-                // Expose default availability flag so the JS can reflect the correct state of the
-                // "Kurs med ledige plasser" chip/checkbox when the `ledig` URL param is absent.
-                'default_available_only' => (get_option('kursagenten_default_available_only', 'no') === 'yes')
-            )
+            kursagenten_get_kurskalender_localize_data()
         );
 
         
@@ -1260,8 +1258,8 @@ if (!is_admin()) {
             ?>
             <div id="slidein-overlay"></div>
             <div id="slidein-panel">
-                <button class="close-btn" aria-label="Close">&times;</button>
-                <iframe title="Kurspåmelding" id="kursagenten-iframe" src=""></iframe>
+                <button class="close-btn" aria-label="<?php echo esc_attr__('Lukk', 'kursagenten'); ?>">&times;</button>
+                <iframe title="<?php echo esc_attr__('Kurspåmelding', 'kursagenten'); ?>" id="kursagenten-iframe" src=""></iframe>
             </div>
             <?php
         }

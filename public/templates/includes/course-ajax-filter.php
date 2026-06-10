@@ -651,10 +651,12 @@ add_action('wp_ajax_filter_courses', 'filter_courses_handler');
 add_action('wp_ajax_nopriv_filter_courses', 'filter_courses_handler');
 
 function filter_courses_handler() {
+    kursagenten_ensure_frontend_translations();
+
     // Verifiser nonce
     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'filter_nonce')) {
         wp_send_json_error([
-            'message' => 'Sikkerhetssjekk feilet. Vennligst oppdater siden og prøv igjen.'
+            'message' => __('Sikkerhetssjekk feilet. Vennligst oppdater siden og prøv igjen.', 'kursagenten')
         ], 403);
     }
 
@@ -836,34 +838,39 @@ function filter_courses_handler() {
             // Fjern ALLE query parametere fra URL-en - de skal kun komme fra add_args
             $current_url = strtok($current_url, '?');
 
-            $pagination_args = [
-                'base' => $current_url . '%_%',
-                'current' => max(1, $query->get('paged')),
-                'format' => '?side=%#%',
-                'total' => $query->max_num_pages,
-                'add_args' => array_map(function ($item) {
-                    return is_array($item) ? join(',', $item) : $item;
-                }, array_diff_key(
-                    $_REQUEST,
-                    [
-                        'side' => true,
-                        'action' => true,
-                        'nonce' => true,
-                        'current_url' => true,
-                        'list_type' => true, // View layout, not a filter - do not propagate in pagination
-                        'internal_list_type' => true, // Internal layout hint, never part of URL filters
-                        'internal_buttons_display' => true, // Internal button mode hint, never part of URL filters
-                        'internal_shortcode_vis' => true, // Internal list-item visibility override, never part of URL filters
-                        'internal_is_taxonomy_page' => true, // Internal context hint, never part of URL filters
-                        'internal_taxonomy' => true, // Internal taxonomy context, never part of URL filters
-                        'internal_simple_cards_grouping' => true, // Internal grouping mode hint, never part of URL filters
-                        'ka_coursedate' => true,
-                        'ka_course' => true,
-                        'coursedate' => true,
-                        'course' => true,
-                    ]
-                ))
-            ];
+            $pagination_args = array_merge(
+                [
+                    'base' => $current_url . '%_%',
+                    'current' => max(1, $query->get('paged')),
+                    'format' => '?side=%#%',
+                    'total' => $query->max_num_pages,
+                    'add_args' => array_map(function ($item) {
+                        return is_array($item) ? join(',', $item) : $item;
+                    }, array_diff_key(
+                        $_REQUEST,
+                        [
+                            'side' => true,
+                            'action' => true,
+                            'nonce' => true,
+                            'current_url' => true,
+                            'list_type' => true, // View layout, not a filter - do not propagate in pagination
+                            'internal_list_type' => true, // Internal layout hint, never part of URL filters
+                            'internal_buttons_display' => true, // Internal button mode hint, never part of URL filters
+                            'internal_shortcode_vis' => true, // Internal list-item visibility override, never part of URL filters
+                            'internal_is_taxonomy_page' => true, // Internal context hint, never part of URL filters
+                            'internal_taxonomy' => true, // Internal taxonomy context, never part of URL filters
+                            'internal_simple_cards_grouping' => true, // Internal grouping mode hint, never part of URL filters
+                            'ka_coursedate' => true,
+                            'ka_course' => true,
+                            'coursedate' => true,
+                            'course' => true,
+                        ]
+                    ))
+                ],
+                function_exists('kursagenten_get_course_list_pagination_texts')
+                    ? kursagenten_get_course_list_pagination_texts()
+                    : []
+            );
 
             $pagination = paginate_links($pagination_args);
 
@@ -874,19 +881,17 @@ function filter_courses_handler() {
                 'html' => ob_get_clean(),
                 'html_pagination' => $pagination,
                 'max_num_pages' => $query->max_num_pages,
-                'course-count' => sprintf(
-                    '%d kurs %s',
-                    $query->found_posts,
-                    $query->max_num_pages > 1 ? sprintf(
-                        '- side %d av %d',
-                        $query->get('paged'),
-                        $query->max_num_pages
-                    ) : ''
-                )
+                'course-count' => function_exists('kursagenten_format_course_count_label')
+                    ? kursagenten_format_course_count_label(
+                        (int) $query->found_posts,
+                        (int) max(1, $query->get('paged')),
+                        (int) $query->max_num_pages
+                    )
+                    : sprintf(_n('%d kurs', '%d kurs', (int) $query->found_posts, 'kursagenten'), (int) $query->found_posts),
             ]);
         } else {
             wp_send_json_success([
-                'html' => '<div class="filter-no-results"><p>Ingen kurs funnet. Fjern ett eller flere filtre, eller<a href="#" class="reset-filters"> nullstill alle filtre</a></p></div>',
+                'html' => '<div class="filter-no-results"><p>' . esc_html__('Ingen kurs funnet. Fjern ett eller flere filtre, eller nullstill alle filtre.', 'kursagenten') . ' <a href="#" class="reset-filters">' . esc_html__('Nullstill filter', 'kursagenten') . '</a></p></div>',
                 'html_pagination' => '',
                 'max_num_pages' => 0,
                 'course-count' => ''
@@ -898,7 +903,7 @@ function filter_courses_handler() {
         //     error_log('AJAX DEBUG: Exception trace: ' . $e->getTraceAsString());
         // }
         wp_send_json_error([
-            'message' => 'En feil oppstod under filtreringen.'
+            'message' => __('En feil oppstod under filtreringen.', 'kursagenten')
         ]);
     }
 }
@@ -1033,7 +1038,7 @@ function get_filter_counts_handler() {
 
     // Verifiser nonce
     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'filter_nonce')) {
-        wp_send_json_error(['message' => 'Sikkerhetssjekk feilet']);
+        wp_send_json_error(['message' => __('Sikkerhetssjekk feilet', 'kursagenten')]);
     }
 
     try {
@@ -1057,6 +1062,6 @@ function get_filter_counts_handler() {
 
         wp_send_json_success(['counts' => $counts]);
     } catch (Exception $e) {
-        wp_send_json_error(['message' => 'En feil oppstod under henting av filter counts']);
+        wp_send_json_error(['message' => __('En feil oppstod under henting av filter counts', 'kursagenten')]);
     }
 }

@@ -1,0 +1,2132 @@
+[
+  {
+    "k": "<strong>Kort beskrivelse:</strong> En kort tekst som kan vises i lister. Vises ofte direkte under overskriften.",
+    "en": "<strong>Short description:</strong> A short text that can be displayed in lists. Often shown directly below the heading.",
+    "de": "<strong>Kurzbeschreibung:</strong> Ein kurzer Text, der in Listen angezeigt werden kann. Wird oft direkt unter der Überschrift angezeigt."
+  },
+  {
+    "k": "Adresse",
+    "en": "Address",
+    "de": "Adresse"
+  },
+  {
+    "k": "AJAX-konfigurasjon mangler.",
+    "en": "AJAX configuration is missing.",
+    "de": "AJAX-Konfiguration fehlt."
+  },
+  {
+    "k": "Aktiver dette hvis du bruker andre SEO-utvidelser som ikke er listet under, eller ønsker å håndtere SEO helt selv.",
+    "en": "Enable this if you use other SEO plugins that are not listed below, or want to handle SEO entirely on your own.",
+    "de": "Aktivieren Sie dies, wenn Sie andere SEO-Plugins verwenden, die unten nicht aufgeführt sind, oder SEO vollständig selbst verwalten möchten."
+  },
+  {
+    "k": "Aktiver ekstra sikkerhetsfunksjoner",
+    "en": "Enable extra security features",
+    "de": "Aktivieren Sie zusätzliche Sicherheitsfunktionen"
+  },
+  {
+    "k": "Aktiver regioninndeling (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge)",
+    "en": "Enable regional division (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge)",
+    "de": "Regionale Aufteilung aktivieren (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge)"
+  },
+  {
+    "k": "Aktiver støtte for jQuery",
+    "en": "Enable jQuery support",
+    "de": "Aktivieren Sie die jQuery-Unterstützung"
+  },
+  {
+    "k": "Alle",
+    "en": "All",
+    "de": "Alle"
+  },
+  {
+    "k": "Alle (%d)",
+    "en": "All (%d)",
+    "de": "Alle (%d)"
+  },
+  {
+    "k": "Alle instruktører",
+    "en": "All instructors",
+    "de": "Alle Ausbilder"
+  },
+  {
+    "k": "Alle kurs",
+    "en": "All courses",
+    "de": "Alle Kurse"
+  },
+  {
+    "k": "Alle kurskategorier",
+    "en": "All course categories",
+    "de": "Alle Kurskategorien"
+  },
+  {
+    "k": "Alle kurssteder",
+    "en": "All course locations",
+    "de": "Alle Kursorte"
+  },
+  {
+    "k": "Alle systemsider følger WordPress sin standard template-hierarki, så hvis temaet ditt har egne templates (f.eks. <code>single-ka_course.php</code> eller <code>taxonomy-ka_coursecategory.php</code>), vil disse brukes i stedet for pluginen sin standardmal.",
+    "en": "All system pages follow WordPress's standard template hierarchy, so if your theme has its own templates (e.g. <code>single-ka_course.php</code> or <code>taxonomy-ka_coursecategory.php</code>), those are used instead of the plugin's default template.",
+    "de": "Alle Systemseiten folgen der Standardvorlagenhierarchie von WordPress. Wenn Ihr Theme also über eigene Vorlagen verfügt (z. B. <code>single-ka_course.php</code> oder <code>taxonomy-ka_coursecategory.php</code>), werden diese anstelle der Standardvorlage des Plugins verwendet."
+  },
+  {
+    "k": "Alle taksonomisider (kategorier, kurssteder og instruktører) kan berikes med ekstra innhold som bilder, tekst og beskrivelser. Dette gjør at du kan tilpasse hver enkelt side med unikt innhold utover det som kommer fra Kursagenten.",
+    "en": "All taxonomy pages (categories, course locations and instructors) can be enriched with extra content such as images, text and descriptions. This lets you customize each page with unique content beyond what comes from Kursagenten.",
+    "de": "Alle Taxonomieseiten (Kategorien, Kursorte und Dozenten) können mit zusätzlichen Inhalten wie Bildern, Texten und Beschreibungen angereichert werden. Auf diese Weise können Sie jede Seite mit einzigartigen Inhalten anpassen, die über den Inhalt von Kursagenten hinausgehen."
+  },
+  {
+    "k": "Alle tilgjengelige kurssteder og datoer",
+    "en": "All available course locations and dates",
+    "de": "Alle verfügbaren Kursorte und Termine"
+  },
+  {
+    "k": "Alternativ farge for bokser:",
+    "en": "Alternative color for boxes:",
+    "de": "Alternative Farbe für Boxen:"
+  },
+  {
+    "k": "Annet",
+    "en": "Other",
+    "de": "Andere"
+  },
+  {
+    "k": "Antall kolonner i rutenett:",
+    "en": "Number of columns in grid:",
+    "de": "Anzahl der Spalten im Raster:"
+  },
+  {
+    "k": "Antall kolonner på desktop.",
+    "en": "Number of columns on desktop.",
+    "de": "Anzahl der Spalten auf dem Desktop."
+  },
+  {
+    "k": "Antall kolonner på mobil.",
+    "en": "Number of columns on tablet.",
+    "de": "Anzahl der Spalten auf dem Tablet."
+  },
+  {
+    "k": "Antall kolonner på tablet.",
+    "en": "Number of columns on mobile.",
+    "de": "Anzahl der Spalten auf Mobilgeräten."
+  },
+  {
+    "k": "Antall kurs per side:",
+    "en": "Number of courses per page:",
+    "de": "Anzahl Kurse pro Seite:"
+  },
+  {
+    "k": "Antall kursdager",
+    "en": "Number of course days",
+    "de": "Anzahl der Kurstage"
+  },
+  {
+    "k": "Automenyer brukes når du vil at menyen automatisk skal vise taksonomier og/eller kurs uten at du manuelt må oppdatere menyelementer når noe endres.",
+    "en": "Auto menus are used when you want the menu to automatically show taxonomies and/or courses without manually updating menu items when something changes.",
+    "de": "Automatische Menüs werden verwendet, wenn Sie möchten, dass das Menü automatisch Taxonomien und/oder Kurse anzeigt, ohne die Menüelemente manuell zu aktualisieren, wenn sich etwas ändert."
+  },
+  {
+    "k": "Automenyer i WordPress-menyen",
+    "en": "Auto menus in the WordPress menu",
+    "de": "Auto-Menüs im Menü WordPress"
+  },
+  {
+    "k": "Av (håndteres av Rank Math Pro)",
+    "en": "Off (handled by Rank Math Pro)",
+    "de": "Aus (verwaltet von Rank Math Pro)"
+  },
+  {
+    "k": "Avanserte innstillinger",
+    "en": "Advanced settings",
+    "de": "Erweiterte Einstellungen"
+  },
+  {
+    "k": "Avbryt",
+    "en": "Cancel",
+    "de": "Stornieren"
+  },
+  {
+    "k": "Avrundet søkefelt med ikon",
+    "en": "Rounded search field with icon",
+    "de": "Abgerundetes Suchfeld mit Symbol"
+  },
+  {
+    "k": "avrundet, rund, firkantet<br><strong>Standard</strong>: avrundet",
+    "en": "rounded, circle, square<br><strong>Default</strong>: rounded",
+    "de": "gerundet, Kreis, Quadrat<br><strong>Standard</strong>: gerundet"
+  },
+  {
+    "k": "Avstand",
+    "en": "Spacing",
+    "de": "Abstand"
+  },
+  {
+    "k": "Avstand rundt alle elementene, første verdi er topp og bunn, andre verdi er venstre og høyre.",
+    "en": "Spacing around all elements; the first value is top and bottom, the second is left and right.",
+    "de": "Abstand um alle Elemente; Der erste Wert ist oben und unten, der zweite ist links und rechts."
+  },
+  {
+    "k": "Bakgrunn fremhevede områder:",
+    "en": "Background for highlighted areas:",
+    "de": "Hintergrund für hervorgehobene Bereiche:"
+  },
+  {
+    "k": "Bakgrunn i toppfelt:",
+    "en": "Background in top bar:",
+    "de": "Hintergrund in der oberen Leiste:"
+  },
+  {
+    "k": "Bakgrunnsbilde og overlay:",
+    "en": "Background image and overlay:",
+    "de": "Hintergrundbild und Overlay:"
+  },
+  {
+    "k": "Bakgrunnstype:",
+    "en": "Background type:",
+    "de": "Hintergrundtyp:"
+  },
+  {
+    "k": "Base skriftstørrelse:",
+    "en": "Base font size:",
+    "de": "Basisschriftgröße:"
+  },
+  {
+    "k": "Bedriftsinformasjon",
+    "en": "Company information",
+    "de": "Firmeninformationen"
+  },
+  {
+    "k": "Begge feltene må fylles ut",
+    "en": "Both fields must be filled in",
+    "de": "Beide Felder müssen ausgefüllt werden"
+  },
+  {
+    "k": "Begrense innholdet med <strong>stedsfilter</strong> (f.eks. bare \"Oslo\" eller \"ikke-Oslo\").",
+    "en": "Limit content with <strong>location filter</strong> (e.g. only \"Oslo\" or \"not Oslo\").",
+    "de": "Begrenzen Sie den Inhalt mit dem <strong>Standortfilter</strong> (z. B. nur „Oslo“ oder „nicht Oslo“)."
+  },
+  {
+    "k": "Begrenser til termer med kurs på angitt sted. Start med \"ikke-\" for å ekskludere. La stå tom for alle.",
+    "en": "Limits to terms with courses at the specified location. Start with \"not-\" to exclude. Leave empty for all.",
+    "de": "Beschränkung auf Semester mit Kursen am angegebenen Standort. Beginnen Sie mit „nicht-“, um auszuschließen. Für alle leer lassen."
+  },
+  {
+    "k": "Berik innholdet ditt",
+    "en": "Enrich your content",
+    "de": "Bereichern Sie Ihre Inhalte"
+  },
+  {
+    "k": "Berike taksonomisider",
+    "en": "Enrich taxonomy pages",
+    "de": "Bereichern Sie Taxonomieseiten"
+  },
+  {
+    "k": "Beskrivelse",
+    "en": "Description",
+    "de": "Beschreibung"
+  },
+  {
+    "k": "Betaling",
+    "en": "Payment",
+    "de": "Zahlung"
+  },
+  {
+    "k": "Betaling for kurs",
+    "en": "Payment for courses",
+    "de": "Bezahlung für Kurse"
+  },
+  {
+    "k": "Betalingsside",
+    "en": "Payment page",
+    "de": "Zahlungsseite"
+  },
+  {
+    "k": "Betalingsside for kurs",
+    "en": "Payment page for courses",
+    "de": "Zahlungsseite für Kurse"
+  },
+  {
+    "k": "bilde",
+    "en": "image",
+    "de": "Bild"
+  },
+  {
+    "k": "Bilde av %s",
+    "en": "Image of %s",
+    "de": "Bild von %s"
+  },
+  {
+    "k": "Bilde av kurs i %s",
+    "en": "Image of course in %s",
+    "de": "Bild natürlich in %s"
+  },
+  {
+    "k": "Bilde av kurssted",
+    "en": "Course location image",
+    "de": "Bild des Kursortes"
+  },
+  {
+    "k": "Bilde for kurs i %s",
+    "en": "Image for course in %s",
+    "de": "Bild für Kurs in %s"
+  },
+  {
+    "k": "Bilde hentet fra Kursagenten",
+    "en": "Image fetched from Kursagenten",
+    "de": "Bild abgerufen von Kursagenten"
+  },
+  {
+    "k": "Bilde hentet fra Kursagenten:",
+    "en": "Image fetched from Kursagenten:",
+    "de": "Bild abgerufen von Kursagenten:"
+  },
+  {
+    "k": "Element",
+    "en": "Element",
+    "de": "Element"
+  },
+  {
+    "k": "LinkedIn",
+    "en": "LinkedIn",
+    "de": "LinkedIn"
+  },
+  {
+    "k": "Meny",
+    "en": "Menu",
+    "de": "Speisekarte"
+  },
+  {
+    "k": "Passer spesielt godt for sider med få kurs per sted/kategori/instruktør.",
+    "en": "Works especially well for pages with few courses per location/category/instructor.",
+    "de": "Funktioniert besonders gut für Seiten mit wenigen Kursen pro Standort/Kategorie/Dozent."
+  },
+  {
+    "k": "Plassering for innhold i venstre kolonne.",
+    "en": "Placement for content in the left column.",
+    "de": "Platzierung für Inhalte in der linken Spalte."
+  },
+  {
+    "k": "Plassholderbilde for instruktør",
+    "en": "Placeholder image for instructor",
+    "de": "Platzhalterbild für den Lehrer"
+  },
+  {
+    "k": "Plassholderbilde for kurs",
+    "en": "Placeholder image for course",
+    "de": "Platzhalterbild für Kurs"
+  },
+  {
+    "k": "Plugin-side",
+    "en": "Plugin page",
+    "de": "Plugin-Seite"
+  },
+  {
+    "k": "Pluginen oppretter automatisk systemsider for enkeltsider som håndteres av pluginen. Disse sidene genereres dynamisk og trenger ikke å opprettes manuelt:",
+    "en": "The plugin automatically creates system pages for single pages handled by the plugin. These pages are generated dynamically and do not need to be created manually:",
+    "de": "Das Plugin erstellt automatisch Systemseiten für einzelne Seiten, die vom Plugin verwaltet werden. Diese Seiten werden dynamisch generiert und müssen nicht manuell erstellt werden:"
+  },
+  {
+    "k": "Postnr/sted",
+    "en": "Postal code/city",
+    "de": "Postleitzahl/Ort"
+  },
+  {
+    "k": "Pris",
+    "en": "Price",
+    "de": "Preis"
+  },
+  {
+    "k": "Pris høy til lav",
+    "en": "Price high to low",
+    "de": "Preis hoch bis niedrig"
+  },
+  {
+    "k": "Pris lav til høy",
+    "en": "Price low to high",
+    "de": "Preis niedrig bis hoch"
+  },
+  {
+    "k": "Pris:",
+    "en": "Price:",
+    "de": "Preis:"
+  },
+  {
+    "k": "Profil - rundt bilde og tittel",
+    "en": "Profile - round image and title",
+    "de": "Profil – rundes Bild und Titel"
+  },
+  {
+    "k": "profilbilde",
+    "en": "profile image",
+    "de": "Profilbild"
+  },
+  {
+    "k": "Prøv igjen",
+    "en": "Try again",
+    "de": "Versuchen Sie es erneut"
+  },
+  {
+    "k": "Prøv å endre dine filtervalg eller nullstill alle filtre for å se alle tilgjengelige kurs.",
+    "en": "Try changing your filter choices or reset all filters to see all available courses.",
+    "de": "Versuchen Sie, Ihre Filterauswahl zu ändern oder alle Filter zurückzusetzen, um alle verfügbaren Kurse anzuzeigen."
+  },
+  {
+    "k": "Publiser",
+    "en": "Publish",
+    "de": "Veröffentlichen"
+  },
+  {
+    "k": "Publisert",
+    "en": "Published",
+    "de": "Veröffentlicht"
+  },
+  {
+    "k": "På denne siden:",
+    "en": "On this page:",
+    "de": "Auf dieser Seite:"
+  },
+  {
+    "k": "På forespørsel",
+    "en": "On request",
+    "de": "Auf Anfrage"
+  },
+  {
+    "k": "Påmelding",
+    "en": "Registration",
+    "de": "Anmeldung"
+  },
+  {
+    "k": "Påmeldingsfrist",
+    "en": "Registration deadline",
+    "de": "Anmeldeschluss"
+  },
+  {
+    "k": "Påmeldingsfrist:",
+    "en": "Registration deadline:",
+    "de": "Anmeldeschluss:"
+  },
+  {
+    "k": "Rediger",
+    "en": "Edit",
+    "de": "Bearbeiten"
+  },
+  {
+    "k": "Rediger i Kursadmin",
+    "en": "Edit in Kursadmin",
+    "de": "Im Kursadmin bearbeiten"
+  },
+  {
+    "k": "Rediger instruktør",
+    "en": "Edit instructor",
+    "de": "Lehrer bearbeiten"
+  },
+  {
+    "k": "Rediger instruktøren for å legge til bilder, kontaktinformasjon og beskrivelser.",
+    "en": "Edit the instructor to add images, contact information and descriptions.",
+    "de": "Bearbeiten Sie den Kursleiter, um Bilder, Kontaktinformationen und Beschreibungen hinzuzufügen."
+  },
+  {
+    "k": "Rediger kurs",
+    "en": "Edit course",
+    "de": "Kurs bearbeiten"
+  },
+  {
+    "k": "Rediger kursdato",
+    "en": "Edit course date",
+    "de": "Kursdatum bearbeiten"
+  },
+  {
+    "k": "Rediger kurskategori",
+    "en": "Edit course category",
+    "de": "Kurskategorie bearbeiten"
+  },
+  {
+    "k": "Rediger kurssted",
+    "en": "Edit course location",
+    "de": "Kursort bearbeiten"
+  },
+  {
+    "k": "Rediger Wordpress innhold",
+    "en": "Edit WordPress content",
+    "de": "Bearbeiten Sie den Inhalt von WordPress"
+  },
+  {
+    "k": "Regioner",
+    "en": "Regions",
+    "de": "Regionen"
+  },
+  {
+    "k": "Regioner aktivert%s",
+    "en": "Regions enabled%s",
+    "de": "Regionen aktiviert%s"
+  },
+  {
+    "k": "Regioner deaktivert%s",
+    "en": "Regions disabled%s",
+    "de": "Regionen deaktiviert%s"
+  },
+  {
+    "k": "Regioner lar deg organisere kurssteder i geografiske områder (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge). Dette er nyttig for filtrering og organisering av kurssteder.",
+    "en": "Regions let you organize course locations into geographic areas (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge). This is useful for filtering and organizing course locations.",
+    "de": "Mit Regionen können Sie Kursstandorte in geografische Gebiete einteilen (Sørlandet, Østlandet, Vestlandet, Midt-Norge, Nord-Norge). Dies ist nützlich zum Filtern und Organisieren von Kursorten."
+  },
+  {
+    "k": "Regioninndeling",
+    "en": "Regional division",
+    "de": "Regionale Aufteilung"
+  },
+  {
+    "k": "Regioninndeling lagret%s",
+    "en": "Regional division saved%s",
+    "de": "Regionaleinteilung gespeichert%s"
+  },
+  {
+    "k": "Regioninndeling tilbakestilt til standard%s",
+    "en": "Regional division reset to default%s",
+    "de": "Regionale Abteilung auf Standard zurückgesetzt%s"
+  },
+  {
+    "k": "Registrer nå",
+    "en": "Register now",
+    "de": "Registrieren Sie sich jetzt"
+  },
+  {
+    "k": "Relaterte kurs",
+    "en": "Related courses",
+    "de": "Verwandte Kurse"
+  },
+  {
+    "k": "Ren og enkel liste",
+    "en": "Clean and simple list",
+    "de": "Saubere und einfache Liste"
+  },
+  {
+    "k": "Resett til standard",
+    "en": "Reset to default",
+    "de": "Auf Standard zurücksetzen"
+  },
+  {
+    "k": "Resten av året",
+    "en": "Rest of the year",
+    "de": "Rest des Jahres"
+  },
+  {
+    "k": "Rett etter footer-seksjonen.",
+    "en": "Right after the footer section.",
+    "de": "Direkt nach dem Fußzeilenbereich."
+  },
+  {
+    "k": "Rett før footer.",
+    "en": "Right before footer.",
+    "de": "Direkt vor der Fußzeile."
+  },
+  {
+    "k": "Rett under hele header-blokken.",
+    "en": "Right below the entire header block.",
+    "de": "Direkt unter dem gesamten Headerblock."
+  },
+  {
+    "k": "Rett under pagineringskontroller i mal \"Standard\".",
+    "en": "Right below pagination controls in the \"Default\" template.",
+    "de": "Direkt unter den Paginierungssteuerelementen in der Vorlage „Standard“."
+  },
+  {
+    "k": "Rom eller lokale der kurset holdes.",
+    "en": "Room or venue where the course is held.",
+    "de": "Raum oder Veranstaltungsort, in dem der Kurs stattfindet."
+  },
+  {
+    "k": "Rom:",
+    "en": "Room:",
+    "de": "Zimmer:"
+  },
+  {
+    "k": "Rom/lokale",
+    "en": "Room/venue",
+    "de": "Raum/Veranstaltungsort"
+  },
+  {
+    "k": "Rutenett",
+    "en": "Grid",
+    "de": "Netz"
+  },
+  {
+    "k": "Rydd opp i kurs",
+    "en": "Clean up courses",
+    "de": "Kurse aufräumen"
+  },
+  {
+    "k": "Rydd opp i kurs etter synkronisering",
+    "en": "Clean up courses after synchronization",
+    "de": "Bereinigen Sie die Kurse nach der Synchronisierung"
+  },
+  {
+    "k": "Rydd vekk utløpte kursdatoer, duplikate kurs, og slettede kurs som ikke finnes i Kursagenten",
+    "en": "Remove expired course dates, duplicate courses, and deleted courses that no longer exist in Kursagenten",
+    "de": "Entfernen Sie abgelaufene Kursdaten, duplizieren Sie Kurse und löschen Sie Kurse, die in Kursagenten nicht mehr vorhanden sind."
+  },
+  {
+    "k": "Samme slug brukes flere steder: %s",
+    "en": "Same slug used in multiple places: %s",
+    "de": "Dieselbe Schnecke an mehreren Stellen verwendet: %s"
+  },
+  {
+    "k": "Se <a href=\"#stedsnavn-og-regioner\">Stedsnavn og regioner</a> for mer informasjon om hvordan regioner fungerer.",
+    "en": "See <a href=\"#stedsnavn-og-regioner\">Location names and regions</a> for more information on how regions work.",
+    "de": "Weitere Informationen zur Funktionsweise von Regionen finden Sie unter <a href=\"#stedsnavn-og-regioner\">Standortnamen und Regionen</a>."
+  },
+  {
+    "k": "Se alle kursdatoer",
+    "en": "View all course dates",
+    "de": "Alle Kurstermine ansehen"
+  },
+  {
+    "k": "Se detaljer",
+    "en": "View details",
+    "de": "Details anzeigen"
+  },
+  {
+    "k": "Se dokumentasjon",
+    "en": "View documentation",
+    "de": "Dokumentation ansehen"
+  },
+  {
+    "k": "Se kurs: %s",
+    "en": "View course: %s",
+    "de": "Kurs ansehen: %s"
+  },
+  {
+    "k": "Se kursdetaljer",
+    "en": "View course details",
+    "de": "Kursdetails anzeigen"
+  },
+  {
+    "k": "Se neste dato",
+    "en": "See next date",
+    "de": "Siehe nächster Termin"
+  },
+  {
+    "k": "Se oversikt over alle importerte kurs",
+    "en": "View overview of all imported courses",
+    "de": "Übersicht aller importierten Kurse anzeigen"
+  },
+  {
+    "k": "Seksjonsmeny",
+    "en": "Section menu",
+    "de": "Abschnittsmenü"
+  },
+  {
+    "k": "Send til Trello",
+    "en": "Send to Trello",
+    "de": "An Trello senden"
+  },
+  {
+    "k": "Seneste dato",
+    "en": "Latest date",
+    "de": "Spätester Termin"
+  },
+  {
+    "k": "SEO innstillinger",
+    "en": "SEO settings",
+    "de": "SEO-Einstellungen"
+  },
+  {
+    "k": "SEO på kurs og taksonomisider",
+    "en": "SEO for courses and taxonomy pages",
+    "de": "SEO für Kurse und Taxonomieseiten"
+  },
+  {
+    "k": "Serveren returnerte HTTP %1$s i stedet for ZIP-fil. URL: %2$s. Dette kan skyldes en feilside, omdirigering, eller Cloudflare bot-verifisering.",
+    "en": "The server returned HTTP %1$s instead of a ZIP file. URL: %2$s. This may be caused by an error page, redirect, or Cloudflare bot verification.",
+    "de": "Der Server hat HTTP %1$s anstelle einer ZIP-Datei zurückgegeben. URL: %2$s. Dies kann durch eine Fehlerseite, eine Weiterleitung oder eine Cloudflare-Bot-Überprüfung verursacht werden."
+  },
+  {
+    "k": "Sett foreldrekategori til:",
+    "en": "Set parent category to:",
+    "de": "Legen Sie die übergeordnete Kategorie fest auf:"
+  },
+  {
+    "k": "Sett inn",
+    "en": "Insert",
+    "de": "Einfügen"
+  },
+  {
+    "k": "Sett inn i kursdato",
+    "en": "Insert into course date",
+    "de": "In Kursdatum einfügen"
+  },
+  {
+    "k": "show_buttons, signup_link<br><strong>Standard:</strong> hentes fra Kursdesign",
+    "en": "show_buttons, signup_link<br><strong>Default:</strong> fetched from Course design",
+    "de": "show_buttons, signup_link<br><strong>Standard:</strong> wird aus dem Kursdesign abgerufen"
+  },
+  {
+    "k": "Side",
+    "en": "Page",
+    "de": "Seite"
+  },
+  {
+    "k": "Sidebakgrunn:",
+    "en": "Page background:",
+    "de": "Seitenhintergrund:"
+  },
+  {
+    "k": "Sideinnhold ble tilbakestilt.",
+    "en": "Page content was reset.",
+    "de": "Der Seiteninhalt wurde zurückgesetzt."
+  },
+  {
+    "k": "Sidekolonne etter",
+    "en": "Sidebar after",
+    "de": "Seitenleiste danach"
+  },
+  {
+    "k": "Sidekolonne før",
+    "en": "Sidebar before",
+    "de": "Seitenleiste vorher"
+  },
+  {
+    "k": "Sidene blir merket med \"Kursagenten\" i sideoversikten for enkel identifikasjon.",
+    "en": "Pages are marked with \"Kursagenten\" in the page overview for easy identification.",
+    "de": "Zur leichteren Identifizierung sind Seiten in der Seitenübersicht mit „Kursagenten“ gekennzeichnet."
+  },
+  {
+    "k": "Sidene blir merket med \"Kursagenten\" i sideoversikten. Ved å klikke på <i class=\"ka-icon icon-code-simple-solid-full\"></i> kopierer du kortkoden til utklippstavlen, og kan lime den inn der du ønsker å vise den på en eksisterende side.",
+    "en": "Pages are marked with \"Kursagenten\" in the page overview. By clicking <i class=\"ka-icon icon-code-simple-solid-full\"></i> you copy the shortcode to the clipboard and can paste it where you want to display it on an existing page.",
+    "de": "Seiten sind in der Seitenübersicht mit „Kursagenten“ gekennzeichnet. Durch Klicken auf <i class=\"ka-icon icon-code-simple-solid-full\"></i> kopieren Sie den Shortcode in die Zwischenablage und können ihn dort auf einer vorhandenen Seite einfügen, wo Sie ihn anzeigen möchten."
+  },
+  {
+    "k": "Sider og systemsider",
+    "en": "Pages and system pages",
+    "de": "Seiten und Systemseiten"
+  },
+  {
+    "k": "Sider som må opprettes",
+    "en": "Pages that must be created",
+    "de": "Seiten, die erstellt werden müssen"
+  },
+  {
+    "k": "Sider som opprettes automatisk",
+    "en": "Pages created automatically",
+    "de": "Automatisch erstellte Seiten"
+  },
+  {
+    "k": "Sikkerhetssjekk feilet",
+    "en": "Security check failed",
+    "de": "Sicherheitsüberprüfung fehlgeschlagen"
+  },
+  {
+    "k": "Sikkerhetssjekk feilet. Vennligst oppdater siden og prøv igjen.",
+    "en": "Security check failed. Please refresh the page and try again.",
+    "de": "Sicherheitsüberprüfung fehlgeschlagen. Bitte aktualisieren Sie die Seite und versuchen Sie es erneut."
+  },
+  {
+    "k": "Sikre deg plass på dette kurset nå. Har du spørsmål, ikke nøl med å kontakte oss.",
+    "en": "Secure your place on this course now. If you have questions, do not hesitate to contact us.",
+    "de": "Sichern Sie sich jetzt Ihren Platz in diesem Kurs. Wenn Sie Fragen haben, zögern Sie nicht, uns zu kontaktieren."
+  },
+  {
+    "k": "Siste endringer",
+    "en": "Recent changes",
+    "de": "Aktuelle Änderungen"
+  },
+  {
+    "k": "Siste frist for å melde deg på dette kurset.",
+    "en": "Last deadline to register for this course.",
+    "de": "Letzter Anmeldeschluss für diesen Kurs."
+  },
+  {
+    "k": "Sjekk <a href=\"admin.php?page=seo\">Endre url-er</a> om du må tilpasse url-strukturer. Her kan du endre fra feks. \"/kurs/ditt-kurs\" til \"/undervisning/ditt-kurs\".",
+    "en": "Check <a href=\"admin.php?page=seo\">Change URLs</a> if you need to customize URL structures. Here you can change e.g. from \"/kurs/your-course\" to \"/undervisning/your-course\".",
+    "de": "Aktivieren Sie <a href=\"admin.php?page=seo\">URLs ändern</a>, wenn Sie URL-Strukturen anpassen müssen. Hier können Sie z.B. ändern von „/kurs/your-course“ nach „/undervisning/your-course“."
+  },
+  {
+    "k": "Sjekk for oppdateringer",
+    "en": "Check for updates",
+    "de": "Suchen Sie nach Updates"
+  },
+  {
+    "k": "Skjul",
+    "en": "Hide",
+    "de": "Verstecken"
+  },
+  {
+    "k": "Skjul alle filtre, kursteller, \"vis antall kurs\" og sortering",
+    "en": "Hide all filters, course counter, \"show number of courses\" and sorting",
+    "de": "Alle Filter ausblenden, Kurszähler, „Kursanzahl anzeigen“ und Sortierung"
+  },
+  {
+    "k": "Skjul i automenyer",
+    "en": "Hide in auto menus",
+    "de": "In automatischen Menüs ausblenden"
+  },
+  {
+    "k": "Skjul i oversiktslister",
+    "en": "Hide in overview lists",
+    "de": "In Übersichtslisten ausblenden"
+  },
+  {
+    "k": "Skjul i url-er",
+    "en": "Hide in URLs",
+    "de": "In URLs ausblenden"
+  },
+  {
+    "k": "Skjul instruktør ved å skrive en kommaseparert liste med fornavn til instruktør slik det er skrevet i feltet \"fornavn\"",
+    "en": "Hide instructor by writing a comma-separated list of instructor first names as entered in the \"first name\" field",
+    "de": "Blenden Sie den Kursleiter aus, indem Sie eine durch Kommas getrennte Liste mit den Vornamen des Kursleiters erstellen, die im Feld „Vorname“ eingegeben wurden"
+  },
+  {
+    "k": "Skjul kategorien og alle tilhørende kurs",
+    "en": "Hide the category and all related courses",
+    "de": "Verstecken Sie die Kategorie und alle zugehörigen Kurse"
+  },
+  {
+    "k": "Skjul kun kategorien fra filter",
+    "en": "Hide only the category from filter",
+    "de": "Nur die Kategorie vor dem Filter ausblenden"
+  },
+  {
+    "k": "Skjul kun kategorien fra filter (kursene vises fortsatt)",
+    "en": "Hide only the category from filter (courses still shown)",
+    "de": "Nur die Kategorie aus dem Filter ausblenden (Kurse werden weiterhin angezeigt)"
+  },
+  {
+    "k": "Skjul spesifikke lokasjoner på kurssteder",
+    "en": "Hide specific locations on course locations",
+    "de": "Verstecken Sie bestimmte Orte auf Kursorten"
+  },
+  {
+    "k": "Skjul stedsfilter i videre visning",
+    "en": "Hide location filter in further views",
+    "de": "Standortfilter in weiteren Ansichten ausblenden"
+  },
+  {
+    "k": "Skjuler du prefix i url-er, kan det oppstå konflikt med vanlige sider, innlegg eller andre taksonomier med samme slug. Se informasjon om fallback-mekanismen nedenfor.",
+    "en": "If you hide the prefix in URLs, conflicts may occur with regular pages, posts or other taxonomies with the same slug. See information about the fallback mechanism below.",
+    "de": "Wenn Sie das Präfix in URLs ausblenden, kann es zu Konflikten mit regulären Seiten, Beiträgen oder anderen Taxonomien mit demselben Slug kommen. Informationen zum Fallback-Mechanismus finden Sie weiter unten."
+  },
+  {
+    "k": "Skjult",
+    "en": "Hidden",
+    "de": "Versteckt"
+  },
+  {
+    "k": "Skjult fra filter",
+    "en": "Hidden from filter",
+    "de": "Aus dem Filter ausgeblendet"
+  },
+  {
+    "k": "Skjult i kursliste",
+    "en": "Hidden in course list",
+    "de": "In der Kursliste versteckt"
+  },
+  {
+    "k": "Skjult i lister",
+    "en": "Hidden in lists",
+    "de": "In Listen versteckt"
+  },
+  {
+    "k": "Skjult i menyer",
+    "en": "Hidden in menus",
+    "de": "In Menüs versteckt"
+  },
+  {
+    "k": "Skjulte kurs",
+    "en": "Hidden courses",
+    "de": "Versteckte Kurse"
+  },
+  {
+    "k": "Skriv inn avstanden mellom radene, i pixler, em eller rem. Ønsker du ingen avstand, skriv 0.",
+    "en": "Enter the spacing between rows in pixels, em or rem. For no spacing, enter 0.",
+    "de": "Geben Sie den Abstand zwischen den Zeilen in Pixel, em oder rem ein. Wenn kein Abstand vorhanden ist, geben Sie 0 ein."
+  },
+  {
+    "k": "Skriv inn nytt navn",
+    "en": "Enter new name",
+    "de": "Geben Sie einen neuen Namen ein"
+  },
+  {
+    "k": "Skriv inn stedsnavn manuelt",
+    "en": "Enter location name manually",
+    "de": "Geben Sie den Standortnamen manuell ein"
+  },
+  {
+    "k": "Skriv inn størrelse på bildet du ønsker, i pixler. Ønsker du ikke bilde, skriv 0. Når bildestr settes til 0, lastes ikke bildene inn i det hele tatt.",
+    "en": "Enter the image size you want in pixels. For no image, enter 0. When bildestr is set to 0, images are not loaded at all.",
+    "de": "Geben Sie die gewünschte Bildgröße in Pixel ein. Für kein Bild geben Sie 0 ein. Wenn bildestr auf 0 gesetzt ist, werden Bilder überhaupt nicht geladen."
+  },
+  {
+    "k": "Skriver du kun kortkodene <span class=\"copytext\">[kurskategorier]</span>, <span class=\"copytext\">[kurssteder]</span> eller <span class=\"copytext\">[instruktorer]</span> brukes standardvalgene.<br>Bruk eventuelt de fulle kodene over, og fjern de valgene du ikke trenger.",
+    "en": "If you only use the shortcodes <span class=\"copytext\">[kurskategorier]</span>, <span class=\"copytext\">[kurssteder]</span> or <span class=\"copytext\">[instruktorer]</span>, the default values are used.<br>Alternatively, use the full codes above and remove the options you do not need.",
+    "de": "Wenn Sie nur die Shortcodes <span class=\"copytext\">[kurskategorier]</span>, <span class=\"copytext\">[kurssteder]</span> oder <span class=\"copytext\">[instruktorer]</span> verwenden, werden die Standardwerte verwendet.<br>Alternativ können Sie die vollständigen Codes oben verwenden und die Optionen entfernen, die Sie nicht benötigen."
+  },
+  {
+    "k": "Skru av SEO",
+    "en": "Turn off SEO",
+    "de": "Deaktivieren Sie SEO"
+  },
+  {
+    "k": "Skru av SEO på kurs og taksonomisider",
+    "en": "Turn off SEO for courses and taxonomy pages",
+    "de": "Deaktivieren Sie SEO für Kurse und Taxonomieseiten"
+  },
+  {
+    "k": "Skru på de innstillingene du ønsker å bruke:",
+    "en": "Enable the settings you want to use:",
+    "de": "Aktivieren Sie die Einstellungen, die Sie verwenden möchten:"
+  },
+  {
+    "k": "Skygge",
+    "en": "Shadow",
+    "de": "Schatten"
+  },
+  {
+    "k": "Skygge ved musepeker over kurs/kurskategori.",
+    "en": "Shadow on hover for course/course category.",
+    "de": "Schatten beim Schweben für Kurs/Kurskategorie."
+  },
+  {
+    "k": "Slett",
+    "en": "Delete",
+    "de": "Löschen"
+  },
+  {
+    "k": "Slugs (nettadresser) på kursene som har dette stedet oppdateres ved neste synkronisering.",
+    "en": "Slugs (URLs) for courses with this location are updated on the next synchronization.",
+    "de": "Slugs (URLs) für Kurse mit diesem Standort werden bei der nächsten Synchronisierung aktualisiert."
+  },
+  {
+    "k": "Sluttdato",
+    "en": "End date",
+    "de": "Enddatum"
+  },
+  {
+    "k": "Sluttdato:",
+    "en": "End date:",
+    "de": "Enddatum:"
+  },
+  {
+    "k": "Slutter:",
+    "en": "Ends:",
+    "de": "Endet:"
+  },
+  {
+    "k": "Slå av",
+    "en": "Turn off",
+    "de": "Ausschalten"
+  },
+  {
+    "k": "Slå på",
+    "en": "Turn on",
+    "de": "Einschalten"
+  },
+  {
+    "k": "Sorter etter",
+    "en": "Sort by",
+    "de": "Sortieren nach"
+  },
+  {
+    "k": "Sosiale profiler",
+    "en": "Social profiles",
+    "de": "Soziale Profile"
+  },
+  {
+    "k": "Spesifikke lokasjoner",
+    "en": "Specific locations",
+    "de": "Spezifische Standorte"
+  },
+  {
+    "k": "Spesifikke lokasjoner viser adresser og link til Google maps over kurslisten.",
+    "en": "Specific locations show addresses and links to Google maps above the course list.",
+    "de": "Für bestimmte Standorte werden oberhalb der Kursliste Adressen und Links zu Google Maps angezeigt."
+  },
+  {
+    "k": "Spesifikke lokasjoner:",
+    "en": "Specific locations:",
+    "de": "Spezifische Standorte:"
+  },
+  {
+    "k": "Språk",
+    "en": "Language",
+    "de": "Sprache"
+  },
+  {
+    "k": "Språk:",
+    "en": "Language:",
+    "de": "Sprache:"
+  },
+  {
+    "k": "St",
+    "en": "St",
+    "de": "St"
+  },
+  {
+    "k": "stablet, rad, liste<br><strong>Standard:</strong> stablet",
+    "en": "stacked, row, list<br><strong>Default:</strong> stacked",
+    "de": "gestapelt, Zeile, Liste<br><strong>Standard:</strong> gestapelt"
+  },
+  {
+    "k": "Standarbilder brukes som en bakupløsning for å hindre ødelagte design. Disse brukes som plassholdere om et bilde mangler. Velger du ingen bilder, bruker vi Kursagentens standard erstatningsbilder om nødvendig. Du kan også sette inn url til plassholderbilder via <a href=\"/wp-admin/admin.php?page=kursagenten#kortkoder\">kortkoder</a>.",
+    "en": "Default images are used as a fallback to prevent broken designs. These are used as placeholders when an image is missing. If you choose no images, we use Kursagenten's default replacement images if necessary. You can also set placeholder image URLs via <a href=\"/wp-admin/admin.php?page=kursagenten#kortkoder\">shortcodes</a>.",
+    "de": "Standardbilder werden als Fallback verwendet, um fehlerhafte Designs zu verhindern. Diese werden als Platzhalter verwendet, wenn ein Bild fehlt. Wenn Sie keine Bilder auswählen, verwenden wir bei Bedarf die Standard-Ersatzbilder von Kursagenten. Sie können Platzhalterbild-URLs auch über <a href=\"/wp-admin/admin.php?page=kursagenten#kortkoder\">Shortcodes</a> festlegen."
+  },
+  {
+    "k": "Standard - med bilde og beskrivelse",
+    "en": "Default - with image and description",
+    "de": "Standard – mit Bild und Beschreibung"
+  },
+  {
+    "k": "Standard (toppfilter + venstrefilter slik de er konfigurert)",
+    "en": "Default (top filter + left filter as configured)",
+    "de": "Standard (oberer Filter + linker Filter wie konfiguriert)"
+  },
+  {
+    "k": "Standard høyde for filterlister:",
+    "en": "Default height for filter lists:",
+    "de": "Standardhöhe für Filterlisten:"
+  },
+  {
+    "k": "Standard liste",
+    "en": "Default list",
+    "de": "Standardliste"
+  },
+  {
+    "k": "standard, grid, compact, plain, date-and-title, simple-cards<br><strong>Standard:</strong> hentes fra Kursdesign",
+    "en": "standard, grid, compact, plain, date-and-title, simple-cards<br><strong>Default:</strong> fetched from Course design",
+    "de": "Standard, Raster, kompakt, einfach, Datum und Titel, einfache Karten<br><strong>Standard:</strong> wird aus dem Kursdesign abgerufen"
+  },
+  {
+    "k": "standard, kommaseparert liste (feks alta,oslo,bergen eller \"Oslo,Mo i Rana\")<br><strong>Standard</strong>: viser alle steder",
+    "en": "standard, comma-separated list (e.g. alta,oslo,bergen or \"Oslo,Mo i Rana\")<br><strong>Default</strong>: shows all locations",
+    "de": "Standardmäßige, durch Kommas getrennte Liste (z. B. alta, oslo, bergen oder „Oslo, Mo i Rana“)<br><strong>Standard</strong>: Zeigt alle Standorte an"
+  },
+  {
+    "k": "Standard: 1300px",
+    "en": "Default: 1300px",
+    "de": "Standard: 1300px"
+  },
+  {
+    "k": "Standard: 16px",
+    "en": "Default: 16px",
+    "de": "Standard: 16px"
+  },
+  {
+    "k": "Standard: inherit",
+    "en": "Default: inherit",
+    "de": "Standard: erben"
+  },
+  {
+    "k": "Startdato",
+    "en": "Start date",
+    "de": "Startdatum"
+  },
+  {
+    "k": "Startdato:",
+    "en": "Start date:",
+    "de": "Startdatum:"
+  },
+  {
+    "k": "Starter:",
+    "en": "Starts:",
+    "de": "Beginnt:"
+  },
+  {
+    "k": "Startmåned",
+    "en": "Start month",
+    "de": "Startmonat"
+  },
+  {
+    "k": "Status",
+    "en": "Status",
+    "de": "Status"
+  },
+  {
+    "k": "Sted",
+    "en": "Location",
+    "de": "Standort"
+  },
+  {
+    "k": "sted, ikke-sted<br><strong>Standard</strong>: viser alle",
+    "en": "location, not-location<br><strong>Default</strong>: shows all",
+    "de": "Standort, Nicht-Standort<br><strong>Standard</strong>: Zeigt alle an"
+  },
+  {
+    "k": "Sted:",
+    "en": "Location:",
+    "de": "Standort:"
+  },
+  {
+    "k": "Stedinfo",
+    "en": "Location info",
+    "de": "Standortinformationen"
+  },
+  {
+    "k": "Stedsnavn mangler",
+    "en": "Location name missing",
+    "de": "Standortname fehlt"
+  },
+  {
+    "k": "Stedsnavn og regioner",
+    "en": "Location names and regions",
+    "de": "Standortnamen und Regionen"
+  },
+  {
+    "k": "Stil",
+    "en": "Style",
+    "de": "Stil"
+  },
+  {
+    "k": "Styre utseende på kurslister",
+    "en": "Control course list appearance",
+    "de": "Steuern Sie das Erscheinungsbild der Kursliste"
+  },
+  {
+    "k": "Støtte for \"Site Reviews\"-plugin, anmeldelser",
+    "en": "Support for \"Site Reviews\" plugin, reviews",
+    "de": "Unterstützung für das Plugin „Site Reviews“, Rezensionen"
+  },
+  {
+    "k": "Støttede SEO-utvidelser",
+    "en": "Supported SEO plugins",
+    "de": "Unterstützte SEO-Plugins"
+  },
+  {
+    "k": "Synkronisering",
+    "en": "Synchronization",
+    "de": "Synchronisation"
+  },
+  {
+    "k": "Synkronisering av kurs",
+    "en": "Course synchronization",
+    "de": "Kurssynchronisation"
+  },
+  {
+    "k": "Synlig",
+    "en": "Visible",
+    "de": "Sichtbar"
+  },
+  {
+    "k": "Synlige kurs",
+    "en": "Visible courses",
+    "de": "Sichtbare Kurse"
+  },
+  {
+    "k": "Synlighet",
+    "en": "Visibility",
+    "de": "Sichtweite"
+  },
+  {
+    "k": "Synlighet lister",
+    "en": "List visibility",
+    "de": "Sichtbarkeit der Liste"
+  },
+  {
+    "k": "Synlighet og skjuling",
+    "en": "Visibility and hiding",
+    "de": "Sichtbarkeit und Verstecken"
+  },
+  {
+    "k": "Systemside ble opprettet.",
+    "en": "System page was created.",
+    "de": "Die Systemseite wurde erstellt."
+  },
+  {
+    "k": "Systemside ble slettet.",
+    "en": "System page was deleted.",
+    "de": "Die Systemseite wurde gelöscht."
+  },
+  {
+    "k": "Søk",
+    "en": "Search",
+    "de": "Suchen"
+  },
+  {
+    "k": "Søk etter kurs",
+    "en": "Search for courses",
+    "de": "Nach Kursen suchen"
+  },
+  {
+    "k": "Søk etter kurs...",
+    "en": "Search for courses...",
+    "de": "Nach Kursen suchen..."
+  },
+  {
+    "k": "Søk etter kurskategori",
+    "en": "Search for course category",
+    "de": "Nach Kurskategorie suchen"
+  },
+  {
+    "k": "Søk i instruktører",
+    "en": "Search instructors",
+    "de": "Suchen Sie nach Ausbildern"
+  },
+  {
+    "k": "Søk i kursdato",
+    "en": "Search course dates",
+    "de": "Kurstermine suchen"
+  },
+  {
+    "k": "Søk i kurssteder",
+    "en": "Search course locations",
+    "de": "Kursorte suchen"
+  },
+  {
+    "k": "Søk KA kurs",
+    "en": "Search KA courses",
+    "de": "Suchen Sie nach KA-Kursen"
+  },
+  {
+    "k": "Søkefelt:",
+    "en": "Search field:",
+    "de": "Suchfeld:"
+  },
+  {
+    "k": "Søkefeltet får pill-form, tydelig kant og forstørrelsesglass til høyre. Gjelder kun når søk ligger i venstre kolonne.",
+    "en": "The search field gets a pill shape, clear border and magnifying glass on the right. Only applies when search is in the left column.",
+    "de": "Das Suchfeld erhält eine Pillenform, einen klaren Rand und eine Lupe auf der rechten Seite. Gilt nur, wenn die Suche in der linken Spalte erfolgt."
+  },
+  {
+    "k": "sørlandet, østlandet, vestlandet, midt-norge, nord-norge<br><strong>Standard</strong>: ingen filtrering",
+    "en": "sørlandet, østlandet, vestlandet, midt-norge, nord-norge<br><strong>Default</strong>: no filtering",
+    "de": "sørlandet, østlandet, vestlandet, midt-norge, nord-norge<br><strong>Standard</strong>: keine Filterung"
+  },
+  {
+    "k": "Ta kontakt med oss, så hjelper vi deg med å finne det perfekte kurset for dine behov.",
+    "en": "Contact us and we will help you find the perfect course for your needs.",
+    "de": "Kontaktieren Sie uns und wir helfen Ihnen, den perfekten Kurs für Ihre Bedürfnisse zu finden."
+  },
+  {
+    "k": "Ta tak i filteret du ønsker å bruke, og dra til enten venstre kolonne eller over kursliste. Velg om filteret skal vises som tagger eller avkrysningsliste.<br>For å fjerne et filter, dra det tilbake til tilgjengelige filtre. Husk å <strong>lagre</strong> endringene dine.",
+    "en": "Grab the filter you want to use and drag it to either the left column or above the course list. Choose whether the filter should be displayed as tags or a checklist.<br>To remove a filter, drag it back to available filters. Remember to <strong>save</strong> your changes.",
+    "de": "Schnappen Sie sich den Filter, den Sie verwenden möchten, und ziehen Sie ihn entweder in die linke Spalte oder über die Kursliste. Wählen Sie aus, ob der Filter als Tags oder als Checkliste angezeigt werden soll.<br>Um einen Filter zu entfernen, ziehen Sie ihn zurück zu den verfügbaren Filtern. Denken Sie daran, Ihre Änderungen zu <strong>speichern</strong>."
+  },
+  {
+    "k": "Tablet:",
+    "en": "Tablet:",
+    "de": "Tablette:"
+  },
+  {
+    "k": "Taksonomi-sider",
+    "en": "Taxonomy pages",
+    "de": "Taxonomieseiten"
+  },
+  {
+    "k": "Taksonomiene <strong>Kurskategorier</strong>, <strong>Kurssteder</strong> og <strong>Instruktører</strong> er tilgjengelige som egne Gutenberg-blokker i blokkeditoren.",
+    "en": "The taxonomies <strong>Course categories</strong>, <strong>Course locations</strong> and <strong>Instructors</strong> are available as separate Gutenberg blocks in the block editor.",
+    "de": "Die Taxonomien <strong>Kurskategorien</strong>, <strong>Kursorte</strong> und <strong>Dozenten</strong> stehen als separate Gutenberg-Blöcke im Blockeditor zur Verfügung."
+  },
+  {
+    "k": "Taksonomier (kategori, sted, instruktør)",
+    "en": "Taxonomies (category, location, instructor)",
+    "de": "Taxonomien (Kategorie, Standort, Dozent)"
+  },
+  {
+    "k": "Taksonomisider",
+    "en": "Taxonomy pages",
+    "de": "Taxonomieseiten"
+  },
+  {
+    "k": "tekst<br><strong>Standard</strong>: tom (ingen klasse)",
+    "en": "text<br><strong>Default</strong>: empty (no class)",
+    "de": "Text<br><strong>Standard</strong>: leer (keine Klasse)"
+  },
+  {
+    "k": "Teksten justerer seg etter skjermstørrelse. Dette er den minste fontstørrelsen du vil bruke for tekst og overskrifter.",
+    "en": "Text adjusts to screen size. This is the smallest font size you will use for text and headings.",
+    "de": "Der Text passt sich der Bildschirmgröße an. Dies ist die kleinste Schriftgröße, die Sie für Text und Überschriften verwenden."
+  },
+  {
+    "k": "Tekstfarge",
+    "en": "Text color",
+    "de": "Textfarbe"
+  },
+  {
+    "k": "Telefon",
+    "en": "Phone",
+    "de": "Telefon"
+  },
+  {
+    "k": "Tema for enkeltkurs",
+    "en": "Theme for single course",
+    "de": "Thema für einen einzelnen Kurs"
+  },
+  {
+    "k": "Tema for kurslister",
+    "en": "Theme for course lists",
+    "de": "Thema für Kurslisten"
+  },
+  {
+    "k": "Tema-standard",
+    "en": "Theme default",
+    "de": "Theme-Standard"
+  },
+  {
+    "k": "Tematilpasninger",
+    "en": "Theme customizations",
+    "de": "Theme-Anpassungen"
+  },
+  {
+    "k": "Test frontend: kursliste, enkeltkurs, kategorier, kurssteder og instruktører, og juster filtrene/design ved behov.",
+    "en": "Test frontend: course list, single course, categories, course locations and instructors, and adjust filters/design as needed.",
+    "de": "Testen Sie das Frontend: Kursliste, Einzelkurs, Kategorien, Kursorte und Dozenten und passen Sie Filter/Design nach Bedarf an."
+  },
+  {
+    "k": "Tid",
+    "en": "Time",
+    "de": "Zeit"
+  },
+  {
+    "k": "tid, varighet, pris, sted, fritekst-sted, rom, instruktør, sluttdato, påmeldingsfrist<br><strong>Standard:</strong> hentes fra Kursdesign",
+    "en": "time, duration, price, location, free-text location, room, instructor, end date, registration deadline<br><strong>Default:</strong> fetched from Course design",
+    "de": "Zeit, Dauer, Preis, Ort, Freitext-Ort, Raum, Dozent, Enddatum, Anmeldeschluss<br><strong>Standard:</strong> wird aus dem Kursdesign abgerufen"
+  },
+  {
+    "k": "Tidligste dato",
+    "en": "Earliest date",
+    "de": "Frühestes Datum"
+  },
+  {
+    "k": "Tidspunkt:",
+    "en": "Time:",
+    "de": "Zeit:"
+  },
+  {
+    "k": "Til toppen",
+    "en": "Back to top",
+    "de": "Zurück nach oben"
+  },
+  {
+    "k": "Tilbake til %s",
+    "en": "Back to %s",
+    "de": "Zurück zu %s"
+  },
+  {
+    "k": "Tilbakestill innhold",
+    "en": "Reset content",
+    "de": "Inhalt zurücksetzen"
+  },
+  {
+    "k": "Tilbyder guid:",
+    "en": "Provider GUID:",
+    "de": "Anbieter-GUID:"
+  },
+  {
+    "k": "Tilbyder ID:",
+    "en": "Provider ID:",
+    "de": "Anbieter-ID:"
+  },
+  {
+    "k": "Tildelt side",
+    "en": "Assigned page",
+    "de": "Zugewiesene Seite"
+  },
+  {
+    "k": "Tilgjengelige felter",
+    "en": "Available fields",
+    "de": "Verfügbare Felder"
+  },
+  {
+    "k": "Tilgjengelige filtre:",
+    "en": "Available filters:",
+    "de": "Verfügbare Filter:"
+  },
+  {
+    "k": "Tilgjengelige ikoner",
+    "en": "Available icons",
+    "de": "Verfügbare Symbole"
+  },
+  {
+    "k": "Tilpass grunnleggende designvariabler som farger, skriftstørrelser, og maksbredde på plugin-sider.",
+    "en": "Customize basic design variables such as colors, font sizes, and max width on plugin pages.",
+    "de": "Passen Sie grundlegende Designvariablen wie Farben, Schriftgrößen und maximale Breite auf Plugin-Seiten an."
+  },
+  {
+    "k": "Tilpass visningen av kurslisten. Denne vises på systemsiden \"Kurs\", og alle andre steder som bruker kortkoden <span class=\"copytext\">[kursliste]</span>.",
+    "en": "Customize the course list display. This is shown on the system page \"Courses\" and everywhere else that uses the shortcode <span class=\"copytext\">[kursliste]</span>.",
+    "de": "Passen Sie die Anzeige der Kursliste an. Dies wird auf der Systemseite „Kurse“ und überall dort angezeigt, wo der Shortcode <span class=\"copytext\">[kursliste]</span> verwendet wird."
+  },
+  {
+    "k": "Tips og feilsøking",
+    "en": "Tips and troubleshooting",
+    "de": "Tipps und Fehlerbehebung"
+  },
+  {
+    "k": "Tips: Hvis du har mange kurskategorier, kan du velge ut noen som hovedkategorier eller opprette egne. Dette gjør kategoriene mer oversiktlige for besøkende.",
+    "en": "Tip: If you have many course categories, you can select some as main categories or create your own. This makes the categories more manageable for visitors.",
+    "de": "Tipp: Wenn Sie viele Kurskategorien haben, können Sie einige als Hauptkategorien auswählen oder eigene erstellen. Dadurch werden die Kategorien für Besucher übersichtlicher."
+  },
+  {
+    "k": "Trello changelog",
+    "en": "Trello changelog",
+    "de": "Trello-Änderungsprotokoll"
+  },
+  {
+    "k": "Tøm farger",
+    "en": "Clear colors",
+    "de": "Klare Farben"
+  },
+  {
+    "k": "Ugyldig forespørsel",
+    "en": "Invalid request",
+    "de": "Ungültige Anfrage"
+  },
+  {
+    "k": "Ugyldig sikkerhetskode",
+    "en": "Invalid security code",
+    "de": "Ungültiger Sicherheitscode"
+  },
+  {
+    "k": "Ukjent feil",
+    "en": "Unknown error",
+    "de": "Unbekannter Fehler"
+  },
+  {
+    "k": "Ulike layout. Stablet viser bilde over kurs-/kategorinavn, rad viser bilde til venstre. Liste viser alle navn under hverandre. Liste har lavere mellomrom mellom punktene, og passer bedre med små bilder/uten bilder.",
+    "en": "Different layouts. Stacked shows image above course/category name; row shows image to the left. List shows all names stacked vertically. List has less spacing between items and works better with small images or no images.",
+    "de": "Verschiedene Layouts. Gestapelt zeigt das Bild über dem Kurs-/Kategorienamen; Die Zeile zeigt das Bild links. Die Liste zeigt alle Namen vertikal gestapelt an. Die Liste hat weniger Abstände zwischen den Elementen und funktioniert besser mit kleinen oder keinen Bildern."
+  },
+  {
+    "k": "Ulike tilleggsfunksjoner",
+    "en": "Various additional features",
+    "de": "Diverse Zusatzfunktionen"
+  },
+  {
+    "k": "Under <a href=\"admin.php?page=design\">Kursdesign</a> styrer du listedesign på systemsidene. Det finnes innstillinger for bildebruk, antall kolonner og paginering.",
+    "en": "Under <a href=\"admin.php?page=design\">Course design</a> you control list design on system pages. There are settings for image use, number of columns and pagination.",
+    "de": "Unter <a href=\"admin.php?page=design\">Kursdesign</a> steuern Sie das Listendesign auf Systemseiten. Es gibt Einstellungen zur Bildverwendung, Spaltenanzahl und Paginierung."
+  },
+  {
+    "k": "Under <a href=\"admin.php?page=design#section-systemsider\">Kursdesign → Wordpress sider</a> kan du opprette følgende sider:",
+    "en": "Under <a href=\"admin.php?page=design#section-systemsider\">Course design → WordPress pages</a> you can create the following pages:",
+    "de": "Unter <a href=\"admin.php?page=design#section-systemider\">Kursdesign → WordPress Seiten</a> können Sie folgende Seiten erstellen:"
+  },
+  {
+    "k": "Under bilde og beskrivelse",
+    "en": "Below image and description",
+    "de": "Unten Bild und Beschreibung"
+  },
+  {
+    "k": "Under overskrift, over filter/paginering og liste.",
+    "en": "Below heading, above filter/pagination and list.",
+    "de": "Unterhalb der Überschrift, darüber Filter/Paginierung und Liste."
+  },
+  {
+    "k": "Underkategorier:",
+    "en": "Subcategories:",
+    "de": "Unterkategorien:"
+  },
+  {
+    "k": "Undervalg for \"Vis alle kursdatoer\"",
+    "en": "Sub-option for \"Show all course dates\"",
+    "de": "Unteroption für „Alle Kurstermine anzeigen“"
+  },
+  {
+    "k": "Undervalg for \"Vis hovedkurs\"",
+    "en": "Sub-option for \"Show main courses\"",
+    "de": "Unteroption für „Hauptgerichte anzeigen“"
+  },
+  {
+    "k": "Unntak: Du kan legge til ekstra innhold mellom \"Introtekst\" og \"Innhold\" på enkeltkurs hvis du ønsker å berike kursene med nettstedsspesifikk informasjon.",
+    "en": "Exception: You can add extra content between \"Intro text\" and \"Content\" on single courses if you want to enrich courses with site-specific information.",
+    "de": "Ausnahme: Sie können bei einzelnen Kursen zwischen „Einführungstext“ und „Inhalt“ zusätzliche Inhalte hinzufügen, wenn Sie Kurse mit standortspezifischen Informationen anreichern möchten."
+  },
+  {
+    "k": "URL-er",
+    "en": "URLs",
+    "de": "URLs"
+  },
+  {
+    "k": "URL-er og SEO",
+    "en": "URLs and SEO",
+    "de": "URLs und SEO"
+  },
+  {
+    "k": "Utdrag",
+    "en": "Excerpt",
+    "de": "Auszug"
+  },
+  {
+    "k": "Utseende venstre filterkolonne",
+    "en": "Left filter column appearance",
+    "de": "Darstellung der linken Filterspalte"
+  },
+  {
+    "k": "Utvid %s",
+    "en": "Expand %s",
+    "de": "Erweitern Sie %s"
+  },
+  {
+    "k": "Utvidelse",
+    "en": "Plugin",
+    "de": "Erweiterung"
+  },
+  {
+    "k": "Utvidet beskrivelse",
+    "en": "Extended description",
+    "de": "Erweiterte Beschreibung"
+  },
+  {
+    "k": "Utviklet av %s",
+    "en": "Developed by %s",
+    "de": "Entwickelt von %s"
+  },
+  {
+    "k": "Valg",
+    "en": "Option",
+    "de": "Auswahl"
+  },
+  {
+    "k": "Valg for bilder",
+    "en": "Image options",
+    "de": "Bildoptionen"
+  },
+  {
+    "k": "Valg for lister og grid",
+    "en": "Options for lists and grid",
+    "de": "Optionen für Listen und Raster"
+  },
+  {
+    "k": "Variant",
+    "en": "Variant",
+    "de": "Variante"
+  },
+  {
+    "k": "Varighet",
+    "en": "Duration",
+    "de": "Dauer"
+  },
+  {
+    "k": "Varighet:",
+    "en": "Duration:",
+    "de": "Dauer:"
+  },
+  {
+    "k": "Ved å bytte designmal endres hele presentasjonen av kurset. Dette kan påvirke hvordan besøkende opplever kursinformasjonen.",
+    "en": "Changing the design template changes the entire presentation of the course. This can affect how visitors experience the course information.",
+    "de": "Durch das Ändern der Designvorlage ändert sich die gesamte Präsentation des Kurses. Dies kann sich darauf auswirken, wie Besucher die Kursinformationen wahrnehmen."
+  },
+  {
+    "k": "Velg",
+    "en": "Select",
+    "de": "Wählen"
+  },
+  {
+    "k": "Velg \"Fullt navn\", \"Fornavn\" eller \"Etternavn\" i feltet \"Navnevisning\".",
+    "en": "Choose \"Full name\", \"First name\" or \"Last name\" in the \"Name display\" field.",
+    "de": "Wählen Sie im Feld „Namensanzeige“ „Vollständiger Name“, „Vorname“ oder „Nachname“."
+  },
+  {
+    "k": "Velg bakgrunnsfarge:",
+    "en": "Select background color:",
+    "de": "Hintergrundfarbe auswählen:"
+  },
+  {
+    "k": "Velg bilde",
+    "en": "Select image",
+    "de": "Bild auswählen"
+  },
+  {
+    "k": "Velg dato",
+    "en": "Select date",
+    "de": "Datum auswählen"
+  },
+  {
+    "k": "Velg datoer",
+    "en": "Select dates",
+    "de": "Wählen Sie Daten aus"
+  },
+  {
+    "k": "Velg design på sider som viser kursdetaljer, både for alle lokasjoner og enkeltlokasjoner.",
+    "en": "Select design for pages showing course details, both for all locations and single locations.",
+    "de": "Wählen Sie das Design für Seiten mit Kursdetails, sowohl für alle Standorte als auch für einzelne Standorte."
+  },
+  {
+    "k": "Velg designet på siden. Dette styrer hvor/hvordan tittel, tekst, hovedbilde og kursliste vises.",
+    "en": "Choose the page design. This controls where/how title, text, main image and course list are displayed.",
+    "de": "Wählen Sie das Seitendesign. Dies steuert, wo/wie Titel, Text, Hauptbild und Kursliste angezeigt werden."
+  },
+  {
+    "k": "Velg en forelder for å lage et hierarki, og la dette bli en subkategori.",
+    "en": "Choose a parent to create a hierarchy and make this a subcategory.",
+    "de": "Wählen Sie eine übergeordnete Kategorie aus, um eine Hierarchie zu erstellen und diese zu einer Unterkategorie zu machen."
+  },
+  {
+    "k": "Velg et felles design for kurskategorier, kurssteder og instruktører. Du kan også velge å ha egne design for hver enkelt taksonomi.",
+    "en": "Choose a shared design for course categories, course locations and instructors. You can also choose to have separate designs for each taxonomy.",
+    "de": "Wählen Sie ein gemeinsames Design für Kurskategorien, Kursorte und Dozenten. Sie können auch separate Designs für jede Taxonomie festlegen."
+  },
+  {
+    "k": "Velg farger",
+    "en": "Select colors",
+    "de": "Wählen Sie Farben aus"
+  },
+  {
+    "k": "Velg filtre på kursliste i <a href=\"admin.php?page=design\">Kursdesign</a>, og også andre designvalg (liste/grid, detaljer, og malvalg).",
+    "en": "Choose filters on the course list in <a href=\"admin.php?page=design\">Course design</a>, and other design choices (list/grid, details, and template selection).",
+    "de": "Wählen Sie Filter für die Kursliste unter <a href=\"admin.php?page=design\">Kursdesign</a> und andere Designoptionen (Liste/Raster, Details und Vorlagenauswahl)."
+  },
+  {
+    "k": "Velg font-farge (valgfritt):",
+    "en": "Select font color (optional):",
+    "de": "Schriftfarbe auswählen (optional):"
+  },
+  {
+    "k": "Velg fra-til dato",
+    "en": "Select from-to date",
+    "de": "Wählen Sie Von-Bis-Datum aus"
+  },
+  {
+    "k": "Velg helt firkantede bilder, litt avrundet i kantene, eller runde bilder.",
+    "en": "Choose fully square images, slightly rounded corners, or round images.",
+    "de": "Wählen Sie vollständig quadratische Bilder, leicht abgerundete Ecken oder runde Bilder."
+  },
+  {
+    "k": "Velg hovedbilde",
+    "en": "Set featured image",
+    "de": "Stellen Sie das ausgewählte Bild ein"
+  },
+  {
+    "k": "Velg hvilke filtre som skal vises på kurslisten. Du kan dra filteret til enten venstre kolonne eller over kursliste. Velg om filteret skal vises som tagger eller avkrysningsliste.",
+    "en": "Choose which filters to display on the course list. You can drag the filter to either the left column or above the course list. Choose whether the filter should be displayed as tags or a checklist.",
+    "de": "Wählen Sie aus, welche Filter in der Kursliste angezeigt werden sollen. Sie können den Filter entweder in die linke Spalte oder über die Kursliste ziehen. Wählen Sie, ob der Filter als Tags oder als Checkliste angezeigt werden soll."
+  },
+  {
+    "k": "Velg hvilken overskrift du vil bruke for navnene.",
+    "en": "Choose which heading to use for names.",
+    "de": "Wählen Sie aus, welche Überschrift für Namen verwendet werden soll."
+  },
+  {
+    "k": "Velg hvilken region denne lokasjonen tilhører.",
+    "en": "Choose which region this location belongs to.",
+    "de": "Wählen Sie aus, zu welcher Region dieser Standort gehört."
+  },
+  {
+    "k": "Velg hvordan kurslistene på taksonomisidene skal vises:",
+    "en": "Choose how course lists on taxonomy pages are displayed:",
+    "de": "Wählen Sie aus, wie Kurslisten auf Taxonomieseiten angezeigt werden:"
+  },
+  {
+    "k": "Velg instruktør",
+    "en": "Select instructor",
+    "de": "Lehrer auswählen"
+  },
+  {
+    "k": "Velg kategori",
+    "en": "Select category",
+    "de": "Kategorie auswählen"
+  },
+  {
+    "k": "Velg kurssted",
+    "en": "Select course location",
+    "de": "Kursort auswählen"
+  },
+  {
+    "k": "Velg listedesign for kortkoden <span class=\"copytext\">[kursliste]</span> uten å endre global innstilling i Kursdesign.",
+    "en": "Choose list design for the <span class=\"copytext\">[kursliste]</span> shortcode without changing the global setting in Course design.",
+    "de": "Wählen Sie das Listendesign für den Shortcode <span class=\"copytext\">[kursliste]</span>, ohne die globale Einstellung im Kursdesign zu ändern."
+  },
+  {
+    "k": "Velg minst én rad før du bruker masseredigering.",
+    "en": "Select at least one row before using bulk edit.",
+    "de": "Wählen Sie mindestens eine Zeile aus, bevor Sie die Massenbearbeitung verwenden."
+  },
+  {
+    "k": "Velg måned",
+    "en": "Select month",
+    "de": "Monat auswählen"
+  },
+  {
+    "k": "Velg om denne skal vises i autogenererte menyer.",
+    "en": "Choose whether this should appear in auto-generated menus.",
+    "de": "Wählen Sie, ob dies in automatisch generierten Menüs erscheinen soll."
+  },
+  {
+    "k": "Velg om denne skal vises i kategorilister og oversikter.",
+    "en": "Choose whether this should appear in category lists and overviews.",
+    "de": "Wählen Sie, ob dies in Kategorielisten und Übersichten erscheinen soll."
+  },
+  {
+    "k": "Velg om denne skal vises i kursagentens egne oversikter.",
+    "en": "Choose whether this should appear in Kursagenten's own overviews.",
+    "de": "Wählen Sie, ob dies in den eigenen Übersichten von Kursagenten erscheinen soll."
+  },
+  {
+    "k": "Velg om kurslisten skal vise vanlig knappestil eller kun påmeldingslink-stil.",
+    "en": "Choose whether the course list should show standard button style or registration link style only.",
+    "de": "Wählen Sie, ob die Kursliste den Standard-Schaltflächenstil oder nur den Registrierungslinkstil anzeigen soll."
+  },
+  {
+    "k": "Velg periode",
+    "en": "Select period",
+    "de": "Zeitraum auswählen"
+  },
+  {
+    "k": "Velg pris",
+    "en": "Select price",
+    "de": "Preis auswählen"
+  },
+  {
+    "k": "Velg sider og design",
+    "en": "Select pages and design",
+    "de": "Wählen Sie Seiten und Design aus"
+  },
+  {
+    "k": "Velg sider som tilegnes til ulike deler av Kursagenten. Du kan velge fra eksisterende sider, eller opprette nye sider.",
+    "en": "Select pages assigned to different parts of Kursagenten. You can choose from existing pages or create new pages.",
+    "de": "Wählen Sie Seiten aus, die verschiedenen Teilen von Kursagenten zugeordnet sind. Sie können aus vorhandenen Seiten auswählen oder neue Seiten erstellen."
+  },
+  {
+    "k": "Velg språk",
+    "en": "Select language",
+    "de": "Sprache auswählen"
+  },
+  {
+    "k": "Velg standard antall kurs som skal vises per side (1-50)",
+    "en": "Select default number of courses to display per page (1-50)",
+    "de": "Wählen Sie die Standardanzahl der Kurse aus, die pro Seite angezeigt werden sollen (1–50)."
+  },
+  {
+    "k": "Velg sted...",
+    "en": "Select location...",
+    "de": "Standort auswählen..."
+  },
+  {
+    "k": "Velg stedet fra listen eller skriv inn navnet manuelt, og angi det nye navnet.",
+    "en": "Select the location from the list or enter the name manually, and specify the new name.",
+    "de": "Wählen Sie den Standort aus der Liste aus oder geben Sie den Namen manuell ein und geben Sie den neuen Namen an."
+  },
+  {
+    "k": "Velg tidspunkt",
+    "en": "Select time",
+    "de": "Wählen Sie die Uhrzeit aus"
+  },
+  {
+    "k": "Velg ønsket automeny (f.eks. <strong>Kurskategorier</strong>, <strong>Kategorier og kurs</strong>, <strong>Kurssteder</strong> eller <strong>Instruktører</strong>) og klikk <strong>Legg til i meny</strong>.",
+    "en": "Choose the desired auto menu (e.g. <strong>Course categories</strong>, <strong>Categories and courses</strong>, <strong>Course locations</strong> or <strong>Instructors</strong>) and click <strong>Add to menu</strong>.",
+    "de": "Wählen Sie das gewünschte automatische Menü (z. B. <strong>Kurskategorien</strong>, <strong>Kategorien und Kurse</strong>, <strong>Kursorte</strong> oder <strong>Dozenten</strong>) und klicken Sie auf <strong>Zum Menü hinzufügen</strong>."
+  },
+  {
+    "k": "Velg å vise fornavn, etternavn eller begge.",
+    "en": "Choose to show first name, last name or both.",
+    "de": "Wählen Sie, ob der Vorname, der Nachname oder beides angezeigt werden soll."
+  },
+  {
+    "k": "Velg å vise/skjule kurskategorier/menypunkter som hører til spesifikke steder. Eksempel: vis alle kurs som ikke er nettkurs: st=\"ikke-nettbasert\"",
+    "en": "Choose to show/hide course categories/menu items belonging to specific locations. Example: show all courses that are not online courses: st=\"ikke-nettbasert\"",
+    "de": "Wählen Sie, ob Sie Kurskategorien/Menüelemente anzeigen/ausblenden möchten, die zu bestimmten Standorten gehören. Beispiel: Alle Kurse anzeigen, die keine Online-Kurse sind: st=\"ikke-nettbasert\""
+  },
+  {
+    "k": "Velge om menyen skal vise <strong>hovedkategorier</strong>, <strong>subkategorier</strong> eller starte i en bestemt kategori.",
+    "en": "Choose whether the menu should show <strong>top-level categories</strong>, <strong>subcategories</strong> or start in a specific category.",
+    "de": "Wählen Sie, ob das Menü <strong>Kategorien der obersten Ebene</strong> oder <strong>Unterkategorien</strong> anzeigen oder in einer bestimmten Kategorie beginnen soll."
+  },
+  {
+    "k": "Velkommen til Kursagenten",
+    "en": "Welcome to Kursagenten",
+    "de": "Willkommen bei Kursagenten"
+  },
+  {
+    "k": "Venstre kolonne",
+    "en": "Left column",
+    "de": "Linke Spalte"
+  },
+  {
+    "k": "venstre, topp, filter-knapp, skjul<br><strong>Standard:</strong> slik filtere er satt opp i Kursdesign",
+    "en": "left, top, filter button, hide<br><strong>Default:</strong> as filters are set up in Course design",
+    "de": "links, oben, Filterschaltfläche, ausblenden<br><strong>Standard:</strong>, da Filter im Kursdesign eingerichtet sind"
+  },
+  {
+    "k": "Viktig info om url-er<br>Her kan du endre url for kurs, instruktør, kurskategori og kurssted. <span style=\"color:#b74444;font-weight:bold;\">OBS! Ikke rør med mindre du vet hva du gjør.</span> Det kan ødelegge nettstedet, og gjøre disse sidene utilgjengelige. Husk å lagre <a href=\"/wp-admin/options-permalink.php\" target=\"_blank\">permalenkeinnstillingene</a> etter du har gjort en endring.",
+    "en": "Important info about URLs<br>Here you can change the URL for courses, instructor, course category and course location. <span style=\"color:#b74444;font-weight:bold;\">NOTE! Do not change unless you know what you are doing.</span> This can break the site and make these pages unavailable. Remember to save <a href=\"/wp-admin/options-permalink.php\" target=\"_blank\">permalink settings</a> after making a change.",
+    "de": "Wichtige Informationen zu URLs<br>Hier können Sie die URL für Kurse, Dozenten, Kurskategorie und Kursort ändern. <span style=\"color:#b74444;font-weight:bold;\">HINWEIS! Nehmen Sie keine Änderungen vor, es sei denn, Sie wissen, was Sie tun.</span> Dies kann dazu führen, dass die Website beschädigt wird und diese Seiten nicht mehr verfügbar sind. Denken Sie daran, die <a href=\"/wp-admin/options-permalink.php\" target=\"_blank\">Permalink-Einstellungen</a> zu speichern, nachdem Sie eine Änderung vorgenommen haben."
+  },
+  {
+    "k": "Viktig:",
+    "en": "Important:",
+    "de": "Wichtig:"
+  },
+  {
+    "k": "Viktig: Kursene skal i hovedsak <strong>ikke redigeres på nettsiden</strong> – all redigering bør gjøres i Kursagenten. Dette sikrer at informasjonen er oppdatert og riktig synkronisert.",
+    "en": "Important: Courses should <strong>not be edited on the website</strong> in general – all editing should be done in Kursagenten. This ensures the information is up to date and correctly synchronized.",
+    "de": "Wichtig: Kurse sollten generell <strong>nicht auf der Website bearbeitet werden</strong> – alle Bearbeitungen sollten in Kursagenten erfolgen. Dadurch wird sichergestellt, dass die Informationen aktuell und korrekt synchronisiert sind."
+  },
+  {
+    "k": "Vis",
+    "en": "Show",
+    "de": "Zeigen"
+  },
+  {
+    "k": "Vis (i)",
+    "en": "Show (i)",
+    "de": "Zeige (i)"
+  },
+  {
+    "k": "Vis (k)",
+    "en": "Show (k)",
+    "de": "Zeige (k)"
+  },
+  {
+    "k": "Vis (s)",
+    "en": "Show (s)",
+    "de": "Show(s)"
+  },
+  {
+    "k": "Vis alle kurs",
+    "en": "Show all courses",
+    "de": "Alle Kurse anzeigen"
+  },
+  {
+    "k": "Vis alle kursdatoer (med filtre)",
+    "en": "Show all course dates (with filters)",
+    "de": "Alle Kurstermine anzeigen (mit Filtern)"
+  },
+  {
+    "k": "Vis alle synligheter",
+    "en": "Show all visibility states",
+    "de": "Alle Sichtbarkeitsstatus anzeigen"
+  },
+  {
+    "k": "Vis antall kurs",
+    "en": "Show number of courses",
+    "de": "Anzahl der Kurse anzeigen"
+  },
+  {
+    "k": "Vis bilder:",
+    "en": "Show images:",
+    "de": "Bilder anzeigen:"
+  },
+  {
+    "k": "Vis detaljer",
+    "en": "View details",
+    "de": "Details anzeigen"
+  },
+  {
+    "k": "Vis filter i boks med bakgrunn",
+    "en": "Show filter in box with background",
+    "de": "Filter im Feld mit Hintergrund anzeigen"
+  },
+  {
+    "k": "Vis filter med kategorier som også er brukt på kurs med denne kategorien, i tillegg til underkategoriene. Nyttig om du ikke kan lage en hovedkategori med underkategorier, men vil ha mulighet til å filtrere likevel.",
+    "en": "Show filter with categories also used on courses with this category, in addition to subcategories. Useful if you cannot create a parent category with subcategories but still want filtering.",
+    "de": "Filter mit Kategorien anzeigen, die zusätzlich zu den Unterkategorien auch für Kurse mit dieser Kategorie verwendet werden. Nützlich, wenn Sie keine übergeordnete Kategorie mit Unterkategorien erstellen können, aber dennoch filtern möchten."
+  },
+  {
+    "k": "Vis filtrene i venstre kolonne",
+    "en": "Show filters in left column",
+    "de": "Filter in der linken Spalte anzeigen"
+  },
+  {
+    "k": "Vis filtrene på toppen av listen",
+    "en": "Show filters at the top of the list",
+    "de": "Filter oben in der Liste anzeigen"
+  },
+  {
+    "k": "Vis flere fargevalg",
+    "en": "Show more color options",
+    "de": "Weitere Farboptionen anzeigen"
+  },
+  {
+    "k": "Vis flere lokasjoner",
+    "en": "Show more locations",
+    "de": "Weitere Standorte anzeigen"
+  },
+  {
+    "k": "Vis flere lokasjoner +",
+    "en": "Show more locations +",
+    "de": "Weitere Standorte anzeigen +"
+  },
+  {
+    "k": "Vis færre",
+    "en": "Show fewer",
+    "de": "Weniger anzeigen"
+  },
+  {
+    "k": "Vis hovedkategorier",
+    "en": "Show main categories",
+    "de": "Hauptkategorien anzeigen"
+  },
+  {
+    "k": "Vis hovedkurs (med neste tilgjengelige dato)",
+    "en": "Show main courses (with next available date)",
+    "de": "Hauptgerichte anzeigen (mit nächstem verfügbaren Termin)"
+  },
+  {
+    "k": "Vis i Google Maps",
+    "en": "View in Google Maps",
+    "de": "In Google Maps ansehen"
+  },
+  {
+    "k": "Vis i listen (taksonomi):",
+    "en": "Show in list (taxonomy):",
+    "de": "In Liste anzeigen (Taxonomie):"
+  },
+  {
+    "k": "Vis i listen:",
+    "en": "Show in list:",
+    "de": "In Liste anzeigen:"
+  },
+  {
+    "k": "Vis instruktør",
+    "en": "Show instructor",
+    "de": "Showlehrer"
+  },
+  {
+    "k": "Vis instruktører i enkeltkurs",
+    "en": "Show instructors in single course",
+    "de": "Dozenten im einzelnen Kurs anzeigen"
+  },
+  {
+    "k": "Vis instruktører:",
+    "en": "Show instructors:",
+    "de": "Instruktoren anzeigen:"
+  },
+  {
+    "k": "Vis KA kurs",
+    "en": "View KA course",
+    "de": "KA-Kurs ansehen"
+  },
+  {
+    "k": "Vis kategorien og tilhørende kurs",
+    "en": "Show category and related courses",
+    "de": "Kategorie und verwandte Kurse anzeigen"
+  },
+  {
+    "k": "Vis kategorifilter",
+    "en": "Show category filter",
+    "de": "Kategoriefilter anzeigen"
+  },
+  {
+    "k": "Vis kategorifilter (visningstype Alle kursdatoer)",
+    "en": "Show category filter (display type All course dates)",
+    "de": "Kategoriefilter anzeigen (Anzeigetyp Alle Kurstermine)"
+  },
+  {
+    "k": "Vis knapper",
+    "en": "Show buttons",
+    "de": "Schaltflächen anzeigen"
+  },
+  {
+    "k": "Vis kontaktperson i enkeltkurs",
+    "en": "Show contact person in single course",
+    "de": "Ansprechpartner im einzelnen Kurs anzeigen"
+  },
+  {
+    "k": "Vis kontaktperson:",
+    "en": "Show contact person:",
+    "de": "Ansprechpartner anzeigen:"
+  },
+  {
+    "k": "Vis kun kategorier med kurs på angitt sted (valgfritt)",
+    "en": "Show only categories with courses at the specified location (optional)",
+    "de": "Nur Kategorien mit Kursen am angegebenen Ort anzeigen (optional)"
+  },
+  {
+    "k": "Vis kun kurs, ikke kategorier",
+    "en": "Show only courses, not categories",
+    "de": "Nur Kurse anzeigen, keine Kategorien"
+  },
+  {
+    "k": "Vis kun ledige",
+    "en": "Show available only",
+    "de": "Nur verfügbar anzeigen"
+  },
+  {
+    "k": "Vis kun ledige kurs som standard",
+    "en": "Show available courses only by default",
+    "de": "Standardmäßig nur verfügbare Kurse anzeigen"
+  },
+  {
+    "k": "Vis kun ledige plasser",
+    "en": "Show only available places",
+    "de": "Nur verfügbare Plätze anzeigen"
+  },
+  {
+    "k": "Vis kurs",
+    "en": "View course",
+    "de": "Kurs ansehen"
+  },
+  {
+    "k": "Vis kurs i %s",
+    "en": "View courses in %s",
+    "de": "Kurse in %s ansehen"
+  },
+  {
+    "k": "Vis kursdato",
+    "en": "View course date",
+    "de": "Kursdatum anzeigen"
+  },
+  {
+    "k": "Vis kursfilter på kategoriside",
+    "en": "Show course filter on category page",
+    "de": "Kursfilter auf der Kategorieseite anzeigen"
+  },
+  {
+    "k": "Vis kurskategori",
+    "en": "Show course category",
+    "de": "Kurskategorie anzeigen"
+  },
+  {
+    "k": "Vis kurssted",
+    "en": "Show course location",
+    "de": "Kursort anzeigen"
+  },
+  {
+    "k": "Vis link-bokser etter kurslisten:",
+    "en": "Show link boxes after course list:",
+    "de": "Linkboxen nach Kursliste anzeigen:"
+  },
+  {
+    "k": "Vis link-bokser til flere kategorier/steder/instruktører etter kurslisten",
+    "en": "Show link boxes to more categories/locations/instructors after course list",
+    "de": "Linkboxen zu weiteren Kategorien/Standorten/Dozenten nach der Kursliste anzeigen"
+  },
+  {
+    "k": "Vis link-bokser:",
+    "en": "Show link boxes:",
+    "de": "Linkboxen anzeigen:"
+  },
+  {
+    "k": "Vis liste med spesifikke lokasjoner under hvert stedsnavn. Dette kommer fra feltet \"Fritekst sted\" i Kursagenten.",
+    "en": "Show list of specific locations under each location name. This comes from the \"Free-text location\" field in Kursagenten.",
+    "de": "Unter jedem Standortnamen eine Liste bestimmter Standorte anzeigen. Dies kommt aus dem Feld „Freitext-Standort“ in Kursagenten."
+  },
+  {
+    "k": "Vis menypunkter:",
+    "en": "Show menu items:",
+    "de": "Menüpunkte anzeigen:"
+  },
+  {
+    "k": "Vis mer",
+    "en": "Show more",
+    "de": "Mehr anzeigen"
+  },
+  {
+    "k": "Vis påmeldingslink",
+    "en": "Show registration link",
+    "de": "Registrierungslink anzeigen"
+  },
+  {
+    "k": "Vis resultater",
+    "en": "Show results",
+    "de": "Ergebnisse anzeigen"
+  },
+  {
+    "k": "Vis som kort, med hvit bakgrunn og skygge bak hele kortet.",
+    "en": "Show as card with white background and shadow behind the entire card.",
+    "de": "Als Karte mit weißem Hintergrund und Schatten hinter der gesamten Karte anzeigen."
+  },
+  {
+    "k": "Vis subkategorier",
+    "en": "Show subcategories",
+    "de": "Unterkategorien anzeigen"
+  },
+  {
+    "k": "Vis tekst fra feltet \"Kort beskrivelse\".",
+    "en": "Show text from the \"Short description\" field.",
+    "de": "Text aus dem Feld „Kurzbeschreibung“ anzeigen."
+  },
+  {
+    "k": "Vis tekst fra feltet \"Utvidet beskrivelse\". Merk at dette vil overskrive utdrag.",
+    "en": "Show text from the \"Extended description\" field. Note that this will override the excerpt.",
+    "de": "Text aus dem Feld „Erweiterte Beschreibung“ anzeigen. Beachten Sie, dass dadurch der Auszug überschrieben wird."
+  },
+  {
+    "k": "Vise fullt navn, fornavn eller etternavn",
+    "en": "Show full name, first name or last name",
+    "de": "Vollständigen Namen, Vornamen oder Nachnamen anzeigen"
+  },
+  {
+    "k": "viser alle steder i Østlandet eller Bergen (OR-logikk)",
+    "en": "shows all locations in Østlandet or Bergen (OR logic)",
+    "de": "zeigt alle Standorte in Østlandet oder Bergen (ODER-Logik)"
+  },
+  {
+    "k": "viser kun kurssteder i Østlandet",
+    "en": "shows only course locations in Østlandet",
+    "de": "zeigt nur Kursstandorte in Østlandet"
+  },
+  {
+    "k": "Vises rett etter H1 i toppseksjonen.",
+    "en": "Displayed right after H1 in the top section.",
+    "de": "Wird direkt nach H1 im oberen Bereich angezeigt."
+  },
+  {
+    "k": "Vises rett under hele header-blokken.",
+    "en": "Displayed right below the entire header block.",
+    "de": "Wird direkt unter dem gesamten Headerblock angezeigt."
+  },
+  {
+    "k": "Visningstype:",
+    "en": "Display type:",
+    "de": "Anzeigetyp:"
+  },
+  {
+    "k": "Vår Course-schema",
+    "en": "Include Course schema",
+    "de": "Kursschema einschließen"
+  },
+  {
+    "k": "Vår SEO av (meta-tagger)",
+    "en": "Turn SEO off (meta tags)",
+    "de": "SEO ausschalten (Meta-Tags)"
+  },
+  {
+    "k": "Våre tilpasninger (tittel/beskrivelse)",
+    "en": "Customizations (title/description)",
+    "de": "Anpassungen (Titel/Beschreibung)"
+  },
+  {
+    "k": "Webhooks",
+    "en": "Webhooks",
+    "de": "Webhooks"
+  },
+  {
+    "k": "Webhooks sikrer at kursene dine alltid er oppdatert uten manuell innsats. For å aktivere webhooks:",
+    "en": "Webhooks ensure your courses are always up to date without manual effort. To enable webhooks:",
+    "de": "Webhooks stellen sicher, dass Ihre Kurse ohne manuellen Aufwand immer auf dem neuesten Stand sind. So aktivieren Sie Webhooks:"
+  },
+  {
+    "k": "Wordpress har stort sett støtte for javascript biblioteket Jquery. Hvis det ikke er støtte for dette, kan du velge å aktivere det her.<br><br>",
+    "en": "WordPress generally supports the JavaScript library jQuery. If there is no support for this, you can choose to enable it here.<br><br>",
+    "de": "WordPress unterstützt grundsätzlich die JavaScript-Bibliothek jQuery. Wenn dies nicht unterstützt wird, können Sie es hier aktivieren.<br><br>"
+  },
+  {
+    "k": "Wordpress sider",
+    "en": "WordPress pages",
+    "de": "WordPress Seiten"
+  },
+  {
+    "k": "yes, no<br><strong>Standard:</strong> hentes fra Kursdesign",
+    "en": "yes, no<br><strong>Default:</strong> fetched from Course design",
+    "de": "ja, nein<br><strong>Standard:</strong> wird aus dem Kursdesign abgerufen"
+  },
+  {
+    "k": "YouTube",
+    "en": "YouTube",
+    "de": "YouTube"
+  },
+  {
+    "k": "Øverst i høyre kolonne.",
+    "en": "At the top of the right column.",
+    "de": "Oben in der rechten Spalte."
+  },
+  {
+    "k": "Åpne %s i Google Maps",
+    "en": "Open %s in Google Maps",
+    "de": "Öffnen Sie %s in Google Maps"
+  },
+  {
+    "k": "Åpne <a href=\"admin.php?page=kursinnstillinger\">Synkronisering</a> og koble mot Kursagenten-kontoen din. Legg inn <a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Webhooks</a> i Kursagenten, så blir kurset overført automatisk når det blir lagret/opprettet. <br>Første gang bør du klikke på \"Hent alle kurs fra Kursagenten\". Da henter du alle kursene samtidig.",
+    "en": "Open <a href=\"admin.php?page=kursinnstillinger\">Synchronization</a> and connect to your Kursagenten account. Add <a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Webhooks</a> in Kursagenten so the course is transferred automatically when saved/created.<br>The first time, click \"Fetch all courses from Kursagenten\" to fetch all courses at once.",
+    "de": "Öffnen Sie die <a href=\"admin.php?page=kursinnstillinger\">Synchronisierung</a> und stellen Sie eine Verbindung zu Ihrem Kursagenten-Konto her. Fügen Sie <a href=\"https://kursadmin.kursagenten.no/IntegrationSettings\" target=\"_blank\">Webhooks</a> in Kursagenten hinzu, damit der Kurs beim Speichern/Erstellen automatisch übertragen wird.<br>Klicken Sie beim ersten Mal auf „Alle Kurse von Kursagenten abrufen“, um alle Kurse auf einmal abzurufen."
+  },
+  {
+    "k": "Åpne adresse i Google Maps",
+    "en": "Open address in Google Maps",
+    "de": "Adresse in Google Maps öffnen"
+  },
+  {
+    "k": "Åpne i Google Maps",
+    "en": "Open in Google Maps",
+    "de": "In Google Maps öffnen"
+  }
+]

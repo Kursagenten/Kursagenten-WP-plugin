@@ -1,6 +1,17 @@
 /**
  * Håndterer ekspanderbart innhold og accordion-funksjonalitet
  */
+function kaExpandI18n(key, fallback) {
+    if (typeof kursagentenExpandContent !== 'undefined' && kursagentenExpandContent.i18n && kursagentenExpandContent.i18n[key]) {
+        return kursagentenExpandContent.i18n[key];
+    }
+    return fallback || key;
+}
+
+function kaExpandToggleHtml(labelKey, fallback, iconClass) {
+    return kaExpandI18n(labelKey, fallback) + ' <i class="ka-icon ' + iconClass + '"></i>';
+}
+
 function initExpandableContent() {
     const expandableElements = document.querySelectorAll('.expand-content');
 
@@ -23,7 +34,7 @@ function initExpandableContent() {
             // Opprett toggle-knapp
             const toggleButton = document.createElement('div');
             toggleButton.className = 'expand-toggle';
-            toggleButton.innerHTML = `Vis mer <i class="ka-icon icon-chevron-down"></i>`;
+            toggleButton.innerHTML = kaExpandToggleHtml('showMore', 'Vis mer', 'icon-chevron-down');
             
             // Legg til toggle-knapp etter innholdselementet
             element.parentNode.insertBefore(toggleButton, element.nextSibling);
@@ -47,13 +58,13 @@ function toggleExpand(element, toggleButton, maxHeight) {
         element.style.maxHeight = `${maxHeight}px`;
         element.classList.remove('expanded');
         element.classList.add('collapsed');
-        toggleButton.innerHTML = `Vis mer <i class="ka-icon icon-chevron-down"></i>`;
+        toggleButton.innerHTML = kaExpandToggleHtml('showMore', 'Vis mer', 'icon-chevron-down');
     } else {
         // Ekspander innhold
         element.style.maxHeight = 'none';
         element.classList.add('expanded');
         element.classList.remove('collapsed');
-        toggleButton.innerHTML = `Lukk <i class="ka-icon icon-chevron-up"></i>`;
+        toggleButton.innerHTML = kaExpandToggleHtml('close', 'Lukk', 'icon-chevron-up');
     }
 }
 
@@ -82,7 +93,7 @@ function toggleAccordionHeight(target) {
         // Oppdater knappetekst
         const toggleButton = expandContent.parentNode.querySelector('.expand-toggle');
         if (toggleButton) {
-            toggleButton.innerHTML = `Lukk <i class="ka-icon icon-chevron-up"></i>`;
+            toggleButton.innerHTML = kaExpandToggleHtml('close', 'Lukk', 'icon-chevron-up');
         }
     }
 }
@@ -172,7 +183,9 @@ function initLocationTabsToggle() {
             if (!ul) return;
             const isExpanded = ul.classList.toggle('expanded');
             this.setAttribute('aria-expanded', isExpanded);
-            this.textContent = isExpanded ? 'Vis færre' : 'Vis flere lokasjoner';
+            this.textContent = isExpanded
+                ? kaExpandI18n('showFewerLocations', 'Vis færre')
+                : kaExpandI18n('showMoreLocations', 'Vis flere lokasjoner');
         });
     });
 }

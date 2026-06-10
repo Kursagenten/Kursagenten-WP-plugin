@@ -35,7 +35,9 @@ function get_languages_from_meta() {
 $top_filters = get_option('kursagenten_top_filters', []);
 $left_filters = get_option('kursagenten_left_filters', []);
 $filter_types = get_option('kursagenten_filter_types', []);
-$available_filters = get_option('kursagenten_available_filters', []);
+$available_filters = kursagenten_localize_available_filters(
+    get_option('kursagenten_available_filters', [])
+);
 
 // error_log('Top filters: ' . print_r($top_filters, true));
 // error_log('Left filters: ' . print_r($left_filters, true));
@@ -177,7 +179,7 @@ ob_start();
 <div class="mobile-filter-content">
     <?php 
     if (empty($all_filters)) {
-        echo '<div class="mobile-filter-error"><p>Ingen filtre er konfigurert.</p></div>';
+        echo '<div class="mobile-filter-error"><p>' . esc_html__('Ingen filtre er konfigurert.', 'kursagenten') . '</p></div>';
     } else {
         foreach ($all_filters as $filter) : 
             // Sjekk om filteret er gyldig
@@ -208,15 +210,15 @@ ob_start();
                 <?php if ($filter === 'search') : ?>
                     <input type="text" 
                            class="filter-search" 
-                           placeholder="<?php echo esc_attr($current_filter_info['placeholder'] ?? 'Søk etter kurs...'); ?>"
+                           placeholder="<?php echo esc_attr($current_filter_info['placeholder'] ?? __('Søk etter kurs...', 'kursagenten')); ?>"
                            value="<?php echo isset($_GET['search']) ? esc_attr($_GET['search']) : ''; ?>">
                     
 
                 <?php elseif ($filter === 'availability') : ?>
                     <?php
                     $mobile_availability_type        = $filter_types[$filter] ?? 'list';
-                    $mobile_availability_only_label  = 'Vis kun ledige plasser';
-                    $mobile_availability_all_label   = 'Vis alle kurs';
+                    $mobile_availability_only_label  = __('Vis kun ledige plasser', 'kursagenten');
+                    $mobile_availability_all_label   = __('Vis alle kurs', 'kursagenten');
                     $mobile_default_on_availability  = (get_option('kursagenten_default_available_only', 'no') === 'yes');
                     $mobile_show_all_option          = $mobile_default_on_availability;
                     $mobile_show_all_checked         = $mobile_show_all_option && !$ka_is_available_active;
@@ -275,13 +277,13 @@ ob_start();
                                data-filter-key="date"
                                data-url-key="dato"
                                name="calendar-input"
-                               placeholder="<?php echo esc_attr($current_filter_info['placeholder'] ?? 'Velg fra-til dato'); ?>"
+                               placeholder="<?php echo esc_attr($current_filter_info['placeholder'] ?? __('Velg fra-til dato', 'kursagenten')); ?>"
                                value="<?php echo esc_attr($date); ?>"
-                               aria-label="Velg datoer">
+                               aria-label="<?php echo esc_attr__('Velg datoer', 'kursagenten'); ?>">
                         <i class="ka-icon icon-chevron-down"></i>
                         
                     </div>
-                    <a href="#" class="reset-date-filter" style="display: <?php echo $date ? 'block' : 'none'; ?>; font-size: var(--ka-font-xs); color: rgb(235, 121, 121); margin-top: 5px; text-decoration: none;">Nullstill dato</a>
+                    <a href="#" class="reset-date-filter" style="display: <?php echo $date ? 'block' : 'none'; ?>; font-size: var(--ka-font-xs); color: rgb(235, 121, 121); margin-top: 5px; text-decoration: none;"><?php esc_html_e('Nullstill dato', 'kursagenten'); ?></a>
 
                 <?php elseif (isset($taxonomy_data[$filter])) : ?>
                     <div class="filter-list">
@@ -385,7 +387,7 @@ ob_start();
                                     <?php
                                 endforeach;
                             else :
-                                echo '<p>Ingen alternativer tilgjengelig</p>';
+                                echo '<p>' . esc_html__('Ingen alternativer tilgjengelig', 'kursagenten') . '</p>';
                             endif;
                         }
                         ?>
@@ -396,8 +398,8 @@ ob_start();
     } ?>
 
     <div class="mobile-filter-footer">
-        <button class="apply-filters-button">Vis resultater</button>
-        <button class="reset-filters-button">Nullstill filter</button>
+        <button class="apply-filters-button"><?php esc_html_e('Vis resultater', 'kursagenten'); ?></button>
+        <button class="reset-filters-button"><?php esc_html_e('Nullstill filter', 'kursagenten'); ?></button>
     </div>
 </div>
 

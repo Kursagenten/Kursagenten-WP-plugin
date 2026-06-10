@@ -15,6 +15,13 @@ $location_freetext =        get_post_meta($course_id, 'course_location_freetext'
 $location_room =            get_post_meta($course_id, 'course_location_room', true);
 
 $button_text =              get_post_meta($course_id, 'course_button_text', true);
+if ($button_text === '' || $button_text === null) {
+    $button_text = get_post_meta($course_id, 'ka_course_button_text', true);
+}
+$show_registration_meta =   get_post_meta($course_id, 'ka_course_showRegistrationForm', true);
+$show_registration =        function_exists('kursagenten_normalize_bool')
+    ? kursagenten_normalize_bool($show_registration_meta)
+    : !empty($show_registration_meta) && $show_registration_meta !== 'false';
 $signup_url =               get_post_meta($course_id, 'course_signup_url', true);
 
 $related_course_id =        get_post_meta($course_id, 'location_id', true);
@@ -80,7 +87,7 @@ if (!empty($instructors) && !is_wp_error($instructors)) {
             <!-- Title area -->
             <div class="title-area">
                 <span class="title">sdfsdfd<a href="<?php echo esc_url($course_link); ?>" class="course-link small"><h3 class="course-title"><?php echo esc_html($course_title); ?></h3></a></span>
-                <span class="course-available">Ledige plasser</span>
+                <span class="course-available"><?php echo esc_html__( 'Ledige plasser', 'kursagenten' ); ?></span>
                 
             </div>
             <!-- Details area - date and location -->
@@ -112,22 +119,33 @@ if (!empty($instructors) && !is_wp_error($instructors)) {
                 <?php if (!empty($instructor_links)) : ?>
                     <div class="instructors"><i class="ka-icon icon-user"></i><?php echo implode(', ', $instructor_links); ?></div>
                 <?php endif; ?>
-                <span class="accordion-icon clickopen ka-tooltip" data-title="Se detaljer">+</span>
+                <span class="accordion-icon clickopen ka-tooltip" data-title="<?php echo esc_attr__( 'Se detaljer', 'kursagenten' ); ?>">+</span>
             </div>
             <!-- Accordion content -->
             <div class="courselist-content accordion-content">
                 <?php if (!empty($excerpt)) : ?>
-                    <p><strong>Kort beskrivelse: </strong><br><?php echo wp_kses_post($excerpt); ?></p>
+                    <p><strong><?php echo esc_html__( 'Kort beskrivelse:', 'kursagenten' ); ?> </strong><br><?php echo wp_kses_post($excerpt); ?></p>
                 <?php endif; ?>
-                <p><?php echo esc_html($first_course_date ? 'Kurset varer fra ' . $first_course_date . ' til ' . $last_course_date : 'Det er ikke satt opp dato for nye kurs. Meld din interesse for å få mer informasjon eller å sette deg på venteliste.'); ?></p>
-                <p><a href="<?php echo esc_url($course_link); ?>" class="course-link">Se kursdetaljer</a></p>
+                <p><?php
+                if ( $first_course_date ) {
+                    echo esc_html( sprintf(
+                        /* translators: 1: start date, 2: end date */
+                        __( 'Kurset varer fra %1$s til %2$s', 'kursagenten' ),
+                        $first_course_date,
+                        $last_course_date
+                    ) );
+                } else {
+                    echo esc_html__( 'Det er ikke satt opp dato for nye kurs. Meld din interesse for å få mer informasjon eller å sette deg på venteliste.', 'kursagenten' );
+                }
+                ?></p>
+                <p><a href="<?php echo esc_url($course_link); ?>" class="course-link"><?php echo esc_html__( 'Se kursdetaljer', 'kursagenten' ); ?></a></p>
             </div>
         </div>
         <div class="links-area col">
             <button class="courselist-button pamelding pameldingsknapp pameldingskjema" data-url="<?php echo esc_url($signup_url); ?>">
-                <?php echo esc_html($button_text) ?>
+                <?php echo esc_html( kursagenten_get_course_button_label( (string) $button_text, (bool) $show_registration ) ); ?>
             </button>
-            <a href="<?php echo esc_url($course_link); ?>" class="course-link small">Mer informasjon</a>
+            <a href="<?php echo esc_url($course_link); ?>" class="course-link small"><?php echo esc_html__( 'Mer informasjon', 'kursagenten' ); ?></a>
         </div>
     </div>
 

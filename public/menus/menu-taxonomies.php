@@ -172,11 +172,11 @@ class Kursagenten_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
 
                 $fields .= '<p class="description description-wide" style="border-left: 1px solid #d3e1dd; padding: 0 10px 10px;">';
                 $fields .= '<label for="edit-menu-item-parent-term-' . $item_id . '">';
-                $fields .= 'Vis menypunkter:<br />';
+                $fields .= esc_html__('Vis menypunkter:', 'kursagenten') . '<br />';
                 $fields .= '<select id="edit-menu-item-parent-term-' . $item_id . '" ';
                 $fields .= 'name="menu-item-parent-term[' . $item_id . ']" class="widefat">';
-                $fields .= '<option value=""' . selected($parent_term_id, '', false) . '>Vis hovedkategorier</option>';
-                $fields .= '<option value="sub"' . selected($parent_term_id, 'sub', false) . '>Vis subkategorier</option>';
+                $fields .= '<option value=""' . selected($parent_term_id, '', false) . '>' . esc_html__('Vis hovedkategorier', 'kursagenten') . '</option>';
+                $fields .= '<option value="sub"' . selected($parent_term_id, 'sub', false) . '>' . esc_html__('Vis subkategorier', 'kursagenten') . '</option>';
                 if (!empty($has_children_terms)) {
                     foreach ($has_children_terms as $term) {
                         $selected = $parent_term_id == $term->term_id ? ' selected="selected"' : '';
@@ -194,9 +194,9 @@ class Kursagenten_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
                 $fields .= '<p class="description description-wide" style="border-left: 1px solid #d3e1dd; padding: 0 10px 10px;">';
                 $fields .= '<label>';
                 $fields .= '<input type="checkbox" name="menu-item-vis-kun-kurs[' . $item_id . ']" value="1" ' . checked($vis_kun_kurs, true, false) . ' /> ';
-                $fields .= 'Vis kun kurs, ikke kategorier';
+                $fields .= esc_html__('Vis kun kurs, ikke kategorier', 'kursagenten');
                 $fields .= '</label>';
-                $fields .= '<br><small>For kurstilbydere med få kurs og 1/ingen kategorier: viser kun en flat liste med hovedkurs uten kategorinivå.</small>';
+                $fields .= '<br><small>' . esc_html__('For kurstilbydere med få kurs og 1/ingen kategorier: viser kun en flat liste med hovedkurs uten kategorinivå.', 'kursagenten') . '</small>';
                 $fields .= '</p>';
             }
 
@@ -204,20 +204,20 @@ class Kursagenten_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit {
             if ($taxonomy === 'ka_coursecategory') {
                 $fields .= '<p class="description description-wide" style="border-left: 1px solid #d3e1dd; padding: 0 10px 10px;">';
                 $fields .= '<label for="edit-menu-item-st-filter-' . $item_id . '">';
-                $fields .= 'Vis kun kategorier med kurs på angitt sted (valgfritt)<br />';
+                $fields .= esc_html__('Vis kun kategorier med kurs på angitt sted (valgfritt)', 'kursagenten') . '<br />';
                 $fields .= '<input type="text" id="edit-menu-item-st-filter-' . $item_id . '" ';
                 $fields .= 'class="widefat" name="menu-item-st-filter[' . $item_id . ']" ';
-                $fields .= 'value="' . esc_attr($st_filter) . '" placeholder="f.eks. oslo eller ikke-oslo" />';
+                $fields .= 'value="' . esc_attr($st_filter) . '" placeholder="' . esc_attr__('f.eks. oslo eller ikke-oslo', 'kursagenten') . '" />';
                 $fields .= '</label>';
-                $fields .= '<br><small>Begrenser til termer med kurs på angitt sted. Start med "ikke-" for å ekskludere. La stå tom for alle.</small>';
+                $fields .= '<br><small>' . esc_html__('Begrenser til termer med kurs på angitt sted. Start med "ikke-" for å ekskludere. La stå tom for alle.', 'kursagenten') . '</small>';
                 $fields .= '</p>';
 
                 $fields .= '<p class="description description-wide" style="border-left: 1px solid #d3e1dd; padding: 0 10px 10px;">';
                 $fields .= '<label>';
                 $fields .= '<input type="checkbox" name="menu-item-skjul-sted-chip[' . $item_id . ']" value="1" ' . checked($skjul_sted_chip, '1', false) . ' /> ';
-                $fields .= 'Skjul stedsfilter i videre visning';
+                $fields .= esc_html__('Skjul stedsfilter i videre visning', 'kursagenten');
                 $fields .= '</label>';
-                $fields .= '<br><small>Kun for positiv filter (f.eks. nettbasert): skjuler stedsfilteret på kurslistesiden. Ved "ikke-"-filter vises filteret slik at bruker kan velge annet sted.</small>';
+                $fields .= '<br><small>' . esc_html__('Kun for positiv filter (f.eks. nettbasert): skjuler stedsfilteret på kurslistesiden. Ved "ikke-"-filter vises filteret slik at bruker kan velge annet sted.', 'kursagenten') . '</small>';
                 $fields .= '</p>';
             }
 
@@ -380,8 +380,8 @@ class Kursagenten_Walker_Nav_Menu extends Walker_Nav_Menu {
         
         // Legg til submeny-indikator hvis elementet har barn
         if ($has_children && $is_kursagenten_item && $use_ct_markup) {
-            $item_output .= '<button class="ct-toggle-dropdown-desktop-ghost" aria-label="Utvid ' 
-                        . esc_attr($title) . '" aria-haspopup="true" aria-expanded="false"></button>';
+            $item_output .= '<button class="ct-toggle-dropdown-desktop-ghost" aria-label="' 
+                        . esc_attr(sprintf(/* translators: %s: menu item title */ __('Utvid %s', 'kursagenten'), $title)) . '" aria-haspopup="true" aria-expanded="false"></button>';
         }
         
         $item_output .= $args->after;
@@ -496,7 +496,7 @@ function kursagenten_get_custom_classes_for_virtual_items(
 function add_custom_nav_menu_metabox(): void {
     add_meta_box(
         'add-kursagenten-auto-menus',
-        'Kursagenten automenyer',
+        __('Kursagenten automenyer', 'kursagenten'),
         'kursagenten_auto_menus_metabox',
         'nav-menus',
         'side',
@@ -512,22 +512,22 @@ function kursagenten_auto_menus_metabox(): void {
     $auto_menu_items = [
         'course_categories' => [
             'id' => -1001,
-            'label' => 'Kurskategorier',
+            'label' => __('Kurskategorier', 'kursagenten'),
             'type' => 'ka_coursecategory'
         ],
         'course_categories_and_courses' => [
             'id' => -1004,
-            'label' => 'Kategorier og kurs',
+            'label' => __('Kategorier og kurs', 'kursagenten'),
             'type' => 'ka_coursecategory'
         ],
         'course_locations' => [
             'id' => -1002,
-            'label' => 'Kurssteder',
+            'label' => __('Kurssteder', 'kursagenten'),
             'type' => 'ka_course_location'
         ],
         'course_instructors' => [
             'id' => -1003,
-            'label' => 'Instruktører',
+            'label' => __('Instruktører', 'kursagenten'),
             'type' => 'ka_instructors'
         ]
     ];
@@ -580,7 +580,7 @@ function kursagenten_auto_menus_metabox(): void {
             <span class="add-to-menu">
                 <input type="submit" 
                        class="button-secondary submit-add-to-menu right" 
-                       value="<?php esc_attr_e('Legg til i meny'); ?>" 
+                       value="<?php esc_attr_e('Legg til i meny', 'kursagenten'); ?>" 
                        name="add-custom-menu-item" 
                        id="submit-kursagenten-auto-menu">
                 <span class="spinner"></span>

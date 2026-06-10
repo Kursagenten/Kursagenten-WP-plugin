@@ -60,7 +60,7 @@ class RelatedCourses {
         $related_posts = $this->get_related_courses($limit);
         
         if (empty($related_posts)) {
-            return '<div class="no-courses">Det er for øyeblikket ingen relaterte kurs å vise.</div>';
+            return '<div class="no-courses">' . esc_html__('Det er for øyeblikket ingen relaterte kurs å vise.', 'kursagenten') . '</div>';
         }
 
         // Generer output ved å bruke ID-spesifikke grid-stiler
@@ -231,7 +231,7 @@ class RelatedCourses {
                         <img src='{$thumbnail_url}' 
                              width='{$thumbnail_width}' 
                              height='{$thumbnail_height}' 
-                             alt='Bilde av kurs i {$title}' 
+                             alt='" . esc_attr(sprintf(/* translators: %s: course title */ __('Bilde av kurs i %s', 'kursagenten'), $title)) . "'
                              class='wp-image-{$post->ID}' 
                              decoding='async'>
                     </picture>
