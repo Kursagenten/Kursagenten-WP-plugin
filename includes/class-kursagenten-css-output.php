@@ -279,15 +279,15 @@ class Kursagenten_CSS_Output {
         if ($single_hero_overlay === 'light') {
             $css .= '#ka .course-container .ka-header.hero-overlay-light:not(.no-hero-image) .overlay { ';
             $css .= 'background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.9)) !important; } ';
-            $css .= '#ka .course-container .ka-header.hero-overlay-light:not(.no-hero-image) .header-content * { color: #222 !important; } ';
+            $css .= '#ka .course-container .ka-header.hero-overlay-light:not(.no-hero-image) ' . $this->hero_header_content_children_selector() . ' { color: #222 !important; } ';
         } else {
             $css .= '#ka .course-container .ka-header.hero-overlay-dark:not(.no-hero-image) .overlay { ';
             $css .= 'background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)) !important; } ';
-            $css .= '#ka .course-container .ka-header.hero-overlay-dark:not(.no-hero-image) .header-content * { color: #fff !important; } ';
+            $css .= '#ka .course-container .ka-header.hero-overlay-dark:not(.no-hero-image) ' . $this->hero_header_content_children_selector() . ' { color: #fff !important; } ';
         }
         if (!empty($single_hero_font_color)) {
-            $css .= '#ka .course-container .ka-header.hero-overlay-light .header-content *, ';
-            $css .= '#ka .course-container .ka-header .header-content * { color: ' . esc_attr($single_hero_font_color) . ' !important; } ';
+            $css .= '#ka .course-container .ka-header.hero-overlay-light ' . $this->hero_header_content_children_selector() . ', ';
+            $css .= '#ka .course-container .ka-header ' . $this->hero_header_content_children_selector() . ' { color: ' . esc_attr($single_hero_font_color) . ' !important; } ';
         }
         if (!empty($single_hero_bg_color)) {
             $css .= '#ka .course-container .ka-header.hero-bgcolor-only .background-blur, ';
@@ -301,12 +301,12 @@ class Kursagenten_CSS_Output {
         $single_hero_bg_mode = get_option('kursagenten_single_hero_header_bg_mode', 'image_placeholder');
         if (empty($single_hero_font_color) && $single_hero_bg_mode === 'image_bgcolor') {
             if ($single_hero_overlay === 'light') {
-                $css .= '#ka .course-container .ka-header.no-hero-image.hero-overlay-light .header-content * { color: #222 !important; } ';
+                $css .= '#ka .course-container .ka-header.no-hero-image.hero-overlay-light ' . $this->hero_header_content_children_selector() . ' { color: #222 !important; } ';
             } else {
-                $css .= '#ka .course-container .ka-header.no-hero-image.hero-overlay-dark .header-content * { color: #fff !important; } ';
+                $css .= '#ka .course-container .ka-header.no-hero-image.hero-overlay-dark ' . $this->hero_header_content_children_selector() . ' { color: #fff !important; } ';
             }
         } elseif (empty($single_hero_font_color) && $single_hero_bg_mode === 'bgcolor_only') {
-            $css .= '#ka .course-container .ka-header.no-hero-image .header-content * { color: #222 !important; } ';
+            $css .= '#ka .course-container .ka-header.no-hero-image ' . $this->hero_header_content_children_selector() . ' { color: #222 !important; } ';
         }
 
         // Hero header overrides – Taksonomisider
@@ -320,20 +320,20 @@ class Kursagenten_CSS_Output {
         if ($taxonomy_hero_overlay === 'light') {
             $css .= '#ka .taxonomy-hero-header.hero-overlay-light:not(.no-hero-image) .overlay { ';
             $css .= 'background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.9)) !important; } ';
-            $css .= '#ka .taxonomy-hero-header.hero-overlay-light:not(.no-hero-image) .header-content *, ';
+            $css .= '#ka .taxonomy-hero-header.hero-overlay-light:not(.no-hero-image) ' . $this->hero_header_content_children_selector() . ', ';
             $css .= '#ka .taxonomy-hero-header.hero-overlay-light:not(.no-hero-image) .taxonomy-description, ';
             $css .= '#ka .taxonomy-hero-header.hero-overlay-light:not(.no-hero-image) .taxonomy-header-content h1 { color: #222 !important; } ';
         } else {
             $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) .overlay { ';
             $css .= 'background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)) !important; } ';
-            $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) .header-content *, ';
+            $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) ' . $this->hero_header_content_children_selector() . ', ';
             $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) .taxonomy-description, ';
             $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) .taxonomy-header-content h1, ';
             $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) .taxonomy-read-more-link { color: #fff !important; } ';
         }
         if (!empty($taxonomy_hero_font_color)) {
-            $css .= '#ka .taxonomy-hero-header .header-content *, ';
-            $css .= '#ka .taxonomy-hero-header.hero-overlay-light .header-content *, ';
+            $css .= '#ka .taxonomy-hero-header ' . $this->hero_header_content_children_selector() . ', ';
+            $css .= '#ka .taxonomy-hero-header.hero-overlay-light ' . $this->hero_header_content_children_selector() . ', ';
             $css .= '#ka .taxonomy-hero-header .taxonomy-description { color: ' . esc_attr($taxonomy_hero_font_color) . ' !important; } ';
         }
         if (!empty($taxonomy_hero_bg_color)) {
@@ -347,24 +347,33 @@ class Kursagenten_CSS_Output {
         $taxonomy_hero_bg_mode = get_option('kursagenten_taxonomy_hero_header_bg_mode', 'image_placeholder');
         if (empty($taxonomy_hero_font_color) && $taxonomy_hero_bg_mode === 'image_bgcolor') {
             if ($taxonomy_hero_overlay === 'light') {
-                $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-light .header-content *, ';
+                $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-light ' . $this->hero_header_content_children_selector() . ', ';
                 $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-light .taxonomy-description, ';
                 $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-light .taxonomy-header-content h1, ';
                 $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-light .taxonomy-read-more-link { color: #222 !important; } ';
             } else {
-                $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-dark .header-content *, ';
+                $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-dark ' . $this->hero_header_content_children_selector() . ', ';
                 $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-dark .taxonomy-description, ';
                 $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-dark .taxonomy-header-content h1, ';
                 $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-dark .taxonomy-read-more-link { color: #fff !important; } ';
             }
         } elseif (empty($taxonomy_hero_font_color) && $taxonomy_hero_bg_mode === 'bgcolor_only') {
-            $css .= '#ka .taxonomy-hero-header.no-hero-image .header-content *, ';
+            $css .= '#ka .taxonomy-hero-header.no-hero-image ' . $this->hero_header_content_children_selector() . ', ';
             $css .= '#ka .taxonomy-hero-header.no-hero-image .taxonomy-description, ';
             $css .= '#ka .taxonomy-hero-header.no-hero-image .taxonomy-header-content h1 { color: #222 !important; } ';
         }
 
         // Output CSS
         echo '<style type="text/css" id="kursagenten-custom-css">' . $css . '</style>';
+    }
+
+    /**
+     * Wildcard selector for hero header text color, excluding buttons.
+     *
+     * @return string CSS selector fragment.
+     */
+    private function hero_header_content_children_selector() {
+        return '.header-content *:not(.button):not(button):not(.ka-button):not(.courselist-button):not(.pamelding)';
     }
 
     /**

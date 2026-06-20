@@ -557,24 +557,16 @@ function create_or_update_course_date($data, $post_id, $main_course_id, $locatio
         if (!empty($schedule['firstCourseDate'])) {     $meta_input['ka_course_first_date'] = format_date_for_db($schedule['firstCourseDate']);}
         if (!empty($schedule['firstCourseDate'])) {     $meta_input['ka_course_month'] = format_date_get_month($schedule['firstCourseDate']);}
 
-        // Tømbare string-felter: når Kursagenten har feltet i payload, reflekter
-        // verdien (også tom) på posten. Bruker array_key_exists for å skille mellom
-        // "API leverer ikke feltet" (gammel versjon) og "admin har tømt feltet".
-        // Dette fikser bug-en hvor admin tømte duration i Kursagenten, men gammel
-        // verdi ble stående i WP fordi !empty() filtrerte bort tomme strings.
-        if (array_key_exists('lastCourseDate', $schedule)) {
-            $meta_input['ka_course_last_date'] = !empty($schedule['lastCourseDate'])
-                ? format_date_for_db($schedule['lastCourseDate'])
-                : '';
-        }
-        if (array_key_exists('registrationDeadline', $schedule)) {
-            $meta_input['ka_course_registration_deadline'] = !empty($schedule['registrationDeadline'])
-                ? format_date_for_db($schedule['registrationDeadline'])
-                : '';
-        }
-        if (array_key_exists('duration', $schedule)) {
-            $meta_input['ka_course_duration'] = (string) $schedule['duration'];
-        }
+        // Clearable schedule fields: always overwrite on sync. Kursagenten often omits keys
+        // entirely when a value is removed (instead of sending null/0/""), so conditional
+        // array_key_exists left stale meta in WordPress.
+        $meta_input['ka_course_last_date'] = !empty($schedule['lastCourseDate'])
+            ? format_date_for_db($schedule['lastCourseDate'])
+            : '';
+        $meta_input['ka_course_registration_deadline'] = !empty($schedule['registrationDeadline'])
+            ? format_date_for_db($schedule['registrationDeadline'])
+            : '';
+        $meta_input['ka_course_duration'] = (string) ($schedule['duration'] ?? '');
 
         // Day schedules: store count only. The full data is fetched on demand via
         // the day-schedules AJAX endpoint to avoid bloating the wp_postmeta table
@@ -600,84 +592,80 @@ function create_or_update_course_date($data, $post_id, $main_course_id, $locatio
             $meta_input['ka_course_time'] = !empty($schedule['coursetime'])
                 ? format_coursetime($schedule['coursetime'])
                 : '';
+        } else {
+            $meta_input['ka_course_time'] = '';
         }
-        if (array_key_exists('coursetimeType', $schedule)) {
-            $meta_input['ka_course_time_type'] = (string) $schedule['coursetimeType'];
-        }
-        
-                if (!empty($schedule['startTime'])) {           $meta_input['ka_course_start_time'] = $schedule['startTime'];}
-        if (!empty($schedule['endTime'])) {             $meta_input['ka_course_end_time'] = $schedule['endTime'];}
-        if (!empty($schedule['price'])) {               $meta_input['ka_course_price'] = (int) $schedule['price'];}
-        if (array_key_exists('textBeforeAmount', $schedule)) {
-            $meta_input['ka_course_text_before_price'] = sanitize_text_field((string) $schedule['textBeforeAmount']);
-        }
-        if (array_key_exists('textAfterAmount', $schedule)) {
-            $meta_input['ka_course_text_after_price'] = sanitize_text_field((string) $schedule['textAfterAmount']);
-        }
-        if (array_key_exists('courseCode', $schedule)) {
-            $meta_input['ka_course_code'] = (string) $schedule['courseCode'];
-        }
-        if (array_key_exists('formButtonText', $schedule)) {
-            $meta_input['ka_course_button_text'] = (string) $schedule['formButtonText'];
-        }
-        if (array_key_exists('language', $schedule)) {
-            $meta_input['ka_course_language'] = (string) $schedule['language'];
-        }
-        
-        if (!empty($schedule['maxParticipants'])) {     $meta_input['ka_course_maxParticipants'] = $schedule['maxParticipants'];}
+        $meta_input['ka_course_time_type'] = (string) ($schedule['coursetimeType'] ?? '');
+        $meta_input['ka_course_start_time'] = (string) ($schedule['startTime'] ?? '');
+        $meta_input['ka_course_end_time'] = (string) ($schedule['endTime'] ?? '');
+
+        // Price lives on schedule and/or location; schedule wins. Always write so removed
+        // prices clear stale meta even when API omits the key.
+        $meta_input['ka_course_price'] = kursagenten_resolve_coursedate_int_meta($schedule, $location, 'price');
+        $meta_input['ka_course_text_before_price'] = kursagenten_resolve_coursedate_string_meta($schedule, $location, 'textBeforeAmount');
+        $meta_input['ka_course_text_after_price'] = kursagenten_resolve_coursedate_string_meta($schedule, $location, 'textAfterAmount');
+
+        $meta_input['ka_course_code'] = (string) ($schedule['courseCode'] ?? '');
+        $meta_input['ka_course_button_text'] = (string) ($schedule['formButtonText'] ?? '');
+        $meta_input['ka_course_language'] = (string) ($schedule['language'] ?? '');
+        $meta_input['ka_course_maxParticipants'] = $schedule['maxParticipants'] ?? '';
         if (isset($schedule['showRegistrationForm'])) { $meta_input['ka_course_showRegistrationForm'] = $schedule['showRegistrationForm'];}
         if (isset($schedule['markedAsFull'])) {         $meta_input['ka_course_markedAsFull'] = $schedule['markedAsFull'];}
         if (isset($schedule['isFull'])) {               $meta_input['ka_course_isFull'] = $schedule['isFull'];}
         if (!empty($course_signup_url)) {               $meta_input['ka_course_signup_url'] = $course_signup_url;}
-        if (!empty($location['county'])) {              $meta_input['ka_course_location'] = get_course_location($data);} 
-        // Only set location_freetext if course is not online
+
         $is_online = !empty($data['isOnlineCourse']) && ($data['isOnlineCourse'] === true || $data['isOnlineCourse'] === 'true' || $data['isOnlineCourse'] === 1 || $data['isOnlineCourse'] === '1');
-        if (!$is_online && !empty($location['description'])) {
-            $meta_input['ka_course_location_freetext'] = $location['description'];
-        } else {
-            // Ensure location_freetext is removed for online courses
-            $meta_input['ka_course_location_freetext'] = '';
+
+        if (array_key_exists('county', $location) || array_key_exists('municipality', $location)) {
+            $meta_input['ka_course_location'] = get_course_location($data);
         }
 
-        // Only set address fields if course is not online
-        if (!$is_online) {
-            if (!empty($location['address']['streetAddress'])) {        $meta_input['ka_course_address_street'] = $location['address']['streetAddress'];}
-            if (!empty($location['address']['streetAddressNumber'])) {  $meta_input['ka_course_address_street_number'] = $location['address']['streetAddressNumber'];}
-            if (!empty($location['address']['zipCode'])) {              $meta_input['ka_course_address_zipcode'] = $location['address']['zipCode'];}
-            if (!empty($location['address']['place'])) {                $meta_input['ka_course_address_place'] = $location['address']['place'];}
-        } else {
-            // Remove address fields for online courses
+        if ($is_online) {
+            $meta_input['ka_course_location_freetext'] = '';
+        } elseif (array_key_exists('description', $location)) {
+            $meta_input['ka_course_location_freetext'] = !empty($location['description'])
+                ? $location['description']
+                : '';
+        }
+
+        if ($is_online) {
             $meta_input['ka_course_address_street'] = '';
             $meta_input['ka_course_address_street_number'] = '';
             $meta_input['ka_course_address_zipcode'] = '';
             $meta_input['ka_course_address_place'] = '';
+        } elseif (array_key_exists('address', $location)) {
+            $address = is_array($location['address']) ? $location['address'] : [];
+            $meta_input['ka_course_address_street'] = (string) ($address['streetAddress'] ?? '');
+            $meta_input['ka_course_address_street_number'] = (string) ($address['streetAddressNumber'] ?? '');
+            $meta_input['ka_course_address_zipcode'] = (string) ($address['zipCode'] ?? '');
+            $meta_input['ka_course_address_place'] = (string) ($address['place'] ?? '');
         }
 
+        $room_names = [];
         if (!empty($schedule['locationRooms']) && is_array($schedule['locationRooms'])) {
-            $room_names = array();
             foreach ($schedule['locationRooms'] as $room) {
                 if (!empty($room['name'])) {
                     $room_names[] = $room['name'];
                 }
             }
-            if (!empty($room_names)) {
-                $meta_input['ka_course_location_room'] = implode(', ', $room_names);
-            }
         }
+        $meta_input['ka_course_location_room'] = !empty($room_names) ? implode(', ', $room_names) : '';
 
         // Create or update course date
+        $coursedate_title = build_coursedate_post_title($data, $schedule);
+
         if ($coursedate_id) {
             // Update existing course date
             wp_update_post([
                 'ID' => $coursedate_id,
-                'post_title' => $data['name'] . ' - ' . $location['county'],
+                'post_title' => $coursedate_title,
                 'post_status' => 'publish',
                 'meta_input' => $meta_input
             ]);
         } else {
             // Create new course date
             $coursedate_id = wp_insert_post([
-                'post_title' => $data['name'] . ' - ' . $location['county'],
+                'post_title' => $coursedate_title,
                 'post_type' => 'ka_coursedate',
                 'post_status' => 'publish',
                 'meta_input' => $meta_input
@@ -808,9 +796,13 @@ function get_common_meta_fields($data, $language) {
     return [ 
         'ka_location_id' => (int) ($data['id'] ?? 0),
         'ka_course_content' => wp_kses_post($data['description'] ?? ''),
-        'ka_course_price' => (int) ($first_location['price'] ?? 0),
-        'ka_course_text_before_price' => sanitize_text_field($first_location['textBeforeAmount'] ?? ''),
-        'ka_course_text_after_price' => sanitize_text_field($first_location['textAfterAmount'] ?? ''),
+        'ka_course_price' => array_key_exists('price', $first_location) ? (int) $first_location['price'] : 0,
+        'ka_course_text_before_price' => array_key_exists('textBeforeAmount', $first_location)
+            ? sanitize_text_field((string) $first_location['textBeforeAmount'])
+            : '',
+        'ka_course_text_after_price' => array_key_exists('textAfterAmount', $first_location)
+            ? sanitize_text_field((string) $first_location['textAfterAmount'])
+            : '',
         'ka_course_difficulty_level' => sanitize_text_field($data['difficultyLevel'] ?? ''),
         'ka_course_type' => sanitize_text_field($first_course_type['description'] ?? ''),
         'ka_course_is_online' => sanitize_text_field($data['isOnlineCourse'] ?? ''),
@@ -905,6 +897,64 @@ function format_date_get_month($date_string) {
     }
     $date = DateTime::createFromFormat('Y-m-d\TH:i:s', $date_string);
     return $date ? $date->format('m') : $date_string;
+}
+
+/**
+ * Resolve integer coursedate meta from schedule, then location, default 0.
+ */
+function kursagenten_resolve_coursedate_int_meta(array $schedule, array $location, string $key) {
+    if (array_key_exists($key, $schedule)) {
+        return (int) $schedule[$key];
+    }
+    if (array_key_exists($key, $location)) {
+        return (int) $location[$key];
+    }
+    return 0;
+}
+
+/**
+ * Resolve string coursedate meta from schedule, then location, default empty.
+ */
+function kursagenten_resolve_coursedate_string_meta(array $schedule, array $location, string $key) {
+    if (array_key_exists($key, $schedule)) {
+        return sanitize_text_field((string) $schedule[$key]);
+    }
+    if (array_key_exists($key, $location)) {
+        return sanitize_text_field((string) $location[$key]);
+    }
+    return '';
+}
+
+/**
+ * Build coursedate post title for WP admin: "{name} - {location} - {Y-m-d}".
+ * Location uses mapped municipality/county via get_course_location().
+ * Date segment is omitted when firstCourseDate is missing.
+ */
+function build_coursedate_post_title($data, $schedule) {
+    $parts = [];
+
+    $name = sanitize_text_field($data['name'] ?? '');
+    if ($name !== '') {
+        $parts[] = $name;
+    }
+
+    $location_name = get_course_location($data);
+    if ($location_name !== '') {
+        $parts[] = $location_name;
+    }
+
+    if (!empty($schedule['firstCourseDate'])) {
+        $date = DateTime::createFromFormat('Y-m-d\TH:i:s', $schedule['firstCourseDate']);
+        if ($date) {
+            $parts[] = $date->format('Y-m-d');
+        }
+    }
+
+    if (empty($parts)) {
+        return __('Kursdato', 'kursagenten');
+    }
+
+    return implode(' - ', $parts);
 }
 
 function update_course_taxonomies($post_id, $location_id, $data, $is_webhook = false) {

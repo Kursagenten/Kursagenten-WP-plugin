@@ -381,9 +381,9 @@
 			activeNames = activeFilters.map(filter => filter.charAt(0).toUpperCase() + filter.slice(1));
 		} else {
 			activeFilters.forEach(slug => {
-				const $element = $(`.filter-checkbox[data-filter-key="${filterKey}"][value="${slug}"]`);
+				const $element = $(`.filter-checkbox[data-filter-key="${filterKey}"][value="${slug}"]`).first();
 				if ($element.length) {
-					const labelText = $element.siblings('.checkbox-label').text().trim();
+					const labelText = $element.siblings('.checkbox-label').first().text().trim();
 					activeNames.push(labelText);
 				}
 			});
@@ -917,53 +917,7 @@
 					                   key === 'i' ? 'instructors' : 
 					                   key === 'sprak' ? 'language' : key;
 					
-					// Finn riktig visningstekst basert på filtertype
-					let displayText = value;
-					
-					// Prøv å finne checkbox med data-filter-key (søk i både topp og venstre filter)
-					let $checkbox = $(`.filter-checkbox[data-filter-key="${filterKey}"][value="${value}"]`);
-					
-					// Hvis ikke funnet, prøv med data-url-key (søk i både topp og venstre filter)
-					if (!$checkbox.length) {
-						$checkbox = $(`.filter-checkbox[data-url-key="${key}"][value="${value}"]`);
-					}
-					
-					// Hvis fortsatt ikke funnet, prøv å søke spesifikt i venstre kolonne
-					if (!$checkbox.length) {
-						$checkbox = $('.left-column .filter-checkbox[data-filter-key="' + filterKey + '"][value="' + value + '"]');
-					}
-					
-					// Hvis fortsatt ikke funnet, prøv å søke i venstre kolonne med data-url-key
-					if (!$checkbox.length) {
-						$checkbox = $('.left-column .filter-checkbox[data-url-key="' + key + '"][value="' + value + '"]');
-					}
-					
-					// Hvis checkbox ikke funnet, prøv å finne chip-knapp
-					if (!$checkbox.length) {
-						let $chip = $(`.filter-chip[data-filter-key="${filterKey}"][data-filter="${value}"]`);
-						
-						if (!$chip.length) {
-							$chip = $(`.filter-chip[data-url-key="${key}"][data-filter="${value}"]`);
-						}
-						
-						if (!$chip.length) {
-							$chip = $('.left-column .filter-chip[data-filter-key="' + filterKey + '"][data-filter="' + value + '"]');
-						}
-						
-						if (!$chip.length) {
-							$chip = $('.left-column .filter-chip[data-url-key="' + key + '"][data-filter="' + value + '"]');
-						}
-						
-						if ($chip.length) {
-							displayText = $chip.text().trim();
-						}
-					}
-					
-					if ($checkbox.length) {
-						displayText = $checkbox.siblings('.checkbox-label').text().trim();
-					} else if (filterKey === 'language' || key === 'sprak') {
-						displayText = value.charAt(0).toUpperCase() + value.slice(1);
-					} 
+					const displayText = getActiveFilterDisplayText(filterKey, key, value);
 
 					const filterChip = $(`<span class="active-filter-chip button-filter" data-filter-key="${key}" data-url-key="${filterKey}" data-filter-value="${value}">
 						${displayText} <span class="remove-filter ka-tooltip" data-title="${kaI18n('removeFilter', 'Fjern filter')}">×</span>
@@ -1091,6 +1045,62 @@
 		return $(selector).filter(function () {
 			return $(this).attr(valueAttr) === String(value);
 		});
+	}
+
+	function getActiveFilterDisplayText(filterKey, urlKey, value) {
+		const normalizedValue = String(value);
+
+		function readChipText($chip) {
+			return $chip.length ? $chip.first().text().trim() : '';
+		}
+
+		function readCheckboxText($checkbox) {
+			return $checkbox.length ? $checkbox.first().siblings('.checkbox-label').first().text().trim() : '';
+		}
+
+		const chipSelectors = [
+			'.left-column .filter-chip[data-filter-key="' + filterKey + '"][data-filter="' + normalizedValue + '"]',
+			'.left-column .filter-chip[data-url-key="' + urlKey + '"][data-filter="' + normalizedValue + '"]',
+			'.left-filter-section .filter-chip[data-filter-key="' + filterKey + '"][data-filter="' + normalizedValue + '"]',
+			'.left-filter-section .filter-chip[data-url-key="' + urlKey + '"][data-filter="' + normalizedValue + '"]',
+		];
+
+		for (let i = 0; i < chipSelectors.length; i++) {
+			const chipText = readChipText($(chipSelectors[i]));
+			if (chipText) {
+				return chipText;
+			}
+		}
+
+		const fallbackChipText = readChipText(findFilterElement(filterKey, normalizedValue, true));
+		if (fallbackChipText) {
+			return fallbackChipText;
+		}
+
+		const checkboxSelectors = [
+			'.left-column .filter-checkbox[data-filter-key="' + filterKey + '"][value="' + normalizedValue + '"]',
+			'.left-column .filter-checkbox[data-url-key="' + urlKey + '"][value="' + normalizedValue + '"]',
+			'.mobile-filter-content .filter-checkbox[data-filter-key="' + filterKey + '"][value="' + normalizedValue + '"]',
+			'.mobile-filter-content .filter-checkbox[data-url-key="' + urlKey + '"][value="' + normalizedValue + '"]',
+		];
+
+		for (let i = 0; i < checkboxSelectors.length; i++) {
+			const checkboxText = readCheckboxText($(checkboxSelectors[i]));
+			if (checkboxText) {
+				return checkboxText;
+			}
+		}
+
+		const fallbackCheckboxText = readCheckboxText(findFilterElement(filterKey, normalizedValue, false));
+		if (fallbackCheckboxText) {
+			return fallbackCheckboxText;
+		}
+
+		if (filterKey === 'language' || urlKey === 'sprak') {
+			return normalizedValue.charAt(0).toUpperCase() + normalizedValue.slice(1);
+		}
+
+		return normalizedValue;
 	}
 
 	// Oppdater visning av filter counts - kun visuell indikator

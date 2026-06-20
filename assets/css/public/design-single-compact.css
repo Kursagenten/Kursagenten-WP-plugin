@@ -1,0 +1,290 @@
+/* design-single-compact.css – overrides on top of design-single-default.css */
+
+/* Main grid: content + sidebar image + similar courses */
+#ka .course-container-compact .course-information .compact-main-grid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "content image"
+        "content aside";
+    gap: var(--ka-space-md) var(--ka-space-2xl);
+    align-items: start;
+}
+
+#ka .course-container-compact .course-information .compact-main-grid .content {
+    grid-area: content;
+}
+
+#ka .course-container-compact .course-information .compact-main-grid .compact-grid-image {
+    grid-area: image;
+}
+
+#ka .course-container-compact .course-information .compact-main-grid .compact-aside {
+    grid-area: aside;
+}
+
+/* No featured image: two columns without image row */
+#ka .course-container-compact:not(.has-course-image) .course-information .compact-main-grid {
+    grid-template-rows: auto;
+    grid-template-areas: "content aside";
+}
+
+@media screen and (max-width: 768px) {
+    #ka .course-container-compact .course-information .compact-main-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "image"
+            "content"
+            "aside";
+        gap: var(--ka-space-xl);
+    }
+
+    #ka .course-container-compact:not(.has-course-image) .course-information .compact-main-grid {
+        grid-template-areas:
+            "content"
+            "aside";
+    }
+}
+
+/* Compact header (no hero image) */
+#ka .course-container-compact .ka-compact-header {
+    min-height: 0;
+    display: block;
+    overflow: visible;
+    padding: var(--ka-space-2xl) 0 var(--ka-space-lg);
+}
+
+#ka .course-container-compact .ka-compact-header .header-content {
+    row-gap: var(--ka-space-sm);
+}
+
+#ka .course-container-compact .ka-compact-header .header-content h1 {
+    margin: 0;
+    font-size: var(--ka-font-xxl);
+    color: inherit;
+}
+
+#ka .course-container-compact .ka-compact-header .header-content *:not(.button):not(button):not(.ka-button):not(.courselist-button):not(.pamelding) {
+    color: inherit;
+}
+
+#ka .course-container-compact .compact-header-meta {
+    margin: 0;
+    font-size: var(--ka-font-lg);
+    font-weight: 300;
+    opacity: 0.85;
+}
+
+#ka .course-container-compact .compact-header-meta .compact-header-date {
+    margin-left: 0.35em;
+}
+
+#ka .course-container-compact .ka-compact-header .header-content i.ka-icon {
+    background-color: var(--ka-color-light, #eee);
+}
+
+#ka .course-container-compact .ka-compact-header .course-buttons {
+    margin-top: var(--ka-space-md);
+}
+
+/* Mobile quick nav */
+#ka .course-container-compact .compact-mobile-nav {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    #ka .course-container-compact .compact-mobile-nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: var(--ka-space-sm);
+        padding: var(--ka-space-sm) var(--ka-space-md);
+        background: var(--ka-alt-background, #f5f5f0);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        font-size: var(--ka-font-s-plus);
+    }
+
+    #ka .course-container-compact .compact-mobile-nav a {
+        color: inherit;
+        text-decoration: none;
+        padding: 0.35em 0.75em;
+    }
+
+    #ka .course-container-compact .ka-compact-header .header-content h1,
+    #ka .course-container-compact .compact-header-meta {
+        text-align: center;
+    }
+
+    #ka .course-container-compact .ka-compact-header .header-links {
+        justify-content: center;
+    }
+
+    #ka .course-container-compact .ka-compact-header .course-buttons {
+        justify-content: center;
+    }
+}
+
+/* Infostripe */
+#ka .course-container-compact .ka-infostripe {
+    padding: var(--ka-space-lg) 0 var(--ka-space-xl);
+}
+
+#ka .course-container-compact .compact-infostripe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--ka-space-xl);
+}
+
+#ka .course-container-compact .compact-infostripe-col h2.small {
+    margin: 0 0 var(--ka-space-sm);
+}
+
+#ka .course-container-compact .compact-infostripe-col .iconlist {
+    row-gap: var(--ka-space-xs);
+}
+
+#ka .course-container-compact .compact-more-dates {
+    margin: var(--ka-space-sm) 0 0;
+}
+
+#ka .course-container-compact .compact-more-dates-link {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+#ka .course-container-compact .compact-more-dates-link:hover {
+    text-decoration: underline;
+}
+
+#ka .course-container-compact .compact-contact-item span a {
+    word-break: break-word;
+}
+
+@media screen and (max-width: 900px) {
+    #ka .course-container-compact .compact-infostripe-grid {
+        grid-template-columns: 1fr;
+        gap: var(--ka-space-lg);
+    }
+}
+
+/* Bottom section: courselist + more courses */
+#ka .course-container-compact .ka-compact-bottom {
+    padding: var(--ka-space-xl) 0 var(--ka-space-2xl);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+#ka .course-container-compact .compact-bottom-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: var(--ka-space-2xl);
+    align-items: start;
+}
+
+#ka .course-container-compact .compact-bottom-grid--single {
+    grid-template-columns: 1fr;
+}
+
+#ka .course-container-compact .compact-bottom-courselist h2.small,
+#ka .course-container-compact .compact-bottom-more h2.small {
+    margin: 0 0 var(--ka-space-md);
+}
+
+#ka .course-container-compact .compact-courselist-locations {
+    margin: 0 0 var(--ka-space-md);
+}
+
+#ka .course-container-compact .compact-courselist-details {
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+
+#ka .course-container-compact .compact-bottom-more .kursagenten-grid.stablet.kort .k-box {
+    text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+    #ka .course-container-compact .compact-bottom-grid {
+        grid-template-columns: 1fr;
+        gap: var(--ka-space-xl);
+    }
+}
+
+/* Main content */
+#ka .course-container-compact .course-information {
+    padding-top: var(--ka-space-xl);
+}
+
+#ka .course-container-compact .compact-main-grid .excerpt {
+    font-size: var(--ka-font-md);
+    margin-bottom: var(--ka-space-lg);
+}
+
+#ka .course-container-compact .course-meta-content {
+    border: none;
+    padding: 0;
+}
+
+#ka .course-container-compact .course-meta-content p:last-child {
+    margin-bottom: 0;
+}
+
+#ka .course-container-compact .compact-similar-courses {
+    margin-top: 0;
+}
+
+#ka .course-container-compact .compact-similar-courses h2.small {
+    margin-bottom: var(--ka-space-sm);
+}
+
+#ka .course-container-compact .compact-similar-courses .kursagenten-grid.rad.kort .k-box {
+    box-shadow: none;
+    background: transparent;
+}
+
+#ka .course-container-compact .compact-similar-courses .kursagenten-grid.rad.kort .k-text {
+    padding: 0 0 0 0.65em;
+}
+
+#ka .course-container-compact .compact-similar-courses .kursagenten-grid.rad.kort .k-text a {
+    padding: 0;
+}
+
+/* Single course image in sidebar (desktop) / above content (mobile) */
+#ka .course-container-compact picture.compact-course-image {
+    aspect-ratio: 4/3;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 0;
+}
+
+#ka .course-container-compact picture.compact-course-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    #ka .course-container-compact .compact-similar-courses {
+        padding-top: var(--ka-space-lg);
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+}
+
+/* Extra WP content – full width, admin dashed border only here */
+#ka .course-container-compact .compact-wp-content {
+    margin-top: var(--ka-space-2xl);
+    padding-top: var(--ka-space-xl);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+#ka .course-container-compact .compact-wp-content:empty {
+    display: none;
+}

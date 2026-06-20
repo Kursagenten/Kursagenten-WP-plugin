@@ -505,7 +505,7 @@ do_action('ka_singel_header_before');
                                 <div><?php echo esc_html__('Pris:', 'kursagenten'); ?> <?php echo esc_html($selected_coursedate_data['price']); ?> <?php echo esc_html($price_posttext); ?></div>
                             <?php endif; ?>
                             <?php if (in_array('room', $single_display_fields, true) && !empty($selected_coursedate_data['course_location_room'])) : ?>
-                                <div><?php echo esc_html__('Kurslokale:', 'kursagenten'); ?> <span class="notranslate" translate="no"><?php echo esc_html($selected_coursedate_data['course_location_room']); ?></span></div>
+                                <div><?php echo esc_html__('Kurslokale:', 'kursagenten'); ?>&nbsp;<span class="notranslate" translate="no"><?php echo esc_html($selected_coursedate_data['course_location_room']); ?></span></div>
                             <?php endif; ?>
 
                             <?php if ($show_next_course_section && !empty($selected_coursedate_data['signup_url'])) : ?>

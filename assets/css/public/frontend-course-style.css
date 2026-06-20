@@ -1206,14 +1206,14 @@ text-align: center;
   padding: 0.38em 0.95em;
   line-height: 1.35;
   text-align: left;
-  font-weight: 500;
+  font-weight: 600;
   border: 1px solid color-mix(in srgb, var(--ka-color) 10%, #fbfbfb);
-  background: #fff;
+  color: var(--ka-color-filter);
+  background: #ffffff45;
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 #ka .left-filter-section .filter-chip-wrapper .chip:hover:not(.filter-empty):not(.active) {
-  /*background: color-mix(in srgb, var(--ka-color) 7%, #fff);*/
-  border-color: color-mix(in srgb, var(--ka-color) 65%, #d8d8d8);
+  border-color: color-mix(in srgb, var(--ka-color) 35%, #d8d8d8);
 }
 #ka .left-filter-section .filter-chip-wrapper .chip.active {
   background: var(--ka-color);
@@ -1223,6 +1223,13 @@ text-align: center;
 }
 #ka .left-filter-section .filter-chip-wrapper .chip.filter-empty:hover {
   background: #fff;
+}
+#ka .left-filter-section .filter-chip-wrapper .chip.ka-child {
+  margin-left: 1.3em;
+  width: calc(100% - 1.3em);
+}
+#ka .filter-chip-wrapper .chip.ka-child {
+  margin-left: 1.3em;
 }
 
 /* Filter: pill search in left sidebar */

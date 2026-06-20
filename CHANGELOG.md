@@ -1,3 +1,7 @@
+## 1.1.25 - 2026-06-19
+- Fix: Tomme eller fjernede verdier i Kursagenten ble ikke synkronisert til WordPress for *Pris*, *Maks deltakere*, *Starttid*, *Sluttid*, *Rom/lokale*, *Sted* og *Adresse* på kursdatoer. Gammel verdi hang igjen og ble fortsatt vist på siden etter at feltet ble tømt i Kursagenten. Samme mønster som i v1.1.22 for varighet/kurstid/språk.
+- Forbedring: Tittel på kursdatoer i WordPress-admin viser nå kurssted (kommune med stedsnavn-mapping) i stedet for fylke, og startdato i format `YYYY-MM-DD` når dato finnes.
+
 ## 1.1.24 - 2026-06-10
 - Lagt til: Grunnleggende flerspråklig støtte (i18n) for engelsk, tysk, fransk, spansk og polsk. Fungerer med WPML, Polylang og Translatepress, samt Nettstedsspråk i WP Innstillinger.
 

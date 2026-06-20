@@ -708,10 +708,14 @@ function kursagenten_course_list_shortcode($atts) {
                                                         }
                                                         ?>
                                                         <?php $is_name_filter = in_array($taxonomy_data[$filter]['filter_key'], ['locations', 'instructors'], true); ?>
-                                                        <button class="chip filter-chip"
+                                                        <?php
+                                                        $chip_hierarchy_classes = ka_get_filter_term_hierarchy_classes($term, $taxonomy_data[$filter]['filter_key']);
+                                                        $chip_parent_id_attr = ka_get_filter_term_parent_id_attr($term, $taxonomy_data[$filter]['filter_key']);
+                                                        ?>
+                                                        <button class="chip filter-chip<?php echo esc_attr($chip_hierarchy_classes); ?>"
                                                             data-filter-key="<?php echo esc_attr($taxonomy_data[$filter]['filter_key']); ?>"
                                                             data-url-key="<?php echo esc_attr($taxonomy_data[$filter]['url_key']); ?>"
-                                                            data-filter="<?php echo esc_attr($chip_value); ?>">
+                                                            data-filter="<?php echo esc_attr($chip_value); ?>"<?php echo $chip_parent_id_attr; ?>>
                                                             <?php if ($is_name_filter) : ?>
                                                                 <span class="notranslate" translate="no"><?php echo esc_html($chip_name); ?></span>
                                                             <?php else : ?>
@@ -991,10 +995,14 @@ function kursagenten_course_list_shortcode($atts) {
                                                                 }
                                                                 ?>
                                                                 <?php $is_name_filter = in_array($taxonomy_data[$filter]['filter_key'], ['locations', 'instructors'], true); ?>
-                                                                <button class="chip filter-chip"
+                                                                <?php
+                                                                $chip_hierarchy_classes = ka_get_filter_term_hierarchy_classes($term, $taxonomy_data[$filter]['filter_key']);
+                                                                $chip_parent_id_attr = ka_get_filter_term_parent_id_attr($term, $taxonomy_data[$filter]['filter_key']);
+                                                                ?>
+                                                                <button class="chip filter-chip<?php echo esc_attr($chip_hierarchy_classes); ?>"
                                                                     data-filter-key="<?php echo esc_attr($taxonomy_data[$filter]['filter_key']); ?>"
                                                                     data-url-key="<?php echo esc_attr($taxonomy_data[$filter]['url_key']); ?>"
-                                                                    data-filter="<?php echo esc_attr($chip_value); ?>">
+                                                                    data-filter="<?php echo esc_attr($chip_value); ?>"<?php echo $chip_parent_id_attr; ?>>
                                                                     <?php if ($is_name_filter) : ?>
                                                                         <span class="notranslate" translate="no"><?php echo esc_html($chip_name); ?></span>
                                                                     <?php else : ?>

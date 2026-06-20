@@ -841,10 +841,12 @@ class Designmaler {
                                 <?php
                                 $current_design = get_option('kursagenten_single_design', 'default');
                                 $designs = [
-                                    'default' => __('Hero - toppseksjon med bilde', 'kursagenten'),
+                                    'default'       => __('Hero - toppseksjon med bilde', 'kursagenten'),
                                     //'modern'  => 'Moderne',
                                     //'minimal' => 'Minimal',
-                                    'boxes'   => __('Bokser', 'kursagenten'),
+                                    'boxes'         => __('Bokser', 'kursagenten'),
+                                    'compact'       => __('Kompakt – infostripe', 'kursagenten'),
+                                    'sidebar-image' => __('Sidekolonne – bilde og detaljer', 'kursagenten'),
                                 ];
                                 foreach ($designs as $value => $label) {
                                     printf(

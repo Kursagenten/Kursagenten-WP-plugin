@@ -6,7 +6,7 @@
  * Plugin URI:        https://deltagersystem.no/wp-plugin
  * Description:       Komplett løsning for visning av kurs fra Kursagenten med automatisk henting av nye og oppdaterte kurs.
 
- * Version:           1.1.23
+ * Version:           1.1.25
  * Author:            Kursagenten Team
  * Author URI:        https://kursagenten.no
  * Text Domain:       kursagenten
@@ -17,13 +17,13 @@
  */
 
  // Husk changelog
- define('KURSAG_VERSION', '1.1.23');
+ define('KURSAG_VERSION', '1.1.25');
 // Plugin versjon
 /*
 if (defined('WP_DEBUG') && WP_DEBUG) {
     define('KURSAG_VERSION', '1.0.1-dev-' . gmdate('YmdHis'));
 } else {
-    define('KURSAG_VERSION', '1.1.23');
+    define('KURSAG_VERSION', '1.1.25');
 }
 */
 // Plugin konstanter - bruk disse overalt for konsistent informasjon
@@ -1145,11 +1145,22 @@ if (!is_admin()) {
                 $assets_version
             );
 
-            // Deretter last inn design-spesifikk CSS
+            // Designs that extend default layout load shared base styles first
+            $design_css_deps = array('kursagenten-single-base');
+            if (in_array($design, array('compact', 'sidebar-image'), true)) {
+                wp_enqueue_style(
+                    'kursagenten-single-design-default',
+                    KURSAG_PLUGIN_URL . '/assets/css/public/design-single-default.css',
+                    array('kursagenten-single-base'),
+                    $assets_version
+                );
+                $design_css_deps[] = 'kursagenten-single-design-default';
+            }
+
             wp_enqueue_style(
                 'kursagenten-single-design-' . $design,
                 KURSAG_PLUGIN_URL . '/assets/css/public/design-single-' . $design . '.css',
-                array('kursagenten-single-base'),
+                $design_css_deps,
                 $assets_version
             );
         }

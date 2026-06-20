@@ -357,7 +357,7 @@ $view_type_class = ' view-type-maincourses';
 
                     <?php if ($list_display['price'] && !empty($price)) : ?>
                     <span class="simple-card-price">
-                        <i class="ka-icon icon-layers"></i>
+                        <i class="ka-icon icon-bookmark"></i>
                         <span><?php echo esc_html($price); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></span>
                     </span>
                     <?php endif; ?>

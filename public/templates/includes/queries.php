@@ -1572,14 +1572,12 @@ function display_course_locations($post_id) {
         ];
     }
 
-    // Remove the "Alle" tab when there is only a single real location, as it adds no value
+    // Hide location tabs entirely when there is only a single real location
     $real_location_count = count(array_filter($location_items, static function ($item) {
         return !empty($item['is_real_location']);
     }));
     if ($real_location_count === 1) {
-        $location_items = array_values(array_filter($location_items, static function ($item) {
-            return !empty($item['is_real_location']);
-        }));
+        return '';
     }
 
     $visible_limit = 8;

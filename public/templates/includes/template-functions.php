@@ -1503,3 +1503,67 @@ function ka_render_filter_search_input(array $args = []): void {
         echo '</div>';
     }
 }
+
+/**
+ * Resolve parent term ID for a category filter term.
+ *
+ * @param object $term Category term object.
+ * @return int Parent term ID, or 0 for top-level categories.
+ */
+function ka_get_filter_term_parent_id($term): int {
+    if (!is_object($term)) {
+        return 0;
+    }
+
+    if (isset($term->parent_id)) {
+        return (int) $term->parent_id;
+    }
+
+    if (isset($term->parent)) {
+        return (int) $term->parent;
+    }
+
+    return 0;
+}
+
+/**
+ * Get hierarchy CSS classes for category filter terms.
+ *
+ * @param object|array|string $term Filter term.
+ * @param string              $filter_key Filter key (e.g. 'categories').
+ * @return string Space-prefixed class string, e.g. ' ka-child ka-parent'.
+ */
+function ka_get_filter_term_hierarchy_classes($term, $filter_key = ''): string {
+    if ($filter_key !== 'categories' || !is_object($term)) {
+        return '';
+    }
+
+    $classes = '';
+
+    if (!empty($term->has_children)) {
+        $classes .= ' ka-parent';
+    }
+
+    if (ka_get_filter_term_parent_id($term) > 0) {
+        $classes .= ' ka-child has-parent';
+    }
+
+    return $classes;
+}
+
+/**
+ * Build optional data-parent-id attribute for category filter terms.
+ *
+ * @param object|array|string $term Filter term.
+ * @param string              $filter_key Filter key (e.g. 'categories').
+ * @return string HTML attribute string or empty string.
+ */
+function ka_get_filter_term_parent_id_attr($term, $filter_key = ''): string {
+    if ($filter_key !== 'categories' || !is_object($term)) {
+        return '';
+    }
+
+    $parent_id = ka_get_filter_term_parent_id($term);
+
+    return $parent_id > 0 ? ' data-parent-id="' . esc_attr((string) $parent_id) . '"' : '';
+}

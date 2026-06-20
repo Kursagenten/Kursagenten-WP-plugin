@@ -507,7 +507,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                         ?></div>
                     <?php endif; ?>
                     <?php if ($show_meta_price) : ?>
-                        <div class="price"><i class="ka-icon icon-layers"></i><?php echo esc_html($price); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></div>
+                        <div class="price"><i class="ka-icon icon-bookmark"></i><?php echo esc_html($price); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></div>
                     <?php endif; ?>
                     <?php if ($show_meta_instructor) : ?>
                         <div class="instructors"><i class="ka-icon icon-user"></i><?php echo implode(' ,&nbsp;', $instructor_links); ?></div>

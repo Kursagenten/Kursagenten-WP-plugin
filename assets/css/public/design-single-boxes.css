@@ -193,12 +193,12 @@
     border-radius: 10px;
     margin: 0 -1em 0 -1em;
 }
-#ka .ka-container .courselist-item{
+#ka .course-container .courselist-item{
     border-bottom: 1px solid #0000000a;
     border-radius: 10px;
 }
-#ka .ka-container .courselist-item.active,
-#ka .ka-container .courselist-item:hover {
+#ka .course-container .courselist-item.active,
+#ka .course-container .courselist-item:hover {
     background: #0000000a;
     border-bottom: none;
     cursor: pointer;
@@ -222,42 +222,42 @@
 }
 
 /* KURSLISTE STIL (overstyr standard) */
-#ka .ka-container .courselist-item:last-child {
+#ka .course-container .courselist-item:last-child {
     border-bottom: none;
 }
-#ka .ka-container .courselist-main {
+#ka .course-container .courselist-main {
     padding: 1.5em 1em;
 }
-#ka .ka-container .courselist-main .all-coursedates {
+#ka .course-container .courselist-main .all-coursedates {
     width: 100%;
 }
-#ka .ka-container .courselist-main .text-area {
+#ka .course-container .courselist-main .text-area {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
-#ka .ka-container .courselist-main .content-area {
+#ka .course-container .courselist-main .content-area {
     margin: 10px 0 0 18px;
 }
-#ka .ka-container .courselist-main .title-area .courselist-title{
+#ka .course-container .courselist-main .title-area .courselist-title{
     font-size: var(--ka-font-base);
 }
-#ka .ka-container .courselist-main .links-area{
+#ka .course-container .courselist-main .links-area{
     flex-direction: row;
     align-items: flex-start;
   }
-#ka .ka-container .courselist-main .links-area .courselist-button {
+#ka .course-container .courselist-main .links-area .courselist-button {
     font-size: var(--ka-font-xs);
   }
-#ka .ka-container .courselist-main .links-area a{
+#ka .course-container .courselist-main .links-area a{
     color: #68c46b;
     text-transform: uppercase;
     background: transparent;
     font-size: 1em;
     margin-left: 1em;
   }
-  #ka .ka-container .courselist-main .links-area a:hover{
+  #ka .course-container .courselist-main .links-area a:hover{
     color: #3e8041;
     background: transparent;
     box-shadow: none;
@@ -269,7 +269,7 @@
     height: 13px;
     margin-right: 5px;
 }
-#ka .ka-container .ka-full .courselist-main .content-area  {
+#ka .course-container .ka-full .courselist-main .content-area  {
     color: #989898;
 }
 
