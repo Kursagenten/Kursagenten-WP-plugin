@@ -107,6 +107,28 @@ function kursagenten_get_design_assets_version() {
 }
 
 /**
+ * Build a cache-busting asset version that also reflects on-disk file changes.
+ *
+ * Appends the file modification time so edits to frequently iterated public assets
+ * are picked up by the browser without bumping the global design version manually.
+ *
+ * @param string $relative_path Path relative to the plugin root (e.g. 'assets/js/public/foo.js').
+ * @return string
+ */
+function kursagenten_asset_version($relative_path) {
+    $base = function_exists('kursagenten_get_design_assets_version')
+        ? kursagenten_get_design_assets_version()
+        : (defined('KURSAG_VERSION') ? (string) KURSAG_VERSION : '1.0.0');
+
+    $full_path = plugin_dir_path(__FILE__) . ltrim($relative_path, '/');
+    if (file_exists($full_path)) {
+        return $base . '.' . (string) filemtime($full_path);
+    }
+
+    return $base;
+}
+
+/**
  * Get URL settings used by taxonomy rewrites.
  *
  * @return array<string, array{slug:string, hide:bool}>
@@ -1161,7 +1183,7 @@ if (!is_admin()) {
                 'kursagenten-single-design-' . $design,
                 KURSAG_PLUGIN_URL . '/assets/css/public/design-single-' . $design . '.css',
                 $design_css_deps,
-                $assets_version
+                kursagenten_asset_version('assets/css/public/design-single-' . $design . '.css')
             );
         }
 
@@ -1218,7 +1240,7 @@ if (!is_admin()) {
         wp_enqueue_script('kursagenten-iframe-resizer', 'https://embed.kursagenten.no/js/iframe-resizer/iframeResizer.min.js', array(), null, true);
         wp_enqueue_script('kursagenten-slidein-panel', plugins_url('assets/js/public/course-slidein-panel.js', __FILE__), array('jquery', 'kursagenten-iframe-resizer'), $assets_version, true);
         wp_enqueue_script('kursagenten-ajax-filter', plugins_url('assets/js/public/course-ajax-filter.js', __FILE__), array('jquery', 'kursagenten-slidein-panel'), $assets_version, true);
-        wp_enqueue_script('kursagenten-expand-content', plugins_url('assets/js/public/course-expand-content.js', __FILE__), array('jquery'), $assets_version, true);
+        wp_enqueue_script('kursagenten-expand-content', plugins_url('assets/js/public/course-expand-content.js', __FILE__), array('jquery'), kursagenten_asset_version('assets/js/public/course-expand-content.js'), true);
         wp_enqueue_script('kursagenten-dates-modal', plugins_url('assets/js/public/course-modal.js', __FILE__), array('jquery'), $assets_version, true);
         kursagenten_enqueue_day_schedules_assets();
         wp_enqueue_script(

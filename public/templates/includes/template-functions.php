@@ -516,6 +516,50 @@ function get_hero_header_settings($context = 'single') {
 }
 
 /**
+ * CSS selector list for hero header text (title, subtitle, nav links).
+ *
+ * Excludes buttons and accent links such as .compact-header-location.
+ * Used by the dynamic design CSS generator.
+ *
+ * IMPORTANT: when a $prefix is supplied, it is prepended to EVERY selector,
+ * not just the first. Concatenating a prefix with the raw list manually would
+ * only scope the first selector and leak the rest globally (e.g. .course-title
+ * would then color course-list titles too).
+ *
+ * @param string $prefix Optional parent scope prepended to each selector.
+ * @return string Comma-separated selector list.
+ */
+function kursagenten_get_hero_header_text_selectors(string $prefix = ''): string {
+    $targets = [
+        '.header-content > h1',
+        '.header-content > h1 .course-subtitle',
+        '.header-content > h1 .course-subtitle span',
+        '.header-content .compact-header-subtitle',
+        '.header-content .compact-header-subtitle .compact-header-date',
+        '.header-content .header-links',
+        '.header-content .header-links a',
+        '.header-content .header-links .taxonomy-list',
+        '.header-content .header-links .separator',
+        '.location-navigation .header-links',
+        '.location-navigation .header-links a',
+        '.location-navigation .header-links .taxonomy-list',
+        '.location-navigation .header-links .separator',
+        '.course-title',
+        '.course-title .course-subtitle',
+        '.course-title .course-subtitle span',
+    ];
+
+    $prefix = trim($prefix);
+    if ($prefix !== '') {
+        $targets = array_map(static function ($selector) use ($prefix) {
+            return $prefix . ' ' . $selector;
+        }, $targets);
+    }
+
+    return implode(', ', $targets);
+}
+
+/**
  * Normalize supported grouping modes for simple cards.
  *
  * @param mixed $value Raw grouping value.

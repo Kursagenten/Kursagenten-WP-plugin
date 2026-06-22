@@ -112,7 +112,7 @@ do_action('ka_taxonomy_header_before', $term);
                 <h1>
                 <?php if (!empty($back_link_url)): ?>
                 <a href="<?php echo esc_url($back_link_url); ?>" class="back-link" title="<?php echo esc_attr(sprintf(__('Tilbake til %s', 'kursagenten'), $back_link_title)); ?>">
-                    <i class="ka-icon icon-circle-left-regular page-back-link"></i>
+                    <i class="ka-icon icon-chevron-left page-back-link"></i>
                     <span class="sr-only"><?php echo esc_html(sprintf(__('Tilbake til %s', 'kursagenten'), $back_link_title)); ?></span>
                 </a>
                 <?php endif; ?><?php 

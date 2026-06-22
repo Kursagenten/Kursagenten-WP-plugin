@@ -143,16 +143,16 @@ class Kursagenten_CSS_Output {
                 // Endre farger på knapper
                 $css .= '#ka .pagination .current {border-color: var(--ka-button-background); background: var(--ka-button-background); color: var(--ka-button-color);}';
                 $css .= '#ka .pagination a:hover, #ka .pagination a:focus, #ka .pagination a:active { border-color: var(--ka-button-background);}';
-                $css .= '#ka button { background: var(--ka-button-background); color: var(--ka-button-color); border: none; }';
+                $css .= '#ka button:not(.compact-more-dates-link) { background: var(--ka-button-background); color: var(--ka-button-color); border: none; }';
                 $css .= '#ka .courselist-button { background: var(--ka-button-background); color: var(--ka-button-color); border: none; }';
                 $css .= '#ka .ka-button { background: var(--ka-button-background); color: var(--ka-button-color); border: none; }';
                 $css .= '#ka .pamelding:not(.signup-link) { background: var(--ka-button-background); color: var(--ka-button-color); border: none; }';
                 $css .= '#ka .button { background: var(--ka-button-background); color: var(--ka-button-color); border: none; }';
                 
                 // Hover-effekter for knapper
-                $css .= '#ka button:hover, #ka .courselist-button:hover, #ka .ka-button:hover, #ka .pamelding:not(.signup-link):hover, #ka .button:hover { background: var(--ka-button-background-darker); }';
-                $css .= '#ka button:focus, #ka .courselist-button:focus, #ka .ka-button:focus, #ka .pamelding:not(.signup-link):focus, #ka .button:focus { background: var(--ka-button-background-darker); }';
-                $css .= '#ka button:active, #ka .courselist-button:active, #ka .ka-button:active, #ka .pamelding:not(.signup-link):active, #ka .button:active { background: var(--ka-button-background-darker); }';
+                $css .= '#ka button:not(.compact-more-dates-link, .chip):hover, #ka .courselist-button:hover, #ka .ka-button:hover, #ka .pamelding:not(.signup-link):hover, #ka .button:hover { background: var(--ka-button-background-darker); }';
+                $css .= '#ka button:not(.compact-more-dates-link, .chip):focus, #ka .courselist-button:focus, #ka .ka-button:focus, #ka .pamelding:not(.signup-link):focus, #ka .button:focus { background: var(--ka-button-background-darker); }';
+                $css .= '#ka button:not(.compact-more-dates-link, .chip):active, #ka .courselist-button:active, #ka .ka-button:active, #ka .pamelding:not(.signup-link):active, #ka .button:active { background: var(--ka-button-background-darker); }';
             }
             if ($button_color) {
                 $css .= '--ka-button-color: ' . esc_attr($button_color) . ';';
@@ -160,12 +160,12 @@ class Kursagenten_CSS_Output {
             
             // Hvis kun bakgrunnsfarge er satt, bruk standard tekstfarge
             if ($button_background && !$button_color) {
-                $css .= '#ka button, #ka .courselist-button, #ka .ka-button, #ka .pamelding:not(.signup-link), #ka .button { color: #ffffff; }';
+                $css .= '#ka button:not(.compact-more-dates-link), #ka .courselist-button, #ka .ka-button, #ka .pamelding:not(.signup-link), #ka .button { color: #ffffff; }';
             }
             
             // Hvis kun tekstfarge er satt, bruk standard bakgrunnsfarge
             if ($button_color && !$button_background) {
-                $css .= '#ka button, #ka .courselist-button, #ka .ka-button, #ka .pamelding:not(.signup-link), #ka .button { background: var(--ka-color); }';
+                $css .= '#ka button:not(.compact-more-dates-link), #ka .courselist-button, #ka .ka-button, #ka .pamelding:not(.signup-link), #ka .button { background: var(--ka-color); }';
             }
 
             // Linker
@@ -268,7 +268,12 @@ class Kursagenten_CSS_Output {
         
         $css .= '}';
 
-        // Hero header overrides – Enkeltkurs (single default)
+        // Active single-course design. Hero overrides apply to designs that use the
+        // hero header (default, sidebar-image), but NOT to compact which has its own
+        // header/infostripe color settings and would otherwise be hit by .ka-header rules.
+        $single_design = get_option('kursagenten_single_design', 'default');
+
+        // Hero header overrides – Enkeltkurs (single default / sidebar-image)
         $single_hero_overlay = get_option('kursagenten_single_hero_header_overlay', 'dark');
         $single_hero_font_color = get_option('kursagenten_single_hero_header_font_color', '');
         $single_hero_bg_color = get_option('kursagenten_single_hero_header_bg_color', '');
@@ -276,18 +281,19 @@ class Kursagenten_CSS_Output {
         if (!in_array($single_hero_overlay, ['light', 'dark'], true)) {
             $single_hero_overlay = 'dark';
         }
+        if ($single_design !== 'compact') :
         if ($single_hero_overlay === 'light') {
             $css .= '#ka .course-container .ka-header.hero-overlay-light:not(.no-hero-image) .overlay { ';
             $css .= 'background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.9)) !important; } ';
-            $css .= '#ka .course-container .ka-header.hero-overlay-light:not(.no-hero-image) ' . $this->hero_header_content_children_selector() . ' { color: #222 !important; } ';
+            $css .= $this->hero_header_content_children_selector('#ka .course-container .ka-header.hero-overlay-light:not(.no-hero-image)') . ' { color: #222 !important; } ';
         } else {
             $css .= '#ka .course-container .ka-header.hero-overlay-dark:not(.no-hero-image) .overlay { ';
             $css .= 'background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)) !important; } ';
-            $css .= '#ka .course-container .ka-header.hero-overlay-dark:not(.no-hero-image) ' . $this->hero_header_content_children_selector() . ' { color: #fff !important; } ';
+            $css .= $this->hero_header_content_children_selector('#ka .course-container .ka-header.hero-overlay-dark:not(.no-hero-image)') . ' { color: #fff !important; } ';
         }
         if (!empty($single_hero_font_color)) {
-            $css .= '#ka .course-container .ka-header.hero-overlay-light ' . $this->hero_header_content_children_selector() . ', ';
-            $css .= '#ka .course-container .ka-header ' . $this->hero_header_content_children_selector() . ' { color: ' . esc_attr($single_hero_font_color) . ' !important; } ';
+            $css .= $this->hero_header_content_children_selector('#ka .course-container .ka-header.hero-overlay-light') . ', ';
+            $css .= $this->hero_header_content_children_selector('#ka .course-container .ka-header') . ' { color: ' . esc_attr($single_hero_font_color) . ' !important; } ';
         }
         if (!empty($single_hero_bg_color)) {
             $css .= '#ka .course-container .ka-header.hero-bgcolor-only .background-blur, ';
@@ -301,12 +307,95 @@ class Kursagenten_CSS_Output {
         $single_hero_bg_mode = get_option('kursagenten_single_hero_header_bg_mode', 'image_placeholder');
         if (empty($single_hero_font_color) && $single_hero_bg_mode === 'image_bgcolor') {
             if ($single_hero_overlay === 'light') {
-                $css .= '#ka .course-container .ka-header.no-hero-image.hero-overlay-light ' . $this->hero_header_content_children_selector() . ' { color: #222 !important; } ';
+                $css .= $this->hero_header_content_children_selector('#ka .course-container .ka-header.no-hero-image.hero-overlay-light') . ' { color: #222 !important; } ';
             } else {
-                $css .= '#ka .course-container .ka-header.no-hero-image.hero-overlay-dark ' . $this->hero_header_content_children_selector() . ' { color: #fff !important; } ';
+                $css .= $this->hero_header_content_children_selector('#ka .course-container .ka-header.no-hero-image.hero-overlay-dark') . ' { color: #fff !important; } ';
             }
         } elseif (empty($single_hero_font_color) && $single_hero_bg_mode === 'bgcolor_only') {
-            $css .= '#ka .course-container .ka-header.no-hero-image ' . $this->hero_header_content_children_selector() . ' { color: #222 !important; } ';
+            $css .= $this->hero_header_content_children_selector('#ka .course-container .ka-header.no-hero-image') . ' { color: #222 !important; } ';
+        }
+        endif; // $single_design !== 'compact'
+
+        // Compact design overrides – header + infostripe colors
+        if ($single_design === 'compact') {
+            $compact_header_bg_color       = get_option('kursagenten_compact_header_bg_color', '');
+            $compact_header_font_color     = get_option('kursagenten_compact_header_font_color', '');
+            $compact_header_link_color     = get_option('kursagenten_compact_header_link_color', '');
+            $compact_infostripe_bg_color   = get_option('kursagenten_compact_infostripe_bg_color', '');
+            $compact_infostripe_font_color = get_option('kursagenten_compact_infostripe_font_color', '');
+            $compact_infostripe_link_color = get_option('kursagenten_compact_infostripe_link_color', '');
+
+            // Header background (+ panel uses the same tone, lightened with white)
+            if (!empty($compact_header_bg_color)) {
+                $css .= '#ka .course-container-compact { --ka-compact-panel-bg: color-mix(in srgb, ' . esc_attr($compact_header_bg_color) . ' 92%, #fff 30%); } ';
+                $css .= '#ka .course-container-compact .ka-compact-header { background-color: ' . esc_attr($compact_header_bg_color) . ' !important; background-image: none !important; } ';
+            }
+            // Header text (title, subtitle, nav text – excludes links and the signup button).
+            // Explicit font color wins; otherwise auto-pick readable text from the bg color.
+            $compact_header_text_color = '';
+            if (!empty($compact_header_font_color)) {
+                $compact_header_text_color = $compact_header_font_color;
+            } elseif (!empty($compact_header_bg_color)) {
+                $compact_header_text_color = $this->auto_contrast_text_color($compact_header_bg_color);
+            }
+            if (!empty($compact_header_text_color)) {
+                $css .= '#ka .course-container-compact .ka-compact-header .header-content > h1, ';
+                $css .= '#ka .course-container-compact .ka-compact-header .compact-header-subtitle, ';
+                $css .= '#ka .course-container-compact .ka-compact-header .compact-header-subtitle .compact-header-date, ';
+                $css .= '#ka .course-container-compact .ka-compact-header .header-links, ';
+                $css .= '#ka .course-container-compact .ka-compact-header .header-links.iconlist a, ';
+                $css .= '#ka .course-container-compact .ka-compact-header .header-links .taxonomy-list, ';
+                $css .= '#ka .course-container-compact .ka-compact-header .header-links .separator { color: ' . esc_attr($compact_header_text_color) . ' !important; } ';
+            }
+            // Header links (location link + nav links, not the signup button).
+            // Explicit link color wins; otherwise derive a readable accent from the bg.
+            $compact_header_link = '';
+            if (!empty($compact_header_link_color)) {
+                $compact_header_link = $compact_header_link_color;
+            } elseif (!empty($compact_header_bg_color)) {
+                $compact_header_link = $this->auto_link_color($compact_header_bg_color);
+            }
+            if (!empty($compact_header_link)) {
+                $css .= '#ka .course-container-compact .ka-compact-header .compact-header-location, ';
+                $css .= '#ka .course-container-compact .ka-compact-header .header-links:not(.iconlist) a { color: ' . esc_attr($compact_header_link) . ' !important; } ';
+                // Icons are mask-based, so they are colored via background-color.
+                $css .= '#ka .course-container-compact .ka-compact-header .header-links i.ka-icon { background-color: ' . esc_attr($compact_header_link) . ' !important; } ';
+            }
+            // Infostripe background (panel keeps header-based --ka-compact-panel-bg)
+            if (!empty($compact_infostripe_bg_color)) {
+                $css .= '#ka .course-container-compact .ka-infostripe { background-color: ' . esc_attr($compact_infostripe_bg_color) . ' !important; background-image: none !important; } ';
+            }
+            // Infostripe text (headings + body text, excludes links).
+            // Explicit font color wins; otherwise auto-pick readable text from the bg color.
+            $compact_infostripe_text_color = '';
+            if (!empty($compact_infostripe_font_color)) {
+                $compact_infostripe_text_color = $compact_infostripe_font_color;
+            } elseif (!empty($compact_infostripe_bg_color)) {
+                $compact_infostripe_text_color = $this->auto_contrast_text_color($compact_infostripe_bg_color);
+            }
+            if (!empty($compact_infostripe_text_color)) {
+                $css .= '#ka .course-container-compact .ka-infostripe, ';
+                $css .= '#ka .course-container-compact .ka-infostripe h2, ';
+                $css .= '#ka .course-container-compact .ka-infostripe span, ';
+                $css .= '#ka .course-container-compact .ka-infostripe .iconlist { color: ' . esc_attr($compact_infostripe_text_color) . ' !important; } ';
+            }
+            // Infostripe links + icons. Explicit link color wins; otherwise derive a
+            // readable accent from the bg. Icons are mask-based (background-color).
+            $compact_infostripe_link = '';
+            if (!empty($compact_infostripe_link_color)) {
+                $compact_infostripe_link = $compact_infostripe_link_color;
+            } elseif (!empty($compact_infostripe_bg_color)) {
+                $compact_infostripe_link = $this->auto_link_color($compact_infostripe_bg_color);
+            }
+            if (!empty($compact_infostripe_link)) {
+                $css .= '#ka .course-container-compact .ka-infostripe a, ';
+                $css .= '#ka .course-container-compact .compact-infostripe-panel a:not(.courselist-button.pameldingskjema) { color: ' . esc_attr($compact_infostripe_link) . ' !important; } ';
+                $css .= '#ka .course-container-compact .ka-infostripe i.ka-icon, ';
+                $css .= '#ka .course-container-compact .compact-infostripe-panel i.ka-icon { background-color: ' . esc_attr($compact_infostripe_link) . ' !important; } ';
+                $css .= '#ka .course-container-compact .compact-more-dates-link { color: ' . esc_attr($compact_infostripe_link) . ' !important; } ';
+                $css .= '#ka .course-container-compact .compact-more-dates-link:hover, ';
+                $css .= '#ka .course-container-compact .compact-more-dates-link:focus-visible { color: color-mix(in srgb, ' . esc_attr($compact_infostripe_link) . ' 82%, #000 18%) !important; } ';
+            }
         }
 
         // Hero header overrides – Taksonomisider
@@ -320,20 +409,20 @@ class Kursagenten_CSS_Output {
         if ($taxonomy_hero_overlay === 'light') {
             $css .= '#ka .taxonomy-hero-header.hero-overlay-light:not(.no-hero-image) .overlay { ';
             $css .= 'background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.9)) !important; } ';
-            $css .= '#ka .taxonomy-hero-header.hero-overlay-light:not(.no-hero-image) ' . $this->hero_header_content_children_selector() . ', ';
+            $css .= $this->hero_header_content_children_selector('#ka .taxonomy-hero-header.hero-overlay-light:not(.no-hero-image)') . ', ';
             $css .= '#ka .taxonomy-hero-header.hero-overlay-light:not(.no-hero-image) .taxonomy-description, ';
             $css .= '#ka .taxonomy-hero-header.hero-overlay-light:not(.no-hero-image) .taxonomy-header-content h1 { color: #222 !important; } ';
         } else {
             $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) .overlay { ';
             $css .= 'background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)) !important; } ';
-            $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) ' . $this->hero_header_content_children_selector() . ', ';
+            $css .= $this->hero_header_content_children_selector('#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image)') . ', ';
             $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) .taxonomy-description, ';
             $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) .taxonomy-header-content h1, ';
             $css .= '#ka .taxonomy-hero-header.hero-overlay-dark:not(.no-hero-image) .taxonomy-read-more-link { color: #fff !important; } ';
         }
         if (!empty($taxonomy_hero_font_color)) {
-            $css .= '#ka .taxonomy-hero-header ' . $this->hero_header_content_children_selector() . ', ';
-            $css .= '#ka .taxonomy-hero-header.hero-overlay-light ' . $this->hero_header_content_children_selector() . ', ';
+            $css .= $this->hero_header_content_children_selector('#ka .taxonomy-hero-header') . ', ';
+            $css .= $this->hero_header_content_children_selector('#ka .taxonomy-hero-header.hero-overlay-light') . ', ';
             $css .= '#ka .taxonomy-hero-header .taxonomy-description { color: ' . esc_attr($taxonomy_hero_font_color) . ' !important; } ';
         }
         if (!empty($taxonomy_hero_bg_color)) {
@@ -347,18 +436,18 @@ class Kursagenten_CSS_Output {
         $taxonomy_hero_bg_mode = get_option('kursagenten_taxonomy_hero_header_bg_mode', 'image_placeholder');
         if (empty($taxonomy_hero_font_color) && $taxonomy_hero_bg_mode === 'image_bgcolor') {
             if ($taxonomy_hero_overlay === 'light') {
-                $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-light ' . $this->hero_header_content_children_selector() . ', ';
+                $css .= $this->hero_header_content_children_selector('#ka .taxonomy-hero-header.no-hero-image.hero-overlay-light') . ', ';
                 $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-light .taxonomy-description, ';
                 $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-light .taxonomy-header-content h1, ';
                 $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-light .taxonomy-read-more-link { color: #222 !important; } ';
             } else {
-                $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-dark ' . $this->hero_header_content_children_selector() . ', ';
+                $css .= $this->hero_header_content_children_selector('#ka .taxonomy-hero-header.no-hero-image.hero-overlay-dark') . ', ';
                 $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-dark .taxonomy-description, ';
                 $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-dark .taxonomy-header-content h1, ';
                 $css .= '#ka .taxonomy-hero-header.no-hero-image.hero-overlay-dark .taxonomy-read-more-link { color: #fff !important; } ';
             }
         } elseif (empty($taxonomy_hero_font_color) && $taxonomy_hero_bg_mode === 'bgcolor_only') {
-            $css .= '#ka .taxonomy-hero-header.no-hero-image ' . $this->hero_header_content_children_selector() . ', ';
+            $css .= $this->hero_header_content_children_selector('#ka .taxonomy-hero-header.no-hero-image') . ', ';
             $css .= '#ka .taxonomy-hero-header.no-hero-image .taxonomy-description, ';
             $css .= '#ka .taxonomy-hero-header.no-hero-image .taxonomy-header-content h1 { color: #222 !important; } ';
         }
@@ -368,12 +457,97 @@ class Kursagenten_CSS_Output {
     }
 
     /**
-     * Wildcard selector for hero header text color, excluding buttons.
+     * Specific selectors for hero header text color (excludes buttons and accent links).
      *
+     * The $prefix is applied to every selector in the list so none leak globally.
+     *
+     * @param string $prefix Parent scope prepended to each selector.
      * @return string CSS selector fragment.
      */
-    private function hero_header_content_children_selector() {
-        return '.header-content *:not(.button):not(button):not(.ka-button):not(.courselist-button):not(.pamelding)';
+    private function hero_header_content_children_selector($prefix = '') {
+        if (function_exists('kursagenten_get_hero_header_text_selectors')) {
+            return kursagenten_get_hero_header_text_selectors($prefix);
+        }
+
+        $targets = ['.header-content > h1', '.header-content .header-links', '.header-content .header-links a'];
+        $prefix = trim((string) $prefix);
+        if ($prefix !== '') {
+            $targets = array_map(static function ($selector) use ($prefix) {
+                return $prefix . ' ' . $selector;
+            }, $targets);
+        }
+
+        return implode(', ', $targets);
+    }
+
+    /**
+     * Picks a readable text color (#fff or #222) for a given background color.
+     *
+     * @param string $bg_color Background color (hex, rgb(a) or hsl(a)).
+     * @return string '#fff' for dark backgrounds, otherwise '#222'.
+     */
+    private function auto_contrast_text_color($bg_color) {
+        return $this->is_dark_background($bg_color) ? '#fff' : '#222';
+    }
+
+    /**
+     * Picks a readable link/icon color for a given background color.
+     *
+     * Uses a very light tint of the main color on dark backgrounds and a darker
+     * variant on light backgrounds, so links keep the brand accent while staying
+     * legible. These CSS variables are emitted in :root.
+     *
+     * @param string $bg_color Background color (hex, rgb(a) or hsl(a)).
+     * @return string CSS color value (a var() referencing the main color).
+     */
+    private function auto_link_color($bg_color) {
+        return $this->is_dark_background($bg_color)
+            ? 'var(--ka-color-lightest, #eef3f3)'
+            : 'var(--ka-color-darker, var(--ka-color))';
+    }
+
+    /**
+     * Determines whether a color is perceptually dark.
+     *
+     * Supports hex (#rgb / #rrggbb), rgb()/rgba() and hsl()/hsla(). Unknown
+     * formats fall back to "not dark" so the default dark text is used.
+     *
+     * @param string $color Color value.
+     * @return bool True when the color is dark enough to need light text.
+     */
+    private function is_dark_background($color) {
+        $color = trim((string) $color);
+        if ($color === '') {
+            return false;
+        }
+
+        if ($color[0] === '#') {
+            $hex = ltrim($color, '#');
+            if (strlen($hex) === 3) {
+                $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+            }
+            if (strlen($hex) < 6 || !ctype_xdigit(substr($hex, 0, 6))) {
+                return false;
+            }
+            $r = hexdec(substr($hex, 0, 2));
+            $g = hexdec(substr($hex, 2, 2));
+            $b = hexdec(substr($hex, 4, 2));
+        } elseif (preg_match('/rgba?\(([^)]+)\)/i', $color, $m)) {
+            $parts = array_map('trim', explode(',', $m[1]));
+            $r = isset($parts[0]) ? (float) $parts[0] : 0;
+            $g = isset($parts[1]) ? (float) $parts[1] : 0;
+            $b = isset($parts[2]) ? (float) $parts[2] : 0;
+        } elseif (preg_match('/hsla?\(([^)]+)\)/i', $color, $m)) {
+            $parts = array_map('trim', explode(',', $m[1]));
+            $lightness = isset($parts[2]) ? (float) str_replace('%', '', $parts[2]) : 50.0;
+            return $lightness < 55.0;
+        } else {
+            return false;
+        }
+
+        // Perceived luminance (0-255). Below ~140 reads as dark.
+        $luminance = (0.299 * $r) + (0.587 * $g) + (0.114 * $b);
+        return $luminance < 140.0;
     }
 
     /**

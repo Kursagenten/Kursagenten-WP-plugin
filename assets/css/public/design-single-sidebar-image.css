@@ -91,7 +91,22 @@
     #ka .course-container .ka-header.no-hero-image .overlay {
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.08));
     }
-    #ka .course-container .ka-header.no-hero-image .header-content *:not(.button):not(button):not(.ka-button):not(.courselist-button):not(.pamelding) {
+    #ka .course-container .ka-header.no-hero-image .header-content > h1,
+    #ka .course-container .ka-header.no-hero-image .header-content > h1 .course-subtitle,
+    #ka .course-container .ka-header.no-hero-image .header-content > h1 .course-subtitle span,
+    #ka .course-container .ka-header.no-hero-image .header-content .compact-header-subtitle,
+    #ka .course-container .ka-header.no-hero-image .header-content .compact-header-subtitle .compact-header-date,
+    #ka .course-container .ka-header.no-hero-image .header-content .header-links,
+    #ka .course-container .ka-header.no-hero-image .header-content .header-links a,
+    #ka .course-container .ka-header.no-hero-image .header-content .header-links .taxonomy-list,
+    #ka .course-container .ka-header.no-hero-image .header-content .header-links .separator,
+    #ka .course-container .ka-header.no-hero-image .location-navigation .header-links,
+    #ka .course-container .ka-header.no-hero-image .location-navigation .header-links a,
+    #ka .course-container .ka-header.no-hero-image .location-navigation .header-links .taxonomy-list,
+    #ka .course-container .ka-header.no-hero-image .location-navigation .header-links .separator,
+    #ka .course-container .ka-header.no-hero-image .course-title,
+    #ka .course-container .ka-header.no-hero-image .course-title .course-subtitle,
+    #ka .course-container .ka-header.no-hero-image .course-title .course-subtitle span {
         color: #222;
     }
     #ka .course-container .header-content{
@@ -101,9 +116,23 @@
         flex-direction: column;
         row-gap: var(--ka-space-sm);
     }
-    #ka .course-container .header-content *:not(.button):not(button):not(.ka-button):not(.courselist-button):not(.pamelding) {
+    #ka .course-container .header-content > h1,
+    #ka .course-container .header-content > h1 .course-subtitle,
+    #ka .course-container .header-content > h1 .course-subtitle span,
+    #ka .course-container .header-content .compact-header-subtitle,
+    #ka .course-container .header-content .compact-header-subtitle .compact-header-date,
+    #ka .course-container .header-content .header-links,
+    #ka .course-container .header-content .header-links a,
+    #ka .course-container .header-content .header-links .taxonomy-list,
+    #ka .course-container .header-content .header-links .separator,
+    #ka .course-container .location-navigation .header-links,
+    #ka .course-container .location-navigation .header-links a,
+    #ka .course-container .location-navigation .header-links .taxonomy-list,
+    #ka .course-container .location-navigation .header-links .separator,
+    #ka .course-container .ka-header .course-title,
+    #ka .course-container .ka-header .course-title .course-subtitle,
+    #ka .course-container .ka-header .course-title .course-subtitle span {
         color: white;
-        flex-wrap: wrap;
     }
     #ka .header-content .iconlist.horizontal {
         column-gap: 3em;

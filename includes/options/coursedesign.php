@@ -859,6 +859,7 @@ class Designmaler {
                                 ?>
                             </select>
                             <button type="button" class="button-link ka-inline-settings-toggle ka-inline-meta-link" id="toggle-single-hero-settings" style="display:none; margin-left:8px;"><?php esc_html_e('Flere valg', 'kursagenten'); ?></button>
+                            <button type="button" class="button-link ka-inline-settings-toggle ka-inline-meta-link" id="toggle-single-compact-settings" style="display:none; margin-left:8px;"><?php esc_html_e('Flere valg', 'kursagenten'); ?></button>
                         </div>
                     </div>
 
@@ -923,6 +924,64 @@ class Designmaler {
                                                     <input type="text" name="kursagenten_single_hero_header_bg_color" value="<?php echo esc_attr($single_hero_bg_color); ?>" class="ka-color-picker" data-default-color="">
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Farger for Kompakt-design (viser kun når Kompakt er valgt) -->
+                    <?php
+                    $compact_header_bg_color       = get_option('kursagenten_compact_header_bg_color', '');
+                    $compact_header_font_color     = get_option('kursagenten_compact_header_font_color', '');
+                    $compact_header_link_color     = get_option('kursagenten_compact_header_link_color', '');
+                    $compact_infostripe_bg_color   = get_option('kursagenten_compact_infostripe_bg_color', '');
+                    $compact_infostripe_font_color = get_option('kursagenten_compact_infostripe_font_color', '');
+                    $compact_infostripe_link_color = get_option('kursagenten_compact_infostripe_link_color', '');
+                    ?>
+                    <div class="option-row hero-header-settings-row compact-single-settings-row ka-single-plugin-design-only" id="compact-single-settings-row" style="display: none;">
+                        <label class="option-label"><?php esc_html_e('Farger i toppfelt:', 'kursagenten'); ?></label>
+                        <div class="option-input">
+                            <div class="taxonomy-override hero-header-settings-box">
+                                <div class="taxonomy-override-settings">
+                                    <div class="option-row">
+                                        <label class="option-label"><?php esc_html_e('Header:', 'kursagenten'); ?></label>
+                                        <div class="option-input">
+                                            <div style="display: flex; flex-wrap: wrap; gap: 1em; align-items: flex-start;">
+                                                <div>
+                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;"><?php esc_html_e('Bakgrunnsfarge:', 'kursagenten'); ?></label>
+                                                    <input type="text" name="kursagenten_compact_header_bg_color" value="<?php echo esc_attr($compact_header_bg_color); ?>" class="ka-color-picker" data-default-color="">
+                                                </div>
+                                                <div>
+                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;"><?php esc_html_e('Tekstfarge:', 'kursagenten'); ?></label>
+                                                    <input type="text" name="kursagenten_compact_header_font_color" value="<?php echo esc_attr($compact_header_font_color); ?>" class="ka-color-picker" data-default-color="">
+                                                </div>
+                                                <div>
+                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;"><?php esc_html_e('Linkfarge:', 'kursagenten'); ?></label>
+                                                    <input type="text" name="kursagenten_compact_header_link_color" value="<?php echo esc_attr($compact_header_link_color); ?>" class="ka-color-picker" data-default-color="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="option-row">
+                                        <label class="option-label"><?php esc_html_e('Infostripe:', 'kursagenten'); ?></label>
+                                        <div class="option-input">
+                                            <div style="display: flex; flex-wrap: wrap; gap: 1em; align-items: flex-start;">
+                                                <div>
+                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;"><?php esc_html_e('Bakgrunnsfarge:', 'kursagenten'); ?></label>
+                                                    <input type="text" name="kursagenten_compact_infostripe_bg_color" value="<?php echo esc_attr($compact_infostripe_bg_color); ?>" class="ka-color-picker" data-default-color="">
+                                                </div>
+                                                <div>
+                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;"><?php esc_html_e('Tekstfarge:', 'kursagenten'); ?></label>
+                                                    <input type="text" name="kursagenten_compact_infostripe_font_color" value="<?php echo esc_attr($compact_infostripe_font_color); ?>" class="ka-color-picker" data-default-color="">
+                                                </div>
+                                                <div>
+                                                    <label style="display: block; margin-bottom: 4px; font-size: 0.9em;"><?php esc_html_e('Linkfarge:', 'kursagenten'); ?></label>
+                                                    <input type="text" name="kursagenten_compact_infostripe_link_color" value="<?php echo esc_attr($compact_infostripe_link_color); ?>" class="ka-color-picker" data-default-color="">
+                                                </div>
+                                            </div>
+                                            <p class="description" style="margin: 6px 0 0;"><?php esc_html_e('La feltene stå tomme for å bruke standardfargene fra designvariablene. Setter du en bakgrunnsfarge uten tekst- eller linkfarge, velges lys/mørk tekst og en lys/mørk variant av hovedfargen for lenker og ikoner automatisk ut fra bakgrunnen.', 'kursagenten'); ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -2422,6 +2481,14 @@ class Designmaler {
         register_setting('design_option_group', 'kursagenten_single_hero_header_overlay', array('type' => 'string', 'sanitize_callback' => 'sanitize_text_field', 'default' => 'dark'));
         register_setting('design_option_group', 'kursagenten_single_hero_header_font_color', array('type' => 'string', 'sanitize_callback' => array($this, 'sanitize_color_value'), 'default' => ''));
         register_setting('design_option_group', 'kursagenten_single_hero_header_bg_color', array('type' => 'string', 'sanitize_callback' => array($this, 'sanitize_color_value'), 'default' => ''));
+
+        // Compact design colors (header + infostripe)
+        register_setting('design_option_group', 'kursagenten_compact_header_bg_color', array('type' => 'string', 'sanitize_callback' => array($this, 'sanitize_color_value'), 'default' => ''));
+        register_setting('design_option_group', 'kursagenten_compact_header_font_color', array('type' => 'string', 'sanitize_callback' => array($this, 'sanitize_color_value'), 'default' => ''));
+        register_setting('design_option_group', 'kursagenten_compact_header_link_color', array('type' => 'string', 'sanitize_callback' => array($this, 'sanitize_color_value'), 'default' => ''));
+        register_setting('design_option_group', 'kursagenten_compact_infostripe_bg_color', array('type' => 'string', 'sanitize_callback' => array($this, 'sanitize_color_value'), 'default' => ''));
+        register_setting('design_option_group', 'kursagenten_compact_infostripe_font_color', array('type' => 'string', 'sanitize_callback' => array($this, 'sanitize_color_value'), 'default' => ''));
+        register_setting('design_option_group', 'kursagenten_compact_infostripe_link_color', array('type' => 'string', 'sanitize_callback' => array($this, 'sanitize_color_value'), 'default' => ''));
         register_setting(
             'design_option_group',
             'kursagenten_single_show_contact_person',
@@ -3275,6 +3342,7 @@ class Designmaler {
                 toggleTaxonomyViewTypePanels();
 
                 var isSingleHeroSettingsOpen = false;
+                var isSingleCompactSettingsOpen = false;
                 var isTaxonomyHeroSettingsOpen = false;
                 var isTaxonomyViewTypeSettingsOpen = false;
 
@@ -3303,6 +3371,27 @@ class Designmaler {
                     $toggle.text(isSingleHeroSettingsOpen ? 'Skjul flere valg' : 'Flere valg');
                     $toggle.attr('aria-expanded', isSingleHeroSettingsOpen ? 'true' : 'false');
                     $row.toggle(canShow && isSingleHeroSettingsOpen);
+                }
+
+                function canShowSingleCompactSettings() {
+                    var singleDesign = $("select[name='kursagenten_single_design']").val();
+                    var mode = $("input[name='kursagenten_single_design_mode']:checked").val() || 'plugin';
+                    return mode === 'plugin' && singleDesign === 'compact' && !getSingleCardIsCollapsed();
+                }
+
+                function updateSingleCompactToggleAndRow() {
+                    var canShow = canShowSingleCompactSettings();
+                    var $toggle = $('#toggle-single-compact-settings');
+                    var $row = $('#compact-single-settings-row');
+
+                    if (!canShow) {
+                        isSingleCompactSettingsOpen = false;
+                    }
+
+                    $toggle.toggle(canShow);
+                    $toggle.text(isSingleCompactSettingsOpen ? 'Skjul flere valg' : 'Flere valg');
+                    $toggle.attr('aria-expanded', isSingleCompactSettingsOpen ? 'true' : 'false');
+                    $row.toggle(canShow && isSingleCompactSettingsOpen);
                 }
 
                 function getTaxonomyCardIsCollapsed() {
@@ -3385,6 +3474,12 @@ class Designmaler {
                     e.preventDefault();
                     isSingleHeroSettingsOpen = !isSingleHeroSettingsOpen;
                     updateSingleHeroToggleAndRow();
+                });
+
+                $(document).on('click', '#toggle-single-compact-settings', function(e) {
+                    e.preventDefault();
+                    isSingleCompactSettingsOpen = !isSingleCompactSettingsOpen;
+                    updateSingleCompactToggleAndRow();
                 });
 
                 $(document).on('click', '#toggle-taxonomy-viewtype-settings', function(e) {
@@ -3703,6 +3798,7 @@ class Designmaler {
                 // Hero header settings: separate for Single and Taxonomy, show only when Hero is selected AND section is expanded
                 function updateHeroSingleRowVisibility() {
                     updateSingleHeroToggleAndRow();
+                    updateSingleCompactToggleAndRow();
                 }
                 function updateHeroTaxonomyRowVisibility() {
                     updateTaxonomyHeroToggleAndRow();

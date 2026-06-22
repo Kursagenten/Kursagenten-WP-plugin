@@ -100,6 +100,36 @@ function toggleAccordionHeight(target) {
 
 // Funksjon for å håndtere accordion
 
+/**
+ * Single-course rows reuse .course-available as the accordion trigger (CSS dot).
+ * Those icons must not get +/- text injected by toggleAccordion.
+ */
+function isCourseAvailabilityIcon(icon) {
+    return icon && icon.classList.contains('course-available');
+}
+
+function resetAccordionIcon(icon) {
+    if (!icon) {
+        return;
+    }
+    if (isCourseAvailabilityIcon(icon)) {
+        icon.textContent = '';
+        return;
+    }
+    icon.textContent = '+';
+}
+
+function setAccordionIconOpen(icon) {
+    if (!icon) {
+        return;
+    }
+    if (isCourseAvailabilityIcon(icon)) {
+        icon.textContent = '';
+        return;
+    }
+    icon.textContent = '×';
+}
+
 function toggleAccordion(target) {
     const accordionItem = target.closest(".courselist-item");
     if (!accordionItem) {
@@ -135,7 +165,7 @@ function toggleAccordion(target) {
     });
     allIcons.forEach((otherIcon) => {
         if (otherIcon !== icon) {
-            otherIcon.textContent = "+";
+            resetAccordionIcon(otherIcon);
         }
     });
 
@@ -144,13 +174,13 @@ function toggleAccordion(target) {
         content.style.height = "0";
         content.classList.remove("open");
         accordionItem.classList.remove("active");
-        icon.textContent = "+";
+        resetAccordionIcon(icon);
     } else {
         // Åpne denne seksjonen
         content.style.height = content.scrollHeight + 30 + "px";
         content.classList.add("open");
         accordionItem.classList.add("active");
-        icon.textContent = "×";
+        setAccordionIconOpen(icon);
     }
 
     // Kall på toggleAccordionHeight for å håndtere expand-content
@@ -294,10 +324,81 @@ function initCursorTooltip() {
     });
 }
 
+/**
+ * Compact design: toggle courselist panel below the infostripe.
+ *
+ * Opening the panel when navigating in from a location tab (and the related scroll)
+ * is handled by a small self-contained inline script in compact.php. This function
+ * only wires up the manual toggle buttons and keeps their labels in sync.
+ */
+function initCompactCourselistPanel() {
+    var panel = document.getElementById('ka-compact-courselist-panel');
+    if (!panel) {
+        return;
+    }
+
+    var toggles = document.querySelectorAll('[data-compact-panel-toggle]');
+    var panelCloseWrap = document.querySelector('.compact-more-dates--panel-close');
+
+    function renderToggleLabel(toggle, isOpen) {
+        var closeLabel = toggle.getAttribute('data-label-close') || '';
+        var openLabel = toggle.getAttribute('data-label-open') || '';
+        var isCloseOnly = toggle.classList.contains('compact-more-dates-link--close');
+
+        if (isOpen && closeLabel) {
+            toggle.innerHTML = isCloseOnly
+                ? '&larr; ' + closeLabel
+                : closeLabel + ' &larr;';
+            return;
+        }
+        if (!isOpen && openLabel && !isCloseOnly) {
+            toggle.innerHTML = openLabel + ' &rarr;';
+        }
+    }
+
+    function syncToggles(open) {
+        toggles.forEach(function(toggle) {
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            toggle.classList.toggle('is-open', open);
+            renderToggleLabel(toggle, open);
+        });
+        if (panelCloseWrap) {
+            panelCloseWrap.hidden = !open;
+        }
+    }
+
+    function setPanelOpen(open) {
+        panel.hidden = !open;
+        syncToggles(open);
+
+        if (open) {
+            var firstItem = panel.querySelector('.compact-courselist-expand-first');
+            var main = firstItem ? firstItem.querySelector('.courselist-main') : null;
+            if (main && !firstItem.classList.contains('active') && typeof toggleAccordion === 'function') {
+                toggleAccordion(main);
+            }
+        }
+    }
+
+    toggles.forEach(function(toggle) {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            setPanelOpen(panel.hidden);
+        });
+    });
+
+    // The inline opener may have already revealed the panel; sync the toggle UI to match
+    // without re-running the accordion (the inline script handles that on load).
+    if (!panel.hidden) {
+        syncToggles(true);
+    }
+}
+
 // Kjør når DOM er lastet
 document.addEventListener('DOMContentLoaded', function() {
     initExpandableContent();
     initAccordion();
     initLocationTabsToggle();
     initCursorTooltip();
+    initCompactCourselistPanel();
 });

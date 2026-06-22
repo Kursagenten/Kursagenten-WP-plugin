@@ -153,6 +153,47 @@ if (empty($display_location) && !empty($selected_coursedate_data['location'])) {
     $display_location = $selected_coursedate_data['location'];
 }
 
+$display_location_url = '';
+if (!empty($display_location)) {
+    $location_term = get_term_by('name', $display_location, 'ka_course_location');
+    if (!$location_term || is_wp_error($location_term)) {
+        $location_term = get_term_by('slug', sanitize_title($display_location), 'ka_course_location');
+    }
+    if ($location_term && !is_wp_error($location_term)) {
+        $term_link = get_term_link($location_term);
+        if (!is_wp_error($term_link)) {
+            $display_location_url = $term_link;
+        }
+    }
+
+    if ($display_location_url === '') {
+        $parent_main_course_id = get_post_meta(get_the_ID(), 'ka_main_course_id', true);
+        if (!empty($parent_main_course_id)) {
+            $location_child = get_posts([
+                'post_type'      => 'ka_course',
+                'post_status'    => 'publish',
+                'posts_per_page' => 1,
+                'meta_query'     => [
+                    'relation' => 'AND',
+                    [
+                        'key'     => 'ka_main_course_id',
+                        'value'   => $parent_main_course_id,
+                        'compare' => '=',
+                    ],
+                    [
+                        'key'     => 'ka_sub_course_location',
+                        'value'   => $display_location,
+                        'compare' => '=',
+                    ],
+                ],
+            ]);
+            if (!empty($location_child)) {
+                $display_location_url = get_permalink($location_child[0]->ID);
+            }
+        }
+    }
+}
+
 /**
  * Render course featured image.
  *
@@ -182,8 +223,13 @@ $render_course_image = static function () use ($has_featured_image) {
 
 /**
  * Render courselist accordion (dates at current / all locations).
+ *
+ * @param array $args {
+ *     @type bool $panel_mode   Render inside the infostripe toggle panel.
+ *     @type bool $expand_first Mark first item for auto-expand when panel opens.
+ * }
  */
-$render_courselist = static function () use (
+$render_courselist = static function (array $args = []) use (
     $all_coursedates,
     $price_posttext,
     $show_instructors,
@@ -192,15 +238,25 @@ $render_courselist = static function () use (
     if (empty($all_coursedates)) {
         return;
     }
+
+    $panel_mode   = !empty($args['panel_mode']);
+    $expand_first = !empty($args['expand_first']);
     ?>
-    <div class="courselist compact-courselist">
+    <div class="courselist compact-courselist<?php echo $panel_mode ? ' compact-courselist--panel' : ''; ?>">
         <div class="all-coursedates">
-            <p class="compact-courselist-locations"><?php echo display_course_locations(get_the_ID()); ?></p>
-            <div class="accordion courselist-items-wrapper expand-content" data-size="220px">
+            <p class="compact-courselist-locations"><?php echo display_course_locations(get_the_ID(), array(
+                'open_panel_query' => $panel_mode,
+            )); ?></p>
+            <div class="accordion courselist-items-wrapper expand-content" data-size="<?php echo $panel_mode ? 'auto' : '220px'; ?>">
                 <?php
                 $total_courses = count($all_coursedates);
+                $course_index  = 0;
                 foreach ($all_coursedates as $coursedate) :
                     $item_class = $total_courses === 1 ? 'courselist-item single-item' : 'courselist-item';
+                    if ($panel_mode && $expand_first && $course_index === 0) {
+                        $item_class .= ' compact-courselist-expand-first';
+                    }
+                    $course_index++;
 
                     if (isset($coursedate['course_isFull']) && $coursedate['course_isFull'] === true) {
                         $item_class      .= ' ka-full';
@@ -386,16 +442,20 @@ do_action('ka_singel_header_before');
         </nav>
     <?php endif; ?>
 
-    <header class="ka-section ka-header ka-compact-header ka-highlight-background" id="ka-compact-header">
+    <header class="ka-section ka-header ka-compact-header ka-highlight-background no-hero-image" id="ka-compact-header">
         <div class="ka-content-container header-content">
             <?php if ($is_parent_course === 'yes') : ?>
                 <h1><?php the_title(); ?></h1>
             <?php else : ?>
                 <h1><?php echo esc_html($main_course_title); ?></h1>
                 <?php if (!empty($display_location) || !empty($selected_coursedate_data['first_date'])) : ?>
-                    <p class="compact-header-meta">
+                    <p class="compact-header-subtitle">
                         <?php if (!empty($display_location)) : ?>
-                            <span class="notranslate" translate="no"><?php echo esc_html($display_location); ?></span>
+                            <?php if (!empty($display_location_url)) : ?>
+                                <a href="<?php echo esc_url($display_location_url); ?>" class="compact-header-location notranslate" translate="no"><?php echo esc_html($display_location); ?></a>
+                            <?php else : ?>
+                                <span class="notranslate" translate="no"><?php echo esc_html($display_location); ?></span>
+                            <?php endif; ?>
                         <?php endif; ?>
                         <?php if (!empty($selected_coursedate_data['first_date'])) : ?>
                             <span class="compact-header-date"><?php echo esc_html($selected_coursedate_data['first_date']); ?></span>
@@ -404,31 +464,35 @@ do_action('ka_singel_header_before');
                 <?php endif; ?>
             <?php endif; ?>
 
-            <div class="header-links iconlist horizontal uppercase">
-                <?php
-                $kurs_url = Designmaler::get_system_page_url('kurs', true);
-                if (!empty($kurs_url)) :
-                    ?>
-                    <div><a href="<?php echo esc_url($kurs_url); ?>"><i class="ka-icon icon-vertical-bars"></i> <?php esc_html_e('Alle kurs', 'kursagenten'); ?></a></div>
+            <div class="compact-header-actions">
+            
+                <div class="header-links iconlist horizontal uppercase">
+                <?php if (!empty($selected_coursedate_data['signup_url'])) : ?>
+                    <div class="course-buttons" id="ka-compact-signup">
+                        <button type="button" class="button pameldingskjema clickelement" data-url="<?php echo esc_url($selected_coursedate_data['signup_url']); ?>">
+                            <?php echo esc_html(kursagenten_get_course_button_label(
+                                (string) ($selected_coursedate_data['button_text'] ?? $button_text),
+                                kursagenten_normalize_bool($selected_coursedate_data['show_registration'] ?? false)
+                            )); ?>
+                        </button>
+                    </div>
                 <?php endif; ?>
-                <div class="taxonomy-list horizontal">
-                    <?php if (!empty($coursecategory_links)) : ?>
-                        <i class="ka-icon icon-vertical-bars"></i><?php echo implode('<span class="separator">|</span>', $coursecategory_links); ?>
+                    <?php
+                    $kurs_url = Designmaler::get_system_page_url('kurs', true);
+                    if (!empty($kurs_url)) :
+                        ?>
+                        <div><a href="<?php echo esc_url($kurs_url); ?>"><i class="ka-icon icon-vertical-bars"></i> <?php esc_html_e('Alle kurs', 'kursagenten'); ?></a></div>
                     <?php endif; ?>
+                    <div class="taxonomy-list horizontal">
+                        <?php if (!empty($coursecategory_links)) : ?>
+                            <i class="ka-icon icon-vertical-bars"></i><?php echo implode('<span class="separator">|</span>', $coursecategory_links); ?>
+                        <?php endif; ?>
+                    </div>
                 </div>
-            </div>
-            <?php do_action('ka_singel_header_links_after'); ?>
+                <?php do_action('ka_singel_header_links_after'); ?>
 
-            <?php if (!empty($selected_coursedate_data['signup_url'])) : ?>
-                <div class="course-buttons" id="ka-compact-signup">
-                    <button type="button" class="button pameldingskjema clickelement" data-url="<?php echo esc_url($selected_coursedate_data['signup_url']); ?>">
-                        <?php echo esc_html(kursagenten_get_course_button_label(
-                            (string) ($selected_coursedate_data['button_text'] ?? $button_text),
-                            kursagenten_normalize_bool($selected_coursedate_data['show_registration'] ?? false)
-                        )); ?>
-                    </button>
-                </div>
-            <?php endif; ?>
+                
+            </div>
         </div>
     </header>
 
@@ -438,46 +502,55 @@ do_action('ka_singel_header_before');
         <div class="ka-content-container">
             <div class="compact-infostripe-grid">
                 <div class="compact-infostripe-col compact-infostripe-times">
-                    <h2 class="small"><?php esc_html_e('Kurstider', 'kursagenten'); ?></h2>
-                    <div class="iconlist medium">
-                        <?php if (in_array('first_date', $single_display_fields, true) && !empty($selected_coursedate_data['first_date'])) : ?>
-                            <div>
-                                <i class="ka-icon icon-calendar"></i>
-                                <span>
-                                    <?php echo esc_html($selected_coursedate_data['first_date']); ?>
-                                    <?php if (in_array('last_date', $single_display_fields, true) && !empty($selected_coursedate_data['last_date']) && $selected_coursedate_data['last_date'] !== $selected_coursedate_data['first_date']) : ?>
-                                        &ndash; <?php echo esc_html($selected_coursedate_data['last_date']); ?>
-                                    <?php endif; ?>
-                                </span>
-                            </div>
-                        <?php endif; ?>
-                        <?php if (in_array('day_schedules', $single_display_fields, true) && !empty($selected_coursedate_data['day_schedules_count']) && (int) $selected_coursedate_data['day_schedules_count'] >= 2) : ?>
-                            <div>
-                                <i class="ka-icon icon-calendar"></i>
-                                <span><?php echo esc_html__('Kursdager:', 'kursagenten'); ?>
-                                    <?php
-                                    echo kursagenten_render_day_schedules_link(
-                                        (int) ($selected_coursedate_data['id'] ?? 0),
-                                        (int) $selected_coursedate_data['day_schedules_count'],
-                                        $selected_coursedate_data['title'] ?? get_the_title(),
-                                        ['icon' => '']
-                                    );
-                                    ?>
-                                </span>
-                            </div>
-                        <?php endif; ?>
-                        <?php if (in_array('time', $single_display_fields, true) && !empty($selected_coursedate_data['time'])) : ?>
-                            <div><i class="ka-icon icon-time"></i><span><?php echo esc_html($selected_coursedate_data['time']); ?></span></div>
-                        <?php endif; ?>
-                        <?php if (in_array('duration', $single_display_fields, true) && !empty($selected_coursedate_data['duration'])) : ?>
-                            <div><i class="ka-icon icon-stopwatch"></i><span><?php echo esc_html($selected_coursedate_data['duration']); ?></span></div>
-                        <?php endif; ?>
+                    <div class="compact-infostripe-times-body">
+                        <h2 class="small"><?php esc_html_e('Kurstider', 'kursagenten'); ?></h2>
+                        <div class="iconlist medium">
+                            <?php if (in_array('first_date', $single_display_fields, true) && !empty($selected_coursedate_data['first_date'])) : ?>
+                                <div>
+                                    <i class="ka-icon icon-calendar"></i>
+                                    <span>
+                                        <?php echo esc_html($selected_coursedate_data['first_date']); ?>
+                                        <?php if (in_array('last_date', $single_display_fields, true) && !empty($selected_coursedate_data['last_date']) && $selected_coursedate_data['last_date'] !== $selected_coursedate_data['first_date']) : ?>
+                                            &ndash; <?php echo esc_html($selected_coursedate_data['last_date']); ?>
+                                        <?php endif; ?>
+                                    </span>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (in_array('day_schedules', $single_display_fields, true) && !empty($selected_coursedate_data['day_schedules_count']) && (int) $selected_coursedate_data['day_schedules_count'] >= 2) : ?>
+                                <div>
+                                    <i class="ka-icon icon-calendar"></i>
+                                    <span><?php echo esc_html__('Kursdager:', 'kursagenten'); ?>
+                                        <?php
+                                        echo kursagenten_render_day_schedules_link(
+                                            (int) ($selected_coursedate_data['id'] ?? 0),
+                                            (int) $selected_coursedate_data['day_schedules_count'],
+                                            $selected_coursedate_data['title'] ?? get_the_title(),
+                                            ['icon' => '']
+                                        );
+                                        ?>
+                                    </span>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (in_array('time', $single_display_fields, true) && !empty($selected_coursedate_data['time'])) : ?>
+                                <div><i class="ka-icon icon-time"></i><span><?php echo esc_html($selected_coursedate_data['time']); ?></span></div>
+                            <?php endif; ?>
+                            <?php if (in_array('duration', $single_display_fields, true) && !empty($selected_coursedate_data['duration'])) : ?>
+                                <div><i class="ka-icon icon-stopwatch"></i><span><?php echo esc_html($selected_coursedate_data['duration']); ?></span></div>
+                            <?php endif; ?>
+                        </div>
                     </div>
                     <?php if ($show_courselist_toggle && !empty($all_coursedates)) : ?>
                         <p class="compact-more-dates">
-                            <a href="#ka-compact-bottom" class="compact-more-dates-link">
+                            <button type="button"
+                                    class="compact-more-dates-link"
+                                    id="ka-compact-more-dates-trigger"
+                                    data-compact-panel-toggle
+                                    data-label-open="<?php echo esc_attr__('Se flere datoer og steder', 'kursagenten'); ?>"
+                                    data-label-close="<?php echo esc_attr__('Lukk panel', 'kursagenten'); ?>"
+                                    aria-expanded="false"
+                                    aria-controls="ka-compact-courselist-panel">
                                 <?php esc_html_e('Se flere datoer og steder', 'kursagenten'); ?> &rarr;
-                            </a>
+                            </button>
                         </p>
                     <?php endif; ?>
                 </div>
@@ -524,6 +597,75 @@ do_action('ka_singel_header_before');
         </div>
     </section>
 
+    <?php if ($show_courselist_toggle && !empty($all_coursedates)) : ?>
+        <section class="ka-section compact-infostripe-panel ka-highlight-background"
+                 id="ka-compact-courselist-panel"
+                 hidden
+                 aria-labelledby="ka-compact-more-dates-trigger">
+            <div class="ka-content-container">
+                <?php $render_courselist(['panel_mode' => true, 'expand_first' => true]); ?>
+                <p class="compact-more-dates compact-more-dates--panel-close" hidden>
+                    <button type="button"
+                            class="compact-more-dates-link compact-more-dates-link--close"
+                            data-compact-panel-toggle
+                            data-label-close="<?php echo esc_attr__('Lukk panel', 'kursagenten'); ?>"
+                            aria-expanded="true"
+                            aria-controls="ka-compact-courselist-panel">
+                        &larr; <?php esc_html_e('Lukk panel', 'kursagenten'); ?>
+                    </button>
+                </p>
+            </div>
+        </section>
+        <script>
+        // Self-contained: open + scroll to the courselist panel when arriving from a
+        // location tab (?ka_open_panel=1). Runs during parse, so it does not depend on
+        // the main script which can load late behind blocking footer scripts.
+        (function () {
+            var params;
+            try {
+                params = new URLSearchParams(window.location.search);
+            } catch (e) {
+                return;
+            }
+            if (params.get('ka_open_panel') !== '1') {
+                return;
+            }
+
+            // Reveal the panel right away (its markup precedes this inline script).
+            var panel = document.getElementById('ka-compact-courselist-panel');
+            if (panel) {
+                panel.hidden = false;
+            }
+            var closeWrap = document.querySelector('.compact-more-dates--panel-close');
+            if (closeWrap) {
+                closeWrap.hidden = false;
+            }
+
+            // Remove the param so it does not linger in the address bar.
+            try {
+                var url = new URL(window.location.href);
+                url.searchParams.delete('ka_open_panel');
+                window.history.replaceState(null, '', url.pathname + url.search + url.hash);
+            } catch (e) {}
+
+            // Expand the first row and scroll once the layout has settled (after images).
+            window.addEventListener('load', function () {
+                if (panel) {
+                    var firstItem = panel.querySelector('.compact-courselist-expand-first');
+                    var firstMain = firstItem ? firstItem.querySelector('.courselist-main') : null;
+                    if (firstMain && firstItem && !firstItem.classList.contains('active') && typeof window.toggleAccordion === 'function') {
+                        window.toggleAccordion(firstMain);
+                    }
+                }
+                var infostripe = document.getElementById('ka-compact-infostripe');
+                if (infostripe) {
+                    infostripe.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        })();
+        </script>
+    <?php endif; ?>
+
     <section class="ka-section course-information" id="ka-compact-content">
         <div class="ka-content-container">
             <div class="course-grid compact-main-grid">
@@ -562,7 +704,7 @@ do_action('ka_singel_header_before');
                         <?php
                         $archive_show_images = get_option('kursagenten_show_images', 'yes');
                         $related_bildestr    = ($archive_show_images === 'yes') ? '52px' : '0px';
-                        echo do_shortcode('[kurs-i-samme-kategori stil="kort" overskrift="h4" layout="rad" grid="1" gridtablet="1" gridmobil="1" bildestr="' . esc_attr($related_bildestr) . '" bildeformat="1/1" bildeform=firkantet fontmin="13px" fontmaks="15px" avstand="0" radavstand=".65em" limit="6"]');
+                        echo do_shortcode('[kurs-i-samme-kategori overskrift="h4" layout="rad" grid="1" gridtablet="1" gridmobil="1" bildestr="' . esc_attr($related_bildestr) . '" bildeformat="1/1" bildeform=avrundet fontmin="13px" fontmaks="15px" avstand="0" radavstand=".9em" limit="6"]');
                         ?>
                     </div>
                     <?php do_action('ka_singel_aside_after'); ?>
@@ -570,7 +712,7 @@ do_action('ka_singel_header_before');
             </div>
 
             <?php if (!empty($wp_content)) : ?>
-                <div class="compact-wp-content">
+                <div class="compact-wp-content wp-content">
                     <?php if ($admin_view === 'true') : ?>
                         <div class="edit-link">
                             <a href="<?php echo esc_url(get_edit_post_link()); ?>">
@@ -582,13 +724,14 @@ do_action('ka_singel_header_before');
                     <div class="content-text<?php echo esc_attr($admin_view_class); ?>"><?php echo apply_filters('the_content', $wp_content); ?></div>
                 </div>
             <?php elseif ($admin_view === 'true') : ?>
-                <div class="compact-wp-content">
+                <div class="compact-wp-content wp-content">
                     <div class="edit-link">
                         <a href="<?php echo esc_url(get_edit_post_link()); ?>">
                             <i class="ka-icon icon-plus"></i>
                             <span class="edit-text"><?php esc_html_e('Legg til ekstra Wordpress innhold', 'kursagenten'); ?></span>
                         </a>
                     </div>
+                    <div class="content-text<?php echo esc_attr($admin_view_class); ?>"></div>
                 </div>
             <?php endif; ?>
         </div>
@@ -597,21 +740,13 @@ do_action('ka_singel_header_before');
     <?php do_action('ka_singel_footer_before'); ?>
     <section class="ka-section ka-compact-bottom ka-highlight-background" id="ka-compact-bottom">
         <div class="ka-content-container">
-            <div class="compact-bottom-grid<?php echo empty($all_coursedates) ? ' compact-bottom-grid--single' : ''; ?>">
-                <?php if (!empty($all_coursedates)) : ?>
-                    <div class="compact-bottom-courselist">
-                        <h2 class="small"><?php esc_html_e('Kurstider og steder', 'kursagenten'); ?></h2>
-                        <?php $render_courselist(); ?>
-                    </div>
-                <?php endif; ?>
-                <div class="compact-bottom-more">
-                    <h2 class="small"><?php esc_html_e('Flere kurs', 'kursagenten'); ?></h2>
-                    <?php
-                    $archive_show_images = get_option('kursagenten_show_images', 'yes');
-                    $related_bildestr    = ($archive_show_images === 'yes') ? '72px' : '0px';
-                    echo do_shortcode('[kurskategorier overskrift="h4" layout="rad" grid="2" gridtablet="1" gridmobil="1" bildestr="' . esc_attr($related_bildestr) . '" bildeformat="1/1" bildeform=firkantet fontmin="13px" fontmaks="15px" avstand="0" radavstand=".85em"]');
-                    ?>
-                </div>
+            <div class="compact-bottom-more">
+                <h2 class="small"><?php esc_html_e('Flere kurs', 'kursagenten'); ?></h2>
+                <?php
+                $archive_show_images = get_option('kursagenten_show_images', 'yes');
+                $related_bildestr    = ($archive_show_images === 'yes') ? '72px' : '0px';
+                echo do_shortcode('[kurskategorier overskrift="h4" layout="rad" grid="4" gridtablet="3" gridmobil="2" bildestr="' . esc_attr($related_bildestr) . '" bildeformat="1/1" bildeform=firkantet fontmin="13px" fontmaks="15px" avstand="0" radavstand=".85em"]');
+                ?>
             </div>
         </div>
     </section>

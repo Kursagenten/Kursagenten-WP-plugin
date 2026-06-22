@@ -1474,10 +1474,18 @@ function get_course_locations($post_id) {
  * Genererer HTML for lokasjonslisten
  * Brukes i single-course templates
  * 
- * @param int $post_id ID for kurset
+ * @param int   $post_id ID for kurset
+ * @param array $args {
+ *     @type bool $open_panel_query Append ?ka_open_panel=1 for compact panel auto-open on navigation.
+ * }
  * @return string HTML for lokasjonslisten
  */
-function display_course_locations($post_id) {
+function display_course_locations($post_id, $args = array()) {
+    $args = wp_parse_args($args, array(
+        'open_panel_query' => false,
+    ));
+    $open_panel_query = !empty($args['open_panel_query']);
+
     $locations = get_course_locations($post_id);
     $current_location = get_post_meta($post_id, 'ka_sub_course_location', true);
     $is_parent_course = get_post_meta($post_id, 'ka_is_parent_course', true);
@@ -1613,7 +1621,11 @@ function display_course_locations($post_id) {
         $output .= '<li class="' . ($item['active'] ? 'active' : '') . '">';
         $link_class = !empty($item['is_real_location']) ? 'button-filter notranslate' : 'button-filter';
         $link_translate = !empty($item['is_real_location']) ? ' translate="no"' : '';
-        $output .= '<a href="' . esc_url($item['url']) . '" class="' . esc_attr($link_class) . '"' . $link_translate . '>' . esc_html($item['name']) . '</a>';
+        $item_url = $item['url'];
+        if ($open_panel_query) {
+            $item_url = add_query_arg('ka_open_panel', '1', $item_url);
+        }
+        $output .= '<a href="' . esc_url($item_url) . '" class="' . esc_attr($link_class) . '"' . $link_translate . '>' . esc_html($item['name']) . '</a>';
         $output .= '</li>';
     }
     if ($has_more && !empty($hidden_items)) {
@@ -1623,7 +1635,11 @@ function display_course_locations($post_id) {
             $output .= '<li class="' . ($item['active'] ? 'active' : '') . '">';
             $link_class = !empty($item['is_real_location']) ? 'button-filter notranslate' : 'button-filter';
             $link_translate = !empty($item['is_real_location']) ? ' translate="no"' : '';
-            $output .= '<a href="' . esc_url($item['url']) . '" class="' . esc_attr($link_class) . '"' . $link_translate . '>' . esc_html($item['name']) . '</a>';
+            $item_url = $item['url'];
+            if ($open_panel_query) {
+                $item_url = add_query_arg('ka_open_panel', '1', $item_url);
+            }
+            $output .= '<a href="' . esc_url($item_url) . '" class="' . esc_attr($link_class) . '"' . $link_translate . '>' . esc_html($item['name']) . '</a>';
             $output .= '</li>';
         }
         $output .= '</ul>';

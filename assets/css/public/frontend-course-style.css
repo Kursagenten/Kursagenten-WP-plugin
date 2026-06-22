@@ -640,7 +640,7 @@ border-radius: 8px;
 #ka .edit-link a{
   display: flex;
   align-items: center;
-  color: #999;
+  color: var(--ka-color-filter);
   text-decoration: none;
 }
 #ka .edit-link:hover a{
@@ -679,7 +679,8 @@ z-index: 10000;
 }
 /* --Edit WP content */
 /*******************/
-#ka .content .edit-link{
+#ka .content .edit-link,
+#ka .wp-content .edit-link{
   position: relative;
   bottom: -10px;
   left: 10px;
@@ -691,19 +692,19 @@ z-index: 10000;
 #ka .admin-view.content-text{
   border: 3px dashed #eee;
   border-radius: 10px;
-  padding: .3em;
+  padding: .8em;
 }
 
 /* --Page back link */
 /************************/
-#ka .page-back-link{
-  width: 45px;
-  height: 45px;
+#ka i.ka-icon.page-back-link{
+  width: 30px;
+  height: 30px;
   background: #eee;
-  margin-right: 3px;
+  margin-right: 9px;
   margin-top: -6px;
 }
-#ka .page-back-link:hover{
+#ka i.ka-icon.page-back-link:hover{
   background: var(--ka-color);
 }
 
@@ -1196,7 +1197,7 @@ text-align: center;
 #ka .left-filter-section .filter-chip-wrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 0.45rem;
+  gap: 0.2rem 0.45rem;
   margin: 0.15rem 0 0.35rem;
 }
 #ka .left-filter-section .filter-chip-wrapper .chip {

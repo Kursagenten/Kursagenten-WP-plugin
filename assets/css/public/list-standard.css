@@ -111,7 +111,7 @@
     align-items: center;
     row-gap: var(--ka-space-xs);
     flex: 0 0 auto;
-    gap: 0.9rem;
+    gap:1.2rem;
     justify-content: flex-start;
 }
 #ka .courselist-items .courselist-main .links-area button {

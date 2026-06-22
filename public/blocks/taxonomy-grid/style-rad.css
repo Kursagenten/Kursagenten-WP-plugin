@@ -7,6 +7,18 @@
 	align-items: stretch;
 }
 
+/* Without image, use single column so content fills the card. */
+.k-taxonomy-grid.k-hide-image.k-preset-rad-standard .k-card-link,
+.k-taxonomy-grid.k-hide-image.k-preset-rad-kort .k-card-link,
+.k-taxonomy-grid.k-hide-image.k-preset-rad-kompakt .k-card-link,
+.k-taxonomy-grid.k-hide-image.k-preset-rad-detalj .k-card-link,
+.k-taxonomy-grid.k-preset-rad-standard .k-card-link:not(:has(.k-image-wrap)),
+.k-taxonomy-grid.k-preset-rad-kort .k-card-link:not(:has(.k-image-wrap)),
+.k-taxonomy-grid.k-preset-rad-kompakt .k-card-link:not(:has(.k-image-wrap)),
+.k-taxonomy-grid.k-preset-rad-detalj .k-card-link:not(:has(.k-image-wrap)) {
+	grid-template-columns: 1fr;
+}
+
 .k-taxonomy-grid.k-preset-rad-standard .k-image-wrap,
 .k-taxonomy-grid.k-preset-rad-kort .k-image-wrap,
 .k-taxonomy-grid.k-preset-rad-kompakt .k-image-wrap,
