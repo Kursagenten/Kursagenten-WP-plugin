@@ -318,14 +318,17 @@ $view_type_class = ' view-type-maincourses';
                     </span>
                     <?php endif; ?>
 
-                    <?php if ($list_display['duration'] && !empty($duration)) : ?>
+                    <?php
+                    $show_list_day_schedules = !empty($list_display['day_schedules']) && $day_schedules_count >= 2 && $day_schedules_coursedate_id > 0;
+                    if (!empty($list_display['duration']) && kursagenten_should_show_duration((string) $duration, $day_schedules_count, $show_list_day_schedules)) :
+                    ?>
                     <span class="simple-card-duration">
                         <i class="ka-icon icon-stopwatch"></i>
                         <span><?php echo esc_html($duration); ?></span>
                     </span>
                     <?php endif; ?>
 
-                    <?php if (!empty($list_display['day_schedules']) && $day_schedules_count >= 2 && $day_schedules_coursedate_id > 0) : ?>
+                    <?php if ($show_list_day_schedules) : ?>
                     <span class="simple-card-day-schedules"><?php
                         // Nested inside the wrapping <a class="simple-card-link">.
                         echo kursagenten_render_day_schedules_link(
@@ -358,7 +361,7 @@ $view_type_class = ' view-type-maincourses';
                     <?php if ($list_display['price'] && !empty($price)) : ?>
                     <span class="simple-card-price">
                         <i class="ka-icon icon-bookmark"></i>
-                        <span><?php echo esc_html($price); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></span>
+                        <span><?php echo esc_html(kursagenten_format_price_display($price)); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></span>
                     </span>
                     <?php endif; ?>
                 </div>

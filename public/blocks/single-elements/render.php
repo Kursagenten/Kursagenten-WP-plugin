@@ -592,7 +592,9 @@ function kursagenten_render_single_next_course_info_block(array $attributes): st
         }
 
         if ($show_price && $price !== '') {
-            $price_text = $price;
+            $price_text = function_exists('kursagenten_format_price_display')
+                ? kursagenten_format_price_display($price)
+                : $price;
             if ($after_price !== '') {
                 $price_text .= ' ' . $after_price;
             }

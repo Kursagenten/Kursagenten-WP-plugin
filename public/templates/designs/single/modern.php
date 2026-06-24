@@ -94,7 +94,7 @@ if (!empty($locations) && !is_wp_error($locations)) {
                 <?php if (!empty($price)) : ?>
                     <div class="meta-item">
                         <i class="ka-icon icon-tag"></i>
-                        <span><?php echo esc_html($price); ?> <?php echo esc_html($after_price); ?></span>
+                        <span><?php echo esc_html(kursagenten_format_price_display($price)); ?> <?php echo esc_html($after_price); ?></span>
                     </div>
                 <?php endif; ?>
             </div>
@@ -154,7 +154,7 @@ if (!empty($locations) && !is_wp_error($locations)) {
                         <?php if (!empty($price)) : ?>
                             <div class="info-item">
                                 <div class="info-label"><?php echo esc_html__('Pris:', 'kursagenten'); ?></div>
-                                <div class="info-value"><?php echo esc_html($price); ?> <?php echo esc_html($after_price); ?></div>
+                                <div class="info-value"><?php echo esc_html(kursagenten_format_price_display($price)); ?> <?php echo esc_html($after_price); ?></div>
                             </div>
                         <?php endif; ?>
 
@@ -281,7 +281,7 @@ if (!empty($locations) && !is_wp_error($locations)) {
                                 <?php if (!empty($related_price)) : ?>
                                     <div class="meta-item">
                                         <i class="ka-icon icon-tag"></i>
-                                        <span><?php echo esc_html($related_price); ?></span>
+                                        <span><?php echo esc_html(kursagenten_format_price_display($related_price)); ?></span>
                                     </div>
                                 <?php endif; ?>
                             </div>

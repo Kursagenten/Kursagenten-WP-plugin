@@ -233,6 +233,9 @@ margin: 1em 0;
 padding: 1em 1.5em;
 border-radius: 10px;
 }
+#ka .ka-box.contact-info a {
+  color: var(--ka-color-darker);
+}
 
 /* --Buttons and links */
 /**********/
@@ -305,6 +308,14 @@ row-gap: .8em;
 #ka .iconlist.horizontal a {
 display: flex;
 align-items: center;
+}
+/* Inside a flex .iconlist item, whitespace between flex items is collapsed, so a
+   value rendered as its own element (e.g. the "X dager" link or a notranslate
+   room span) ends up glued to its label. A literal space in the template gets
+   eaten by flexbox (and trimmed by DOM translation tools), which is why the gap
+   kept disappearing. An explicit margin survives both. */
+#ka .iconlist > div > .ka-nc-inline-value {
+margin-left: 0.35em;
 }
 #ka .iconlist.horizontal .separator {
 padding: 0 8px;

@@ -378,8 +378,9 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                     && !empty($list_display['registration_deadline'])
                     && !empty($registration_deadline);
                 $show_meta_time = !empty($list_display['time']) && !empty($coursetime);
-                $show_meta_duration = !empty($list_display['duration']) && !empty($duration);
                 $show_meta_day_schedules = !empty($list_display['day_schedules']) && $day_schedules_count >= 2 && $day_schedules_coursedate_id > 0;
+                $show_meta_duration = !empty($list_display['duration'])
+                    && kursagenten_should_show_duration((string) $duration, $day_schedules_count, $show_meta_day_schedules);
                 $show_meta_price = !empty($list_display['price']) && !empty($price);
                 $show_meta_instructor = !empty($list_display['instructor']) && !empty($instructor_links);
                 $show_meta_room = !empty($list_display['room']) && !$is_location_taxonomy && !empty($location_room);
@@ -507,7 +508,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                         ?></div>
                     <?php endif; ?>
                     <?php if ($show_meta_price) : ?>
-                        <div class="price"><i class="ka-icon icon-bookmark"></i><?php echo esc_html($price); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></div>
+                        <div class="price"><i class="ka-icon icon-bookmark"></i><?php echo esc_html(kursagenten_format_price_display($price)); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></div>
                     <?php endif; ?>
                     <?php if ($show_meta_instructor) : ?>
                         <div class="instructors"><i class="ka-icon icon-user"></i><?php echo implode(' ,&nbsp;', $instructor_links); ?></div>

@@ -68,7 +68,7 @@ $locations = get_the_terms($course_id, 'ka_course_location');
                 <?php if (!empty($price)) : ?>
                     <div class="meta-item">
                         <i class="ka-icon icon-tag"></i>
-                        <span><?php echo esc_html($price); ?> <?php echo esc_html($after_price); ?></span>
+                        <span><?php echo esc_html(kursagenten_format_price_display($price)); ?> <?php echo esc_html($after_price); ?></span>
                     </div>
                 <?php endif; ?>
             </div>
@@ -128,7 +128,7 @@ $locations = get_the_terms($course_id, 'ka_course_location');
                         <?php if (!empty($price)) : ?>
                             <div class="info-item">
                                 <div class="info-label"><?php echo esc_html__('Pris:', 'kursagenten'); ?></div>
-                                <div class="info-value"><?php echo esc_html($price); ?> <?php echo esc_html($after_price); ?></div>
+                                <div class="info-value"><?php echo esc_html(kursagenten_format_price_display($price)); ?> <?php echo esc_html($after_price); ?></div>
                             </div>
                         <?php endif; ?>
 

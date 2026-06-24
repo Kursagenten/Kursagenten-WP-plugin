@@ -513,7 +513,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                     <?php if ($view_type === 'main_courses' && !$force_standard_view) : ?>
                         <?php if ($list_display['price'] && !empty($price)) : ?>
                         <div class="card-price">
-                            <strong><?php echo esc_html($price); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></strong>
+                            <strong><?php echo esc_html(kursagenten_format_price_display($price)); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></strong>
                         </div>
                         <?php endif; ?>
                         
@@ -529,7 +529,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                     <?php else : ?>
                         <?php if ($list_display['price'] && !empty($price)) : ?>
                         <div class="card-price">
-                            <strong><?php echo esc_html($price); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></strong>
+                            <strong><?php echo esc_html(kursagenten_format_price_display($price)); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></strong>
                         </div>
                         <?php endif; ?>
                         

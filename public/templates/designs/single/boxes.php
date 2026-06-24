@@ -308,7 +308,7 @@ $render_courselist = static function ($extra_class = '') use ($all_coursedates, 
                                                     
                                                     <?php if (!empty($coursedate['price'])): ?>
                                                         <span style="font-weight: bold;"><?php echo esc_html__('Pris:', 'kursagenten'); ?></span>
-                                                        <span><?php echo esc_html($coursedate['price']) ?> <?php echo esc_html($price_posttext); ?></span><br>
+                                                        <span><?php echo esc_html(kursagenten_format_price_display($coursedate['price'])) ?> <?php echo esc_html($price_posttext); ?></span><br>
                                                     <?php endif; ?>
                                                     
                                                     <?php if (!empty($coursedate['location'])): ?>
@@ -321,12 +321,21 @@ $render_courselist = static function ($extra_class = '') use ($all_coursedates, 
                                                         <span class="notranslate" translate="no"><?php echo esc_html($coursedate['course_location_room']) ?></span><br>
                                                     <?php endif; ?>
                                                     
-                                                    <?php if (!empty($coursedate['duration'])): ?>
+                                                    <?php
+                                                    $show_coursedate_day_schedules = in_array('day_schedules', $single_display_fields, true)
+                                                        && !empty($coursedate['day_schedules_count'])
+                                                        && (int) $coursedate['day_schedules_count'] >= 2;
+                                                    if (kursagenten_should_show_duration(
+                                                        (string) ($coursedate['duration'] ?? ''),
+                                                        (int) ($coursedate['day_schedules_count'] ?? 0),
+                                                        $show_coursedate_day_schedules
+                                                    )) :
+                                                    ?>
                                                         <span style="font-weight: bold;"><?php echo esc_html__('Varighet:', 'kursagenten'); ?></span>
                                                         <span><?php echo esc_html($coursedate['duration']) ?></span><br>
                                                     <?php endif; ?>
 
-                                                    <?php if (in_array('day_schedules', $single_display_fields, true) && !empty($coursedate['day_schedules_count']) && (int) $coursedate['day_schedules_count'] >= 2): ?>
+                                                    <?php if ($show_coursedate_day_schedules): ?>
                                                         <span style="font-weight: bold;"><?php echo esc_html__('Kursdager:', 'kursagenten'); ?>&nbsp;</span>
                                                         <span><?php
                                                             echo kursagenten_render_day_schedules_link(
@@ -495,14 +504,23 @@ do_action('ka_singel_header_before');
                             <?php if (in_array('time', $single_display_fields, true) && !empty($selected_coursedate_data['time'])) : ?>
                                 <div><?php echo esc_html__('Kurstider:', 'kursagenten'); ?> <?php echo esc_html($selected_coursedate_data['time']); ?></div>
                             <?php endif; ?>
-                            <?php if (in_array('duration', $single_display_fields, true) && !empty($selected_coursedate_data['duration'])) : ?>
+                            <?php
+                            $show_next_day_schedules = in_array('day_schedules', $single_display_fields, true)
+                                && !empty($selected_coursedate_data['day_schedules_count'])
+                                && (int) $selected_coursedate_data['day_schedules_count'] >= 2;
+                            if (in_array('duration', $single_display_fields, true) && kursagenten_should_show_duration(
+                                (string) ($selected_coursedate_data['duration'] ?? ''),
+                                (int) ($selected_coursedate_data['day_schedules_count'] ?? 0),
+                                $show_next_day_schedules
+                            )) :
+                            ?>
                                 <div><?php echo esc_html__('Varighet:', 'kursagenten'); ?> <?php echo esc_html($selected_coursedate_data['duration']); ?></div>
                             <?php endif; ?>
                             <?php if (in_array('language', $single_display_fields, true) && !empty($selected_coursedate_data['language'])) : ?>
                                 <div><?php echo esc_html__('Språk:', 'kursagenten'); ?> <?php echo esc_html($selected_coursedate_data['language']); ?></div>
                             <?php endif; ?>
                             <?php if (in_array('price', $single_display_fields, true) && !empty($selected_coursedate_data['price'])) : ?>
-                                <div><?php echo esc_html__('Pris:', 'kursagenten'); ?> <?php echo esc_html($selected_coursedate_data['price']); ?> <?php echo esc_html($price_posttext); ?></div>
+                                <div><?php echo esc_html__('Pris:', 'kursagenten'); ?> <?php echo esc_html(kursagenten_format_price_display($selected_coursedate_data['price'])); ?> <?php echo esc_html($price_posttext); ?></div>
                             <?php endif; ?>
                             <?php if (in_array('room', $single_display_fields, true) && !empty($selected_coursedate_data['course_location_room'])) : ?>
                                 <div><?php echo esc_html__('Kurslokale:', 'kursagenten'); ?>&nbsp;<span class="notranslate" translate="no"><?php echo esc_html($selected_coursedate_data['course_location_room']); ?></span></div>
@@ -637,10 +655,10 @@ do_action('ka_singel_header_before');
                                         <?php echo esc_html($contact_name); ?><br>
                                     <?php endif; ?>
                                     <?php if (!empty($contact_phone)) : ?>
-                                        <?php echo esc_html($contact_phone); ?><br>
+                                        <?php echo kursagenten_format_phone_link($contact_phone); ?><br>
                                     <?php endif; ?>
                                     <?php if (!empty($contact_email)) : ?>
-                                        <?php echo esc_html($contact_email); ?>
+                                        <?php echo kursagenten_format_email_link($contact_email); ?>
                                     <?php endif; ?>
                                 </p>
                             </div>

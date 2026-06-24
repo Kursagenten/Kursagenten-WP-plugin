@@ -779,11 +779,17 @@ function kursagenten_single_has_next_course_display_items(
     ) {
         return true;
     }
-    if (
-        in_array('duration', $single_display_fields, true)
-        && !empty($selected_coursedate_data['duration'])
-    ) {
-        return true;
+    if (in_array('duration', $single_display_fields, true)) {
+        $day_schedules_visible = in_array('day_schedules', $single_display_fields, true)
+            && !empty($selected_coursedate_data['day_schedules_count'])
+            && (int) $selected_coursedate_data['day_schedules_count'] >= 2;
+        if (kursagenten_should_show_duration(
+            (string) ($selected_coursedate_data['duration'] ?? ''),
+            (int) ($selected_coursedate_data['day_schedules_count'] ?? 0),
+            $day_schedules_visible
+        )) {
+            return true;
+        }
     }
     if (
         in_array('language', $single_display_fields, true)
@@ -1167,6 +1173,45 @@ function kursagenten_get_list_display_fields($args = []) {
 }
 
 /**
+ * Localized label for a day-schedules count (e.g. "3 dager").
+ */
+function kursagenten_get_day_schedules_label(int $count): string {
+    $count = (int) $count;
+    if ($count < 1) {
+        return '';
+    }
+
+    return sprintf(
+        _n('%d dag', '%d dager', $count, 'kursagenten'),
+        $count
+    );
+}
+
+/**
+ * Whether duration (Varighet) should be shown alongside day_schedules.
+ *
+ * Hides duration when its text equals the day_schedules label and day_schedules
+ * would also be visible, to avoid duplicate "3 dager" / "5 dager" entries.
+ */
+function kursagenten_should_show_duration(string $duration, int $day_schedules_count, bool $day_schedules_visible = true): bool {
+    $duration = trim($duration);
+    if ($duration === '') {
+        return false;
+    }
+
+    if (!$day_schedules_visible || $day_schedules_count < 2) {
+        return true;
+    }
+
+    $day_label = kursagenten_get_day_schedules_label($day_schedules_count);
+    if ($day_label === '') {
+        return true;
+    }
+
+    return strcasecmp($duration, $day_label) !== 0;
+}
+
+/**
  * Cursor-tooltip copy for list meta fields (used with ka-cursor-tooltip in list templates).
  *
  * @return array{registration_deadline: string, room: string, day_schedules: string}
@@ -1221,11 +1266,10 @@ function kursagenten_render_day_schedules_link($coursedate_id, $count, $course_t
     $args = array_merge($defaults, is_array($args) ? $args : []);
     $tag = in_array($args['tag'], ['a', 'button'], true) ? $args['tag'] : 'a';
 
-    $label = sprintf(
-        // translators: %d is the number of course days.
-        _n('%d dag', '%d dager', $count, 'kursagenten'),
-        $count
-    );
+    $label = kursagenten_get_day_schedules_label($count);
+    if ($label === '') {
+        return '';
+    }
 
     $classes = trim('show-ka-day-schedules ka-day-schedules-link ' . (string) $args['class']);
     $cursor_tooltip = isset($args['cursor_tooltip']) ? trim((string) $args['cursor_tooltip']) : '';
@@ -1267,6 +1311,83 @@ function kursagenten_render_day_schedules_link($coursedate_id, $count, $course_t
     }
 
     return $link;
+}
+
+/**
+ * Format a price value for display only.
+ *
+ * Groups thousands with a narrow no-break space (U+202F) so amounts read as
+ * "10 700" instead of "10700". U+202F is roughly half the width of a normal
+ * space and never breaks across lines, matching the requested "half space"
+ * separator. The underlying meta value (ka_course_price) is never modified –
+ * this only affects presentation.
+ *
+ * Non-numeric values (e.g. "Gratis", "På forespørsel") and amounts below 1000
+ * are returned unchanged. An optional decimal part using comma or dot is kept.
+ *
+ * @param string|int|float $price Raw price value from meta.
+ * @return string Display-ready price.
+ */
+function kursagenten_format_price_display($price): string {
+    $price = trim((string) $price);
+    if ($price === '') {
+        return '';
+    }
+
+    // Only reformat plain numeric amounts; leave any text (e.g. "Gratis") as-is.
+    // Allowed: digits, optional existing grouping spaces, optional decimals.
+    if (!preg_match('/^\d{1,3}(?:[\s\x{00A0}\x{202F}]?\d{3})*(?:[.,]\d+)?$/u', $price)) {
+        return $price;
+    }
+
+    // Normalize away any existing grouping whitespace to get the raw number.
+    $normalized = preg_replace('/[\s\x{00A0}\x{202F}]/u', '', $price);
+
+    $decimals = '';
+    if (preg_match('/^(\d+)([.,]\d+)$/', $normalized, $matches)) {
+        $integer  = $matches[1];
+        $decimals = $matches[2];
+    } else {
+        $integer = $normalized;
+    }
+
+    // Group the integer part in threes from the right.
+    $thin_space = "\xE2\x80\xAF"; // U+202F NARROW NO-BREAK SPACE
+    $grouped = preg_replace('/\B(?=(\d{3})+(?!\d))/', $thin_space, $integer);
+
+    return $grouped . $decimals;
+}
+
+/**
+ * Build a tel: link for a phone number.
+ *
+ * @param string $phone Display phone number.
+ * @return string Sanitized HTML anchor, or empty string if phone is empty.
+ */
+function kursagenten_format_phone_link(string $phone): string {
+    $phone = trim($phone);
+    if ($phone === '') {
+        return '';
+    }
+
+    $phone_href = preg_replace('/[^\d+]/', '', $phone) ?: $phone;
+
+    return '<a href="tel:' . esc_attr($phone_href) . '">' . esc_html($phone) . '</a>';
+}
+
+/**
+ * Build a mailto: link for an email address.
+ *
+ * @param string $email Email address.
+ * @return string Sanitized HTML anchor, or empty string if email is empty.
+ */
+function kursagenten_format_email_link(string $email): string {
+    $email = trim($email);
+    if ($email === '') {
+        return '';
+    }
+
+    return '<a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a>';
 }
 
 /**

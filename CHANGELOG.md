@@ -1,3 +1,7 @@
+## 1.1.26 - 2026-06-23
+- Lagt til: Ny enkeltkurs-mal *Kompakt - infostripe*. Minner om Hero, men baserer seg på farger i stedet for bilder. Infostripen gir informasjon om førstkommende kurs, og flere kurs er gjemt bak link "Se flere datoer og steder".
+- Fix: Lagt inn et tusenskilletegn i pris, i alle lister og maler.
+
 ## 1.1.25 - 2026-06-19
 - Fix: Tomme eller fjernede verdier i Kursagenten ble ikke synkronisert til WordPress for *Pris*, *Maks deltakere*, *Starttid*, *Sluttid*, *Rom/lokale*, *Sted* og *Adresse* på kursdatoer. Gammel verdi hang igjen og ble fortsatt vist på siden etter at feltet ble tømt i Kursagenten. Samme mønster som i v1.1.22 for varighet/kurstid/språk.
 - Forbedring: Tittel på kursdatoer i WordPress-admin viser nå kurssted (kommune med stedsnavn-mapping) i stedet for fylke, og startdato i format `YYYY-MM-DD` når dato finnes.
