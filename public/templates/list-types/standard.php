@@ -409,7 +409,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                         ?>
                         <?php if ($list_date_text !== '') : ?>
                             <div class="startdate">
-                                <i class="ka-icon icon-calendar"></i> <span class="ka-next-course"><?php echo esc_html__( 'Neste kurs:', 'kursagenten' ); ?>&nbsp;</span> <?php echo esc_html($list_date_text); ?>
+                                <i class="ka-icon icon-calendar-details"></i> <span class="ka-next-course"><?php echo esc_html__( 'Neste kurs:', 'kursagenten' ); ?>&nbsp;</span> <?php echo esc_html($list_date_text); ?>
                                 <?php if (count($related_coursedate_ids) > 1) : ?>
                                     <a href="#" class="show-ka-modal" data-course-id="<?php echo esc_attr($course_id); ?>" style="margin-left: 8px; font-size: 0.9em;">
                                         (<?php echo esc_html( sprintf( /* translators: %d: number of additional course dates */ __( '+%d flere', 'kursagenten' ), count( $related_coursedate_ids ) - 1 ) ); ?>)
@@ -454,7 +454,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                         );
                         ?>
                         <?php if ($list_date_text !== '') : ?>
-                            <div class="startdate"><i class="ka-icon icon-calendar"></i><?php echo esc_html($list_date_text); ?></div>
+                            <div class="startdate"><i class="ka-icon icon-calendar-details"></i><?php echo esc_html($list_date_text); ?></div>
                         <?php endif; ?>
                     
                         <?php if ($show_location_block) : ?>
@@ -508,7 +508,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                         ?></div>
                     <?php endif; ?>
                     <?php if ($show_meta_price) : ?>
-                        <div class="price"><i class="ka-icon icon-bookmark"></i><?php echo esc_html(kursagenten_format_price_display($price)); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></div>
+                        <div class="price"><i class="ka-icon icon-layers"></i><?php echo esc_html(kursagenten_format_price_display($price)); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></div>
                     <?php endif; ?>
                     <?php if ($show_meta_instructor) : ?>
                         <div class="instructors"><i class="ka-icon icon-user"></i><?php echo implode(' ,&nbsp;', $instructor_links); ?></div>

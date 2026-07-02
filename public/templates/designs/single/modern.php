@@ -79,14 +79,14 @@ if (!empty($locations) && !is_wp_error($locations)) {
             <div class="course-meta">
                 <?php if (!empty($first_course_date)) : ?>
                     <div class="meta-item">
-                        <i class="ka-icon icon-calendar"></i>
+                        <i class="ka-icon icon-calendar-light"></i>
                         <span><?php echo esc_html(ka_format_date($first_course_date)); ?></span>
                     </div>
                 <?php endif; ?>
 
                 <?php if (!empty($location)) : ?>
                     <div class="meta-item">
-                        <i class="ka-icon icon-location"></i>
+                        <i class="ka-icon icon-location-light"></i>
                         <span class="notranslate" translate="no"><?php echo esc_html($location); ?></span>
                     </div>
                 <?php endif; ?>
@@ -273,7 +273,7 @@ if (!empty($locations) && !is_wp_error($locations)) {
                             <div class="related-course-meta">
                                 <?php if (!empty($related_date)) : ?>
                                     <div class="meta-item">
-                                        <i class="ka-icon icon-calendar"></i>
+                                        <i class="ka-icon icon-calendar-light"></i>
                                         <span><?php echo esc_html(ka_format_date($related_date)); ?></span>
                                     </div>
                                 <?php endif; ?>

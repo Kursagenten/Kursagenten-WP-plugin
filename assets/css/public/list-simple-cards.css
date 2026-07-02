@@ -164,6 +164,8 @@
     font-size: var(--ka-font-base);
     line-height: inherit;
     text-align: center;
+    margin-top: 2px;
+    margin-right: 2px;
 }
 
 /* Icon colors: every meta icon uses the filter color, except the "Neste dato"

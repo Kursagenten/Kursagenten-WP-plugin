@@ -463,7 +463,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                             ?></li>
                             <?php endif; ?>
                             <?php if ($list_display['instructor'] && !empty($instructor_links)) : ?>
-                            <li><i class="ka-icon icon-user"></i><?php echo implode('', $instructor_links); ?></li>
+                            <li><i class="ka-icon icon-user"></i><span><?php echo implode('', $instructor_links); ?></span></li>
                             <?php endif; ?>
                         <?php else : ?>
                             <?php
@@ -498,7 +498,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                             ?></li>
                             <?php endif; ?>
                             <?php if ($list_display['instructor'] && !empty($instructor_links)) : ?>
-                            <li><i class="ka-icon icon-user"></i><?php echo implode(', ', $instructor_links); ?></li>
+                            <li><i class="ka-icon icon-user"></i><span><?php echo implode(', ', $instructor_links); ?></span></li>
                             <?php endif; ?>
                         <?php endif; ?>
                     </ul>

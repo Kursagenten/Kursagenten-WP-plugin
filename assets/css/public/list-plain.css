@@ -198,9 +198,11 @@
 
 #ka .ka-container .compact-course-meta i {
     font-size: var(--ka-font-base);
-    color: var(--ka-color, #3b82f6);
-    opacity: 0.8;
+    background-color: #00000099;
     margin-right: 0;
+}
+#ka .ka-container .compact-course-meta .compact-course-date i {
+    background-color: var(--ka-color);
 }
 
 #ka .ka-container .compact-course-date {

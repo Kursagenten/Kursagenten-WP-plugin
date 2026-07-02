@@ -27,6 +27,9 @@
 #ka .course-container .location-navigation .header-links a {
     color: #00000094;
 }
+#ka .course-container .location-navigation .header-links.iconlist > div {
+    align-items: center;
+}
 
 /* HEADER */
 #ka .course-container .ka-header {
@@ -334,6 +337,7 @@
     #ka .iconlist.horizontal {
         align-items: flex-start;
     }
+
 
 
     /* Samme mobilbryting på kurslisten som i standarddesign */

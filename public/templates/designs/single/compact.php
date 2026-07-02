@@ -516,7 +516,7 @@ do_action('ka_singel_header_before');
                         <div class="iconlist medium">
                             <?php if (in_array('first_date', $single_display_fields, true) && !empty($selected_coursedate_data['first_date'])) : ?>
                                 <div>
-                                    <i class="ka-icon icon-calendar"></i>
+                                    <i class="ka-icon icon-calendar-light"></i>
                                     <span>
                                         <?php echo esc_html($selected_coursedate_data['first_date']); ?>
                                         <?php if (in_array('last_date', $single_display_fields, true) && !empty($selected_coursedate_data['last_date']) && $selected_coursedate_data['last_date'] !== $selected_coursedate_data['first_date']) : ?>
@@ -527,7 +527,7 @@ do_action('ka_singel_header_before');
                             <?php endif; ?>
                             <?php if (in_array('day_schedules', $single_display_fields, true) && !empty($selected_coursedate_data['day_schedules_count']) && (int) $selected_coursedate_data['day_schedules_count'] >= 2) : ?>
                                 <div>
-                                    <i class="ka-icon icon-calendar"></i>
+                                    <i class="ka-icon icon-calendar-light"></i>
                                     <span><?php echo esc_html__('Kursdager:', 'kursagenten'); ?>
                                         <?php
                                         echo kursagenten_render_day_schedules_link(
@@ -541,7 +541,7 @@ do_action('ka_singel_header_before');
                                 </div>
                             <?php endif; ?>
                             <?php if (in_array('time', $single_display_fields, true) && !empty($selected_coursedate_data['time'])) : ?>
-                                <div><i class="ka-icon icon-time"></i><span><?php echo esc_html($selected_coursedate_data['time']); ?></span></div>
+                                <div><i class="ka-icon icon-time-light"></i><span><?php echo esc_html($selected_coursedate_data['time']); ?></span></div>
                             <?php endif; ?>
                             <?php
                             $show_next_day_schedules = in_array('day_schedules', $single_display_fields, true)
@@ -553,7 +553,7 @@ do_action('ka_singel_header_before');
                                 $show_next_day_schedules
                             )) :
                             ?>
-                                <div><i class="ka-icon icon-stopwatch"></i><span><?php echo esc_html($selected_coursedate_data['duration']); ?></span></div>
+                                <div><i class="ka-icon icon-stopwatch-light"></i><span><?php echo esc_html($selected_coursedate_data['duration']); ?></span></div>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -577,13 +577,13 @@ do_action('ka_singel_header_before');
                     <h2 class="small"><?php esc_html_e('Sted', 'kursagenten'); ?></h2>
                     <div class="iconlist medium">
                         <?php if (!empty($display_location)) : ?>
-                            <div><i class="ka-icon icon-location"></i><span><?php echo esc_html__('Sted:', 'kursagenten'); ?> <span class="notranslate" translate="no"><?php echo esc_html($display_location); ?></span></span></div>
+                            <div><i class="ka-icon icon-location-light"></i><span><?php echo esc_html__('Sted:', 'kursagenten'); ?> <span class="notranslate" translate="no"><?php echo esc_html($display_location); ?></span></span></div>
                         <?php endif; ?>
                         <?php if (in_array('room', $single_display_fields, true) && !empty($selected_coursedate_data['course_location_room'])) : ?>
-                            <div><i class="ka-icon icon-bag"></i><span><?php echo esc_html__('Lokale:', 'kursagenten'); ?> <span class="notranslate" translate="no"><?php echo esc_html($selected_coursedate_data['course_location_room']); ?></span></span></div>
+                            <div><i class="ka-icon icon-home-light"></i><span><?php echo esc_html__('Lokale:', 'kursagenten'); ?> <span class="notranslate" translate="no"><?php echo esc_html($selected_coursedate_data['course_location_room']); ?></span></span></div>
                         <?php endif; ?>
                         <?php if (!empty($selected_coursedate_data['location_freetext']) && $selected_coursedate_data['location_freetext'] !== $display_location) : ?>
-                            <div><i class="ka-icon icon-location"></i><span class="notranslate" translate="no"><?php echo esc_html($selected_coursedate_data['location_freetext']); ?></span></div>
+                            <div><i class="ka-icon icon-location-light"></i><span class="notranslate" translate="no"><?php echo esc_html($selected_coursedate_data['location_freetext']); ?></span></div>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -592,14 +592,14 @@ do_action('ka_singel_header_before');
                     <h2 class="small"><?php esc_html_e('Annet', 'kursagenten'); ?></h2>
                     <div class="iconlist medium">
                         <?php if (in_array('price', $single_display_fields, true) && !empty($selected_coursedate_data['price'])) : ?>
-                            <div><i class="ka-icon icon-bag"></i><span><?php echo esc_html__('Pris:', 'kursagenten'); ?> <?php echo esc_html(kursagenten_format_price_display($selected_coursedate_data['price'])); ?> <?php echo esc_html($price_posttext); ?></span></div>
+                            <div><i class="ka-icon icon-layers-light"></i><span><?php echo esc_html__('Pris:', 'kursagenten'); ?> <?php echo esc_html(kursagenten_format_price_display($selected_coursedate_data['price'])); ?> <?php echo esc_html($price_posttext); ?></span></div>
                         <?php endif; ?>
                         <?php if (in_array('language', $single_display_fields, true) && !empty($selected_coursedate_data['language'])) : ?>
-                            <div><i class="ka-icon icon-chat-bubble"></i><span><?php echo esc_html__('Språk:', 'kursagenten'); ?> <?php echo esc_html($selected_coursedate_data['language']); ?></span></div>
+                            <div><i class="ka-icon icon-chat-bubble-light"></i><span><?php echo esc_html__('Språk:', 'kursagenten'); ?> <?php echo esc_html($selected_coursedate_data['language']); ?></span></div>
                         <?php endif; ?>
                         <?php if ($show_contact_in_infobar) : ?>
                             <div class="compact-contact-item">
-                                <i class="ka-icon icon-user"></i>
+                                <i class="ka-icon icon-user-light"></i>
                                 <span>
                                     <?php echo esc_html__('Kontaktperson:', 'kursagenten'); ?>
                                     <?php if (!empty($contact_name)) : ?><?php echo esc_html($contact_name); ?><?php endif; ?>

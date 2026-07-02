@@ -200,6 +200,10 @@
 #ka .course-container-compact .compact-infostripe-col .iconlist {
     row-gap: var(--ka-space-xs);
 }
+#ka-main .course-container-compact .compact-infostripe-col .iconlist i.ka-icon {
+    width: 18px;
+    height: 22px;
+}
 #ka .course-container-compact .compact-infostripe-col .iconlist .compact-contact-item{
     align-items: flex-start;
 }

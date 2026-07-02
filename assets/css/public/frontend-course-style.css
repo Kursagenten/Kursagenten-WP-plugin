@@ -266,6 +266,7 @@ border-radius: 10px;
 display: inline-block;
 width: var(--ka-font-base);
     height: var(--ka-font-base);
+flex-shrink: 0;
 background-color: var(--ka-color);
 mask-size: contain;
 -webkit-mask-size: contain;
@@ -307,7 +308,7 @@ row-gap: .8em;
 #ka .iconlist > div,
 #ka .iconlist.horizontal a {
 display: flex;
-align-items: center;
+align-items: flex-start;
 }
 /* Inside a flex .iconlist item, whitespace between flex items is collapsed, so a
    value rendered as its own element (e.g. the "X dager" link or a notranslate
@@ -556,7 +557,7 @@ border-radius: 8px;
 /* The bubble is appended to <body>, so it must NOT be scoped under #ka */
 .ka-cursor-tooltip { cursor: pointer; }
 
-.ka-cursor-tooltip--help { cursor: help; }
+.ka-cursor-tooltip--help { cursor: context-menu; }
 
 .ka-cursor-tooltip-bubble {
   position: fixed;
@@ -661,8 +662,8 @@ border-radius: 8px;
 /*****************************/
 #ka .edit-course{
 position: fixed;
-top: 160px;
-left: 10px;
+bottom: 3vh;
+left: 2vw;
 z-index: 10000;
 }
 #ka .edit-course a {
@@ -896,8 +897,9 @@ z-index: 10000;
   height: 16px;
 }
 #ka .ka-container .courselist-main .meta-area.iconlist.horizontal i.ka-icon{
-  height: 13px;
+  height: 14px;
   background-color: #666;
+  margin-top: 3px;
 }
 #ka .ka-container .courselist-content {
   height: 0;

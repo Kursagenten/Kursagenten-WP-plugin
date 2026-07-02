@@ -102,7 +102,7 @@ if (!empty($instructors) && !is_wp_error($instructors)) {
             <!-- Meta area -->
             <div class="meta-area iconlist horizontal">
                 <?php if (!empty($price)) : ?>
-                    <div class="price"><i class="ka-icon icon-bookmark"></i><?php echo esc_html(kursagenten_format_price_display($price)); ?> <?php echo esc_html($after_price); ?></div>
+                    <div class="price"><i class="ka-icon icon-layers"></i><?php echo esc_html(kursagenten_format_price_display($price)); ?> <?php echo esc_html($after_price); ?></div>
                 <?php endif; ?>
                 <?php if (!empty($duration)) : ?>
                     <div class="duration"><i class="ka-icon icon-timer-light"></i><?php echo esc_html($duration); ?></div>

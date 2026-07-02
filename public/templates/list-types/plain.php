@@ -445,7 +445,7 @@ $view_type_class = ' view-type-' . str_replace('_', '', $view_type);
                     
                     <?php if ($list_display['price'] && !empty($price)) : ?>
                         <span class="compact-course-price">
-                            <i class="ka-icon icon-bookmark"></i>
+                            <i class="ka-icon icon-layers"></i>
                             <span><?php echo esc_html(kursagenten_format_price_display($price)); ?> <?php echo isset($after_price) ? esc_html($after_price) : ''; ?></span>
                         </span>
                     <?php endif; ?>

@@ -140,6 +140,7 @@
     }
     #ka .course-container .header-content i.ka-icon{
         background-color: var(--ka-color-light);
+        margin-top: 3px;
     }
     #ka .course-container .header-content h1{
         font-size: var(--ka-font-xxxl);
@@ -260,8 +261,8 @@
         row-gap: var(--ka-space-sm);
     }
     #ka-main .nextcourse .iconlist i.ka-icon {
-        width: var(--ka-font-md);
-        height: var(--ka-font-md);
+        width: 20px;
+        height: 20px;
     }
     #ka .nextcourse .iconlist .signup-link i.ka-icon {
         height: var(--ka-font-xs);

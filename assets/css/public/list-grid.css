@@ -149,7 +149,7 @@
 
 #ka .ka-container .card-details-list li {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 8px;
@@ -165,10 +165,17 @@
     word-break: break-word;
 }
 
+#ka .ka-container .card-details-list li.day-schedules > a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 #ka .ka-container .card-details-list i {
     background-color: #777;
     height: var(--ka-font-s);
     width: var(--ka-font-base);
+    flex-shrink: 0;
 }
 
 /* Separator */

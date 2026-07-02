@@ -913,7 +913,7 @@ function kursagenten_parse_raw_course_date($raw_date) {
  * Format start date with optional end date in the same string.
  * Uses hyphen (-) in date ranges.
  * Same day: "07.08.2026"
- * Same month+year: "12.-15.12.2026"
+ * Same month+year: "06.-08.10.2026"
  * Same year, different month: "12.11-15.12.2026"
  *
  * @param string $first_course_date Formatted first date.
@@ -955,7 +955,7 @@ function kursagenten_list_format_course_dates($first_course_date, $last_course_d
 
         if ($same_year) {
             if ($first_dt->format('m') === $last_dt->format('m')) {
-                return wp_date('j.', $first_dt->getTimestamp())
+                return wp_date('d.', $first_dt->getTimestamp())
                     . $dash
                     . wp_date($full_format, $last_dt->getTimestamp());
             }

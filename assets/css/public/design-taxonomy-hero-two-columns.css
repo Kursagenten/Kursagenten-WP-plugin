@@ -39,7 +39,8 @@
     display: flex;
     flex-direction: column;
     row-gap: var(--ka-space-sm);
-    margin-bottom: 5vh;
+    margin-top: 4.5vh;
+    margin-bottom: 4.5vh;
 }
 #ka .taxonomy-hero-header .taxonomy-header-content h1 {
     font-size: var(--ka-font-xxxxl);
