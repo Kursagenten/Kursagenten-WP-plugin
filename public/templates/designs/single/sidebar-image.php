@@ -250,7 +250,7 @@ do_action('ka_singel_header_before');
                 <?php if ($is_parent_course === 'yes') : ?>
                     <h1><?php the_title(); ?></h1>
                 <?php else : ?>
-                    <h1><?php echo esc_html($main_course_title); ?>
+                    <h1 data-course-maintitle="<?php echo esc_attr($main_course_title); ?>" data-course-location="<?php echo esc_attr($sub_course_location); ?>" data-course-title="<?php echo esc_attr(get_the_title()); ?>"><?php echo esc_html($main_course_title); ?>
                     <span style="margin-top: .2em; display: block; font-size: var(--ka-font-lg); font-weight: 300;"><span class="notranslate" translate="no">- <?php echo esc_html($sub_course_location); ?></span></span>
                 </h1>
                     

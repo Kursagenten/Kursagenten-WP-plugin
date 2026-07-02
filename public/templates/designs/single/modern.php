@@ -14,6 +14,11 @@ $course_content = get_the_content();
 $course_excerpt = get_the_excerpt();
 $course_thumbnail = get_the_post_thumbnail_url($course_id, 'large');
 
+// Hovedkurs/underkurs-info for h1 dataattributter (kun underkurs)
+$is_parent_course = get_post_meta($course_id, 'ka_is_parent_course', true);
+$main_course_title = get_post_meta($course_id, 'ka_main_course_title', true);
+$sub_course_location = get_post_meta($course_id, 'ka_sub_course_location', true);
+
 // Hent metadata
 $first_course_date = get_post_meta($course_id, 'ka_course_first_date', true);
 $last_course_date = get_post_meta($course_id, 'ka_course_last_date', true);
@@ -68,7 +73,7 @@ if (!empty($locations) && !is_wp_error($locations)) {
 <article id="post-<?php the_ID(); ?>" <?php post_class('kursagenten-single-course modern-design'); ?>>
     <div class="course-container">
         <header class="course-header">
-            <h1 class="course-title"><?php echo esc_html($course_title); ?></h1>
+            <h1 class="course-title"<?php if ($is_parent_course !== 'yes') { echo ' data-course-maintitle="' . esc_attr($main_course_title) . '" data-course-location="' . esc_attr($sub_course_location) . '" data-course-title="' . esc_attr($course_title) . '"'; } ?>><?php echo esc_html($course_title); ?></h1>
             
             <?php if (!empty($course_excerpt)) : ?>
                 <div class="course-excerpt">

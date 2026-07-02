@@ -450,7 +450,7 @@ do_action('ka_singel_header_before');
                     <?php if ($is_parent_course === 'yes') : ?>
                         <h1 class="course-title"><?php the_title(); ?></h1>
                     <?php else : ?>
-                        <h1 class="course-title">
+                        <h1 class="course-title" data-course-maintitle="<?php echo esc_attr($main_course_title); ?>" data-course-location="<?php echo esc_attr($sub_course_location); ?>" data-course-title="<?php echo esc_attr(get_the_title()); ?>">
                             <?php echo esc_html($main_course_title); ?>
                             <?php if (!empty($sub_course_location)) : ?>
                                 <span class="course-subtitle">
